@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Online Tools - All in One</title>
+<meta name="description" content="Free online tools including Age Calculator, Password Generator, EMI Calculator, BMI Calculator, Word Counter, Loan Eligibility Calculator, Percentage Calculator and Unit Converter.">
+
+<style>
+body{font-family:Arial, sans-serif;margin:0;background:#f4f6f9;}
+header{background:#0d6efd;color:white;text-align:center;padding:20px;}
+.section{max-width:900px;margin:20px auto;background:white;padding:20px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.05);}
+h2{color:#0d6efd;}
+input,select,textarea,button{width:100%;padding:10px;margin:8px 0;border-radius:6px;border:1px solid #ccc;}
+button{background:#0d6efd;color:white;border:none;cursor:pointer;}
+button:hover{background:#084298;}
+.result{font-weight:bold;margin-top:10px;color:#198754;}
+footer{text-align:center;padding:20px;background:#eee;margin-top:40px;}
+.ad-box{margin:20px auto;padding:15px;text-align:center;background:#f8f9fa;border:1px dashed #ccc;font-size:14px;color:#666;}
+@media(max-width:600px){.section{margin:10px;}}
+</style>
+</head>
+<body>
+
+<header>
+<h1>Free Online Tools</h1>
+</header>
+
+<!-- TOP BANNER AD -->
+<div class="section">
+<div class="ad-box">
+TOP BANNER AD SPACE <br>
+(Paste Your Ad Code Here)
+</div>
+</div>
+
+<!-- AGE CALCULATOR -->
+<div class="section">
+<h2>Age Calculator</h2>
+<input type="date" id="dob">
+<button onclick="calculateAge()">Calculate Age</button>
+<div class="result" id="ageResult"></div>
+</div>
+
+<!-- MIDDLE AD -->
+<div class="section">
+<div class="ad-box">
+MIDDLE AD SPACE <br>
+(Paste Your Ad Code Here)
+</div>
+</div>
+
+<!-- PASSWORD GENERATOR -->
+<div class="section">
+<h2>Password Generator</h2>
+<input type="number" id="passLength" min="8" max="20" value="12">
+<button onclick="generatePassword()">Generate Password</button>
+<div class="result" id="passwordResult"></div>
+<button onclick="copyPassword()" style="background:#198754;">Copy Password</button>
+</div>
+
+<!-- EMI CALCULATOR -->
+<div class="section">
+<h2>EMI Calculator</h2>
+<input type="number" id="loan" placeholder="Loan Amount">
+<input type="number" id="rate" placeholder="Interest Rate (%)">
+<input type="number" id="tenure" placeholder="Tenure (Years)">
+<button onclick="calculateEMI()">Calculate EMI</button>
+<div class="result" id="emiResult"></div>
+</div>
+
+<!-- BOTTOM AD -->
+<div class="section">
+<div class="ad-box">
+BOTTOM BANNER AD SPACE <br>
+(Paste Your Ad Code Here)
+</div>
+</div>
+
+<!-- BMI CALCULATOR -->
+<div class="section">
+<h2>BMI Calculator</h2>
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (cm)">
+<button onclick="calculateBMI()">Calculate BMI</button>
+<div class="result" id="bmiResult"></div>
+</div>
+
+<!-- WORD COUNTER -->
+<div class="section">
+<h2>Word Counter</h2>
+<textarea id="textInput" rows="4"></textarea>
+<button onclick="countWords()">Count Words</button>
+<div class="result" id="wordResult"></div>
+</div>
+
+<!-- LOAN ELIGIBILITY -->
+<div class="section">
+<h2>Loan Eligibility Calculator</h2>
+<input type="number" id="income" placeholder="Monthly Income">
+<input type="number" id="expenses" placeholder="Monthly Expenses">
+<button onclick="loanEligibility()">Check Eligibility</button>
+<div class="result" id="loanResult"></div>
+</div>
+
+<!-- PERCENTAGE -->
+<div class="section">
+<h2>Percentage Calculator</h2>
+<input type="number" id="percent" placeholder="Percentage">
+<input type="number" id="total" placeholder="Total Value">
+<button onclick="calculatePercent()">Calculate</button>
+<div class="result" id="percentResult"></div>
+</div>
+
+<!-- UNIT CONVERTER -->
+<div class="section">
+<h2>Unit Converter (KM ↔ Miles)</h2>
+<input type="number" id="unitValue" placeholder="Enter Value">
+<select id="unitType">
+<option value="km">Kilometers to Miles</option>
+<option value="mile">Miles to Kilometers</option>
+</select>
+<button onclick="convertUnit()">Convert</button>
+<div class="result" id="unitResult"></div>
+</div>
+
+<!-- SEO ARTICLE -->
+<div class="section">
+<h2>About Our Free Online Tools</h2>
+<p>
+Our free online tools website helps users calculate age, EMI, BMI, generate secure passwords, count words, check loan eligibility, calculate percentage and convert units easily. All tools are mobile friendly and work on laptop and desktop without installation.
+</p>
+</div>
+
+<footer>
+© 2026 Free Online Tools
+</footer>
+
+<script>
+function calculateAge(){
+let dob = new Date(document.getElementById("dob").value);
+if(!dob.getTime()){alert("Select valid date");return;}
+let diff = Date.now() - dob.getTime();
+let age = new Date(diff);
+let years = Math.abs(age.getUTCFullYear()-1970);
+document.getElementById("ageResult").innerText = "Your Age: " + years + " years";
+}
+
+function generatePassword(){
+let length = document.getElementById("passLength").value;
+if(length < 8 || length > 20){alert("Enter length between 8-20");return;}
+let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
+let password = "";
+for(let i=0;i<length;i++){
+password += chars.charAt(Math.floor(Math.random()*chars.length));
+}
+document.getElementById("passwordResult").innerText = password;
+}
+
+function copyPassword(){
+let text = document.getElementById("passwordResult").innerText;
+if(text === ""){alert("Generate password first!");return;}
+navigator.clipboard.writeText(text);
+alert("Password Copied!");
+}
+
+function calculateEMI(){
+let P = document.getElementById("loan").value;
+let r = document.getElementById("rate").value/1200;
+let n = document.getElementById("tenure").value*12;
+if(P<=0||r<=0||n<=0){alert("Enter valid values");return;}
+let emi = (P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+document.getElementById("emiResult").innerText = "Monthly EMI: ₹" + emi.toFixed(2);
+}
+
+function calculateBMI(){
+let w = document.getElementById("weight").value;
+let h = document.getElementById("height").value/100;
+if(w<=0||h<=0){alert("Enter valid values");return;}
+let bmi = w/(h*h);
+document.getElementById("bmiResult").innerText = "BMI: " + bmi.toFixed(2);
+}
+
+function countWords(){
+let text = document.getElementById("textInput").value.trim();
+let words = text ? text.split(/\s+/).length : 0;
+document.getElementById("wordResult").innerText = "Words: " + words + " | Characters: " + text.length;
+}
+
+function loanEligibility(){
+let income = document.getElementById("income").value;
+let expenses = document.getElementById("expenses").value;
+let eligible = (income - expenses) * 60;
+document.getElementById("loanResult").innerText = "Estimated Loan: ₹" + eligible;
+}
+
+function calculatePercent(){
+let percent = document.getElementById("percent").value;
+let total = document.getElementById("total").value;
+let result = (percent/100)*total;
+document.getElementById("percentResult").innerText = "Result: " + result;
+}
+
+function convertUnit(){
+let val = document.getElementById("unitValue").value;
+let type = document.getElementById("unitType").value;
+if(type==="km"){
+document.getElementById("unitResult").innerText = (val*0.621371).toFixed(2) + " Miles";
+}else{
+document.getElementById("unitResult").innerText = (val/0.621371).toFixed(2) + " KM";
+}
+}
+</script>
+
+</body>
+</html>
