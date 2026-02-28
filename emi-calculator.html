@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>EMI Calculator - Calculate Loan EMI Online Free</title>
+
+<meta name="description" content="Free EMI calculator to calculate your monthly loan EMI instantly. Calculate home loan, car loan or personal loan EMI easily.">
+
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/emi-calculator.html">
+
+<style>
+body{font-family:Arial;background:#f4f6f9;margin:0;}
+.container{max-width:500px;margin:50px auto;background:white;padding:25px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+h1{text-align:center;color:#0d6efd;}
+input,button{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
+button{background:#0d6efd;color:white;border:none;cursor:pointer;}
+button:hover{background:#084298;}
+.result{font-weight:bold;margin-top:10px;color:#198754;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>EMI Calculator</h1>
+
+<input type="number" id="loan" placeholder="Loan Amount">
+<input type="number" id="rate" placeholder="Interest Rate (%)">
+<input type="number" id="tenure" placeholder="Tenure (Years)">
+
+<button onclick="calculateEMI()">Calculate EMI</button>
+
+<div class="result" id="result"></div>
+</div>
+
+<div class="container">
+<h2>What is EMI?</h2>
+<p>
+EMI (Equated Monthly Installment) is the fixed amount you pay every month towards your loan. 
+It includes both principal and interest components.
+</p>
+
+<h2>How EMI is Calculated?</h2>
+<p>
+EMI is calculated using the formula:
+EMI = [P × R × (1+R)^N] / [(1+R)^N – 1]
+Where P = Loan Amount, R = Monthly Interest Rate, N = Number of Months.
+</p>
+
+<h2>Benefits of Using EMI Calculator</h2>
+<ul>
+<li>Instant loan planning</li>
+<li>Compare different interest rates</li>
+<li>Better financial decisions</li>
+</ul>
+</div>
+
+<script>
+function calculateEMI(){
+let P=document.getElementById("loan").value;
+let r=document.getElementById("rate").value/1200;
+let n=document.getElementById("tenure").value*12;
+
+if(P<=0||r<=0||n<=0){alert("Enter valid values");return;}
+
+let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
+}
+</script>
+
+</body>
+</html>
