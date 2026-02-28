@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Age Calculator - Calculate Your Exact Age Online Free</title>
+
+  <meta name="description" content="Free online age calculator to calculate your exact age in years, months and days. Fast, accurate and easy to use age calculation tool.">
+
+  <meta name="keywords" content="age calculator, calculate age online, exact age calculator, date of birth calculator">
+
+  <meta name="author" content="Free Online Tools">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/age-calculator.html">
+
+  <!-- Open Graph (for social sharing) -->
+  <meta property="og:title" content="Age Calculator - Free Online Tool">
+  <meta property="og:description" content="Calculate your exact age instantly with our free online age calculator.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/age-calculator.html">
+
+</head>
+<body>
+
+  <h1>Age Calculator</h1>
+
+  <p>Use our free Age Calculator to calculate your exact age in years, months and days.</p>
+
+  <!-- Calculator Form -->
+  <label>Date of Birth:</label>
+  <input type="date" id="dob">
+
+  <button onclick="calculateAge()">Calculate Age</button>
+
+  <h2 id="result"></h2>
+
+  <script>
+    function calculateAge() {
+      const dob = new Date(document.getElementById("dob").value);
+      const today = new Date();
+
+      let age = today.getFullYear() - dob.getFullYear();
+      let month = today.getMonth() - dob.getMonth();
+      let day = today.getDate() - dob.getDate();
+
+      if (day < 0) {
+        month--;
+        day += 30;
+      }
+
+      if (month < 0) {
+        age--;
+        month += 12;
+      }
+
+      document.getElementById("result").innerText =
+        "You are " + age + " years, " + month + " months and " + day + " days old.";
+    }
+  </script>
+
+</body>
+</html>
