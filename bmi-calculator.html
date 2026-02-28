@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI Calculator - Calculate Body Mass Index Online Free</title>
+
+<meta name="description" content="Free BMI calculator to calculate your Body Mass Index. Check if you are underweight, normal, overweight or obese instantly.">
+
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/bmi-calculator.html">
+
+<style>
+body{font-family:Arial;background:#f4f6f9;margin:0;}
+.container{max-width:500px;margin:50px auto;background:white;padding:25px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
+h1{text-align:center;color:#0d6efd;}
+input,button{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
+button{background:#0d6efd;color:white;border:none;cursor:pointer;}
+button:hover{background:#084298;}
+.result{font-weight:bold;margin-top:10px;color:#198754;}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h1>BMI Calculator</h1>
+
+<input type="number" id="weight" placeholder="Weight (kg)">
+<input type="number" id="height" placeholder="Height (cm)">
+
+<button onclick="calculateBMI()">Calculate BMI</button>
+
+<div class="result" id="result"></div>
+
+</div>
+
+<div class="container">
+<h2>What is BMI?</h2>
+<p>
+BMI (Body Mass Index) is a simple calculation using a person's height and weight. 
+It helps determine whether a person is underweight, normal weight, overweight, or obese.
+</p>
+
+<h2>How to Use This BMI Calculator</h2>
+<p>
+Enter your weight in kilograms and height in centimeters. Click on Calculate BMI to instantly get your result.
+</p>
+
+<h2>BMI Categories</h2>
+<ul>
+<li>Underweight: BMI less than 18.5</li>
+<li>Normal weight: BMI 18.5 – 24.9</li>
+<li>Overweight: BMI 25 – 29.9</li>
+<li>Obese: BMI 30 or greater</li>
+</ul>
+</div>
+
+<script>
+function calculateBMI(){
+let w=document.getElementById("weight").value;
+let h=document.getElementById("height").value/100;
+if(w<=0||h<=0){alert("Enter valid values");return;}
+let bmi=w/(h*h);
+let category="";
+if(bmi<18.5){category="Underweight";}
+else if(bmi<25){category="Normal weight";}
+else if(bmi<30){category="Overweight";}
+else{category="Obese";}
+document.getElementById("result").innerText="Your BMI: "+bmi.toFixed(2)+" ("+category+")";
+}
+</script>
+
+</body>
+</html>
