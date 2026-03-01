@@ -24,18 +24,25 @@
 </head>
 <body>
 
-  <h1>Age Calculator</h1>
+  <div style="max-width:600px;margin:40px auto;background:white;padding:30px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1);text-align:center;">
 
-  <p>Use our free Age Calculator to calculate your exact age in years, months and days.</p>
+<h1 style="color:#0d6efd;">Age Calculator</h1>
 
-  <!-- Calculator Form -->
-  <label>Date of Birth:</label>
-  <input type="date" id="dob">
+<p>Use our free Age Calculator to calculate your exact age in years, months and days.</p>
 
-  <button onclick="calculateAge()">Calculate Age</button>
+<label style="font-weight:bold;">Date of Birth:</label>
 
-  <h2 id="result"></h2>
+<input type="date" id="dob"
+style="width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
 
+<button onclick="calculateAge()"
+style="background:#0d6efd;color:white;padding:12px;border:none;border-radius:6px;cursor:pointer;font-size:16px;width:100%;">
+Calculate Age
+</button>
+
+<h2 id="result" style="margin-top:20px;color:#198754;"></h2>
+
+</div>
   <script>
     function calculateAge() {
       const dob = new Date(document.getElementById("dob").value);
