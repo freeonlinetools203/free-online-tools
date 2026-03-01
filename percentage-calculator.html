@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator - Calculate Percentage Online Free</title>
+
+<meta name="description" content="Free online percentage calculator. Easily calculate percentage of any number instantly. Fast and accurate percentage calculation tool.">
+
+<meta name="keywords" content="percentage calculator, calculate percentage, percent of number, online percentage tool">
+
+<meta name="author" content="Free Online Tools">
+
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/percentage-calculator.html">
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  margin:0;
+  background:#f4f6f9;
+}
+
+.card{
+  max-width:600px;
+  margin:60px auto;
+  background:white;
+  padding:30px;
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  text-align:center;
+}
+
+.card h1{
+  color:#0d6efd;
+}
+
+.card input{
+  width:100%;
+  padding:10px;
+  margin:12px 0;
+  border-radius:6px;
+  border:1px solid #ccc;
+}
+
+.card button{
+  width:100%;
+  padding:12px;
+  background:#0d6efd;
+  color:white;
+  border:none;
+  border-radius:6px;
+  cursor:pointer;
+  font-size:16px;
+  transition:0.3s;
+}
+
+.card button:hover{
+  background:#084298;
+}
+
+#result{
+  margin-top:20px;
+  font-weight:bold;
+  color:#198754;
+}
+</style>
+
+</head>
+<body>
+
+<div class="card">
+<h1>Percentage Calculator</h1>
+
+<p>Enter percentage and total value to calculate instantly.</p>
+
+<input type="number" id="percent" placeholder="Enter Percentage (%)">
+<input type="number" id="total" placeholder="Enter Total Value">
+
+<button onclick="calculatePercent()">Calculate</button>
+
+<h2 id="result"></h2>
+</div>
+
+<script>
+function calculatePercent(){
+  let percent = document.getElementById("percent").value;
+  let total = document.getElementById("total").value;
+
+  if(percent === "" || total === ""){
+    document.getElementById("result").innerText = "Please enter both values.";
+    return;
+  }
+
+  let result = (percent/100) * total;
+
+  document.getElementById("result").innerText =
+    percent + "% of " + total + " is " + result;
+}
+</script>
+
+</body>
+</html>
