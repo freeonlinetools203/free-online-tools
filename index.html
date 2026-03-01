@@ -211,14 +211,6 @@ BOTTOM BANNER AD SPACE <br>
 <div class="result" id="loanResult"></div>
 </div>
 
-<!-- PERCENTAGE -->
-<div class="section">
-<h2>Percentage Calculator</h2>
-<input type="number" id="percent" placeholder="Percentage">
-<input type="number" id="total" placeholder="Total Value">
-<button onclick="calculatePercent()">Calculate</button>
-<div class="result" id="percentResult"></div>
-</div>
 
 <!-- UNIT CONVERTER -->
 <div class="section">
@@ -304,13 +296,6 @@ let eligible = (income - expenses) * 60;
 document.getElementById("loanResult").innerText = "Estimated Loan: ₹" + eligible;
 }
 
-function calculatePercent(){
-let percent = document.getElementById("percent").value;
-let total = document.getElementById("total").value;
-let result = (percent/100)*total;
-document.getElementById("percentResult").innerText = "Result: " + result;
-}
-
 function convertUnit(){
 let val = document.getElementById("unitValue").value;
 let type = document.getElementById("unitType").value;
@@ -325,6 +310,7 @@ document.getElementById("unitResult").innerText = (val/0.621371).toFixed(2) + " 
 </body>
 
 </html>
+
 
 
 
