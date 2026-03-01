@@ -142,13 +142,6 @@ TOP BANNER AD SPACE <br>
 </div>
 </div>
 
-<!-- AGE CALCULATOR -->
-<div class="section">
-<h2>Age Calculator</h2>
-<input type="date" id="dob">
-<button onclick="calculateAge()">Calculate Age</button>
-<div class="result" id="ageResult"></div>
-</div>
 
 <!-- MIDDLE AD -->
 <div class="section">
@@ -239,14 +232,6 @@ Our free online tools website helps users calculate age, EMI, BMI, generate secu
 <a href="contact.html">Contact Us</a>
 </footer>
 <script>
-function calculateAge(){
-let dob = new Date(document.getElementById("dob").value);
-if(!dob.getTime()){alert("Select valid date");return;}
-let diff = Date.now() - dob.getTime();
-let age = new Date(diff);
-let years = Math.abs(age.getUTCFullYear()-1970);
-document.getElementById("ageResult").innerText = "Your Age: " + years + " years";
-}
 
 function generatePassword(){
 let length = document.getElementById("passLength").value;
@@ -310,6 +295,7 @@ document.getElementById("unitResult").innerText = (val/0.621371).toFixed(2) + " 
 </body>
 
 </html>
+
 
 
 
