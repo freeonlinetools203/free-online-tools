@@ -150,26 +150,6 @@ MIDDLE AD SPACE <br>
 (Paste Your Ad Code Here)
 </div>
 </div>
-
-<!-- PASSWORD GENERATOR -->
-<div class="section">
-<h2>Password Generator</h2>
-<input type="number" id="passLength" min="8" max="20" value="12">
-<button onclick="generatePassword()">Generate Password</button>
-<div class="result" id="passwordResult"></div>
-<button onclick="copyPassword()" style="background:#198754;">Copy Password</button>
-</div>
-
-<!-- EMI CALCULATOR -->
-<div class="section">
-<h2>EMI Calculator</h2>
-<input type="number" id="loan" placeholder="Loan Amount">
-<input type="number" id="rate" placeholder="Interest Rate (%)">
-<input type="number" id="tenure" placeholder="Tenure (Years)">
-<button onclick="calculateEMI()">Calculate EMI</button>
-<div class="result" id="emiResult"></div>
-</div>
-
 <!-- BOTTOM AD -->
 <div class="section">
 <div class="ad-box">
@@ -233,33 +213,6 @@ Our free online tools website helps users calculate age, EMI, BMI, generate secu
 </footer>
 <script>
 
-function generatePassword(){
-let length = document.getElementById("passLength").value;
-if(length < 8 || length > 20){alert("Enter length between 8-20");return;}
-let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!";
-let password = "";
-for(let i=0;i<length;i++){
-password += chars.charAt(Math.floor(Math.random()*chars.length));
-}
-document.getElementById("passwordResult").innerText = password;
-}
-
-function copyPassword(){
-let text = document.getElementById("passwordResult").innerText;
-if(text === ""){alert("Generate password first!");return;}
-navigator.clipboard.writeText(text);
-alert("Password Copied!");
-}
-
-function calculateEMI(){
-let P = document.getElementById("loan").value;
-let r = document.getElementById("rate").value/1200;
-let n = document.getElementById("tenure").value*12;
-if(P<=0||r<=0||n<=0){alert("Enter valid values");return;}
-let emi = (P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-document.getElementById("emiResult").innerText = "Monthly EMI: ₹" + emi.toFixed(2);
-}
-
 function calculateBMI(){
 let w = document.getElementById("weight").value;
 let h = document.getElementById("height").value/100;
@@ -295,6 +248,7 @@ document.getElementById("unitResult").innerText = (val/0.621371).toFixed(2) + " 
 </body>
 
 </html>
+
 
 
 
