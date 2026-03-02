@@ -4,164 +4,215 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Age Calculator - Calculate Your Exact Age Online Free</title>
+<title>Free Live Age Calculator – Calculate Exact Age in Years, Months, Days, Hours & Seconds</title>
 
-<meta name="description" content="Free online age calculator to calculate your exact age in years, months and days. Fast, accurate and easy to use age calculation tool.">
+<meta name="description" content="Free Live Age Calculator to calculate your exact age in years, months, days, hours, minutes and seconds instantly. 100% free, accurate and mobile friendly age calculator online.">
 
-<meta name="keywords" content="age calculator, calculate age online, exact age calculator, date of birth calculator">
-
-<meta name="author" content="Free Online Tools">
-
-<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/age-calculator.html">
-
-<meta property="og:title" content="Age Calculator - Free Online Tool">
-<meta property="og:description" content="Calculate your exact age instantly with our free online age calculator.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/age-calculator.html">
+<meta name="keywords" content="age calculator, live age calculator, calculate age online, exact age calculator, date of birth calculator">
 
 <style>
 body{
-  font-family: Arial, sans-serif;
-  margin:0;
-  background:#f4f6f9;
+font-family:Arial, sans-serif;
+background:#f3f4f6;
+margin:0;
+padding:30px 15px;
 }
 
-.card{
-  max-width:600px;
-  margin:60px auto;
-  background:white;
-  padding:30px;
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.08);
-  text-align:center;
+.container{
+max-width:750px;
+margin:auto;
+background:#ffffff;
+padding:30px;
+border-radius:14px;
+box-shadow:0 10px 30px rgba(0,0,0,0.05);
 }
 
-.card h1{
-  color:#0d6efd;
-  margin-bottom:10px;
+h1{
+text-align:center;
+color:#1e3a8a;
 }
 
-.card p{
-  color:#555;
+input{
+width:100%;
+padding:10px;
+border-radius:8px;
+border:1px solid #ccc;
+margin:15px 0;
 }
 
-.card input{
-  width:100%;
-  padding:10px;
-  margin:12px 0;
-  border-radius:6px;
-  border:1px solid #ccc;
+button{
+width:100%;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 
-.card button{
-  width:100%;
-  padding:12px;
-  background:#0d6efd;
-  color:white;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-size:16px;
-  transition:0.3s;
+button:hover{
+background:#1e40af;
 }
 
-.card button:hover{
-  background:#084298;
+.result-box{
+margin-top:25px;
+padding:20px;
+background:#f9fafb;
+border-radius:10px;
+border:1px solid #e5e7eb;
 }
 
-#result{
-  margin-top:20px;
-  font-weight:bold;
-  color:#198754;
+.result-box p{
+margin:6px 0;
+font-size:16px;
 }
 
-.content{
-  max-width:800px;
-  margin:40px auto;
-  padding:0 20px;
+.highlight{
+font-weight:bold;
+color:#dc2626;
 }
 
-.content h2{
-  color:#0d6efd;
+.seo-article{
+max-width:900px;
+margin:50px auto;
+background:#ffffff;
+padding:30px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+}
+
+.seo-article h2{
+color:#1e40af;
+}
+
+.seo-article h3{
+color:#2563eb;
+margin-top:25px;
 }
 </style>
-
 </head>
+
 <body>
 
-<div class="card">
-<h1>Age Calculator</h1>
+<div class="container">
 
-<p>Use our free Age Calculator to calculate your exact age in years, months and days.</p>
+<h1>Live Age Calculator</h1>
 
-<label><strong>Date of Birth:</strong></label>
-<input type="date" id="dob">
+<label><strong>Select Your Date & Time of Birth:</strong></label>
+<input type="datetime-local" id="dob">
 
-<button onclick="calculateAge()">Calculate Age</button>
+<button onclick="startAge()">Calculate Live Age</button>
 
-<h2 id="result"></h2>
+<div class="result-box" id="result" style="display:none;">
+<p>Years: <span class="highlight" id="years"></span></p>
+<p>Months: <span class="highlight" id="months"></span></p>
+<p>Days: <span class="highlight" id="days"></span></p>
+<p>Hours: <span class="highlight" id="hours"></span></p>
+<p>Minutes: <span class="highlight" id="minutes"></span></p>
+<p>Seconds: <span class="highlight" id="seconds"></span></p>
+</div>
+
 </div>
 
 <script>
-function calculateAge() {
-  const dobInput = document.getElementById("dob").value;
+let interval;
 
-  if(!dobInput){
-    document.getElementById("result").innerText = "Please select your date of birth.";
-    return;
-  }
+function startAge(){
 
-  const dob = new Date(dobInput);
-  const today = new Date();
+const dobInput=document.getElementById("dob").value;
 
-  let age = today.getFullYear() - dob.getFullYear();
-  let month = today.getMonth() - dob.getMonth();
-  let day = today.getDate() - dob.getDate();
+if(!dobInput){
+alert("Please select your date and time of birth.");
+return;
+}
 
-  if (day < 0) {
-    month--;
-    const daysInMonth = new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-    day += daysInMonth;
-  }
+const dob=new Date(dobInput);
+document.getElementById("result").style.display="block";
 
-  if (month < 0) {
-    age--;
-    month += 12;
-  }
+clearInterval(interval);
 
-  document.getElementById("result").innerText =
-    "You are " + age + " years, " + month + " months and " + day + " days old.";
+interval=setInterval(function(){
+
+const now=new Date();
+let diff=now-dob;
+
+let seconds=Math.floor(diff/1000);
+let minutes=Math.floor(seconds/60);
+let hours=Math.floor(minutes/60);
+let days=Math.floor(hours/24);
+let years=Math.floor(days/365.25);
+
+let remainingDays=days%365;
+let months=Math.floor(remainingDays/30);
+let finalDays=remainingDays%30;
+
+document.getElementById("years").innerText=years;
+document.getElementById("months").innerText=months;
+document.getElementById("days").innerText=finalDays;
+document.getElementById("hours").innerText=hours%24;
+document.getElementById("minutes").innerText=minutes%60;
+document.getElementById("seconds").innerText=seconds%60;
+
+},1000);
+
 }
 </script>
 
-<hr>
+<section class="seo-article">
 
-<div class="content">
+<h2>Free Age Calculator – Calculate Your Exact Age Online</h2>
 
-<h2>About Age Calculator</h2>
+<p>Our Free Live Age Calculator allows you to calculate your exact age in years, months, days, hours, minutes, and seconds instantly. Whether you need age verification for official documents, school admission, job applications, or personal curiosity, this accurate age calculator provides real-time results.</p>
 
-<p>
-Our Age Calculator is a free online tool that helps you calculate your exact age
-in years, months, and days. Simply enter your date of birth and click the
-"Calculate Age" button to get instant results.
-</p>
+<h3>Why Use This Online Age Calculator?</h3>
 
-<h3>How to Use This Tool</h3>
 <ul>
-<li>Select your Date of Birth</li>
-<li>Click on "Calculate Age"</li>
-<li>See your exact age instantly</li>
+<li>Instant real-time age updates</li>
+<li>Accurate year, month, and day calculation</li>
+<li>Includes hours, minutes, and seconds</li>
+<li>100% free and secure</li>
+<li>Mobile-friendly and fast loading</li>
+</ul>
+
+<h3>How Age is Calculated</h3>
+
+<p>Age is calculated using the formula:</p>
+<p><strong>Current Date – Date of Birth</strong></p>
+
+<p>This tool automatically adjusts leap years and calendar differences to ensure maximum accuracy.</p>
+
+<h3>Benefits of Knowing Your Exact Age</h3>
+
+<ul>
+<li>School & university admissions</li>
+<li>Government job eligibility</li>
+<li>Retirement planning</li>
+<li>Insurance documentation</li>
+<li>Age difference calculations</li>
 </ul>
 
 <h3>Frequently Asked Questions</h3>
 
-<p><strong>Is this Age Calculator free?</strong><br>
-Yes, this tool is completely free to use.</p>
+<p><strong>Is this Age Calculator free?</strong><br>Yes, it is completely free with unlimited usage.</p>
 
-<p><strong>Does it work on mobile?</strong><br>
-Yes, it works perfectly on mobile, tablet, and desktop.</p>
+<p><strong>Does it store my data?</strong><br>No, all calculations happen inside your browser.</p>
 
-</div>
+<p><strong>Does it work on mobile?</strong><br>Yes, it works perfectly on all devices.</p>
+
+<h3>Explore More Free Online Tools</h3>
+
+<ul>
+<li><a href="bmi-calculator.html">BMI Calculator</a></li>
+<li><a href="emi-calculator.html">EMI Calculator</a></li>
+<li><a href="loan-calculator.html">Loan Calculator</a></li>
+<li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+<li><a href="password-generator.html">Password Generator</a></li>
+</ul>
+
+<p>Start using our powerful and accurate Live Age Calculator today and calculate your age instantly.</p>
+
+</section>
 
 </body>
 </html>
