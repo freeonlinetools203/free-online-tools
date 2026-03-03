@@ -156,15 +156,6 @@ MIDDLE AD SPACE <br>
 BOTTOM BANNER AD SPACE <br>
 (Paste Your Ad Code Here)
 </div>
-</div>
-<!-- WORD COUNTER -->
-<div class="section">
-<h2>Word Counter</h2>
-<textarea id="textInput" rows="4"></textarea>
-<button onclick="countWords()">Count Words</button>
-<div class="result" id="wordResult"></div>
-</div>
-</div>
 
 </div>
 <!-- UNIT CONVERTER -->
@@ -203,12 +194,6 @@ let bmi = w/(h*h);
 document.getElementById("bmiResult").innerText = "BMI: " + bmi.toFixed(2);
 }
 
-function countWords(){
-let text = document.getElementById("textInput").value.trim();
-let words = text ? text.split(/\s+/).length : 0;
-document.getElementById("wordResult").innerText = "Words: " + words + " | Characters: " + text.length;
-}
-
 function loanEligibility(){
 let income = document.getElementById("income").value;
 let expenses = document.getElementById("expenses").value;
@@ -230,6 +215,7 @@ document.getElementById("unitResult").innerText = (val/0.621371).toFixed(2) + " 
 </body>
 
 </html>
+
 
 
 
