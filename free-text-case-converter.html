@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Text Case Converter Online – Free Uppercase, Lowercase, Title Case Tool</title>
+
+<meta name="description" content="Free online Text Case Converter tool to convert text to uppercase, lowercase, sentence case, title case and capitalize each word instantly. 100% free, fast and secure case change tool.">
+
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://yourwebsite.com/text-case-converter">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free Text Case Converter – Uppercase & Lowercase Tool">
+<meta property="og:description" content="Convert text to uppercase, lowercase, sentence case and title case instantly with our free online case converter tool.">
+<meta property="og:type" content="website">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Text Case Converter Tool">
+<meta name="twitter:description" content="Instantly change text case online. Fast, free and secure tool.">
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+    padding: 40px 15px;
+}
+
+.tool-container {
+    max-width: 750px;
+    margin: auto;
+    background: #7c3aed;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    resize: vertical;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    background: white;
+    color: #7c3aed;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.content-section {
+    max-width: 850px;
+    margin: 60px auto 0;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+h2 {
+    color: #7c3aed;
+}
+
+p {
+    color: #000;
+    line-height: 1.8;
+}
+</style>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [{
+   "@type": "Question",
+   "name": "Is this text case converter free?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes, this text case converter tool is completely free and unlimited."
+   }
+ },{
+   "@type": "Question",
+   "name": "Does this tool store my data?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "No, the tool works directly in your browser and does not store or share your text."
+   }
+ },{
+   "@type": "Question",
+   "name": "Can I use this case converter on mobile devices?",
+   "acceptedAnswer": {
+     "@type": "Answer",
+     "text": "Yes, the tool is fully responsive and works on all devices including mobile phones and tablets."
+   }
+ }]
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="tool-container">
+
+<h1>Free Online Text Case Converter Tool</h1>
+
+<textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+
+<div class="buttons">
+    <button onclick="toUpperCase()">UPPERCASE</button>
+    <button onclick="toLowerCase()">lowercase</button>
+    <button onclick="toSentenceCase()">Sentence case</button>
+    <button onclick="toTitleCase()">Title Case</button>
+    <button onclick="toCapitalizeCase()">Capitalize Each Word</button>
+    <button onclick="clearText()">Clear</button>
+</div>
+
+</div>
