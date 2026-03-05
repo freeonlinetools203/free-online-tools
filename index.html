@@ -4,165 +4,195 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free Online Tools – Premium Calculators & Utilities</title>
+<title>Free Online Tools – Calculators & Utility Tools</title>
 
-<meta name="description" content="Professional Free Online Tools including Age Calculator, EMI Calculator, BMI Calculator, Loan Calculator, Word Counter, Percentage Calculator, Password Generator and Text Case Converter.">
+<meta name="description" content="Free Online Tools including Age Calculator, EMI Calculator, BMI Calculator, Loan Calculator, Word Counter, Spin the Wheel and more. 100% free and mobile friendly tools.">
+
+<meta name="keywords" content="Free Online Tools, Age Calculator, EMI Calculator, Word Counter, Spin the Wheel">
+
+<!-- SEO Structured Data -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"WebSite",
+"name":"Free Online Tools",
+"url":"https://freeonlinetools203.github.io/free-online-tools/"
+}
+</script>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
-}
-
 body{
+margin:0;
+font-family:Arial, sans-serif;
 background:#f4f6f9;
 }
 
-/* ===== STICKY NAVBAR ===== */
-.navbar{
-position:sticky;
-top:0;
-z-index:1000;
+/* PREMIUM NAVBAR */
+nav{
 background:linear-gradient(90deg,#0d6efd,#6610f2);
-padding:15px 40px;
+padding:15px 30px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-color:white;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 4px 15px rgba(0,0,0,0.1);
 }
 
 .logo{
+color:white;
 font-size:22px;
 font-weight:bold;
 }
 
-.nav-links{
+nav ul{
 list-style:none;
 display:flex;
-gap:25px;
+gap:30px;
+margin:0;
+padding:0;
 }
 
-.nav-links li{
+nav ul li{
 position:relative;
 }
 
-.nav-links a{
-text-decoration:none;
+nav ul li a{
 color:white;
-font-weight:500;
+text-decoration:none;
+font-weight:bold;
 }
 
-/* ===== DROPDOWN ===== */
-.dropdown{
+/* MEGA MENU */
+.mega-menu{
 display:none;
 position:absolute;
-top:35px;
+top:50px;
 left:0;
+width:800px;
 background:white;
-min-width:220px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1);
-border-radius:8px;
-overflow:hidden;
+border-radius:12px;
+box-shadow:0 15px 40px rgba(0,0,0,0.15);
+padding:30px;
+animation:fadeIn 0.3s ease-in-out;
 }
 
-.dropdown a{
+nav ul li:hover .mega-menu{
+display:flex;
+gap:40px;
+}
+
+.mega-column{
+flex:1;
+}
+
+.mega-column h4{
+color:#6610f2;
+margin-bottom:10px;
+font-size:14px;
+text-transform:uppercase;
+}
+
+.mega-column a{
 display:block;
-padding:12px;
 color:#333;
+text-decoration:none;
+padding:6px 0;
+font-size:14px;
 }
 
-.dropdown a:hover{
-background:#f2f2f2;
+.mega-column a:hover{
+color:#0d6efd;
 }
 
-.nav-links li:hover .dropdown{
-display:block;
-}
-
-/* ===== HERO SECTION ===== */
-.hero{
-background:linear-gradient(135deg,#0d6efd,#6610f2);
+/* HEADER */
+header{
+background:linear-gradient(90deg,#0d6efd,#6610f2);
 color:white;
 text-align:center;
-padding:100px 20px;
+padding:60px 20px;
 }
 
-.hero h1{
-font-size:40px;
-margin-bottom:15px;
+header h1{
+margin:0;
+font-size:34px;
 }
 
-.hero p{
+header p{
+margin-top:10px;
 font-size:18px;
-opacity:0.9;
 }
 
-/* ===== TOOL CATEGORY SECTION ===== */
+/* SECTIONS */
 .section{
 max-width:1100px;
-margin:50px auto;
-padding:20px;
+margin:40px auto;
+background:white;
+padding:40px 20px;
+border-radius:12px;
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+text-align:center;
 }
 
-.section h2{
-text-align:center;
-margin-bottom:30px;
-color:#333;
+h2{
+color:#6610f2;
+margin-bottom:20px;
 }
 
 .tools-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-}
-
-.tool-card{
-background:white;
-padding:30px;
-border-radius:12px;
-box-shadow:0 8px 20px rgba(0,0,0,0.05);
-transition:0.3s;
-text-align:center;
-}
-
-.tool-card:hover{
-transform:translateY(-8px);
-box-shadow:0 15px 30px rgba(0,0,0,0.1);
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
 }
 
 .tool-card a{
+display:block;
+background:linear-gradient(90deg,#0d6efd,#6610f2);
+color:white;
 text-decoration:none;
-color:#0d6efd;
+padding:18px;
+border-radius:8px;
 font-weight:bold;
-font-size:18px;
+transition:0.3s;
 }
 
-/* ===== FOOTER ===== */
+.tool-card a:hover{
+transform:translateY(-5px);
+box-shadow:0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* FOOTER */
 footer{
-background:#111;
-color:#aaa;
 text-align:center;
-padding:30px;
-margin-top:50px;
+padding:20px;
+background:#eee;
+margin-top:40px;
+font-size:14px;
 }
 
 footer a{
 color:#0d6efd;
 text-decoration:none;
-margin:0 8px;
+margin:0 5px;
 }
 
-footer a:hover{
-text-decoration:underline;
+/* ANIMATION */
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-.nav-links{
+/* MOBILE */
+@media(max-width:900px){
+nav ul{
 flex-direction:column;
 gap:15px;
+}
+.mega-menu{
+position:relative;
+width:100%;
+flex-direction:column;
 }
 }
 </style>
@@ -170,64 +200,81 @@ gap:15px;
 
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar">
+<nav>
 <div class="logo">Free Online Tools</div>
-<ul class="nav-links">
+<ul>
 <li><a href="index.html">Home</a></li>
 
 <li>
-<a href="#">Calculators ▾</a>
-<div class="dropdown">
+<a href="#">Tools ▾</a>
+
+<div class="mega-menu">
+
+<!-- COLUMN 1 -->
+<div class="mega-column">
+<h4>Popular Calculators</h4>
 <a href="age-calculator.html">Age Calculator</a>
 <a href="bmi-calculator.html">BMI Calculator</a>
-<a href="emi-calculator.html">EMI Calculator</a>
-<a href="loan-calculator.html">Loan Calculator</a>
 <a href="percentage-calculator.html">Percentage Calculator</a>
 </div>
-</li>
 
-<li>
-<a href="#">Text Tools ▾</a>
-<div class="dropdown">
+<!-- COLUMN 2 -->
+<div class="mega-column">
+<h4>Financial Tools</h4>
+<a href="emi-calculator.html">EMI Calculator</a>
+<a href="loan-calculator.html">Loan Calculator</a>
+</div>
+
+<!-- COLUMN 3 -->
+<div class="mega-column">
+<h4>Text & Writing Tools</h4>
 <a href="word-counter.html">Word Counter</a>
 <a href="text-case-converter.html">Text Case Converter</a>
 <a href="password-generator.html">Password Generator</a>
+</div>
+
+<!-- COLUMN 4 -->
+<div class="mega-column">
+<h4>Spin & Random Picker Tools</h4>
+<a href="spin-the-wheel.html">Spin the Wheel</a>
+</div>
+
 </div>
 </li>
 
 <li><a href="about.html">About</a></li>
 <li><a href="contact.html">Contact</a></li>
+<li><a href="privacy-policy.html">Privacy</a></li>
+
 </ul>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-<h1>Premium Free Online Tools</h1>
-<p>Powerful, Fast & 100% Free Calculators and Utilities for Everyday Use</p>
-</section>
+<header>
+<h1>Free Online Tools</h1>
+<p>Simple, Fast & 100% Free Calculators for Everyday Use</p>
+</header>
 
-<!-- ===== CALCULATOR CATEGORY ===== -->
+<!-- SAME 4 SECTIONS AS DROPDOWN -->
+
 <div class="section">
 <h2>Popular Calculators</h2>
-
 <div class="tools-grid">
 <div class="tool-card"><a href="age-calculator.html">Age Calculator</a></div>
 <div class="tool-card"><a href="bmi-calculator.html">BMI Calculator</a></div>
+<div class="tool-card"><a href="percentage-calculator.html">Percentage Calculator</a></div>
+</div>
+</div>
+
+<div class="section">
+<h2>Financial Tools</h2>
+<div class="tools-grid">
 <div class="tool-card"><a href="emi-calculator.html">EMI Calculator</a></div>
 <div class="tool-card"><a href="loan-calculator.html">Loan Calculator</a></div>
-<div class="tool-card"><a href="percentage-calculator.html">Percentage Calculator</a></div>
-
-<!-- NEW TOOL ADDED HERE -->
-<div class="tool-card"><a href="spin-the-wheel.html">🎡 Spin the Wheel</a></div>
-
 </div>
 </div>
 
-<!-- ===== TEXT TOOLS CATEGORY ===== -->
 <div class="section">
-<h2>Text & Utility Tools</h2>
-
+<h2>Text & Writing Tools</h2>
 <div class="tools-grid">
 <div class="tool-card"><a href="word-counter.html">Word Counter</a></div>
 <div class="tool-card"><a href="text-case-converter.html">Text Case Converter</a></div>
@@ -235,14 +282,19 @@ gap:15px;
 </div>
 </div>
 
-<!-- ===== FOOTER ===== -->
+<div class="section">
+<h2>Spin & Random Picker Tools</h2>
+<div class="tools-grid">
+<div class="tool-card"><a href="spin-the-wheel.html">Spin the Wheel</a></div>
+</div>
+</div>
+
 <footer>
 © 2026 Free Online Tools |
 <a href="privacy-policy.html">Privacy Policy</a> |
 <a href="about.html">About Us</a> |
-<a href="contact.html">Contact</a>
+<a href="contact.html">Contact Us</a>
 </footer>
 
 </body>
 </html>
-
