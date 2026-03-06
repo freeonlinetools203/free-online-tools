@@ -1,336 +1,681 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Online Tools</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Free Online Tools & Calculators - Simple & Fast</title>
+  <!-- META SEO -->
+  <meta name="description" content="Free online calculators and tools: BMI, age, loan, EMI, discount, percentage, word counter, password generator and more. 100% free, no registration.">
+  <meta name="keywords" content="free online tools, calculators, BMI calculator, age calculator, loan calculator, EMI calculator, discount calculator, percentage calculator, word counter, text case converter, password generator, spin the wheel, random picker">
+  <meta name="author" content="FreeOnlineTools">
+  <!-- Open Graph -->
+  <meta property="og:title" content="Free Online Tools & Calculators">
+  <meta property="og:description" content="Simple, fast and 100% free tools for everyday calculations and utilities.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.freeonlinetools.example">
+  <meta property="og:image" content="https://www.freeonlinetools.example/og-image.jpg">
+  <!-- Schema structured data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Free Online Tools",
+    "url": "https://www.freeonlinetools.example",
+    "description": "Collection of free calculators and text utilities.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://www.freeonlinetools.example/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <style>
+    /* RESET & BASE */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      background: #f5f7fc;
+      color: #1e293b;
+      line-height: 1.5;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    ul {
+      list-style: none;
+    }
 
-<style>
-body{
-margin:0;
-font-family:Arial, sans-serif;
-background:#f4f6f9;
-}
+    /* STICKY NAVBAR */
+    nav {
+      background: #0b2447;
+      background: linear-gradient(135deg, #0a2647 0%, #1b3b6b 100%);
+      padding: 0.8rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 6px 20px rgba(0, 20, 40, 0.2);
+    }
+    .logo {
+      color: white;
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(145deg, #fff, #d2e0ff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .nav-container {
+      display: flex;
+      align-items: center;
+    }
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+    }
+    .nav-list {
+      display: flex;
+      gap: 1.8rem;
+    }
+    .nav-list > li {
+      position: relative;
+    }
+    .nav-list > li > a {
+      color: rgba(255,255,255,0.95);
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
+    }
+    .nav-list > li > a:hover,
+    .nav-list > li.dropdown:hover > a {
+      border-bottom-color: #ffb347;
+      color: white;
+    }
 
-/* NAVBAR */
-nav{
-background:linear-gradient(90deg,#0d6efd,#6610f2);
-padding:15px 20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
+    /* MEGA DROPDOWN - position absolute, top:100%, left:0 */
+    .dropdown {
+      position: relative;
+    }
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 700px;
+      background: white;
+      border-radius: 0 0 24px 24px;
+      box-shadow: 0 30px 50px -20px rgba(0,0,0,0.4);
+      padding: 2rem 2rem 1.8rem;
+      display: none;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      z-index: 999;
+      border-top: 4px solid #ffb347;
+    }
+    .dropdown:hover .mega-menu {
+      display: grid;
+    }
+    .mega-col h4 {
+      color: #0b2447;
+      font-size: 1.05rem;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #e9edf5;
+      padding-bottom: 0.3rem;
+      font-weight: 700;
+    }
+    .mega-col a {
+      display: block;
+      color: #334155;
+      font-size: 0.95rem;
+      padding: 0.4rem 0;
+      transition: 0.2s;
+    }
+    .mega-col a:hover {
+      color: #f28c38;
+      transform: translateX(4px);
+    }
 
-.logo{
-color:white;
-font-size:20px;
-font-weight:bold;
-}
+    /* HAMBURGER (mobile) */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      padding: 6px;
+    }
+    .hamburger span {
+      width: 26px;
+      height: 3px;
+      background: white;
+      margin: 3px 0;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
 
-nav ul{
-list-style:none;
-display:flex;
-gap:25px;
-margin:0;
-padding:0;
-align-items:center;
-}
+    /* Mobile menu panel */
+    .mobile-menu-panel {
+      display: none;
+      background: #0f2b4f;
+      padding: 1.5rem 2rem;
+      position: absolute;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      z-index: 999;
+      box-shadow: 0 20px 30px rgba(0,0,0,0.3);
+    }
+    .mobile-menu-panel a {
+      color: white;
+      display: block;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #2f4b78;
+      font-weight: 500;
+    }
+    .mobile-cat details {
+      margin: 0.8rem 0;
+      color: #ffd966;
+    }
+    .mobile-cat summary {
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .mobile-cat a {
+      padding: 0.3rem 1rem;
+      border: none;
+      font-size: 0.9rem;
+      color: #bdd3ff;
+    }
 
-nav ul li a{
-color:white;
-text-decoration:none;
-font-weight:bold;
-cursor:pointer;
-}
+    /* HERO */
+    .hero {
+      background: linear-gradient(145deg, #144272, #205295, #2d5da6);
+      color: white;
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+    .hero h1 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+      text-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: 1.5rem;
+      opacity: 0.9;
+    }
 
-/* DROPDOWN */
-.dropdown{
-display:none;
-position:absolute;
-top:60px;
-right:20px;
-width:260px;
-background:white;
-border-radius:10px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-padding:15px;
-}
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
 
-/* CATEGORY BUTTON */
-.category{
-border-bottom:1px solid #eee;
-padding:10px 0;
-}
+    /* AD SPACES (placeholders) */
+    .ad-placeholder {
+      background: #eaf0f6;
+      border: 2px dashed #8ba0bc;
+      border-radius: 30px;
+      padding: 2rem 1rem;
+      margin: 2rem 0;
+      text-align: center;
+      color: #2d4769;
+      font-weight: 600;
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+    }
+    .ad-label {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #5e6f8d;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
 
-.category button{
-background:none;
-border:none;
-font-weight:bold;
-color:#6610f2;
-cursor:pointer;
-width:100%;
-text-align:left;
-font-size:14px;
-}
+    /* main + sidebar layout */
+    .content-sidebar {
+      display: flex;
+      gap: 2.5rem;
+      flex-wrap: wrap;
+    }
+    .main-content {
+      flex: 3;
+      min-width: 280px;
+    }
+    .sidebar {
+      flex: 1;
+      min-width: 220px;
+    }
+    .sidebar .ad-placeholder {
+      margin: 0 0 2rem 0;
+    }
 
-/* TOOLS LIST */
-.tools{
-display:none;
-padding-top:8px;
-padding-left:10px;
-}
+    /* tool cards grid */
+    .section-title {
+      font-size: 2.2rem;
+      color: #0b2447;
+      margin: 2rem 0 1.5rem;
+      font-weight: 700;
+    }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .tool-card {
+      background: white;
+      border-radius: 30px;
+      padding: 1.5rem 0.5rem;
+      text-align: center;
+      box-shadow: 0 12px 28px -10px rgba(20, 50, 100, 0.2);
+      transition: 0.2s;
+      border: 1px solid rgba(0,70,150,0.1);
+    }
+    .tool-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 22px 40px -12px #1a3d6e;
+    }
+    .tool-card a {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #1f4870;
+    }
 
-.tools a{
-display:block;
-padding:6px 0;
-text-decoration:none;
-color:#333;
-font-size:13px;
-}
+    /* category cards */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .cat-card {
+      background: white;
+      border-radius: 40px;
+      padding: 2rem 0.5rem;
+      text-align: center;
+      font-weight: 700;
+      color: #0b2447;
+      border: 1px solid #cbd5e1;
+      box-shadow: 0 10px 20px #e2e8f0;
+    }
+    .cat-card a {
+      display: block;
+      font-size: 1.2rem;
+    }
 
-.tools a:hover{
-color:#0d6efd;
-}
+    /* SEO text block */
+    .seo-block {
+      background: #eaf2ff;
+      padding: 3rem;
+      border-radius: 60px;
+      margin: 3rem 0;
+    }
+    .seo-block h2 {
+      font-size: 2.2rem;
+      color: #0b2447;
+      margin-bottom: 1rem;
+    }
+    .seo-block p {
+      font-size: 1.1rem;
+      margin: 1rem 0;
+      color: #1e293b;
+    }
 
-.tools.active{
-display:block;
-}
+    /* FOOTER */
+    footer {
+      background: #0b1d33;
+      color: #ccd9f0;
+      padding: 3.5rem 2rem 2rem;
+      margin-top: 4rem;
+    }
+    .footer-grid {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2.5rem;
+    }
+    .footer-col h4 {
+      color: white;
+      font-size: 1.2rem;
+      margin-bottom: 1.2rem;
+      border-left: 4px solid #fca311;
+      padding-left: 0.8rem;
+    }
+    .footer-col a {
+      display: block;
+      color: #b5c8f0;
+      margin: 0.6rem 0;
+    }
+    .footer-col a:hover {
+      color: white;
+      padding-left: 3px;
+    }
+    .footer-bottom {
+      text-align: center;
+      padding-top: 2.5rem;
+      color: #7991b5;
+      font-size: 0.9rem;
+    }
 
-/* HEADER */
-header{
-background:linear-gradient(90deg,#0d6efd,#6610f2);
-color:white;
-text-align:center;
-padding:60px 20px;
-}
+    /* tool page demo */
+    .tool-demo {
+      background: white;
+      border-radius: 40px;
+      padding: 2rem 2rem 2.5rem;
+      box-shadow: 0 15px 35px #d4e0f0;
+      margin: 2.5rem 0;
+    }
+    .tool-demo h3 {
+      color: #0b2447;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .tool-input {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 2px solid #b9cfec;
+      border-radius: 50px;
+      font-size: 1rem;
+      margin: 1rem 0;
+    }
+    .btn-calc {
+      background: linear-gradient(145deg, #1e4a7a, #12315e);
+      border: none;
+      color: white;
+      padding: 1rem 3rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.2rem;
+      cursor: pointer;
+      width: 100%;
+    }
+    .result-box {
+      background: #e3f0ff;
+      padding: 1.2rem;
+      border-radius: 40px;
+      margin: 1.5rem 0;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
 
-.section{
-max-width:1100px;
-margin:40px auto;
-background:white;
-padding:40px 20px;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
-text-align:center;
-}
-
-h2{
-color:#6610f2;
-}
-
-.tools-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
-
-.tool-card a{
-display:block;
-background:linear-gradient(90deg,#0d6efd,#6610f2);
-color:white;
-text-decoration:none;
-padding:18px;
-border-radius:8px;
-font-weight:bold;
-transition:0.3s;
-}
-
-.tool-card a:hover{
-transform:translateY(-5px);
-}
-
-footer{
-text-align:center;
-padding:20px;
-background:#eee;
-margin-top:40px;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-nav ul{
-flex-direction:column;
-align-items:flex-start;
-gap:15px;
-}
-.dropdown{
-position:relative;
-top:10px;
-right:0;
-width:100%;
-}
-}
-</style>
+    /* responsive */
+    @media (max-width: 992px) {
+      .nav-list { display: none; }
+      .hamburger { display: flex; }
+      .mega-menu { width: 90vw; left: -120px; } /* adjust left to fit screen */
+    }
+    @media (max-width: 768px) {
+      nav { padding: 0.8rem 1rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.2rem; }
+      .sidebar { display: none; } /* hide sidebar on small, but ads still inside main */
+      .seo-block { padding: 1.8rem; }
+    }
+    @media (max-width: 480px) {
+      .logo { font-size: 1.2rem; }
+    }
+  </style>
 </head>
-
 <body>
+  <!-- STICKY NAVBAR -->
+  <nav>
+    <div class="logo">🔧 Free Online Tools</div>
 
-<nav>
-<div class="logo">Free Online Tools</div>
+    <!-- desktop menu -->
+    <div class="nav-container">
+      <ul class="nav-list">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Tools ▼</a>
+          <!-- MEGA DROPDOWN (grid 4 columns) absolute, left:0, top:100% -->
+          <div class="mega-menu">
+            <div class="mega-col">
+              <h4>📊 Popular Calculators</h4>
+              <a href="age-calculator.html">Age Calculator</a>
+              <a href="bmi-calculator.html">BMI Calculator</a>
+              <a href="percentage-calculator.html">Percentage Calculator</a>
+            </div>
+            <div class="mega-col">
+              <h4>💰 Financial Tools</h4>
+              <a href="loan-calculator.html">Loan Calculator</a>
+              <a href="emi-calculator.html">EMI Calculator</a>
+              <a href="discount-calculator.html">Discount Calculator</a>
+            </div>
+            <div class="mega-col">
+              <h4>📝 Text Tools</h4>
+              <a href="word-counter.html">Word Counter</a>
+              <a href="text-case-converter.html">Text Case Converter</a>
+              <a href="password-generator.html">Password Generator</a>
+            </div>
+            <div class="mega-col">
+              <h4>🎲 Random Tools</h4>
+              <a href="spin-the-wheel.html">Spin the Wheel</a>
+              <a href="random-picker.html">Random Picker</a>
+            </div>
+          </div>
+        </li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="privacy-policy.html">Privacy</a></li>
+      </ul>
+    </div>
 
-<ul>
-<li><a href="index.html">Home</a></li>
+    <!-- hamburger -->
+    <button class="hamburger" id="hamburgerBtn" onclick="toggleMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
 
-<li style="position:relative;">
-<a onclick="toggleMenu()">Tools ▾</a>
+  <!-- mobile menu panel -->
+  <div id="mobileMenu" class="mobile-menu-panel" style="display: none;">
+    <a href="index.html">Home</a>
+    <div class="mobile-cat">
+      <details>
+        <summary>📊 Popular Calculators</summary>
+        <a href="age-calculator.html">Age Calculator</a>
+        <a href="bmi-calculator.html">BMI Calculator</a>
+        <a href="percentage-calculator.html">Percentage Calculator</a>
+      </details>
+      <details>
+        <summary>💰 Financial Tools</summary>
+        <a href="loan-calculator.html">Loan Calculator</a>
+        <a href="emi-calculator.html">EMI Calculator</a>
+        <a href="discount-calculator.html">Discount Calculator</a>
+      </details>
+      <details>
+        <summary>📝 Text Tools</summary>
+        <a href="word-counter.html">Word Counter</a>
+        <a href="text-case-converter.html">Text Case Converter</a>
+        <a href="password-generator.html">Password Generator</a>
+      </details>
+      <details>
+        <summary>🎲 Random Tools</summary>
+        <a href="spin-the-wheel.html">Spin the Wheel</a>
+        <a href="random-picker.html">Random Picker</a>
+      </details>
+    </div>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy-policy.html">Privacy</a>
+  </div>
 
-<div class="dropdown" id="menu">
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Free Online Tools & Calculators</h1>
+    <p>Simple, Fast and 100% Free Online Tools — no registration</p>
+  </section>
 
-<div class="category">
-<button onclick="openTools('t1')">Popular Calculators</button>
-<div id="t1" class="tools">
-<a href="age-calculator.html">Age Calculator</a>
-<a href="bmi-calculator.html">BMI Calculator</a>
-<a href="percentage-calculator.html">Percentage Calculator</a>
-</div>
-</div>
+  <!-- AD BELOW HEADER -->
+  <div class="container">
+    <div class="ad-placeholder">
+      <span class="ad-label">📢 AdSense Ad Space (below header)</span>
+      728x90 responsive placeholder
+    </div>
+  </div>
 
-<div class="category">
-<button onclick="openTools('t2')">Financial Tools</button>
-<div id="t2" class="tools">
-<a href="emi-calculator.html">EMI Calculator</a>
-<a href="loan-calculator.html">Loan Calculator</a>
-</div>
-</div>
+  <!-- MAIN + SIDEBAR LAYOUT -->
+  <div class="container content-sidebar">
+    <main class="main-content">
 
-<div class="category">
-<button onclick="openTools('t3')">Text & Writing Tools</button>
-<div id="t3" class="tools">
-<a href="word-counter.html">Word Counter</a>
-<a href="text-case-converter.html">Text Case Converter</a>
-<a href="password-generator.html">Password Generator</a>
-</div>
-</div>
+      <!-- POPULAR TOOLS SECTION (cards) -->
+      <h2 class="section-title">🔥 Popular Calculators</h2>
+      <div class="tools-grid">
+        <div class="tool-card"><a href="age-calculator.html">Age Calculator</a></div>
+        <div class="tool-card"><a href="bmi-calculator.html">BMI Calculator</a></div>
+        <div class="tool-card"><a href="percentage-calculator.html">Percentage Calculator</a></div>
+        <div class="tool-card"><a href="loan-calculator.html">Loan Calculator</a></div>
+        <div class="tool-card"><a href="emi-calculator.html">EMI Calculator</a></div>
+        <div class="tool-card"><a href="discount-calculator.html">Discount Calculator</a></div>
+      </div>
 
-<div class="category">
-<button onclick="openTools('t4')">Spin & Random Picker Tools</button>
-<div id="t4" class="tools">
-<a href="spin-the-wheel.html">Spin the Wheel</a>
-</div>
-</div>
+      <!-- AD BETWEEN SECTIONS -->
+      <div class="ad-placeholder">
+        <span class="ad-label">📢 AdSense Ad Space (between sections)</span>
+      </div>
 
-</div>
-</li>
+      <!-- TOOL CATEGORY CARDS -->
+      <h2 class="section-title">📌 Tool Categories</h2>
+      <div class="category-grid">
+        <div class="cat-card"><a href="calculators-category.html">🧮 Calculators</a></div>
+        <div class="cat-card"><a href="financial-category.html">💰 Financial</a></div>
+        <div class="cat-card"><a href="text-category.html">📝 Text Tools</a></div>
+        <div class="cat-card"><a href="random-category.html">🎲 Random</a></div>
+      </div>
 
-<li><a href="about.html">About</a></li>
-<li><a href="contact.html">Contact</a></li>
-<li><a href="privacy-policy.html">Privacy</a></li>
+      <!-- SEO CONTENT BLOCK -->
+      <div class="seo-block">
+        <h2>Free Online Calculators and Tools</h2>
+        <p>Welcome to Free Online Tools – your one-stop destination for fast, accurate, and 100% free web-based utilities. Whether you need to calculate your BMI, figure out a loan EMI, convert text case, or generate a secure password, our tools are designed to work instantly on any device. No sign-up, no data tracking, just simple functionality.</p>
+        <p>We continuously expand our collection of calculators and productivity tools. From age calculators to random pickers, every tool is built with performance and ease-of-use in mind. Bookmark this page to always have free access to essential everyday utilities.</p>
+      </div>
+    </main>
 
-</ul>
-</nav>
+    <!-- RIGHT SIDEBAR ADS (desktop) -->
+    <aside class="sidebar">
+      <div class="ad-placeholder">
+        <span class="ad-label">📢 Sidebar Ad</span>
+        300x600 placeholder
+      </div>
+      <div class="ad-placeholder">
+        <span class="ad-label">📢 Sidebar Ad 2</span>
+        300x250 placeholder
+      </div>
+    </aside>
+  </div>
 
-<header>
-<h1>Free Online Tools</h1>
-<p>Simple, Fast & 100% Free Calculators</p>
-</header>
+  <!-- TOOL PAGE EXAMPLE (Age Calculator demo) + IN-PAGE AD -->
+  <div class="container">
+    <div class="tool-demo" id="age-calculator-demo">
+      <h3>📅 Age Calculator</h3>
+      <label>Enter your birth date:</label>
+      <input type="date" id="birthInput" class="tool-input" value="1990-06-15">
+      <button class="btn-calc" onclick="calculateAgeDemo()">Calculate Age</button>
+      <div class="result-box" id="ageResult">Your age will appear here</div>
 
-<div class="section">
-<h2>Popular Calculators</h2>
-<div class="tools-grid">
-<div class="tool-card"><a href="age-calculator.html">Age Calculator</a></div>
-<div class="tool-card"><a href="bmi-calculator.html">BMI Calculator</a></div>
-<div class="tool-card"><a href="percentage-calculator.html">Percentage Calculator</a></div>
-</div>
-</div>
+      <!-- IN-PAGE AD (tool page) -->
+      <div class="ad-placeholder" style="margin:2rem 0 1rem;">
+        <span class="ad-label">📢 AdSense Ad Space (inside tool page)</span>
+      </div>
 
-<div class="section">
-<h2>Financial Tools</h2>
-<div class="tools-grid">
-<div class="tool-card"><a href="emi-calculator.html">EMI Calculator</a></div>
-<div class="tool-card"><a href="loan-calculator.html">Loan Calculator</a></div>
-</div>
-</div>
+      <p><strong>About this tool:</strong> Quickly calculate exact age in years, months, and days. Perfect for birthdates, anniversaries, or age verification.</p>
+      <div style="margin-top:1.5rem;">
+        <strong>Related tools:</strong> 
+        <a href="bmi-calculator.html">BMI Calculator</a> · 
+        <a href="percentage-calculator.html">Percentage</a> · 
+        <a href="loan-calculator.html">Loan Calculator</a>
+      </div>
+    </div>
+  </div>
 
-<div class="section">
-<h2>Text & Writing Tools</h2>
-<div class="tools-grid">
-<div class="tool-card"><a href="word-counter.html">Word Counter</a></div>
-<div class="tool-card"><a href="text-case-converter.html">Text Case Converter</a></div>
-<div class="tool-card"><a href="password-generator.html">Password Generator</a></div>
-</div>
-</div>
+  <!-- ABOVE FOOTER AD -->
+  <div class="container">
+    <div class="ad-placeholder">
+      <span class="ad-label">📢 AdSense Ad Space (above footer)</span>
+    </div>
+  </div>
 
-<div class="section">
-<h2>Spin & Random Picker Tools</h2>
-<div class="tools-grid">
-<div class="tool-card"><a href="spin-the-wheel.html">Spin the Wheel</a></div>
-</div>
-</div>
+  <!-- FOOTER (4 columns) -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>🔧 About</h4>
+        <p style="color:#b3c7f0;">FreeOnlineTools provides lightning-fast calculators and utilities for everyone. 100% free, no sign-up.</p>
+      </div>
+      <div class="footer-col">
+        <h4>📊 Popular</h4>
+        <a href="age-calculator.html">Age Calculator</a>
+        <a href="bmi-calculator.html">BMI Calculator</a>
+        <a href="percentage-calculator.html">Percentage Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>💰 Financial</h4>
+        <a href="emi-calculator.html">EMI Calculator</a>
+        <a href="loan-calculator.html">Loan Calculator</a>
+        <a href="discount-calculator.html">Discount Calculator</a>
+      </div>
+      <div class="footer-col">
+        <h4>📄 Pages</h4>
+        <a href="index.html">Home</a>
+        <a href="tools.html">Tools</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2025 Free Online Tools — open for everyone
+    </div>
+  </footer>
 
-<footer style="background:#111; color:#fff; padding:50px 20px; margin-top:40px;">
+  <script>
+    // Toggle mobile menu
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu.style.display === 'none' || menu.style.display === '') {
+        menu.style.display = 'block';
+      } else {
+        menu.style.display = 'none';
+      }
+    }
 
-<div style="max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px;">
+    // Age calculator demo
+    window.calculateAgeDemo = function() {
+      const birthStr = document.getElementById('birthInput').value;
+      if (!birthStr) return;
+      const birthDate = new Date(birthStr);
+      const today = new Date();
+      let age = today.getFullYear() - birthDate.getFullYear();
+      const m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      document.getElementById('ageResult').innerText = `You are ${age} years old.`;
+    }
 
-<!-- About -->
-<div>
-<h3 style="margin-top:0;">Free Online Tools</h3>
-<p style="font-size:14px; line-height:1.6; color:#ccc;">
-Simple, Fast & 100% Free useful calculators and tools for everyday use.
-</p>
-</div>
-
-<!-- Popular Calculators -->
-<div>
-<h4 style="margin-bottom:10px;">Popular Calculators</h4>
-<a href="age-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Age Calculator</a>
-<a href="bmi-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">BMI Calculator</a>
-<a href="percentage-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Percentage Calculator</a>
-</div>
-
-<!-- Financial Tools -->
-<div>
-<h4 style="margin-bottom:10px;">Financial Tools</h4>
-<a href="emi-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">EMI Calculator</a>
-<a href="loan-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Loan Calculator</a>
-</div>
-
-<!-- Text & Writing Tools -->
-<div>
-<h4 style="margin-bottom:10px;">Text & Writing Tools</h4>
-<a href="word-counter.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Word Counter</a>
-<a href="text-case-converter.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Text Case Converter</a>
-<a href="password-generator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Password Generator</a>
-</div>
-
-<!-- Spin & Random Picker -->
-<div>
-<h4 style="margin-bottom:10px;">Spin & Random Picker Tools</h4>
-<a href="spin-the-wheel.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Spin the Wheel</a>
-</div>
-
-<!-- Quick Links -->
-<div>
-<h4 style="margin-bottom:10px;">Quick Links</h4>
-<a href="about.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">About Us</a>
-<a href="contact.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Contact</a>
-<a href="privacy-policy.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Privacy Policy</a>
-</div>
-
-</div>
-
-<hr style="margin:40px 0 20px 0; border:0; border-top:1px solid #333;">
-
-<p style="text-align:center; font-size:13px; color:#aaa; margin:0;">
-© 2026 Free Online Tools | All Rights Reserved
-</p>
-
-</footer>
-
-<script>
-function toggleMenu(){
-var menu=document.getElementById("menu");
-menu.style.display = menu.style.display === "block" ? "none" : "block";
-}
-
-function openTools(id){
-var all=document.querySelectorAll(".tools");
-all.forEach(x=>x.classList.remove("active"));
-document.getElementById(id).classList.add("active");
-}
-</script>
-
+    // Prevent actual navigation for demo (keep links functional)
+    document.querySelectorAll('a[href]').forEach(link => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href');
+        if (href && !href.startsWith('#') && !href.includes('javascript')) {
+          e.preventDefault();
+          alert(`[Demo] This would open: ${href}`);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
