@@ -150,19 +150,57 @@ background:#eee;
 margin-top:40px;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-nav ul{
+/* MOBILE RESPONSIVE */
+@media (max-width:768px){
+
+nav{
 flex-direction:column;
 align-items:flex-start;
-gap:15px;
+padding:15px;
 }
+
+nav ul{
+flex-direction:column;
+width:100%;
+gap:12px;
+margin-top:10px;
+}
+
+nav ul li{
+width:100%;
+}
+
+nav ul li a{
+display:block;
+width:100%;
+padding:8px 0;
+}
+
+header{
+padding:40px 15px;
+}
+
+.section{
+margin:25px 10px;
+padding:25px 15px;
+}
+
+.tools-grid{
+grid-template-columns:1fr;
+}
+
 .dropdown{
 position:relative;
 top:10px;
 right:0;
 width:100%;
+box-shadow:none;
 }
+
+footer div{
+grid-template-columns:1fr;
+}
+
 }
 </style>
 </head>
@@ -287,3 +325,4 @@ Simple, Fast & 100% Free useful calculators and tools for everyday use.
 <a href="emi-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">EMI Calculator</a>
 <a href="loan-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Loan Calculator</a>
 </div>
+
