@@ -13,6 +13,7 @@ background:#f4f6f9;
 }
 
 /* NAVBAR */
+
 nav{
 background:linear-gradient(90deg,#0d6efd,#6610f2);
 padding:15px 20px;
@@ -22,6 +23,7 @@ align-items:center;
 position:sticky;
 top:0;
 z-index:1000;
+flex-wrap:wrap;
 }
 
 .logo{
@@ -30,6 +32,8 @@ font-size:20px;
 font-weight:bold;
 }
 
+/* MENU */
+
 nav ul{
 list-style:none;
 display:flex;
@@ -37,6 +41,11 @@ gap:25px;
 margin:0;
 padding:0;
 align-items:center;
+flex-wrap:wrap;
+}
+
+nav ul li{
+position:relative;
 }
 
 nav ul li a{
@@ -48,17 +57,38 @@ padding:6px 10px;
 display:inline-block;
 }
 
+nav ul li a:hover{
+color:#00e0ff;
+}
+
 /* DROPDOWN */
+
 .dropdown{
 display:none;
 position:absolute;
-top:60px;
+top:45px;
 left:0;
 width:260px;
 background:white;
 border-radius:10px;
 box-shadow:0 10px 30px rgba(0,0,0,0.15);
 padding:15px;
+}
+
+/* MOBILE FIX */
+
+@media(max-width:768px){
+
+nav{
+flex-direction:column;
+align-items:flex-start;
+}
+
+nav ul{
+margin-top:10px;
+gap:15px;
+}
+
 }
 
 /* CATEGORY BUTTON */
@@ -393,6 +423,7 @@ menu.style.display="none";
 
 </body>
 </html>
+
 
 
 
