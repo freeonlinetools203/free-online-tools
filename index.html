@@ -79,13 +79,31 @@ background:white;
 border-radius:10px;
 box-shadow:0 10px 30px rgba(0,0,0,0.15);
 padding:15px;
+z-index:999;
 }
 
-/* SHOW DROPDOWN ON HOVER */
+/* SHOW DROPDOWN */
 
 nav ul li:hover .dropdown{
 display:block;
 }
+
+/* DROPDOWN LINKS */
+
+.dropdown a{
+display:block;
+color:#333;
+text-decoration:none;
+padding:8px 10px;
+border-radius:6px;
+font-weight:normal;
+}
+
+.dropdown a:hover{
+background:#f1f1f1;
+color:#0d6efd;
+}
+
 /* MOBILE FIX */
 
 @media(max-width:768px){
@@ -426,6 +444,7 @@ dropdown.style.display="none";
 
 </body>
 </html>
+
 
 
 
