@@ -300,53 +300,53 @@ grid-template-columns:1fr;
 </div>
 </div>
 
-<footer style="background:#111; color:#ccc; padding:40px 20px; margin-top:40px;">
+<footer style="background:#111; color:#ccc; padding:50px 20px; margin-top:40px;">
 
-<div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:30px; max-width:1100px; margin:auto;">
+<div style="max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:35px;">
+
+<!-- About -->
+<div>
+<h3 style="color:#fff; margin-top:0;">Free Online Tools</h3>
+<p style="font-size:14px; line-height:1.6;">
+Simple, Fast & 100% Free useful calculators and tools for everyday use.
+</p>
+</div>
 
 <!-- Pages -->
 <div>
-<h4 style="margin-bottom:10px;">Pages</h4>
-<a href="index.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Home</a>
-<a href="#" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Tools</a>
+<h4 style="margin-bottom:10px; color:#fff;">Pages</h4>
 <a href="about.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">About</a>
 <a href="contact.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Contact</a>
-<a href="privacy.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Privacy Policy</a>
+<a href="privacy-policy.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Privacy Policy</a>
 </div>
 
 <!-- Popular Calculators -->
 <div>
-<h4 style="margin-bottom:10px;">Popular Calculators</h4>
+<h4 style="margin-bottom:10px; color:#fff;">Popular Calculators</h4>
 <a href="age-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Age Calculator</a>
 <a href="bmi-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">BMI Calculator</a>
 <a href="percentage-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Percentage Calculator</a>
 </div>
 
-<!-- Financial Tools -->
+<!-- Tools -->
 <div>
-<h4 style="margin-bottom:10px;">Financial Tools</h4>
-<a href="emi-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">EMI Calculator</a>
-<a href="loan-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Loan Calculator</a>
-</div>
-
-<!-- Text & Writing Tools -->
-<div>
-<h4 style="margin-bottom:10px;">Text & Writing Tools</h4>
+<h4 style="margin-bottom:10px; color:#fff;">Tools</h4>
 <a href="word-counter.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Word Counter</a>
-<a href="text-case-converter.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Text Case Converter</a>
 <a href="password-generator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Password Generator</a>
-</div>
-
-<!-- Spin & Random Picker Tools -->
-<div>
-<h4 style="margin-bottom:10px;">Spin & Random Picker Tools</h4>
 <a href="spin-the-wheel.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Spin the Wheel</a>
 </div>
 
 </div>
 
+<!-- Social -->
+<div style="text-align:center; margin-top:30px;">
+<a href="#" style="color:#ccc; margin:0 10px; text-decoration:none;">Facebook</a>
+<a href="#" style="color:#ccc; margin:0 10px; text-decoration:none;">Twitter</a>
+<a href="#" style="color:#ccc; margin:0 10px; text-decoration:none;">YouTube</a>
+</div>
+
 <!-- Copyright -->
-<div style="text-align:center; margin-top:30px; font-size:14px; color:#aaa;">
+<div style="text-align:center; margin-top:20px; font-size:14px; color:#aaa;">
 © 2026 Free Online Tools. All Rights Reserved.
 </div>
 
@@ -362,11 +362,9 @@ menu.style.display="none";
 }else{
 menu.style.display="block";
 }
-
 }
 
 function openTools(id){
-
 var tools=document.querySelectorAll(".tools");
 
 tools.forEach(function(el){
@@ -374,13 +372,13 @@ el.classList.remove("active");
 });
 
 document.getElementById(id).classList.add("active");
-
 }
 
 </script>
 
 </body>
 </html>
+
 
 
 
