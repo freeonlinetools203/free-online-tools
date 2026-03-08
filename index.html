@@ -390,37 +390,29 @@ Simple, Fast & 100% Free useful calculators and tools for everyday use.
 
 <script>
 
-function toggleMenu(){
-var menu=document.getElementById("menu");
+function openTools(){
+var dropdown=document.getElementById("toolsDropdown");
 
-if(menu.style.display==="block"){
-menu.style.display="none";
+if(dropdown.style.display==="block"){
+dropdown.style.display="none";
 }else{
-menu.style.display="block";
+dropdown.style.display="block";
 }
 }
 
-function openTools(id){
-var tools=document.querySelectorAll(".tools");
+/* click outside -> close dropdown */
 
-tools.forEach(function(el){
-el.classList.remove("active");
-});
+document.addEventListener("click",function(event){
 
-document.getElementById(id).classList.add("active");
+var dropdown=document.getElementById("toolsDropdown");
+var button=document.getElementById("toolsBtn");
+
+if(dropdown && button){
+
+if(!dropdown.contains(event.target) && !button.contains(event.target)){
+dropdown.style.display="none";
 }
 
-/* click outside menu -> auto hide */
-
-document.addEventListener("click", function(event){
-
-var menu=document.getElementById("menu");
-var button=document.querySelector(".menu-btn");
-
-if(menu && button){
-if(!menu.contains(event.target) && !button.contains(event.target)){
-menu.style.display="none";
-}
 }
 
 });
@@ -429,6 +421,7 @@ menu.style.display="none";
 
 </body>
 </html>
+
 
 
 
