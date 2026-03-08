@@ -374,12 +374,25 @@ el.classList.remove("active");
 document.getElementById(id).classList.add("active");
 }
 
+/* click outside menu -> auto hide */
+
+document.addEventListener("click", function(event){
+
+var menu=document.getElementById("menu");
+var button=document.querySelector(".menu-btn");
+
+if(menu && button){
+if(!menu.contains(event.target) && !button.contains(event.target)){
+menu.style.display="none";
+}
+}
+
+});
+
 </script>
 
 </body>
 </html>
-
-
 
 
 
