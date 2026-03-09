@@ -409,7 +409,9 @@ Simple, Fast & 100% Free useful calculators and tools for everyday use.
 
 <script>
 
-function toggleMenu(){
+function toggleMenu(event){
+
+event.stopPropagation();
 
 var dropdown = document.getElementById("toolsDropdown");
 dropdown.classList.toggle("show");
@@ -469,6 +471,7 @@ lastScrollTop = scrollTop;
 
 </body>
 </html>
+
 
 
 
