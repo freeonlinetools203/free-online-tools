@@ -412,19 +412,13 @@ Simple, Fast & 100% Free useful calculators and tools for everyday use.
 function toggleMenu(){
 
 var dropdown = document.getElementById("toolsDropdown");
-
-if(dropdown.style.display === "block"){
-dropdown.style.display = "none";
-}else{
-dropdown.style.display = "block";
-}
+dropdown.classList.toggle("show");
 
 }
 
 function openTools(id){
 
 var tools = document.getElementById(id);
-
 tools.classList.toggle("active");
 
 }
@@ -439,20 +433,42 @@ var button = document.getElementById("toolsBtn");
 if(dropdown && button){
 
 if(!dropdown.contains(event.target) && !button.contains(event.target)){
-dropdown.style.display="none";
+dropdown.classList.remove("show");
 }
 
 }
 
 });
 
+/* scroll position restore */
+
 if ('scrollRestoration' in history) {
 history.scrollRestoration = 'auto';
 }
+
+/* navbar hide show on scroll */
+
+var lastScrollTop = 0;
+var navbar = document.getElementById("topMenu");
+
+window.addEventListener("scroll", function(){
+
+var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+if(scrollTop > lastScrollTop){
+navbar.style.top = "-80px";
+}else{
+navbar.style.top = "0";
+}
+
+lastScrollTop = scrollTop;
+
+});
 
 </script>
 
 </body>
 </html>
+
 
 
