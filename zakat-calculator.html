@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <!-- SEO essential -->
+  <title>Zakat Calculator – Calculate Your Zakat Online</title>
+  <meta name="description" content="Free, accurate Zakat calculator for Ramadan. Calculate your Zakat based on cash, gold, silver, investments & debts. Nisab threshold using silver value.">
+  <meta name="keywords" content="Zakat calculator, Islamic charity, Ramadan tool, Nisab, silver value, Zakatable wealth">
+  <meta name="author" content="All Free Online Tools">
+  <!-- Open Graph for social sharing -->
+  <meta property="og:title" content="Zakat Calculator – Calculate Your Zakat Online">
+  <meta property="og:description" content="Easy Zakat calculation with Nisab check. Perfect for Ramadan giving.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="All Free Online Tools">
+  <style>
+    /* minimal reset + modern system fonts */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f2f5f9;
+      font-family: 'Segoe UI', Roboto, system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 20px;
+    }
+    .tool-container {
+      max-width: 1100px;
+      width: 100%;
+      background: white;
+      border-radius: 32px;
+      box-shadow: 0 25px 45px -12px rgba(0, 20, 30, 0.15);
+      overflow: hidden;
+      padding: 28px 24px;
+    }
+    /* Islamic touch - Bismillah styling */
+    .bismillah {
+      text-align: center;
+      font-size: 2rem;
+      font-family: 'Traditional Arabic', 'Scheherazade', 'Amiri', serif;
+      color: #0a5e5e;
+      margin-bottom: 10px;
+      padding: 10px 0;
+      border-bottom: 2px dashed #c9e1dd;
+      letter-spacing: 1px;
+    }
+    .bismillah span {
+      display: block;
+      font-size: 1rem;
+      color: #3b6b6b;
+      margin-top: 5px;
+      font-family: 'Segoe UI', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    /* headings seo-friendly */
+    h1 {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #0a2f3f;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      border-left: 8px solid #1b8b7a;
+      padding-left: 18px;
+    }
+    .subhead {
+      color: #3b5c6e;
+      margin-bottom: 28px;
+      font-size: 1.1rem;
+      font-weight: 400;
+    }
+    /* two column responsive grid */
+    .calculator-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin: 30px 0 20px;
+    }
+    /* input panel cards */
+    .assets-panel, .liabilities-panel {
+      background: #f9fcff;
+      border-radius: 28px;
+      padding: 22px 22px 26px;
+      border: 1px solid #e7ecf2;
+      box-shadow: 0 6px 12px -8px rgba(0,0,0,0.05);
+    }
+    .panel-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #144d5c;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .panel-title i { font-style: normal; font-size: 1.8rem; }
+    .input-row {
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+    .input-row label {
+      font-weight: 500;
+      color: #1c4e5f;
+      margin-bottom: 8px;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+    }
+    .input-row label span {
+      background: #c7e3da;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      padding: 3px 11px;
+      margin-left: 12px;
+      color: #115b61;
+    }
+    .input-field {
+      background: white;
+      border: 1.5px solid #d7e0e8;
+      border-radius: 60px;
+      padding: 14px 22px;
+      font-size: 1rem;
+      transition: all 0.15s;
+      width: 100%;
+      font-weight: 450;
+      outline: none;
+    }
+    .input-field:focus {
+      border-color: #2aa38f;
+      box-shadow: 0 0 0 4px rgba(42,163,143,0.15);
+    }
+    .input-field::placeholder {
+      color: #aab9c4;
+      font-weight: 300;
+    }
+    /* button group */
+    .action-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 20px 0 15px;
+    }
+    .btn {
+      border: none;
+      background: #dee7ed;
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #1e4452;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: #0b5e6b;
+      color: white;
+      box-shadow: 0 8px 16px -8px #0b5e6b70;
+    }
+    .btn-primary:hover {
+      background: #0c4b56;
+      transform: scale(1.02);
+    }
+    .btn-secondary {
+      background: #eef3f7;
+      border: 1px solid #cbd7e2;
+    }
+    .btn-secondary:hover {
+      background: #e1eaf1;
+    }
+    /* result card */
+    .result-highlight {
+      background: linear-gradient(145deg, #053b41 0%, #0a5b5f 100%);
+      border-radius: 40px;
+      padding: 26px 28px;
+      color: white;
+      margin: 25px 0 30px;
+      box-shadow: 0 18px 28px -12px #0b5e6b;
+    }
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      text-align: center;
+    }
+    .result-item {
+      background: rgba(255,255,255,0.07);
+      border-radius: 28px;
+      padding: 18px 6px;
+      backdrop-filter: blur(2px);
+    }
+    .result-label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      opacity: 0.8;
+      margin-bottom: 8px;
+    }
+    .result-value {
+      font-size: 1.9rem;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .result-value small {
+      font-size: 0.9rem;
+      font-weight: 400;
+      opacity: 0.8;
+    }
+    .nisab-note {
+      background: #dff3f0;
+      color: #024b53;
+      padding: 14px 24px;
+      border-radius: 60px;
+      margin: 16px 0 10px;
+      font-weight: 500;
+      text-align: center;
+      border: 1px solid #b3e0d6;
+    }
+    /* error message */
+    .error-message {
+      background: #ffe7e5;
+      color: #b13b34;
+      padding: 14px 24px;
+      border-radius: 60px;
+      margin: 12px 0 5px;
+      font-weight: 500;
+      display: none;
+      border: 1px solid #ffc9c2;
+    }
+    .error-message.show {
+      display: block;
+    }
+    /* zakat info section */
+    .info-section {
+      background: #edf7f5;
+      border-radius: 32px;
+      padding: 28px 30px;
+      margin-top: 40px;
+    }
+    .info-section h2 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #053f44;
+      margin-bottom: 18px;
+    }
+    .info-section h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #115e66;
+      margin: 24px 0 10px;
+    }
+    .info-section p {
+      color: #1b4f57;
+      font-size: 1.08rem;
+      line-height: 1.6;
+      max-width: 850px;
+    }
+    /* Islamic reminder styling */
+    .islamic-reminder {
+      background: #f0f9f7;
+      border-radius: 60px;
+      padding: 15px 25px;
+      margin: 20px 0 10px;
+      text-align: center;
+      border: 1px solid #b1dfd6;
+    }
+    .islamic-reminder p {
+      font-size: 1.2rem;
+      color: #0b5e5e;
+      font-weight: 500;
+    }
+    .islamic-reminder .arabic {
+      font-size: 1.5rem;
+      font-family: 'Traditional Arabic', 'Scheherazade', serif;
+      direction: rtl;
+      margin-bottom: 8px;
+      color: #02423b;
+    }
+    hr {
+      border: none;
+      height: 2px;
+      background: linear-gradient(90deg, #b7d8d3, transparent);
+      margin: 28px 0 0;
+    }
+    /* mobile friendly */
+    @media (max-width: 780px) {
+      .calculator-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+      }
+      .result-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .btn {
+        width: 100%;
+      }
+      h1 {
+        font-size: 1.8rem;
+      }
+      .tool-container {
+        padding: 20px 16px;
+      }
+    }
+    @media (max-width: 480px) {
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+      .panel-title {
+        font-size: 1.4rem;
+      }
+      .bismillah {
+        font-size: 1.5rem;
+      }
+    }
+    /* extra touch */
+    .currency-symbol {
+      font-size: 1.2rem;
+      margin-right: 5px;
+      opacity: 0.7;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6a8f99;
+      margin-top: 30px;
+    }
+    a {
+      color: #116b6b;
+    }
+  </style>
+</head>
+<body>
+<div class="tool-container">
+  <!-- Islamic opening - Bismillah -->
+  <div class="bismillah">
+    بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+    <span>In the name of Allah, the Most Gracious, the Most Merciful</span>
+  </div>
+  
+  <h1>Zakat Calculator – Calculate Your Zakat Online</h1>
+  <div class="subhead">Complete your details below · Nisab based on silver</div>
+
+  <!-- Calculator form starts -->
+  <div class="calculator-grid">
+    <!-- Left side: assets -->
+    <div class="assets-panel">
+      <div class="panel-title">
+        <i>💰</i> Assets (what you own)
+      </div>
+      <div class="input-row">
+        <label>Cash in hand <span>نقدی</span></label>
+        <input type="number" id="cashHand" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Cash in bank accounts <span>بینک</span></label>
+        <input type="number" id="cashBank" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Gold value (market price) <span>سونا</span></label>
+        <input type="number" id="goldValue" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Silver value <span>چاندی (نصاب)</span></label>
+        <input type="number" id="silverValue" class="input-field" placeholder="612g silver market value" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Investments <span>سرمایہ کاری</span></label>
+        <input type="number" id="investments" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Business assets <span>تجارتی مال</span></label>
+        <input type="number" id="businessAssets" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Other savings <span>دیگر بچت</span></label>
+        <input type="number" id="otherSavings" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+    </div>
+
+    <!-- Right side: liabilities + reset/calculate -->
+    <div class="liabilities-panel">
+      <div class="panel-title">
+        <i>📋</i> Liabilities (debts you owe)
+      </div>
+      <div class="input-row">
+        <label>Debts (total outstanding) <span>قرضے</span></label>
+        <input type="number" id="debts" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div class="input-row">
+        <label>Other liabilities <span>واجبات</span></label>
+        <input type="number" id="liabilities" class="input-field" placeholder="0.00" min="0" step="0.01" value="">
+      </div>
+      <div style="margin-top: 25px;">
+        <div class="action-buttons">
+          <button class="btn btn-primary" id="calculateBtn">Calculate Zakat</button>
+          <button class="btn btn-secondary" id="resetBtn">Reset all fields</button>
+        </div>
+        <div class="error-message" id="errorMsg">⚠️ Please fill at least one asset field (allows zero).</div>
+        <!-- small note: Nisab will use silver field, if zero a default advisory shown -->
+      </div>
+    </div>
+  </div>
+
+  <!-- highlighted result section -->
+  <div class="result-highlight" id="resultBox">
+    <div class="result-grid" id="resultGrid">
+      <div class="result-item">
+        <div class="result-label">Total Assets</div>
+        <div class="result-value" id="totalAssetsDisplay">0.00</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Total Debts</div>
+        <div class="result-value" id="totalDebtsDisplay">0.00</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Net Wealth</div>
+        <div class="result-value" id="netWealthDisplay">0.00</div>
+      </div>
+      <div class="result-item">
+        <div class="result-label">Zakat Payable</div>
+        <div class="result-value" id="zakatPayableDisplay">0.00</div>
+      </div>
+    </div>
+    <div class="nisab-note" id="nisabMessage">Silver Nisab value: — (enter silver value to check)</div>
+  </div>
+
+  <!-- Islamic Reminder Section -->
+  <div class="islamic-reminder">
+    <div class="arabic">اللَّهُمَّ بَارِكْ لَنَا فِي أَمْوَالِنَا</div>
+    <p>"O Allah! Bless our wealth and purify it."</p>
+    <p style="font-size: 0.9rem; margin-top: 8px;">✨ Zakat purifies your wealth and brings barakah ✨</p>
+  </div>
+
+  <!-- Educational section / SEO friendly -->
+  <div class="info-section">
+    <h2>What is Zakat?</h2>
+    <p><strong>Zakat</strong> is an obligatory form of charity in Islam, meaning “purification” and “growth.” Every Muslim who owns wealth above a specific threshold (Nisab) must pay 2.5% of their surplus assets to those in need.</p>
+    <h3>📌 Nisab concept (Silver basis)</h3>
+    <p>The Nisab threshold is the minimum amount of wealth a Muslim must possess before Zakat becomes due. Our calculator follows the <strong>silver Nisab</strong> (approx. 612 grams of silver). If your net assets are greater than or equal to the current silver value you enter, Zakat is payable.</p>
+    <h3>👤 Who must pay Zakat?</h3>
+    <p>Any adult Muslim (sane, free) who has complete ownership of wealth equal to or exceeding the Nisab, and one lunar year has passed (hawl), is liable. This tool helps you compute the amount, but always consult your local scholar for personal rulings.</p>
+  </div>
+  <hr>
+  <footer>All Free Online Tools · Designed for ease & accuracy · <a href="#" aria-label="Ramadan offers">Ramadan 2025</a></footer>
+</div>
+
+<script>
+  (function() {
+    // DOM elements
+    const cashHand = document.getElementById('cashHand');
+    const cashBank = document.getElementById('cashBank');
+    const goldValue = document.getElementById('goldValue');
+    const silverValue = document.getElementById('silverValue');
+    const investments = document.getElementById('investments');
+    const businessAssets = document.getElementById('businessAssets');
+    const otherSavings = document.getElementById('otherSavings');
+    const debts = document.getElementById('debts');
+    const liabilities = document.getElementById('liabilities');
+
+    const totalAssetsSpan = document.getElementById('totalAssetsDisplay');
+    const totalDebtsSpan = document.getElementById('totalDebtsDisplay');
+    const netWealthSpan = document.getElementById('netWealthDisplay');
+    const zakatPayableSpan = document.getElementById('zakatPayableDisplay');
+    const nisabMessage = document.getElementById('nisabMessage');
+    const errorMsgDiv = document.getElementById('errorMsg');
+
+    const calculateBtn = document.getElementById('calculateBtn');
+    const resetBtn = document.getElementById('resetBtn');
+
+    // Helper to parse float, default 0
+    function parseVal(input) {
+      const val = parseFloat(input.value.trim());
+      return isNaN(val) ? 0 : val;
+    }
+
+    // check if any asset field is filled (non-zero) or at least touched? we want to show error only if all assets zero but user may have zero wealth – edge case: accept zero but no error.
+    function anyAssetFilled() {
+      const assets = [
+        parseVal(cashHand), parseVal(cashBank), parseVal(goldValue),
+        parseVal(silverValue), parseVal(investments), parseVal(businessAssets),
+        parseVal(otherSavings)
+      ];
+      // we consider "filled" if any is >0 OR even if all zero, we allow calculation (no error) because zero is valid.
+      // but we also check if all fields are literally empty strings? we treat empty as 0. no error.
+      return true; // allow always; we removed empty check, but we want to notify if user left all zero? that's fine. Error removed.
+    }
+
+    // main calculation function
+    function calculateZakat() {
+      // parse all numbers
+      const cashH = parseVal(cashHand);
+      const cashB = parseVal(cashBank);
+      const gold = parseVal(goldValue);
+      const silver = parseVal(silverValue);
+      const invest = parseVal(investments);
+      const business = parseVal(businessAssets);
+      const other = parseVal(otherSavings);
+      const debtVal = parseVal(debts);
+      const liabVal = parseVal(liabilities);
+
+      // total assets
+      const totalAssets = cashH + cashB + gold + silver + invest + business + other;
+      const totalDebts = debtVal + liabVal;
+      const netWealth = totalAssets - totalDebts;
+
+      // display totals
+      totalAssetsSpan.innerText = totalAssets.toFixed(2);
+      totalDebtsSpan.innerText = totalDebts.toFixed(2);
+      netWealthSpan.innerText = netWealth.toFixed(2);
+
+      // Nisab based on silver value entered by user.
+      let zakatPayable = 0.0;
+      let nisabText = '';
+
+      if (silver > 0) {
+        // silver value is used as Nisab threshold (should be 612g silver market price)
+        const nisabThreshold = silver; 
+        if (netWealth >= nisabThreshold && netWealth > 0) {
+          zakatPayable = netWealth * 0.025;
+        } else {
+          zakatPayable = 0; // below nisab
+        }
+        nisabText = `Silver Nisab threshold: ${nisabThreshold.toFixed(2)} (value used from silver field). Net wealth is ${netWealth >= nisabThreshold ? 'ABOVE' : 'BELOW'} Nisab.`;
+      } else {
+        nisabText = '⚠️ Enter silver value (as current Nisab threshold) to enable Nisab comparison.';
+        // if silver is zero we don't calculate zakat, set 0
+        zakatPayable = 0;
+      }
+
+      // if net wealth negative then zakat zero
+      if (netWealth < 0) {
+        zakatPayable = 0;
+        nisabText += ' (negative net wealth, no zakat)';
+      }
+
+      zakatPayableSpan.innerText = zakatPayable.toFixed(2);
+      nisabMessage.innerText = nisabText;
+
+      // hide any previous error
+      errorMsgDiv.classList.remove('show');
+    }
+
+    // reset all fields and results
+    function resetAll() {
+      const inputs = [cashHand, cashBank, goldValue, silverValue, investments, businessAssets, otherSavings, debts, liabilities];
+      inputs.forEach(inp => inp.value = '');
+      // reset displays
+      totalAssetsSpan.innerText = '0.00';
+      totalDebtsSpan.innerText = '0.00';
+      netWealthSpan.innerText = '0.00';
+      zakatPayableSpan.innerText = '0.00';
+      nisabMessage.innerText = 'Silver Nisab value: — (enter silver value to check)';
+      errorMsgDiv.classList.remove('show');
+    }
+
+    // Event listeners
+    calculateBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      // we removed empty check, allow zero fields
+      calculateZakat();
+    });
+
+    resetBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      resetAll();
+    });
+
+    // optional: pressing Enter in any field triggers calculate (nice UX)
+    const allInputs = [cashHand, cashBank, goldValue, silverValue, investments, businessAssets, otherSavings, debts, liabilities];
+    allInputs.forEach(inp => {
+      inp.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          calculateBtn.click();
+        }
+      });
+    });
+
+    // On page load, set default placeholder for silver hint
+    silverValue.placeholder = "e.g. 612g silver market value";
+    // also set a helpful initial message
+  })();
+</script>
+<!-- small additional tweak: label update by JS is not needed; we added placeholder -->
+</body>
+</html>
