@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Online Tools - Image, Text, SEO & Web Tools</title>
-<meta name="description" content="Free online tools for image, text, SEO and web utilities. Fast, simple and free tools for everyday use.">
-<meta name="keywords" content="free tools, online tools, seo tools, image tools, text tools, web tools">
+
+<title>All Free Online Tools - Calculators, Text Tools & Web Utilities</title>
+
+<meta name="description" content="All Free Online Tools provides free calculators, text tools, financial tools and random tools. Fast, simple and 100% free tools for everyday use.">
+
+<meta name="keywords" content="free online tools, calculators, text tools, web tools">
+
 <style>
 
 body{
 margin:0;
-font-family:Arial, sans-serif;
+font-family:Arial;
 background:#f4f6f9;
 }
 
@@ -19,22 +24,10 @@ background:#f4f6f9;
 nav{
 background:linear-gradient(90deg,#0d6efd,#6610f2);
 padding:15px 20px;
-display:flex;
-justify-content:space-between;
-align-items:center;
 position:sticky;
 top:0;
 z-index:1000;
-flex-wrap:wrap;
 }
-
-.logo{
-color:white;
-font-size:20px;
-font-weight:bold;
-}
-
-/* MENU */
 
 nav ul{
 list-style:none;
@@ -43,13 +36,6 @@ gap:25px;
 margin:0;
 padding:0;
 align-items:center;
-flex-wrap:nowrap;
-overflow-x:auto;
-white-space:nowrap;
-}
-
-nav ul::-webkit-scrollbar{
-display:none;
 }
 
 nav ul li{
@@ -61,8 +47,6 @@ color:white;
 text-decoration:none;
 font-weight:bold;
 cursor:pointer;
-padding:6px 10px;
-display:inline-block;
 }
 
 nav ul li a:hover{
@@ -74,41 +58,24 @@ color:#00e0ff;
 .dropdown{
 display:none;
 position:absolute;
-top:45px;
+top:35px;
 left:0;
-width:260px;
 background:white;
-border-radius:10px;
-box-shadow:0 10px 30px rgba(0,0,0,0.15);
-padding:15px;
-z-index:999;
+width:240px;
+border-radius:8px;
+box-shadow:0 10px 20px rgba(0,0,0,0.15);
+padding:10px;
 }
 
-/* dropdown open */
-
-.dropdown.show{
+.show{
 display:block;
 }
 
-/* dropdown links */
-
-.dropdown a{
-display:block;
-padding:8px 10px;
-color:#333;
-text-decoration:none;
-border-radius:6px;
-font-size:14px;
-}
-
-.dropdown a:hover{
-background:#f1f3f6;
-}
-/* CATEGORY BUTTON */
+/* CATEGORY */
 
 .category{
 border-bottom:1px solid #eee;
-padding:10px 0;
+padding:8px 0;
 }
 
 .category button{
@@ -119,27 +86,23 @@ color:#6610f2;
 cursor:pointer;
 width:100%;
 text-align:left;
-font-size:14px;
+padding:8px;
 }
-
-/* TOOLS LIST */
 
 .tools{
 display:none;
-padding-top:8px;
 padding-left:10px;
 }
 
 .tools a{
 display:block;
-padding:6px 0;
-text-decoration:none;
+padding:6px 10px;
 color:#333;
-font-size:13px;
+text-decoration:none;
 }
 
 .tools a:hover{
-color:#0d6efd;
+background:#f1f1f1;
 }
 
 .tools.active{
@@ -155,23 +118,20 @@ text-align:center;
 padding:60px 20px;
 }
 
+/* SECTIONS */
+
 .section{
 max-width:1100px;
 margin:40px auto;
 background:white;
-padding:40px 20px;
-border-radius:12px;
-box-shadow:0 5px 20px rgba(0,0,0,0.05);
+padding:40px;
+border-radius:10px;
 text-align:center;
-}
-
-h2{
-color:#6610f2;
 }
 
 .tools-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
 gap:20px;
 }
 
@@ -179,65 +139,42 @@ gap:20px;
 display:block;
 background:linear-gradient(90deg,#0d6efd,#6610f2);
 color:white;
-text-decoration:none;
 padding:18px;
 border-radius:8px;
+text-decoration:none;
 font-weight:bold;
-transition:0.3s;
 }
 
 .tool-card a:hover{
-transform:translateY(-5px);
+transform:translateY(-4px);
 }
 
-/* MOBILE */
+/* FOOTER */
 
-@media(max-width:768px){
-
-nav{
-flex-direction:column;
-align-items:flex-start;
+footer{
+background:#111;
+color:#ccc;
+padding:40px 20px;
 }
 
-nav ul{
-margin-top:10px;
-gap:15px;
-flex-direction:column;
-width:100%;
+footer a{
+color:#ccc;
+text-decoration:none;
+display:block;
+padding:5px 0;
 }
 
-nav ul li{
-width:100%;
-}
-
-.dropdown{
-position:relative;
-top:10px;
-width:100%;
-box-shadow:none;
-}
-
-header{
-padding:40px 15px;
-}
-
-.section{
-margin:25px 10px;
-padding:25px 15px;
-}
-
-.tools-grid{
-grid-template-columns:1fr;
-}
-
+footer a:hover{
+color:white;
 }
 
 </style>
+
 </head>
- 
+
 <body>
 
-<nav id="topMenu">
+<nav>
 
 <ul>
 
@@ -245,48 +182,41 @@ grid-template-columns:1fr;
 
 <li>
 
-<a href="#" id="toolsBtn" onclick="toggleMenu(); return false;">Tools ▾</a>
-<div class="dropdown" id="toolsDropdown">
+<a onclick="toggleTools()">Tools ▾</a>
 
- <div class="category">
-<button onclick="openTools('t1')">Popular Calculators</button>
+<div class="dropdown" id="toolsMenu">
 
-<div id="t1" class="tools">
+<div class="category">
+<button onclick="openTools('c1')">Popular Calculators</button>
+<div id="c1" class="tools">
 <a href="age-calculator.html">Age Calculator</a>
 <a href="bmi-calculator.html">BMI Calculator</a>
 <a href="percentage-calculator.html">Percentage Calculator</a>
 </div>
-
 </div>
 
 <div class="category">
-<button onclick="openTools('t2')">Financial Tools</button>
-
-<div id="t2" class="tools">
+<button onclick="openTools('c2')">Financial Tools</button>
+<div id="c2" class="tools">
 <a href="emi-calculator.html">EMI Calculator</a>
 <a href="loan-calculator.html">Loan Calculator</a>
 </div>
-
 </div>
 
 <div class="category">
-<button onclick="openTools('t3')">Text & Writing Tools</button>
-
-<div id="t3" class="tools">
+<button onclick="openTools('c3')">Text & Writing Tools</button>
+<div id="c3" class="tools">
 <a href="word-counter.html">Word Counter</a>
 <a href="text-case-converter.html">Text Case Converter</a>
 <a href="password-generator.html">Password Generator</a>
 </div>
-
 </div>
 
 <div class="category">
-<button onclick="openTools('t4')">Spin & Random Picker Tools</button>
-
-<div id="t4" class="tools">
-<a href="spin-the-wheel.html">Spin the Wheel</a>
+<button onclick="openTools('c4')">Random Tools</button>
+<div id="c4" class="tools">
+<a href="spin-the-wheel.html">Spin The Wheel</a>
 </div>
-
 </div>
 
 </div>
@@ -303,10 +233,12 @@ grid-template-columns:1fr;
 
 <header>
 
-<h1>Free Online Tools</h1>
-<p>Simple, Fast & 100% Free Calculators</p>
+<h1>All Free Online Tools</h1>
+<p>Simple, Fast & 100% Free Tools For Everyday Use</p>
 
 </header>
+
+<!-- Popular Tools -->
 
 <div class="section">
 
@@ -322,6 +254,8 @@ grid-template-columns:1fr;
 
 </div>
 
+<!-- Financial Tools -->
+
 <div class="section">
 
 <h2>Financial Tools</h2>
@@ -334,6 +268,8 @@ grid-template-columns:1fr;
 </div>
 
 </div>
+
+<!-- Text Tools -->
 
 <div class="section">
 
@@ -349,130 +285,71 @@ grid-template-columns:1fr;
 
 </div>
 
+<!-- Random Tools -->
+
 <div class="section">
 
-<h2>Spin & Random Picker Tools</h2>
+<h2>Random Tools</h2>
 
 <div class="tools-grid">
 
-<div class="tool-card"><a href="spin-the-wheel.html">Spin the Wheel</a></div>
+<div class="tool-card"><a href="spin-the-wheel.html">Spin The Wheel</a></div>
 
 </div>
 
 </div>
 
-<footer style="background:#111; color:#ccc; padding:50px 20px; margin-top:40px;">
+<footer>
 
-<div style="max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:35px;">
+<div style="max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:30px;">
 
-<!-- About -->
 <div>
-<h3 style="color:#fff; margin-top:0;">About Us</h3>
-<p style="font-size:14px; line-height:1.6;">
-Simple, Fast & 100% Free useful calculators and tools for everyday use.
-</p>
+<h3>All Free Online Tools</h3>
+<p>Simple and free online calculators and utilities.</p>
 </div>
 
-<!-- Menu -->
 <div>
-<h4 style="margin-bottom:10px; color:#fff;">Menu</h4>
-<a href="index.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Home</a>
-<a href="about.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">About</a>
-<a href="contact.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Contact</a>
-<a href="privacy-policy.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Privacy Policy</a>
+<h4>Pages</h4>
+<a href="about.html">About</a>
+<a href="contact.html">Contact</a>
+<a href="privacy-policy.html">Privacy Policy</a>
 </div>
 
-<!-- Popular Tools -->
 <div>
-<h4 style="margin-bottom:10px; color:#fff;">Popular Tools</h4>
-<a href="age-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Age Calculator</a>
-<a href="bmi-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">BMI Calculator</a>
-<a href="percentage-calculator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Percentage Calculator</a>
+<h4>Popular Tools</h4>
+<a href="age-calculator.html">Age Calculator</a>
+<a href="bmi-calculator.html">BMI Calculator</a>
+<a href="percentage-calculator.html">Percentage Calculator</a>
 </div>
 
-<!-- More Tools -->
 <div>
-<h4 style="margin-bottom:10px; color:#fff;">More Tools</h4>
-<a href="word-counter.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Word Counter</a>
-<a href="password-generator.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Password Generator</a>
-<a href="spin-the-wheel.html" style="display:block; color:#ccc; text-decoration:none; padding:6px 0;">Spin the Wheel</a>
+<h4>More Tools</h4>
+<a href="word-counter.html">Word Counter</a>
+<a href="password-generator.html">Password Generator</a>
+<a href="spin-the-wheel.html">Spin The Wheel</a>
 </div>
 
 </div>
 
-<!-- COPYRIGHT (YEH SABSE LAST ME HOGA) -->
-<div style="text-align:center; margin-top:35px; font-size:14px; color:#aaa;">
-© 2026 Free Online Tools. All Rights Reserved.
+<div style="text-align:center;margin-top:30px;">
+© 2026 All Free Online Tools
 </div>
-  
- </footer>
+
+</footer>
 
 <script>
 
-function toggleMenu(event){
-
-event.stopPropagation();
-
-var dropdown = document.getElementById("toolsDropdown");
-dropdown.classList.toggle("show");
-
+function toggleTools(){
+var menu=document.getElementById("toolsMenu");
+menu.classList.toggle("show");
 }
 
 function openTools(id){
-
-var tools = document.getElementById(id);
+var tools=document.getElementById(id);
 tools.classList.toggle("active");
-
 }
-
-/* click outside close */
-
-document.addEventListener("click", function(event){
-
-var dropdown = document.getElementById("toolsDropdown");
-var button = document.getElementById("toolsBtn");
-
-if(dropdown && button){
-
-if(!dropdown.contains(event.target) && !button.contains(event.target)){
-dropdown.classList.remove("show");
-}
-
-}
-
-});
-
-/* scroll position restore */
-
-if ('scrollRestoration' in history) {
-history.scrollRestoration = 'auto';
-}
-
-/* navbar hide show on scroll */
-
-var lastScrollTop = 0;
-var navbar = document.getElementById("topMenu");
-
-window.addEventListener("scroll", function(){
-
-var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-if(scrollTop > lastScrollTop){
-navbar.style.top = "-80px";
-}else{
-navbar.style.top = "0";
-}
-
-lastScrollTop = scrollTop;
-
-});
 
 </script>
 
 </body>
 </html>
-
-
-
-
-
