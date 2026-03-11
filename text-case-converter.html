@@ -4,22 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Text Case Converter Online – Free Uppercase, Lowercase, Title Case Tool</title>
-
-<meta name="description" content="Free online Text Case Converter tool to convert text to uppercase, lowercase, sentence case, title case and capitalize each word instantly. 100% free, fast and secure case change tool.">
-
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://yourwebsite.com/text-case-converter">
-
-<!-- Open Graph -->
-<meta property="og:title" content="Free Text Case Converter – Uppercase & Lowercase Tool">
-<meta property="og:description" content="Convert text to uppercase, lowercase, sentence case and title case instantly with our free online case converter tool.">
-<meta property="og:type" content="website">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Text Case Converter Tool">
-<meta name="twitter:description" content="Instantly change text case online. Fast, free and secure tool.">
+<title>Text Case Converter – Free Uppercase Lowercase Converter Tool</title>
+<meta name="description" content="Free online text case converter tool. Convert text to uppercase, lowercase, sentence case, title case and capitalize case instantly. Fast and secure case change tool.">
 
 <style>
 body {
@@ -94,44 +80,13 @@ p {
     line-height: 1.8;
 }
 </style>
-
-<!-- FAQ Schema -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [{
-   "@type": "Question",
-   "name": "Is this text case converter free?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Yes, this text case converter tool is completely free and unlimited."
-   }
- },{
-   "@type": "Question",
-   "name": "Does this tool store my data?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "No, the tool works directly in your browser and does not store or share your text."
-   }
- },{
-   "@type": "Question",
-   "name": "Can I use this case converter on mobile devices?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Yes, the tool is fully responsive and works on all devices including mobile phones and tablets."
-   }
- }]
-}
-</script>
-
 </head>
 
 <body>
 
 <div class="tool-container">
 
-<h1>Free Online Text Case Converter Tool</h1>
+<h1>Text Case Converter</h1>
 
 <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
 
@@ -145,3 +100,73 @@ p {
 </div>
 
 </div>
+
+<div class="content-section">
+
+<h2>Free Online Text Case Converter Tool</h2>
+
+<p>Our Text Case Converter is a fast and easy-to-use online tool that allows you to instantly convert text into uppercase, lowercase, sentence case, title case, or capitalized format.</p>
+
+<p>This tool is useful for students, bloggers, content writers, and SEO professionals who need quick text formatting without manually editing every word.</p>
+
+<h2>Features</h2>
+
+<ul>
+<li>Convert text to UPPERCASE</li>
+<li>Convert text to lowercase</li>
+<li>Sentence case conversion</li>
+<li>Title Case formatting</li>
+<li>Capitalize each word instantly</li>
+<li>100% free and secure</li>
+</ul>
+
+<h2>How to Use</h2>
+
+<ol>
+<li>Paste or type your text in the box.</li>
+<li>Click any case conversion button.</li>
+<li>Copy the formatted result.</li>
+</ol>
+
+<p>This free case converter works directly in your browser, ensuring your text remains private and secure.</p>
+
+</div>
+
+<script>
+function toUpperCase() {
+    document.getElementById("textInput").value =
+    document.getElementById("textInput").value.toUpperCase();
+}
+
+function toLowerCase() {
+    document.getElementById("textInput").value =
+    document.getElementById("textInput").value.toLowerCase();
+}
+
+function toSentenceCase() {
+    let text = document.getElementById("textInput").value.toLowerCase();
+    text = text.charAt(0).toUpperCase() + text.slice(1);
+    document.getElementById("textInput").value = text;
+}
+
+function toTitleCase() {
+    let text = document.getElementById("textInput").value.toLowerCase();
+    text = text.split(" ").map(word =>
+        word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(" ");
+    document.getElementById("textInput").value = text;
+}
+
+function toCapitalizeCase() {
+    let text = document.getElementById("textInput").value;
+    text = text.replace(/\b\w/g, char => char.toUpperCase());
+    document.getElementById("textInput").value = text;
+}
+
+function clearText() {
+    document.getElementById("textInput").value = "";
+}
+</script>
+
+</body>
+</html>
