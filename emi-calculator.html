@@ -4,30 +4,165 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Free EMI Calculator – Calculate Your Loan EMI Online Instantly</title>
+<title>EMI Calculator Online Free – Calculate Loan EMI Instantly (Home, Car, Personal Loan)</title>
 
-<meta name="description" content="Use our free EMI calculator to instantly calculate your monthly loan EMIs. Supports home loans, car loans, and personal loans. Fast, accurate, and easy to use.">
+<meta name="description" content="Use our free EMI Calculator online to calculate your loan EMI instantly. Calculate home loan EMI, car loan EMI, and personal loan EMI with accurate results. Fast, easy, and mobile-friendly tool.">
 
-<meta name="keywords" content="EMI calculator online, free EMI calculator, loan EMI calculator, calculate EMI, home loan EMI, car loan EMI, personal loan EMI">
+<meta name="keywords" content="EMI calculator online free, loan EMI calculator, calculate EMI, home loan EMI calculator, car loan EMI calculator, personal loan EMI, EMI formula, monthly EMI calculator">
 
-<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/emi-calculator.html">
+<meta name="author" content="FAQS Acheema - Free Online Tools">
 <meta name="robots" content="index, follow">
 
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/emi-calculator.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free EMI Calculator – Calculate Loan EMI Instantly">
+<meta property="og:description" content="Quickly calculate EMI for home loan, car loan, and personal loan with our free EMI calculator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/emi-calculator.html">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EMI Calculator Online Free">
+<meta name="twitter:description" content="Calculate your monthly EMI instantly with this free online tool.">
+
 <style>
-body{font-family:Arial;background:#f4f6f9;margin:0;}
-.container{max-width:500px;margin:50px auto;background:white;padding:25px;border-radius:10px;box-shadow:0 5px 15px rgba(0,0,0,0.1);}
-h1{text-align:center;color:#0d6efd;}
-input,button{width:100%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;}
-button{background:#0d6efd;color:white;border:none;cursor:pointer;}
-button:hover{background:#084298;}
-.result{font-weight:bold;margin-top:10px;color:#198754;}
+
+/* 🔵 BODY */
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    background:#f4f6f9;
+    color:#000; /* 🖤 black text */
+    line-height:1.7;
+}
+
+/* 🔵 CARD */
+.container{
+    max-width:600px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    text-align:center;
+}
+
+h1{
+    color:#0d6efd; /* 🔵 blue */
+}
+
+/* INPUT */
+input{
+    width:100%;
+    padding:12px;
+    margin:10px 0;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* BUTTON */
+button{
+    width:100%;
+    padding:12px;
+    background:#0d6efd;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#084298;
+}
+
+/* RESULT */
+.result{
+    margin-top:15px;
+    font-weight:bold;
+    color:#198754;
+    font-size:18px;
+}
+
+/* 🔵 ARTICLE */
+.article{
+    max-width:900px;
+    margin:40px auto;
+    padding:20px;
+}
+
+.article h2, .article h3{
+    color:#0d6efd; /* 🔵 */
+}
+
+.article a{
+    color:#0d6efd;
+    text-decoration:none;
+}
+
+.article a:hover{
+    text-decoration:underline;
+}
+
+/* 🔵 BUTTON HOME */
+.home-btn{
+    text-align:center;
+    margin:30px 0;
+}
+
+.home-btn a{
+    background:#0d6efd;
+    color:white;
+    padding:12px 25px;
+    border-radius:6px;
+    text-decoration:none;
+}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+    .container,.article{
+        margin:20px;
+        padding:15px;
+    }
+}
+
 </style>
+
+<!-- FAQ SCHEMA -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{
+"@type":"Question",
+"name":"Is this EMI Calculator free?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, this EMI calculator is completely free and easy to use."}
+},
+{
+"@type":"Question",
+"name":"Can I calculate home loan EMI?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, you can calculate home loan, car loan, and personal loan EMI easily."}
+},
+{
+"@type":"Question",
+"name":"What is EMI formula?",
+"acceptedAnswer":{"@type":"Answer","text":"EMI formula is: (P × R × (1+R)^N) / ((1+R)^N - 1)."}
+}
+]
+}
+</script>
+
 </head>
 
 <body>
 
+<!-- CALCULATOR -->
 <div class="container">
 <h1>EMI Calculator</h1>
+
+<p>Calculate your monthly loan EMI instantly using our free EMI calculator tool.</p>
 
 <input type="number" id="loan" placeholder="Loan Amount">
 <input type="number" id="rate" placeholder="Interest Rate (%)">
@@ -38,73 +173,66 @@ button:hover{background:#084298;}
 <div class="result" id="result"></div>
 </div>
 
-<div class="container">
-<h2>What is EMI?</h2>
-<p>
-EMI (Equated Monthly Installment) is the fixed amount you pay every month towards your loan. 
-It includes both principal and interest components.
-</p>
-
-<h2>How EMI is Calculated?</h2>
-<p>
-EMI is calculated using the formula:
-EMI = [P × R × (1+R)^N] / [(1+R)^N – 1]
-Where P = Loan Amount, R = Monthly Interest Rate, N = Number of Months.
-</p>
-
-<h2>Benefits of Using EMI Calculator</h2>
-<ul>
-<li>Instant loan planning</li>
-<li>Compare different interest rates</li>
-<li>Better financial decisions</li>
-</ul>
-</div>
-
 <script>
 function calculateEMI(){
 let P=document.getElementById("loan").value;
 let r=document.getElementById("rate").value/1200;
 let n=document.getElementById("tenure").value*12;
 
-if(P<=0||r<=0||n<=0){alert("Enter valid values");return;}
+if(P==""||r==""||n==""){
+document.getElementById("result").innerText="Please enter all values";
+return;
+}
 
 let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
+
 document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
 }
 </script>
+
 <hr>
 
-<h2>About EMI Calculator</h2>
+<!-- ARTICLE -->
+<div class="article">
 
-<p>
-Our EMI Calculator is a free online tool that helps you calculate your monthly
-Equated Monthly Installment (EMI) for loans. Simply enter the loan amount,
-interest rate, and loan tenure to get instant EMI results.
-</p>
+<h2>🔵 About EMI Calculator</h2>
+<p>Our <strong>EMI Calculator online free</strong> helps you calculate your monthly loan EMI quickly and accurately. Whether you are planning a home loan, car loan, or personal loan, this tool provides instant results.</p>
 
-<h3>How to Use This Tool</h3>
+<h2>🔵 What is EMI?</h2>
+<p>EMI (Equated Monthly Installment) is the fixed monthly payment made by a borrower to repay a loan. It includes both principal and interest amount.</p>
+
+<h2>🔵 EMI Formula</h2>
+<p><strong>EMI = (P × R × (1+R)^N) / ((1+R)^N - 1)</strong></p>
+
+<h2>🔵 How to Use EMI Calculator</h2>
 <ul>
-  <li>Enter the Loan Amount</li>
-  <li>Enter the Interest Rate (%)</li>
-  <li>Enter the Loan Tenure (in years or months)</li>
-  <li>Click on "Calculate EMI"</li>
-  <li>See your monthly EMI instantly</li>
+<li>Enter loan amount</li>
+<li>Enter interest rate</li>
+<li>Enter loan tenure</li>
+<li>Click calculate</li>
 </ul>
 
-<h3>What is EMI?</h3>
-<p>
-EMI (Equated Monthly Installment) is the fixed monthly payment made by a borrower
-to repay a loan. It includes both the principal amount and the interest.
-</p>
+<h2>🔵 Benefits of EMI Calculator</h2>
+<ul>
+<li>Instant calculation</li>
+<li>Accurate results</li>
+<li>Financial planning</li>
+<li>Compare loans easily</li>
+</ul>
 
-<h3>Frequently Asked Questions</h3>
+<h2>🔵 Types of Loans You Can Calculate</h2>
+<ul>
+<li>Home Loan EMI</li>
+<li>Car Loan EMI</li>
+<li>Personal Loan EMI</li>
+<li>Business Loan EMI</li>
+</ul>
 
-<p><strong>Is this EMI Calculator free?</strong><br>
-Yes, this tool is completely free to use.</p>
+<h2>🔵 FAQ</h2>
+<p><strong>Is EMI calculator free?</strong><br>Yes, it is free.</p>
+<p><strong>Can I use it on mobile?</strong><br>Yes, fully responsive.</p>
 
-<p><strong>Can I use it for home or car loans?</strong><br>
-Yes, you can use it for home loans, car loans, personal loans, and other types of loans.</p>
-<h3>More Useful Calculators</h3>
+<h2>🔵 More Useful Calculators</h2>
 <ul>
 <li><a href="age-calculator.html">Age Calculator</a></li>
 <li><a href="bmi-calculator.html">BMI Calculator</a></li>
@@ -112,7 +240,15 @@ Yes, you can use it for home loans, car loans, personal loans, and other types o
 <li><a href="loan-calculator.html">Loan Calculator</a></li>
 <li><a href="percentage-calculator.html">Percentage Calculator</a></li>
 </ul>
-  
+
+<div class="home-btn">
+<a href="index.html">🔙 Back to Home</a>
 </div>
+
+<h2>🔵 Conclusion</h2>
+<p>This EMI Calculator is the best tool to calculate loan EMI online free. It is fast, accurate, and mobile-friendly.</p>
+
+</div>
+
 </body>
 </html>
