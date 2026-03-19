@@ -126,17 +126,159 @@ Yes, it works perfectly on mobile, tablet, and desktop.</p>
 
 <hr>
 
-<h2>Related Health & Financial Calculators</h2>
-<ul>
-<li><a href="age-calculator.html">Age Calculator</a></li>
-<li><strong>BMI Calculator</strong></li>
-<li><a href="emi-calculator.html">EMI Calculator</a></li>
-<li><a href="loan-calculator.html">Loan Calculator</a></li>
-<li><a href="percentage-calculator.html">Percentage Calculator</a></li>
-</ul>
+<div class="related-tools-section">
+    <h2>🔵 Related Health & Financial Calculators</h2>
+    
+    <div class="buttons-column">
+        <a href="age-calculator.html" class="tool-btn">🔘 Age Calculator</a>
+        <a href="bmi-calculator.html" class="tool-btn">🔘 BMI Calculator</a>
+        <a href="emi-calculator.html" class="tool-btn">🔘 EMI Calculator</a>
+        <a href="loan-calculator.html" class="tool-btn">🔘 Loan Calculator</a>
+        <a href="percentage-calculator.html" class="tool-btn">🔘 Percentage Calculator</a>
+    </div>
+    
+    <a href="index.html" class="back-btn">🔙 Back to Home</a>
+</div>
 
-<!-- 🔘 Back to Home Button -->
-<a href="index.html" style="display:inline-block; padding:10px 20px; background:#0d6efd; color:white; border-radius:5px; text-decoration:none; font-weight:bold;">← Back to Home</a>
+<style>
+    .related-tools-section {
+        max-width: 600px;
+        margin: 30px auto;
+        padding: 25px;
+        background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .related-tools-section h2 {
+        color: #1e2b3a;
+        margin-bottom: 25px;
+        font-size: 24px;
+        font-weight: 600;
+        border-bottom: 2px solid #e0e7ff;
+        padding-bottom: 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .buttons-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .tool-btn {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease forwards;
+        opacity: 0;
+    }
+
+    .tool-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .tool-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+    }
+
+    .tool-btn:hover::before {
+        left: 100%;
+    }
+
+    .tool-btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .back-btn {
+        display: inline-block;
+        padding: 12px 25px;
+        background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        text-align: center;
+    }
+
+    .back-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        background: linear-gradient(145deg, #ee5a24 0%, #ff6b6b 100%);
+    }
+
+    .back-btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .tool-btn:nth-child(1) { animation-delay: 0.1s; }
+    .tool-btn:nth-child(2) { animation-delay: 0.2s; }
+    .tool-btn:nth-child(3) { animation-delay: 0.3s; }
+    .tool-btn:nth-child(4) { animation-delay: 0.4s; }
+    .tool-btn:nth-child(5) { animation-delay: 0.5s; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+        .related-tools-section {
+            margin: 15px;
+            padding: 20px;
+        }
+        
+        .tool-btn {
+            padding: 12px 18px;
+            font-size: 14px;
+        }
+        
+        .related-tools-section h2 {
+            font-size: 20px;
+        }
+    }
+</style>
 
 </div>
 <!-- ✅ End BMI Calculator Section -->
