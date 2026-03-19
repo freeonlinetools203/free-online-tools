@@ -336,6 +336,122 @@ It uses the standard formula: <code>Percentage Result = (Percentage ÷ 100) × T
         text-align: center;
     }
 
+<h2 class="section-title">🔵 More Useful Calculators</h2>
+
+<div class="related-tools-section">
+    <div class="buttons-column">
+        <a href="age-calculator.html" class="tool-btn">🔘 Age Calculator</a>
+        <a href="bmi-calculator.html" class="tool-btn">🔘 BMI Calculator</a>
+        <a href="emi-calculator.html" class="tool-btn">🔘 EMI Calculator</a>
+        <a href="loan-calculator.html" class="tool-btn">🔘 Loan Calculator</a>
+        <a href="percentage-calculator.html" class="tool-btn">🔘 Percentage Calculator</a>
+    </div>
+    
+    <!-- 🔙 Back to Home Button -->
+    <div style="text-align:center; margin:20px 0 10px;">
+        <a href="index.html" class="back-btn">🔙 Back to Home</a>
+    </div>
+</div>
+
+<h2 class="section-title">🔵 Conclusion</h2>
+<div class="conclusion-box">
+    <p>Our <strong>Percentage Calculator</strong> is an essential tool for students, business owners, and anyone dealing with numbers. It saves time, ensures accurate calculations, and works on all devices. Use this free online tool to calculate percentages instantly, whether for discounts, exam marks, or profit/loss calculations.</p>
+</div>
+
+<style>
+    /* Simple Title Style - Yeh ab normal dikhega */
+    .section-title {
+        color: #1e2b3a;
+        font-size: 24px;
+        font-weight: 600;
+        margin: 25px 0 15px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid #e0e7ff;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .related-tools-section {
+        max-width: 600px;
+        margin: 20px auto 30px;
+        padding: 25px;
+        background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .buttons-column {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .tool-btn {
+        display: block;
+        width: 100%;
+        padding: 15px 20px;
+        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        text-align: left;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        position: relative;
+        overflow: hidden;
+        animation: fadeIn 0.5s ease forwards;
+        opacity: 0;
+    }
+
+    .tool-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s ease;
+    }
+
+    .tool-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+    }
+
+    .tool-btn:hover::before {
+        left: 100%;
+    }
+
+    .tool-btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+    }
+
+    .back-btn {
+        display: inline-block;
+        padding: 12px 30px;
+        background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
+        border: none;
+        border-radius: 12px;
+        color: white;
+        font-size: 16px;
+        font-weight: 500;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+        text-align: center;
+    }
+
     .back-btn:hover {
         transform: translateY(-2px);
         box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
@@ -351,7 +467,7 @@ It uses the standard formula: <code>Percentage Result = (Percentage ÷ 100) × T
         max-width: 600px;
         margin: 20px auto 40px;
         padding: 20px 25px;
-        background: linear-gradient(145deg, #f8faff 0%, #f0f3fd 100%);
+        background: #ffffff;
         border-radius: 16px;
         border-left: 4px solid #667eea;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
@@ -390,6 +506,11 @@ It uses the standard formula: <code>Percentage Result = (Percentage ÷ 100) × T
 
     /* Responsive */
     @media (max-width: 480px) {
+        .section-title {
+            font-size: 20px;
+            margin: 20px 15px 10px;
+        }
+        
         .related-tools-section {
             margin: 15px;
             padding: 20px;
@@ -398,11 +519,6 @@ It uses the standard formula: <code>Percentage Result = (Percentage ÷ 100) × T
         .tool-btn {
             padding: 12px 18px;
             font-size: 14px;
-        }
-        
-        h2 {
-            font-size: 22px;
-            margin: 20px 15px 10px;
         }
         
         .conclusion-box {
@@ -418,4 +534,3 @@ It uses the standard formula: <code>Percentage Result = (Percentage ÷ 100) × T
 
 </div>
 </body>
-</html>
