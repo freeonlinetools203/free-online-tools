@@ -255,28 +255,27 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
 </div>
 
 <style>
-    /* Simple Title Style */
-    .section-title {
-        color: #1e2b3a;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 25px 0 15px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #e0e7ff;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
+    /* Simple Title Style - White color */
+.section-title {
+    color: #ffffff;  /* Pure white */
+    font-size: 26px;
+    font-weight: 700;
+    margin: 25px 0 15px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #667eea;  /* Blue underline */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);  /* Shadow for readability */
+}
 
-    .related-tools-section {
-        max-width: 600px;
-        margin: 20px auto 30px;
-        padding: 25px;
-        background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
+/* Background for the title area (optional) */
+.title-wrapper {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px 0;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
 
     .buttons-column {
         display: flex;
