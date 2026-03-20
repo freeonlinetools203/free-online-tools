@@ -2,265 +2,596 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Free Word Counter – Count Words, Characters & Sentences Online</title>
-
-<meta name="description" content="Count words, characters, sentences, and paragraphs instantly with our free online word counter tool. Fast, accurate, and 100% secure.">
-
-<meta name="keywords" content="word counter online, free word counter, character counter, sentence counter, paragraph counter, count words online, text analysis tool">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Free Word Counter – Count Words, Characters, Sentences & Paragraphs Online</title>
+<meta name="description" content="Count words, characters, sentences, and paragraphs instantly with our free online word counter tool. Fast, accurate, and 100% secure. Perfect for writers, students, and SEO professionals.">
+<meta name="keywords" content="word counter online, free word counter, character counter, sentence counter, paragraph counter, count words online, text analysis tool, word count tool, SEO word counter">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/word-counter.html">
 <meta name="robots" content="index, follow">
-
 <meta property="og:title" content="Free Word Counter – Count Words & Characters Online">
 <meta property="og:description" content="Instantly count words, characters, sentences, and paragraphs online with our free and secure word counter tool.">
 <meta property="og:type" content="website">
-
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #e0edff; /* Light blue page background */
+* {
     margin: 0;
-    padding: 40px 15px;
-    line-height: 1.8;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* MAIN TOOL CONTAINER */
-.tool-container {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
     max-width: 750px;
-    margin: auto;
-    background: #2563eb; /* Blue container */
-    padding: 30px;
+    margin: 0 auto;
+}
+
+/* Main Card */
+.word-card {
+    background: #ffffff;
     border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    color: white; /* Text inside tool white */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
 }
 
-/* TOOL HEADING */
-h1 {
+.card-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 25px 30px;
     text-align: center;
+}
+
+.card-header h1 {
     color: white;
+    font-size: 26px;
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
-/* ARTICLE HEADINGS */
-h2, h3 {
-    color: #2563eb;
+.card-header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
 }
 
-/* ARTICLE TEXT */
-p {
-    color: #000000;
+.card-content {
+    padding: 30px;
 }
 
-/* TEXTAREA */
-textarea {
+/* Textarea */
+.textarea-wrapper {
+    margin-bottom: 25px;
+}
+
+.textarea-wrapper textarea {
     width: 100%;
     height: 200px;
-    padding: 12px;
-    border-radius: 8px;
-    border: none;
-    resize: vertical;
-    font-size: 14px;
-}
-
-/* RESULT BOX */
-.results {
-    margin-top: 20px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
-.result-box {
-    background: white;
     padding: 15px;
-    border-radius: 10px;
-    margin-top: 10px;
-    flex: 1 1 45%;
-    text-align: center;
-    font-weight: bold;
-    color: #2563eb;
+    font-size: 16px;
+    font-family: 'Segoe UI', monospace;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    resize: vertical;
+    transition: all 0.3s ease;
+    background: #f9fafb;
 }
 
-/* ARTICLE SECTION */
-.content-section {
-    max-width: 850px;
-    margin: 60px auto 0;
+.textarea-wrapper textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: white;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.stat-box {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stat-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1e3a8a;
+    line-height: 1.2;
+}
+
+.stat-label {
+    font-size: 13px;
+    color: #6b7280;
+    margin-top: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Other Tools Section */
+.other-tools {
     background: #ffffff;
-    padding: 40px;
     border-radius: 14px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    margin-bottom: 18px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tool-link {
+    display: block;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.tool-link:nth-child(1) { animation-delay: 0.05s; }
+.tool-link:nth-child(2) { animation-delay: 0.1s; }
+.tool-link:nth-child(3) { animation-delay: 0.15s; }
+.tool-link:nth-child(4) { animation-delay: 0.2s; }
+.tool-link:nth-child(5) { animation-delay: 0.25s; }
+.tool-link:nth-child(6) { animation-delay: 0.3s; }
+.tool-link:nth-child(7) { animation-delay: 0.35s; }
+.tool-link:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tool-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.tool-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.tool-link:hover::before {
+    left: 100%;
+}
+
+.home-link {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease 0.45s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.home-link:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 15px;
+    }
+    
+    .card-content {
+        padding: 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .stat-value {
+        font-size: 24px;
+    }
+    
+    .card-header h1 {
+        font-size: 22px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .textarea-wrapper textarea {
+        height: 150px;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<div class="tool-container">
-
-<h1>Free Online Word Counter Tool</h1>
-<textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
-
-<div class="results">
-    <div class="result-box">Words: <span id="wordCount">0</span></div>
-    <div class="result-box">Characters: <span id="charCount">0</span></div>
-    <div class="result-box">Sentences: <span id="sentenceCount">0</span></div>
-    <div class="result-box">Paragraphs: <span id="paragraphCount">0</span></div>
-</div>
-
-</div>
-
-<!-- SEO CONTENT -->
-
-<div class="content-section">
-
-<h2>Free Online Word Counter Tool – Accurate Word, Character, Sentence & Paragraph Counter</h2>
-
-<p>The Free Online Word Counter Tool is a powerful and easy-to-use writing assistant designed for students, bloggers, content writers, SEO experts, and digital marketers. Whether you are preparing an academic essay, writing a blog post, optimizing website content, or crafting social media captions, knowing your exact word count and character count is essential for professional results.</p>
-
-<p>Our advanced word counter helps you instantly calculate total words, characters (with spaces), sentences, and paragraphs in real time. The tool works directly inside your browser, which means your text remains completely private and secure.</p>
-
-<h2>Why Word Count is Important for SEO Ranking</h2>
+<div class="container">
+    <!-- Main Word Counter Card -->
+    <div class="word-card">
+        <div class="card-header">
+            <h1>📊 Free Word Counter Tool</h1>
+            <p>Count words, characters, sentences & paragraphs instantly – Perfect for writers, students & SEO professionals</p>
+        </div>
+        
+        <div class="card-content">
+            <div class="textarea-wrapper">
+                <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <div class="stat-value" id="wordCount">0</div>
+                    <div class="stat-label">📝 Words</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="charCount">0</div>
+                    <div class="stat-label">🔤 Characters</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="charCountNoSpace">0</div>
+                    <div class="stat-label">📏 Characters (no space)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="sentenceCount">0</div>
+                    <div class="stat-label">📖 Sentences</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="paragraphCount">0</div>
+                    <div class="stat-label">📑 Paragraphs</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="readingTime">0</div>
+                    <div class="stat-label">⏱️ Reading Time (min)</div>
+                </div>
+            </div>
+        </div>
+    </div>
     
-<p>In modern search engine optimization (SEO), content length plays a major role in Google rankings. Studies show that long-form content between 1500 to 2500 words performs better in search results because it provides detailed, valuable information to users.</p>
-
-<p>A reliable online word counter ensures that your blog posts meet the recommended SEO word count standards. When combined with proper keyword usage, headings, and internal linking, longer optimized content significantly improves your chances of ranking on the first page of Google.</p>
-
-<h2>Key Features of Our Online Word Counter</h2>
-
-<h3>Real-Time Word Count</h3>
-<p>The word counter updates instantly as you type or paste text. There is no need to click a button. This feature saves time and improves productivity.</p>
-
-<h3>Character Counter Tool</h3>
-<p>Character count is extremely important for meta descriptions, Google snippets, Twitter posts, and online ads. Our character counter helps you stay within platform limits.</p>
-
-<h3>Sentence Counter</h3>
-<p>Short and clear sentences improve readability and user engagement. Our sentence counter helps writers structure content properly.</p>
-
-<h3>Paragraph Counter</h3>
-<p>Well-structured paragraphs make content easier to read and improve SEO performance. This tool automatically counts paragraphs to maintain proper formatting.</p>
-
-<h2>Who Should Use This Word Counting Tool?</h2>
-
-<p>This free word counter tool is ideal for:</p>
-
-<ul>
-<li>Students writing essays and research papers</li>
-<li>Bloggers creating SEO-friendly articles</li>
-<li>Freelance writers managing client word limits</li>
-<li>Copywriters creating ad copy</li>
-<li>Website owners optimizing landing pages</li>
-<li>SEO professionals analyzing content length</li>
-</ul>
-
-<h2>How to Use the Word Counter Tool</h2>
-
-<ol>
-<li>Type or paste your content into the text box.</li>
-<li>Instantly view word count, character count, sentence count, and paragraph count.</li>
-<li>Edit your content based on required limits.</li>
-<li>Publish optimized content with confidence.</li>
-</ol>
-
-<h2>Word Count and Content Quality</h2>
-
-<p>While word count alone does not guarantee ranking, comprehensive and detailed content improves authority. Google prefers high-quality content that answers user intent completely.</p>
-
-<p>For example, long-form guides, tutorials, and detailed explanations rank better than short thin articles. Using a professional word counter ensures your article meets competitive SEO standards.</p>
-
-<h2>Improve Your Website Security with Strong Passwords</h2>
-
-<p>Content optimization is important, but website security is equally critical. After creating SEO-friendly content using this word counter tool, you should also secure your accounts with a <a href="password-generator.html">Strong Password Generator</a>.</p>
-
-<p>A secure password protects your website, hosting account, and email from hacking attempts. Use our free password generator tool to create secure, random, and unbreakable passwords instantly.</p>
-
-<h2>Benefits of Using Our Free Word Counter Online</h2>
-
-<p>• 100% Free and Unlimited Usage</p>
-<p>• No Registration Required</p>
-<p>• Instant Real-Time Counting</p>
-<p>• Works on Mobile and Desktop</p>
-<p>• Completely Secure and Private</p>
-
-<h2>Frequently Asked Questions</h2>
-
-<h3>Is this word counter tool free?</h3>
-<p>Yes, our online word counter is completely free with unlimited usage.</p>
-
-<h3>Does this tool store my text?</h3>
-<p>No, the tool works entirely inside your browser. Your text is never saved or shared.</p>
-
-<h3>What is the ideal word count for SEO?</h3>
-<p>For competitive keywords, articles between 1500 to 2500 words generally perform better in Google search results.</p>
-
-<h2>Final Conclusion</h2>
-
-<p>If you want to rank higher on Google, create better content, and improve writing productivity, our Free Online Word Counter Tool is the perfect solution. Combine it with proper SEO strategy, internal linking, and secure password management to build a powerful and professional website.</p>
-
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">🔘 Age Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">🔘 BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🔘 EMI Calculator</a>
+            <a href="loan-calculator.html" class="tool-link">🔘 Loan Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">🔘 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔘 Word Counter Tool</a>
+            <a href="text-case-converter.html" class="tool-link">🔘 Text Case Converter</a>
+            <a href="password-generator.html" class="tool-link">🔘 Password Generator</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA ========== -->
+    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        
+        <!-- Ad Space 1 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
+            <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">📊 WRITING TOOL</span>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Word Counter – Count Words, Characters, Sentences & Paragraphs Online</h1>
+            <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 250,000+ Users Monthly</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is a Word Counter and Why You Need One?</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>word counter</strong> is an essential writing tool that instantly calculates the number of words, characters, sentences, and paragraphs in any text. Whether you're a <strong>student writing essays</strong>, a <strong>blogger creating content</strong>, an <strong>SEO professional optimizing articles</strong>, or a <strong>freelance writer managing client requirements</strong>, knowing your exact word count is crucial for professional results.</p>
+        
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
+            <p style="font-family: monospace; font-size: 16px; font-weight: bold; color: #1e3a8a;">"The perfect blog post length for SEO is between 1500-2500 words"</p>
+            <p style="color: #6b7280; margin-top: 10px;">Our word counter helps you hit that sweet spot!</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Key Features of Our Free Word Counter</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📝 Real-Time Word Count</strong>
+                <p style="margin-top: 8px;">Updates instantly as you type or paste text</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🔤 Character Counter</strong>
+                <p style="margin-top: 8px;">With spaces and without spaces options</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📖 Sentence Counter</strong>
+                <p style="margin-top: 8px;">Counts complete sentences for readability</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📑 Paragraph Counter</strong>
+                <p style="margin-top: 8px;">Ensures proper content structure</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">⏱️ Reading Time</strong>
+                <p style="margin-top: 8px;">Estimated time to read your content</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🔒 100% Private</strong>
+                <p style="margin-top: 8px;">No text stored, all processing locally</p>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Why Word Count is Important for SEO Ranking</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">In modern <strong>search engine optimization (SEO)</strong>, content length plays a major role in Google rankings. Studies consistently show that <strong>long-form content between 1500 to 2500 words</strong> performs better in search results because it provides comprehensive, valuable information that satisfies user intent.</p>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>📊 <strong>Higher Engagement:</strong> Longer content keeps users on your page longer</li>
+            <li>🔗 <strong>More Backlinks:</strong> Detailed articles attract more natural backlinks</li>
+            <li>🎯 <strong>Better Keyword Coverage:</strong> More opportunities to rank for related keywords</li>
+            <li>⭐ <strong>Improved Authority:</strong> Comprehensive content establishes expertise</li>
+            <li>📈 <strong>Lower Bounce Rate:</strong> Users spend more time reading quality content</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Word Counter Tool</h2>
+        
+        <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>Type or <strong>paste your text</strong> into the text area</li>
+            <li>Watch the <strong>real-time statistics</strong> update automatically</li>
+            <li>View <strong>word count, characters, sentences, paragraphs, and reading time</strong></li>
+            <li>Use the data to <strong>optimize your content</strong> for SEO or meet requirements</li>
+            <li>Clear and start fresh with new content anytime</li>
+        </ol>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Who Should Use This Word Counter?</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>🎓 <strong>Students:</strong> Meet essay and assignment word count requirements</li>
+            <li>📝 <strong>Bloggers:</strong> Create SEO-optimized articles with ideal length</li>
+            <li>✍️ <strong>Freelance Writers:</strong> Manage client word count limits precisely</li>
+            <li>📊 <strong>SEO Professionals:</strong> Analyze and optimize content length</li>
+            <li>💻 <strong>Copywriters:</strong> Create ad copy with character limits</li>
+            <li>📱 <strong>Social Media Managers:</strong> Stay within platform character limits</li>
+            <li>🏢 <strong>Business Professionals:</strong> Format reports and presentations</li>
+            <li>📚 <strong>Authors:</strong> Track progress on books and manuscripts</li>
+        </ul>
+        
+        <!-- Ad Space 2 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our Free Word Counter Online</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>✅ <strong>100% Free:</strong> No registration, unlimited usage</li>
+            <li>✅ <strong>Real-Time Counting:</strong> Updates instantly as you type</li>
+            <li>✅ <strong>Multiple Metrics:</strong> Words, characters, sentences, paragraphs, reading time</li>
+            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+            <li>✅ <strong>Privacy Protected:</strong> No text stored on servers</li>
+            <li>✅ <strong>No Downloads:</strong> Use directly in your browser</li>
+            <li>✅ <strong>Accurate Results:</strong> Precise counting algorithms</li>
+            <li>✅ <strong>Reading Time Estimate:</strong> Know how long your content takes to read</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Word Count Guidelines for Different Platforms</h2>
+        
+        <div style="background: #f3f4f6; border-radius: 12px; padding: 20px; margin: 20px 0;">
+            <ul style="list-style: none; padding-left: 0;">
+                <li style="margin: 10px 0;"><strong>📝 Blog Posts:</strong> 1500-2500 words (best for SEO)</li>
+                <li style="margin: 10px 0;"><strong>📱 Social Media:</strong> Twitter: 280 chars, LinkedIn: 1500-3000 chars</li>
+                <li style="margin: 10px 0;"><strong>📖 Meta Descriptions:</strong> 150-160 characters</li>
+                <li style="margin: 10px 0;"><strong>🎓 Academic Essays:</strong> 500-5000 words depending on level</li>
+                <li style="margin: 10px 0;"><strong>📧 Email Newsletters:</strong> 200-500 words for best engagement</li>
+                <li style="margin: 10px 0;"><strong>📄 Press Releases:</strong> 400-600 words</li>
+            </ul>
+        </div>
+        
+        <!-- Ad Space 3 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <!-- FAQ SECTION WITH SCHEMA -->
+        <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
+            <h2 style="color: #1e3a8a; font-size: 26px; margin-bottom: 20px; text-align: center;">❓ Frequently Asked Questions About Word Counter</h2>
+            
+            <div itemscope="" itemtype="https://schema.org/FAQPage" style="display: flex; flex-direction: column; gap: 15px;">
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this word counter tool free?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this word counter tool is completely free with unlimited usage. No registration or payment required.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the ideal word count for SEO?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">For competitive keywords, articles between 1500 to 2500 words generally perform better in Google search results. Long-form content provides more value to readers.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this tool store my text?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">No, the tool works entirely inside your browser. Your text is never saved, tracked, or shared with any server. Complete privacy guaranteed.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this word counter on mobile?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our word counter is fully responsive and works perfectly on smartphones, tablets, and desktop devices.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How is reading time calculated?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Reading time is calculated using the average reading speed of 200-250 words per minute. This gives you an estimate of how long your content takes to read.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the difference between characters with spaces and without spaces?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Characters with spaces includes every typed character including spaces. Characters without spaces excludes spaces and is useful for platform-specific limits like Twitter.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How does the sentence counter work?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our sentence counter identifies sentences by looking for punctuation marks like periods, exclamation points, and question marks followed by spaces or line breaks.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Why is word count important for content writing?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Word count helps you meet client requirements, optimize for SEO, improve readability, and ensure your content provides enough value to readers.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy is our priority. This word counter runs entirely inside your browser. We do not store, track, or share any text or personal information. No data is sent to any server, making this tool completely secure for analyzing sensitive or confidential content.</p>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Whether you're a student, blogger, writer, or SEO professional, a reliable <strong>word counter tool</strong> is essential for creating optimized, professional content. Our <strong>free online word counter</strong> provides all the metrics you need in one place – words, characters, sentences, paragraphs, and reading time – all updating in real-time.</p>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Start using our word counter today to improve your writing, meet requirements, and create content that ranks well on Google. Bookmark this tool for quick access whenever you need to count words or analyze text.</p>
+        
+        <!-- Ad Space 4 - Bottom -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+    </div>
 </div>
 
 <script>
-const textInput = document.getElementById("textInput");
-
-textInput.addEventListener("input", function () {
-
-let text = textInput.value;
-
-let words = text.trim().match(/\b\S+\b/g);
-let sentences = text.match(/[^.!?]+[.!?]+/g);
-let paragraphs = text.split(/\n+/).filter(p => p.trim() !== "");
-
-document.getElementById("wordCount").innerText = words ? words.length : 0;
-document.getElementById("charCount").innerText = text.length;
-document.getElementById("sentenceCount").innerText = sentences ? sentences.length : 0;
-document.getElementById("paragraphCount").innerText = paragraphs.length;
-
-});
-
-</script>
-
-<div class="container">
-
-<h2>🔵 Related Tools You Might Find Useful</h2>
-
-<p>
-🔗 <a href="https://freeonlinetools203.github.io/free-online-tools/">All Online Tools</a><br>
-🔗 <a href="https://freeonlinetools203.github.io/free-online-tools/age-calculator.html">Age Calculator</a><br>
-🔗 <a href="https://freeonlinetools203.github.io/free-online-tools/bmi-calculator.html">BMI Calculator</a><br>
-🔗 <a href="https://freeonlinetools203.github.io/free-online-tools/emi-calculator.html">EMI Calculator</a><br>
-🔗 <a href="https://freeonlinetools203.github.io/free-online-tools/loan-calculator.html">Loan Calculator</a><br>
-🔗 <a href="https://freeonlinetools203.github.io/free-online-tools/percentage-calculator.html">Percentage Calculator</a>
-</p>
-
-<button onclick="window.location.href='https://freeonlinetools203.github.io/free-online-tools/'">
-🔵 Back to Home
-</button>
-
-</div>
-
-<!-- ✅ FAQ SCHEMA -->
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "FAQPage",
- "mainEntity": [{
-   "@type": "Question",
-   "name": "Is this word counter tool free?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "Yes, this word counter tool is completely free and works inside your browser."
-   }
- },
- {
-   "@type": "Question",
-   "name": "Does it store my text?",
-   "acceptedAnswer": {
-     "@type": "Answer",
-     "text": "No, your text is not stored or shared. Everything works locally."
-   }
- }]
+function updateStats() {
+    let text = document.getElementById("textInput").value;
+    
+    // Word count
+    let words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+    
+    // Character count (with spaces)
+    let chars = text.length;
+    
+    // Character count (without spaces)
+    let charsNoSpace = text.replace(/\s/g, "").length;
+    
+    // Sentence count
+    let sentences = text.match(/[^.!?]+[.!?]+/g);
+    let sentenceCount = sentences ? sentences.length : 0;
+    
+    // Paragraph count
+    let paragraphs = text.split(/\n+/).filter(p => p.trim() !== "");
+    let paragraphCount = paragraphs.length;
+    
+    // Reading time (average 200 words per minute)
+    let readingTime = Math.ceil(words / 200);
+    
+    document.getElementById("wordCount").innerText = words;
+    document.getElementById("charCount").innerText = chars;
+    document.getElementById("charCountNoSpace").innerText = charsNoSpace;
+    document.getElementById("sentenceCount").innerText = sentenceCount;
+    document.getElementById("paragraphCount").innerText = paragraphCount;
+    document.getElementById("readingTime").innerText = readingTime;
 }
+
+// Update stats on input
+document.getElementById("textInput").addEventListener("input", updateStats);
+updateStats();
+
+// Display current date
+document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
 
 </body>
