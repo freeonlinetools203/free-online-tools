@@ -27,277 +27,133 @@
 <meta name="twitter:description" content="Calculate your monthly EMI instantly with this free online tool.">
 
 <style>
-
 /* 🔵 BODY */
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background:#f4f6f9;
-    color:#000; /* 🖤 black text */
-    line-height:1.7;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    background: #f4f6f9;
+    color: #000;
+    line-height: 1.7;
 }
 
 /* 🔵 CARD */
-.container{
-    max-width:600px;
-    margin:60px auto;
-    background:white;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    text-align:center;
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-h1{
-    color:#0d6efd; /* 🔵 blue */
+h1 {
+    color: #1e2b3a;
+    font-size: 32px;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
 }
 
 /* INPUT */
-input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
+input {
+    width: 100%;
+    padding: 14px;
+    margin: 12px 0;
+    border-radius: 12px;
+    border: 1px solid #e0e7ff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
 /* BUTTON */
-button{
-    width:100%;
-    padding:12px;
-    background:#0d6efd;
-    color:white;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:16px;
+.calculate-btn {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    margin: 20px 0 10px;
 }
 
-button:hover{
-    background:#084298;
+.calculate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+}
+
+.calculate-btn:active {
+    transform: translateY(1px);
 }
 
 /* RESULT */
-.result{
-    margin-top:15px;
-    font-weight:bold;
-    color:#198754;
-    font-size:18px;
+.result {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #0d6efd;
+    font-size: 24px;
+    padding: 15px;
+    background: #f8faff;
+    border-radius: 12px;
+    border-left: 4px solid #667eea;
+    margin-bottom: 30px;
 }
 
-/* 🔵 ARTICLE */
-.article{
-    max-width:900px;
-    margin:40px auto;
-    padding:20px;
-}
-
-.article h2, .article h3{
-    color:#0d6efd; /* 🔵 */
-}
-
-.article a{
-    color:#0d6efd;
-    text-decoration:none;
-}
-
-.article a:hover{
-    text-decoration:underline;
-}
-
-/* 🔵 BUTTON HOME */
-.home-btn{
-    text-align:center;
-    margin:30px 0;
-}
-
-.home-btn a{
-    background:#0d6efd;
-    color:white;
-    padding:12px 25px;
-    border-radius:6px;
-    text-decoration:none;
-}
-
-/* RESPONSIVE */
-@media(max-width:768px){
-    .container,.article{
-        margin:20px;
-        padding:15px;
-    }
-}
-
-</style>
-
-<!-- FAQ SCHEMA -->
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-{
-"@type":"Question",
-"name":"Is this EMI Calculator free?",
-"acceptedAnswer":{"@type":"Answer","text":"Yes, this EMI calculator is completely free and easy to use."}
-},
-{
-"@type":"Question",
-"name":"Can I calculate home loan EMI?",
-"acceptedAnswer":{"@type":"Answer","text":"Yes, you can calculate home loan, car loan, and personal loan EMI easily."}
-},
-{
-"@type":"Question",
-"name":"What is EMI formula?",
-"acceptedAnswer":{"@type":"Answer","text":"EMI formula is: (P × R × (1+R)^N) / ((1+R)^N - 1)."}
-}
-]
-}
-</script>
-
-</head>
-
-<body>
-
-<!-- CALCULATOR -->
-<div class="container">
-<h1>EMI Calculator</h1>
-
-<p>Calculate your monthly loan EMI instantly using our free EMI calculator tool.</p>
-
-<input type="number" id="loan" placeholder="Loan Amount">
-<input type="number" id="rate" placeholder="Interest Rate (%)">
-<input type="number" id="tenure" placeholder="Tenure (Years)">
-
-<button onclick="calculateEMI()">Calculate EMI</button>
-
-<div class="result" id="result"></div>
-</div>
-
-<script>
-function calculateEMI(){
-let P=document.getElementById("loan").value;
-let r=document.getElementById("rate").value/1200;
-let n=document.getElementById("tenure").value*12;
-
-if(P==""||r==""||n==""){
-document.getElementById("result").innerText="Please enter all values";
-return;
-}
-
-let emi=(P*r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-
-document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
-}
-</script>
-
-<hr>
-
-<!-- ARTICLE -->
-<div class="article">
-
-<h2>🔵 About EMI Calculator</h2>
-<p>Our <strong>EMI Calculator online free</strong> helps you calculate your monthly loan EMI quickly and accurately. Whether you are planning a home loan, car loan, or personal loan, this tool provides instant results.</p>
-
-<h2>🔵 What is EMI?</h2>
-<p>EMI (Equated Monthly Installment) is the fixed monthly payment made by a borrower to repay a loan. It includes both principal and interest amount.</p>
-
-<h2>🔵 EMI Formula</h2>
-<p><strong>EMI = (P × R × (1+R)^N) / ((1+R)^N - 1)</strong></p>
-
-<h2>🔵 How to Use EMI Calculator</h2>
-<ul>
-<li>Enter loan amount</li>
-<li>Enter interest rate</li>
-<li>Enter loan tenure</li>
-<li>Click calculate</li>
-</ul>
-
-<h2>🔵 Benefits of EMI Calculator</h2>
-<ul>
-<li>Instant calculation</li>
-<li>Accurate results</li>
-<li>Financial planning</li>
-<li>Compare loans easily</li>
-</ul>
-
-<h2>🔵 Types of Loans You Can Calculate</h2>
-<ul>
-<li>Home Loan EMI</li>
-<li>Car Loan EMI</li>
-<li>Personal Loan EMI</li>
-<li>Business Loan EMI</li>
-</ul>
-
-<h2>🔵 FAQ</h2>
-<p><strong>Is EMI calculator free?</strong><br>Yes, it is free.</p>
-<p><strong>Can I use it on mobile?</strong><br>Yes, fully responsive.</p>
-
-<h2 class="section-title">🔵 More Useful Calculators</h2>
-
-<div class="related-tools-section">
-    <div class="buttons-column">
-        <a href="age-calculator.html" class="tool-btn">🔘 Age Calculator</a>
-        <a href="bmi-calculator.html" class="tool-btn">🔘 BMI Calculator</a>
-        <a href="emi-calculator.html" class="tool-btn">🔘 EMI Calculator</a>
-        <a href="loan-calculator.html" class="tool-btn">🔘 Loan Calculator</a>
-        <a href="percentage-calculator.html" class="tool-btn">🔘 Percentage Calculator</a>
-    </div>
-    
-    <!-- 🔙 Back to Home Button -->
-    <div style="text-align:center; margin:20px 0 10px;">
-        <a href="index.html" class="back-btn">🔙 Back to Home</a>
-    </div>
-</div>
-
-<h2 class="section-title">🔵 Conclusion</h2>
-<div class="conclusion-box">
-    <p>This <strong>EMI Calculator</strong> is the best tool to calculate loan EMI online free. It is fast, accurate, and mobile-friendly.</p>
-</div>
-
-<style>
-/* Simple Title Style - Blue background with white text */
-.section-title {
-    color: #ffffff;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    font-size: 26px;
-    font-weight: 700;
-    padding: 15px 25px;
-    border-radius: 50px;
-    max-width: 600px;
-    margin: 25px auto;
-    text-align: center;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    border-bottom: none;
-    display: block;
-    width: fit-content;
-}
-
-.related-tools-section {
-    max-width: 600px;
-    margin: 20px auto 30px;
-    padding: 25px;
-    background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.buttons-column {
+/* ===== PROFESSIONAL BUTTON SECTION (No extra white box) ===== */
+.tools-heading {
+    color: #1e2b3a;
+    font-size: 22px;
+    font-weight: 600;
+    margin: 30px 0 20px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e7ff;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: left;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 .tool-btn {
     display: block;
     width: 100%;
-    padding: 15px 20px;
+    padding: 14px 18px;
     background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: white;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
     text-align: left;
     text-decoration: none;
@@ -336,12 +192,12 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
     box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
 }
 
-.back-btn {
+.home-btn {
     display: inline-block;
     padding: 12px 30px;
     background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     color: white;
     font-size: 16px;
     font-weight: 500;
@@ -350,19 +206,36 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
     transition: all 0.3s ease;
     box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
     text-align: center;
+    margin: 0 auto;
+    display: block;
+    width: fit-content;
 }
 
-.back-btn:hover {
+.home-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
     background: linear-gradient(145deg, #ee5a24 0%, #ff6b6b 100%);
 }
 
-.back-btn:active {
+.home-btn:active {
     transform: translateY(1px);
     box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
 }
 
+/* Simple Title Style - For Conclusion */
+.conclusion-title {
+    color: #1e2b3a;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 25px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e7ff;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Conclusion Box */
 .conclusion-box {
     max-width: 600px;
     margin: 20px auto 40px;
@@ -386,6 +259,70 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
     font-weight: 600;
 }
 
+/* ARTICLE SECTION */
+.article {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.article h2 {
+    color: #1e2b3a;
+    font-size: 24px;
+    margin: 30px 0 15px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #e0e7ff;
+}
+
+.article h3 {
+    color: #2d3748;
+    font-size: 20px;
+    margin: 20px 0 10px;
+}
+
+.article ul {
+    padding-left: 20px;
+}
+
+.article li {
+    margin: 8px 0;
+    color: #4a5568;
+}
+
+.article p {
+    color: #4a5568;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #667eea, transparent);
+    margin: 40px 0;
+}
+
+/* FAQ SECTION */
+.faq-item {
+    background: #f8faff;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.faq-question {
+    font-weight: 600;
+    color: #1e2b3a;
+    margin-bottom: 5px;
+}
+
+.faq-answer {
+    color: #4a5568;
+    padding-left: 20px;
+}
+
 /* Animations */
 @keyframes fadeIn {
     from {
@@ -403,36 +340,211 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
 .tool-btn:nth-child(3) { animation-delay: 0.3s; }
 .tool-btn:nth-child(4) { animation-delay: 0.4s; }
 .tool-btn:nth-child(5) { animation-delay: 0.5s; }
+.tool-btn:nth-child(6) { animation-delay: 0.6s; }
+.tool-btn:nth-child(7) { animation-delay: 0.7s; }
+.tool-btn:nth-child(8) { animation-delay: 0.8s; }
 
-/* Responsive */
-@media (max-width: 480px) {
-    .section-title {
-        font-size: 20px;
-        padding: 12px 20px;
-        margin: 20px auto;
-    }
-    
-    .related-tools-section {
-        margin: 15px;
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .container, .article {
+        margin: 20px;
         padding: 20px;
     }
     
+    h1 {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    input, .calculate-btn {
+        padding: 12px;
+    }
+    
+    .result {
+        font-size: 20px;
+        padding: 12px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .tool-btn {
-        padding: 12px 18px;
+        padding: 12px 16px;
         font-size: 14px;
+    }
+    
+    .tools-heading {
+        font-size: 20px;
+        margin: 20px 0 15px;
+    }
+    
+    .conclusion-title {
+        font-size: 20px;
+        margin: 20px 15px 10px;
     }
     
     .conclusion-box {
         margin: 15px;
         padding: 18px;
     }
-    
-    .conclusion-box p {
-        font-size: 14px;
-    }
 }
 </style>
 
+<!-- FAQ SCHEMA -->
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@type":"FAQPage",
+"mainEntity":[
+{
+"@type":"Question",
+"name":"Is this EMI Calculator free?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, this EMI calculator is completely free and easy to use."}
+},
+{
+"@type":"Question",
+"name":"Can I calculate home loan EMI?",
+"acceptedAnswer":{"@type":"Answer","text":"Yes, you can calculate home loan, car loan, and personal loan EMI easily."}
+},
+{
+"@type":"Question",
+"name":"What is EMI formula?",
+"acceptedAnswer":{"@type":"Answer","text":"EMI formula is: (P × R × (1+R)^N) / ((1+R)^N - 1)."}
+}
+]
+}
+</script>
+</head>
+
+<body>
+
+<!-- CALCULATOR SECTION -->
+<div class="container">
+    <h1>🏦 EMI Calculator</h1>
+    <p>Calculate your monthly loan EMI instantly using our free EMI calculator tool.</p>
+
+    <input type="number" id="loan" placeholder="Loan Amount (₹)">
+    <input type="number" id="rate" placeholder="Interest Rate (%)">
+    <input type="number" id="tenure" placeholder="Tenure (Years)">
+
+    <button class="calculate-btn" onclick="calculateEMI()">Calculate EMI</button>
+
+    <div class="result" id="result"></div>
+
+    <!-- PROFESSIONAL BUTTON SECTION - No extra white box, directly in container -->
+    <h3 class="tools-heading">🔗 Other Useful Tools</h3>
+    
+    <div class="tools-grid">
+        <a href="age-calculator.html" class="tool-btn">🔘 Age Calculator</a>
+        <a href="bmi-calculator.html" class="tool-btn">🔘 BMI Calculator</a>
+        <a href="emi-calculator.html" class="tool-btn">🔘 EMI Calculator</a>
+        <a href="loan-calculator.html" class="tool-btn">🔘 Loan Calculator</a>
+        <a href="percentage-calculator.html" class="tool-btn">🔘 Percentage Calculator</a>
+        <a href="word-counter.html" class="tool-btn">🔘 Word Counter Tool</a>
+        <a href="text-case-converter.html" class="tool-btn">🔘 Text Case Converter</a>
+        <a href="zakat-calculator.html" class="tool-btn">🔘 Zakat Calculator</a>
+    </div>
+    
+    <a href="index.html" class="home-btn">← Back to Home</a>
 </div>
+
+<script>
+function calculateEMI(){
+    let P = parseFloat(document.getElementById("loan").value);
+    let r = parseFloat(document.getElementById("rate").value) / 1200; // Monthly interest rate
+    let n = parseFloat(document.getElementById("tenure").value) * 12; // Months
+
+    if(isNaN(P) || isNaN(r) || isNaN(n) || P <= 0 || r <= 0 || n <= 0){
+        document.getElementById("result").innerHTML = "❌ Please enter valid values";
+        return;
+    }
+
+    let emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    
+    if(isNaN(emi) || !isFinite(emi)){
+        document.getElementById("result").innerHTML = "❌ Invalid input values";
+        return;
+    }
+
+    document.getElementById("result").innerHTML = "💰 Monthly EMI: ₹" + emi.toFixed(2);
+}
+</script>
+
+<hr>
+
+<!-- ARTICLE SECTION -->
+<div class="article">
+
+    <h2>🔵 About EMI Calculator</h2>
+    <p>Our <strong>EMI Calculator online free</strong> helps you calculate your monthly loan EMI quickly and accurately. Whether you are planning a home loan, car loan, or personal loan, this tool provides instant results.</p>
+
+    <h2>🔵 What is EMI?</h2>
+    <p>EMI (Equated Monthly Installment) is the fixed monthly payment made by a borrower to repay a loan. It includes both principal and interest amount.</p>
+
+    <h2>🔵 EMI Formula</h2>
+    <p><strong>EMI = (P × R × (1+R)^N) / ((1+R)^N - 1)</strong></p>
+    <p>Where:</p>
+    <ul>
+        <li><strong>P</strong> = Principal loan amount</li>
+        <li><strong>R</strong> = Monthly interest rate (Annual rate/12/100)</li>
+        <li><strong>N</strong> = Loan tenure in months</li>
+    </ul>
+
+    <h2>🔵 How to Use EMI Calculator</h2>
+    <ul>
+        <li>Enter loan amount</li>
+        <li>Enter interest rate</li>
+        <li>Enter loan tenure</li>
+        <li>Click calculate</li>
+    </ul>
+
+    <h2>🔵 Benefits of EMI Calculator</h2>
+    <ul>
+        <li>Instant calculation</li>
+        <li>Accurate results</li>
+        <li>Financial planning</li>
+        <li>Compare loans easily</li>
+    </ul>
+
+    <h2>🔵 Types of Loans You Can Calculate</h2>
+    <ul>
+        <li>Home Loan EMI</li>
+        <li>Car Loan EMI</li>
+        <li>Personal Loan EMI</li>
+        <li>Business Loan EMI</li>
+    </ul>
+
+    <h2>🔵 FAQ</h2>
+    <div class="faq-item">
+        <div class="faq-question">Is EMI calculator free?</div>
+        <div class="faq-answer">✅ Yes, it is completely free.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">Can I use it on mobile?</div>
+        <div class="faq-answer">📱 Yes, fully responsive on all devices.</div>
+    </div>
+    <div class="faq-item">
+        <div class="faq-question">What is EMI formula?</div>
+        <div class="faq-answer">📐 EMI = (P × R × (1+R)^N) / ((1+R)^N - 1)</div>
+    </div>
+
+    <!-- CONCLUSION SECTION -->
+    <h2 class="conclusion-title">📌 Conclusion</h2>
+    <div class="conclusion-box">
+        <p>This <strong>EMI Calculator</strong> is the best tool to calculate loan EMI online free. It is fast, accurate, and mobile-friendly. Whether you're planning a home loan, car loan, or personal loan, this calculator helps you make informed financial decisions instantly.</p>
+    </div>
+
+</div>
+
 </body>
 </html>
