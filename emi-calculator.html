@@ -257,8 +257,8 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
 <style>
 /* Simple Title Style - Blue background with white text */
 .section-title {
-    color: #ffffff;  /* White text */
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  /* Blue gradient background */
+    color: #ffffff;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     font-size: 26px;
     font-weight: 700;
     padding: 15px 25px;
@@ -272,154 +272,165 @@ document.getElementById("result").innerText="Monthly EMI: ₹"+emi.toFixed(2);
     width: fit-content;
 }
 
-    .buttons-column {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
+.related-tools-section {
+    max-width: 600px;
+    margin: 20px auto 30px;
+    padding: 25px;
+    background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
 
-    .tool-btn {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        text-align: left;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        position: relative;
-        overflow: hidden;
-        animation: fadeIn 0.5s ease forwards;
+.buttons-column {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tool-btn {
+    display: block;
+    width: 100%;
+    padding: 15px 20px;
+    background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    position: relative;
+    overflow: hidden;
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
+}
+
+.tool-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.tool-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+}
+
+.tool-btn:hover::before {
+    left: 100%;
+}
+
+.tool-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 16px;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    text-align: center;
+}
+
+.back-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    background: linear-gradient(145deg, #ee5a24 0%, #ff6b6b 100%);
+}
+
+.back-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
+}
+
+.conclusion-box {
+    max-width: 600px;
+    margin: 20px auto 40px;
+    padding: 20px 25px;
+    background: #ffffff;
+    border-radius: 16px;
+    border-left: 4px solid #667eea;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.conclusion-box p {
+    color: #2d3748;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.conclusion-box strong {
+    color: #667eea;
+    font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
         opacity: 0;
+        transform: translateY(10px);
     }
-
-    .tool-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s ease;
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .tool-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+.tool-btn:nth-child(1) { animation-delay: 0.1s; }
+.tool-btn:nth-child(2) { animation-delay: 0.2s; }
+.tool-btn:nth-child(3) { animation-delay: 0.3s; }
+.tool-btn:nth-child(4) { animation-delay: 0.4s; }
+.tool-btn:nth-child(5) { animation-delay: 0.5s; }
+
+/* Responsive */
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 20px;
+        padding: 12px 20px;
+        margin: 20px auto;
     }
-
-    .tool-btn:hover::before {
-        left: 100%;
+    
+    .related-tools-section {
+        margin: 15px;
+        padding: 20px;
     }
-
-    .tool-btn:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+    
+    .tool-btn {
+        padding: 12px 18px;
+        font-size: 14px;
     }
-
-    .back-btn {
-        display: inline-block;
-        padding: 12px 30px;
-        background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        text-align: center;
-    }
-
-    .back-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        background: linear-gradient(145deg, #ee5a24 0%, #ff6b6b 100%);
-    }
-
-    .back-btn:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
-    }
-
+    
     .conclusion-box {
-        max-width: 600px;
-        margin: 20px auto 40px;
-        padding: 20px 25px;
-        background: #ffffff;
-        border-radius: 16px;
-        border-left: 4px solid #667eea;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 15px;
+        padding: 18px;
     }
-
+    
     .conclusion-box p {
-        color: #2d3748;
-        font-size: 16px;
-        line-height: 1.7;
-        margin: 0;
+        font-size: 14px;
     }
-
-    .conclusion-box strong {
-        color: #667eea;
-        font-weight: 600;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .tool-btn:nth-child(1) { animation-delay: 0.1s; }
-    .tool-btn:nth-child(2) { animation-delay: 0.2s; }
-    .tool-btn:nth-child(3) { animation-delay: 0.3s; }
-    .tool-btn:nth-child(4) { animation-delay: 0.4s; }
-    .tool-btn:nth-child(5) { animation-delay: 0.5s; }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-        .section-title {
-            font-size: 20px;
-            margin: 20px 15px 10px;
-        }
-        
-        .related-tools-section {
-            margin: 15px;
-            padding: 20px;
-        }
-        
-        .tool-btn {
-            padding: 12px 18px;
-            font-size: 14px;
-        }
-        
-        .conclusion-box {
-            margin: 15px;
-            padding: 18px;
-        }
-        
-        .conclusion-box p {
-            font-size: 14px;
-        }
-    }
+}
 </style>
 
 </div>
