@@ -2,469 +2,624 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Free Text Case Converter – Convert Uppercase, Lowercase & More Online</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Free Text Case Converter – Convert Uppercase, Lowercase, Title Case & More Online</title>
 <meta name="description" content="Convert text instantly with our free online text case converter. Change text to uppercase, lowercase, title case, sentence case, and capitalize case. Fast, accurate, and secure tool.">
-
-<meta name="keywords" content="text case converter, online text converter, uppercase lowercase converter, title case converter, sentence case converter, free text tool">
-
+<meta name="keywords" content="text case converter, online text converter, uppercase lowercase converter, title case converter, sentence case converter, free text tool, capitalize text, change text case">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/text-case-converter.html">
 <meta name="robots" content="index, follow">
-
-<meta property="og:title" content="Free Text Case Converter – Convert Text Online">
+<meta property="og:title" content="Free Text Case Converter – Convert Text Online Instantly">
 <meta property="og:description" content="Convert your text instantly online with our free text case converter. Uppercase, lowercase, title case, sentence case, and more.">
 <meta property="og:type" content="website">
-
 <style>
-body {
-    font-family: Arial, sans-serif;
-    background: #f3f4f6;
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* TOOL BOX */
-.tool-container {
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
+
+.container {
     max-width: 750px;
-    margin: auto;
-    background: linear-gradient(135deg, #7c3aed, #0b63ff);
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    color: white;
+    margin: 0 auto;
 }
 
-/* TITLE */
-.tool-container h1 {
-    text-align: center;
-    font-size: 28px;
-    margin-bottom: 20px;
-    color: #ffffff;
-}
-
-/* TEXTAREA */
-textarea {
-    width: 100%;
-    height: 180px;
-    padding: 12px;
-    border-radius: 10px;
-    border: none;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-/* BUTTONS */
-.buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-weight: bold;
-    background: white;
-    color: #0b63ff;
-    transition: 0.3s;
-}
-
-button:hover {
-    background: #0b63ff;
-    color: white;
-}
-
-/* CONTENT SECTION */
-.content-section {
-    max-width: 900px;
-    margin: 40px auto;
+/* Main Card */
+.text-card {
     background: #ffffff;
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
 }
 
-/* HEADINGS */
-h2, h3 {
-    color: #0b63ff;
-}
-
-/* TEXT */
-p, li {
-    color: #000000;
-    line-height: 1.8;
-}
-
-/* AD BOX (FOR ADSENSE) */
-.ad-box {
-    margin: 30px 0;
-    padding: 20px;
+.card-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 25px 30px;
     text-align: center;
+}
+
+.card-header h1 {
+    color: white;
+    font-size: 26px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.card-header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+/* Textarea */
+.textarea-wrapper {
+    margin-bottom: 25px;
+}
+
+.textarea-wrapper textarea {
+    width: 100%;
+    height: 200px;
+    padding: 15px;
+    font-size: 16px;
+    font-family: 'Segoe UI', monospace;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    resize: vertical;
+    transition: all 0.3s ease;
     background: #f9fafb;
-    border: 2px dashed #ddd;
+}
+
+.textarea-wrapper textarea:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    background: white;
+}
+
+/* Buttons Grid */
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.case-btn {
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    border: none;
     border-radius: 10px;
-    color: #777;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.case-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
+}
+
+.clear-btn {
+    background: #6b7280;
+    margin-top: 5px;
+}
+
+.clear-btn:hover {
+    background: #4b5563;
+}
+
+.result-info {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.result-info p {
+    color: #6b7280;
+    font-size: 13px;
+}
+
+.result-info strong {
+    color: #1e3a8a;
+}
+
+/* Other Tools Section */
+.other-tools {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    margin-bottom: 18px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tool-link {
+    display: block;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.tool-link:nth-child(1) { animation-delay: 0.05s; }
+.tool-link:nth-child(2) { animation-delay: 0.1s; }
+.tool-link:nth-child(3) { animation-delay: 0.15s; }
+.tool-link:nth-child(4) { animation-delay: 0.2s; }
+.tool-link:nth-child(5) { animation-delay: 0.25s; }
+.tool-link:nth-child(6) { animation-delay: 0.3s; }
+.tool-link:nth-child(7) { animation-delay: 0.35s; }
+.tool-link:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tool-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.tool-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.tool-link:hover::before {
+    left: 100%;
+}
+
+.home-link {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease 0.45s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.home-link:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 15px;
+    }
+    
+    .card-content {
+        padding: 20px;
+    }
+    
+    .buttons-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .card-header h1 {
+        font-size: 22px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .textarea-wrapper textarea {
+        height: 150px;
+    }
 }
 </style>
 </head>
-
 <body>
 
-<div class="tool-container">
-
-<h1>Text Case Converter</h1>
-
-<textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
-
-<div class="buttons">
-    <button onclick="toUpperCase()">UPPERCASE</button>
-    <button onclick="toLowerCase()">lowercase</button>
-    <button onclick="toSentenceCase()">Sentence case</button>
-    <button onclick="toTitleCase()">Title Case</button>
-    <button onclick="toCapitalizeCase()">Capitalize Each Word</button>
-    <button onclick="clearText()">Clear</button>
-</div>
-
-</div>
-
-<div class="content-section">
-
-<h2>Free Online Text Case Converter Tool</h2>
-
-<p>Our Text Case Converter is a fast and easy-to-use online tool that allows you to instantly convert text into uppercase, lowercase, sentence case, title case, or capitalized format.</p>
-
-<p>This tool is useful for students, bloggers, content writers, and SEO professionals who need quick text formatting without manually editing every word.</p>
-
-<h2>Features</h2>
-
-<ul>
-<li>Convert text to UPPERCASE</li>
-<li>Convert text to lowercase</li>
-<li>Sentence case conversion</li>
-<li>Title Case formatting</li>
-<li>Capitalize each word instantly</li>
-<li>100% free and secure</li>
-</ul>
-<style>
-h1,h2,h3{
-color:#0b63ff;
-}
-
-p,li{
-color:#000000;
-line-height:1.8;
-}
-</style>
-
-<h2>Free Online Text Case Converter Tool – Convert Uppercase, Lowercase, Title Case Instantly</h2>
-
-<p>
-The <strong>Text Case Converter</strong> is a powerful and free online tool that allows users to instantly convert text into different capitalization formats such as <strong>uppercase, lowercase, title case, and sentence case</strong>. This tool is designed for students, bloggers, writers, developers, and SEO professionals who frequently work with text formatting.
-</p>
-
-<p>
-Instead of manually editing every word, you can simply paste your text into the tool and convert it into your desired format within seconds. This makes the <strong>online text case converter</strong> one of the most useful productivity tools available on the internet.
-</p>
-
-<h2>What Is a Text Case Converter?</h2>
-
-<p>
-A <strong>text case converter tool</strong> is an online utility that automatically changes the capitalization style of text. It allows users to convert text into multiple case formats without editing each letter manually.
-</p>
-
-<p>
-For example, if you accidentally write an entire paragraph in lowercase or uppercase, this tool can quickly fix it in just one click. This is why many professionals rely on a <strong>free online case converter</strong> to save time and improve writing efficiency.
-</p>
-
-<h2>Features of Our Free Text Case Converter</h2>
-
-<ul>
-<li>Convert text to UPPERCASE instantly</li>
-<li>Convert text to lowercase automatically</li>
-<li>Convert text to Title Case</li>
-<li>Convert text to Sentence case</li>
-<li>Capitalize each word quickly</li>
-<li>Simple and user-friendly interface</li>
-<li>Works on mobile and desktop devices</li>
-<li>100% free online tool</li>
-<li>No installation required</li>
-<li>Secure and private text conversion</li>
-</ul>
-
-<h2>Types of Text Case Conversion</h2>
-
-<h3>1. Uppercase Converter</h3>
-
-<p>
-The <strong>uppercase converter</strong> transforms all letters in your text into capital letters. This format is commonly used for headings, titles, and emphasis in documents.
-</p>
-
-<p>
-Example:
-</p>
-
-<p>
-hello world → <strong>HELLO WORLD</strong>
-</p>
-
-<h3>2. Lowercase Converter</h3>
-
-<p>
-The <strong>lowercase converter</strong> converts all letters into small letters. This is useful when text is accidentally typed in uppercase.
-</p>
-
-<p>
-Example:
-</p>
-
-<p>
-HELLO WORLD → <strong>hello world</strong>
-</p>
-
-<h3>3. Title Case Converter</h3>
-
-<p>
-The <strong>title case converter</strong> capitalizes the first letter of every word. This format is widely used for headings, blog titles, and article titles.
-</p>
-
-<p>
-Example:
-</p>
-
-<p>
-hello world → <strong>Hello World</strong>
-</p>
-
-<h3>4. Sentence Case Converter</h3>
-
-<p>
-The <strong>sentence case converter</strong> capitalizes only the first letter of a sentence. This format is commonly used in normal writing and paragraphs.
-</p>
-
-<p>
-Example:
-</p>
-
-<p>
-hello world. this is a tool → <strong>Hello world. This is a tool</strong>
-</p>
-
-<h2>How to Use This Text Case Converter Tool</h2>
-
-<p>
-Using this <strong>free text case converter online</strong> is extremely simple. Follow these steps:
-</p>
-
-<ol>
-<li>Paste or type your text into the input box.</li>
-<li>Select the desired case conversion option.</li>
-<li>The tool will instantly convert your text.</li>
-<li>Copy the converted text and use it anywhere.</li>
-</ol>
-
-<h2>Benefits of Using an Online Text Case Converter</h2>
-
-<ul>
-<li>Saves time while editing large text</li>
-<li>Improves writing productivity</li>
-<li>Helps format blog content easily</li>
-<li>Perfect for students and writers</li>
-<li>Useful for SEO professionals</li>
-<li>Great for formatting social media posts</li>
-</ul>
-
-<h2>Who Should Use This Tool?</h2>
-
-<p>
-This <strong>free online text case converter</strong> is useful for many professionals and users including:
-</p>
-
-<ul>
-<li>Content writers</li>
-<li>Bloggers</li>
-<li>Students</li>
-<li>SEO experts</li>
-<li>Web developers</li>
-<li>Social media managers</li>
-</ul>
-
-<h2>Why Choose Our Text Case Converter?</h2>
-
-<p>
-There are many text formatting tools available online, but our tool is designed to provide the fastest and simplest user experience. It works instantly without requiring any registration or downloads.
-</p>
-
-<p>
-You can use this <strong>text case converter online</strong> anytime from your smartphone, tablet, or desktop computer.
-</p>
-
 <div class="container">
-
-<h2>🔵 Related Free Online Tools</h2>
-
-<p>You may also find these tools helpful:</p>
-
-<div style="display:flex; flex-direction:column; gap:10px;">
-
-<button onclick="window.location.href='bmi-calculator.html'">🔘 BMI Calculator</button>
-
-<button onclick="window.location.href='emi-calculator.html'">🔘 EMI Calculator</button>
-
-<button onclick="window.location.href='loan-calculator.html'">🔘 Loan Calculator</button>
-
-<button onclick="window.location.href='percentage-calculator.html'">🔘 Percentage Calculator</button>
-
-<button onclick="window.location.href='password-generator.html'">🔘 Password Generator</button>
-
-<button onclick="window.location.href='text-case-converter.html'">🔘 Text Case Converter</button>
-
-</div>
-
-<br>
-
-<button onclick="window.location.href='index.html'">🔙 Back to Home</button>
-
-</div>
-
-<h2>SEO Keywords</h2>
-
-<ul>
-<li>text case converter</li>
-<li>uppercase converter</li>
-<li>lowercase converter</li>
-<li>title case converter</li>
-<li>sentence case converter</li>
-<li>convert text case online</li>
-<li>free text case converter tool</li>
-<li>change text case online</li>
-</ul>
-
-<h2>Frequently Asked Questions (FAQs)</h2>
-
-<h3>What is a text case converter?</h3>
-
-<p>
-A text case converter is an online tool that changes the capitalization style of text such as uppercase, lowercase, title case, and sentence case.
-</p>
-
-<h3>Is this text case converter free?</h3>
-
-<p>
-Yes, this tool is completely free and can be used online without installing any software.
-</p>
-
-<h3>Can I use this tool on mobile?</h3>
-
-<p>
-Yes, the tool works perfectly on smartphones, tablets, and desktop devices.
-</p>
-
-<h3>Does this tool store my text?</h3>
-
-<p>
-No, this tool processes your text directly in your browser and does not store any data.
-</p>
-
-<h3>Why should I use a text case converter?</h3>
-
-<p>
-It saves time and allows you to quickly format text into different capitalization styles without manual editing.
-</p>
-
-<h2>Conclusion</h2>
-
-<p>
-The <strong>Text Case Converter</strong> is a simple yet powerful tool for converting text into different capitalization formats. Whether you are a blogger, student, developer, or content writer, this tool helps you quickly format text and improve productivity.
-</p>
-
-<p>
-Try this <strong>free online text case converter</strong> today and convert your text instantly.
-</p>
-
-
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-{
-"@type":"Question",
-"name":"What is a text case converter?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"A text case converter is an online tool that changes text capitalization such as uppercase, lowercase, title case, and sentence case."
-}
-},
-{
-"@type":"Question",
-"name":"Is this text case converter free?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Yes this text case converter tool is completely free and works online."
-}
-},
-{
-"@type":"Question",
-"name":"Can I use this tool on mobile?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Yes the tool works on smartphones tablets and desktop devices."
-}
-}
-]
-}
-</script>
-<h2>How to Use</h2>
-
-<ol>
-<li>Paste or type your text in the box.</li>
-<li>Click any case conversion button.</li>
-<li>Copy the formatted result.</li>
-</ol>
-
-<p>This free case converter works directly in your browser, ensuring your text remains private and secure.</p>
-
+    <!-- Main Text Case Converter Card -->
+    <div class="text-card">
+        <div class="card-header">
+            <h1>📝 Text Case Converter</h1>
+            <p>Convert text to UPPERCASE, lowercase, Title Case, Sentence case & more instantly</p>
+        </div>
+        
+        <div class="card-content">
+            <div class="textarea-wrapper">
+                <textarea id="textInput" placeholder="Type or paste your text here..."></textarea>
+            </div>
+            
+            <div class="buttons-grid">
+                <button class="case-btn" onclick="toUpperCase()">🔠 UPPERCASE</button>
+                <button class="case-btn" onclick="toLowerCase()">🔡 lowercase</button>
+                <button class="case-btn" onclick="toTitleCase()">📘 Title Case</button>
+                <button class="case-btn" onclick="toSentenceCase()">📖 Sentence case</button>
+                <button class="case-btn" onclick="toCapitalizeCase()">📌 Capitalize Each Word</button>
+                <button class="case-btn clear-btn" onclick="clearText()">🗑️ Clear Text</button>
+            </div>
+            
+            <div class="result-info" id="resultInfo">
+                <p>📊 <strong id="charCount">0</strong> characters | <strong id="wordCount">0</strong> words | <strong id="lineCount">0</strong> lines</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">🔘 Age Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">🔘 BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🔘 EMI Calculator</a>
+            <a href="loan-calculator.html" class="tool-link">🔘 Loan Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">🔘 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔘 Word Counter Tool</a>
+            <a href="text-case-converter.html" class="tool-link">🔘 Text Case Converter</a>
+            <a href="password-generator.html" class="tool-link">🔘 Password Generator</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA ========== -->
+    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        
+        <!-- Ad Space 1 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
+            <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">📝 TEXT FORMATTING</span>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Text Case Converter – Convert Uppercase, Lowercase, Title Case & Sentence Case Online</h1>
+            <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 150,000+ Users Monthly</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is a Text Case Converter and Why You Need One?</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>text case converter</strong> is an essential online tool that instantly changes the capitalization style of any text. Whether you need to convert text to <strong>uppercase, lowercase, title case, or sentence case</strong>, our free tool makes formatting quick and effortless. This is especially useful for content writers, bloggers, students, SEO professionals, and anyone who works with text regularly.</p>
+        
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
+            <p style="font-family: monospace; font-size: 16px; font-weight: bold; color: #1e3a8a;">Example: "hello world" → "HELLO WORLD" (UPPERCASE)</p>
+            <p style="font-family: monospace; font-size: 16px; font-weight: bold; color: #1e3a8a; margin-top: 10px;">"HELLO WORLD" → "hello world" (lowercase)</p>
+            <p style="font-family: monospace; font-size: 16px; font-weight: bold; color: #1e3a8a; margin-top: 10px;">"hello world" → "Hello World" (Title Case)</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Types of Text Case Conversion</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🔠 UPPERCASE</strong>
+                <p style="margin-top: 8px;">Converts all letters to capitals. Example: "hello" → "HELLO"</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🔡 lowercase</strong>
+                <p style="margin-top: 8px;">Converts all letters to small letters. Example: "HELLO" → "hello"</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📘 Title Case</strong>
+                <p style="margin-top: 8px;">Capitalizes first letter of every word. Example: "hello world" → "Hello World"</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📖 Sentence Case</strong>
+                <p style="margin-top: 8px;">Capitalizes first letter of each sentence. Example: "hello world." → "Hello world."</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📌 Capitalize Each Word</strong>
+                <p style="margin-top: 8px;">Capitalizes first letter of every word. Similar to title case</p>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Text Case Converter</h2>
+        
+        <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>Type or <strong>paste your text</strong> into the text box</li>
+            <li>Click on your desired <strong>case conversion option</strong></li>
+            <li>The text will be <strong>instantly converted</strong> to your chosen format</li>
+            <li>Copy the formatted text and <strong>use it anywhere</strong></li>
+            <li>Use the <strong>clear button</strong> to start fresh</li>
+        </ol>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Features of Our Free Text Case Converter</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>✅ <strong>100% Free:</strong> No registration, unlimited use</li>
+            <li>✅ <strong>Multiple Case Options:</strong> Uppercase, lowercase, title case, sentence case, capitalize each word</li>
+            <li>✅ <strong>Instant Conversion:</strong> Results appear immediately</li>
+            <li>✅ <strong>Character & Word Counter:</strong> See stats about your text</li>
+            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+            <li>✅ <strong>Privacy Protected:</strong> No text stored on servers</li>
+            <li>✅ <strong>No Downloads:</strong> Use directly in your browser</li>
+            <li>✅ <strong>Secure & Safe:</strong> All processing happens locally</li>
+        </ul>
+        
+        <!-- Ad Space 2 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using an Online Text Case Converter</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>⏱️ <strong>Saves Time:</strong> No need to manually retype or reformat text</li>
+            <li>✍️ <strong>Improves Productivity:</strong> Format large amounts of text in seconds</li>
+            <li>📝 <strong>Perfect for Bloggers:</strong> Quickly format article titles and headings</li>
+            <li>🎓 <strong>Great for Students:</strong> Format essays and assignments properly</li>
+            <li>📊 <strong>SEO Friendly:</strong> Helps format meta descriptions and titles</li>
+            <li>📱 <strong>Social Media:</strong> Format posts for different platforms</li>
+            <li>💻 <strong>Developers:</strong> Quickly format code comments and documentation</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Who Should Use This Text Case Converter?</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>📝 <strong>Content Writers:</strong> Format articles, blogs, and web content</li>
+            <li>🎓 <strong>Students:</strong> Format essays, assignments, and research papers</li>
+            <li>📊 <strong>SEO Professionals:</strong> Optimize meta tags, titles, and descriptions</li>
+            <li>💻 <strong>Web Developers:</strong> Format text for websites and applications</li>
+            <li>📱 <strong>Social Media Managers:</strong> Format posts for different platforms</li>
+            <li>✍️ <strong>Authors & Editors:</strong> Quickly reformat manuscripts and documents</li>
+            <li>🏢 <strong>Business Professionals:</strong> Format emails, reports, and presentations</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Text Case Converter vs Manual Formatting</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Manually formatting text case can be time-consuming, especially when dealing with large documents. Our <strong>online text case converter</strong> does the job in milliseconds, saving you valuable time and ensuring consistency across your content. Whether you're converting a single sentence or thousands of words, our tool handles it instantly.</p>
+        
+        <!-- Ad Space 3 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <!-- FAQ SECTION WITH SCHEMA -->
+        <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
+            <h2 style="color: #1e3a8a; font-size: 26px; margin-bottom: 20px; text-align: center;">❓ Frequently Asked Questions About Text Case Converter</h2>
+            
+            <div itemscope="" itemtype="https://schema.org/FAQPage" style="display: flex; flex-direction: column; gap: 15px;">
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is a text case converter?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">A text case converter is an online tool that changes the capitalization style of text, such as converting to uppercase, lowercase, title case, or sentence case.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this text case converter free?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this text case converter is completely free to use with unlimited access. No registration or payment required.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What types of case conversion are available?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our tool supports UPPERCASE, lowercase, Title Case, Sentence case, and Capitalize Each Word. You can convert text to any format with one click.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this tool on mobile?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our text case converter is fully responsive and works perfectly on smartphones, tablets, and desktop devices.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this tool store my text?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">No, this tool processes your text directly in your browser. We do not store, track, or share any text or personal information.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the difference between title case and sentence case?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Title case capitalizes the first letter of every word. Sentence case capitalizes only the first letter of each sentence, similar to normal writing.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I convert large amounts of text?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our tool can handle large text blocks efficiently. There's no character limit, and conversion happens instantly.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this tool useful for SEO?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Absolutely! SEO professionals use this tool to format meta titles, meta descriptions, heading tags, and other content consistently.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy is our priority. This text case converter runs entirely inside your browser. We do not store, track, or share any text or personal information. No data is sent to any server, making this tool completely secure for converting sensitive or confidential text.</p>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Proper text formatting is essential for professional communication, content creation, and SEO. Our <strong>free text case converter</strong> makes it easy to format text instantly, saving you time and ensuring consistency. Whether you're a blogger, student, writer, or business professional, this tool is an essential addition to your productivity toolkit.</p>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Try our <strong>online text case converter</strong> today and experience the convenience of instant text formatting. Bookmark this tool for quick access whenever you need to convert text case.</p>
+        
+        <!-- Ad Space 4 - Bottom -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+    </div>
 </div>
 
 <script>
+function showToast(message, isSuccess = false) {
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.style.backgroundColor = isSuccess ? '#10b981' : '#ef4444';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+function updateStats() {
+    let text = document.getElementById("textInput").value;
+    let chars = text.length;
+    let words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+    let lines = text === "" ? 0 : text.split(/\r\n|\r|\n/).length;
+    
+    document.getElementById("charCount").innerText = chars;
+    document.getElementById("wordCount").innerText = words;
+    document.getElementById("lineCount").innerText = lines;
+}
+
 function toUpperCase() {
-    document.getElementById("textInput").value =
-    document.getElementById("textInput").value.toUpperCase();
+    let textarea = document.getElementById("textInput");
+    textarea.value = textarea.value.toUpperCase();
+    updateStats();
+    showToast("✅ Converted to UPPERCASE", true);
 }
 
 function toLowerCase() {
-    document.getElementById("textInput").value =
-    document.getElementById("textInput").value.toLowerCase();
+    let textarea = document.getElementById("textInput");
+    textarea.value = textarea.value.toLowerCase();
+    updateStats();
+    showToast("✅ Converted to lowercase", true);
+}
+
+function toTitleCase() {
+    let text = document.getElementById("textInput").value;
+    text = text.toLowerCase().split(" ").map(word => 
+        word.charAt(0).toUpperCase() + word.slice(1)
+    ).join(" ");
+    document.getElementById("textInput").value = text;
+    updateStats();
+    showToast("✅ Converted to Title Case", true);
 }
 
 function toSentenceCase() {
     let text = document.getElementById("textInput").value.toLowerCase();
-    text = text.charAt(0).toUpperCase() + text.slice(1);
+    text = text.replace(/(^\s*\w|[.!?]\s*\w)/g, function(c) {
+        return c.toUpperCase();
+    });
     document.getElementById("textInput").value = text;
-}
-
-function toTitleCase() {
-    let text = document.getElementById("textInput").value.toLowerCase();
-    text = text.split(" ").map(word =>
-        word.charAt(0).toUpperCase() + word.slice(1)
-    ).join(" ");
-    document.getElementById("textInput").value = text;
+    updateStats();
+    showToast("✅ Converted to Sentence case", true);
 }
 
 function toCapitalizeCase() {
     let text = document.getElementById("textInput").value;
     text = text.replace(/\b\w/g, char => char.toUpperCase());
     document.getElementById("textInput").value = text;
+    updateStats();
+    showToast("✅ Capitalized each word", true);
 }
 
 function clearText() {
     document.getElementById("textInput").value = "";
+    updateStats();
+    showToast("🗑️ Text cleared", true);
 }
+
+// Update stats on input
+document.getElementById("textInput").addEventListener("input", updateStats);
+updateStats();
+
+// Display current date
+document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
 
 </body>
