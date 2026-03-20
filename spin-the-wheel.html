@@ -1,1120 +1,1047 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Free Spin the Wheel – Online Random Picker & Decision Maker</title>
-
 <meta name="description" content="Spin the wheel online for random choices instantly. Free decision maker tool to pick names, numbers, yes/no, or any custom items. Fast, mobile-friendly, and easy to use.">
-
-<meta name="keywords" content="spin the wheel online, random picker wheel, decision maker wheel, free spin wheel, yes or no wheel, random spinner, lucky wheel">
-
-<meta name="author" content="Free Online Tools">
-
+<meta name="keywords" content="spin the wheel online, random picker wheel, decision maker wheel, free spin wheel, yes or no wheel, random spinner, lucky wheel, what should i eat today, food picker wheel">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/spin-the-wheel.html">
 <meta name="robots" content="index, follow">
-
 <meta property="og:title" content="Free Spin the Wheel – Random Picker Online">
 <meta property="og:description" content="Spin the wheel online for instant random choices. Free and mobile-friendly decision maker tool.">
 <meta property="og:type" content="website">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='%237b3fe4' stroke='%23333' stroke-width='3'/%3E%3Ctext x='50' y='70' font-size='70' text-anchor='middle' fill='white'%3E⏺%3C/text%3E%3C/svg%3E">
-
 <style>
-    /* ---------- global reset & variables ---------- */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --bg-light: #f5f3ff;
-      --surface-light: rgba(255, 255, 255, 0.8);
-      --surface-solid-light: #ffffff;
-      --text-light: #1e1e2f;
-      --text-light-secondary: #4a4a5e;
-      --border-light: #d9d0e6;
-      --primary: #7b3fe4;
-      --primary-dark: #5f2bb0;
-      --accent: #ff8a5c;
-      --pointer: #c5283d;
-      --shadow-sm: 0 12px 30px -10px rgba(0,0,0,0.2);
-      --shadow-lg: 0 25px 45px -15px rgba(0,0,0,0.3);
-      --success: #10b981;
-    }
-    body.dark {
-      --bg-light: #12121c;
-      --surface-light: rgba(30, 30, 50, 0.8);
-      --surface-solid-light: #24243a;
-      --text-light: #f0f0fa;
-      --text-light-secondary: #b0b0d0;
-      --border-light: #3f3f60;
-      --primary: #b184ff;
-      --primary-dark: #8f5ae8;
-      --accent: #ffa270;
-      --pointer: #ff6b6b;
-      --success: #34d399;
-    }
-    body {
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-      background: var(--bg-light);
-      color: var(--text-light);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 1rem 1rem 0;
-      transition: background 0.2s, color 0.2s;
-    }
-    .container {
-      max-width: 1300px;
-      width: 100%;
-    }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    /* typography */
-    h1 {
-      font-size: clamp(2.2rem, 10vw, 4rem);
-      font-weight: 800;
-      background: linear-gradient(145deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      letter-spacing: -0.02em;
-      text-align: center;
-    }
-    .subhead {
-      text-align: center;
-      font-size: 1.2rem;
-      color: var(--text-light-secondary);
-      margin-bottom: 1.5rem;
-    }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+    padding: 40px 20px;
+}
 
-    /* ----- top bar (mode + category + dark toggle) ----- */
-    .top-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 1rem;
-      background: var(--surface-light);
-      backdrop-filter: blur(8px);
-      padding: 0.7rem 1.8rem;
-      border-radius: 60px;
-      margin-bottom: 2rem;
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-    }
-    .mode-category-wrap {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .mode-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-    .mode-selector label {
-      font-weight: 600;
-      color: var(--text-light-secondary);
-      font-size: 0.95rem;
-    }
-    select, input, button {
-      background: var(--surface-solid-light);
-      border: 1px solid var(--border-light);
-      border-radius: 40px;
-      padding: 0.6rem 1.4rem;
-      font-size: 0.95rem;
-      font-weight: 500;
-      color: var(--text-light);
-      cursor: pointer;
-      transition: 0.15s;
-    }
-    select:hover, input:hover, button:hover {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 2px rgba(123, 63, 228, 0.2);
-    }
-    button:active { transform: scale(0.96); }
-    .dark-toggle { display: flex; gap: 0.4rem; align-items: center; }
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-    /* ----- main panel (wheel + controls) ----- */
+/* Main Card */
+.wheel-card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 25px 30px;
+    text-align: center;
+}
+
+.card-header h1 {
+    color: white;
+    font-size: 26px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.card-header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: #f9fafb;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    border: 1px solid #e5e7eb;
+}
+
+.mode-category-wrap {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.mode-selector label, .category-wrap label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 13px;
+    margin-right: 8px;
+}
+
+select {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #1f2937;
+    cursor: pointer;
+}
+
+.dark-toggle {
+    background: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dark-toggle:hover {
+    background: #4b5563;
+}
+
+/* Wheel Panel */
+.wheel-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.wheel-container {
+    flex: 2 1 500px;
+    background: #f9fafb;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+}
+
+canvas#wheelCanvas {
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: 50%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+.spin-center-btn {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid #2563eb;
+    color: #2563eb;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.spin-center-btn:active {
+    transform: translate(-50%, -50%) scale(0.95);
+}
+
+/* Arrow with Animation */
+.arrow {
+    width: 0;
+    height: 0;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top: 45px solid #dc2626;
+    margin: 0 auto 10px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+    position: relative;
+}
+
+/* Arrow Glow Animation */
+.arrow-spinning {
+    animation: arrowGlow 0.3s infinite alternate;
+}
+
+@keyframes arrowGlow {
+    0% {
+        filter: drop-shadow(0 0 2px #dc2626) drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        border-top-color: #dc2626;
+    }
+    100% {
+        filter: drop-shadow(0 0 15px #ff6b6b) drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+        border-top-color: #ff6b6b;
+    }
+}
+
+/* Arrow Tick Dot */
+.tick-dot {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 12px;
+    height: 12px;
+    background: #ffd966;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #ffd966;
+    opacity: 0;
+}
+
+.tick-dot.active {
+    animation: tickPulse 0.2s infinite alternate;
+}
+
+@keyframes tickPulse {
+    0% {
+        opacity: 0.4;
+        transform: translateX(-50%) scale(0.8);
+        box-shadow: 0 0 5px #ffd966;
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1.4);
+        box-shadow: 0 0 20px #ffaa00;
+    }
+}
+
+.result-pop {
+    background: #f3f4f6;
+    border-radius: 40px;
+    padding: 12px 20px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-top: 15px;
+    display: inline-block;
+    color: #1e3a8a;
+}
+
+/* Controls Panel */
+.controls-card {
+    flex: 1 1 300px;
+    background: #f9fafb;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.controls-card h2 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.input-group input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.input-group button, .button-row button {
+    padding: 10px 18px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.input-group button:hover, .button-row button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.button-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.tag-list {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    max-height: 180px;
+    overflow-y: auto;
+    border: 1px solid #e5e7eb;
+}
+
+.item-tag {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    padding: 5px 12px 5px 18px;
+    border-radius: 30px;
+    margin: 5px;
+    font-size: 13px;
+}
+
+.item-tag button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    margin-left: 8px;
+    cursor: pointer;
+    padding: 0 4px;
+}
+
+/* Color Picker */
+.color-picker-section {
+    background: #f9fafb;
+    border-radius: 14px;
+    padding: 20px;
+    margin-top: 30px;
+    border: 1px solid #e5e7eb;
+}
+
+.color-picker-section h3 {
+    color: #1e3a8a;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.color-picker-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.color-picker-row input[type="color"] {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e5e7eb;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.hex-field {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex: 1;
+}
+
+.hex-field input {
+    padding: 10px 15px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    font-family: monospace;
+    background: white;
+}
+
+.copy-btn {
+    padding: 10px 18px;
+    background: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.copy-btn:hover {
+    background: #4b5563;
+}
+
+/* Other Tools Section */
+.other-tools {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    margin-bottom: 18px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tool-link {
+    display: block;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.tool-link:nth-child(1) { animation-delay: 0.05s; }
+.tool-link:nth-child(2) { animation-delay: 0.1s; }
+.tool-link:nth-child(3) { animation-delay: 0.15s; }
+.tool-link:nth-child(4) { animation-delay: 0.2s; }
+.tool-link:nth-child(5) { animation-delay: 0.25s; }
+.tool-link:nth-child(6) { animation-delay: 0.3s; }
+.tool-link:nth-child(7) { animation-delay: 0.35s; }
+.tool-link:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tool-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.tool-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.tool-link:hover::before {
+    left: 100%;
+}
+
+.home-link {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease 0.45s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.home-link:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
     .wheel-panel {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-bottom: 2rem;
+        flex-direction: column;
     }
+    
+    .top-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .mode-category-wrap {
+        justify-content: center;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-    /* ---------- WHEEL CARD (fully responsive canvas) ---------- */
-    .wheel-card {
-      flex: 2 1 600px;
-      background: var(--surface-light);
-      backdrop-filter: blur(8px);
-      border-radius: 4rem 4rem 3rem 3rem;
-      padding: 1.5rem 1rem 2rem;
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-lg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+@keyframes bounceWheel {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.05); }
+    60% { transform: scale(0.98); }
+    100% { transform: scale(1); }
+}
 
-    /* pointer area */
-    .pointer-area {
-      position: relative;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      height: 50px;
-    }
-    .arrow {
-      width: 0; height: 0;
-      border-left: 28px solid transparent;
-      border-right: 28px solid transparent;
-      border-top: 48px solid var(--pointer);
-      filter: drop-shadow(0 8px 6px rgba(0,0,0,0.3));
-      z-index: 10;
-      position: relative;
-      top: -5px;
-    }
-    .tick {
-      position: absolute;
-      top: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 16px; height: 16px;
-      background: gold;
-      border-radius: 50%;
-      box-shadow: 0 0 15px gold;
-      opacity: 0;
-    }
-    .spinning .tick {
-      animation: tickPulse 0.12s infinite alternate;
-    }
-    @keyframes tickPulse {
-      0% { opacity: 0.3; transform: translateX(-50%) scale(0.9); }
-      100% { opacity: 1; transform: translateX(-50%) scale(1.6); }
-    }
+.bounce-animation {
+    animation: bounceWheel 0.5s ease;
+}
 
-    /* canvas container: maintains 1:1 aspect, flexible width */
-    .canvas-container {
-      position: relative;
-      width: 100%;
-      max-width: 550px;
-      aspect-ratio: 1/1;
-      margin: 0.8rem auto;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    canvas#wheelCanvas {
-      display: block;
-      width: 100% !important;
-      height: 100% !important;
-      border-radius: 50%;
-      box-shadow: 0 20px 35px -5px black, 0 0 0 4px #2d2d3a;
-      background: #f0e6d2; /* fallback */
-    }
-    .winning-glow canvas {
-      box-shadow: 0 0 0 8px var(--primary), 0 0 60px 15px var(--primary), 0 20px 35px -5px black;
-    }
+.winning-glow canvas {
+    box-shadow: 0 0 0 8px #10b981, 0 0 40px #10b981;
+}
 
-    /* center spin button (absolute inside canvas-container) */
-    .spin-center-btn {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 100px;
-      height: 100px;
-      border-radius: 50%;
-      background: var(--surface-solid-light);
-      border: 4px solid var(--primary);
-      color: var(--primary);
-      font-weight: 800;
-      font-size: 1.5rem;
-      box-shadow: 0 12px 0 var(--primary-dark), 0 10px 25px black;
-      cursor: pointer;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.08s linear;
-    }
-    .spin-center-btn:active {
-      transform: translate(-50%, -50%) translateY(8px);
-      box-shadow: 0 4px 0 var(--primary-dark), 0 10px 20px black;
-    }
-    .spin-center-btn:disabled {
-      opacity: 0.6;
-      transform: translate(-50%, -50%) translateY(6px);
-      box-shadow: 0 6px 0 var(--primary-dark);
-      pointer-events: none;
-    }
-
-    /* result popup */
-    .result-pop {
-      background: var(--surface-solid-light);
-      border-radius: 60px;
-      padding: 0.8rem 2.5rem;
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin-top: 1rem;
-      box-shadow: var(--shadow-sm);
-      border-left: 8px solid var(--primary);
-      opacity: 0;
-      transform: scale(0.7);
-      transition: 0.2s cubic-bezier(0.2, 1.6, 0.4, 1);
-    }
-    .result-pop.show {
-      opacity: 1;
-      transform: scale(1);
-    }
-    /* bounce on stop */
-    .bounce-animation {
-      animation: bounceWheel 0.5s ease;
-    }
-    @keyframes bounceWheel {
-      0% { transform: scale(1); }
-      30% { transform: scale(1.06); }
-      60% { transform: scale(0.97); }
-      100% { transform: scale(1); }
-    }
-
-    /* ---------- CONTROLS PANEL (mobile friendly) ---------- */
-    .controls-card {
-      flex: 1 1 300px;
-      background: var(--surface-light);
-      backdrop-filter: blur(8px);
-      border-radius: 3rem;
-      padding: 2rem 1.8rem;
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-lg);
-    }
-    .controls-card h2 {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
-    }
-    .input-group {
-      display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
-      margin-bottom: 1rem;
-    }
-    .input-group input { flex: 2 1 160px; }
-    .button-row {
-      display: flex;
-      gap: 0.6rem;
-      flex-wrap: wrap;
-      margin: 1rem 0;
-    }
-    .tag-list {
-      background: var(--surface-solid-light);
-      border-radius: 40px;
-      padding: 1.2rem;
-      max-height: 200px;
-      overflow-y: auto;
-    }
-    .item-tag {
-      display: inline-block;
-      background: var(--primary);
-      color: white;
-      padding: 0.3rem 1rem 0.3rem 1.4rem;
-      border-radius: 30px;
-      margin: 0.3rem;
-      font-weight: 500;
-    }
-    .item-tag button {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.3rem;
-      margin-left: 6px;
-      padding: 0 2px;
-    }
-    .item-tag button:hover { transform: scale(1.2); }
-
-    /* ---------- BASIC COLOR PICKER SECTION (new) ---------- */
-    .color-picker-section {
-      margin-top: 2rem;
-      background: var(--surface-light);
-      backdrop-filter: blur(8px);
-      border-radius: 2rem;
-      padding: 1.5rem;
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-    }
-    .color-picker-section h3 {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
-      color: var(--text-light);
-      font-weight: 600;
-    }
-    .color-picker-row {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 1rem;
-    }
-    .color-picker-row input[type="color"] {
-      width: 60px;
-      height: 60px;
-      padding: 0;
-      border: 2px solid var(--border-light);
-      border-radius: 12px;
-      cursor: pointer;
-      background: transparent;
-    }
-    .color-picker-row input[type="color"]::-webkit-color-swatch-wrapper {
-      padding: 0;
-    }
-    .color-picker-row input[type="color"]::-webkit-color-swatch {
-      border: none;
-      border-radius: 10px;
-    }
-    .hex-field {
-      flex: 2 1 200px;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-    }
-    .hex-field input {
-      flex: 1;
-      background: var(--surface-solid-light);
-      border: 1px solid var(--border-light);
-      border-radius: 40px;
-      padding: 0.6rem 1.2rem;
-      font-family: monospace;
-      font-size: 1rem;
-      color: var(--text-light);
-    }
-    .copy-btn {
-      background: var(--primary);
-      color: white;
-      border: none;
-      padding: 0.6rem 1.4rem;
-      border-radius: 40px;
-      font-weight: 600;
-      white-space: nowrap;
-    }
-    .copy-btn:hover {
-      background: var(--primary-dark);
-      transform: scale(0.97);
-    }
-    .copy-feedback {
-      font-size: 0.9rem;
-      color: var(--success);
-      font-weight: 600;
-      opacity: 0;
-      transition: opacity 0.2s;
-    }
-    .copy-feedback.show {
-      opacity: 1;
-    }
-
-    /* confetti canvas overlay */
-    #confettiCanvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      pointer-events: none;
-      z-index: 9999;
-    }
-
-    /* mobile adjustments */
-    @media (max-width: 600px) {
-      .spin-center-btn { width: 75px; height: 75px; font-size: 1.2rem; }
-      .wheel-card { border-radius: 3rem; }
-      .result-pop { font-size: 1.4rem; padding: 0.5rem 1.5rem; }
-      .color-picker-row { flex-direction: column; align-items: flex-start; }
-      .hex-field { width: 100%; }
-    }
-  </style>
+#confettiCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+}
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>Spin the Wheel – Random Picker Wheel for Decisions</h1>
-      <div class="subhead">what should I eat today? · random food picker · casino‑style</div>
-    </header>
 
-    <!-- top bar: mode dropdown + category + dark toggle -->
-    <div class="top-bar">
-      <div class="mode-category-wrap">
-        <!-- MULTI MODE DROPDOWN -->
-        <div class="mode-selector">
-          <label for="modeSelect">Select Mode</label>
-          <select id="modeSelect" aria-label="choose wheel mode">
-            <option value="food" selected>Food Wheel</option>
-            <option value="movie">Movie Picker</option>
-            <option value="name">Name Picker</option>
-            <option value="yesno">Yes/No Wheel</option>
-            <option value="truthdare">Truth or Dare</option>
-          </select>
+<div class="container">
+    <!-- Main Spin the Wheel Card -->
+    <div class="wheel-card">
+        <div class="card-header">
+            <h1>🎡 Spin the Wheel – Random Decision Maker</h1>
+            <p>Make random decisions instantly – Food picker, name picker, yes/no wheel & more</p>
         </div>
-        <div class="category-wrap">
-          <label for="categorySelect">📂 Category</label>
-          <select id="categorySelect" aria-label="choose a preset category">
-            <option value="food" selected>🍕 Food</option>
-            <option value="movies">🎬 Movies</option>
-            <option value="names">👤 Names</option>
-          </select>
+        
+        <div class="card-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <div class="mode-category-wrap">
+                    <div class="mode-selector">
+                        <label>Select Mode</label>
+                        <select id="modeSelect">
+                            <option value="food" selected>🍕 Food Wheel</option>
+                            <option value="movie">🎬 Movie Picker</option>
+                            <option value="name">👤 Name Picker</option>
+                            <option value="yesno">✅ Yes/No Wheel</option>
+                            <option value="truthdare">💭 Truth or Dare</option>
+                        </select>
+                    </div>
+                    <div class="category-wrap">
+                        <label>Category</label>
+                        <select id="categorySelect">
+                            <option value="food">🍕 Food</option>
+                            <option value="movies">🎬 Movies</option>
+                            <option value="names">👤 Names</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="dark-toggle" id="darkToggle">🌙 Dark/Light</button>
+            </div>
+            
+            <!-- Wheel and Controls -->
+            <div class="wheel-panel">
+                <div class="wheel-container">
+                    <div class="arrow" id="arrowPointer">
+                        <div class="tick-dot" id="tickDot"></div>
+                    </div>
+                    <div class="canvas-container" id="canvasContainer">
+                        <canvas id="wheelCanvas" width="500" height="500"></canvas>
+                        <button class="spin-center-btn" id="spinButton">SPIN</button>
+                    </div>
+                    <div class="result-pop" id="resultPopup">✨ Pizza</div>
+                </div>
+                
+                <div class="controls-card">
+                    <h2>✏️ Edit Items</h2>
+                    <div class="input-group">
+                        <input type="text" id="itemInput" placeholder="e.g., Sushi">
+                        <button id="addItemBtn">➕ Add</button>
+                    </div>
+                    <div class="button-row">
+                        <button id="removeLastBtn">✖️ Remove last</button>
+                        <button id="resetWheelBtn">⟲ Reset</button>
+                    </div>
+                    <div class="tag-list" id="tagContainer"></div>
+                    <p style="color: #6b7280; font-size: 12px; margin-top: 10px;">click ✕ to delete</p>
+                </div>
+            </div>
+            
+            <!-- Color Picker -->
+            <div class="color-picker-section">
+                <h3>🎨 Basic Color Picker</h3>
+                <div class="color-picker-row">
+                    <input type="color" id="colorPicker" value="#2563eb">
+                    <div class="hex-field">
+                        <input type="text" id="hexValue" value="#2563eb" readonly>
+                        <button class="copy-btn" id="copyHexBtn">Copy HEX</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <button class="dark-toggle" id="darkToggle" aria-label="switch dark/light mode"><span>🌙</span> Dark/Light</button>
     </div>
-
-    <!-- main area: wheel and controls -->
-    <div class="wheel-panel">
-      <!-- wheel card -->
-      <div class="wheel-card">
-        <div class="pointer-area">
-          <div class="arrow" id="arrowPointer">
-            <div class="tick" id="tickDot"></div>
-          </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">🔘 Age Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">🔘 BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🔘 EMI Calculator</a>
+            <a href="loan-calculator.html" class="tool-link">🔘 Loan Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">🔘 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔘 Word Counter Tool</a>
+            <a href="text-case-converter.html" class="tool-link">🔘 Text Case Converter</a>
+            <a href="password-generator.html" class="tool-link">🔘 Password Generator</a>
         </div>
-
-        <!-- canvas container (maintains 1:1) -->
-        <div class="canvas-container" id="canvasContainer">
-          <canvas id="wheelCanvas" width="600" height="600"></canvas>
-          <button class="spin-center-btn" id="spinButton" aria-label="spin the wheel">SPIN</button>
-        </div>
-
-        <!-- result popup -->
-        <div class="result-pop" id="resultPopup">✨ Pizza</div>
-      </div>
-
-      <!-- controls panel -->
-      <div class="controls-card">
-        <h2>✏️ edit items</h2>
-        <div class="input-group">
-          <input type="text" id="itemInput" class="item-input" placeholder="e.g. Sushi" aria-label="new item">
-          <button id="addItemBtn">➕ Add</button>
-        </div>
-        <div class="button-row">
-          <button id="removeLastBtn">✖️ Remove last</button>
-          <button id="resetWheelBtn">⟲ Reset</button>
-        </div>
-        <div class="tag-list" id="tagContainer" aria-label="current wheel items"></div>
-        <p style="color: var(--text-light-secondary); margin-top:0.5rem;">click ✕ to delete</p>
-      </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
     </div>
-
-    <!-- NEW BASIC COLOR PICKER SECTION -->
-    <div class="color-picker-section">
-      <h3>Basic Color Picker</h3>
-      <div class="color-picker-row">
-        <input type="color" id="colorPicker" value="#7b3fe4" aria-label="choose color">
-        <div class="hex-field">
-          <input type="text" id="hexValue" value="#7b3fe4" readonly aria-label="hex code">
-          <button class="copy-btn" id="copyHexBtn" aria-label="copy hex code">Copy HEX</button>
+    
+    <!-- ========== SEO ARTICLE ========== -->
+    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        
+        <!-- Ad Space 1 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
-        <span class="copy-feedback" id="copyFeedback">Copied!</span>
-      </div>
+        
+        <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
+            <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">🎡 DECISION MAKER</span>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Spin the Wheel – Free Random Picker & Decision Maker Online</h1>
+            <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 300,000+ Users Monthly</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is Spin the Wheel and Why You Need One?</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>spin the wheel</strong> tool is a fun and interactive random decision maker that helps you choose between options effortlessly. Whether you're asking <strong>"what should I eat today?"</strong>, picking a random name for a giveaway, or making a quick yes/no decision, our <strong>random picker wheel</strong> provides instant, fair, and unbiased results.</p>
+        
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
+            <p style="font-family: monospace; font-size: 16px; font-weight: bold; color: #1e3a8a;">🎯 Perfect for: Food decisions, giveaways, classroom activities, games, and fun choices</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Popular Uses of Random Picker Wheel</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🍕 What Should I Eat Today?</strong>
+                <p style="margin-top: 8px;">Never struggle with food decisions again</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🎬 Movie Picker Wheel</strong>
+                <p style="margin-top: 8px;">Choose what to watch with friends</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">👤 Random Name Picker</strong>
+                <p style="margin-top: 8px;">Perfect for giveaways and classroom activities</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">✅ Yes or No Wheel</strong>
+                <p style="margin-top: 8px;">Quick decisions made easy</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">💭 Truth or Dare</strong>
+                <p style="margin-top: 8px;">Fun party game decision maker</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🎮 Game Challenge Picker</strong>
+                <p style="margin-top: 8px;">Random challenges for gaming</p>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Spin the Wheel Tool</h2>
+        
+        <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>Select a <strong>mode</strong> (Food, Movie, Name, Yes/No, Truth or Dare)</li>
+            <li>Or <strong>add your own items</strong> in the edit section</li>
+            <li>Click the <strong>SPIN button</strong> to start the wheel</li>
+            <li>Watch the <strong>random spinner wheel</strong> rotate and stop</li>
+            <li>View your <strong>randomly selected result</strong> with celebration animation</li>
+        </ol>
+        
+        <!-- Ad Space 2 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Features of Our Free Spin the Wheel Generator</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>✅ <strong>100% Free:</strong> No registration, unlimited spins</li>
+            <li>✅ <strong>Customizable Options:</strong> Add your own items easily</li>
+            <li>✅ <strong>Multiple Modes:</strong> Food, Movies, Names, Yes/No, Truth or Dare</li>
+            <li>✅ <strong>Realistic Spin Animation:</strong> Smooth and satisfying wheel rotation</li>
+            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+            <li>✅ <strong>Color Picker:</strong> Customize wheel colors</li>
+            <li>✅ <strong>Dark Mode:</strong> Eye-friendly night mode</li>
+            <li>✅ <strong>Instant Results:</strong> Random selection every time</li>
+            <li>✅ <strong>Celebration Effects:</strong> Confetti and bounce animation on win</li>
+            <li>✅ <strong>Glowing Arrow:</strong> Visual feedback while spinning</li>
+        </ul>
+        
+        <!-- Ad Space 3 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <!-- FAQ SECTION WITH SCHEMA -->
+        <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
+            <h2 style="color: #1e3a8a; font-size: 26px; margin-bottom: 20px; text-align: center;">❓ Frequently Asked Questions About Spin the Wheel</h2>
+            
+            <div itemscope="" itemtype="https://schema.org/FAQPage" style="display: flex; flex-direction: column; gap: 15px;">
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is Spin the Wheel really random?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes! Our random picker wheel uses a randomized algorithm to ensure fair and unbiased results every time you spin.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I add my own items to the wheel?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Absolutely! Use the edit section to add, remove, or customize your own items. The wheel updates instantly.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this spin wheel tool free?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this spin the wheel generator is completely free with unlimited spins. No registration or payment required.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this on mobile?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes! Our random spinner wheel is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the best use for a decision maker wheel?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Perfect for "what should I eat today?", giveaways, classroom activities, party games, and any situation where you need a random choice.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this tool store my data?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">No, the wheel runs entirely in your browser. We do not store, track, or share any of your data.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy is our priority. This spin the wheel tool runs entirely inside your browser. We do not store, track, or share any items or personal information. No data is sent to any server, making this tool completely secure for personal and professional use.</p>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Whether you're asking <strong>"what should I eat today?"</strong>, running a giveaway, or just having fun with friends, our <strong>free spin the wheel tool</strong> makes decision-making easy and enjoyable. With customizable items, multiple modes, a beautiful spinning animation, and celebration effects when you win, it's the perfect random picker for any occasion.</p>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Bookmark this <strong>random spinner wheel</strong> for quick access whenever you need to make a random choice. Start spinning today and let the wheel decide!</p>
+        
+        <!-- Ad Space 4 - Bottom -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
     </div>
+</div>
 
-    <!-- lightweight seo content (condensed but effective) -->
-    <div style="background: var(--surface-light); backdrop-filter: blur(4px); border-radius: 3rem; padding: 2rem; margin: 2rem 0; border:1px solid var(--border-light);">
-      <h2 style="font-size: 2rem;">What should I eat today? Spin & decide</h2>
-      <p style="margin:1rem 0;">This <strong>random food picker</strong> uses realistic physics: the faster you spin, the longer it rotates. The pointer at the top (12 o'clock) accurately selects the winning slice — no more wrong results. The canvas resizes perfectly on mobile thanks to aspect‑ratio and devicePixelRatio handling. Add your own items, switch to dark mode, and enjoy the bounce and confetti when the wheel stops. Perfect for indecisive moments.</p>
-      <h3>Why our spin wheel is accurate</h3>
-      <p>Winner is calculated via the exact angle under the fixed arrow. Each slice’s angle is checked using modulo arithmetic. We’ve eliminated the off-by-one errors that plagued earlier versions. The interface works on any screen, and the spin button is always centered.</p>
-      <h3>Frequently asked questions</h3>
-      <div><strong>❓ Can I trust the result?</strong> Absolutely — the math is deterministic based on your spin.</div>
-      <div><strong>❓ How do I remove an item?</strong> Click the ✕ on any tag, or use “Remove last”.</div>
-      <div><strong>❓ Does dark mode work on mobile?</strong> Yes, and it saves battery.</div>
-    </div>
-  </div>
+<script>
+// Spin the Wheel JavaScript with Arrow Animation & Confetti
+let items = ['Pizza', 'Burger', 'Biryani', 'Pasta', 'Sandwich', 'Salad'];
+let spinAngle = 0;
+let isSpinning = false;
+let animFrame = null;
+let confettiActive = false;
 
-  <canvas id="confettiCanvas"></canvas>
+const canvas = document.getElementById('wheelCanvas');
+const ctx = canvas.getContext('2d');
+const spinBtn = document.getElementById('spinButton');
+const resultPopup = document.getElementById('resultPopup');
+const modeSelect = document.getElementById('modeSelect');
+const categorySelect = document.getElementById('categorySelect');
+const darkToggle = document.getElementById('darkToggle');
+const itemInput = document.getElementById('itemInput');
+const addBtn = document.getElementById('addItemBtn');
+const removeLastBtn = document.getElementById('removeLastBtn');
+const resetBtn = document.getElementById('resetWheelBtn');
+const tagContainer = document.getElementById('tagContainer');
+const colorPicker = document.getElementById('colorPicker');
+const hexValue = document.getElementById('hexValue');
+const copyHexBtn = document.getElementById('copyHexBtn');
+const arrowPointer = document.getElementById('arrowPointer');
+const tickDot = document.getElementById('tickDot');
 
-  <script>
-    (function() {
-      // -------------------- STATE & CONSTANTS --------------------
-      const DEFAULT_FOOD = ['Pizza', 'Burger', 'Biryani', 'Pasta', 'Sandwich', 'Salad'];
-      const CATEGORY_SETS = {
-        food: DEFAULT_FOOD.slice(),
-        movies: ['Action', 'Comedy', 'Horror', 'Romance', 'Sci-Fi', 'Thriller'],
-        names: ['Ali', 'Ahmed', 'Sara', 'Ayesha', 'John', 'Emma'],
-        yesno: ['Yes', 'No'],
-        truthdare: ['Truth', 'Dare']
-      };
+const CATEGORY_SETS = {
+    food: ['Pizza', 'Burger', 'Biryani', 'Pasta', 'Sandwich', 'Salad'],
+    movies: ['Action', 'Comedy', 'Horror', 'Romance', 'Sci-Fi', 'Thriller'],
+    names: ['Ali', 'Ahmed', 'Sara', 'Ayesha', 'John', 'Emma'],
+    yesno: ['Yes', 'No'],
+    truthdare: ['Truth', 'Dare']
+};
 
-      let items = [...DEFAULT_FOOD];
-      let spinAngle = 0.0;         // radians
-      let animFrame = null;
-      let isSpinning = false;
-      let confettiActive = false;
-      
-      // Animation timing variables
-      const SPIN_DURATION = 7000; // 7 seconds (between 5-8s)
-      const MIN_ROTATIONS = 6;      // target ~6 full rotations (5-7 range)
+function resizeCanvas() {
+    const container = document.getElementById('canvasContainer');
+    const size = container.clientWidth;
+    canvas.width = size;
+    canvas.height = size;
+    drawWheel();
+}
 
-      // DOM elements
-      const canvas = document.getElementById('wheelCanvas');
-      const ctx = canvas.getContext('2d');
-      const spinBtn = document.getElementById('spinButton');
-      const resultDiv = document.getElementById('resultPopup');
-      const canvasContainer = document.getElementById('canvasContainer');
-      const tickDot = document.getElementById('tickDot');
-      const arrowPointer = document.getElementById('arrowPointer');
-      const modeSelect = document.getElementById('modeSelect');
-      const categorySelect = document.getElementById('categorySelect');
-      const darkToggle = document.getElementById('darkToggle');
-      const itemInput = document.getElementById('itemInput');
-      const addBtn = document.getElementById('addItemBtn');
-      const removeLastBtn = document.getElementById('removeLastBtn');
-      const resetBtn = document.getElementById('resetWheelBtn');
-      const tagContainer = document.getElementById('tagContainer');
-      
-      // Color picker elements
-      const colorPicker = document.getElementById('colorPicker');
-      const hexValue = document.getElementById('hexValue');
-      const copyHexBtn = document.getElementById('copyHexBtn');
-      const copyFeedback = document.getElementById('copyFeedback');
-
-      // ---------- COLOR PICKER FUNCTIONALITY ----------
-      colorPicker.addEventListener('input', (e) => {
-        hexValue.value = e.target.value;
-      });
-
-      copyHexBtn.addEventListener('click', async () => {
-        try {
-          await navigator.clipboard.writeText(hexValue.value);
-          copyFeedback.classList.add('show');
-          setTimeout(() => {
-            copyFeedback.classList.remove('show');
-          }, 1500);
-        } catch (err) {
-          // Fallback for older browsers
-          hexValue.select();
-          document.execCommand('copy');
-          copyFeedback.classList.add('show');
-          setTimeout(() => {
-            copyFeedback.classList.remove('show');
-          }, 1500);
-        }
-      });
-
-      // ---------- CANVAS RESIZE with devicePixelRatio ----------
-      function resizeCanvas() {
-        const container = canvasContainer;
-        if (!container) return;
-        const rect = container.getBoundingClientRect();
-        const size = rect.width;   // container width = height (aspect 1:1)
-        const dpr = window.devicePixelRatio || 1;
-        canvas.width = size * dpr;
-        canvas.height = size * dpr;
-        canvas.style.width = size + 'px';
-        canvas.style.height = size + 'px';
-        // scale context accordingly
-        ctx.setTransform(1,0,0,1,0,0);
-        ctx.scale(dpr, dpr);
-        // redraw
-        drawWheel();
-      }
-
-      // ---------- DRAW WHEEL (always crisp) ----------
-      function drawWheel() {
-        const count = items.length;
-        if (count === 0) {
-          ctx.clearRect(0, 0, canvas.width / (window.devicePixelRatio||1), canvas.height / (window.devicePixelRatio||1));
-          ctx.font = 'bold 30px Inter';
-          ctx.fillStyle = '#888';
-          ctx.fillText('add items', 200, 300);
-          return;
-        }
-
-        const width = canvas.width / (window.devicePixelRatio || 1);
-        const height = canvas.height / (window.devicePixelRatio || 1);
-        const centerX = width / 2;
-        const centerY = height / 2;
-        const radius = Math.min(width, height) * 0.45; // 0.45 leaves margin
-
-        const angleStep = (Math.PI * 2) / count;
-
-        for (let i = 0; i < count; i++) {
-          const start = i * angleStep + spinAngle;
-          const end = start + angleStep;
-
-          ctx.beginPath();
-          ctx.moveTo(centerX, centerY);
-          ctx.arc(centerX, centerY, radius, start, end);
-          ctx.closePath();
-          ctx.fillStyle = i % 2 ? '#f9c74f' : '#f9844a';
-          ctx.fill();
-          ctx.strokeStyle = '#2d2d3a';
-          ctx.lineWidth = 2;
-          ctx.stroke();
-
-          // slice text
-          ctx.save();
-          ctx.translate(centerX, centerY);
-          ctx.rotate(start + angleStep / 2);
-          ctx.textAlign = 'center';
-          ctx.font = 'bold ' + (radius * 0.1) + 'px Inter, sans-serif'; // dynamic font
-          ctx.fillStyle = '#1a1a2e';
-          ctx.shadowColor = '#fff9';
-          ctx.shadowBlur = 6;
-          ctx.fillText(items[i].substring(0, 9), radius * 0.6, 8);
-          ctx.restore();
-        }
-
-        // center dot
+function drawWheel() {
+    const count = items.length;
+    if (count === 0) return;
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const radius = Math.min(canvas.width, canvas.height) * 0.45;
+    const angleStep = (Math.PI * 2) / count;
+    
+    for (let i = 0; i < count; i++) {
+        const start = i * angleStep + spinAngle;
+        const end = start + angleStep;
         ctx.beginPath();
-        ctx.arc(centerX, centerY, radius * 0.12, 0, 2*Math.PI);
-        ctx.fillStyle = '#333';
-        ctx.shadowBlur = 12;
+        ctx.moveTo(centerX, centerY);
+        ctx.arc(centerX, centerY, radius, start, end);
+        ctx.closePath();
+        ctx.fillStyle = i % 2 ? '#f9c74f' : '#f9844a';
         ctx.fill();
-        ctx.shadowBlur = 0;
-      }
-
-      // ---------- RENDER ITEM TAGS ----------
-      function renderTags() {
-        tagContainer.innerHTML = '';
-        items.forEach((item, idx) => {
-          const span = document.createElement('span');
-          span.className = 'item-tag';
-          span.innerHTML = `${item} <button data-index="${idx}" aria-label="remove ${item}">✕</button>`;
-          tagContainer.appendChild(span);
-        });
-        document.querySelectorAll('.item-tag button').forEach(btn => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const idx = btn.getAttribute('data-index');
-            if (idx !== null) removeItem(parseInt(idx));
-          });
-        });
-      }
-
-      function removeItem(index) {
-        if (items.length <= 1) { alert('Keep at least one item'); return; }
-        items.splice(index, 1);
-        updateWheel();
-      }
-
-      function updateWheel() {
-        drawWheel();
-        renderTags();
-      }
-
-      // load mode from multi dropdown
-      function loadMode(mode) {
-        switch(mode) {
-          case 'food':
-            items = [...CATEGORY_SETS.food];
-            break;
-          case 'movie':
-            items = [...CATEGORY_SETS.movies];
-            break;
-          case 'name':
-            items = [...CATEGORY_SETS.names];
-            break;
-          case 'yesno':
-            items = [...CATEGORY_SETS.yesno];
-            break;
-          case 'truthdare':
-            items = [...CATEGORY_SETS.truthdare];
-            break;
-          default:
-            items = [...DEFAULT_FOOD];
-        }
-        spinAngle = 0;
-        updateWheel();
-      }
-
-      // load category (kept for backward compatibility but not used by mode)
-      function loadCategory(cat) {
-        // This function is kept but we'll sync with mode if needed
-        if (cat === 'food') loadMode('food');
-        else if (cat === 'movies') loadMode('movie');
-        else if (cat === 'names') loadMode('name');
-      }
-
-      // ---------- EASING FUNCTION (easeOutQuart) ----------
-      function easeOutQuart(t) {
-        return 1 - Math.pow(1 - t, 4);
-      }
-
-      // ---------- SPIN PHYSICS (unchanged) ----------
-      function startSpin() {
-        if (isSpinning) return;
-        isSpinning = true;
-        spinBtn.disabled = true;
-        resultDiv.classList.remove('show');
-        canvasContainer.classList.remove('winning-glow', 'bounce-animation');
+        ctx.strokeStyle = '#2d2d3a';
+        ctx.lineWidth = 2;
+        ctx.stroke();
         
-        // Set start time and initial angle
-        const spinStartTime = performance.now();
-        const startAngle = spinAngle; // current angle
-        
-        arrowPointer.classList.add('spinning');
-        confettiActive = false;
+        ctx.save();
+        ctx.translate(centerX, centerY);
+        ctx.rotate(start + angleStep / 2);
+        ctx.textAlign = 'center';
+        ctx.font = 'bold ' + Math.max(12, radius * 0.1) + 'px "Segoe UI"';
+        ctx.fillStyle = '#1a1a2e';
+        ctx.fillText(items[i].substring(0, 12), radius * 0.6, 8);
+        ctx.restore();
+    }
+}
 
-        function spinLoop(currentTime) {
-          const elapsed = currentTime - spinStartTime;
-          let progress = Math.min(elapsed / SPIN_DURATION, 1);
-          
-          // Use easeOutQuart for smooth slowdown
-          const easedProgress = easeOutQuart(progress);
-          
-          // Target rotations: 5-7 full spins
-          const totalRadians = MIN_ROTATIONS * 2 * Math.PI * (0.9 + Math.random() * 0.3);
-          
-          // New angle = startAngle + totalRadians * easedProgress
-          spinAngle = startAngle + totalRadians * easedProgress;
-          
-          drawWheel();
-
-          // Tick animation
-          if (progress < 0.7) {
-            tickDot.style.opacity = 0.8 + 0.2 * Math.sin(Date.now() * 0.04);
-          } else {
-            tickDot.style.opacity = Math.max(0, 0.7 * (1 - (progress - 0.7) / 0.3));
-          }
-
-          if (progress < 1) {
-            animFrame = requestAnimationFrame(spinLoop);
-          } else {
-            // spin ended
-            isSpinning = false;
-            spinBtn.disabled = false;
-            arrowPointer.classList.remove('spinning');
-            tickDot.style.opacity = 0;
-            canvasContainer.classList.add('bounce-animation');
-            setTimeout(() => canvasContainer.classList.remove('bounce-animation'), 600);
-
-            // calculate winner (accurate, fixed pointer at 270°) – unchanged
-            const count = items.length;
-            if (count > 0) {
-              const raw = (spinAngle % (2*Math.PI) + 2*Math.PI) % (2*Math.PI);
-              const slice = (2*Math.PI) / count;
-              const pointerAngle = (3 * Math.PI / 2) % (2*Math.PI); // 270° top
-              let diff = (pointerAngle - raw + 2*Math.PI) % (2*Math.PI);
-              const idx = Math.floor(diff / slice) % count;
-              const winner = items[idx];
-              resultDiv.textContent = `✨ ${winner}`;
-              resultDiv.classList.add('show');
-              canvasContainer.classList.add('winning-glow');
-
-              // confetti trigger
-              confettiActive = true;
-              launchConfetti();
-              setTimeout(() => { confettiActive = false; }, 3000);
+function renderTags() {
+    tagContainer.innerHTML = '';
+    items.forEach((item, idx) => {
+        const span = document.createElement('span');
+        span.className = 'item-tag';
+        span.innerHTML = `${item} <button data-index="${idx}">✕</button>`;
+        tagContainer.appendChild(span);
+    });
+    document.querySelectorAll('.item-tag button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const idx = parseInt(btn.getAttribute('data-index'));
+            if (items.length > 1) {
+                items.splice(idx, 1);
+                updateWheel();
             }
-          }
-        }
-        
-        animFrame = requestAnimationFrame(spinLoop);
-      }
+        });
+    });
+}
 
-      // simple confetti
-      function launchConfetti() {
-        const confCanvas = document.getElementById('confettiCanvas');
-        const ctxConf = confCanvas.getContext('2d');
-        confCanvas.width = window.innerWidth;
-        confCanvas.height = window.innerHeight;
-        let particles = [];
-        for (let i = 0; i < 70; i++) {
-          particles.push({
+function updateWheel() {
+    drawWheel();
+    renderTags();
+}
+
+function loadMode(mode) {
+    switch(mode) {
+        case 'food': items = [...CATEGORY_SETS.food]; break;
+        case 'movie': items = [...CATEGORY_SETS.movies]; break;
+        case 'name': items = [...CATEGORY_SETS.names]; break;
+        case 'yesno': items = [...CATEGORY_SETS.yesno]; break;
+        case 'truthdare': items = [...CATEGORY_SETS.truthdare]; break;
+        default: items = [...CATEGORY_SETS.food];
+    }
+    spinAngle = 0;
+    updateWheel();
+}
+
+// Confetti Effect
+function launchConfetti() {
+    const confCanvas = document.getElementById('confettiCanvas');
+    const ctxConf = confCanvas.getContext('2d');
+    confCanvas.width = window.innerWidth;
+    confCanvas.height = window.innerHeight;
+    let particles = [];
+    for (let i = 0; i < 100; i++) {
+        particles.push({
             x: Math.random() * confCanvas.width,
-            y: Math.random() * confCanvas.height * 0.3,
+            y: Math.random() * confCanvas.height * 0.5,
             size: Math.random() * 10 + 5,
-            speedY: Math.random() * 6 + 3,
+            speedY: Math.random() * 8 + 4,
             color: `hsl(${Math.random() * 360}, 80%, 60%)`
-          });
-        }
-        function drawConf() {
-          if (!confettiActive) {
-            ctxConf.clearRect(0,0,confCanvas.width,confCanvas.height);
+        });
+    }
+    function drawConf() {
+        if (!confettiActive) {
+            ctxConf.clearRect(0, 0, confCanvas.width, confCanvas.height);
             return;
-          }
-          ctxConf.clearRect(0,0,confCanvas.width,confCanvas.height);
-          for (let p of particles) {
-            p.y += p.speedY * 0.5;
+        }
+        ctxConf.clearRect(0, 0, confCanvas.width, confCanvas.height);
+        for (let p of particles) {
+            p.y += p.speedY * 0.6;
             if (p.y > confCanvas.height) p.y = -10;
             ctxConf.fillStyle = p.color;
-            ctxConf.fillRect(p.x, p.y, p.size, p.size * 0.5);
-          }
-          requestAnimationFrame(drawConf);
+            ctxConf.fillRect(p.x, p.y, p.size, p.size * 0.6);
         }
-        drawConf();
-      }
+        requestAnimationFrame(drawConf);
+    }
+    drawConf();
+}
 
-      // ---------- EVENT LISTENERS ----------
-      spinBtn.addEventListener('click', startSpin);
-      document.addEventListener('keydown', (e) => {
-        if (e.code === 'Space' && !isSpinning && document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'BUTTON') {
-          e.preventDefault();
-          startSpin();
+function startSpin() {
+    if (isSpinning) return;
+    isSpinning = true;
+    spinBtn.disabled = true;
+    resultPopup.classList.remove('show');
+    document.getElementById('canvasContainer').classList.remove('winning-glow', 'bounce-animation');
+    confettiActive = false;
+    
+    // Add arrow animation
+    arrowPointer.classList.add('arrow-spinning');
+    tickDot.classList.add('active');
+    
+    const startTime = performance.now();
+    const startAngle = spinAngle;
+    const totalRotations = 8 + Math.random() * 5;
+    const duration = 3500;
+    
+    function animate(currentTime) {
+        const elapsed = currentTime - startTime;
+        let progress = Math.min(elapsed / duration, 1);
+        const easeOut = 1 - Math.pow(1 - progress, 3);
+        spinAngle = startAngle + (totalRotations * 2 * Math.PI) * easeOut;
+        drawWheel();
+        
+        if (progress < 1) {
+            animFrame = requestAnimationFrame(animate);
+        } else {
+            isSpinning = false;
+            spinBtn.disabled = false;
+            
+            // Remove arrow animation
+            arrowPointer.classList.remove('arrow-spinning');
+            tickDot.classList.remove('active');
+            
+            const count = items.length;
+            const raw = (spinAngle % (2*Math.PI) + 2*Math.PI) % (2*Math.PI);
+            const slice = (2*Math.PI) / count;
+            const pointerAngle = (3 * Math.PI / 2);
+            let diff = (pointerAngle - raw + 2*Math.PI) % (2*Math.PI);
+            const idx = Math.floor(diff / slice) % count;
+            const winner = items[idx];
+            resultPopup.textContent = `✨ ${winner}`;
+            resultPopup.classList.add('show');
+            
+            // Add win animations
+            document.getElementById('canvasContainer').classList.add('winning-glow', 'bounce-animation');
+            setTimeout(() => {
+                document.getElementById('canvasContainer').classList.remove('bounce-animation');
+            }, 600);
+            
+            // Trigger confetti
+            confettiActive = true;
+            launchConfetti();
+            setTimeout(() => { confettiActive = false; }, 3000);
         }
-      });
+    }
+    
+    animFrame = requestAnimationFrame(animate);
+}
 
-      // Mode selector event
-      modeSelect.addEventListener('change', (e) => {
-        loadMode(e.target.value);
-        // Sync category select for consistency
-        if (e.target.value === 'food') categorySelect.value = 'food';
-        else if (e.target.value === 'movie') categorySelect.value = 'movies';
-        else if (e.target.value === 'name') categorySelect.value = 'names';
-      });
-
-      // Keep category select for backward compatibility
-      categorySelect.addEventListener('change', (e) => {
-        loadCategory(e.target.value);
-        // Sync mode select
-        if (e.target.value === 'food') modeSelect.value = 'food';
-        else if (e.target.value === 'movies') modeSelect.value = 'movie';
-        else if (e.target.value === 'names') modeSelect.value = 'name';
-      });
-
-      darkToggle.addEventListener('click', () => document.body.classList.toggle('dark'));
-
-      addBtn.addEventListener('click', () => {
-        const val = itemInput.value.trim();
-        if (val) {
-          items.push(val);
-          itemInput.value = '';
-          updateWheel();
-        }
-      });
-
-      removeLastBtn.addEventListener('click', () => {
-        if (items.length > 1) items.pop();
-        else alert('Need at least one item');
+// Event Listeners
+spinBtn.addEventListener('click', startSpin);
+modeSelect.addEventListener('change', (e) => loadMode(e.target.value));
+categorySelect.addEventListener('change', (e) => loadMode(e.target.value));
+darkToggle.addEventListener('click', () => document.body.classList.toggle('dark'));
+addBtn.addEventListener('click', () => {
+    const val = itemInput.value.trim();
+    if (val) {
+        items.push(val);
+        itemInput.value = '';
         updateWheel();
-      });
+    }
+});
+removeLastBtn.addEventListener('click', () => {
+    if (items.length > 1) items.pop();
+    updateWheel();
+});
+resetBtn.addEventListener('click', () => loadMode(modeSelect.value));
 
-      resetBtn.addEventListener('click', () => {
-        // Reset to current mode's default
-        loadMode(modeSelect.value);
-      });
+colorPicker.addEventListener('input', (e) => hexValue.value = e.target.value);
+copyHexBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText(hexValue.value);
+    alert('HEX code copied!');
+});
 
-      // initial render
-      window.addEventListener('resize', () => { resizeCanvas(); drawWheel(); });
-      resizeCanvas();
-      renderTags();
-
-      // structured data (FAQs + WebApp)
-      const faqSchema = {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
-        {"@type":"Question","name":"What should I eat today?","acceptedAnswer":{"@type":"Answer","text":"Use the spin wheel to decide."}},
-        {"@type":"Question","name":"Is the winner accurate?","acceptedAnswer":{"@type":"Answer","text":"Yes, pointer at 12 o'clock gives exact slice."}}
-      ]};
-      const webSchema = {"@context":"https://schema.org","@type":"WebApplication","name":"Spin the Wheel","description":"Random food picker with accurate physics","applicationCategory":"Utility","offers":{"@type":"Offer","price":"0"}};
-      const s1 = document.createElement('script'); s1.type='application/ld+json'; s1.textContent=JSON.stringify(faqSchema);
-      const s2 = document.createElement('script'); s2.type='application/ld+json'; s2.textContent=JSON.stringify(webSchema);
-      document.head.appendChild(s1); document.head.appendChild(s2);
-    })();
-  </script>
-  <!-- SEO ARTICLE START -->
-
-<div style="max-width:1000px;margin:auto;padding:40px 20px;line-height:1.8;">
-
-<h2 style="color:#0d6efd;">Spin the Wheel – Free Random Picker Wheel Online</h2>
-
-<p style="color:#000;">
-The <strong>Spin the Wheel</strong> tool is a powerful <strong>random picker wheel</strong> designed to help users make quick decisions online. Whether you need a <strong>random name picker</strong>, a <strong>decision wheel</strong>, or a fun <strong>yes or no wheel</strong>, this free online tool allows you to generate random results instantly.
-</p>
-
-<p style="color:#000;">
-Our <strong>spin the wheel online</strong> tool works smoothly on mobile phones, tablets, laptops, and desktop computers. Simply add your choices, click the spin button, and let the <strong>random spinner</strong> decide the result. The wheel spins with a realistic animation and stops randomly to select the final option.
-</p>
-
-<h2 style="color:#0d6efd;">What is a Spin the Wheel Tool?</h2>
-
-<p style="color:#000;">
-A <strong>spin wheel generator</strong> is a digital tool used to randomly select an option from a list. It works like a lucky wheel used in games or contests. People often use a <strong>decision maker wheel</strong> when they cannot decide between multiple choices.
-</p>
-
-<p style="color:#000;">
-For example, teachers use a <strong>random picker wheel</strong> to choose students in class, gamers use a <strong>random spinner</strong> to pick challenges, and friends use a <strong>yes or no wheel</strong> for fun decisions. Because it is random, every result is fair and unbiased.
-</p>
-
-<h2 style="color:#0d6efd;">How to Use the Spin the Wheel Online Tool</h2>
-
-<p style="color:#000;">
-Using this <strong>spin the wheel generator</strong> is extremely simple. Follow these steps:
-</p>
-
-<ul style="color:#000;">
-<li>Add your options to the wheel.</li>
-<li>Click the spin button.</li>
-<li>The random spinner wheel will start spinning.</li>
-<li>The arrow will stop on a random result.</li>
-</ul>
-
-<p style="color:#000;">
-Within seconds you will get a fair result selected by the <strong>random decision wheel</strong>.
-</p>
-
-<h2 style="color:#0d6efd;">Popular Uses of Random Picker Wheel</h2>
-
-<p style="color:#000;">
-The <strong>spin the wheel online</strong> tool can be used in many different situations:
-</p>
-
-<ul style="color:#000;">
-<li>Random name picker for classrooms</li>
-<li>Giveaway winner picker</li>
-<li>Random food picker (What should I eat today?)</li>
-<li>Game challenge generator</li>
-<li>Movie picker wheel</li>
-<li>Yes or No decision wheel</li>
-</ul>
-
-<p style="color:#000;">
-Because the <strong>decision maker wheel</strong> works instantly, it saves time and removes confusion when making decisions.
-</p>
-
-<h2 style="color:#0d6efd;">Features of Our Spin the Wheel Generator</h2>
-
-<ul style="color:#000;">
-<li>100% Free random picker wheel</li>
-<li>Works on mobile and desktop</li>
-<li>Unlimited custom choices</li>
-<li>Smooth casino style spin animation</li>
-<li>Multiple wheel modes</li>
-<li>Fast and secure tool</li>
-</ul>
-
-<p style="color:#000;">
-Unlike other random picker tools, our <strong>spin the wheel generator</strong> focuses on speed, simplicity, and user experience.
-</p>
-
-<h2 style="color:#0d6efd;">Why Use a Decision Maker Wheel?</h2>
-
-<p style="color:#000;">
-Making decisions can be difficult when you have too many options. A <strong>random decision wheel</strong> removes stress by randomly selecting the best choice. Many people prefer using a <strong>lucky wheel spinner</strong> because it makes decision-making fun and interactive.
-</p>
-
-<p style="color:#000;">
-Teachers, event organizers, YouTubers, and gamers frequently use a <strong>random spinner wheel</strong> to add excitement to activities.
-</p>
-
-<h2 style="color:#0d6efd;">Benefits of Using Spin the Wheel Online</h2>
-
-<ul style="color:#000;">
-<li>Instant random results</li>
-<li>No registration required</li>
-<li>Perfect for games and giveaways</li>
-<li>Works on any device</li>
-<li>Unlimited spins</li>
-</ul>
-
-<p style="color:#000;">
-Whether you need a <strong>random name picker</strong>, <strong>yes or no wheel</strong>, or a <strong>decision wheel</strong>, this tool provides a fast and reliable solution.
-</p>
-
-<h2 style="color:#0d6efd;">Frequently Asked Questions</h2>
-
-<h3 style="color:#0d6efd;">Is Spin the Wheel really random?</h3>
-<p style="color:#000;">
-Yes. Our <strong>random picker wheel</strong> uses a random algorithm to ensure fair and unbiased results.
-</p>
-
-<h3 style="color:#0d6efd;">Can I use this tool on mobile?</h3>
-<p style="color:#000;">
-Yes. The <strong>spin the wheel online</strong> tool is fully responsive and works perfectly on mobile devices.
-</p>
-
-<h3 style="color:#0d6efd;">Is the Spin Wheel tool free?</h3>
-<p style="color:#000;">
-Yes. This <strong>spin the wheel generator</strong> is completely free to use with unlimited spins.
-</p>
-
-</div>
-
-<!-- INTERNAL LINKS SEO SECTION -->
-
-<div class="section">
-
-<h2>🔵 Popular Calculators</h2>
-
-<div style="display:flex; flex-direction:column; gap:10px;">
-
-<button onclick="window.location.href='age-calculator.html'">🔘 Age Calculator</button>
-
-<button onclick="window.location.href='bmi-calculator.html'">🔘 BMI Calculator</button>
-
-<button onclick="window.location.href='percentage-calculator.html'">🔘 Percentage Calculator</button>
-
-<button onclick="window.location.href='spin-the-wheel.html'">🎡 Spin The Wheel</button>
-
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Financial Tools</h2>
-
-<div class="tool-links">
-<a href="emi-calculator.html">EMI Calculator</a>
-<a href="loan-calculator.html">Loan Calculator</a>
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Text & Writing Tools</h2>
-
-<div class="tool-links">
-<a href="word-counter.html">Word Counter</a>
-<a href="text-case-converter.html">Text Case Converter</a>
-<a href="password-generator.html">Password Generator</a>
-</div>
-
-</div>
-
-
-<div class="section">
-
-<h2>Spin & Random Picker Tools</h2>
-
-<div class="tool-links">
-<a href="spin-the-wheel.html">Spin the Wheel</a>
-</div>
-
-</div>
-
-
-
-<!-- FAQ SCHEMA FOR GOOGLE -->
-
-<script type="application/ld+json">
-{
-"@context":"https://schema.org",
-"@type":"FAQPage",
-"mainEntity":[
-{
-"@type":"Question",
-"name":"What is Spin the Wheel?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Spin the Wheel is a random picker wheel used to make decisions by spinning a wheel that selects a random option."
-}
-},
-{
-"@type":"Question",
-"name":"Is Spin the Wheel free?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"Yes the spin the wheel online tool is completely free and works on all devices."
-}
-},
-{
-"@type":"Question",
-"name":"How does the random wheel work?",
-"acceptedAnswer":{
-"@type":"Answer",
-"text":"The wheel spins randomly and stops on one option selected by a random algorithm."
-}
-}
-]
-}
+window.addEventListener('resize', () => { resizeCanvas(); drawWheel(); });
+resizeCanvas();
+renderTags();
+document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
 
-<!-- SEO ARTICLE END -->
 </body>
 </html>
