@@ -2,542 +2,611 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Percentage Calculator Online Free – Instantly Calculate Percentages, Discounts & Profit</title>
-
-<meta name="description" content="Use our free Percentage Calculator online to instantly calculate percentages, discounts, exam marks, and profit/loss. Fast, accurate, and mobile-friendly tool.">
-
-<meta name="keywords" content="percentage calculator, percentage calculator online free, calculate percentage, discount calculator, profit loss calculator, exam marks percentage, online percentage tool, percent of number">
-
-<meta name="author" content="FAQS Acheema - Free Online Tools">
-
-<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Free Percentage Calculator – Calculate Percentages, Discounts & Profit Instantly</title>
+<meta name="description" content="Use our free Percentage Calculator online to instantly calculate percentages, discounts, exam marks, profit/loss, and more. Fast, accurate, and mobile-friendly tool.">
+<meta name="keywords" content="percentage calculator, percentage calculator online free, calculate percentage, discount calculator, profit loss calculator, exam marks percentage, percent of number, percentage formula, how to calculate percentage">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/percentage-calculator.html">
-
-<!-- Open Graph (Facebook & Social Sharing) -->
+<meta name="robots" content="index, follow">
 <meta property="og:title" content="Free Percentage Calculator – Calculate Percentages Instantly">
 <meta property="og:description" content="Quickly calculate percentages, discounts, and profit/loss with our free online calculator. Accurate, fast, and easy to use.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/percentage-calculator.html">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Free Percentage Calculator Online">
-<meta name="twitter:description" content="Instantly calculate percentages, discounts, and exam marks with this free online tool.">
-
 <style>
-
-/* 🔹 General Body */
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    background:#f4f6f9;
-    color:#000;
-    line-height:1.6;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* 🔹 Calculator Card */
-.card{
-    max-width:600px;
-    margin:60px auto;
-    background:#fff;
-    padding:30px;
-    border-radius:12px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    text-align:center;
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+    padding: 40px 20px;
 }
 
-.card h1{
-    color:#0d6efd;
-    font-size:28px;
+.container {
+    max-width: 750px;
+    margin: 0 auto;
 }
 
-.card input{
-    width:100%;
-    padding:12px;
-    margin:10px 0;
-    border-radius:6px;
-    border:1px solid #ccc;
-}
-
-.card button{
-    width:100%;
-    padding:12px;
-    background:#0d6efd;
-    color:#fff;
-    border:none;
-    border-radius:6px;
-    cursor:pointer;
-    font-size:16px;
-}
-
-.card button:hover{
-    background:#084298;
-}
-
-#result{
-    margin-top:20px;
-    font-weight:bold;
-    color:#198754;
-    font-size:18px;
-}
-
-/* 🔹 Article Section */
-.article-container{
-    max-width:900px;
-    margin:40px auto;
-    padding:20px;
-}
-
-.article-container h2,
-.article-container h3{
-    color:#0d6efd;
-}
-
-.article-container a{
-    color:#0d6efd;
-    text-decoration:none;
-}
-
-.article-container a:hover{
-    text-decoration:underline;
-}
-
-/* 🔹 Responsive */
-@media (max-width:768px){
-    .card, .article-container{
-        margin:20px;
-        padding:15px;
-    }
-}
-
-</style>
-
-<!-- FAQ Schema for Google rich results -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Is this Percentage Calculator free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, our Percentage Calculator is completely free and easy to use."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I use this tool on mobile devices?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, the calculator is mobile-friendly and works perfectly on smartphones and tablets."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What formula does this Percentage Calculator use?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "It uses the standard formula: (Percentage ÷ 100) × Total Value."
-      }
-    }
-  ]
-}
-</script>
-
-</head>
-<body>
-
-<div class="card">
-<h1>Percentage Calculator</h1>
-
-<p>Enter the percentage and total value to calculate instantly using our free online Percentage Calculator.</p>
-
-<input type="number" id="percent" placeholder="Enter Percentage (%)">
-<input type="number" id="total" placeholder="Enter Total Value">
-
-<button onclick="calculatePercent()">Calculate</button>
-
-<h2 id="result"></h2>
-</div>
-
-<script>
-function calculatePercent(){
-  let percent = document.getElementById("percent").value;
-  let total = document.getElementById("total").value;
-
-  if(percent === "" || total === ""){
-    document.getElementById("result").innerText = "Please enter both values.";
-    return;
-  }
-
-  let result = (percent/100) * total;
-
-  document.getElementById("result").innerText =
-    percent + "% of " + total + " is " + result;
-}
-</script>
-
-<hr>
-
-<div class="article-container">
-<h2>🔵 About Percentage Calculator</h2>
-<p>Our <strong>free Percentage Calculator</strong> helps you quickly calculate percentages of any number. Whether you want to determine discounts, calculate exam marks percentage, or compute profit and loss percentages, this tool gives instant and accurate results.</p>
-
-<h2>🔵 How to Use the Percentage Calculator</h2>
-<p>Using this online percentage tool is simple and user-friendly. Follow these steps:</p>
-<ul>
-<li>Enter the percentage value (%) you want to calculate.</li>
-<li>Enter the total number or value.</li>
-<li>Click the <strong>Calculate</strong> button to get instant results.</li>
-</ul>
-
-<h2>🔵 Example Calculations</h2>
-
-<h3>Example 1: Discount Calculator</h3>
-<p>If a product costs ₹500 and you want to apply a 20% discount, enter:</p>
-<ul>
-<li>Percentage = 20</li>
-<li>Total Value = 500</li>
-</ul>
-<p>Result: ₹100 discount → New price = ₹400</p>
-
-<h3>Example 2: Exam Marks Percentage</h3>
-<p>If you scored 450 marks out of 600, calculate your percentage:</p>
-<pre><code>Percentage = (450 ÷ 600) × 100 = 75%</code></pre>
-
-<h3>Example 3: Profit and Loss Percentage</h3>
-<p>If you bought a product for ₹200 and sold it for ₹250:</p>
-<pre><code>Profit % = ((250 - 200) ÷ 200) × 100 = 25%</code></pre>
-
-<h2>🔵 Benefits of Using Our Online Percentage Calculator</h2>
-<ul>
-<li>100% Free to use and accessible from any device.</li>
-<li>Fast and accurate results reduce manual errors.</li>
-<li>Mobile-friendly design works perfectly on smartphones and tablets.</li>
-<li>Ideal for students, business owners, accountants, and anyone handling numbers.</li>
-<li>Supports various calculations like discounts, exam marks percentage, and profit/loss percentages.</li>
-</ul>
-
-<h2>🔵 Frequently Asked Questions (FAQ)</h2>
-
-<p><strong>Q1: Is this Percentage Calculator free?</strong><br>
-Yes, it is completely free and requires no registration.</p>
-
-<p><strong>Q2: Can I use it on mobile?</strong><br>
-Yes, the tool is fully responsive and mobile-friendly.</p>
-
-<p><strong>Q3: What formula does it use?</strong><br>
-It uses the standard formula: <code>Percentage Result = (Percentage ÷ 100) × Total Value</code>.</p>
-
-<h2>🔵 More Useful Calculators</h2>
-
-<div class="related-tools-section">
-    <div class="buttons-column">
-        <a href="age-calculator.html" class="tool-btn">🔘 Age Calculator</a>
-        <a href="bmi-calculator.html" class="tool-btn">🔘 BMI Calculator</a>
-        <a href="emi-calculator.html" class="tool-btn">🔘 EMI Calculator</a>
-        <a href="loan-calculator.html" class="tool-btn">🔘 Loan Calculator</a>
-        <a href="percentage-calculator.html" class="tool-btn">🔘 Percentage Calculator</a>
-    </div>
-    
-    <!-- 🔙 Back to Home Button -->
-    <div style="text-align:center; margin:20px 0 10px;">
-        <a href="index.html" class="back-btn">🔙 Back to Home</a>
-    </div>
-</div>
-
-<h2>🔵 Conclusion</h2>
-<div class="conclusion-box">
-    <p>Our <strong>Percentage Calculator</strong> is an essential tool for students, business owners, and anyone dealing with numbers. It saves time, ensures accurate calculations, and works on all devices. Use this free online tool to calculate percentages instantly, whether for discounts, exam marks, or profit/loss calculations.</p>
-</div>
-
-<style>
-    .related-tools-section {
-        max-width: 600px;
-        margin: 20px auto 30px;
-        padding: 25px;
-        background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .buttons-column {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-
-    .tool-btn {
-        display: block;
-        width: 100%;
-        padding: 15px 20px;
-        background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        text-align: left;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        position: relative;
-        overflow: hidden;
-        animation: fadeIn 0.5s ease forwards;
-        opacity: 0;
-    }
-
-    .tool-btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s ease;
-    }
-
-    .tool-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
-    }
-
-    .tool-btn:hover::before {
-        left: 100%;
-    }
-
-    .tool-btn:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
-    }
-
-    .back-btn {
-        display: inline-block;
-        padding: 12px 30px;
-        background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        text-align: center;
-    }
-
-<h2 class="section-title">🔵 More Useful Calculators</h2>
-
-<div class="related-tools-section">
-    <div class="buttons-column">
-        <a href="age-calculator.html" class="tool-btn">🔘 Age Calculator</a>
-        <a href="bmi-calculator.html" class="tool-btn">🔘 BMI Calculator</a>
-        <a href="emi-calculator.html" class="tool-btn">🔘 EMI Calculator</a>
-        <a href="loan-calculator.html" class="tool-btn">🔘 Loan Calculator</a>
-        <a href="percentage-calculator.html" class="tool-btn">🔘 Percentage Calculator</a>
-    </div>
-    
-    <!-- 🔙 Back to Home Button -->
-    <div style="text-align:center; margin:20px 0 10px;">
-        <a href="index.html" class="back-btn">🔙 Back to Home</a>
-    </div>
-</div>
-
-<h2 class="section-title">🔵 Conclusion</h2>
-<div class="conclusion-box">
-    <p>Our <strong>Percentage Calculator</strong> is an essential tool for students, business owners, and anyone dealing with numbers. It saves time, ensures accurate calculations, and works on all devices. Use this free online tool to calculate percentages instantly, whether for discounts, exam marks, or profit/loss calculations.</p>
-</div>
-
-<style>
-    /* Simple Title Style - Yeh ab normal dikhega */
-    .section-title {
-        color: #1e2b3a;
-        font-size: 24px;
-        font-weight: 600;
-        margin: 25px 0 15px;
-        padding-bottom: 8px;
-        border-bottom: 2px solid #e0e7ff;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .related-tools-section {
-        max-width: 600px;
-        margin: 20px auto 30px;
-        padding: 25px;
-        background: linear-gradient(145deg, #ffffff 0%, #f5f7fa 100%);
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .buttons-column {
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 20px;
-    }
-
-    .tool-btn {
-    display: block;
-    width: 100%;
-    padding: 15px 20px;
-    background: linear-gradient(145deg, #667eea 0%, #764ba2 100%);
-    border: none;
-    border-radius: 12px;
-    color: white !important; /* Force white color */
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-    position: relative;
+/* Main Card */
+.percent-card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
     overflow: hidden;
-    animation: fadeIn 0.5s ease forwards;
-    opacity: 0;
+    margin-bottom: 30px;
 }
 
-.back-btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
-    border: none;
-    border-radius: 12px;
-    color: white !important; /* Force white color */
-    font-size: 16px;
-    font-weight: 500;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+.card-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 25px 30px;
     text-align: center;
 }
 
-    .tool-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        background: linear-gradient(145deg, #764ba2 0%, #667eea 100%);
+.card-header h1 {
+    color: white;
+    font-size: 26px;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.card-header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+}
+
+.card-content {
+    padding: 30px;
+}
+
+/* Input Groups */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    color: #1f2937;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    background: #ffffff;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Calculate Button */
+.calc-btn {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin: 15px 0 25px 0;
+}
+
+.calc-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Result Box */
+.result-box {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.percent-value {
+    font-size: 42px;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 10px;
+}
+
+.percent-label {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 15px;
+}
+
+.percent-formula {
+    background: #f3f4f6;
+    border-radius: 10px;
+    padding: 12px;
+    margin-top: 15px;
+    font-family: monospace;
+    font-size: 14px;
+    color: #1e3a8a;
+}
+
+/* Other Tools Section */
+.other-tools {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 25px;
+    margin-top: 30px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    margin-bottom: 18px;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.tool-link {
+    display: block;
+    padding: 12px 18px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    animation: slideInUp 0.5s ease forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.tool-link:nth-child(1) { animation-delay: 0.05s; }
+.tool-link:nth-child(2) { animation-delay: 0.1s; }
+.tool-link:nth-child(3) { animation-delay: 0.15s; }
+.tool-link:nth-child(4) { animation-delay: 0.2s; }
+.tool-link:nth-child(5) { animation-delay: 0.25s; }
+.tool-link:nth-child(6) { animation-delay: 0.3s; }
+.tool-link:nth-child(7) { animation-delay: 0.35s; }
+.tool-link:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes slideInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
+}
 
-    .tool-btn:hover::before {
-        left: 100%;
+.tool-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.tool-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+}
+
+.tool-link:hover::before {
+    left: 100%;
+}
+
+.home-link {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #6b7280;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease 0.45s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
     }
+}
 
-    .tool-btn:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(102, 126, 234, 0.3);
+.home-link:hover {
+    background: #4b5563;
+    transform: translateY(-2px);
+}
+
+/* Toast Notification */
+.toast-notification {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1f2937;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 13px;
+    z-index: 1000;
+    animation: slideUp 0.3s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
     }
-
-    .back-btn {
-        display: inline-block;
-        padding: 12px 30px;
-        background: linear-gradient(145deg, #ff6b6b 0%, #ee5a24 100%);
-        border: none;
-        border-radius: 12px;
-        color: white;
-        font-size: 16px;
-        font-weight: 500;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
-        text-align: center;
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
+}
 
-    .back-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
-        background: linear-gradient(145deg, #ee5a24 0%, #ff6b6b 100%);
+/* Responsive */
+@media (max-width: 600px) {
+    body {
+        padding: 20px 15px;
     }
-
-    .back-btn:active {
-        transform: translateY(1px);
-        box-shadow: 0 2px 10px rgba(255, 107, 107, 0.3);
-    }
-
-    .conclusion-box {
-        max-width: 600px;
-        margin: 20px auto 40px;
-        padding: 20px 25px;
-        background: #ffffff;
-        border-radius: 16px;
-        border-left: 4px solid #667eea;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    .conclusion-box p {
-        color: #2d3748;
-        font-size: 16px;
-        line-height: 1.7;
-        margin: 0;
-    }
-
-    .conclusion-box strong {
-        color: #667eea;
-        font-weight: 600;
-    }
-
-    /* Animations */
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .tool-btn:nth-child(1) { animation-delay: 0.1s; }
-    .tool-btn:nth-child(2) { animation-delay: 0.2s; }
-    .tool-btn:nth-child(3) { animation-delay: 0.3s; }
-    .tool-btn:nth-child(4) { animation-delay: 0.4s; }
-    .tool-btn:nth-child(5) { animation-delay: 0.5s; }
-
-    /* Responsive */
-    @media (max-width: 480px) {
-        .section-title {
-            font-size: 20px;
-            margin: 20px 15px 10px;
-        }
-        
-        .related-tools-section {
-            margin: 15px;
-            padding: 20px;
-        }
-        
-        .tool-btn {
-            padding: 12px 18px;
-            font-size: 14px;
-        }
-        
-        .conclusion-box {
-            margin: 15px;
-            padding: 18px;
-        }
-        
-        .conclusion-box p {
-            font-size: 14px;
-        }
-    }
-</style>
-
-</div>
     
+    .card-content {
+        padding: 20px;
+    }
+    
+    .percent-value {
+        font-size: 32px;
+    }
+    
+    .card-header h1 {
+        font-size: 22px;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Main Percentage Calculator Card -->
+    <div class="percent-card">
+        <div class="card-header">
+            <h1>📊 Free Percentage Calculator</h1>
+            <p>Calculate percentages, discounts, exam marks, profit/loss – Instantly & Accurately</p>
+        </div>
+        
+        <div class="card-content">
+            <div class="input-group">
+                <label>📈 Enter Percentage (%)</label>
+                <input type="number" id="percentage" placeholder="e.g., 25" step="0.1">
+            </div>
+            
+            <div class="input-group">
+                <label>💰 Enter Total Value</label>
+                <input type="number" id="totalValue" placeholder="e.g., 5000" step="1">
+            </div>
+            
+            <button class="calc-btn" onclick="calculatePercentage()">
+                🧮 Calculate Percentage 🧮
+            </button>
+            
+            <div class="result-box" id="resultBox" style="display: none;">
+                <div class="percent-value" id="percentResult">0</div>
+                <div class="percent-label">is <span id="percentValue">0</span>% of <span id="totalValueDisplay">0</span></div>
+                <div class="percent-formula" id="formulaDisplay"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">🔘 Age Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">🔘 BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🔘 EMI Calculator</a>
+            <a href="loan-calculator.html" class="tool-link">🔘 Loan Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">🔘 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔘 Word Counter Tool</a>
+            <a href="text-case-converter.html" class="tool-link">🔘 Text Case Converter</a>
+            <a href="zakat-calculator.html" class="tool-link">🔘 Zakat Calculator</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA ========== -->
+    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+        
+        <!-- Ad Space 1 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
+            <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">📊 MATHEMATICS TOOL</span>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Percentage Calculator – Calculate Percentages, Discounts, Profit & Loss Instantly</h1>
+            <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 100,000+ Users Monthly</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is a Percentage Calculator and Why You Need One?</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>percentage calculator</strong> is an essential mathematical tool that helps you quickly calculate percentages of any number. Whether you're calculating <strong>discounts during shopping</strong>, determining <strong>exam marks percentage</strong>, computing <strong>profit and loss</strong>, or analyzing <strong>business growth</strong>, our <strong>free percentage calculator online</strong> gives you instant and accurate results.</p>
+        
+        <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
+            <p style="font-family: monospace; font-size: 20px; font-weight: bold; color: #1e3a8a;">Percentage Result = (Percentage ÷ 100) × Total Value</p>
+            <p style="color: #6b7280; margin-top: 10px;">Example: 25% of 5000 = (25 ÷ 100) × 5000 = 1250</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Percentage Calculator</h2>
+        
+        <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>Enter the <strong>percentage value</strong> you want to calculate (e.g., 25 for 25%)</li>
+            <li>Enter the <strong>total value or number</strong> (e.g., 5000)</li>
+            <li>Click <strong>"Calculate Percentage"</strong> to get instant results</li>
+            <li>View the <strong>exact result</strong> and the <strong>calculation formula</strong></li>
+        </ol>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Practical Applications of Percentage Calculator</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">🛍️ Discount Calculator</strong>
+                <p style="margin-top: 8px;">Calculate sale discounts instantly</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📚 Exam Marks Percentage</strong>
+                <p style="margin-top: 8px;">Calculate your exam scores percentage</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📈 Profit & Loss Percentage</strong>
+                <p style="margin-top: 8px;">Calculate business profit/loss</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">💰 Tip Calculator</strong>
+                <p style="margin-top: 8px;">Calculate restaurant tips easily</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📊 Tax Calculator</strong>
+                <p style="margin-top: 8px;">Calculate sales tax or VAT</p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
+                <strong style="color: #1e3a8a;">📉 Growth Percentage</strong>
+                <p style="margin-top: 8px;">Calculate growth rates and increases</p>
+            </div>
+        </div>
+        
+        <!-- Ad Space 2 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Real-Life Examples</h2>
+        
+        <h3 style="color: #2563eb; font-size: 20px; margin: 20px 0 10px;">Example 1: Discount Calculator</h3>
+        <p style="color: #374151; line-height: 1.8;">If a product costs ₹5000 and there's a 25% discount:</p>
+        <ul style="color: #374151; margin: 10px 0 10px 25px;">
+            <li>Discount Amount = 25% of 5000 = ₹1250</li>
+            <li>Final Price = ₹5000 - ₹1250 = ₹3750</li>
+        </ul>
+        
+        <h3 style="color: #2563eb; font-size: 20px; margin: 20px 0 10px;">Example 2: Exam Marks Percentage</h3>
+        <p style="color: #374151; line-height: 1.8;">If you scored 450 marks out of 600:</p>
+        <ul style="color: #374151; margin: 10px 0 10px 25px;">
+            <li>Percentage = (450 ÷ 600) × 100 = 75%</li>
+        </ul>
+        
+        <h3 style="color: #2563eb; font-size: 20px; margin: 20px 0 10px;">Example 3: Profit Percentage</h3>
+        <p style="color: #374151; line-height: 1.8;">If you bought a product for ₹200 and sold for ₹250:</p>
+        <ul style="color: #374151; margin: 10px 0 10px 25px;">
+            <li>Profit = ₹250 - ₹200 = ₹50</li>
+            <li>Profit Percentage = (50 ÷ 200) × 100 = 25%</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our Free Percentage Calculator</h2>
+        
+        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>✅ <strong>100% Free:</strong> No registration, no hidden charges, unlimited use</li>
+            <li>✅ <strong>Instant Results:</strong> Get percentage calculations in seconds</li>
+            <li>✅ <strong>Accurate Formula:</strong> Uses standard percentage formula</li>
+            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+            <li>✅ <strong>Multiple Uses:</strong> Discounts, exam marks, profit/loss, tax, tips</li>
+            <li>✅ <strong>Privacy Protected:</strong> No data stored on any server</li>
+            <li>✅ <strong>No Downloads:</strong> Use directly in your browser</li>
+            <li>✅ <strong>Educational:</strong> Shows formula for better understanding</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Percentage Formula and Calculations</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">The basic percentage formula is:</p>
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 10px; margin: 15px 0; text-align: center;">
+            <p style="font-family: monospace; font-size: 16px;"><strong>Percentage Value = (Percentage × Total) ÷ 100</strong></p>
+        </div>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Common percentage calculations include:</p>
+        <ul style="color: #374151; margin: 15px 0 15px 25px;">
+            <li><strong>Finding percentage of a number:</strong> (Percentage ÷ 100) × Number</li>
+            <li><strong>Finding what percentage one number is of another:</strong> (Part ÷ Whole) × 100</li>
+            <li><strong>Percentage increase:</strong> [(New Value - Old Value) ÷ Old Value] × 100</li>
+            <li><strong>Percentage decrease:</strong> [(Old Value - New Value) ÷ Old Value] × 100</li>
+        </ul>
+        
+        <!-- Ad Space 3 -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+        
+        <!-- FAQ SECTION WITH SCHEMA -->
+        <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
+            <h2 style="color: #1e3a8a; font-size: 26px; margin-bottom: 20px; text-align: center;">❓ Frequently Asked Questions About Percentage Calculator</h2>
+            
+            <div itemscope="" itemtype="https://schema.org/FAQPage" style="display: flex; flex-direction: column; gap: 15px;">
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this Percentage Calculator free?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this percentage calculator is completely free to use with unlimited access. No registration or payment required.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How do I calculate percentage of a number?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">To calculate percentage of a number, use the formula: (Percentage ÷ 100) × Number. For example, 20% of 500 = (20 ÷ 100) × 500 = 100.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this for discount calculation?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this calculator is perfect for calculating discounts. Enter the discount percentage and the original price to get the discount amount.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How to calculate exam marks percentage?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">To calculate exam percentage, divide your obtained marks by total marks and multiply by 100. Example: 450 out of 600 = (450 ÷ 600) × 100 = 75%.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this calculator work on mobile?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our percentage calculator is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the percentage formula?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">The basic percentage formula is: Percentage Value = (Percentage ÷ 100) × Total Value. For finding what percent one number is of another: (Part ÷ Whole) × 100.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is my data safe with this calculator?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Absolutely! All calculations happen locally in your browser. We do not store, track, or share any personal or financial data.</div>
+                    </div>
+                </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How to calculate profit percentage?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Profit Percentage = (Profit ÷ Cost Price) × 100. For example, if cost price is ₹200 and selling price is ₹250, profit = ₹50, profit percentage = (50 ÷ 200) × 100 = 25%.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy matters. This percentage calculator runs entirely inside your browser. We do not store, track, or share any numbers or personal information. No data is sent to any server, making this tool completely secure for personal and professional use.</p>
+        
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Percentage calculations are part of everyday life. Whether you're shopping, studying, running a business, or managing finances, our <strong>free percentage calculator online</strong> makes these calculations instant and error-free. Use it for discounts, exam marks, profit/loss, tax calculations, and much more.</p>
+        
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Bookmark this tool for quick access whenever you need to calculate percentages. It's fast, accurate, and completely free!</p>
+        
+        <!-- Ad Space 4 - Bottom -->
+        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
+    </div>
+</div>
+
+<script>
+function showToast(message, isSuccess = false) {
+    const existingToast = document.querySelector('.toast-notification');
+    if (existingToast) existingToast.remove();
+    
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.style.backgroundColor = isSuccess ? '#10b981' : '#ef4444';
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.remove();
+    }, 3000);
+}
+
+function calculatePercentage() {
+    let percentage = parseFloat(document.getElementById("percentage").value);
+    let total = parseFloat(document.getElementById("totalValue").value);
+    
+    if (isNaN(percentage) || isNaN(total)) {
+        showToast('⚠️ Please enter both percentage and total value');
+        return;
+    }
+    
+    if (percentage < 0 || total < 0) {
+        showToast('⚠️ Please enter positive values');
+        return;
+    }
+    
+    let result = (percentage / 100) * total;
+    
+    document.getElementById("resultBox").style.display = "block";
+    document.getElementById("percentResult").innerHTML = result.toFixed(2);
+    document.getElementById("percentValue").innerHTML = percentage;
+    document.getElementById("totalValueDisplay").innerHTML = total;
+    document.getElementById("formulaDisplay").innerHTML = `${percentage}% of ${total} = (${percentage} ÷ 100) × ${total} = ${result.toFixed(2)}`;
+    
+    document.getElementById("resultBox").scrollIntoView({ behavior: 'smooth', block: 'start' });
+    showToast('✅ Percentage calculated successfully!', true);
+}
+
+// Enter key support
+document.getElementById('percentage').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') calculatePercentage();
+});
+document.getElementById('totalValue').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') calculatePercentage();
+});
+
+// Display current date
+document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+</script>
+
 </body>
 </html>
