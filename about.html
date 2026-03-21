@@ -2,68 +2,369 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Primary SEO -->
-<title>About Us – Free Online Tools</title>
-<meta name="description" content="Learn more about Free Online Tools, your destination for free calculators, converters, and online utilities. Simple, fast, and mobile-friendly tools for everyday use.">
-<meta name="keywords" content="about Free Online Tools, online calculators, free tools online, utility tools, web tools">
-<meta name="author" content="Free Online Tools">
-<meta name="robots" content="index, follow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>About Us – Free Online Tools | Professional Calculators & Utilities</title>
+<meta name="description" content="Learn about Free Online Tools – our mission to provide 100% free, accurate, and easy-to-use online calculators and utilities for everyone.">
+<meta name="keywords" content="about us, free online tools, online calculators, about free tools">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/about.html">
-
-<!-- Open Graph for social sharing -->
-<meta property="og:title" content="About Us – Free Online Tools">
-<meta property="og:description" content="Discover Free Online Tools, providing free calculators, converters, and utilities for quick and easy online use. Mobile-friendly and accessible for everyone.">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Free Online Tools">
-<meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/about.html">
-
-<!-- Twitter Card for social sharing -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About Us – Free Online Tools">
-<meta name="twitter:description" content="Discover Free Online Tools, providing free calculators, converters, and utilities for quick and easy online use. Mobile-friendly and accessible for everyone.">
-
+<meta name="robots" content="index, follow">
 <style>
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
-    background: #f4f6f9;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
-.container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
 }
-h1 {
-    color: #0d6efd;
+
+/* Navbar */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-a {
-    color: #0d6efd;
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
     text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover, .nav-links li a.active {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 100;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+}
+
+/* Header */
+.page-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* Content */
+.container {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.content-card {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.content-card h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin: 30px 0 15px;
+    border-left: 4px solid #2563eb;
+    padding-left: 15px;
+}
+
+.content-card h2:first-of-type {
+    margin-top: 0;
+}
+
+.content-card h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.content-card p {
+    color: #374151;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.content-card ul {
+    margin: 15px 0 15px 25px;
+    color: #374151;
+    line-height: 1.8;
+}
+
+.content-card li {
+    margin: 8px 0;
+}
+
+/* Footer */
+.footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 50px 20px 30px;
+    margin-top: 40px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.footer-col a {
+    display: block;
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 5px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #374151;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .nav-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-links {
+        justify-content: center;
+    }
+    .content-card {
+        padding: 25px;
+    }
+    .page-header h1 {
+        font-size: 1.8rem;
+    }
+    .footer-container {
+        text-align: center;
+    }
 }
 </style>
 </head>
 <body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><a href="index.html">✨ Free Online Tools</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content">
+                    <div class="dropdown-category" onclick="toggleCategory(event, this)">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools"><a href="age-calculator.html">📅 Age Calculator</a><a href="bmi-calculator.html">⚖️ BMI Calculator</a><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
+                    <div class="dropdown-category" onclick="toggleCategory(event, this)">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools"><a href="emi-calculator.html">🏦 EMI Calculator</a><a href="loan-calculator.html">📋 Loan Calculator</a><a href="zakat-calculator.html">🕌 Zakat Calculator</a></div>
+                    <div class="dropdown-category" onclick="toggleCategory(event, this)">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools"><a href="word-counter.html">🔢 Word Counter</a><a href="text-case-converter.html">🔤 Text Case Converter</a><a href="password-generator.html">🔐 Password Generator</a></div>
+                    <div class="dropdown-category" onclick="toggleCategory(event, this)">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools"><a href="spin-the-wheel.html">🎡 Spin The Wheel</a></div>
+                </div>
+            </li>
+            <li><a href="about.html" class="active">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<header class="page-header">
+    <h1>About Us</h1>
+    <p>Learn more about Free Online Tools and our mission</p>
+</header>
+
 <div class="container">
-
-<h1>About Us</h1>
-
-<p>Welcome to Free Online Tools, your one-stop destination for simple and useful online calculators and utilities.</p>
-
-<p>Our website provides free tools such as Age Calculator, EMI Calculator, BMI Calculator, Password Generator, Word Counter, Loan Eligibility Calculator, Percentage Calculator, and Unit Converter.</p>
-
-<p>Our mission is to make everyday calculations quick, easy, and accessible for everyone without requiring downloads or registration.</p>
-
-<p>All tools are mobile-friendly and work directly in your browser.</p>
-
-<br><br>
-<a href="index.html">← Back to Home</a>
-
+    <div class="content-card">
+        <h2>✨ Who We Are</h2>
+        <p>Welcome to <strong>Free Online Tools</strong> – your one-stop destination for fast, accurate, and completely free online calculators and utilities. We are a team dedicated to providing high-quality digital tools that make everyday calculations and tasks simple and efficient.</p>
+        
+        <h2>🎯 Our Mission</h2>
+        <p>Our mission is to offer <strong>100% free, accessible, and reliable online tools</strong> to users around the world. We believe that essential tools like age calculators, BMI calculators, financial calculators, and text utilities should be available to everyone without any cost or registration.</p>
+        
+        <h2>🌟 What Makes Us Different</h2>
+        <ul>
+            <li><strong>100% Free Forever:</strong> No hidden charges, no premium versions – all tools are completely free to use.</li>
+            <li><strong>No Registration Required:</strong> Use any tool instantly without creating an account or sharing personal information.</li>
+            <li><strong>Mobile Friendly:</strong> All tools are fully responsive and work perfectly on smartphones, tablets, and desktops.</li>
+            <li><strong>Privacy Focused:</strong> Your data never leaves your browser. We don't store or track any information.</li>
+            <li><strong>Accurate Results:</strong> Each tool uses precise formulas and algorithms for reliable calculations.</li>
+        </ul>
+        
+        <h2>🛠️ Our Tools</h2>
+        <p>We currently offer <strong>10+ professional tools</strong> across different categories:</p>
+        <ul>
+            <li><strong>Popular Calculators:</strong> Age Calculator, BMI Calculator, Percentage Calculator</li>
+            <li><strong>Financial Tools:</strong> EMI Calculator, Loan Calculator, Zakat Calculator</li>
+            <li><strong>Text & Writing Tools:</strong> Word Counter, Text Case Converter, Password Generator</li>
+            <li><strong>Random & Fun Tools:</strong> Spin The Wheel</li>
+        </ul>
+        
+        <h2>🌍 Our Vision</h2>
+        <p>We aim to continuously expand our collection of free online tools to serve a growing global audience. Whether you're a student, professional, business owner, or just someone looking for quick answers, our tools are designed to save you time and effort.</p>
+        
+        <h2>📞 Get in Touch</h2>
+        <p>Have questions, feedback, or suggestions? We'd love to hear from you! Visit our <a href="contact.html" style="color:#2563eb;">Contact Page</a> to reach out to us. Your input helps us improve and grow.</p>
+        
+        <p style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280;">Thank you for choosing Free Online Tools. We're honored to be a part of your daily workflow.</p>
+    </div>
 </div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col"><h3>✨ Free Online Tools</h3><p>Simple and free online calculators and utilities for everyday use.</p></div>
+        <div class="footer-col"><h4>📄 Pages</h4><a href="about.html">About Us</a><a href="contact.html">Contact Us</a><a href="privacy-policy.html">Privacy Policy</a></div>
+        <div class="footer-col"><h4>⭐ Popular Tools</h4><a href="age-calculator.html">Age Calculator</a><a href="bmi-calculator.html">BMI Calculator</a><a href="percentage-calculator.html">Percentage Calculator</a><a href="zakat-calculator.html">Zakat Calculator</a></div>
+        <div class="footer-col"><h4>🔧 More Tools</h4><a href="emi-calculator.html">EMI Calculator</a><a href="loan-calculator.html">Loan Calculator</a><a href="word-counter.html">Word Counter</a><a href="password-generator.html">Password Generator</a><a href="spin-the-wheel.html">Spin The Wheel</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Free Online Tools. All rights reserved.</p></div>
+</footer>
+
+<script>
+const toolsBtn = document.getElementById('toolsBtn');
+const toolsDropdown = document.getElementById('toolsDropdown');
+toolsBtn.addEventListener('click', function(e) { e.stopPropagation(); toolsDropdown.classList.toggle('open'); });
+document.addEventListener('click', function(e) { if (!toolsDropdown.contains(e.target)) toolsDropdown.classList.remove('open'); });
+function toggleCategory(event, element) { event.stopPropagation(); const toolsDiv = element.nextElementSibling; element.classList.toggle('active'); toolsDiv.classList.toggle('show'); }
+</script>
 </body>
 </html>
