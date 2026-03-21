@@ -621,6 +621,96 @@ updateStats();
 // Display current date
 document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
+<!-- ========== FOOTER SECTION ========== -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Simple and free online calculators and utilities for everyday use. Fast, accurate, and 100% private.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Pages</h4>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Popular Tools</h4>
+            <a href="age-calculator.html">Age Calculator</a>
+            <a href="bmi-calculator.html">BMI Calculator</a>
+            <a href="percentage-calculator.html">Percentage Calculator</a>
+            <a href="zakat-calculator.html">Zakat Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 More Tools</h4>
+            <a href="emi-calculator.html">EMI Calculator</a>
+            <a href="loan-calculator.html">Loan Calculator</a>
+            <a href="word-counter.html">Word Counter</a>
+            <a href="password-generator.html">Password Generator</a>
+            <a href="text-case-converter.html">Text Case Converter</a>
+            <a href="spin-the-wheel.html">Spin The Wheel</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Free Online Tools. All rights reserved. | Made with ❤️ for everyone</p>
+    </div>
+</footer>
 
+<style>
+/* Footer Styles - Add this CSS to all pages if not already present */
+.footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 50px 20px 30px;
+    margin-top: 40px;
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.footer-col a {
+    display: block;
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 5px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.footer-col a:hover {
+    color: white;
+    transform: translateX(3px);
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #374151;
+    font-size: 0.85rem;
+}
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+    }
+    .footer-col a {
+        display: inline-block;
+        margin: 0 8px;
+    }
+}
+</style>
 </body>
 </html>
