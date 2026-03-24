@@ -673,7 +673,8 @@ document.getElementById('currentDate').innerText = new Date().toLocaleDateString
             <a href="age-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Age Calculator</a>
             <a href="bmi-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">BMI Calculator</a>
             <a href="percentage-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Percentage Calculator</a>
-            <a href="zakat-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Zakat Calculator</a>
+            <a href="qr-code-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">QR Code Generator</a>
+            <a href="youtube-thumbnail-downloader.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">YouTube Thumbnail Downloader</a>
         </div>
         <div class="footer-col">
             <h4 style="color: white; margin-bottom: 15px;">🔧 More Tools</h4>
@@ -681,7 +682,9 @@ document.getElementById('currentDate').innerText = new Date().toLocaleDateString
             <a href="loan-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Loan Calculator</a>
             <a href="word-counter.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Word Counter</a>
             <a href="password-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Password Generator</a>
-            <a href="qr-code-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">QR Code Generator</a>
+            <a href="text-case-converter.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Text Case Converter</a>
+            <a href="spin-the-wheel.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Spin The Wheel</a>
+            <a href="zakat-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Zakat Calculator</a>
         </div>
     </div>
     <div class="footer-bottom" style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #374151;">
@@ -689,5 +692,60 @@ document.getElementById('currentDate').innerText = new Date().toLocaleDateString
     </div>
 </footer>
 
+<style>
+/* Footer Styles - Add this CSS if not already present */
+.footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 50px 20px 30px;
+    margin-top: 40px;
+}
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+}
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.footer-col a {
+    display: block;
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 5px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+.footer-col a:hover {
+    color: white;
+    transform: translateX(3px);
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 30px;
+    border-top: 1px solid #374151;
+    font-size: 0.85rem;
+}
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 25px;
+    }
+    .footer-col a {
+        display: inline-block;
+        margin: 0 8px;
+    }
+}
+</style>
 </body>
 </html>
