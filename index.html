@@ -98,6 +98,7 @@ body {
     padding: 8px 0;
     font-size: 1rem;
     font-family: inherit;
+    transition: all 0.3s ease;
 }
 
 .dropbtn:hover {
@@ -112,7 +113,7 @@ body {
     min-width: 280px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
-    z-index: 100;
+    z-index: 1000;
     top: 40px;
     left: 0;
     padding: 8px 0;
@@ -141,6 +142,7 @@ body {
 .dropdown-category .arrow {
     font-size: 0.8rem;
     transition: transform 0.3s ease;
+    display: inline-block;
 }
 
 .dropdown-category.active .arrow {
@@ -409,12 +411,24 @@ body {
     color: #1e3a8a;
 }
 
-/* ========== FOOTER ========== */
+/* ========== PROFESSIONAL FOOTER ========== */
 .footer {
-    background: #111827;
-    color: #9ca3af;
-    padding: 50px 20px 30px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
     margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
 }
 
 .footer-container {
@@ -423,39 +437,92 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 .footer-col h3, .footer-col h4 {
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
 }
 
 .footer-col p {
     font-size: 0.9rem;
     line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
 }
 
 .footer-col a {
     display: block;
-    color: #9ca3af;
+    color: #94a3b8;
     text-decoration: none;
-    padding: 5px 0;
+    padding: 6px 0;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+    padding: 0;
+    font-size: 1rem;
+}
+
+.footer-social a:hover {
+    background: #3b82f6;
     color: white;
-    transform: translateX(3px);
+    transform: translateY(-3px);
 }
 
 .footer-bottom {
     text-align: center;
-    padding-top: 30px;
-    margin-top: 30px;
-    border-top: 1px solid #374151;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 0.85rem;
+    color: #64748b;
+}
+
+.footer-bottom a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
 }
 
 /* ========== RESPONSIVE ========== */
@@ -515,12 +582,22 @@ body {
     .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 25px;
+        gap: 35px;
+    }
+    
+    .footer-col h3::after, .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
     
     .footer-col a {
         display: inline-block;
-        margin: 0 10px;
+        margin: 0 8px;
+        padding: 5px 10px;
+    }
+    
+    .footer-social {
+        justify-content: center;
     }
     
     .dropdown-content {
@@ -551,12 +628,16 @@ body {
         left: -120px;
         min-width: 240px;
     }
+    
+    .footer {
+        padding: 40px 15px 25px;
+    }
 }
 </style>
 </head>
 <body>
 
-<!-- Navbar with Accordion Style Dropdown - Fixed: Dropdown Exit Nahi Hoga -->
+<!-- Navbar with Accordion Style Dropdown - Fully Working -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -568,42 +649,42 @@ body {
                 <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
                     <!-- Category 1: Popular Calculators -->
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    <div class="dropdown-category" data-cat="cat1">
                         📊 Popular Calculators <span class="arrow">▶</span>
                     </div>
-                   <div class="category-tools">
-    <a href="age-calculator.html">📅 Age Calculator</a>
-    <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
-    <a href="percentage-calculator.html">📈 Percentage Calculator</a>
-    <a href="qr-code-generator.html">📱 QR Code Generator</a>
-    <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
-</div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
                     
                     <!-- Category 2: Financial Tools -->
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    <div class="dropdown-category" data-cat="cat2">
                         💰 Financial Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat2Tools">
                         <a href="emi-calculator.html">🏦 EMI Calculator</a>
                         <a href="loan-calculator.html">📋 Loan Calculator</a>
                         <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
                     </div>
                     
                     <!-- Category 3: Text & Writing Tools -->
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    <div class="dropdown-category" data-cat="cat3">
                         📝 Text & Writing Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat3Tools">
                         <a href="word-counter.html">🔢 Word Counter</a>
                         <a href="text-case-converter.html">🔤 Text Case Converter</a>
                         <a href="password-generator.html">🔐 Password Generator</a>
                     </div>
                     
                     <!-- Category 4: Random & Fun Tools -->
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    <div class="dropdown-category" data-cat="cat4">
                         🎲 Random & Fun Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat4Tools">
                         <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
                     </div>
                 </div>
@@ -615,7 +696,7 @@ body {
     </div>
 </nav>
 
-<!-- Stats Section - Professional Look -->
+<!-- Stats Section -->
 <div class="stats-section">
     <div class="stats-container">
         <div class="stat-item">
@@ -647,13 +728,13 @@ body {
     <!-- Popular Calculators -->
     <div class="section">
         <h2>📊 Popular Calculators</h2>
-       <div class="tools-grid">
-    <div class="tool-card"><a href="age-calculator.html">📅 Age Calculator</a></div>
-    <div class="tool-card"><a href="bmi-calculator.html">⚖️ BMI Calculator</a></div>
-    <div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
-    <div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
-    <div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div>
-</div>
+        <div class="tools-grid">
+            <div class="tool-card"><a href="age-calculator.html">📅 Age Calculator</a></div>
+            <div class="tool-card"><a href="bmi-calculator.html">⚖️ BMI Calculator</a></div>
+            <div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
+            <div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
+            <div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div>
+        </div>
     </div>
 
     <!-- Financial Tools -->
@@ -721,7 +802,7 @@ body {
         </div>
     </div>
 
-    <!-- Testimonial Section - Social Proof -->
+    <!-- Testimonial Section -->
     <div class="testimonial-section">
         <h2>❤️ What Users Say</h2>
         <div class="testimonial-grid">
@@ -741,98 +822,111 @@ body {
     </div>
 </div>
 
-<!-- Footer -->
-<footer class="footer" style="background: #111827; color: #9ca3af; padding: 50px 20px 30px; margin-top: 40px;">
-    <div class="footer-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
+<!-- Professional Footer - Newsletter Removed -->
+<footer class="footer">
+    <div class="footer-container">
         <div class="footer-col">
-            <h3 style="color: white; margin-bottom: 15px;">✨ Free Online Tools</h3>
-            <p style="font-size: 0.9rem; line-height: 1.6;">Simple and free online calculators and utilities for everyday use. Fast, accurate, and 100% private.</p>
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide. 100% free, no signup required.</p>
+            <div class="footer-social">
+                <a href="#" aria-label="Facebook">📘</a>
+                <a href="#" aria-label="Twitter">🐦</a>
+                <a href="#" aria-label="Instagram">📷</a>
+                <a href="#" aria-label="LinkedIn">💼</a>
+            </div>
         </div>
         <div class="footer-col">
-            <h4 style="color: white; margin-bottom: 15px;">📄 Pages</h4>
-            <a href="index.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Home</a>
-            <a href="about.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">About Us</a>
-            <a href="contact.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Contact Us</a>
-            <a href="privacy-policy.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Privacy Policy</a>
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+            <a href="#">📜 Terms of Service</a>
         </div>
         <div class="footer-col">
-            <h4 style="color: white; margin-bottom: 15px;">⭐ Popular Tools</h4>
-            <a href="age-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Age Calculator</a>
-            <a href="bmi-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">BMI Calculator</a>
-            <a href="percentage-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Percentage Calculator</a>
-            <a href="qr-code-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">QR Code Generator</a>
-            <a href="youtube-thumbnail-downloader.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">YouTube Thumbnail Downloader</a>
+            <h4>⭐ Popular Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+            <a href="qr-code-generator.html">📱 QR Code Generator</a>
+            <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
         </div>
         <div class="footer-col">
-            <h4 style="color: white; margin-bottom: 15px;">🔧 More Tools</h4>
-            <a href="emi-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">EMI Calculator</a>
-            <a href="loan-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Loan Calculator</a>
-            <a href="word-counter.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Word Counter</a>
-            <a href="password-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Password Generator</a>
-            <a href="text-case-converter.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Text Case Converter</a>
-            <a href="spin-the-wheel.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Spin The Wheel</a>
-            <a href="zakat-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Zakat Calculator</a>
+            <h4>🔧 All Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="loan-calculator.html">📋 Loan Calculator</a>
+            <a href="word-counter.html">🔢 Word Counter</a>
+            <a href="text-case-converter.html">🔤 Text Case Converter</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
         </div>
     </div>
-    <div class="footer-bottom" style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #374151;">
-        <p>© 2026 Free Online Tools. All rights reserved. | Made with ❤️ for everyone</p>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community | <a href="#">Sitemap</a> | <a href="privacy-policy.html">Privacy</a></p>
+        <p style="margin-top: 10px; font-size: 0.75rem;">Empowering users with fast, accurate, and free tools since 2024</p>
     </div>
 </footer>
 
-<style>
-/* Footer Styles - Add this CSS if not already present */
-.footer {
-    background: #111827;
-    color: #9ca3af;
-    padding: 50px 20px 30px;
-    margin-top: 40px;
-}
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-}
-.footer-col h3, .footer-col h4 {
-    color: white;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-}
-.footer-col p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-}
-.footer-col a {
-    display: block;
-    color: #9ca3af;
-    text-decoration: none;
-    padding: 5px 0;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-.footer-col a:hover {
-    color: white;
-    transform: translateX(3px);
-}
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    margin-top: 30px;
-    border-top: 1px solid #374151;
-    font-size: 0.85rem;
-}
-@media (max-width: 768px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 25px;
-    }
-    .footer-col a {
-        display: inline-block;
-        margin: 0 8px;
-    }
-}
-</style>
+<!-- JavaScript for Dropdown & Accordion (fully functional) -->
+<script>
+    (function() {
+        const dropdown = document.getElementById('toolsDropdown');
+        const dropBtn = document.getElementById('toolsBtn');
+        const dropdownContent = document.getElementById('dropdownContent');
+        
+        function closeAllCategories() {
+            document.querySelectorAll('.dropdown-category').forEach(cat => cat.classList.remove('active'));
+            document.querySelectorAll('.category-tools').forEach(panel => panel.classList.remove('show'));
+        }
+        
+        window.toggleCategory = function(event, element) {
+            if (event) event.stopPropagation();
+            let targetPanel = null;
+            const catAttr = element.getAttribute('data-cat');
+            if (catAttr) targetPanel = document.getElementById(catAttr + 'Tools');
+            else {
+                let next = element.nextElementSibling;
+                while (next && !next.classList.contains('category-tools')) next = next.nextElementSibling;
+                targetPanel = next;
+            }
+            const isActive = element.classList.contains('active');
+            closeAllCategories();
+            if (!isActive && targetPanel) {
+                element.classList.add('active');
+                targetPanel.classList.add('show');
+            }
+        };
+        
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            dropdown.classList.toggle('open');
+            if (dropdown.classList.contains('open')) closeAllCategories();
+        }
+        
+        function closeDropdownOnOutside(event) {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('open');
+                closeAllCategories();
+            }
+        }
+        
+        if (dropBtn) dropBtn.addEventListener('click', toggleDropdown);
+        document.addEventListener('click', closeDropdownOnOutside);
+        if (dropdownContent) dropdownContent.addEventListener('click', e => e.stopPropagation());
+        
+        document.querySelectorAll('.dropdown-category').forEach(header => {
+            header.removeEventListener('click', window.toggleCategory);
+            header.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.toggleCategory(e, this);
+            });
+        });
+        
+        document.querySelectorAll('.category-tools a').forEach(link => {
+            link.addEventListener('click', e => e.stopPropagation());
+        });
+    })();
+</script>
 </body>
 </html>
