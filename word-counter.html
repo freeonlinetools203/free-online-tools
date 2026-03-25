@@ -593,97 +593,151 @@ updateStats();
 // Display current date
 document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 </script>
-<!-- ========== FOOTER SECTION ========== -->
-<!-- Footer -->
-<footer class="footer" style="background: #111827; color: #9ca3af; padding: 50px 20px 30px; margin-top: 40px;">
-    <div class="footer-container" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px;">
+<!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
+<footer class="footer">
+    <div class="footer-container">
         <div class="footer-col">
-            <h3 style="color: white; margin-bottom: 15px;">✨ Free Online Tools</h3>
-            <p style="font-size: 0.9rem; line-height: 1.6;">Simple and free online calculators and utilities for everyday use. Fast, accurate, and 100% private.</p>
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide. 100% free, no signup required.</p>
         </div>
         <div class="footer-col">
-            <h4 style="color: white; margin-bottom: 15px;">📄 Pages</h4>
-            <a href="index.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Home</a>
-            <a href="about.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">About Us</a>
-            <a href="contact.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Contact Us</a>
-            <a href="privacy-policy.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Privacy Policy</a>
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
         </div>
         <div class="footer-col">
-            <h4 style="color: white; margin-bottom: 15px;">⭐ Popular Tools</h4>
-            <a href="age-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Age Calculator</a>
-            <a href="bmi-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">BMI Calculator</a>
-            <a href="percentage-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Percentage Calculator</a>
-            <a href="qr-code-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">QR Code Generator</a>
-            <a href="youtube-thumbnail-downloader.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">YouTube Thumbnail Downloader</a>
+            <h4>⭐ Popular Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+            <a href="qr-code-generator.html">📱 QR Code Generator</a>
+            <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
         </div>
         <div class="footer-col">
-            <h4 style="color: white; margin-bottom: 15px;">🔧 More Tools</h4>
-            <a href="emi-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">EMI Calculator</a>
-            <a href="loan-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Loan Calculator</a>
-            <a href="word-counter.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Word Counter</a>
-            <a href="password-generator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Password Generator</a>
-            <a href="text-case-converter.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Text Case Converter</a>
-            <a href="spin-the-wheel.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Spin The Wheel</a>
-            <a href="zakat-calculator.html" style="display: block; color: #9ca3af; text-decoration: none; padding: 5px 0;">Zakat Calculator</a>
+            <h4>🔧 All Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="loan-calculator.html">📋 Loan Calculator</a>
+            <a href="word-counter.html">🔢 Word Counter</a>
+            <a href="text-case-converter.html">🔤 Text Case Converter</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
         </div>
     </div>
-    <div class="footer-bottom" style="text-align: center; padding-top: 30px; margin-top: 30px; border-top: 1px solid #374151;">
-        <p>© 2026 Free Online Tools. All rights reserved. | Made with ❤️ for everyone</p>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
     </div>
 </footer>
 
 <style>
-/* Footer Styles - Add this CSS if not already present */
+/* Professional Gradient Footer */
 .footer {
-    background: #111827;
-    color: #9ca3af;
-    padding: 50px 20px 30px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 50px 20px 25px;
     margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
+    position: relative;
+    z-index: 1;
 }
+
 .footer-col h3, .footer-col h4 {
     color: white;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
 }
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
 .footer-col p {
     font-size: 0.9rem;
     line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 12px;
 }
+
 .footer-col a {
     display: block;
-    color: #9ca3af;
+    color: #94a3b8;
     text-decoration: none;
-    padding: 5px 0;
+    padding: 6px 0;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
+
 .footer-col a:hover {
-    color: white;
-    transform: translateX(3px);
+    color: #60a5fa;
+    transform: translateX(5px);
 }
+
 .footer-bottom {
     text-align: center;
     padding-top: 30px;
-    margin-top: 30px;
-    border-top: 1px solid #374151;
+    margin-top: 35px;
+    border-top: 1px solid rgba(255,255,255,0.1);
     font-size: 0.85rem;
+    color: #64748b;
 }
+
 @media (max-width: 768px) {
     .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 25px;
+        gap: 30px;
     }
+    
+    .footer-col h3::after, .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
     .footer-col a {
         display: inline-block;
         margin: 0 8px;
+        padding: 5px 8px;
+    }
+    
+    .footer-col p {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer {
+        padding: 35px 15px 20px;
     }
 }
 </style>
