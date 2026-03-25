@@ -751,7 +751,151 @@ document.getElementById('currentDate').innerText = new Date().toLocaleDateString
             }
         }
     </style>
- <!-- ========== FOOTER SECTION ========== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Footer Section</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Main content area to push footer down */
+        .content {
+            flex: 1;
+            padding: 40px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: #111827;
+            color: #9ca3af;
+            padding: 50px 20px 30px;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h3,
+        .footer-col h4 {
+            color: white;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .footer-col h3 {
+            font-size: 1.3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1.1rem;
+        }
+
+        .footer-col p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #9ca3af;
+            text-decoration: none;
+            padding: 5px 0;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #374151;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 0.85rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .footer-container {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 30px;
+            }
+            
+            .footer {
+                padding: 40px 20px 25px;
+            }
+            
+            .footer-col h3,
+            .footer-col h4 {
+                margin-bottom: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-container {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 25px;
+            }
+            
+            .footer-col a {
+                padding: 8px 0;
+            }
+            
+            .footer-bottom {
+                padding-top: 25px;
+                margin-top: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Content (just for demo) -->
+    <div class="content">
+        <h1>Welcome to Free Online Tools</h1>
+        <p>Simple and free online calculators and utilities for everyday use. Fast, accurate, and 100% private.</p>
+    </div>
+
+    <!-- ========== FOOTER SECTION ========== -->
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-col">
