@@ -397,19 +397,20 @@ body {
     color: #1e3a8a;
 }
 
-/* ========== FOOTER - SHORT & CLEAN ========== */
+/* ========== FOOTER - PROFESSIONAL WITH TRENDING TOOLS ========== */
 .footer {
-    background: #111827;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
     color: #9ca3af;
     padding: 50px 20px 30px;
     margin-top: 40px;
+    border-top: 1px solid #374151;
 }
 
 .footer-container {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 40px;
 }
 
@@ -420,9 +421,22 @@ body {
 }
 
 .footer-col h4 {
-    color: white;
+    color: #facc15;
     margin-bottom: 15px;
     font-size: 1.1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: #facc15;
+    border-radius: 2px;
 }
 
 .footer-col p {
@@ -434,14 +448,14 @@ body {
     display: block;
     color: #9ca3af;
     text-decoration: none;
-    padding: 5px 0;
+    padding: 6px 0;
     font-size: 0.9rem;
     transition: all 0.3s ease;
 }
 
 .footer-col a:hover {
-    color: white;
-    transform: translateX(3px);
+    color: #facc15;
+    transform: translateX(5px);
 }
 
 .footer-bottom {
@@ -450,6 +464,11 @@ body {
     margin-top: 30px;
     border-top: 1px solid #374151;
     font-size: 0.85rem;
+    color: #6b7280;
+}
+
+.footer-bottom strong {
+    color: #facc15;
 }
 
 @media (max-width: 768px) {
@@ -489,11 +508,14 @@ body {
     .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 25px;
+        gap: 30px;
     }
-    .footer-col a {
-        display: inline-block;
-        margin: 0 8px;
+    .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-col a:hover {
+        transform: translateX(0);
     }
 }
 </style>
@@ -511,7 +533,6 @@ body {
             <li class="dropdown" id="toolsDropdown">
                 <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
-                    <!-- Category 1: Popular Calculators -->
                     <div class="dropdown-category" onclick="toggleCategory(event, this)">
                         📊 Popular Tools <span class="arrow">▶</span>
                     </div>
@@ -523,8 +544,6 @@ body {
                         <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
                         <a href="password-generator.html">🔐 Password Generator</a>
                     </div>
-                    
-                    <!-- Category 2: Financial Tools -->
                     <div class="dropdown-category" onclick="toggleCategory(event, this)">
                         💰 Financial Tools <span class="arrow">▶</span>
                     </div>
@@ -533,8 +552,6 @@ body {
                         <a href="loan-calculator.html">📋 Loan Calculator</a>
                         <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
                     </div>
-                    
-                    <!-- Category 3: Text & Writing Tools -->
                     <div class="dropdown-category" onclick="toggleCategory(event, this)">
                         📝 Text & Writing Tools <span class="arrow">▶</span>
                     </div>
@@ -543,16 +560,12 @@ body {
                         <a href="text-case-converter.html">🔤 Text Case Converter</a>
                         <a href="text-to-speech.html">🔊 Text to Speech</a>
                     </div>
-                    
-                    <!-- Category 4: Random & Fun Tools -->
                     <div class="dropdown-category" onclick="toggleCategory(event, this)">
                         🎲 Random & Fun Tools <span class="arrow">▶</span>
                     </div>
                     <div class="category-tools">
                         <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
                     </div>
-                    
-                    <!-- Category 5: Image & Media Tools -->
                     <div class="dropdown-category" onclick="toggleCategory(event, this)">
                         🖼️ Image & Media Tools <span class="arrow">▶</span>
                     </div>
@@ -703,7 +716,7 @@ body {
     </div>
 </div>
 
-<!-- Footer - Short & Clean (No Tools) -->
+<!-- Footer - Professional with Trending Tools -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-col">
@@ -716,6 +729,22 @@ body {
             <a href="about.html">ℹ️ About Us</a>
             <a href="contact.html">📧 Contact Us</a>
             <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="image-compressor.html">🗜️ Image Compressor</a>
+            <a href="qr-code-generator.html">📱 QR Code Generator</a>
+            <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="text-to-speech.html">🔊 Text to Speech</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
         </div>
     </div>
     <div class="footer-bottom">
