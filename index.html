@@ -838,70 +838,50 @@ body {
         </div>
     </div>
 </div>
-
-<!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
+<!-- ========== FOOTER - PROFESSIONAL WITH TRENDING TOOLS + ANIMATIONS ========== -->
 <footer class="footer">
     <div class="footer-container">
-        <div class="footer-col">
+        <div class="footer-col fade-in-up">
             <h3>✨ Free Online Tools</h3>
             <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide. 100% free, no signup required.</p>
         </div>
-        <div class="footer-col">
+        <div class="footer-col fade-in-up" style="animation-delay: 0.1s;">
             <h4>📄 Quick Links</h4>
             <a href="index.html">🏠 Home</a>
             <a href="about.html">ℹ️ About Us</a>
             <a href="contact.html">📧 Contact Us</a>
             <a href="privacy-policy.html">🔒 Privacy Policy</a>
         </div>
-        <div class="footer-col">
-            <h4>⭐ Popular Tools</h4>
+        <div class="footer-col fade-in-up" style="animation-delay: 0.2s;">
+            <h4>⭐ Trending Tools</h4>
             <a href="age-calculator.html">📅 Age Calculator</a>
-            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
-            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+            <a href="image-compressor.html">🗜️ Image Compressor</a>
             <a href="qr-code-generator.html">📱 QR Code Generator</a>
             <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
             <a href="password-generator.html">🔐 Password Generator</a>
         </div>
-        <div class="footer-col">
-            <h4>🔧 All Tools</h4>
+        <div class="footer-col fade-in-up" style="animation-delay: 0.3s;">
+            <h4>🔧 Popular Tools</h4>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
             <a href="emi-calculator.html">🏦 EMI Calculator</a>
-            <a href="loan-calculator.html">📋 Loan Calculator</a>
-            <a href="word-counter.html">🔢 Word Counter</a>
-            <a href="text-case-converter.html">🔤 Text Case Converter</a>
             <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
             <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
         </div>
-        <!-- 🟢 NEW: Image & Media Tools Column -->
-        <div class="footer-col">
-            <h4>🖼️ Image & Media Tools</h4>
-            <a href="image-compressor.html">🗜️ Image Compressor</a>
-            <!-- Future tools yahan add karein: Background Remover, Image Resizer, etc -->
-        </div>
     </div>
-    <div class="footer-bottom">
+    <div class="footer-bottom slide-up">
         <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
     </div>
 </footer>
 
 <style>
-/* Professional Gradient Footer */
+/* ========== FOOTER - PROFESSIONAL WITH TRENDING TOOLS + ANIMATIONS ========== */
 .footer {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: #cbd5e1;
-    padding: 50px 20px 25px;
+    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+    color: #9ca3af;
+    padding: 50px 20px 30px;
     margin-top: 40px;
-    position: relative;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+    border-top: 1px solid #374151;
+    overflow: hidden;
 }
 
 .footer-container {
@@ -909,149 +889,238 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 35px;
-    position: relative;
-    z-index: 1;
+    gap: 40px;
 }
 
-.footer-col h3, .footer-col h4 {
+.footer-col h3 {
     color: white;
-    margin-bottom: 18px;
-    font-size: 1.1rem;
-    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
     position: relative;
     display: inline-block;
 }
 
-.footer-col h3::after, .footer-col h4::after {
+.footer-col h3::before {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #facc15, #f59e0b);
+    transition: width 0.4s ease;
+}
+
+.footer-col:hover h3::before {
+    width: 100%;
+}
+
+.footer-col h4 {
+    color: #facc15;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
     left: 0;
     width: 40px;
     height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    background: #facc15;
     border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.footer-col:hover h4::after {
+    width: 80px;
 }
 
 .footer-col p {
     font-size: 0.9rem;
     line-height: 1.6;
-    color: #94a3b8;
-    margin-top: 12px;
+    transition: transform 0.3s ease;
+}
+
+.footer-col:hover p {
+    transform: translateX(5px);
 }
 
 .footer-col a {
     display: block;
-    color: #94a3b8;
+    color: #9ca3af;
     text-decoration: none;
     padding: 6px 0;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.footer-col a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: #facc15;
 }
 
 .footer-col a:hover {
-    color: #60a5fa;
-    transform: translateX(5px);
+    color: #facc15;
+    transform: translateX(15px);
+    padding-left: 5px;
+}
+
+.footer-col a:hover::before {
+    left: -5px;
+    opacity: 1;
 }
 
 .footer-bottom {
     text-align: center;
     padding-top: 30px;
-    margin-top: 35px;
-    border-top: 1px solid rgba(255,255,255,0.1);
+    margin-top: 30px;
+    border-top: 1px solid #374151;
     font-size: 0.85rem;
-    color: #64748b;
+    color: #6b7280;
+    position: relative;
 }
 
+.footer-bottom strong {
+    color: #facc15;
+    position: relative;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.footer-bottom strong:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(250, 204, 21, 0.5);
+}
+
+/* Heart beat animation */
+.footer-bottom p {
+    display: inline-block;
+}
+
+.footer-bottom p i, 
+.footer-bottom p .heart {
+    display: inline-block;
+    animation: heartBeat 1.2s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.1);
+    }
+    35% {
+        transform: scale(1.15);
+    }
+    45% {
+        transform: scale(1.1);
+    }
+    55% {
+        transform: scale(1);
+    }
+}
+
+/* Fade In Up Animation for footer columns */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Slide Up Animation for bottom section */
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease 0.4s forwards;
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hover glow effect on footer container */
+.footer {
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #facc15, transparent);
+    transition: left 0.5s ease;
+}
+
+.footer:hover::before {
+    left: 100%;
+}
+
+/* Pulse animation on copyright year */
+@keyframes gentlePulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.footer-bottom strong {
+    animation: gentlePulse 2s ease-in-out infinite;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
     .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 30px;
     }
-    
-    .footer-col h3::after, .footer-col h4::after {
+    .footer-col h4::after {
         left: 50%;
         transform: translateX(-50%);
     }
-    
-    .footer-col a {
-        display: inline-block;
-        margin: 0 8px;
-        padding: 5px 8px;
+    .footer-col a:hover {
+        transform: translateX(0);
     }
-    
-    .footer-col p {
-        text-align: center;
+    .footer-col a::before {
+        display: none;
     }
-}
-
-@media (max-width: 480px) {
-    .footer {
-        padding: 35px 15px 20px;
+    .footer-col a:hover {
+        padding-left: 0;
+    }
+    .footer-col h3::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-col:hover h3::before {
+        width: 60%;
     }
 }
 </style>
-<!-- JavaScript for Dropdown & Accordion (fully functional) -->
-<script>
-    (function() {
-        const dropdown = document.getElementById('toolsDropdown');
-        const dropBtn = document.getElementById('toolsBtn');
-        const dropdownContent = document.getElementById('dropdownContent');
-        
-        function closeAllCategories() {
-            document.querySelectorAll('.dropdown-category').forEach(cat => cat.classList.remove('active'));
-            document.querySelectorAll('.category-tools').forEach(panel => panel.classList.remove('show'));
-        }
-        
-        window.toggleCategory = function(event, element) {
-            if (event) event.stopPropagation();
-            let targetPanel = null;
-            const catAttr = element.getAttribute('data-cat');
-            if (catAttr) targetPanel = document.getElementById(catAttr + 'Tools');
-            else {
-                let next = element.nextElementSibling;
-                while (next && !next.classList.contains('category-tools')) next = next.nextElementSibling;
-                targetPanel = next;
-            }
-            const isActive = element.classList.contains('active');
-            closeAllCategories();
-            if (!isActive && targetPanel) {
-                element.classList.add('active');
-                targetPanel.classList.add('show');
-            }
-        };
-        
-        function toggleDropdown(event) {
-            event.stopPropagation();
-            dropdown.classList.toggle('open');
-            if (dropdown.classList.contains('open')) closeAllCategories();
-        }
-        
-        function closeDropdownOnOutside(event) {
-            if (!dropdown.contains(event.target)) {
-                dropdown.classList.remove('open');
-                closeAllCategories();
-            }
-        }
-        
-        if (dropBtn) dropBtn.addEventListener('click', toggleDropdown);
-        document.addEventListener('click', closeDropdownOnOutside);
-        if (dropdownContent) dropdownContent.addEventListener('click', e => e.stopPropagation());
-        
-        document.querySelectorAll('.dropdown-category').forEach(header => {
-            header.removeEventListener('click', window.toggleCategory);
-            header.addEventListener('click', function(e) {
-                e.stopPropagation();
-                window.toggleCategory(e, this);
-            });
-        });
-        
-        document.querySelectorAll('.category-tools a').forEach(link => {
-            link.addEventListener('click', e => e.stopPropagation());
-        });
-    })();
-</script>
 </body>
 </html>
