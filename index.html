@@ -3,16 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Free Online Tools – 14+ Professional Calculators & Utilities</title>
-<meta name="description" content="Discover 14+ free online tools including Age Calculator, BMI Calculator, EMI Calculator, Loan Calculator, Percentage Calculator, Word Counter, Password Generator, Spin Wheel, Zakat Calculator, QR Code Generator, Text to Speech, YouTube Thumbnail Downloader & Image Compressor. Fast, accurate, and 100% free.">
-<meta name="keywords" content="free online tools, online calculators, age calculator, BMI calculator, EMI calculator, loan calculator, percentage calculator, word counter, text case converter, password generator, spin the wheel, zakat calculator, qr code generator, text to speech, youtube thumbnail downloader, image compressor">
+
+<title>Free Online Tools – 10+ Professional Calculators & Utilities</title>
+<meta name="description" content="Discover 10+ free online tools including Age Calculator, BMI Calculator, EMI Calculator, Loan Calculator, Percentage Calculator, Word Counter, Password Generator, Spin Wheel & Zakat Calculator. Fast, accurate, and 100% free.">
+<meta name="keywords" content="free online tools, online calculators, age calculator, BMI calculator, EMI calculator, loan calculator, percentage calculator, word counter, text case converter, password generator, spin the wheel, zakat calculator, free tools">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Free Online Tools">
-<meta property="og:title" content="Free Online Tools – 14+ Professional Calculators & Utilities">
-<meta property="og:description" content="Free online tools for everyday use. Calculators, text tools, financial tools, image tools, and random tools. Fast, easy, and 100% free.">
+<meta property="og:title" content="Free Online Tools – 10+ Professional Calculators & Utilities">
+<meta property="og:description" content="Free online tools for everyday use. Calculators, text tools, financial tools, and random tools. Fast, easy, and 100% free.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Tools – 10+ Professional Calculators">
+<meta name="twitter:description" content="Free online tools including Age Calculator, BMI Calculator, EMI Calculator, Loan Calculator, and more.">
 <style>
 * {
     margin: 0;
@@ -94,6 +98,7 @@ body {
     padding: 8px 0;
     font-size: 1rem;
     font-family: inherit;
+    transition: all 0.3s ease;
 }
 
 .dropbtn:hover {
@@ -108,12 +113,13 @@ body {
     min-width: 280px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
     border-radius: 12px;
-    z-index: 100;
+    z-index: 1000;
     top: 40px;
     left: 0;
     padding: 8px 0;
 }
 
+/* Category Accordion Style */
 .dropdown-category {
     cursor: pointer;
     padding: 12px 16px;
@@ -122,9 +128,11 @@ body {
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
 }
 
 .dropdown-category:hover {
@@ -134,6 +142,7 @@ body {
 .dropdown-category .arrow {
     font-size: 0.8rem;
     transition: transform 0.3s ease;
+    display: inline-block;
 }
 
 .dropdown-category.active .arrow {
@@ -145,6 +154,7 @@ body {
     background: #f9fafb;
     border-radius: 8px;
     margin: 4px 8px 8px 8px;
+    overflow: hidden;
 }
 
 .category-tools.show {
@@ -156,15 +166,19 @@ body {
     padding: 10px 20px 10px 32px;
     text-decoration: none;
     display: block;
+    transition: all 0.3s ease;
     font-size: 14px;
     font-weight: 500;
+    border-bottom: none !important;
 }
 
 .category-tools a:hover {
     background: #e5e7eb;
     color: #2563eb !important;
+    transform: translateX(5px);
 }
 
+/* Dropdown open state */
 .dropdown.open .dropdown-content {
     display: block;
 }
@@ -397,305 +411,233 @@ body {
     color: #1e3a8a;
 }
 
-/* ========== FOOTER WITH ANIMATIONS ========== */
+/* ========== PROFESSIONAL FOOTER ========== */
 .footer {
-    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-    color: #9ca3af;
-    padding: 50px 20px 30px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
     margin-top: 40px;
-    border-top: 1px solid #374151;
-    overflow: hidden;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-}
-
-.footer-col h3 {
-    color: white;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
     position: relative;
-    display: inline-block;
-}
-
-.footer-col h3::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #facc15, #f59e0b);
-    transition: width 0.4s ease;
-}
-
-.footer-col:hover h3::before {
-    width: 100%;
-}
-
-.footer-col h4 {
-    color: #facc15;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    position: relative;
-    display: inline-block;
-}
-
-.footer-col h4::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: #facc15;
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-.footer-col:hover h4::after {
-    width: 80px;
-}
-
-.footer-col p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    transition: transform 0.3s ease;
-}
-
-.footer-col:hover p {
-    transform: translateX(5px);
-}
-
-/* Click animations */
-.click-animate {
-    display: inline-block;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
-    position: relative;
-}
-
-.click-animate:hover {
-    transform: scale(1.05);
-    color: #facc15 !important;
-}
-
-.click-animate:active {
-    transform: scale(1.15);
-    font-weight: bold;
-    color: #ffd966 !important;
-    transition: all 0.08s ease;
-}
-
-.footer-col a {
-    display: block;
-    color: #9ca3af;
-    text-decoration: none;
-    padding: 6px 0;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.footer-col a::before {
-    content: '→';
-    position: absolute;
-    left: -20px;
-    opacity: 0;
-    transition: all 0.3s ease;
-    color: #facc15;
-}
-
-.footer-col a:hover {
-    color: #facc15;
-    transform: translateX(15px);
-    padding-left: 5px;
-}
-
-.footer-col a:hover::before {
-    left: -5px;
-    opacity: 1;
-}
-
-.footer-col a.click-animate:active {
-    transform: translateX(15px) scale(1.08);
-    font-weight: 600;
-}
-
-.heart {
-    display: inline-block;
-    animation: heartBeat 1.2s ease-in-out infinite;
-    cursor: pointer;
-}
-
-.heart:active {
-    animation: heartClick 0.3s ease;
-    transform: scale(1.3);
-}
-
-@keyframes heartBeat {
-    0%, 100% { transform: scale(1); }
-    25% { transform: scale(1.1); }
-    35% { transform: scale(1.15); }
-    45% { transform: scale(1.1); }
-    55% { transform: scale(1); }
-}
-
-@keyframes heartClick {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.4); color: #ff3366; }
-    100% { transform: scale(1); }
-}
-
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.slide-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 0.5s ease 0.4s forwards;
-}
-
-@keyframes slideUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.footer {
-    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .footer::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #facc15, transparent);
-    transition: left 0.5s ease;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
 }
 
-.footer:hover::before {
-    left: 100%;
-}
-
-.footer-bottom strong {
-    animation: gentlePulse 2s ease-in-out infinite;
-}
-
-@keyframes gentlePulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.7; }
-}
-
-.click-animate {
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
     position: relative;
-    overflow: hidden;
+    z-index: 1;
 }
 
-.click-animate::after {
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-social {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.footer-social a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: rgba(255,255,255,0.1);
     border-radius: 50%;
-    background: rgba(250, 204, 21, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease;
-    pointer-events: none;
+    transition: all 0.3s ease;
+    padding: 0;
+    font-size: 1rem;
 }
 
-.click-animate:active::after {
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-    transition: 0s;
+.footer-social a:hover {
+    background: #3b82f6;
+    color: white;
+    transform: translateY(-3px);
 }
 
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+.footer-bottom a {
+    color: #60a5fa;
+    text-decoration: none;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+
+/* ========== RESPONSIVE ========== */
 @media (max-width: 768px) {
+    .navbar {
+        padding: 12px 20px;
+    }
+    
     .nav-container {
         flex-direction: column;
         text-align: center;
     }
+    
     .nav-links {
         justify-content: center;
+        gap: 18px;
     }
+    
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
         gap: 20px;
     }
+    
     .stat-number {
         font-size: 1.8rem;
     }
+    
     .header h1 {
         font-size: 1.8rem;
     }
+    
+    .header p {
+        font-size: 1rem;
+    }
+    
     .section {
         padding: 25px;
     }
+    
     .section h2 {
         font-size: 1.5rem;
     }
+    
     .tools-grid {
         grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
         gap: 15px;
     }
+    
     .features-grid {
         grid-template-columns: 1fr;
     }
+    
     .testimonial-grid {
         grid-template-columns: 1fr;
     }
+    
     .footer-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 30px;
+        gap: 35px;
     }
-    .footer-col h4::after {
+    
+    .footer-col h3::after, .footer-col h4::after {
         left: 50%;
         transform: translateX(-50%);
     }
-    .footer-col a:hover {
-        transform: translateX(0);
+    
+    .footer-col a {
+        display: inline-block;
+        margin: 0 8px;
+        padding: 5px 10px;
     }
-    .footer-col a::before {
-        display: none;
+    
+    .footer-social {
+        justify-content: center;
     }
-    .footer-col a:hover {
-        padding-left: 0;
+    
+    .dropdown-content {
+        left: -100px;
+        min-width: 260px;
     }
-    .footer-col h3::before {
-        left: 50%;
-        transform: translateX(-50%);
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
     }
-    .footer-col:hover h3::before {
-        width: 60%;
+    
+    .stats-container {
+        grid-template-columns: 1fr;
     }
-    .click-animate:active {
-        transform: scale(1.1);
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tool-card a {
+        padding: 14px;
+    }
+    
+    .dropdown-content {
+        left: -120px;
+        min-width: 240px;
+    }
+    
+    .footer {
+        padding: 40px 15px 25px;
     }
 }
 </style>
 </head>
 <body>
 
-<!-- Navbar with Accordion Style Dropdown -->
+<!-- Navbar with Accordion Style Dropdown - Fully Working -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -706,43 +648,53 @@ body {
             <li class="dropdown" id="toolsDropdown">
                 <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    <!-- Category 1: Popular Calculators -->
+                    <div class="dropdown-category" data-cat="cat1">
                         📊 Popular Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat1Tools">
                         <a href="age-calculator.html">📅 Age Calculator</a>
                         <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                         <a href="percentage-calculator.html">📈 Percentage Calculator</a>
                         <a href="qr-code-generator.html">📱 QR Code Generator</a>
                         <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
-                        <a href="password-generator.html">🔐 Password Generator</a>
                     </div>
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    
+                    <!-- Category 2: Financial Tools -->
+                    <div class="dropdown-category" data-cat="cat2">
                         💰 Financial Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat2Tools">
                         <a href="emi-calculator.html">🏦 EMI Calculator</a>
                         <a href="loan-calculator.html">📋 Loan Calculator</a>
                         <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
                     </div>
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    
+                    <!-- Category 3: Text & Writing Tools -->
+                    <div class="dropdown-category" data-cat="cat3">
                         📝 Text & Writing Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat3Tools">
                         <a href="word-counter.html">🔢 Word Counter</a>
                         <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
                     </div>
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    
+                    <!-- Category 4: Random & Fun Tools -->
+                    <div class="dropdown-category" data-cat="cat4">
                         🎲 Random & Fun Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat4Tools">
                         <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
                     </div>
-                    <div class="dropdown-category" onclick="toggleCategory(event, this)">
+                    
+                    <!-- Category 5: Image & Media Tools (NEW) -->
+                    <div class="dropdown-category" data-cat="cat5">
                         🖼️ Image & Media Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="category-tools">
+                    <div class="category-tools" id="cat5Tools">
                         <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <!-- Future media tools yahan add kar sakte hain -->
                     </div>
                 </div>
             </li>
@@ -753,15 +705,15 @@ body {
     </div>
 </nav>
 
-<!-- Stats Section with Animation -->
+<!-- Stats Section -->
 <div class="stats-section">
     <div class="stats-container">
         <div class="stat-item">
-            <div class="stat-number" id="toolsCount">14+</div>
+            <div class="stat-number">10+</div>
             <div class="stat-label">Free Tools</div>
         </div>
         <div class="stat-item">
-            <div class="stat-number" id="usersCount">0</div>
+            <div class="stat-number">50K+</div>
             <div class="stat-label">Monthly Users</div>
         </div>
         <div class="stat-item">
@@ -791,7 +743,6 @@ body {
             <div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
             <div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
             <div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div>
-            <div class="tool-card"><a href="password-generator.html">🔐 Password Generator</a></div>
         </div>
     </div>
 
@@ -811,6 +762,7 @@ body {
         <div class="tools-grid">
             <div class="tool-card"><a href="word-counter.html">🔢 Word Counter</a></div>
             <div class="tool-card"><a href="text-case-converter.html">🔤 Text Case Converter</a></div>
+            <div class="tool-card"><a href="password-generator.html">🔐 Password Generator</a></div>
         </div>
     </div>
 
@@ -822,14 +774,14 @@ body {
         </div>
     </div>
 
-    <!-- Image & Media Tools -->
+    <!-- 🟢 NEW: Image & Media Tools -->
     <div class="section">
         <h2>🖼️ Image & Media Tools</h2>
         <div class="tools-grid">
             <div class="tool-card"><a href="image-compressor.html">🗜️ Image Compressor</a></div>
+            <!-- Future tools yahan add karein: Background Remover, Image Resizer, etc -->
         </div>
     </div>
-
     <!-- Why Choose Us Section -->
     <div class="features-section">
         <h2>✨ Why Choose Our Free Tools?</h2>
@@ -887,85 +839,219 @@ body {
     </div>
 </div>
 
-<!-- Footer with Animations -->
+<!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
 <footer class="footer">
     <div class="footer-container">
-        <div class="footer-col fade-in-up">
+        <div class="footer-col">
             <h3>✨ Free Online Tools</h3>
             <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide. 100% free, no signup required.</p>
         </div>
-        <div class="footer-col fade-in-up" style="animation-delay: 0.1s;">
+        <div class="footer-col">
             <h4>📄 Quick Links</h4>
-            <a href="index.html" class="click-animate">🏠 Home</a>
-            <a href="about.html" class="click-animate">ℹ️ About Us</a>
-            <a href="contact.html" class="click-animate">📧 Contact Us</a>
-            <a href="privacy-policy.html" class="click-animate">🔒 Privacy Policy</a>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
         </div>
-        <div class="footer-col fade-in-up" style="animation-delay: 0.2s;">
-            <h4>⭐ Trending Tools</h4>
-            <a href="age-calculator.html" class="click-animate">📅 Age Calculator</a>
-            <a href="image-compressor.html" class="click-animate">🗜️ Image Compressor</a>
-            <a href="qr-code-generator.html" class="click-animate">📱 QR Code Generator</a>
-            <a href="youtube-thumbnail-downloader.html" class="click-animate">📸 YouTube Thumbnail Downloader</a>
-            <a href="password-generator.html" class="click-animate">🔐 Password Generator</a>
+        <div class="footer-col">
+            <h4>⭐ Popular Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+            <a href="qr-code-generator.html">📱 QR Code Generator</a>
+            <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
         </div>
-        <div class="footer-col fade-in-up" style="animation-delay: 0.3s;">
-            <h4>🔧 Popular Tools</h4>
-            <a href="bmi-calculator.html" class="click-animate">⚖️ BMI Calculator</a>
-            <a href="emi-calculator.html" class="click-animate">🏦 EMI Calculator</a>
-            <a href="spin-the-wheel.html" class="click-animate">🎡 Spin The Wheel</a>
-            <a href="zakat-calculator.html" class="click-animate">🕌 Zakat Calculator</a>
+        <div class="footer-col">
+            <h4>🔧 All Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="loan-calculator.html">📋 Loan Calculator</a>
+            <a href="word-counter.html">🔢 Word Counter</a>
+            <a href="text-case-converter.html">🔤 Text Case Converter</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+        <!-- 🟢 NEW: Image & Media Tools Column -->
+        <div class="footer-col">
+            <h4>🖼️ Image & Media Tools</h4>
+            <a href="image-compressor.html">🗜️ Image Compressor</a>
+            <!-- Future tools yahan add karein: Background Remover, Image Resizer, etc -->
         </div>
     </div>
-    <div class="footer-bottom slide-up">
-        <p>© 2026 <strong class="click-animate">Free Online Tools</strong>. All rights reserved. | Made with <span class="heart click-animate">❤️</span> for the global community</p>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
     </div>
 </footer>
 
-<script>
-// Dropdown functionality
-const toolsBtn = document.getElementById('toolsBtn');
-const toolsDropdown = document.getElementById('toolsDropdown');
-if (toolsBtn && toolsDropdown) {
-    toolsBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        toolsDropdown.classList.toggle('open');
-    });
-    document.addEventListener('click', function(e) {
-        if (!toolsDropdown.contains(e.target)) toolsDropdown.classList.remove('open');
-    });
+<style>
+/* Professional Gradient Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 50px 20px 25px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
 }
 
-function toggleCategory(event, element) {
-    event.stopPropagation();
-    const toolsDiv = element.nextElementSibling;
-    element.classList.toggle('active');
-    if (toolsDiv) toolsDiv.classList.toggle('show');
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
 }
 
-// Stats Animation - 0 to 50K+ on refresh
-function animateStats() {
-    const usersElement = document.getElementById('usersCount');
-    if (usersElement) {
-        const target = 50000;
-        let current = 0;
-        const increment = Math.ceil(target / 40);
-        
-        const interval = setInterval(() => {
-            current += increment;
-            if (current >= target) {
-                usersElement.innerText = '50K+';
-                clearInterval(interval);
-            } else {
-                usersElement.innerText = current.toLocaleString();
-            }
-        }, 30);
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 35px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 18px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 12px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    margin-top: 35px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .footer-col h3::after, .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .footer-col a {
+        display: inline-block;
+        margin: 0 8px;
+        padding: 5px 8px;
+    }
+    
+    .footer-col p {
+        text-align: center;
     }
 }
 
-// Run animation when page loads
-window.addEventListener('load', animateStats);
+@media (max-width: 480px) {
+    .footer {
+        padding: 35px 15px 20px;
+    }
+}
+</style>
+<!-- JavaScript for Dropdown & Accordion (fully functional) -->
+<script>
+    (function() {
+        const dropdown = document.getElementById('toolsDropdown');
+        const dropBtn = document.getElementById('toolsBtn');
+        const dropdownContent = document.getElementById('dropdownContent');
+        
+        function closeAllCategories() {
+            document.querySelectorAll('.dropdown-category').forEach(cat => cat.classList.remove('active'));
+            document.querySelectorAll('.category-tools').forEach(panel => panel.classList.remove('show'));
+        }
+        
+        window.toggleCategory = function(event, element) {
+            if (event) event.stopPropagation();
+            let targetPanel = null;
+            const catAttr = element.getAttribute('data-cat');
+            if (catAttr) targetPanel = document.getElementById(catAttr + 'Tools');
+            else {
+                let next = element.nextElementSibling;
+                while (next && !next.classList.contains('category-tools')) next = next.nextElementSibling;
+                targetPanel = next;
+            }
+            const isActive = element.classList.contains('active');
+            closeAllCategories();
+            if (!isActive && targetPanel) {
+                element.classList.add('active');
+                targetPanel.classList.add('show');
+            }
+        };
+        
+        function toggleDropdown(event) {
+            event.stopPropagation();
+            dropdown.classList.toggle('open');
+            if (dropdown.classList.contains('open')) closeAllCategories();
+        }
+        
+        function closeDropdownOnOutside(event) {
+            if (!dropdown.contains(event.target)) {
+                dropdown.classList.remove('open');
+                closeAllCategories();
+            }
+        }
+        
+        if (dropBtn) dropBtn.addEventListener('click', toggleDropdown);
+        document.addEventListener('click', closeDropdownOnOutside);
+        if (dropdownContent) dropdownContent.addEventListener('click', e => e.stopPropagation());
+        
+        document.querySelectorAll('.dropdown-category').forEach(header => {
+            header.removeEventListener('click', window.toggleCategory);
+            header.addEventListener('click', function(e) {
+                e.stopPropagation();
+                window.toggleCategory(e, this);
+            });
+        });
+        
+        document.querySelectorAll('.category-tools a').forEach(link => {
+            link.addEventListener('click', e => e.stopPropagation());
+        });
+    })();
 </script>
-
 </body>
 </html>
