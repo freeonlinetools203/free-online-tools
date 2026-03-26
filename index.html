@@ -397,13 +397,14 @@ body {
     color: #1e3a8a;
 }
 
-/* ========== FOOTER - PROFESSIONAL WITH TRENDING TOOLS ========== */
+/* ========== FOOTER WITH ANIMATIONS ========== */
 .footer {
     background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
     color: #9ca3af;
     padding: 50px 20px 30px;
     margin-top: 40px;
     border-top: 1px solid #374151;
+    overflow: hidden;
 }
 
 .footer-container {
@@ -418,6 +419,23 @@ body {
     color: white;
     margin-bottom: 15px;
     font-size: 1.2rem;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::before {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #facc15, #f59e0b);
+    transition: width 0.4s ease;
+}
+
+.footer-col:hover h3::before {
+    width: 100%;
 }
 
 .footer-col h4 {
@@ -437,11 +455,41 @@ body {
     height: 2px;
     background: #facc15;
     border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.footer-col:hover h4::after {
+    width: 80px;
 }
 
 .footer-col p {
     font-size: 0.9rem;
     line-height: 1.6;
+    transition: transform 0.3s ease;
+}
+
+.footer-col:hover p {
+    transform: translateX(5px);
+}
+
+/* Click animations */
+.click-animate {
+    display: inline-block;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
+    position: relative;
+}
+
+.click-animate:hover {
+    transform: scale(1.05);
+    color: #facc15 !important;
+}
+
+.click-animate:active {
+    transform: scale(1.15);
+    font-weight: bold;
+    color: #ffd966 !important;
+    transition: all 0.08s ease;
 }
 
 .footer-col a {
@@ -451,24 +499,133 @@ body {
     padding: 6px 0;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.footer-col a::before {
+    content: '→';
+    position: absolute;
+    left: -20px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: #facc15;
 }
 
 .footer-col a:hover {
     color: #facc15;
-    transform: translateX(5px);
+    transform: translateX(15px);
+    padding-left: 5px;
 }
 
-.footer-bottom {
-    text-align: center;
-    padding-top: 30px;
-    margin-top: 30px;
-    border-top: 1px solid #374151;
-    font-size: 0.85rem;
-    color: #6b7280;
+.footer-col a:hover::before {
+    left: -5px;
+    opacity: 1;
+}
+
+.footer-col a.click-animate:active {
+    transform: translateX(15px) scale(1.08);
+    font-weight: 600;
+}
+
+.heart {
+    display: inline-block;
+    animation: heartBeat 1.2s ease-in-out infinite;
+    cursor: pointer;
+}
+
+.heart:active {
+    animation: heartClick 0.3s ease;
+    transform: scale(1.3);
+}
+
+@keyframes heartBeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    35% { transform: scale(1.15); }
+    45% { transform: scale(1.1); }
+    55% { transform: scale(1); }
+}
+
+@keyframes heartClick {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.4); color: #ff3366; }
+    100% { transform: scale(1); }
+}
+
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 0.5s ease 0.4s forwards;
+}
+
+@keyframes slideUp {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.footer {
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #facc15, transparent);
+    transition: left 0.5s ease;
+}
+
+.footer:hover::before {
+    left: 100%;
 }
 
 .footer-bottom strong {
-    color: #facc15;
+    animation: gentlePulse 2s ease-in-out infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+.click-animate {
+    position: relative;
+    overflow: hidden;
+}
+
+.click-animate::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(250, 204, 21, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s ease, height 0.3s ease;
+    pointer-events: none;
+}
+
+.click-animate:active::after {
+    width: 100px;
+    height: 100px;
+    opacity: 0;
+    transition: 0s;
 }
 
 @media (max-width: 768px) {
@@ -516,6 +673,22 @@ body {
     }
     .footer-col a:hover {
         transform: translateX(0);
+    }
+    .footer-col a::before {
+        display: none;
+    }
+    .footer-col a:hover {
+        padding-left: 0;
+    }
+    .footer-col h3::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-col:hover h3::before {
+        width: 60%;
+    }
+    .click-animate:active {
+        transform: scale(1.1);
     }
 }
 </style>
@@ -714,7 +887,7 @@ body {
     </div>
 </div>
 
-<!-- Footer - Professional with Trending Tools + Click Animations -->
+<!-- Footer with Animations -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-col fade-in-up">
@@ -749,349 +922,49 @@ body {
     </div>
 </footer>
 
-<style>
-/* ========== FOOTER STYLES WITH ANIMATIONS ========== */
-.footer {
-    background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
-    color: #9ca3af;
-    padding: 50px 20px 30px;
-    margin-top: 40px;
-    border-top: 1px solid #374151;
-    overflow: hidden;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-}
-
-.footer-col h3 {
-    color: white;
-    margin-bottom: 15px;
-    font-size: 1.2rem;
-    position: relative;
-    display: inline-block;
-}
-
-.footer-col h3::before {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, #facc15, #f59e0b);
-    transition: width 0.4s ease;
-}
-
-.footer-col:hover h3::before {
-    width: 100%;
-}
-
-.footer-col h4 {
-    color: #facc15;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    position: relative;
-    display: inline-block;
-}
-
-.footer-col h4::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: #facc15;
-    border-radius: 2px;
-    transition: width 0.3s ease;
-}
-
-.footer-col:hover h4::after {
-    width: 80px;
-}
-
-.footer-col p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    transition: transform 0.3s ease;
-}
-
-.footer-col:hover p {
-    transform: translateX(5px);
-}
-
-/* ========== CLICK/TAP ANIMATION STYLES ========== */
-.click-animate {
-    display: inline-block;
-    cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.34, 1.2, 0.64, 1);
-    position: relative;
-}
-
-/* Hover effect - grows slightly */
-.click-animate:hover {
-    transform: scale(1.05);
-    color: #facc15 !important;
-}
-
-/* Active/Click effect - grows and bolds */
-.click-animate:active {
-    transform: scale(1.15);
-    font-weight: bold;
-    color: #ffd966 !important;
-    transition: all 0.08s ease;
-}
-
-/* For links in footer */
-.footer-col a {
-    display: block;
-    color: #9ca3af;
-    text-decoration: none;
-    padding: 6px 0;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.footer-col a::before {
-    content: '→';
-    position: absolute;
-    left: -20px;
-    opacity: 0;
-    transition: all 0.3s ease;
-    color: #facc15;
-}
-
-.footer-col a:hover {
-    color: #facc15;
-    transform: translateX(15px);
-    padding-left: 5px;
-}
-
-.footer-col a:hover::before {
-    left: -5px;
-    opacity: 1;
-}
-
-/* Special click animation for links */
-.footer-col a.click-animate:active {
-    transform: translateX(15px) scale(1.08);
-    font-weight: 600;
-}
-
-/* Heart beat animation with click effect */
-.heart {
-    display: inline-block;
-    animation: heartBeat 1.2s ease-in-out infinite;
-    cursor: pointer;
-}
-
-.heart:active {
-    animation: heartClick 0.3s ease;
-    transform: scale(1.3);
-}
-
-@keyframes heartBeat {
-    0%, 100% {
-        transform: scale(1);
-    }
-    25% {
-        transform: scale(1.1);
-    }
-    35% {
-        transform: scale(1.15);
-    }
-    45% {
-        transform: scale(1.1);
-    }
-    55% {
-        transform: scale(1);
-    }
-}
-
-@keyframes heartClick {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.4);
-        color: #ff3366;
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-/* Fade In Up Animation for footer columns */
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.6s ease forwards;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Slide Up Animation for bottom section */
-.slide-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 0.5s ease 0.4s forwards;
-}
-
-@keyframes slideUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Hover glow effect on footer container */
-.footer {
-    position: relative;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, #facc15, transparent);
-    transition: left 0.5s ease;
-}
-
-.footer:hover::before {
-    left: 100%;
-}
-
-/* Pulse animation on copyright year */
-@keyframes gentlePulse {
-    0%, 100% {
-        opacity: 1;
-    }
-    50% {
-        opacity: 0.7;
-    }
-}
-
-.footer-bottom strong {
-    animation: gentlePulse 2s ease-in-out infinite;
-}
-
-/* Ripple effect */
-.click-animate {
-    position: relative;
-    overflow: hidden;
-}
-
-.click-animate::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    border-radius: 50%;
-    background: rgba(250, 204, 21, 0.3);
-    transform: translate(-50%, -50%);
-    transition: width 0.3s ease, height 0.3s ease;
-    pointer-events: none;
-}
-
-.click-animate:active::after {
-    width: 100px;
-    height: 100px;
-    opacity: 0;
-    transition: 0s;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 30px;
-    }
-    .footer-col h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    .footer-col a:hover {
-        transform: translateX(0);
-    }
-    .footer-col a::before {
-        display: none;
-    }
-    .footer-col a:hover {
-        padding-left: 0;
-    }
-    .footer-col h3::before {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    .footer-col:hover h3::before {
-        width: 60%;
-    }
-    
-    /* Touch-friendly click animations for mobile */
-    .click-animate:active {
-        transform: scale(1.1);
-    }
-    
-    .footer-col a.click-animate:active {
-        transform: scale(1.05);
-    }
-}
-</style>
-
 <script>
-// Add click feedback with subtle vibration (optional - works on mobile devices)
-document.addEventListener('DOMContentLoaded', function() {
-    const clickableElements = document.querySelectorAll('.click-animate');
-    
-    clickableElements.forEach(element => {
-        element.addEventListener('click', function(e) {
-            // Add temporary bold class for extra emphasis
-            this.style.transition = 'all 0.1s ease';
-            
-            // For mobile devices with vibration API (optional)
-            if (window.navigator && window.navigator.vibrate) {
-                window.navigator.vibrate(50);
-            }
-            
-            // Remove bold after animation completes
-            setTimeout(() => {
-                this.style.transition = '';
-            }, 150);
-        });
-        
-        // Touch start for faster feedback on mobile
-        element.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.98)';
-        });
-        
-        element.addEventListener('touchend', function() {
-            this.style.transform = '';
-        });
-        
-        element.addEventListener('touchcancel', function() {
-            this.style.transform = '';
-        });
+// Dropdown functionality
+const toolsBtn = document.getElementById('toolsBtn');
+const toolsDropdown = document.getElementById('toolsDropdown');
+if (toolsBtn && toolsDropdown) {
+    toolsBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toolsDropdown.classList.toggle('open');
     });
-});
+    document.addEventListener('click', function(e) {
+        if (!toolsDropdown.contains(e.target)) toolsDropdown.classList.remove('open');
+    });
+}
+
+function toggleCategory(event, element) {
+    event.stopPropagation();
+    const toolsDiv = element.nextElementSibling;
+    element.classList.toggle('active');
+    if (toolsDiv) toolsDiv.classList.toggle('show');
+}
+
+// Stats Animation - 0 to 50K+ on refresh
+function animateStats() {
+    const usersElement = document.getElementById('usersCount');
+    if (usersElement) {
+        const target = 50000;
+        let current = 0;
+        const increment = Math.ceil(target / 40);
+        
+        const interval = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+                usersElement.innerText = '50K+';
+                clearInterval(interval);
+            } else {
+                usersElement.innerText = current.toLocaleString();
+            }
+        }, 30);
+    }
+}
+
+// Run animation when page loads
+window.addEventListener('load', animateStats);
 </script>
 
 </body>
