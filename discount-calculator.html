@@ -1,351 +1,1458 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Discount Calculator | Smart Savings Tool</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * { transition: all 0.2s ease; }
-        body { background: linear-gradient(135deg, #f0f9ff 0%, #e6f7e6 50%, #fef3c7 100%); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 1.5rem; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
-        .result-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 1rem; padding: 0.75rem; text-align: center; border: 1px solid rgba(0, 0, 0, 0.05); }
-        .mode-tab { padding: 0.6rem 1.5rem; border-radius: 9999px; font-weight: 600; cursor: pointer; background: white; color: #4b5563; border: 1px solid #e5e7eb; }
-        .mode-tab:hover { background: #f3f4f6; }
-        .mode-tab.active { background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); color: white; border: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
-        input, select { border: 1px solid #e5e7eb; outline: none; background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; font-size: 0.95rem; width: 100%; }
-        input:focus, select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
-        .icon-btn { background: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.65rem; color: #4b5563; cursor: pointer; }
-        .icon-btn:hover { background: #f9fafb; border-color: #10b981; color: #10b981; transform: translateY(-2px); }
-        .savings-text { color: #10b981; }
-        .original-text { color: #6b7280; }
-        .final-text { color: #3b82f6; }
-        .gauge-bg { background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
-        .chart-container { background: #ffffff; border-radius: 1rem; padding: 0.75rem; border: 1px solid #f0f0f0; }
-        .history-item { background: #f9fafb; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; color: #4b5563; border: 1px solid #e5e7eb; }
-        .badge-best { background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
-        .badge-good { background: linear-gradient(135deg, #10b981, #3b82f6); color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
-        @media (max-width: 768px) { .mode-tab { padding: 0.5rem 1rem; font-size: 0.9rem; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Discount Calculator – Price Discount & Tax Calculator | Free Online Tools</title>
+<meta name="description" content="Free Discount Calculator: Learn how to calculate discount percentage, final price, tax, and total savings. Includes price discount calculator, discount and tax calculator, discount factor formula, and mortgage discount points calculator.">
+<meta name="keywords" content="discount calculator, price discount calculator, how to calculate discount percentage, how to calculate discounts, gm employee discount calculator, discount and tax calculator, discount factor calculation formula, discounted payback period calculation formula, dividend discount model calculator, how to calculate discount factor, mortgage discount points calculator, savings calculator, percentage off calculator">
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/discount-calculator.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Online Tools">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ========== TOOL CARD ========== */
+.tool-card-large {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.tool-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+/* Mode Tabs */
+.mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mode-tab {
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.mode-tab:hover {
+    background: #e5e7eb;
+}
+
+.mode-tab.active {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.input-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.input-card h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 8px;
+    word-break: break-word;
+}
+
+.savings-text {
+    color: #10b981;
+}
+
+.final-text {
+    color: #2563eb;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* Badge */
+.badge-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.badge-best {
+    background: linear-gradient(135deg, #f59e0b, #ef4444);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge-good {
+    background: linear-gradient(135deg, #10b981, #3b82f6);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge-normal {
+    background: #9ca3af;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Chart Section */
+.chart-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.chart-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.chart-container p {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.gauge-container {
+    margin-top: 15px;
+}
+
+.gauge-bg {
+    background: #e5e7eb;
+    border-radius: 30px;
+    height: 24px;
+    overflow: hidden;
+}
+
+.gauge-fill {
+    height: 100%;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+    background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);
+}
+
+.gauge-label {
+    text-align: center;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    color: #6b7280;
+}
+
+/* History Section */
+.history-section {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.history-header h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+}
+
+.clear-history {
+    background: #f3f4f6;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+}
+
+.clear-history:hover {
+    background: #e5e7eb;
+    color: #1e3a8a;
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.history-item {
+    background: #f3f4f6;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+
+/* ========== ADS SECTION ========== */
+.ad-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.ad-placeholder {
+    background: #ffffff;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
+}
+
+/* ========== OTHER TOOLS SECTION - BLUE LINKS ========== */
+.other-tools {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tool-link {
+    background: #eff6ff;
+    color: #2563eb !important;
+    padding: 12px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tool-link:hover {
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
+}
+
+.home-link {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.home-link:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* Article Section */
+.article-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.article-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.article-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.article-section h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.article-section p {
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.article-section ul {
+    margin: 15px 0 15px 25px;
+}
+
+.article-section li {
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faq-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 12px 20px; }
+    .nav-container { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; gap: 18px; }
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 1rem; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-section { grid-template-columns: 1fr; }
+    .tool-card-large { padding: 20px; }
+    .mode-tab { padding: 8px 20px; font-size: 0.85rem; }
+    .button-group .btn { padding: 8px 16px; font-size: 0.8rem; }
+    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+}
+
+@media (max-width: 480px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .button-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+    .dropdown-content { left: -120px; min-width: 240px; }
+    .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <div class="min-h-screen p-4 md:p-6 lg:p-8">
-        <div class="max-w-7xl mx-auto">
-            <!-- Header -->
-            <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center shadow-lg">
-                        <i class="fas fa-tag text-2xl text-white"></i>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
                     </div>
-                    <div>
-                        <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Discount Calculator</h1>
-                        <p class="text-sm text-gray-500 mt-0.5">Smart savings · Real-time results</p>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
                     </div>
                 </div>
-                <div class="flex gap-2 items-center flex-wrap">
-                    <div class="glass-card px-3 py-2 flex items-center gap-2 shadow-sm">
-                        <i class="fas fa-coins text-green-500"></i>
-                        <select id="currencySelect" class="border-0 bg-transparent font-medium cursor-pointer text-gray-700">
-                            <option value="$">$ USD</option>
-                            <option value="€">€ EUR</option>
-                            <option value="£">£ GBP</option>
-                            <option value="₹">₹ INR</option>
-                            <option value="₨">₨ PKR</option>
-                        </select>
-                    </div>
-                    <button id="resetBtn" class="icon-btn"><i class="fas fa-undo-alt"></i></button>
-                    <button id="copySummaryBtn" class="icon-btn"><i class="fas fa-copy"></i></button>
-                    <button id="exportChartBtn" class="icon-btn"><i class="fas fa-camera"></i></button>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <h1>🏷️ Discount Calculator</h1>
+    <p>Calculate your savings, final price, tax & total — includes price discount calculator, discount and tax calculator, and more</p>
+</header>
+
+<div class="container">
+    <!-- MAIN TOOL CARD -->
+    <div class="tool-card-large">
+        <h2 class="tool-title">Smart Savings Calculator</h2>
+        
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+            <button data-type="percentage" class="mode-tab active">📊 Percentage Off (%)</button>
+            <button data-type="fixed" class="mode-tab">💰 Fixed Amount ($)</button>
+        </div>
+        
+        <!-- Input Grid -->
+        <div class="input-grid">
+            <div class="input-card">
+                <h3><i class="fas fa-dollar-sign" style="color: #2563eb;"></i> Price Details</h3>
+                <div class="input-group">
+                    <label>🏷️ Original Price</label>
+                    <input type="number" id="originalPrice" value="100" step="any">
                 </div>
-            </div>
-
-            <!-- Discount Type Tabs -->
-            <div class="flex flex-wrap gap-3 mb-6">
-                <button data-type="percentage" class="mode-tab active" id="percentTabBtn"><i class="fas fa-percent mr-2"></i>Percentage Off (%)</button>
-                <button data-type="fixed" class="mode-tab" id="fixedTabBtn"><i class="fas fa-dollar-sign mr-2"></i>Fixed Amount ($)</button>
-            </div>
-
-            <!-- Main Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Left: Input Panel -->
-                <div class="glass-card p-5 md:p-6">
-                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
-                        <i class="fas fa-sliders-h text-green-500 text-lg"></i>
-                        <h2 class="text-xl font-semibold text-gray-800">Input Parameters</h2>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-dollar-sign mr-1"></i>Original Price</label>
-                            <input type="number" id="originalPrice" value="100" step="any" class="w-full">
-                        </div>
-                        
-                        <div id="discountInputContainer">
-                            <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Discount Percentage (%)</label>
-                            <input type="number" id="discountPercent" value="20" step="0.5" class="w-full">
-                        </div>
-                        
-                        <div>
-                            <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-cubes mr-1"></i>Quantity</label>
-                            <input type="number" id="quantity" value="1" step="1" class="w-full">
-                        </div>
-                        
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Tax Rate (%)</label>
-                                <input type="number" id="taxRate" value="0" step="0.5" class="w-full">
-                                <p class="text-xs text-gray-400 mt-1">After discount</p>
-                            </div>
-                            <div>
-                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-truck mr-1"></i>Shipping Cost</label>
-                                <input type="number" id="shippingCost" value="0" step="any" class="w-full">
-                            </div>
-                        </div>
-                    </div>
+                <div class="input-group" id="discountInputContainer">
+                    <label>📉 Discount Percentage (%)</label>
+                    <input type="number" id="discountPercent" value="20" step="0.5">
                 </div>
-
-                <!-- Right: Results Dashboard -->
-                <div class="glass-card p-5 md:p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-chart-line mr-2 text-green-500"></i>Savings Dashboard</h2>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">You Save</p><p id="discountAmount" class="text-2xl font-bold savings-text mt-1">-</p></div>
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Final Price</p><p id="finalPrice" class="text-2xl font-bold final-text mt-1">-</p></div>
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Save %</p><p id="savePercent" class="text-2xl font-bold savings-text mt-1">-</p></div>
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Grand Total</p><p id="grandTotal" class="text-2xl font-bold mt-1">-</p></div>
-                    </div>
-
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 text-sm">
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Original Total</span><p id="originalTotal" class="font-semibold text-gray-800 original-text">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">After Discount</span><p id="afterDiscount" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Tax Amount</span><p id="taxAmount" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Total Savings</span><p id="totalSavings" class="font-semibold savings-text">-</p></div>
-                    </div>
-
-                    <div id="smartBadge" class="mb-4 text-center"></div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
-                        <div class="chart-container">
-                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-chart-pie mr-1"></i> Price Breakdown</p>
-                            <canvas id="donutChart" height="150" style="max-height: 160px; width: 100%;"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-chart-simple mr-1"></i> Original vs Final</p>
-                            <div class="gauge-bg h-8 rounded-full overflow-hidden mb-2">
-                                <div id="savingsGauge" class="h-full rounded-full transition-all duration-300" style="width:0%; background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);"></div>
-                            </div>
-                            <p id="gaugeLabel" class="text-xs text-center text-gray-600 mb-2">Savings: 0%</p>
-                            <canvas id="comparisonBar" height="80" style="max-height: 85px; width: 100%;"></canvas>
-                        </div>
-                    </div>
+                <div class="input-group">
+                    <label>📦 Quantity</label>
+                    <input type="number" id="quantity" value="1" step="1">
                 </div>
             </div>
-
-            <div class="glass-card mt-6 p-4">
-                <div class="flex justify-between items-center flex-wrap">
-                    <h3 class="font-semibold text-gray-800"><i class="fas fa-history mr-2 text-green-500"></i>Recent Calculations</h3>
-                    <button id="clearHistoryBtn" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Clear History</button>
+            <div class="input-card">
+                <h3><i class="fas fa-calculator" style="color: #10b981;"></i> Additional Charges</h3>
+                <div class="input-group">
+                    <label>💰 Tax Rate (%)</label>
+                    <input type="number" id="taxRate" value="0" step="0.5">
+                    <p style="font-size: 0.7rem; color: #6b7280; margin-top: 4px;">Applied after discount</p>
                 </div>
-                <div id="historyList" class="flex flex-wrap gap-2 mt-3 text-sm max-h-28 overflow-y-auto"></div>
+                <div class="input-group">
+                    <label>🚚 Shipping Cost</label>
+                    <input type="number" id="shippingCost" value="0" step="any">
+                </div>
+                <div class="input-group">
+                    <label>🌍 Currency</label>
+                    <select id="currencySelect">
+                        <option value="$">$ USD</option>
+                        <option value="€">€ EUR</option>
+                        <option value="£">£ GBP</option>
+                        <option value="₹">₹ INR</option>
+                        <option value="₨">₨ PKR</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Button Group -->
+        <div class="button-group">
+            <button id="resetBtn" class="btn btn-secondary"><i class="fas fa-undo-alt"></i> Reset</button>
+            <button id="copySummaryBtn" class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Summary</button>
+            <button id="exportChartBtn" class="btn btn-secondary"><i class="fas fa-camera"></i> Export Chart</button>
+        </div>
+        
+        <!-- Results Grid -->
+        <div class="results-grid">
+            <div class="result-box"><div class="result-icon">💰</div><div class="result-label">You Save</div><div class="result-value savings-text" id="discountAmount">-</div></div>
+            <div class="result-box"><div class="result-icon">🏷️</div><div class="result-label">Final Price</div><div class="result-value final-text" id="finalPrice">-</div></div>
+            <div class="result-box"><div class="result-icon">📊</div><div class="result-label">Save %</div><div class="result-value savings-text" id="savePercent">-</div></div>
+            <div class="result-box"><div class="result-icon">💵</div><div class="result-label">Grand Total</div><div class="result-value" id="grandTotal">-</div></div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-label">Original Total</div><div class="stat-value original-text" id="originalTotal">-</div></div>
+            <div class="stat-card"><div class="stat-label">After Discount</div><div class="stat-value" id="afterDiscount">-</div></div>
+            <div class="stat-card"><div class="stat-label">Tax Amount</div><div class="stat-value" id="taxAmount">-</div></div>
+            <div class="stat-card"><div class="stat-label">Total Savings</div><div class="stat-value savings-text" id="totalSavings">-</div></div>
+        </div>
+        
+        <!-- Smart Badge -->
+        <div id="smartBadge" class="badge-container"></div>
+        
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="chart-container">
+                <p><i class="fas fa-chart-pie"></i> Price Breakdown</p>
+                <canvas id="donutChart" height="150" style="max-height: 160px; width: 100%;"></canvas>
+            </div>
+            <div class="chart-container">
+                <p><i class="fas fa-chart-simple"></i> Original vs Final</p>
+                <div class="gauge-container">
+                    <div class="gauge-bg"><div id="savingsGauge" class="gauge-fill" style="width:0%;"></div></div>
+                    <div id="gaugeLabel" class="gauge-label">Savings: 0%</div>
+                </div>
+                <canvas id="comparisonBar" height="80" style="max-height: 85px; width: 100%; margin-top: 10px;"></canvas>
             </div>
         </div>
     </div>
-
-    <script>
-        let discountType = "percentage";
-        let currency = "$";
-        let chartDonut, chartComparison;
-        let historyArray = [];
-
-        function fmt(value) { return currency + Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-        function fmtPercent(value) { return Number(value).toFixed(2) + "%"; }
-
-        function calculate() {
-            let originalPrice = parseFloat(document.getElementById("originalPrice")?.value) || 0;
-            let quantity = parseFloat(document.getElementById("quantity")?.value) || 1;
-            let taxRate = parseFloat(document.getElementById("taxRate")?.value) || 0;
-            let shippingCost = parseFloat(document.getElementById("shippingCost")?.value) || 0;
-            
-            let originalTotal = originalPrice * quantity;
-            let discountAmount = 0;
-            let discountPercentValue = 0;
-            
-            if (discountType === "percentage") {
-                let discountPercent = parseFloat(document.getElementById("discountPercent")?.value) || 0;
-                discountPercentValue = discountPercent;
-                discountAmount = originalTotal * (discountPercent / 100);
-            } else {
-                let discountFixed = parseFloat(document.getElementById("discountFixed")?.value) || 0;
-                discountAmount = discountFixed * quantity;
-                discountPercentValue = originalTotal > 0 ? (discountAmount / originalTotal) * 100 : 0;
-            }
-            
-            let afterDiscount = originalTotal - discountAmount;
-            let taxAmount = afterDiscount * (taxRate / 100);
-            let grandTotal = afterDiscount + taxAmount + shippingCost;
-            let totalSavings = discountAmount;
-            let savePercent = originalTotal > 0 ? (discountAmount / originalTotal) * 100 : 0;
-            
-            return { originalTotal, discountAmount, afterDiscount, taxAmount, shippingCost, grandTotal, totalSavings, savePercent, discountPercent: discountPercentValue };
-        }
-
-        function updateSmartBadge(savePercent) {
-            let badgeDiv = document.getElementById("smartBadge");
-            if (savePercent >= 30) {
-                badgeDiv.innerHTML = `<span class="badge-best"><i class="fas fa-fire mr-1"></i>HOT DEAL! You're saving ${fmtPercent(savePercent)} - Amazing!</span>`;
-            } else if (savePercent >= 15) {
-                badgeDiv.innerHTML = `<span class="badge-good"><i class="fas fa-smile mr-1"></i>Good Deal! ${fmtPercent(savePercent)} savings</span>`;
-            } else if (savePercent >= 5) {
-                badgeDiv.innerHTML = `<span class="badge-good" style="background: linear-gradient(135deg, #6b7280, #9ca3af);"><i class="fas fa-tag mr-1"></i>${fmtPercent(savePercent)} off</span>`;
-            } else if (savePercent > 0) {
-                badgeDiv.innerHTML = `<span class="badge-good" style="background: #9ca3af;"><i class="fas fa-tag mr-1"></i>Small discount: ${fmtPercent(savePercent)}</span>`;
-            } else {
-                badgeDiv.innerHTML = `<span class="text-xs text-gray-400"><i class="fas fa-tag mr-1"></i>No discount applied</span>`;
-            }
-        }
-
-        function updateUI(res) {
-            document.getElementById("discountAmount").innerHTML = fmt(res.discountAmount);
-            document.getElementById("finalPrice").innerHTML = fmt(res.afterDiscount);
-            document.getElementById("savePercent").innerHTML = fmtPercent(res.savePercent);
-            document.getElementById("grandTotal").innerHTML = fmt(res.grandTotal);
-            document.getElementById("originalTotal").innerHTML = fmt(res.originalTotal);
-            document.getElementById("afterDiscount").innerHTML = fmt(res.afterDiscount);
-            document.getElementById("taxAmount").innerHTML = fmt(res.taxAmount);
-            document.getElementById("totalSavings").innerHTML = fmt(res.totalSavings);
-            
-            let gaugeWidth = Math.min(100, Math.max(0, res.savePercent));
-            document.getElementById("savingsGauge").style.width = gaugeWidth + "%";
-            document.getElementById("gaugeLabel").innerHTML = `You saved ${fmtPercent(res.savePercent)}`;
-            
-            updateSmartBadge(res.savePercent);
-            
-            if (chartDonut) {
-                chartDonut.data.datasets[0].data = [res.originalTotal, res.discountAmount, res.afterDiscount];
-                chartDonut.update();
-            }
-            if (chartComparison) {
-                chartComparison.data.datasets[0].data = [res.originalTotal, res.afterDiscount];
-                chartComparison.update();
-            }
-        }
-
-        function updateAll() { const res = calculate(); updateUI(res); saveToHistory(res); }
+    
+    <!-- AD 1: After Tool Results (Before Other Tools) -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 1</span>
+        </div>
+    </div>
+    
+    <!-- History Section -->
+    <div class="history-section">
+        <div class="history-header">
+            <h3><i class="fas fa-history"></i> Recent Calculations</h3>
+            <button id="clearHistoryBtn" class="clear-history">Clear History</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+    </div>
+    
+    <!-- Other Tools Section - Blue Links -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="age-difference-calculator.html" class="tool-link">📊 Age Difference Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
+            <a href="loan-calculator.html" class="tool-link">📋 Loan Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">📈 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔢 Word Counter</a>
+            <a href="password-generator.html" class="tool-link">🔐 Password Generator</a>
+            <a href="zakat-calculator.html" class="tool-link">🕌 Zakat Calculator</a>
+            <a href="spin-the-wheel.html" class="tool-link">🎡 Spin The Wheel</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- AD 2: After Other Tools Section -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 2</span>
+        </div>
+    </div>
+    
+    <!-- Article Section -->
+    <div class="article-section">
+        <h2>How to Calculate Discount Percentage – Complete Guide</h2>
+        <p>Welcome to the most comprehensive <strong>discount calculator</strong> online. Whether you need to <strong>how to calculate discount percentage</strong> for a sale, or you're looking for a <strong>price discount calculator</strong> to determine final prices, this tool provides instant, accurate results. Our <strong>discount and tax calculator</strong> handles everything from simple percentage off to complex scenarios with tax and shipping.</p>
         
-        function saveToHistory(res) { 
-            let summary = `${fmt(res.originalTotal)} → ${fmt(res.afterDiscount)} (Save ${fmt(res.discountAmount)})`; 
-            historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() }); 
-            if (historyArray.length > 8) historyArray.pop(); 
-            localStorage.setItem("discount_history", JSON.stringify(historyArray)); 
-            renderHistory(); 
-        }
+        <h3>How to Calculate Discounts – The Formula</h3>
+        <p>Learning <strong>how to calculate discounts</strong> is essential for smart shopping. The basic formula is: Discount Amount = Original Price × (Discount Percentage ÷ 100). Final Price = Original Price - Discount Amount. For example, a 20% discount on a $100 item saves you $20, making the final price $80. Our <strong>price discount calculator</strong> does this instantly.</p>
         
-        function renderHistory() { 
-            let container = document.getElementById("historyList"); 
-            if (!container) return; 
-            if (historyArray.length === 0) { container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; return; } 
-            container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join(''); 
-        }
+        <h3>Discount Factor Calculation Formula</h3>
+        <p>The <strong>discount factor calculation formula</strong> is used in finance to determine the present value of future cash flows. The formula is: Discount Factor = 1 / (1 + r)^n, where r is the discount rate and n is the number of periods. This is different from retail discount calculations but equally important for financial analysis.</p>
         
-        function loadHistory() { let stored = localStorage.getItem("discount_history"); if (stored) { historyArray = JSON.parse(stored); renderHistory(); } }
-        function clearHistory() { historyArray = []; localStorage.removeItem("discount_history"); renderHistory(); }
-
-        // FIXED: Tab switching with proper input field update
-        function setDiscountType(type) {
-            discountType = type;
-            const container = document.getElementById("discountInputContainer");
-            
-            if (type === "percentage") {
-                container.innerHTML = `<label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Discount Percentage (%)</label>
-                                       <input type="number" id="discountPercent" value="20" step="0.5" class="w-full">`;
-                const newInput = document.getElementById("discountPercent");
-                if (newInput) newInput.addEventListener("input", updateAll);
-            } else {
-                container.innerHTML = `<label class="text-sm text-gray-600 block mb-2"><i class="fas fa-dollar-sign mr-1"></i>Discount Amount ($)</label>
-                                       <input type="number" id="discountFixed" value="20" step="any" class="w-full">`;
-                const newInput = document.getElementById("discountFixed");
-                if (newInput) newInput.addEventListener("input", updateAll);
-            }
-            
-            // Update active tab styling
-            document.querySelectorAll("[data-type]").forEach(btn => {
-                if (btn.getAttribute("data-type") === type) {
-                    btn.classList.add("active");
-                } else {
-                    btn.classList.remove("active");
-                }
-            });
-            
-            updateAll();
-        }
-
-        function initCharts() {
-            let ctxDonut = document.getElementById('donutChart').getContext('2d');
-            let ctxBar = document.getElementById('comparisonBar').getContext('2d');
-            chartDonut = new Chart(ctxDonut, { type: 'doughnut', data: { labels: ['Original', 'Discount', 'Final'], datasets: [{ data: [100, 20, 80], backgroundColor: ['#6b7280', '#10b981', '#3b82f6'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: '#4b5563' } } } } });
-            chartComparison = new Chart(ctxBar, { type: 'bar', data: { labels: ['Original Price', 'Final Price'], datasets: [{ label: 'Amount', data: [0, 0], backgroundColor: ['#6b7280', '#3b82f6'], borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: '#e5e7eb' } }, x: { ticks: { color: '#4b5563', font: { size: 11 } } } } } });
-        }
-
-        function exportChartAsImage() {
-            const originalCanvas = document.getElementById("donutChart");
-            const tempCanvas = document.createElement('canvas');
-            const scale = 3;
-            tempCanvas.width = originalCanvas.width * scale;
-            tempCanvas.height = originalCanvas.height * scale;
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCtx.fillStyle = '#ffffff';
-            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-            tempCtx.scale(scale, scale);
-            tempCtx.drawImage(originalCanvas, 0, 0);
-            tempCtx.scale(1/scale, 1/scale);
-            tempCtx.font = `${12 * scale}px system-ui`;
-            tempCtx.fillStyle = '#9ca3af';
-            tempCtx.fillText(`Discount Calculator | ${new Date().toLocaleString()}`, 20, tempCanvas.height - 15);
-            const link = document.createElement('a');
-            link.download = `discount_chart_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.png`;
-            link.href = tempCanvas.toDataURL('image/png', 1.0);
-            link.click();
-        }
-
-        function resetAll() {
-            document.getElementById("originalPrice").value = "100";
-            document.getElementById("quantity").value = "1";
-            document.getElementById("taxRate").value = "0";
-            document.getElementById("shippingCost").value = "0";
-            if (discountType === "percentage") {
-                if(document.getElementById("discountPercent")) document.getElementById("discountPercent").value = "20";
-            } else {
-                if(document.getElementById("discountFixed")) document.getElementById("discountFixed").value = "20";
-            }
-            updateAll();
-        }
+        <!-- AD 3: Inside Article (Middle) -->
+        <div class="ad-container" style="margin: 25px 0;">
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-placeholder">
+                <span>📢 Your Ad Here (AdSense/Adsterra) - Position 3</span>
+            </div>
+        </div>
         
-        function copySummary() {
-            let res = calculate();
-            let text = `🛍️ DISCOUNT SUMMARY\n━━━━━━━━━━━━━━━━━━━━━\nOriginal Total: ${fmt(res.originalTotal)}\nDiscount: ${fmt(res.discountAmount)} (${fmtPercent(res.savePercent)})\nFinal Price: ${fmt(res.afterDiscount)}\nTax: ${fmt(res.taxAmount)} | Shipping: ${fmt(res.shippingCost)}\nGrand Total: ${fmt(res.grandTotal)}\n━━━━━━━━━━━━━━━━━━━━━\nYou saved ${fmt(res.totalSavings)}! 🎉`;
-            navigator.clipboard.writeText(text);
-            alert("✓ Discount summary copied!");
-        }
+        <h3>Discounted Payback Period Calculation Formula</h3>
+        <p>For investors, the <strong>discounted payback period calculation formula</strong> helps determine how long it takes to recover an investment considering the time value of money. It's a key metric in capital budgeting.</p>
         
-        function updateCurrency() { currency = document.getElementById("currencySelect").value; updateAll(); }
+        <h3>How to Calculate Discount Factor</h3>
+        <p>Understanding <strong>how to calculate discount factor</strong> is crucial for discounted cash flow analysis. The discount factor reflects the present value of a future amount. Our financial calculators help with these advanced calculations.</p>
+        
+        <h3>Specialized Discount Calculators</h3>
+        <p>Different situations call for different calculators. The <strong>gm employee discount calculator</strong> helps GM employees calculate their special pricing. The <strong>dividend discount model calculator</strong> is used by investors to value stocks based on future dividends. The <strong>mortgage discount points calculator</strong> helps homeowners decide if buying discount points on their mortgage is worth it.</p>
+        
+        <h3>Benefits of Using Our Discount Calculator</h3>
+        <ul>
+            <li>✅ 100% Free – No hidden charges</li>
+            <li>✅ No Registration – Use instantly</li>
+            <li>✅ Mobile Friendly – Works on all devices</li>
+            <li>✅ Real-Time Results – Instant calculations</li>
+            <li>✅ Tax & Shipping Included – Complete total</li>
+            <li>✅ Chart Visualization – See your savings</li>
+            <li>✅ History Tracking – Save recent calculations</li>
+        </ul>
+    </div>
+    
+    <!-- AD 4: After Article, Before FAQ -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 4</span>
+        </div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate discount percentage?</div>
+            <div class="faq-answer">To calculate discount percentage, divide the discount amount by the original price and multiply by 100. Formula: Discount % = (Discount Amount ÷ Original Price) × 100. Our discount calculator does this automatically.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate discounts on multiple items?</div>
+            <div class="faq-answer">First calculate the total original price of all items, then apply the discount percentage or fixed amount. Our price discount calculator handles quantity and bulk purchases easily.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a discount and tax calculator?</div>
+            <div class="faq-answer">A discount and tax calculator computes the final price after applying a discount and then adding tax. This is essential for understanding the true cost after both savings and taxes.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the discount factor calculation formula?</div>
+            <div class="faq-answer">The discount factor formula is DF = 1 / (1 + r)^n, where r is the discount rate and n is the number of periods. It's used in finance for present value calculations.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a mortgage discount points calculator?</div>
+            <div class="faq-answer">A mortgage discount points calculator helps determine if paying upfront points to lower your mortgage interest rate is financially beneficial based on how long you plan to stay in the home.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the dividend discount model calculator?</div>
+            <div class="faq-answer">The dividend discount model (DDM) calculator estimates the value of a stock based on the theory that its worth equals the sum of all its future dividend payments, discounted back to their present value.</div>
+        </div>
+    </div>
+    
+    <!-- AD 5: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 5</span>
+        </div>
+    </div>
+</div>
 
-        document.addEventListener('DOMContentLoaded', () => { 
-            initCharts(); loadHistory(); setDiscountType("percentage");
-            document.getElementById("originalPrice")?.addEventListener("input", updateAll);
-            document.getElementById("quantity")?.addEventListener("input", updateAll);
-            document.getElementById("taxRate")?.addEventListener("input", updateAll);
-            document.getElementById("shippingCost")?.addEventListener("input", updateAll);
-            document.getElementById("currencySelect").addEventListener("change", updateCurrency);
-            document.getElementById("resetBtn").addEventListener("click", resetAll);
-            document.getElementById("copySummaryBtn").addEventListener("click", copySummary);
-            document.getElementById("exportChartBtn").addEventListener("click", exportChartAsImage);
-            document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
-            document.querySelectorAll("[data-type]").forEach(btn => { 
-                btn.addEventListener("click", () => setDiscountType(btn.getAttribute("data-type"))); 
-            });
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+// All JavaScript remains the same as before
+let discountType = "percentage";
+let currency = "$";
+let chartDonut, chartComparison;
+let historyArray = [];
+
+function fmt(value) { return currency + Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtPercent(value) { return Number(value).toFixed(2) + "%"; }
+
+function calculate() {
+    let originalPrice = parseFloat(document.getElementById("originalPrice")?.value) || 0;
+    let quantity = parseFloat(document.getElementById("quantity")?.value) || 1;
+    let taxRate = parseFloat(document.getElementById("taxRate")?.value) || 0;
+    let shippingCost = parseFloat(document.getElementById("shippingCost")?.value) || 0;
+    
+    let originalTotal = originalPrice * quantity;
+    let discountAmount = 0;
+    let discountPercentValue = 0;
+    
+    if (discountType === "percentage") {
+        let discountPercent = parseFloat(document.getElementById("discountPercent")?.value) || 0;
+        discountPercentValue = discountPercent;
+        discountAmount = originalTotal * (discountPercent / 100);
+    } else {
+        let discountFixed = parseFloat(document.getElementById("discountFixed")?.value) || 0;
+        discountAmount = discountFixed * quantity;
+        discountPercentValue = originalTotal > 0 ? (discountAmount / originalTotal) * 100 : 0;
+    }
+    
+    let afterDiscount = originalTotal - discountAmount;
+    let taxAmount = afterDiscount * (taxRate / 100);
+    let grandTotal = afterDiscount + taxAmount + shippingCost;
+    let totalSavings = discountAmount;
+    let savePercent = originalTotal > 0 ? (discountAmount / originalTotal) * 100 : 0;
+    
+    return { originalTotal, discountAmount, afterDiscount, taxAmount, shippingCost, grandTotal, totalSavings, savePercent, discountPercent: discountPercentValue };
+}
+
+function updateSmartBadge(savePercent) {
+    let badgeDiv = document.getElementById("smartBadge");
+    if (savePercent >= 30) {
+        badgeDiv.innerHTML = `<span class="badge-best"><i class="fas fa-fire mr-1"></i>HOT DEAL! You're saving ${fmtPercent(savePercent)} - Amazing!</span>`;
+    } else if (savePercent >= 15) {
+        badgeDiv.innerHTML = `<span class="badge-good"><i class="fas fa-smile mr-1"></i>Good Deal! ${fmtPercent(savePercent)} savings</span>`;
+    } else if (savePercent >= 5) {
+        badgeDiv.innerHTML = `<span class="badge-good" style="background: linear-gradient(135deg, #6b7280, #9ca3af);"><i class="fas fa-tag mr-1"></i>${fmtPercent(savePercent)} off</span>`;
+    } else if (savePercent > 0) {
+        badgeDiv.innerHTML = `<span class="badge-good" style="background: #9ca3af;"><i class="fas fa-tag mr-1"></i>Small discount: ${fmtPercent(savePercent)}</span>`;
+    } else {
+        badgeDiv.innerHTML = `<span class="text-xs text-gray-400"><i class="fas fa-tag mr-1"></i>No discount applied</span>`;
+    }
+}
+
+function updateUI(res) {
+    document.getElementById("discountAmount").innerHTML = fmt(res.discountAmount);
+    document.getElementById("finalPrice").innerHTML = fmt(res.afterDiscount);
+    document.getElementById("savePercent").innerHTML = fmtPercent(res.savePercent);
+    document.getElementById("grandTotal").innerHTML = fmt(res.grandTotal);
+    document.getElementById("originalTotal").innerHTML = fmt(res.originalTotal);
+    document.getElementById("afterDiscount").innerHTML = fmt(res.afterDiscount);
+    document.getElementById("taxAmount").innerHTML = fmt(res.taxAmount);
+    document.getElementById("totalSavings").innerHTML = fmt(res.totalSavings);
+    
+    let gaugeWidth = Math.min(100, Math.max(0, res.savePercent));
+    document.getElementById("savingsGauge").style.width = gaugeWidth + "%";
+    document.getElementById("gaugeLabel").innerHTML = `You saved ${fmtPercent(res.savePercent)}`;
+    
+    updateSmartBadge(res.savePercent);
+    
+    if (chartDonut) {
+        chartDonut.data.datasets[0].data = [res.originalTotal, res.discountAmount, res.afterDiscount];
+        chartDonut.update();
+    }
+    if (chartComparison) {
+        chartComparison.data.datasets[0].data = [res.originalTotal, res.afterDiscount];
+        chartComparison.update();
+    }
+}
+
+function updateAll() { const res = calculate(); updateUI(res); saveToHistory(res); }
+
+function saveToHistory(res) { 
+    let summary = `${fmt(res.originalTotal)} → ${fmt(res.afterDiscount)} (Save ${fmt(res.discountAmount)})`; 
+    historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() }); 
+    if (historyArray.length > 8) historyArray.pop(); 
+    localStorage.setItem("discount_history", JSON.stringify(historyArray)); 
+    renderHistory(); 
+}
+
+function renderHistory() { 
+    let container = document.getElementById("historyList"); 
+    if (!container) return; 
+    if (historyArray.length === 0) { container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; return; } 
+    container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join(''); 
+}
+
+function loadHistory() { let stored = localStorage.getItem("discount_history"); if (stored) { historyArray = JSON.parse(stored); renderHistory(); } }
+function clearHistory() { historyArray = []; localStorage.removeItem("discount_history"); renderHistory(); }
+
+function setDiscountType(type) {
+    discountType = type;
+    const container = document.getElementById("discountInputContainer");
+    
+    if (type === "percentage") {
+        container.innerHTML = `<label>📉 Discount Percentage (%)</label><input type="number" id="discountPercent" value="20" step="0.5" class="w-full">`;
+        document.getElementById("discountPercent")?.addEventListener("input", updateAll);
+    } else {
+        container.innerHTML = `<label>💰 Discount Amount (${currency})</label><input type="number" id="discountFixed" value="20" step="any" class="w-full">`;
+        document.getElementById("discountFixed")?.addEventListener("input", updateAll);
+    }
+    
+    document.querySelectorAll("[data-type]").forEach(btn => {
+        if (btn.getAttribute("data-type") === type) btn.classList.add("active");
+        else btn.classList.remove("active");
+    });
+    
+    updateAll();
+}
+
+function initCharts() {
+    let ctxDonut = document.getElementById('donutChart').getContext('2d');
+    let ctxBar = document.getElementById('comparisonBar').getContext('2d');
+    chartDonut = new Chart(ctxDonut, { type: 'doughnut', data: { labels: ['Original', 'Discount', 'Final'], datasets: [{ data: [100, 20, 80], backgroundColor: ['#6b7280', '#10b981', '#3b82f6'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } } });
+    chartComparison = new Chart(ctxBar, { type: 'bar', data: { labels: ['Original Price', 'Final Price'], datasets: [{ label: 'Amount', data: [0, 0], backgroundColor: ['#6b7280', '#3b82f6'], borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { font: { size: 10 } } }, x: { ticks: { font: { size: 11 } } } } } });
+}
+
+function exportChartAsImage() {
+    const originalCanvas = document.getElementById("donutChart");
+    const tempCanvas = document.createElement('canvas');
+    const scale = 3;
+    tempCanvas.width = originalCanvas.width * scale;
+    tempCanvas.height = originalCanvas.height * scale;
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCtx.fillStyle = '#ffffff';
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+    tempCtx.scale(scale, scale);
+    tempCtx.drawImage(originalCanvas, 0, 0);
+    tempCtx.scale(1/scale, 1/scale);
+    tempCtx.font = `${12 * scale}px system-ui`;
+    tempCtx.fillStyle = '#9ca3af';
+    tempCtx.fillText(`Discount Calculator | ${new Date().toLocaleString()}`, 20, tempCanvas.height - 15);
+    const link = document.createElement('a');
+    link.download = `discount_chart_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.png`;
+    link.href = tempCanvas.toDataURL('image/png', 1.0);
+    link.click();
+}
+
+function resetAll() {
+    document.getElementById("originalPrice").value = "100";
+    document.getElementById("quantity").value = "1";
+    document.getElementById("taxRate").value = "0";
+    document.getElementById("shippingCost").value = "0";
+    if (discountType === "percentage") {
+        if(document.getElementById("discountPercent")) document.getElementById("discountPercent").value = "20";
+    } else {
+        if(document.getElementById("discountFixed")) document.getElementById("discountFixed").value = "20";
+    }
+    updateAll();
+}
+
+function copySummary() {
+    let res = calculate();
+    let text = `🛍️ DISCOUNT SUMMARY\n━━━━━━━━━━━━━━━━━━━━━\nOriginal Total: ${fmt(res.originalTotal)}\nDiscount: ${fmt(res.discountAmount)} (${fmtPercent(res.savePercent)})\nFinal Price: ${fmt(res.afterDiscount)}\nTax: ${fmt(res.taxAmount)} | Shipping: ${fmt(res.shippingCost)}\nGrand Total: ${fmt(res.grandTotal)}\n━━━━━━━━━━━━━━━━━━━━━\nYou saved ${fmt(res.totalSavings)}! 🎉`;
+    navigator.clipboard.writeText(text);
+    alert("✓ Discount summary copied!");
+}
+
+function updateCurrency() { 
+    currency = document.getElementById("currencySelect").value; 
+    updateAll(); 
+}
+
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
         });
-    </script>
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => { 
+    initCharts(); loadHistory(); setDiscountType("percentage");
+    document.getElementById("originalPrice")?.addEventListener("input", updateAll);
+    document.getElementById("quantity")?.addEventListener("input", updateAll);
+    document.getElementById("taxRate")?.addEventListener("input", updateAll);
+    document.getElementById("shippingCost")?.addEventListener("input", updateAll);
+    document.getElementById("currencySelect").addEventListener("change", updateCurrency);
+    document.getElementById("resetBtn").addEventListener("click", resetAll);
+    document.getElementById("copySummaryBtn").addEventListener("click", copySummary);
+    document.getElementById("exportChartBtn").addEventListener("click", exportChartAsImage);
+    document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
+    document.querySelectorAll("[data-type]").forEach(btn => { 
+        btn.addEventListener("click", () => setDiscountType(btn.getAttribute("data-type"))); 
+    });
+});
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
+</script>
 </body>
 </html>
