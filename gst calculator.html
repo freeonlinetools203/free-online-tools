@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="description" content="Free GST Calculator for India, Pakistan, USA, Canada, UAE and more. Calculate GST inclusive, exclusive amounts, reverse GST, and tax breakdown with multi-currency support.">
+  <meta name="keywords" content="GST Calculator, VAT, Sales Tax, Tax Calculator, India GST, Pakistan GST, UAE VAT, Canada HST, Multi Currency Tax">
+  <meta name="author" content="FinTech Tools">
+  <meta name="robots" content="index, follow">
+  <title>GST Calculator | Multi-Country Tax Tool with Currency & Language Support</title>
+  <!-- Tailwind CSS + Font Awesome + Chart.js CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <!-- Custom Tailwind config override for smoothness -->
+  <style>
+    * { transition: all 0.2s ease; }
+    body {
+      background: linear-gradient(145deg, #f0f9ff 0%, #e6f0fa 100%);
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    }
+    .card-shadow {
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0,0,0,0.02);
+    }
+    .hover-scale:hover { transform: translateY(-2px); }
+    input:focus, select:focus, button:focus { outline: none; ring: 2px solid #2c7da0; }
+    .progress-bar-fill { transition: width 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
+    @media print {
+      body { background: white; }
+      .no-print, .footer-disclaimer, button, .print-hide { display: none; }
+      .card-shadow { box-shadow: none; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body class="antialiased">
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+    <!-- Header / Breadcrumb structured data -->
+    <header class="mb-6">
+      <div class="flex flex-wrap justify-between items-center gap-3">
+        <div>
+          <h1 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#1e3c72] to-[#2a5298] bg-clip-text text-transparent">GST Calculator</h1>
+          <p class="text-gray-600 text-sm mt-1">Calculate Goods & Services Tax Instantly — Global rates, currencies & languages</p>
+        </div>
+        <!-- Language selector + quick actions -->
+        <div class="flex gap-2 items-center flex-wrap">
+          <select id="languageSelector" class="bg-white/80 backdrop-blur-sm border border-gray-300 rounded-xl px-3 py-2 text-sm font-medium shadow-sm focus:border-indigo-400">
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिंदी</option>
+            <option value="ur">🇵🇰 اردو</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+          </select>
+          <button id="copyResultsBtn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-3 py-2 rounded-xl shadow-sm flex items-center gap-1"><i class="fas fa-copy"></i> <span data-key="copy_btn">Copy</span></button>
+          <button id="printBtn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-3 py-2 rounded-xl shadow-sm flex items-center gap-1"><i class="fas fa-print"></i> <span data-key="print_btn">Print</span></button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Card -->
+    <main>
+      <div class="grid lg:grid-cols-3 gap-8">
+        <!-- Left Panel: Inputs -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="bg-white/90 backdrop-blur-sm rounded-2xl card-shadow p-5 md:p-6 border border-white/40">
+            <div class="grid md:grid-cols-2 gap-5">
+              <!-- Country -->
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1"><i class="fas fa-globe-asia text-indigo-500"></i> <span data-key="country_label">Country / Region</span></label>
+                <select id="countrySelect" class="w-full p-3 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-indigo-300">
+                  <option value="IN">🇮🇳 India (INR) - GST 5%,12%,18%,28%</option>
+                  <option value="PK">🇵🇰 Pakistan (PKR) - GST 17%</option>
+                  <option value="US">🇺🇸 USA (USD) - Sales Tax (Custom)</option>
+                  <option value="CA">🇨🇦 Canada (CAD) - GST/HST 5%,13%,15%</option>
+                  <option value="AE">🇦🇪 UAE (AED) - VAT 5%</option>
+                  <option value="GB">🇬🇧 UK (GBP) - VAT 20%</option>
+                  <option value="AU">🇦🇺 Australia (AUD) - GST 10%</option>
+                  <option value="SG">🇸🇬 Singapore (SGD) - GST 9%</option>
+                  <option value="MY">🇲🇾 Malaysia (MYR) - SST 6% or 8%</option>
+                  <option value="CUSTOM">🌍 Custom Rate</option>
+                </select>
+              </div>
+              <!-- GST Rate + Slab (India specific dynamic) -->
+              <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-percent text-indigo-500"></i> <span data-key="rate_label">GST / Tax Rate (%)</span></label>
+                <div class="flex gap-2">
+                  <input type="number" id="taxRate" step="any" value="18" class="w-full p-3 border border-gray-300 rounded-xl bg-gray-50 font-mono">
+                  <button id="slabTrigger" class="bg-indigo-50 px-3 rounded-xl text-indigo-700 hover:bg-indigo-100" title="Quick slabs (India)"><i class="fas fa-chart-simple"></i></button>
+                </div>
+                <div id="slabSelectorContainer" class="mt-2 hidden flex-wrap gap-2"></div>
+                <p id="rateHint" class="text-xs text-gray-400 mt-1"></p>
+              </div>
+            </div>
+
+            <!-- Amount input with currency symbol -->
+            <div class="mt-4">
+              <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-coins text-indigo-500"></i> <span data-key="amount_label">Amount</span></label>
+              <div class="relative">
+                <span id="currencySymbolDisplay" class="absolute left-3 top-3 text-gray-600 font-medium">₹</span>
+                <input type="number" id="amountInput" placeholder="0.00" value="10000" step="any" class="w-full pl-10 p-3 border border-gray-300 rounded-xl bg-gray-50 text-lg font-semibold">
+              </div>
+            </div>
+
+            <!-- Calculation Type Toggle (Radio style) -->
+            <div class="mt-5">
+              <span class="text-sm font-semibold text-gray-700 block mb-2"><span data-key="calc_type_label">Calculation Mode</span></span>
+              <div class="flex flex-wrap gap-4 bg-gray-100 p-2 rounded-xl">
+                <label class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-50 transition"><input type="radio" name="calcType" value="add" checked> <span data-key="add_gst">➕ Add GST</span></label>
+                <label class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-50 transition"><input type="radio" name="calcType" value="remove"> <span data-key="remove_gst">➖ Remove GST</span></label>
+                <label class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-50 transition"><input type="radio" name="calcType" value="reverse"> <span data-key="reverse_gst">🔄 Reverse GST (from Total)</span></label>
+              </div>
+            </div>
+
+            <!-- Inclusive/Exclusive Toggle visual -->
+            <div class="mt-5 flex justify-between items-center border-t pt-4">
+              <span class="text-sm font-medium text-gray-600"><i class="fas fa-exchange-alt"></i> <span data-key="toggle_mode_label">View mode:</span></span>
+              <div class="flex gap-3 bg-gray-100 p-1 rounded-full">
+                <button id="toggleInclusiveView" class="px-4 py-1 rounded-full text-sm font-medium bg-white shadow">GST Inclusive</button>
+                <button id="toggleExclusiveView" class="px-4 py-1 rounded-full text-sm font-medium">GST Exclusive</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Result Card + Explanation -->
+          <div class="bg-white rounded-2xl card-shadow p-5 md:p-6">
+            <h2 class="text-xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-3 mb-4"><span data-key="results_title">Tax Breakdown</span></h2>
+            <div class="grid sm:grid-cols-2 gap-5">
+              <div class="space-y-3">
+                <div class="flex justify-between border-b pb-2"><span class="font-medium text-gray-600"><span data-key="original_amount">Original Amount</span> :</span> <span id="originalAmountVal" class="font-bold text-gray-900">₹0.00</span></div>
+                <div class="flex justify-between border-b pb-2"><span class="font-medium text-gray-600"><span data-key="gst_amount">GST Amount</span> :</span> <span id="gstAmountVal" class="font-bold text-indigo-700">₹0.00</span></div>
+                <div class="flex justify-between border-b pb-2 text-lg"><span class="font-semibold text-gray-800"><span data-key="total_amount">Total Amount</span> :</span> <span id="totalAmountVal" class="font-extrabold text-green-700">₹0.00</span></div>
+                <div class="flex justify-between text-sm text-gray-500"><span><span data-key="applied_rate">Applied Rate</span> :</span> <span id="appliedRateSpan">0%</span></div>
+              </div>
+              <div class="bg-gray-50 p-3 rounded-xl">
+                <div class="text-sm font-medium text-gray-600 mb-1"><span data-key="step_by_step">Calculation formula</span></div>
+                <div id="formulaExplanation" class="text-xs text-gray-700 bg-white p-2 rounded border">Enter amount to see step-by-step logic</div>
+                <div class="mt-3">
+                  <div class="flex justify-between text-xs mb-1"><span><span data-key="gst_share">GST % of Total</span></span><span id="gstPercentOfTotal">0%</span></div>
+                  <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden"><div id="progressFill" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width:0%"></div></div>
+                </div>
+              </div>
+            </div>
+            <!-- Intelligent insight -->
+            <div id="insightMessage" class="mt-5 bg-indigo-50 p-3 rounded-xl text-indigo-800 text-sm flex items-start gap-2"><i class="fas fa-lightbulb mt-0.5"></i> <span>Insight: Based on ₹10,000 at 18% Add GST, GST = ₹1,800, Total = ₹11,800.</span></div>
+          </div>
+        </div>
+
+        <!-- Right Panel: Chart & Summary -->
+        <div class="space-y-6">
+          <div class="bg-white rounded-2xl card-shadow p-5">
+            <h3 class="font-bold text-gray-700 flex items-center gap-2 mb-3"><i class="fas fa-chart-pie text-indigo-500"></i> <span data-key="chart_title">Tax Distribution</span></h3>
+            <canvas id="gstChart" width="300" height="240" style="max-height:240px; width:100%"></canvas>
+            <p class="text-center text-xs text-gray-400 mt-2"><span data-key="chart_hint">Original vs Tax Amount</span></p>
+          </div>
+          <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-5 border border-indigo-100">
+            <h4 class="font-semibold flex items-center gap-2"><i class="fas fa-chart-line"></i> <span data-key="summary_insight">Smart Summary</span></h4>
+            <div id="smartSummary" class="text-sm mt-2 text-gray-700">Quick summary will appear here based on real-time inputs.</div>
+            <button id="copyResultsAlt" class="mt-3 w-full bg-white border border-indigo-300 rounded-xl py-2 text-indigo-700 text-sm flex justify-center gap-2 hover:bg-indigo-100"><i class="fas fa-copy"></i> <span data-key="copy_summary">Copy Summary</span></button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="mt-12 text-center text-gray-500 text-xs border-t pt-6 footer-disclaimer">
+      <p><span data-key="disclaimer">⚠️ GST rates are for reference only. Consult your tax advisor for accurate rates applicable to your business.</span> | <i class="fas fa-calculator"></i> Multi-Currency & Language Support</p>
+      <div class="mt-1">© 2025 GST Global Tool — Real-time calculations</div>
+    </footer>
+  </div>
+
+  <script>
+    // ------------- MULTI-LANGUAGE DICTIONARY ----------
+    const translations = {
+      en: { copy_btn:"Copy", print_btn:"Print", country_label:"Country / Region", rate_label:"GST / Tax Rate (%)", amount_label:"Amount", calc_type_label:"Calculation Mode", add_gst:"Add GST", remove_gst:"Remove GST", reverse_gst:"Reverse GST (from Total)", toggle_mode_label:"View mode:", results_title:"Tax Breakdown", original_amount:"Original Amount", gst_amount:"GST Amount", total_amount:"Total Amount", applied_rate:"Applied Rate", step_by_step:"Calculation formula", gst_share:"GST % of Total", chart_title:"Tax Distribution", chart_hint:"Original vs Tax Amount", summary_insight:"Smart Summary", copy_summary:"Copy Summary", disclaimer:"⚠️ GST rates are for reference only. Consult your tax advisor for accurate rates applicable to your business." },
+      hi: { copy_btn:"कॉपी", print_btn:"प्रिंट", country_label:"देश / क्षेत्र", rate_label:"जीएसटी / कर दर (%)", amount_label:"राशि", calc_type_label:"गणना मोड", add_gst:"जीएसटी जोड़ें", remove_gst:"जीएसटी हटाएं", reverse_gst:"रिवर्स जीएसटी (कुल से)", toggle_mode_label:"दृश्य मोड:", results_title:"कर विवरण", original_amount:"मूल राशि", gst_amount:"जीएसटी राशि", total_amount:"कुल राशि", applied_rate:"लागू दर", step_by_step:"गणना सूत्र", gst_share:"कुल का जीएसटी %", chart_title:"कर वितरण", chart_hint:"मूल बनाम कर राशि", summary_insight:"स्मार्ट सारांश", copy_summary:"सारांश कॉपी करें", disclaimer:"⚠️ जीएसटी दरें केवल संदर्भ के लिए हैं। सटीक दरों के लिए कर सलाहकार से परामर्श करें।" },
+      ur: { copy_btn:"کاپی", print_btn:"پرنٹ", country_label:"ملک / خطہ", rate_label:"جی ایس ٹی / ٹیکس کی شرح (%)", amount_label:"رقم", calc_type_label:"حساب کا طریقہ", add_gst:"جی ایس ٹی شامل کریں", remove_gst:"جی ایس ٹی ہٹائیں", reverse_gst:"ریورس جی ایس ٹی (کل سے)", toggle_mode_label:"منظر موڈ:", results_title:"ٹیکس کی تفصیل", original_amount:"اصل رقم", gst_amount:"جی ایس ٹی رقم", total_amount:"کل رقم", applied_rate:"لاگو شرح", step_by_step:"حساب کا فارمولا", gst_share:"کل کا جی ایس ٹی فیصد", chart_title:"ٹیکس کی تقسیم", chart_hint:"اصل بمقابلہ ٹیکس رقم", summary_insight:"ذہین خلاصہ", copy_summary:"خلاصہ کاپی کریں", disclaimer:"⚠️ جی ایس ٹی کی شرحیں صرف حوالہ کے لیے ہیں۔ درست شرحوں کے لیے اپنے ٹیکس مشیر سے مشورہ کریں۔" },
+      es: { copy_btn:"Copiar", print_btn:"Imprimir", country_label:"País / Región", rate_label:"GST / Tasa de impuesto (%)", amount_label:"Cantidad", calc_type_label:"Modo de cálculo", add_gst:"Agregar GST", remove_gst:"Quitar GST", reverse_gst:"GST inverso (desde total)", toggle_mode_label:"Modo vista:", results_title:"Desglose de impuestos", original_amount:"Monto original", gst_amount:"Monto GST", total_amount:"Monto total", applied_rate:"Tasa aplicada", step_by_step:"Fórmula de cálculo", gst_share:"% GST del total", chart_title:"Distribución de impuestos", chart_hint:"Monto original vs impuesto", summary_insight:"Resumen inteligente", copy_summary:"Copiar resumen", disclaimer:"⚠️ Las tasas de GST son solo de referencia. Consulte a su asesor fiscal para tasas precisas." },
+      fr: { copy_btn:"Copie", print_btn:"Imprimer", country_label:"Pays / Région", rate_label:"TVA / Taux d'imposition (%)", amount_label:"Montant", calc_type_label:"Mode de calcul", add_gst:"Ajouter TVA", remove_gst:"Retirer TVA", reverse_gst:"TVA inversée (depuis total)", toggle_mode_label:"Mode d'affichage:", results_title:"Répartition fiscale", original_amount:"Montant original", gst_amount:"Montant TVA", total_amount:"Montant total", applied_rate:"Taux appliqué", step_by_step:"Formule de calcul", gst_share:"% TVA du total", chart_title:"Répartition fiscale", chart_hint:"Montant original vs taxe", summary_insight:"Résumé intelligent", copy_summary:"Copier le résumé", disclaimer:"⚠️ Les taux de TVA sont donnés à titre indicatif. Consultez votre conseiller fiscal pour des taux précis." }
+    };
+    let currentLang = "en";
+    function updateLanguage() { 
+      const t = translations[currentLang]; if(!t) return;
+      document.querySelectorAll("[data-key]").forEach(el => { let key = el.getAttribute("data-key"); if(t[key]) el.innerText = t[key]; });
+    }
+
+    // Country & currency & tax logic
+    const countryConfig = {
+      IN: { currency: "₹", symbolPos: "left", rates: [5,12,18,28], defaultRate:18, hint:"India GST slabs" },
+      PK: { currency: "₨", symbolPos: "left", rates:[17], defaultRate:17, hint:"Pakistan Standard GST 17%" },
+      US: { currency: "$", symbolPos: "left", rates:"custom", defaultRate:7.5, hint:"Enter sales tax rate" },
+      CA: { currency: "C$", symbolPos: "left", rates:[5,13,15], defaultRate:13, hint:"GST 5% / HST 13% or 15%" },
+      AE: { currency: "د.إ", symbolPos: "right", rates:[5], defaultRate:5, hint:"UAE VAT 5%" },
+      GB: { currency: "£", symbolPos: "left", rates:[20], defaultRate:20, hint:"UK VAT 20%" },
+      AU: { currency: "A$", symbolPos: "left", rates:[10], defaultRate:10, hint:"Australia GST 10%" },
+      SG: { currency: "S$", symbolPos: "left", rates:[9], defaultRate:9, hint:"Singapore GST 9%" },
+      MY: { currency: "RM", symbolPos: "left", rates:[6,8], defaultRate:6, hint:"Malaysia SST 6% or 8%" },
+      CUSTOM: { currency: "¤", symbolPos: "left", rates:"custom", defaultRate:12, hint:"Set custom rate" }
+    };
+    let currentCountry = "IN";
+    let currentRate = 18;
+    let amount = 10000;
+    let calcType = "add"; // add, remove, reverse
+    let inclusiveToggle = false; // UI only for display; actual calc independent
+    let chart;
+
+    function formatMoney(value, countryCode) {
+      let conf = countryConfig[countryCode] || countryConfig.IN;
+      let sym = conf.currency;
+      let formatted = value.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 });
+      return sym === "د.إ" ? `${formatted} ${sym}` : `${sym}${formatted}`;
+    }
+
+    function compute() {
+      let rate = parseFloat(document.getElementById("taxRate").value);
+      if(isNaN(rate)) rate = 0; if(rate<0) rate=0; if(rate>40 && currentCountry!=="CUSTOM") rate=Math.min(rate,40);
+      currentRate = rate;
+      let inputAmount = parseFloat(document.getElementById("amountInput").value);
+      if(isNaN(inputAmount)) inputAmount=0;
+      amount = inputAmount;
+      let original=0, gst=0, total=0;
+      if(calcType === "add") { original = amount; gst = original * rate/100; total = original + gst; }
+      else if(calcType === "remove") { total = amount; original = total / (1 + rate/100); gst = total - original; }
+      else if(calcType === "reverse") { let inclusiveTotal = amount; original = inclusiveTotal / (1 + rate/100); gst = inclusiveTotal - original; total = inclusiveTotal; }
+      
+      document.getElementById("originalAmountVal").innerHTML = formatMoney(original, currentCountry);
+      document.getElementById("gstAmountVal").innerHTML = formatMoney(gst, currentCountry);
+      document.getElementById("totalAmountVal").innerHTML = formatMoney(total, currentCountry);
+      document.getElementById("appliedRateSpan").innerHTML = `${currentRate}%`;
+      let gstPercent = total>0 ? (gst/total*100) : 0;
+      document.getElementById("gstPercentOfTotal").innerHTML = gstPercent.toFixed(2)+"%";
+      document.getElementById("progressFill").style.width = `${Math.min(100,gstPercent)}%`;
+      
+      let explanation = "";
+      if(calcType==="add") explanation = `Formula: GST Amount = Amount × (Rate/100) = ${formatMoney(original,currentCountry)} × ${rate}% = ${formatMoney(gst,currentCountry)}. Total = Original + GST = ${formatMoney(total,currentCountry)}.`;
+      else if(calcType==="remove") explanation = `Formula: Original = Total Amount / (1 + Rate/100) = ${formatMoney(amount,currentCountry)} / ${(1+rate/100).toFixed(4)} = ${formatMoney(original,currentCountry)}. GST = Total - Original = ${formatMoney(gst,currentCountry)}.`;
+      else explanation = `Reverse GST: Original = Inclusive Total / (1+Rate/100) = ${formatMoney(amount,currentCountry)} / ${(1+rate/100).toFixed(4)} = ${formatMoney(original,currentCountry)}. GST = Inclusive Total - Original = ${formatMoney(gst,currentCountry)}.`;
+      document.getElementById("formulaExplanation").innerHTML = explanation;
+      
+      let insightMsg = `💡 Insight: ${formatMoney(original,currentCountry)} base, ${currentRate}% GST = ${formatMoney(gst,currentCountry)} → Total ${formatMoney(total,currentCountry)}.`;
+      document.getElementById("insightMessage").innerHTML = `<i class="fas fa-lightbulb mt-0.5"></i> <span>${insightMsg}</span>`;
+      document.getElementById("smartSummary").innerHTML = `📊 ${formatMoney(total,currentCountry)} total includes ${formatMoney(gst,currentCountry)} tax (${currentRate}%). ${calcType==="add"?"Added GST":calcType==="remove"?"Excluded GST":"Reverse calculated"}.`;
+      
+      updateChart(original, gst);
+    }
+    
+    function updateChart(orig, gst) {
+      if(chart) chart.destroy();
+      let ctx = document.getElementById("gstChart").getContext("2d");
+      chart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Base Amount', 'Tax Amount'], datasets: [{ data: [orig, gst], backgroundColor: ['#2c7da0', '#5fa8d3'], borderWidth: 0, hoverOffset: 8 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${formatMoney(ctx.raw, currentCountry)}` } } } } });
+    }
+    
+    function setCountry() {
+      currentCountry = document.getElementById("countrySelect").value;
+      let conf = countryConfig[currentCountry];
+      let rateSelect = document.getElementById("taxRate");
+      if(conf.rates !== "custom") { let def = conf.defaultRate; rateSelect.value = def; currentRate = def; }
+      else { rateSelect.value = conf.defaultRate; currentRate = conf.defaultRate; }
+      document.getElementById("currencySymbolDisplay").innerText = conf.currency;
+      document.getElementById("rateHint").innerHTML = conf.hint;
+      let slabDiv = document.getElementById("slabSelectorContainer");
+      if(currentCountry === "IN" || (conf.rates !== "custom" && conf.rates.length>1)) {
+        slabDiv.classList.remove("hidden");
+        slabDiv.innerHTML = (conf.rates || []).map(r => `<button data-slab="${r}" class="slabBtn bg-gray-200 px-3 py-1 rounded-full text-xs hover:bg-indigo-300">${r}%</button>`).join("");
+        document.querySelectorAll(".slabBtn").forEach(btn => btn.addEventListener("click", (e) => { rateSelect.value = btn.getAttribute("data-slab"); compute(); }));
+      } else slabDiv.classList.add("hidden");
+      compute();
+    }
+    
+    function syncInputs() {
+      compute();
+    }
+    
+    // Event listeners
+    document.getElementById("countrySelect").addEventListener("change", setCountry);
+    document.getElementById("taxRate").addEventListener("input", compute);
+    document.getElementById("amountInput").addEventListener("input", compute);
+    document.querySelectorAll("input[name='calcType']").forEach(radio => radio.addEventListener("change", (e) => { calcType = e.target.value; compute(); }));
+    document.getElementById("copyResultsBtn").addEventListener("click", () => { let text = document.getElementById("originalAmountVal").innerText + " | GST: " + document.getElementById("gstAmountVal").innerText + " | Total: " + document.getElementById("totalAmountVal").innerText; navigator.clipboard.writeText(text); alert("Copied!"); });
+    document.getElementById("copyResultsAlt").addEventListener("click", () => { let txt = document.getElementById("smartSummary").innerText; navigator.clipboard.writeText(txt); alert("Summary copied"); });
+    document.getElementById("printBtn").addEventListener("click", () => window.print());
+    document.getElementById("languageSelector").addEventListener("change", (e) => { currentLang = e.target.value; updateLanguage(); });
+    document.getElementById("slabTrigger").addEventListener("click", () => { if(currentCountry === "IN") document.getElementById("slabSelectorContainer").classList.toggle("hidden"); else alert("Slab quick pick available for India, Canada, Malaysia etc."); });
+    document.getElementById("toggleInclusiveView").addEventListener("click", () => { inclusiveToggle=true; compute(); });
+    document.getElementById("toggleExclusiveView").addEventListener("click", () => { inclusiveToggle=false; compute(); });
+    
+    // Init
+    setCountry();
+    updateLanguage();
+    compute();
+  </script>
+</body>
+</html>
