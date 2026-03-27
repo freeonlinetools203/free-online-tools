@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="description" content="Global SIP Calculator: Calculate mutual fund returns with multi-currency and multi-language support. Perfect for Pakistan, India, USA, UK, UAE, and international investors.">
+    <meta name="keywords" content="SIP calculator, mutual fund calculator, Pakistan SIP calculator, PKR calculator, Urdu calculator, India SIP, USA SIP">
+    <meta name="author" content="Global SIP Planner">
+    <title>Global SIP Calculator | Multi-Currency Investment Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 5px;
+        }
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #0f3b5c;
+            cursor: pointer;
+            border: 2px solid white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        input[type="range"]::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #0f3b5c;
+            cursor: pointer;
+            border: 2px solid white;
+        }
+        input[type="number"] {
+            -moz-appearance: textfield;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        select {
+            cursor: pointer;
+        }
+        .progress-bar {
+            transition: width 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-50 to-blue-50">
+
+    <main class="max-w-5xl mx-auto px-4 py-6 md:py-10">
+        <!-- Header -->
+        <header class="text-center mb-8">
+            <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
+                <div class="inline-flex items-center gap-2 bg-teal-100 text-teal-800 px-4 py-1 rounded-full text-sm font-medium">
+                    <i class="fas fa-chart-line"></i>
+                    <span id="badgeText">Systematic Investment Planner</span>
+                </div>
+                <div class="flex gap-3 flex-wrap">
+                    <div class="relative">
+                        <select id="countrySelect" class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 text-sm font-medium focus:ring-2 focus:ring-teal-400 cursor-pointer">
+                            <option value="PK">🇵🇰 Pakistan (₨ PKR)</option>
+                            <option value="IN">🇮🇳 India (₹ INR)</option>
+                            <option value="US">🇺🇸 USA ($ USD)</option>
+                            <option value="GB">🇬🇧 UK (£ GBP)</option>
+                            <option value="EU">🇪🇺 Europe (€ EUR)</option>
+                            <option value="AE">🇦🇪 UAE (د.إ AED)</option>
+                            <option value="SG">🇸🇬 Singapore (S$ SGD)</option>
+                            <option value="CA">🇨🇦 Canada (C$ CAD)</option>
+                            <option value="AU">🇦🇺 Australia (A$ AUD)</option>
+                            <option value="JP">🇯🇵 Japan (¥ JPY)</option>
+                            <option value="CN">🇨🇳 China (¥ CNY)</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                    </div>
+                    <div class="relative">
+                        <select id="languageSelect" class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 text-sm font-medium focus:ring-2 focus:ring-teal-400 cursor-pointer">
+                            <option value="en">🇬🇧 English</option>
+                            <option value="ur">🇵🇰 اردو (Urdu)</option>
+                            <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+                            <option value="es">🇪🇸 Español</option>
+                            <option value="fr">🇫🇷 Français</option>
+                            <option value="de">🇩🇪 Deutsch</option>
+                            <option value="ar">🇦🇪 العربية</option>
+                        </select>
+                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+            <h1 id="mainHeading" class="text-3xl md:text-4xl font-extrabold text-gray-800">SIP Calculator: <span class="text-teal-700">Estimate Your Investment Returns</span></h1>
+            <p id="subHeading" class="text-gray-600 mt-3 max-w-2xl mx-auto text-sm">Plan your wealth journey with systematic investments across the globe.</p>
+        </header>
+
+        <!-- Main Card -->
+        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+            <div class="p-5 md:p-8">
+                <!-- Input Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div>
+                        <label id="monthlyLabel" class="flex items-center gap-1 text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-rupee-sign text-teal-600"></i> Monthly Investment
+                        </label>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span id="minLabel" class="text-xs text-gray-500">Min</span>
+                            <input type="range" id="monthlySlider" min="1000" max="500000" step="1000" value="5000" class="flex-1">
+                            <span id="maxLabel" class="text-xs text-gray-500">Max</span>
+                        </div>
+                        <div class="relative">
+                            <span id="currencySymbol" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₨</span>
+                            <input type="number" id="monthlyInput" value="5000" step="1000" min="1000" max="500000" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400">
+                        </div>
+                        <p id="monthlyHelp" class="text-xs text-gray-400 mt-1">Min ₨1,000 | Max ₨5,00,000</p>
+                    </div>
+
+                    <div>
+                        <label id="returnLabel" class="flex items-center gap-1 text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-percent text-teal-600"></i> Expected Annual Return
+                        </label>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-500">1%</span>
+                            <input type="range" id="returnSlider" min="1" max="30" step="0.5" value="12" class="flex-1">
+                            <span class="text-xs text-gray-500">30%</span>
+                        </div>
+                        <div class="relative">
+                            <input type="number" id="returnInput" value="12" step="0.5" min="1" max="30" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400">
+                            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">%</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label id="periodLabel" class="flex items-center gap-1 text-sm font-semibold text-gray-700 mb-2">
+                            <i class="fas fa-calendar-alt text-teal-600"></i> Time Period
+                        </label>
+                        <div class="flex items-center gap-2 mb-2">
+                            <span class="text-xs text-gray-500">1 yr</span>
+                            <input type="range" id="yearSlider" min="1" max="50" step="1" value="10" class="flex-1">
+                            <span class="text-xs text-gray-500">50 yrs</span>
+                        </div>
+                        <div class="relative">
+                            <input type="number" id="yearInput" value="10" step="1" min="1" max="50" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400">
+                            <span id="yearUnit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">years</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Cards -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-center shadow-sm">
+                        <p id="investedTitle" class="text-sm text-gray-600 font-medium uppercase tracking-wide">INVESTED AMOUNT</p>
+                        <p class="text-2xl md:text-3xl font-bold text-gray-800 mt-1" id="investedAmount">₨ 6,00,000</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 text-center shadow-sm">
+                        <p id="returnsTitle" class="text-sm text-gray-600 font-medium uppercase tracking-wide">ESTIMATED RETURNS</p>
+                        <p class="text-2xl md:text-3xl font-bold text-amber-700 mt-1" id="returnsAmount">₨ 5,61,695</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-4 text-center shadow-sm">
+                        <p id="maturityTitle" class="text-sm text-gray-600 font-medium uppercase tracking-wide">TOTAL MATURITY VALUE</p>
+                        <p class="text-2xl md:text-3xl font-bold text-emerald-700 mt-1" id="maturityAmount">₨ 11,61,695</p>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mb-4">
+                    <div class="flex justify-between text-sm font-medium mb-1">
+                        <span id="principalLabel" class="text-teal-700"><i class="fas fa-chart-pie mr-1"></i>Principal Portion</span>
+                        <span id="gainsLabel" class="text-amber-600"><i class="fas fa-chart-line mr-1"></i>Gains Portion</span>
+                    </div>
+                    <div class="bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
+                        <div id="progressFill" class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full rounded-full transition-all duration-300" style="width: 51.6%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-500 mt-1">
+                        <span id="principalPercent">51.6%</span>
+                        <span id="gainsPercent">48.4%</span>
+                    </div>
+                </div>
+
+                <!-- Summary -->
+                <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-teal-500 mb-8">
+                    <p class="text-gray-700 text-sm md:text-base" id="summaryText">
+                        💡 If you invest <strong>₨5,000</strong> monthly for <strong>10 years</strong> at <strong>12%</strong> annual return, you will accumulate <strong>₨11,61,695</strong>.
+                    </p>
+                </div>
+
+                <!-- Chart -->
+                <div>
+                    <h3 id="chartTitle" class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
+                        <i class="fas fa-chart-simple text-teal-600"></i> Investment Breakdown
+                    </h3>
+                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
+                        <canvas id="sipChart" width="400" height="260" style="max-height: 260px; width: 100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-8 text-center text-xs text-gray-500 border-t border-gray-200 pt-5">
+            <p id="disclaimerText"><i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i> <strong>Disclaimer:</strong> This SIP calculator is for informational purposes only. Projected returns are based on assumed rates and do not guarantee future performance. Consult your financial advisor before investing.</p>
+            <p id="copyrightText" class="mt-2">© 2025 Global SIP Planner | Multi-Currency Investment Tool</p>
+        </footer>
+    </main>
+
+    <script>
+        // Country Data - ALL WORKING
+        const countries = {
+            PK: { currency: '₨', code: 'PKR', symbol: '₨', min: 1000, max: 500000, step: 1000, default: 5000, format: 'indian', name: 'Pakistan' },
+            IN: { currency: '₹', code: 'INR', symbol: '₹', min: 500, max: 500000, step: 500, default: 5000, format: 'indian', name: 'India' },
+            US: { currency: '$', code: 'USD', symbol: '$', min: 10, max: 10000, step: 10, default: 100, format: 'us', name: 'USA' },
+            GB: { currency: '£', code: 'GBP', symbol: '£', min: 10, max: 8000, step: 10, default: 100, format: 'us', name: 'UK' },
+            EU: { currency: '€', code: 'EUR', symbol: '€', min: 10, max: 9000, step: 10, default: 100, format: 'us', name: 'Europe' },
+            AE: { currency: 'د.إ', code: 'AED', symbol: 'د.إ', min: 50, max: 20000, step: 50, default: 100, format: 'us', name: 'UAE' },
+            SG: { currency: 'S$', code: 'SGD', symbol: 'S$', min: 20, max: 15000, step: 10, default: 100, format: 'us', name: 'Singapore' },
+            CA: { currency: 'C$', code: 'CAD', symbol: 'C$', min: 15, max: 12000, step: 5, default: 100, format: 'us', name: 'Canada' },
+            AU: { currency: 'A$', code: 'AUD', symbol: 'A$', min: 15, max: 13000, step: 5, default: 100, format: 'us', name: 'Australia' },
+            JP: { currency: '¥', code: 'JPY', symbol: '¥', min: 1000, max: 1000000, step: 100, default: 10000, format: 'us', name: 'Japan' },
+            CN: { currency: '¥', code: 'CNY', symbol: '¥', min: 50, max: 50000, step: 50, default: 500, format: 'us', name: 'China' }
+        };
+
+        // Language Translations
+        const translations = {
+            en: {
+                badge: "Systematic Investment Planner", heading: "SIP Calculator: Estimate Your Investment Returns", subheading: "Plan your wealth journey with systematic investments across the globe.",
+                monthly: "Monthly Investment", return: "Expected Annual Return", period: "Time Period",
+                invested: "INVESTED AMOUNT", returns: "ESTIMATED RETURNS", maturity: "TOTAL MATURITY VALUE",
+                principal: "Principal Portion", gains: "Gains Portion", chart: "Investment Breakdown",
+                disclaimer: "Disclaimer: This SIP calculator is for informational purposes only. Projected returns are based on assumed rates and do not guarantee future performance. Consult your financial advisor before investing.",
+                copyright: "© 2025 Global SIP Planner | Multi-Currency Investment Tool", yearUnit: "years", minHelp: "Min", maxHelp: "Max"
+            },
+            ur: {
+                badge: "سسٹمیٹک انویسٹمنٹ پلانر", heading: "SIP کیلکولیٹر: اپنے سرمایہ کاری کے منافع کا اندازہ لگائیں",
+                subheading: "دنیا بھر میں منظم سرمایہ کاری کے ساتھ اپنے مالی سفر کی منصوبہ بندی کریں۔",
+                monthly: "ماہانہ سرمایہ کاری", return: "متوقع سالانہ منافع", period: "مدتِ وقت",
+                invested: "سرمایہ کاری کی گئی رقم", returns: "متوقع منافع", maturity: "کل میچورٹی ویلیو",
+                principal: "اصل رقم کا حصہ", gains: "منافع کا حصہ", chart: "سرمایہ کاری کی تفصیل",
+                disclaimer: "ڈسکلیمر: یہ SIP کیلکولیٹر صرف معلوماتی مقاصد کے لیے ہے۔ متوقع منافع فرضی شرحوں پر مبنی ہیں اور مستقبل کی کارکردگی کی ضمانت نہیں دیتے۔ سرمایہ کاری سے پہلے اپنے مالی مشیر سے مشورہ کریں۔",
+                copyright: "© 2025 گلوبل SIP پلانر | کثیر الکرنسی سرمایہ کاری کا آلہ", yearUnit: "سال", minHelp: "کم از کم", maxHelp: "زیادہ سے زیادہ"
+            },
+            hi: {
+                badge: "सिस्टमैटिक इन्वेस्टमेंट प्लानर", heading: "SIP कैलकुलेटर: अपने निवेश रिटर्न का अनुमान लगाएं",
+                subheading: "व्यवस्थित निवेश के साथ अपनी वित्तीय यात्रा की योजना बनाएं।",
+                monthly: "मासिक निवेश", return: "अपेक्षित वार्षिक रिटर्न", period: "समय अवधि",
+                invested: "निवेशित राशि", returns: "अनुमानित रिटर्न", maturity: "कुल परिपक्वता मूल्य",
+                principal: "मूलधन हिस्सा", gains: "लाभ हिस्सा", chart: "निवेश विवरण",
+                disclaimer: "अस्वीकरण: यह SIP कैलकुलेटर केवल सूचनात्मक उद्देश्यों के लिए है। अनुमानित रिटर्न मान्यताओं पर आधारित हैं और भविष्य के प्रदर्शन की गारंटी नहीं देते हैं। निवेश से पहले अपने वित्तीय सलाहकार से परामर्श करें।",
+                copyright: "© 2025 ग्लोबल SIP प्लानर | मल्टी-करेंसी निवेश उपकरण", yearUnit: "वर्ष", minHelp: "न्यूनतम", maxHelp: "अधिकतम"
+            },
+            es: {
+                badge: "Planificador de Inversiones Sistemáticas", heading: "Calculadora SIP: Estime sus Rendimientos de Inversión",
+                subheading: "Planifique su viaje financiero con inversiones sistemáticas en todo el mundo.",
+                monthly: "Inversión Mensual", return: "Rendimiento Anual Esperado", period: "Período de Tiempo",
+                invested: "MONTO INVERTIDO", returns: "RENDIMIENTOS ESTIMADOS", maturity: "VALOR DE VENCIMIENTO TOTAL",
+                principal: "Parte Principal", gains: "Parte de Ganancias", chart: "Desglose de Inversión",
+                disclaimer: "Descargo de responsabilidad: Esta calculadora SIP es solo para fines informativos. Los rendimientos proyectados se basan en tasas supuestas y no garantizan el rendimiento futuro. Consulte a su asesor financiero antes de invertir.",
+                copyright: "© 2025 Planificador SIP Global | Herramienta de Inversión Multimoneda", yearUnit: "años", minHelp: "Mín", maxHelp: "Máx"
+            }
+        };
+
+        let currentCountry = 'PK';
+        let currentLang = 'en';
+        let sipChart = null;
+
+        function formatNumber(num, countryCode) {
+            if (isNaN(num)) return '0';
+            const country = countries[countryCode];
+            if (country.format === 'indian') {
+                let str = Math.floor(num).toString();
+                let lastThree = str.substring(str.length - 3);
+                let otherNumbers = str.substring(0, str.length - 3);
+                if (otherNumbers !== '') lastThree = ',' + lastThree;
+                let formatted = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+                return formatted;
+            }
+            return Math.floor(num).toLocaleString('en-US');
+        }
+
+        function formatCurrency(amount, countryCode) {
+            const country = countries[countryCode];
+            return `${country.symbol} ${formatNumber(amount, countryCode)}`;
+        }
+
+        function updateCountrySettings() {
+            const country = countries[currentCountry];
+            const monthlySlider = document.getElementById('monthlySlider');
+            const monthlyInput = document.getElementById('monthlyInput');
+            const currencySymbolSpan = document.getElementById('currencySymbol');
+            const monthlyHelp = document.getElementById('monthlyHelp');
+            const minLabel = document.getElementById('minLabel');
+            const maxLabel = document.getElementById('maxLabel');
+
+            monthlySlider.min = country.min;
+            monthlySlider.max = country.max;
+            monthlySlider.step = country.step;
+            
+            let currentVal = parseFloat(monthlyInput.value);
+            if (isNaN(currentVal)) currentVal = country.default;
+            currentVal = Math.min(country.max, Math.max(country.min, currentVal));
+            
+            monthlySlider.value = currentVal;
+            monthlyInput.value = currentVal;
+            monthlyInput.min = country.min;
+            monthlyInput.max = country.max;
+            monthlyInput.step = country.step;
+            
+            currencySymbolSpan.textContent = country.symbol;
+            
+            const trans = translations[currentLang] || translations.en;
+            monthlyHelp.textContent = `${trans.minHelp} ${country.symbol}${formatNumber(country.min, currentCountry)} | ${trans.maxHelp} ${country.symbol}${formatNumber(country.max, currentCountry)}`;
+            minLabel.textContent = `${trans.minHelp} ${country.symbol}${formatNumber(country.min, currentCountry)}`;
+            maxLabel.textContent = `${trans.maxHelp} ${country.symbol}${formatNumber(country.max, currentCountry)}`;
+        }
+
+        function updateLanguage() {
+            const trans = translations[currentLang] || translations.en;
+            document.getElementById('badgeText').textContent = trans.badge;
+            document.getElementById('mainHeading').innerHTML = trans.heading;
+            document.getElementById('subHeading').textContent = trans.subheading;
+            document.getElementById('monthlyLabel').innerHTML = `<i class="fas fa-rupee-sign text-teal-600"></i> ${trans.monthly}`;
+            document.getElementById('returnLabel').innerHTML = `<i class="fas fa-percent text-teal-600"></i> ${trans.return}`;
+            document.getElementById('periodLabel').innerHTML = `<i class="fas fa-calendar-alt text-teal-600"></i> ${trans.period}`;
+            document.getElementById('investedTitle').textContent = trans.invested;
+            document.getElementById('returnsTitle').textContent = trans.returns;
+            document.getElementById('maturityTitle').textContent = trans.maturity;
+            document.getElementById('principalLabel').innerHTML = `<i class="fas fa-chart-pie mr-1"></i>${trans.principal}`;
+            document.getElementById('gainsLabel').innerHTML = `<i class="fas fa-chart-line mr-1"></i>${trans.gains}`;
+            document.getElementById('chartTitle').innerHTML = `<i class="fas fa-chart-simple text-teal-600"></i> ${trans.chart}`;
+            document.getElementById('disclaimerText').innerHTML = `<i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i> <strong>Disclaimer:</strong> ${trans.disclaimer}`;
+            document.getElementById('copyrightText').textContent = trans.copyright;
+            document.getElementById('yearUnit').textContent = trans.yearUnit;
+            updateCountrySettings();
+            updateCalculator();
+        }
+
+        function calculateSIP(monthlyInvestment, annualReturnPercent, years) {
+            let monthlyRate = annualReturnPercent / 100 / 12;
+            let months = years * 12;
+            if (monthlyRate === 0) return monthlyInvestment * months;
+            let factor = Math.pow(1 + monthlyRate, months);
+            return monthlyInvestment * ((factor - 1) / monthlyRate) * (1 + monthlyRate);
+        }
+
+        function updateCalculator() {
+            let monthly = parseFloat(document.getElementById('monthlySlider').value);
+            let annualReturn = parseFloat(document.getElementById('returnSlider').value);
+            let years = parseFloat(document.getElementById('yearSlider').value);
+            
+            const country = countries[currentCountry];
+            monthly = Math.min(country.max, Math.max(country.min, monthly));
+            annualReturn = Math.min(30, Math.max(1, annualReturn));
+            years = Math.min(50, Math.max(1, years));
+            
+            document.getElementById('monthlySlider').value = monthly;
+            document.getElementById('monthlyInput').value = monthly;
+            document.getElementById('returnSlider').value = annualReturn;
+            document.getElementById('returnInput').value = annualReturn;
+            document.getElementById('yearSlider').value = years;
+            document.getElementById('yearInput').value = years;
+            
+            let totalInvested = monthly * years * 12;
+            let maturity = calculateSIP(monthly, annualReturn, years);
+            let estimatedReturns = Math.max(0, maturity - totalInvested);
+            maturity = Math.max(totalInvested, maturity);
+            
+            document.getElementById('investedAmount').textContent = formatCurrency(totalInvested, currentCountry);
+            document.getElementById('returnsAmount').textContent = formatCurrency(estimatedReturns, currentCountry);
+            document.getElementById('maturityAmount').textContent = formatCurrency(maturity, currentCountry);
+            
+            let principalPercent = (totalInvested / maturity) * 100;
+            if (isNaN(principalPercent)) principalPercent = 0;
+            principalPercent = Math.min(100, Math.max(0, principalPercent));
+            document.getElementById('progressFill').style.width = principalPercent + '%';
+            document.getElementById('principalPercent').textContent = principalPercent.toFixed(1) + '%';
+            document.getElementById('gainsPercent').textContent = (100 - principalPercent).toFixed(1) + '%';
+            
+            const trans = translations[currentLang] || translations.en;
+            document.getElementById('summaryText').innerHTML = `💡 ${trans.invested} <strong>${formatCurrency(monthly, currentCountry)}</strong> ${trans.monthly.toLowerCase()} for <strong>${years} ${trans.yearUnit}</strong> at <strong>${annualReturn}%</strong> ${trans.return.toLowerCase()}, you will accumulate <strong>${formatCurrency(maturity, currentCountry)}</strong>.`;
+            
+            if (sipChart) {
+                sipChart.data.datasets[0].data = [totalInvested, estimatedReturns];
+                sipChart.data.datasets[0].label = `Amount (${country.symbol})`;
+                sipChart.update();
+            }
+        }
+
+        function initChart() {
+            const ctx = document.getElementById('sipChart').getContext('2d');
+            sipChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Invested Amount (Principal)', 'Estimated Returns (Gains)'],
+                    datasets: [{
+                        label: 'Amount',
+                        data: [600000, 561695],
+                        backgroundColor: ['#2c7da0', '#f59e0b'],
+                        borderRadius: 8,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    plugins: {
+                        legend: { position: 'top', labels: { font: { size: 12 } } },
+                        tooltip: { callbacks: { label: (ctx) => `${countries[currentCountry].symbol} ${Math.round(ctx.raw).toLocaleString()}` } }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: (value) => {
+                                    const s = countries[currentCountry].symbol;
+                                    if (value >= 10000000) return `${s}${(value/10000000).toFixed(1)}Cr`;
+                                    if (value >= 100000) return `${s}${(value/100000).toFixed(1)}L`;
+                                    return `${s}${value.toLocaleString()}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+            updateCalculator();
+        }
+
+        function bindEvents() {
+            document.getElementById('monthlySlider').addEventListener('input', () => {
+                document.getElementById('monthlyInput').value = document.getElementById('monthlySlider').value;
+                updateCalculator();
+            });
+            document.getElementById('monthlyInput').addEventListener('input', (e) => {
+                let v = parseFloat(e.target.value);
+                const c = countries[currentCountry];
+                if (isNaN(v)) v = c.default;
+                v = Math.min(c.max, Math.max(c.min, v));
+                document.getElementById('monthlySlider').value = v;
+                document.getElementById('monthlyInput').value = v;
+                updateCalculator();
+            });
+            document.getElementById('returnSlider').addEventListener('input', () => {
+                document.getElementById('returnInput').value = document.getElementById('returnSlider').value;
+                updateCalculator();
+            });
+            document.getElementById('returnInput').addEventListener('input', (e) => {
+                let v = parseFloat(e.target.value);
+                if (isNaN(v)) v = 12;
+                v = Math.min(30, Math.max(1, v));
+                document.getElementById('returnSlider').value = v;
+                document.getElementById('returnInput').value = v;
+                updateCalculator();
+            });
+            document.getElementById('yearSlider').addEventListener('input', () => {
+                document.getElementById('yearInput').value = document.getElementById('yearSlider').value;
+                updateCalculator();
+            });
+            document.getElementById('yearInput').addEventListener('input', (e) => {
+                let v = parseFloat(e.target.value);
+                if (isNaN(v)) v = 10;
+                v = Math.min(50, Math.max(1, v));
+                document.getElementById('yearSlider').value = v;
+                document.getElementById('yearInput').value = v;
+                updateCalculator();
+            });
+            document.getElementById('countrySelect').addEventListener('change', (e) => {
+                currentCountry = e.target.value;
+                updateCountrySettings();
+                updateCalculator();
+                if (sipChart) sipChart.data.datasets[0].label = `Amount (${countries[currentCountry].symbol})`;
+                if (sipChart) sipChart.update();
+            });
+            document.getElementById('languageSelect').addEventListener('change', (e) => {
+                currentLang = e.target.value;
+                updateLanguage();
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            initChart();
+            bindEvents();
+            updateLanguage();
+        });
+    </script>
+</body>
+</html>
