@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Pro P&L Calculator | Financial Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { transition: all 0.2s ease; }
+        body { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e9ecef 100%); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 1.5rem; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        .result-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 1rem; padding: 0.75rem; text-align: center; border: 1px solid rgba(0, 0, 0, 0.05); }
+        .mode-tab { padding: 0.6rem 1.5rem; border-radius: 9999px; font-weight: 600; cursor: pointer; background: white; color: #4b5563; border: 1px solid #e5e7eb; }
+        .mode-tab:hover { background: #f3f4f6; }
+        .mode-tab.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+        input, select { border: 1px solid #e5e7eb; outline: none; background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; font-size: 0.95rem; }
+        input:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        .icon-btn { background: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.65rem; color: #4b5563; cursor: pointer; }
+        .icon-btn:hover { background: #f9fafb; border-color: #667eea; color: #667eea; }
+        .profit-text { color: #10b981; }
+        .loss-text { color: #ef4444; }
+        .gauge-bg { background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+        .chart-container { background: #ffffff; border-radius: 1rem; padding: 0.75rem; border: 1px solid #f0f0f0; }
+        .history-item { background: #f9fafb; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; color: #4b5563; border: 1px solid #e5e7eb; }
+        @media (max-width: 768px) { .mode-tab { padding: 0.5rem 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-4 md:p-6 lg:p-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
+                        <i class="fas fa-chart-line text-2xl text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Profit & Loss Intelligence</h1>
+                        <p class="text-sm text-gray-500 mt-0.5">Real-time financial analytics</p>
+                    </div>
+                </div>
+                <div class="flex gap-2 items-center flex-wrap">
+                    <div class="glass-card px-3 py-2 flex items-center gap-2 shadow-sm">
+                        <i class="fas fa-coins text-indigo-500"></i>
+                        <select id="currencySelect" class="border-0 bg-transparent font-medium cursor-pointer text-gray-700">
+                            <option value="$">$ USD</option>
+                            <option value="€">€ EUR</option>
+                            <option value="£">£ GBP</option>
+                            <option value="₹">₹ INR</option>
+                            <option value="₨">₨ PKR</option>
+                        </select>
+                    </div>
+                    <button id="resetBtn" class="icon-btn"><i class="fas fa-undo-alt"></i></button>
+                    <button id="copyReportBtn" class="icon-btn"><i class="fas fa-copy"></i></button>
+                    <button id="exportChartBtn" class="icon-btn"><i class="fas fa-camera"></i></button>
+                </div>
+            </div>
+
+            <!-- Mode Tabs -->
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button data-mode="standard" class="mode-tab active"><i class="fas fa-box mr-2"></i>Standard</button>
+                <button data-mode="business" class="mode-tab"><i class="fas fa-chart-simple mr-2"></i>Business</button>
+                <button data-mode="trading" class="mode-tab"><i class="fas fa-chart-line mr-2"></i>Trading</button>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Left: Input Panel -->
+                <div class="glass-card p-5 md:p-6">
+                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                        <i class="fas fa-sliders-h text-indigo-500 text-lg"></i>
+                        <h2 class="text-xl font-semibold text-gray-800">Input Parameters</h2>
+                    </div>
+                    <div id="inputPanel" class="space-y-4"></div>
+                    
+                    <!-- Tax & Discount - Real-time, No Apply Button -->
+                    <div class="mt-5 pt-3 border-t border-gray-200">
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i> Tax Rate (%)</label>
+                                <input type="number" id="taxRate" value="0" step="0.5" class="w-full">
+                                <p class="text-xs text-gray-400 mt-1">Auto-applies to profit</p>
+                            </div>
+                            <div>
+                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-tag mr-1"></i> Discount (%)</label>
+                                <input type="number" id="discountRate" value="0" step="0.5" class="w-full">
+                                <p class="text-xs text-gray-400 mt-1">Auto-applies to selling price</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Results Dashboard -->
+                <div class="glass-card p-5 md:p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-chart-pie mr-2 text-indigo-500"></i>Financial Dashboard</h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Net P&L</p><p id="netPL" class="text-2xl font-bold mt-1">-</p></div>
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">P&L %</p><p id="plPercent" class="text-2xl font-bold mt-1">-</p></div>
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Margin %</p><p id="marginPercent" class="text-2xl font-bold mt-1">-</p></div>
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Markup %</p><p id="markupPercent" class="text-2xl font-bold mt-1">-</p></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-5 text-sm">
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Break-even</span><p id="breakevenPrice" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Investment</span><p id="totalInvestment" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Return</span><p id="totalReturn" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">ROI</span><p id="roiValue" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Per Unit</span><p id="perUnitProfit" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">After Tax</span><p id="afterTaxPL" class="font-semibold text-gray-800">-</p></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+                        <div class="chart-container" id="donutChartContainer">
+                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-chart-pie mr-1"></i> Cost vs Profit Distribution</p>
+                            <canvas id="donutChart" height="150" style="max-height: 160px; width: 100%;"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-tachometer-alt mr-1"></i> Margin Gauge & Comparison</p>
+                            <div class="gauge-bg h-6 rounded-full overflow-hidden mb-2">
+                                <div id="gaugeFill" class="h-full rounded-full transition-all duration-300" style="width:0%; background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);"></div>
+                            </div>
+                            <p id="gaugeLabel" class="text-xs text-center text-gray-600 mb-2">Margin: 0%</p>
+                            <canvas id="comparisonBar" height="80" style="max-height: 85px; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card mt-6 p-4">
+                <div class="flex justify-between items-center flex-wrap">
+                    <h3 class="font-semibold text-gray-800"><i class="fas fa-history mr-2 text-indigo-500"></i>Recent Calculations</h3>
+                    <button id="clearHistoryBtn" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Clear History</button>
+                </div>
+                <div id="historyList" class="flex flex-wrap gap-2 mt-3 text-sm max-h-28 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentMode = "standard";
+        let currency = "$";
+        let tax = 0, discount = 0;
+        let chartDonut, chartComparison;
+        let historyArray = [];
+
+        function fmt(value) { return currency + Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+        function fmtPercent(value) { return Number(value).toFixed(2) + "%"; }
+
+        // Get current tax & discount values directly from inputs (real-time)
+        function getTaxDiscount() {
+            tax = parseFloat(document.getElementById("taxRate")?.value) || 0;
+            discount = parseFloat(document.getElementById("discountRate")?.value) || 0;
+            return { tax, discount };
+        }
+
+        function calculate() {
+            getTaxDiscount(); // Real-time fetch
+            let costTotal = 0, revenueTotal = 0, quantity = 1;
+            
+            if (currentMode === "standard") {
+                let cost = parseFloat(document.getElementById("costPrice")?.value) || 0;
+                let sell = parseFloat(document.getElementById("sellPrice")?.value) || 0;
+                quantity = parseFloat(document.getElementById("quantityStd")?.value) || 1;
+                costTotal = cost * quantity;
+                revenueTotal = sell * quantity;
+            } else if (currentMode === "business") {
+                let rev = parseFloat(document.getElementById("totalRevenue")?.value) || 0;
+                let cost = parseFloat(document.getElementById("totalCost")?.value) || 0;
+                quantity = parseFloat(document.getElementById("unitsSold")?.value) || 1;
+                costTotal = cost;
+                revenueTotal = rev;
+            } else {
+                let buy = parseFloat(document.getElementById("buyPrice")?.value) || 0;
+                let sell = parseFloat(document.getElementById("sellPriceTrade")?.value) || 0;
+                let qty = parseFloat(document.getElementById("qtyTrade")?.value) || 1;
+                let commPct = parseFloat(document.getElementById("commission")?.value) || 0;
+                quantity = qty;
+                let grossInvestment = buy * qty;
+                let grossReturn = sell * qty;
+                let commissionAmount = (grossReturn * commPct) / 100;
+                revenueTotal = grossReturn - commissionAmount;
+                costTotal = grossInvestment;
+            }
+            
+            // Apply discount
+            let revenueAfterDiscount = revenueTotal * (1 - discount / 100);
+            let rawProfit = revenueAfterDiscount - costTotal;
+            
+            // Apply tax (only on profit)
+            let taxAmount = rawProfit > 0 ? rawProfit * (tax / 100) : 0;
+            let finalProfit = rawProfit - taxAmount;
+            let finalRevenue = revenueAfterDiscount;
+            
+            let profitPercent = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
+            let margin = finalRevenue === 0 ? 0 : (finalProfit / finalRevenue) * 100;
+            let markup = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
+            let breakEvenPerUnit = quantity > 0 ? costTotal / quantity : 0;
+            let roi = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
+            let perUnitProfit = quantity > 0 ? finalProfit / quantity : 0;
+            
+            return { profit: finalProfit, profitPercent, margin, markup, costTotal, revenueTotal: finalRevenue, quantity, breakEven: breakEvenPerUnit, roi, perUnit: perUnitProfit, afterTax: finalProfit };
+        }
+
+        function updateUI(res) {
+            let netElem = document.getElementById("netPL");
+            netElem.innerHTML = fmt(res.profit);
+            netElem.className = "text-2xl font-bold mt-1 " + (res.profit >= 0 ? "profit-text" : "loss-text");
+            let plElem = document.getElementById("plPercent");
+            plElem.innerHTML = fmtPercent(res.profitPercent);
+            plElem.className = "text-2xl font-bold mt-1 " + (res.profitPercent >= 0 ? "profit-text" : "loss-text");
+            document.getElementById("marginPercent").innerHTML = fmtPercent(res.margin);
+            document.getElementById("markupPercent").innerHTML = fmtPercent(res.markup);
+            document.getElementById("breakevenPrice").innerHTML = fmt(res.breakEven);
+            document.getElementById("totalInvestment").innerHTML = fmt(res.costTotal);
+            document.getElementById("totalReturn").innerHTML = fmt(res.revenueTotal);
+            document.getElementById("roiValue").innerHTML = fmtPercent(res.roi);
+            document.getElementById("perUnitProfit").innerHTML = fmt(res.perUnit);
+            document.getElementById("afterTaxPL").innerHTML = fmt(res.afterTax);
+            
+            let gaugeWidth = Math.min(100, Math.max(0, (res.margin + 100) / 2));
+            document.getElementById("gaugeFill").style.width = gaugeWidth + "%";
+            document.getElementById("gaugeLabel").innerHTML = `Margin: ${res.margin.toFixed(2)}%`;
+            
+            if (chartDonut) {
+                let costVal = res.costTotal;
+                let profitVal = Math.max(0, res.profit);
+                let lossVal = res.profit < 0 ? -res.profit : 0;
+                if (res.profit >= 0) { 
+                    chartDonut.data.datasets[0].data = [costVal, profitVal]; 
+                    chartDonut.data.labels = ['Total Cost', 'Net Profit']; 
+                } else { 
+                    chartDonut.data.datasets[0].data = [costVal - lossVal, lossVal]; 
+                    chartDonut.data.labels = ['Adjusted Cost', 'Net Loss']; 
+                }
+                chartDonut.update();
+            }
+            if (chartComparison) { 
+                chartComparison.data.datasets[0].data = [res.costTotal, res.revenueTotal]; 
+                chartComparison.update(); 
+            }
+        }
+
+        function updateAll() { 
+            const res = calculate(); 
+            updateUI(res); 
+            saveToHistory(res); 
+        }
+        
+        function saveToHistory(res) { 
+            let summary = `${fmt(res.profit)} (${res.profitPercent.toFixed(1)}%) | ${currentMode}`; 
+            historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() }); 
+            if (historyArray.length > 10) historyArray.pop(); 
+            localStorage.setItem("pl_history", JSON.stringify(historyArray)); 
+            renderHistory(); 
+        }
+        
+        function renderHistory() { 
+            let container = document.getElementById("historyList"); 
+            if (!container) return; 
+            if (historyArray.length === 0) { 
+                container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; 
+                return; 
+            } 
+            container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join(''); 
+        }
+        
+        function loadHistory() { 
+            let stored = localStorage.getItem("pl_history"); 
+            if (stored) { historyArray = JSON.parse(stored); renderHistory(); } 
+        }
+        
+        function clearHistory() { historyArray = []; localStorage.removeItem("pl_history"); renderHistory(); }
+
+        function renderInputs() {
+            let panel = document.getElementById("inputPanel");
+            if (currentMode === "standard") { 
+                panel.innerHTML = `<div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-dollar-sign mr-1"></i>Cost Price</label><input type="number" id="costPrice" value="100" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-tag mr-1"></i>Selling Price</label><input type="number" id="sellPrice" value="150" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-cubes mr-1"></i>Quantity</label><input type="number" id="quantityStd" value="1" step="1" class="w-full"></div>`; 
+            } else if (currentMode === "business") { 
+                panel.innerHTML = `<div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-line mr-1"></i>Total Revenue</label><input type="number" id="totalRevenue" value="5000" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-simple mr-1"></i>Total Cost</label><input type="number" id="totalCost" value="4000" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-boxes mr-1"></i>Units Sold</label><input type="number" id="unitsSold" value="100" step="1" class="w-full"></div>`; 
+            } else { 
+                panel.innerHTML = `<div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-line mr-1"></i>Buy Price (per share)</label><input type="number" id="buyPrice" value="50" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-line mr-1"></i>Sell Price (per share)</label><input type="number" id="sellPriceTrade" value="75" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-cubes mr-1"></i>Quantity</label><input type="number" id="qtyTrade" value="100" step="1" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Commission (%)</label><input type="number" id="commission" value="1" step="0.1" class="w-full"></div>`; 
+            }
+            // Attach real-time listeners
+            panel.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updateAll));
+        }
+
+        function initCharts() {
+            let ctxDonut = document.getElementById('donutChart').getContext('2d');
+            let ctxBar = document.getElementById('comparisonBar').getContext('2d');
+            chartDonut = new Chart(ctxDonut, { 
+                type: 'doughnut', 
+                data: { labels: ['Cost', 'Profit'], datasets: [{ data: [100, 50], backgroundColor: ['#3b82f6', '#10b981'], borderWidth: 0 }] }, 
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: '#4b5563' } } } } 
+            });
+            chartComparison = new Chart(ctxBar, { 
+                type: 'bar', 
+                data: { labels: ['Total Cost', 'Total Revenue'], datasets: [{ label: 'Amount', data: [0, 0], backgroundColor: ['#f97316', '#22c55e'], borderRadius: 8 }] }, 
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: '#e5e7eb' } }, x: { ticks: { color: '#4b5563', font: { size: 11 } } } } } 
+            });
+        }
+
+        function exportChartAsImage() {
+            const originalCanvas = document.getElementById("donutChart");
+            const tempCanvas = document.createElement('canvas');
+            const scale = 3;
+            tempCanvas.width = originalCanvas.width * scale;
+            tempCanvas.height = originalCanvas.height * scale;
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.scale(scale, scale);
+            tempCtx.drawImage(originalCanvas, 0, 0);
+            tempCtx.scale(1/scale, 1/scale);
+            tempCtx.font = `${12 * scale}px system-ui`;
+            tempCtx.fillStyle = '#9ca3af';
+            tempCtx.fillText(`Generated: ${new Date().toLocaleString()}`, tempCanvas.width - (200 * scale), tempCanvas.height - (15 * scale));
+            const link = document.createElement('a');
+            link.download = `profit_chart_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.png`;
+            link.href = tempCanvas.toDataURL('image/png', 1.0);
+            link.click();
+        }
+
+        function setMode(mode) { 
+            currentMode = mode; 
+            document.querySelectorAll('.mode-tab').forEach(btn => { 
+                if (btn.getAttribute('data-mode') === mode) btn.classList.add('active'); 
+                else btn.classList.remove('active'); 
+            }); 
+            renderInputs(); 
+            updateAll(); 
+        }
+        
+        function resetAll() { 
+            if (currentMode === "standard") { 
+                if(document.getElementById("costPrice")) document.getElementById("costPrice").value = 100;
+                if(document.getElementById("sellPrice")) document.getElementById("sellPrice").value = 150;
+                if(document.getElementById("quantityStd")) document.getElementById("quantityStd").value = 1;
+            } else if (currentMode === "business") { 
+                if(document.getElementById("totalRevenue")) document.getElementById("totalRevenue").value = 5000;
+                if(document.getElementById("totalCost")) document.getElementById("totalCost").value = 4000;
+                if(document.getElementById("unitsSold")) document.getElementById("unitsSold").value = 100;
+            } else { 
+                if(document.getElementById("buyPrice")) document.getElementById("buyPrice").value = 50;
+                if(document.getElementById("sellPriceTrade")) document.getElementById("sellPriceTrade").value = 75;
+                if(document.getElementById("qtyTrade")) document.getElementById("qtyTrade").value = 100;
+                if(document.getElementById("commission")) document.getElementById("commission").value = 1;
+            }
+            if(document.getElementById("taxRate")) document.getElementById("taxRate").value = "0";
+            if(document.getElementById("discountRate")) document.getElementById("discountRate").value = "0";
+            updateAll(); 
+        }
+        
+        function copyReport() { 
+            let res = calculate(); 
+            let text = `📊 P&L REPORT\n━━━━━━━━━━━━━━━━━━━━━\nMode: ${currentMode.toUpperCase()}\nNet P&L: ${fmt(res.profit)}\nP&L %: ${fmtPercent(res.profitPercent)}\nMargin: ${fmtPercent(res.margin)}\nMarkup: ${fmtPercent(res.markup)}\nBreak-even: ${fmt(res.breakEven)}\nROI: ${fmtPercent(res.roi)}\nPer Unit: ${fmt(res.perUnit)}\nTax: ${tax}% | Discount: ${discount}%\n━━━━━━━━━━━━━━━━━━━━━`; 
+            navigator.clipboard.writeText(text); 
+            alert("✓ Report copied to clipboard!"); 
+        }
+        
+        function updateCurrency() { 
+            currency = document.getElementById("currencySelect").value; 
+            updateAll(); 
+        }
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => { 
+            initCharts(); 
+            renderInputs(); 
+            loadHistory(); 
+            setMode("standard"); 
+            
+            // Real-time tax & discount listeners
+            document.getElementById("taxRate").addEventListener("input", updateAll);
+            document.getElementById("discountRate").addEventListener("input", updateAll);
+            document.getElementById("currencySelect").addEventListener("change", updateCurrency);
+            document.getElementById("resetBtn").addEventListener("click", resetAll);
+            document.getElementById("copyReportBtn").addEventListener("click", copyReport);
+            document.getElementById("exportChartBtn").addEventListener("click", exportChartAsImage);
+            document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
+            document.querySelectorAll(".mode-tab").forEach(btn => { 
+                btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode"))); 
+            });
+        });
+    </script>
+</body>
+</html>
