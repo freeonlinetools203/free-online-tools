@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Age Difference Calculator – عمر کا فرق کیلکولیٹر</title>
+  <meta name="description" content="Free Age Difference Calculator: Find the exact time gap between two dates. See years, months, days, hours, minutes, and seconds difference.">
+  <meta name="keywords" content="age difference calculator, compare ages, date difference, age gap">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body {
+      background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
+      min-height: 100vh;
+      transition: all 0.3s ease;
+    }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 2rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255,255,255,0.5);
+    }
+    .glass-card-dark {
+      background: rgba(18, 25, 45, 0.75);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #f0f3fa;
+    }
+    .result-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 1.25rem;
+      transition: all 0.2s;
+    }
+    .dark-result {
+      background: rgba(15, 23, 42, 0.85);
+      color: #e2e8f0;
+    }
+    button:active { transform: scale(0.97); }
+    input[type="date"], input[type="time"] {
+      background: rgba(255,255,240,0.9);
+      border: 1px solid #cbd5e1;
+      border-radius: 1rem;
+      padding: 0.6rem 1rem;
+    }
+    .dark-mode input[type="date"], .dark-mode input[type="time"] {
+      background: #1e293b;
+      border: 1px solid #475569;
+      color: white;
+    }
+    .relative-bar {
+      background: rgba(0,0,0,0.1);
+      border-radius: 2rem;
+      overflow: hidden;
+    }
+    .milestone-card {
+      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
+      border-left: 4px solid #6366f1;
+    }
+    .rotate-180 { transform: rotate(180deg); }
+    .transition { transition: all 0.2s ease; }
+  </style>
+</head>
+<body id="appBody">
+
+  <div class="max-w-7xl mx-auto px-4 py-6 md:py-10">
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
+        <div>
+          <h1 id="mainTitleEn" class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent">
+            <i class="fas fa-calendar-alt text-indigo-600 mr-2"></i>Age Difference Calculator
+          </h1>
+          <h1 id="mainTitleUr" class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent hidden">
+            <i class="fas fa-calendar-alt text-indigo-600 mr-2"></i>عمر کا فرق کیلکولیٹر
+          </h1>
+        </div>
+        <div class="flex gap-3">
+          <button id="langToggleBtn" class="glass-card px-4 py-2 rounded-full font-semibold flex items-center gap-2">
+            <i class="fas fa-language"></i> <span id="langBtnText">اردو</span>
+          </button>
+          <button id="darkModeToggle" class="glass-card p-3 rounded-full">
+            <i class="fas fa-moon text-xl"></i>
+          </button>
+        </div>
+      </div>
+      <p id="subtitleEn" class="text-gray-700 max-w-2xl mx-auto">Find the exact time gap between two people — years, months, days, seconds & fun facts.</p>
+      <p id="subtitleUr" class="text-gray-700 max-w-2xl mx-auto hidden">دو افراد کی عمر کے درمیان فرق معلوم کریں — سال، مہینے، دن، گھنٹے، منٹ اور سیکنڈ میں</p>
+      <div class="mt-3 inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-5 py-2 rounded-full">
+        <i class="fas fa-clock text-indigo-500"></i>
+        <span id="liveClock" class="font-mono font-semibold">--:--:--</span>
+      </div>
+    </div>
+
+    <!-- Input Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+      <div class="glass-card p-5">
+        <h2 id="p1TitleEn" class="text-xl font-bold flex items-center gap-2"><i class="fas fa-user-circle text-blue-600"></i>Person 1 👤</h2>
+        <h2 id="p1TitleUr" class="text-xl font-bold flex items-center gap-2 hidden"><i class="fas fa-user-circle text-blue-600"></i>پہلا شخص 👤</h2>
+        <div class="mt-3">
+          <label id="dob1En" class="block text-sm font-semibold">Date of Birth</label>
+          <label id="dob1Ur" class="block text-sm font-semibold hidden">تاریخ پیدائش</label>
+          <input type="date" id="date1" class="w-full p-3 rounded-xl mt-1">
+        </div>
+        <div id="timeGroup1" class="mt-3 hidden">
+          <label id="time1En" class="block text-sm font-semibold">Time (HH:MM)</label>
+          <label id="time1Ur" class="block text-sm font-semibold hidden">وقت (گھنٹہ:منٹ)</label>
+          <input type="time" id="time1" class="w-full p-3 rounded-xl mt-1">
+        </div>
+      </div>
+
+      <div class="glass-card p-5">
+        <h2 id="p2TitleEn" class="text-xl font-bold flex items-center gap-2"><i class="fas fa-user-circle text-purple-600"></i>Person 2 🧑</h2>
+        <h2 id="p2TitleUr" class="text-xl font-bold flex items-center gap-2 hidden"><i class="fas fa-user-circle text-purple-600"></i>دوسرا شخص 🧑</h2>
+        <div class="mt-3">
+          <label id="dob2En" class="block text-sm font-semibold">Date of Birth</label>
+          <label id="dob2Ur" class="block text-sm font-semibold hidden">تاریخ پیدائش</label>
+          <input type="date" id="date2" class="w-full p-3 rounded-xl mt-1">
+        </div>
+        <div id="timeGroup2" class="mt-3 hidden">
+          <label id="time2En" class="block text-sm font-semibold">Time (HH:MM)</label>
+          <label id="time2Ur" class="block text-sm font-semibold hidden">وقت (گھنٹہ:منٹ)</label>
+          <input type="time" id="time2" class="w-full p-3 rounded-xl mt-1">
+        </div>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <button id="swapBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
+        <i class="fas fa-exchange-alt"></i> <span id="swapEn">Swap</span><span id="swapUr" class="hidden">تبدیل کریں</span>
+      </button>
+      <button id="toggleTimeBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
+        <i class="fas fa-stopwatch"></i> <span id="timeToggleEn">Include Time</span><span id="timeToggleUr" class="hidden">وقت شامل کریں</span>
+      </button>
+      <button id="copyBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
+        <i class="fas fa-copy"></i> <span id="copyEn">Copy</span><span id="copyUr" class="hidden">کاپی کریں</span>
+      </button>
+      <button id="resetBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
+        <i class="fas fa-undo-alt"></i> <span id="resetEn">Reset to Today</span><span id="resetUr" class="hidden">آج کی تاریخ</span>
+      </button>
+    </div>
+
+    <!-- Results Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+      <div class="result-card p-5">
+        <i class="fas fa-calendar-week text-indigo-500 text-xl mb-2"></i>
+        <p id="card1En" class="text-xs uppercase text-gray-500">Age Gap (Formatted)</p>
+        <p id="card1Ur" class="text-xs uppercase text-gray-500 hidden">عمر کا فرق</p>
+        <p id="formattedDiff" class="text-xl font-bold">—</p>
+      </div>
+      <div class="result-card p-5">
+        <i class="fas fa-chart-line text-indigo-500 text-xl mb-2"></i>
+        <p id="card2En" class="text-xs uppercase text-gray-500">Total Months</p>
+        <p id="card2Ur" class="text-xs uppercase text-gray-500 hidden">کل مہینے</p>
+        <p id="totalMonths" class="text-2xl font-bold">—</p>
+      </div>
+      <div class="result-card p-5">
+        <i class="fas fa-sun text-indigo-500 text-xl mb-2"></i>
+        <p id="card3En" class="text-xs uppercase text-gray-500">Total Days</p>
+        <p id="card3Ur" class="text-xs uppercase text-gray-500 hidden">کل دن</p>
+        <p id="totalDays" class="text-2xl font-bold">—</p>
+      </div>
+      <div class="result-card p-5">
+        <i class="fas fa-hourglass-half text-indigo-500 text-xl mb-2"></i>
+        <p id="card4En" class="text-xs uppercase text-gray-500">Total Hours</p>
+        <p id="card4Ur" class="text-xs uppercase text-gray-500 hidden">کل گھنٹے</p>
+        <p id="totalHours" class="text-2xl font-bold">—</p>
+      </div>
+    </div>
+
+    <!-- Milestone Card - ہمیشہ نظر آئے گا -->
+    <div id="milestoneCard" class="glass-card p-5 mb-6 milestone-card">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-rocket text-rose-500 text-2xl"></i>
+        <div>
+          <p id="milestoneTitleEn" class="text-sm font-semibold text-gray-500">🎯 NEXT MILESTONE</p>
+          <p id="milestoneTitleUr" class="text-sm font-semibold text-gray-500 hidden">🎯 اگلا سنگ میل</p>
+          <p id="milestone" class="text-lg md:text-xl font-bold text-indigo-700">—</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Advanced Section -->
+    <div class="glass-card mb-6 overflow-hidden">
+      <button id="toggleAdvanced" class="w-full flex justify-between items-center p-5 font-semibold text-left text-indigo-800">
+        <span><i class="fas fa-chart-simple mr-2"></i><span id="advEn">Advanced Breakdown & Fun Facts</span><span id="advUr" class="hidden">تفصیلی حساب اور دلچسپ حقائق</span></span>
+        <i id="advIcon" class="fas fa-chevron-down transition"></i>
+      </button>
+      <div id="advancedPanel" class="hidden px-5 pb-5 border-t border-white/30">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
+          <div><i class="fas fa-stopwatch text-purple-500"></i> <span id="secEn" class="font-semibold">Exact Seconds:</span><span id="secUr" class="font-semibold hidden">کل سیکنڈ:</span> <span id="exactSeconds">0</span></div>
+          <div><i class="fas fa-calendar-week text-green-600"></i> <span id="weekEn" class="font-semibold">Total Weeks:</span><span id="weekUr" class="font-semibold hidden">کل ہفتے:</span> <span id="totalWeeks">—</span></div>
+          <div><i class="fas fa-percent text-amber-500"></i> <span id="ratioEn" class="font-semibold">Age Ratio:</span><span id="ratioUr" class="font-semibold hidden">عمر کا تناسب:</span> <span id="ageRatioFact">—</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Bar -->
+    <div class="glass-card p-5">
+      <p id="barEn" class="font-semibold mb-2"><i class="fas fa-chart-simple"></i> Age Comparison</p>
+      <p id="barUr" class="font-semibold mb-2 hidden"><i class="fas fa-chart-simple"></i> عمر کا موازنہ</p>
+      <div class="relative-bar w-full h-6 flex">
+        <div id="barPerson1" class="bg-gradient-to-r from-indigo-500 to-blue-400 h-full text-xs flex items-center justify-start pl-2 text-white font-bold" style="width: 50%;"><span id="bar1En">Person 1</span><span id="bar1Ur" class="hidden">پہلا شخص</span></div>
+        <div id="barPerson2" class="bg-gradient-to-r from-purple-500 to-pink-400 h-full text-xs flex items-center justify-end pr-2 text-white font-bold" style="width: 50%;"><span id="bar2En">Person 2</span><span id="bar2Ur" class="hidden">دوسرا شخص</span></div>
+      </div>
+      <div class="flex justify-between text-xs mt-1 text-gray-600">
+        <span id="youngEn">Younger ←</span><span id="youngUr" class="hidden">چھوٹا ←</span>
+        <span id="oldEn">→ Older</span><span id="oldUr" class="hidden">→ بڑا</span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Language State
+    let currentLang = 'en';
+    let includeTime = false;
+    let updateInterval = null;
+
+    // DOM Elements
+    const date1 = document.getElementById('date1');
+    const date2 = document.getElementById('date2');
+    const time1 = document.getElementById('time1');
+    const time2 = document.getElementById('time2');
+    const timeGroup1 = document.getElementById('timeGroup1');
+    const timeGroup2 = document.getElementById('timeGroup2');
+    
+    // Helper: Get DateTime Object
+    function getDateTime(dateStr, timeStr, useTime) {
+      if (!dateStr) return null;
+      if (useTime && timeStr) {
+        return new Date(`${dateStr}T${timeStr}:00`);
+      }
+      let [y, m, d] = dateStr.split('-').map(Number);
+      return new Date(y, m-1, d, 0, 0, 0);
+    }
+    
+    // Compute Difference
+    function computeDiff(d1, d2) {
+      if (!d1 || !d2 || isNaN(d1)) return null;
+      let start = new Date(Math.min(d1, d2));
+      let end = new Date(Math.max(d1, d2));
+      let years = end.getFullYear() - start.getFullYear();
+      let months = end.getMonth() - start.getMonth();
+      let days = end.getDate() - start.getDate();
+      if (days < 0) {
+        let prevMonth = new Date(end.getFullYear(), end.getMonth(), 0).getDate();
+        days += prevMonth;
+        months--;
+      }
+      if (months < 0) {
+        months += 12;
+        years--;
+      }
+      const totalMs = end - start;
+      const totalDaysFloat = totalMs / (1000 * 3600 * 24);
+      return {
+        years, months, days,
+        totalMonths: Math.floor(totalDaysFloat / 30.436875),
+        totalDays: Math.floor(totalDaysFloat),
+        totalHours: Math.floor(totalMs / (1000 * 3600)),
+        totalSeconds: Math.floor(totalMs / 1000),
+        totalWeeks: totalDaysFloat / 7,
+        totalMs
+      };
+    }
+    
+    // Format Difference based on language
+    function formatDiff(y, m, d, lang) {
+      if (lang === 'ur') {
+        let parts = [];
+        if (y) parts.push(`${y} سال`);
+        if (m) parts.push(`${m} مہینے`);
+        if (d) parts.push(`${d} دن`);
+        return parts.length ? parts.join(', ') : '0 دن';
+      }
+      let parts = [];
+      if (y) parts.push(`${y} year${y !== 1 ? 's' : ''}`);
+      if (m) parts.push(`${m} month${m !== 1 ? 's' : ''}`);
+      if (d) parts.push(`${d} day${d !== 1 ? 's' : ''}`);
+      return parts.length ? parts.join(', ') : '0 days';
+    }
+    
+    // Correct Milestone - Always Future Date
+    function getMilestone(older, younger) {
+      const now = new Date();
+      let olderAge = now.getFullYear() - older.getFullYear();
+      const monthDiff = now.getMonth() - older.getMonth();
+      const dayDiff = now.getDate() - older.getDate();
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        olderAge--;
+      }
+      const milestone = new Date(younger);
+      milestone.setFullYear(younger.getFullYear() + olderAge);
+      while (milestone <= now) {
+        milestone.setFullYear(milestone.getFullYear() + 1);
+      }
+      return milestone;
+    }
+    
+    // Main Update Function
+    function updateAll() {
+      const d1 = date1.value;
+      const d2 = date2.value;
+      const t1 = time1.value;
+      const t2 = time2.value;
+      const obj1 = getDateTime(d1, t1, includeTime);
+      const obj2 = getDateTime(d2, t2, includeTime);
+      
+      if (!obj1 || !obj2) {
+        document.getElementById('formattedDiff').innerText = '—';
+        document.getElementById('totalMonths').innerText = '—';
+        document.getElementById('totalDays').innerText = '—';
+        document.getElementById('totalHours').innerText = '—';
+        document.getElementById('exactSeconds').innerText = '0';
+        document.getElementById('totalWeeks').innerText = '—';
+        document.getElementById('ageRatioFact').innerText = '—';
+        document.getElementById('milestone').innerText = '—';
+        return;
+      }
+      
+      const diff = computeDiff(obj1, obj2);
+      if (!diff) return;
+      
+      // Update basic results
+      document.getElementById('formattedDiff').innerText = formatDiff(diff.years, diff.months, diff.days, currentLang);
+      document.getElementById('totalMonths').innerText = diff.totalMonths.toLocaleString();
+      document.getElementById('totalDays').innerText = diff.totalDays.toLocaleString();
+      document.getElementById('totalHours').innerText = diff.totalHours.toLocaleString();
+      document.getElementById('exactSeconds').innerText = diff.totalSeconds.toLocaleString();
+      document.getElementById('totalWeeks').innerText = diff.totalWeeks.toFixed(1) + (currentLang === 'ur' ? ' ہفتے' : ' weeks');
+      
+      // Age Ratio
+      const isP1Older = obj1 < obj2;
+      const olderMs = Math.max(obj1, obj2);
+      const youngerMs = Math.min(obj1, obj2);
+      const ratio = ((olderMs - youngerMs) / olderMs) * 100;
+      if (ratio > 0.01) {
+        document.getElementById('ageRatioFact').innerText = currentLang === 'ur' ?
+          `${isP1Older ? 'پہلا شخص' : 'دوسرا شخص'} دوسرے سے ${ratio.toFixed(1)}% بڑا ہے` :
+          `Person ${isP1Older ? '1' : '2'} is ${ratio.toFixed(1)}% older than Person ${isP1Older ? '2' : '1'}`;
+      } else {
+        document.getElementById('ageRatioFact').innerText = currentLang === 'ur' ? 'عمر برابر ہے 🎉' : 'Same age! 🎉';
+      }
+      
+      // Milestone - Always Future
+      const olderDate = new Date(Math.max(obj1, obj2));
+      const youngerDate = new Date(Math.min(obj1, obj2));
+      const milestoneDate = getMilestone(olderDate, youngerDate);
+      const options = { year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('milestone').innerText = milestoneDate.toLocaleDateString(currentLang === 'ur' ? 'ur-PK' : 'en-US', options);
+      
+      // Visual Bar
+      const now = new Date();
+      const age1 = now - obj1;
+      const age2 = now - obj2;
+      const total = Math.abs(age1) + Math.abs(age2);
+      let w1 = total > 0 ? (Math.abs(age1) / total) * 100 : 50;
+      w1 = Math.min(95, Math.max(5, w1));
+      document.getElementById('barPerson1').style.width = `${w1}%`;
+      document.getElementById('barPerson2').style.width = `${100 - w1}%`;
+    }
+    
+    function refresh() {
+      updateAll();
+      if (updateInterval) clearInterval(updateInterval);
+      if (includeTime) {
+        updateInterval = setInterval(updateAll, 1000);
+      } else {
+        updateInterval = null;
+      }
+    }
+    
+    // Language Toggle
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'ur' : 'en';
+      document.querySelectorAll('[id$="En"]').forEach(el => el.classList.toggle('hidden', currentLang !== 'en'));
+      document.querySelectorAll('[id$="Ur"]').forEach(el => el.classList.toggle('hidden', currentLang !== 'ur'));
+      document.getElementById('langBtnText').innerText = currentLang === 'en' ? 'اردو' : 'English';
+      refresh();
+    }
+    
+    // Include Time Toggle
+    function setIncludeTime(enable) {
+      includeTime = enable;
+      timeGroup1.classList.toggle('hidden', !includeTime);
+      timeGroup2.classList.toggle('hidden', !includeTime);
+      if (includeTime) {
+        if (!time1.value) time1.value = "12:00";
+        if (!time2.value) time2.value = "12:00";
+      }
+      refresh();
+    }
+    
+    // Swap Dates
+    function swapDates() {
+      const d1 = date1.value;
+      const d2 = date2.value;
+      const t1 = time1.value;
+      const t2 = time2.value;
+      date1.value = d2;
+      date2.value = d1;
+      if (includeTime) {
+        time1.value = t2;
+        time2.value = t1;
+      }
+      refresh();
+    }
+    
+    // Reset to Today
+    function resetToday() {
+      const today = new Date();
+      const yyyy = today.getFullYear();
+      const mm = String(today.getMonth() + 1).padStart(2, '0');
+      const dd = String(today.getDate()).padStart(2, '0');
+      const todayStr = `${yyyy}-${mm}-${dd}`;
+      date1.value = todayStr;
+      date2.value = todayStr;
+      if (includeTime) {
+        const hour = String(today.getHours()).padStart(2, '0');
+        const minute = String(today.getMinutes()).padStart(2, '0');
+        time1.value = `${hour}:${minute}`;
+        time2.value = `${hour}:${minute}`;
+      }
+      refresh();
+    }
+    
+    // Copy Result
+    function copyResult() {
+      const diff = document.getElementById('formattedDiff').innerText;
+      const months = document.getElementById('totalMonths').innerText;
+      const days = document.getElementById('totalDays').innerText;
+      const hours = document.getElementById('totalHours').innerText;
+      const milestone = document.getElementById('milestone').innerText;
+      const text = currentLang === 'ur' ?
+        `عمر کا فرق: ${diff}\nکل مہینے: ${months}\nکل دن: ${days}\nکل گھنٹے: ${hours}\nاگلا سنگ میل: ${milestone}` :
+        `Age Difference: ${diff}\nTotal Months: ${months}\nTotal Days: ${days}\nTotal Hours: ${hours}\nNext Milestone: ${milestone}`;
+      navigator.clipboard.writeText(text).then(() => alert(currentLang === 'ur' ? 'کاپی ہو گیا!' : 'Copied!'));
+    }
+    
+    // Live Clock
+    function updateClock() {
+      document.getElementById('liveClock').innerText = new Date().toLocaleString();
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    
+    // Dark Mode
+    let dark = false;
+    function toggleDark() {
+      dark = !dark;
+      document.body.classList.toggle('dark-mode', dark);
+      document.body.style.background = dark ? 'linear-gradient(145deg, #0f172a, #1e293b)' : 'linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%)';
+      document.querySelectorAll('.glass-card').forEach(el => el.classList.toggle('glass-card-dark', dark));
+      document.querySelectorAll('.result-card').forEach(el => el.classList.toggle('dark-result', dark));
+    }
+    
+    // Event Listeners
+    date1.addEventListener('change', refresh);
+    date2.addEventListener('change', refresh);
+    time1.addEventListener('change', refresh);
+    time2.addEventListener('change', refresh);
+    document.getElementById('swapBtn').onclick = swapDates;
+    document.getElementById('toggleTimeBtn').onclick = () => setIncludeTime(!includeTime);
+    document.getElementById('resetBtn').onclick = resetToday;
+    document.getElementById('copyBtn').onclick = copyResult;
+    document.getElementById('langToggleBtn').onclick = toggleLanguage;
+    document.getElementById('darkModeToggle').onclick = toggleDark;
+    document.getElementById('toggleAdvanced').onclick = () => {
+      document.getElementById('advancedPanel').classList.toggle('hidden');
+      document.getElementById('advIcon').classList.toggle('rotate-180');
+    };
+    
+    // Initialize with example dates
+    date1.value = "1991-12-01";
+    date2.value = "2001-01-01";
+    time1.value = "00:00";
+    time2.value = "00:00";
+    refresh();
+  </script>
+</body>
+</html>
