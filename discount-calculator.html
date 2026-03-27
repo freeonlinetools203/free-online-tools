@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Discount Calculator | Smart Savings Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * { transition: all 0.2s ease; }
+        body { background: linear-gradient(135deg, #f0f9ff 0%, #e6f7e6 50%, #fef3c7 100%); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 1.5rem; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
+        .result-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 1rem; padding: 0.75rem; text-align: center; border: 1px solid rgba(0, 0, 0, 0.05); }
+        .mode-tab { padding: 0.6rem 1.5rem; border-radius: 9999px; font-weight: 600; cursor: pointer; background: white; color: #4b5563; border: 1px solid #e5e7eb; }
+        .mode-tab:hover { background: #f3f4f6; }
+        .mode-tab.active { background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%); color: white; border: none; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); }
+        input, select { border: 1px solid #e5e7eb; outline: none; background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; font-size: 0.95rem; width: 100%; }
+        input:focus, select:focus { border-color: #10b981; box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1); }
+        .icon-btn { background: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.65rem; color: #4b5563; cursor: pointer; }
+        .icon-btn:hover { background: #f9fafb; border-color: #10b981; color: #10b981; transform: translateY(-2px); }
+        .savings-text { color: #10b981; }
+        .original-text { color: #6b7280; }
+        .final-text { color: #3b82f6; }
+        .gauge-bg { background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
+        .chart-container { background: #ffffff; border-radius: 1rem; padding: 0.75rem; border: 1px solid #f0f0f0; }
+        .history-item { background: #f9fafb; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; color: #4b5563; border: 1px solid #e5e7eb; }
+        .badge-best { background: linear-gradient(135deg, #f59e0b, #ef4444); color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
+        .badge-good { background: linear-gradient(135deg, #10b981, #3b82f6); color: white; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: bold; display: inline-block; }
+        @media (max-width: 768px) { .mode-tab { padding: 0.5rem 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <div class="min-h-screen p-4 md:p-6 lg:p-8">
+        <div class="max-w-7xl mx-auto">
+            <!-- Header -->
+            <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-blue-500 flex items-center justify-center shadow-lg">
+                        <i class="fas fa-tag text-2xl text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">Discount Calculator</h1>
+                        <p class="text-sm text-gray-500 mt-0.5">Smart savings · Real-time results</p>
+                    </div>
+                </div>
+                <div class="flex gap-2 items-center flex-wrap">
+                    <div class="glass-card px-3 py-2 flex items-center gap-2 shadow-sm">
+                        <i class="fas fa-coins text-green-500"></i>
+                        <select id="currencySelect" class="border-0 bg-transparent font-medium cursor-pointer text-gray-700">
+                            <option value="$">$ USD</option>
+                            <option value="€">€ EUR</option>
+                            <option value="£">£ GBP</option>
+                            <option value="₹">₹ INR</option>
+                            <option value="₨">₨ PKR</option>
+                        </select>
+                    </div>
+                    <button id="resetBtn" class="icon-btn"><i class="fas fa-undo-alt"></i></button>
+                    <button id="copySummaryBtn" class="icon-btn"><i class="fas fa-copy"></i></button>
+                    <button id="exportChartBtn" class="icon-btn"><i class="fas fa-camera"></i></button>
+                </div>
+            </div>
+
+            <!-- Discount Type Tabs -->
+            <div class="flex flex-wrap gap-3 mb-6">
+                <button data-type="percentage" class="mode-tab active" id="percentTabBtn"><i class="fas fa-percent mr-2"></i>Percentage Off (%)</button>
+                <button data-type="fixed" class="mode-tab" id="fixedTabBtn"><i class="fas fa-dollar-sign mr-2"></i>Fixed Amount ($)</button>
+            </div>
+
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Left: Input Panel -->
+                <div class="glass-card p-5 md:p-6">
+                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
+                        <i class="fas fa-sliders-h text-green-500 text-lg"></i>
+                        <h2 class="text-xl font-semibold text-gray-800">Input Parameters</h2>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-dollar-sign mr-1"></i>Original Price</label>
+                            <input type="number" id="originalPrice" value="100" step="any" class="w-full">
+                        </div>
+                        
+                        <div id="discountInputContainer">
+                            <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Discount Percentage (%)</label>
+                            <input type="number" id="discountPercent" value="20" step="0.5" class="w-full">
+                        </div>
+                        
+                        <div>
+                            <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-cubes mr-1"></i>Quantity</label>
+                            <input type="number" id="quantity" value="1" step="1" class="w-full">
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-3">
+                            <div>
+                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Tax Rate (%)</label>
+                                <input type="number" id="taxRate" value="0" step="0.5" class="w-full">
+                                <p class="text-xs text-gray-400 mt-1">After discount</p>
+                            </div>
+                            <div>
+                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-truck mr-1"></i>Shipping Cost</label>
+                                <input type="number" id="shippingCost" value="0" step="any" class="w-full">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Results Dashboard -->
+                <div class="glass-card p-5 md:p-6">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-chart-line mr-2 text-green-500"></i>Savings Dashboard</h2>
+                    
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">You Save</p><p id="discountAmount" class="text-2xl font-bold savings-text mt-1">-</p></div>
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Final Price</p><p id="finalPrice" class="text-2xl font-bold final-text mt-1">-</p></div>
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Save %</p><p id="savePercent" class="text-2xl font-bold savings-text mt-1">-</p></div>
+                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Grand Total</p><p id="grandTotal" class="text-2xl font-bold mt-1">-</p></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4 text-sm">
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Original Total</span><p id="originalTotal" class="font-semibold text-gray-800 original-text">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">After Discount</span><p id="afterDiscount" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Tax Amount</span><p id="taxAmount" class="font-semibold text-gray-800">-</p></div>
+                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Total Savings</span><p id="totalSavings" class="font-semibold savings-text">-</p></div>
+                    </div>
+
+                    <div id="smartBadge" class="mb-4 text-center"></div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-2">
+                        <div class="chart-container">
+                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-chart-pie mr-1"></i> Price Breakdown</p>
+                            <canvas id="donutChart" height="150" style="max-height: 160px; width: 100%;"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-chart-simple mr-1"></i> Original vs Final</p>
+                            <div class="gauge-bg h-8 rounded-full overflow-hidden mb-2">
+                                <div id="savingsGauge" class="h-full rounded-full transition-all duration-300" style="width:0%; background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);"></div>
+                            </div>
+                            <p id="gaugeLabel" class="text-xs text-center text-gray-600 mb-2">Savings: 0%</p>
+                            <canvas id="comparisonBar" height="80" style="max-height: 85px; width: 100%;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-card mt-6 p-4">
+                <div class="flex justify-between items-center flex-wrap">
+                    <h3 class="font-semibold text-gray-800"><i class="fas fa-history mr-2 text-green-500"></i>Recent Calculations</h3>
+                    <button id="clearHistoryBtn" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Clear History</button>
+                </div>
+                <div id="historyList" class="flex flex-wrap gap-2 mt-3 text-sm max-h-28 overflow-y-auto"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let discountType = "percentage";
+        let currency = "$";
+        let chartDonut, chartComparison;
+        let historyArray = [];
+
+        function fmt(value) { return currency + Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+        function fmtPercent(value) { return Number(value).toFixed(2) + "%"; }
+
+        function calculate() {
+            let originalPrice = parseFloat(document.getElementById("originalPrice")?.value) || 0;
+            let quantity = parseFloat(document.getElementById("quantity")?.value) || 1;
+            let taxRate = parseFloat(document.getElementById("taxRate")?.value) || 0;
+            let shippingCost = parseFloat(document.getElementById("shippingCost")?.value) || 0;
+            
+            let originalTotal = originalPrice * quantity;
+            let discountAmount = 0;
+            let discountPercentValue = 0;
+            
+            if (discountType === "percentage") {
+                let discountPercent = parseFloat(document.getElementById("discountPercent")?.value) || 0;
+                discountPercentValue = discountPercent;
+                discountAmount = originalTotal * (discountPercent / 100);
+            } else {
+                let discountFixed = parseFloat(document.getElementById("discountFixed")?.value) || 0;
+                discountAmount = discountFixed * quantity;
+                discountPercentValue = originalTotal > 0 ? (discountAmount / originalTotal) * 100 : 0;
+            }
+            
+            let afterDiscount = originalTotal - discountAmount;
+            let taxAmount = afterDiscount * (taxRate / 100);
+            let grandTotal = afterDiscount + taxAmount + shippingCost;
+            let totalSavings = discountAmount;
+            let savePercent = originalTotal > 0 ? (discountAmount / originalTotal) * 100 : 0;
+            
+            return { originalTotal, discountAmount, afterDiscount, taxAmount, shippingCost, grandTotal, totalSavings, savePercent, discountPercent: discountPercentValue };
+        }
+
+        function updateSmartBadge(savePercent) {
+            let badgeDiv = document.getElementById("smartBadge");
+            if (savePercent >= 30) {
+                badgeDiv.innerHTML = `<span class="badge-best"><i class="fas fa-fire mr-1"></i>HOT DEAL! You're saving ${fmtPercent(savePercent)} - Amazing!</span>`;
+            } else if (savePercent >= 15) {
+                badgeDiv.innerHTML = `<span class="badge-good"><i class="fas fa-smile mr-1"></i>Good Deal! ${fmtPercent(savePercent)} savings</span>`;
+            } else if (savePercent >= 5) {
+                badgeDiv.innerHTML = `<span class="badge-good" style="background: linear-gradient(135deg, #6b7280, #9ca3af);"><i class="fas fa-tag mr-1"></i>${fmtPercent(savePercent)} off</span>`;
+            } else if (savePercent > 0) {
+                badgeDiv.innerHTML = `<span class="badge-good" style="background: #9ca3af;"><i class="fas fa-tag mr-1"></i>Small discount: ${fmtPercent(savePercent)}</span>`;
+            } else {
+                badgeDiv.innerHTML = `<span class="text-xs text-gray-400"><i class="fas fa-tag mr-1"></i>No discount applied</span>`;
+            }
+        }
+
+        function updateUI(res) {
+            document.getElementById("discountAmount").innerHTML = fmt(res.discountAmount);
+            document.getElementById("finalPrice").innerHTML = fmt(res.afterDiscount);
+            document.getElementById("savePercent").innerHTML = fmtPercent(res.savePercent);
+            document.getElementById("grandTotal").innerHTML = fmt(res.grandTotal);
+            document.getElementById("originalTotal").innerHTML = fmt(res.originalTotal);
+            document.getElementById("afterDiscount").innerHTML = fmt(res.afterDiscount);
+            document.getElementById("taxAmount").innerHTML = fmt(res.taxAmount);
+            document.getElementById("totalSavings").innerHTML = fmt(res.totalSavings);
+            
+            let gaugeWidth = Math.min(100, Math.max(0, res.savePercent));
+            document.getElementById("savingsGauge").style.width = gaugeWidth + "%";
+            document.getElementById("gaugeLabel").innerHTML = `You saved ${fmtPercent(res.savePercent)}`;
+            
+            updateSmartBadge(res.savePercent);
+            
+            if (chartDonut) {
+                chartDonut.data.datasets[0].data = [res.originalTotal, res.discountAmount, res.afterDiscount];
+                chartDonut.update();
+            }
+            if (chartComparison) {
+                chartComparison.data.datasets[0].data = [res.originalTotal, res.afterDiscount];
+                chartComparison.update();
+            }
+        }
+
+        function updateAll() { const res = calculate(); updateUI(res); saveToHistory(res); }
+        
+        function saveToHistory(res) { 
+            let summary = `${fmt(res.originalTotal)} → ${fmt(res.afterDiscount)} (Save ${fmt(res.discountAmount)})`; 
+            historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() }); 
+            if (historyArray.length > 8) historyArray.pop(); 
+            localStorage.setItem("discount_history", JSON.stringify(historyArray)); 
+            renderHistory(); 
+        }
+        
+        function renderHistory() { 
+            let container = document.getElementById("historyList"); 
+            if (!container) return; 
+            if (historyArray.length === 0) { container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; return; } 
+            container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join(''); 
+        }
+        
+        function loadHistory() { let stored = localStorage.getItem("discount_history"); if (stored) { historyArray = JSON.parse(stored); renderHistory(); } }
+        function clearHistory() { historyArray = []; localStorage.removeItem("discount_history"); renderHistory(); }
+
+        // FIXED: Tab switching with proper input field update
+        function setDiscountType(type) {
+            discountType = type;
+            const container = document.getElementById("discountInputContainer");
+            
+            if (type === "percentage") {
+                container.innerHTML = `<label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Discount Percentage (%)</label>
+                                       <input type="number" id="discountPercent" value="20" step="0.5" class="w-full">`;
+                const newInput = document.getElementById("discountPercent");
+                if (newInput) newInput.addEventListener("input", updateAll);
+            } else {
+                container.innerHTML = `<label class="text-sm text-gray-600 block mb-2"><i class="fas fa-dollar-sign mr-1"></i>Discount Amount ($)</label>
+                                       <input type="number" id="discountFixed" value="20" step="any" class="w-full">`;
+                const newInput = document.getElementById("discountFixed");
+                if (newInput) newInput.addEventListener("input", updateAll);
+            }
+            
+            // Update active tab styling
+            document.querySelectorAll("[data-type]").forEach(btn => {
+                if (btn.getAttribute("data-type") === type) {
+                    btn.classList.add("active");
+                } else {
+                    btn.classList.remove("active");
+                }
+            });
+            
+            updateAll();
+        }
+
+        function initCharts() {
+            let ctxDonut = document.getElementById('donutChart').getContext('2d');
+            let ctxBar = document.getElementById('comparisonBar').getContext('2d');
+            chartDonut = new Chart(ctxDonut, { type: 'doughnut', data: { labels: ['Original', 'Discount', 'Final'], datasets: [{ data: [100, 20, 80], backgroundColor: ['#6b7280', '#10b981', '#3b82f6'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: '#4b5563' } } } } });
+            chartComparison = new Chart(ctxBar, { type: 'bar', data: { labels: ['Original Price', 'Final Price'], datasets: [{ label: 'Amount', data: [0, 0], backgroundColor: ['#6b7280', '#3b82f6'], borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: '#e5e7eb' } }, x: { ticks: { color: '#4b5563', font: { size: 11 } } } } } });
+        }
+
+        function exportChartAsImage() {
+            const originalCanvas = document.getElementById("donutChart");
+            const tempCanvas = document.createElement('canvas');
+            const scale = 3;
+            tempCanvas.width = originalCanvas.width * scale;
+            tempCanvas.height = originalCanvas.height * scale;
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCtx.fillStyle = '#ffffff';
+            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+            tempCtx.scale(scale, scale);
+            tempCtx.drawImage(originalCanvas, 0, 0);
+            tempCtx.scale(1/scale, 1/scale);
+            tempCtx.font = `${12 * scale}px system-ui`;
+            tempCtx.fillStyle = '#9ca3af';
+            tempCtx.fillText(`Discount Calculator | ${new Date().toLocaleString()}`, 20, tempCanvas.height - 15);
+            const link = document.createElement('a');
+            link.download = `discount_chart_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.png`;
+            link.href = tempCanvas.toDataURL('image/png', 1.0);
+            link.click();
+        }
+
+        function resetAll() {
+            document.getElementById("originalPrice").value = "100";
+            document.getElementById("quantity").value = "1";
+            document.getElementById("taxRate").value = "0";
+            document.getElementById("shippingCost").value = "0";
+            if (discountType === "percentage") {
+                if(document.getElementById("discountPercent")) document.getElementById("discountPercent").value = "20";
+            } else {
+                if(document.getElementById("discountFixed")) document.getElementById("discountFixed").value = "20";
+            }
+            updateAll();
+        }
+        
+        function copySummary() {
+            let res = calculate();
+            let text = `🛍️ DISCOUNT SUMMARY\n━━━━━━━━━━━━━━━━━━━━━\nOriginal Total: ${fmt(res.originalTotal)}\nDiscount: ${fmt(res.discountAmount)} (${fmtPercent(res.savePercent)})\nFinal Price: ${fmt(res.afterDiscount)}\nTax: ${fmt(res.taxAmount)} | Shipping: ${fmt(res.shippingCost)}\nGrand Total: ${fmt(res.grandTotal)}\n━━━━━━━━━━━━━━━━━━━━━\nYou saved ${fmt(res.totalSavings)}! 🎉`;
+            navigator.clipboard.writeText(text);
+            alert("✓ Discount summary copied!");
+        }
+        
+        function updateCurrency() { currency = document.getElementById("currencySelect").value; updateAll(); }
+
+        document.addEventListener('DOMContentLoaded', () => { 
+            initCharts(); loadHistory(); setDiscountType("percentage");
+            document.getElementById("originalPrice")?.addEventListener("input", updateAll);
+            document.getElementById("quantity")?.addEventListener("input", updateAll);
+            document.getElementById("taxRate")?.addEventListener("input", updateAll);
+            document.getElementById("shippingCost")?.addEventListener("input", updateAll);
+            document.getElementById("currencySelect").addEventListener("change", updateCurrency);
+            document.getElementById("resetBtn").addEventListener("click", resetAll);
+            document.getElementById("copySummaryBtn").addEventListener("click", copySummary);
+            document.getElementById("exportChartBtn").addEventListener("click", exportChartAsImage);
+            document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
+            document.querySelectorAll("[data-type]").forEach(btn => { 
+                btn.addEventListener("click", () => setDiscountType(btn.getAttribute("data-type"))); 
+            });
+        });
+    </script>
+</body>
+</html>
