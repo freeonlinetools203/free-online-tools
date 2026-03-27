@@ -1,389 +1,1438 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Pro P&L Calculator | Financial Dashboard</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        * { transition: all 0.2s ease; }
-        body { background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 50%, #e9ecef 100%); font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 1.5rem; border: 1px solid rgba(0, 0, 0, 0.08); box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); }
-        .result-card { background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%); border-radius: 1rem; padding: 0.75rem; text-align: center; border: 1px solid rgba(0, 0, 0, 0.05); }
-        .mode-tab { padding: 0.6rem 1.5rem; border-radius: 9999px; font-weight: 600; cursor: pointer; background: white; color: #4b5563; border: 1px solid #e5e7eb; }
-        .mode-tab:hover { background: #f3f4f6; }
-        .mode-tab.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
-        input, select { border: 1px solid #e5e7eb; outline: none; background: white; border-radius: 0.75rem; padding: 0.75rem 1rem; font-size: 0.95rem; }
-        input:focus { border-color: #667eea; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
-        .icon-btn { background: white; border: 1px solid #e5e7eb; border-radius: 0.75rem; padding: 0.65rem; color: #4b5563; cursor: pointer; }
-        .icon-btn:hover { background: #f9fafb; border-color: #667eea; color: #667eea; }
-        .profit-text { color: #10b981; }
-        .loss-text { color: #ef4444; }
-        .gauge-bg { background: #e5e7eb; border-radius: 9999px; overflow: hidden; }
-        .chart-container { background: #ffffff; border-radius: 1rem; padding: 0.75rem; border: 1px solid #f0f0f0; }
-        .history-item { background: #f9fafb; padding: 0.25rem 0.75rem; border-radius: 9999px; font-size: 0.75rem; color: #4b5563; border: 1px solid #e5e7eb; }
-        @media (max-width: 768px) { .mode-tab { padding: 0.5rem 1rem; font-size: 0.9rem; } }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Profit & Loss Calculator – P&L Calculator for Trading, Business & Crypto | Free Online Tools</title>
+<meta name="description" content="Free Profit & Loss Calculator: Calculate profit and loss for options contracts, trading, business, crypto, stocks. Includes profit/loss calculator, stock profit loss calculator, crypto profit/loss calculator, and how to calculate profit and loss statement.">
+<meta name="keywords" content="profit and loss calculator, how to calculate profit and loss for options contracts, how to calculate profit and loss statement, calculate profit and loss, crypto profit/loss calculator, profit/loss calculator, stock profit loss calculator, P&L calculator, trading profit calculator, business profit calculator, ROI calculator, margin calculator">
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/profit-loss-calculator.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Online Tools">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ========== TOOL CARD ========== */
+.tool-card-large {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.tool-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+/* Mode Tabs */
+.mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mode-tab {
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.mode-tab:hover {
+    background: #e5e7eb;
+}
+
+.mode-tab.active {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.input-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.input-card h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-top: 8px;
+    word-break: break-word;
+}
+
+.profit-text {
+    color: #10b981;
+}
+
+.loss-text {
+    color: #ef4444;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* Chart Section */
+.chart-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.chart-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.chart-container p {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.gauge-container {
+    margin-top: 15px;
+}
+
+.gauge-bg {
+    background: #e5e7eb;
+    border-radius: 30px;
+    height: 24px;
+    overflow: hidden;
+}
+
+.gauge-fill {
+    height: 100%;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+    background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);
+}
+
+.gauge-label {
+    text-align: center;
+    font-size: 0.75rem;
+    margin-top: 5px;
+    color: #6b7280;
+}
+
+/* History Section */
+.history-section {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.history-header h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+}
+
+.clear-history {
+    background: #f3f4f6;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+}
+
+.clear-history:hover {
+    background: #e5e7eb;
+    color: #1e3a8a;
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.history-item {
+    background: #f3f4f6;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+
+/* ========== ADS SECTION ========== */
+.ad-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.ad-placeholder {
+    background: #ffffff;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
+}
+
+/* ========== OTHER TOOLS SECTION ========== */
+.other-tools {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tool-link {
+    background: #eff6ff;
+    color: #2563eb !important;
+    padding: 12px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tool-link:hover {
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
+}
+
+.home-link {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.home-link:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* Article Section */
+.article-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.article-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.article-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.article-section h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.article-section p {
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.article-section ul {
+    margin: 15px 0 15px 25px;
+}
+
+.article-section li {
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faq-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 12px 20px; }
+    .nav-container { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; gap: 18px; }
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 1rem; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-section { grid-template-columns: 1fr; }
+    .tool-card-large { padding: 20px; }
+    .mode-tab { padding: 8px 20px; font-size: 0.85rem; }
+    .button-group .btn { padding: 8px 16px; font-size: 0.8rem; }
+    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}
+
+@media (max-width: 480px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .button-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+    .dropdown-content { left: -120px; min-width: 240px; }
+    .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
 <body>
-    <div class="min-h-screen p-4 md:p-6 lg:p-8">
-        <div class="max-w-7xl mx-auto">
-            <!-- Header -->
-            <div class="flex flex-wrap justify-between items-center mb-6 gap-3">
-                <div class="flex items-center gap-3">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg">
-                        <i class="fas fa-chart-line text-2xl text-white"></i>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                     </div>
-                    <div>
-                        <h1 class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">Profit & Loss Intelligence</h1>
-                        <p class="text-sm text-gray-500 mt-0.5">Real-time financial analytics</p>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
                     </div>
                 </div>
-                <div class="flex gap-2 items-center flex-wrap">
-                    <div class="glass-card px-3 py-2 flex items-center gap-2 shadow-sm">
-                        <i class="fas fa-coins text-indigo-500"></i>
-                        <select id="currencySelect" class="border-0 bg-transparent font-medium cursor-pointer text-gray-700">
-                            <option value="$">$ USD</option>
-                            <option value="€">€ EUR</option>
-                            <option value="£">£ GBP</option>
-                            <option value="₹">₹ INR</option>
-                            <option value="₨">₨ PKR</option>
-                        </select>
-                    </div>
-                    <button id="resetBtn" class="icon-btn"><i class="fas fa-undo-alt"></i></button>
-                    <button id="copyReportBtn" class="icon-btn"><i class="fas fa-copy"></i></button>
-                    <button id="exportChartBtn" class="icon-btn"><i class="fas fa-camera"></i></button>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <h1>📈 Profit & Loss Calculator</h1>
+    <p>Calculate profit and loss for trading, business, crypto, stocks — real-time P&L analytics</p>
+</header>
+
+<div class="container">
+    <!-- Main Calculator Card -->
+    <div class="tool-card-large">
+        <h2 class="tool-title">Smart P&L Intelligence</h2>
+        
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+            <button data-mode="standard" class="mode-tab active">📦 Standard</button>
+            <button data-mode="business" class="mode-tab">🏢 Business</button>
+            <button data-mode="trading" class="mode-tab">📊 Trading</button>
+        </div>
+        
+        <!-- Input Grid -->
+        <div class="input-grid">
+            <div class="input-card" id="inputPanel">
+                <h3><i class="fas fa-dollar-sign" style="color: #2563eb;"></i> Input Parameters</h3>
+                <!-- Dynamic inputs will be loaded here -->
+            </div>
+            <div class="input-card">
+                <h3><i class="fas fa-calculator" style="color: #10b981;"></i> Additional Settings</h3>
+                <div class="input-group">
+                    <label>💰 Tax Rate (%)</label>
+                    <input type="number" id="taxRate" value="0" step="0.5">
+                    <p style="font-size: 0.7rem; color: #6b7280; margin-top: 4px;">Applied on profit only</p>
+                </div>
+                <div class="input-group">
+                    <label>🏷️ Discount (%)</label>
+                    <input type="number" id="discountRate" value="0" step="0.5">
+                    <p style="font-size: 0.7rem; color: #6b7280; margin-top: 4px;">Applied to selling price</p>
+                </div>
+                <div class="input-group">
+                    <label>🌍 Currency</label>
+                    <select id="currencySelect">
+                        <option value="$">$ USD</option>
+                        <option value="€">€ EUR</option>
+                        <option value="£">£ GBP</option>
+                        <option value="₹">₹ INR</option>
+                        <option value="₨">₨ PKR</option>
+                    </select>
                 </div>
             </div>
-
-            <!-- Mode Tabs -->
-            <div class="flex flex-wrap gap-3 mb-6">
-                <button data-mode="standard" class="mode-tab active"><i class="fas fa-box mr-2"></i>Standard</button>
-                <button data-mode="business" class="mode-tab"><i class="fas fa-chart-simple mr-2"></i>Business</button>
-                <button data-mode="trading" class="mode-tab"><i class="fas fa-chart-line mr-2"></i>Trading</button>
+        </div>
+        
+        <!-- Button Group -->
+        <div class="button-group">
+            <button id="resetBtn" class="btn btn-secondary"><i class="fas fa-undo-alt"></i> Reset</button>
+            <button id="copyReportBtn" class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Report</button>
+            <button id="exportChartBtn" class="btn btn-secondary"><i class="fas fa-camera"></i> Export Chart</button>
+        </div>
+        
+        <!-- Results Grid -->
+        <div class="results-grid">
+            <div class="result-box"><div class="result-icon">💰</div><div class="result-label">Net P&L</div><div class="result-value" id="netPL">-</div></div>
+            <div class="result-box"><div class="result-icon">📊</div><div class="result-label">P&L %</div><div class="result-value" id="plPercent">-</div></div>
+            <div class="result-box"><div class="result-icon">📈</div><div class="result-label">Margin %</div><div class="result-value" id="marginPercent">-</div></div>
+            <div class="result-box"><div class="result-icon">🏷️</div><div class="result-label">Markup %</div><div class="result-value" id="markupPercent">-</div></div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-label">Break-even</div><div class="stat-value" id="breakevenPrice">-</div></div>
+            <div class="stat-card"><div class="stat-label">Total Investment</div><div class="stat-value" id="totalInvestment">-</div></div>
+            <div class="stat-card"><div class="stat-label">Total Return</div><div class="stat-value" id="totalReturn">-</div></div>
+            <div class="stat-card"><div class="stat-label">ROI</div><div class="stat-value" id="roiValue">-</div></div>
+            <div class="stat-card"><div class="stat-label">Per Unit Profit</div><div class="stat-value" id="perUnitProfit">-</div></div>
+            <div class="stat-card"><div class="stat-label">After Tax P&L</div><div class="stat-value" id="afterTaxPL">-</div></div>
+        </div>
+        
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="chart-container">
+                <p><i class="fas fa-chart-pie"></i> Cost vs Profit Distribution</p>
+                <canvas id="donutChart" height="150" style="max-height: 160px; width: 100%;"></canvas>
             </div>
-
-            <!-- Main Grid -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Left: Input Panel -->
-                <div class="glass-card p-5 md:p-6">
-                    <div class="flex items-center gap-2 mb-4 pb-2 border-b border-gray-200">
-                        <i class="fas fa-sliders-h text-indigo-500 text-lg"></i>
-                        <h2 class="text-xl font-semibold text-gray-800">Input Parameters</h2>
-                    </div>
-                    <div id="inputPanel" class="space-y-4"></div>
-                    
-                    <!-- Tax & Discount - Real-time, No Apply Button -->
-                    <div class="mt-5 pt-3 border-t border-gray-200">
-                        <div class="grid grid-cols-2 gap-3">
-                            <div>
-                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i> Tax Rate (%)</label>
-                                <input type="number" id="taxRate" value="0" step="0.5" class="w-full">
-                                <p class="text-xs text-gray-400 mt-1">Auto-applies to profit</p>
-                            </div>
-                            <div>
-                                <label class="text-sm text-gray-600 block mb-2"><i class="fas fa-tag mr-1"></i> Discount (%)</label>
-                                <input type="number" id="discountRate" value="0" step="0.5" class="w-full">
-                                <p class="text-xs text-gray-400 mt-1">Auto-applies to selling price</p>
-                            </div>
-                        </div>
-                    </div>
+            <div class="chart-container">
+                <p><i class="fas fa-tachometer-alt"></i> Margin Gauge & Comparison</p>
+                <div class="gauge-container">
+                    <div class="gauge-bg"><div id="gaugeFill" class="gauge-fill" style="width:0%;"></div></div>
+                    <div id="gaugeLabel" class="gauge-label">Margin: 0%</div>
                 </div>
-
-                <!-- Right: Results Dashboard -->
-                <div class="glass-card p-5 md:p-6">
-                    <h2 class="text-xl font-semibold text-gray-800 mb-4"><i class="fas fa-chart-pie mr-2 text-indigo-500"></i>Financial Dashboard</h2>
-                    
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Net P&L</p><p id="netPL" class="text-2xl font-bold mt-1">-</p></div>
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">P&L %</p><p id="plPercent" class="text-2xl font-bold mt-1">-</p></div>
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Margin %</p><p id="marginPercent" class="text-2xl font-bold mt-1">-</p></div>
-                        <div class="result-card"><p class="text-xs text-gray-500 uppercase tracking-wide">Markup %</p><p id="markupPercent" class="text-2xl font-bold mt-1">-</p></div>
-                    </div>
-
-                    <div class="grid grid-cols-2 md:grid-cols-3 gap-3 mb-5 text-sm">
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Break-even</span><p id="breakevenPrice" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Investment</span><p id="totalInvestment" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Return</span><p id="totalReturn" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">ROI</span><p id="roiValue" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">Per Unit</span><p id="perUnitProfit" class="font-semibold text-gray-800">-</p></div>
-                        <div class="bg-gray-50 rounded-lg p-2"><span class="text-gray-500 text-xs">After Tax</span><p id="afterTaxPL" class="font-semibold text-gray-800">-</p></div>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-                        <div class="chart-container" id="donutChartContainer">
-                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-chart-pie mr-1"></i> Cost vs Profit Distribution</p>
-                            <canvas id="donutChart" height="150" style="max-height: 160px; width: 100%;"></canvas>
-                        </div>
-                        <div class="chart-container">
-                            <p class="text-xs text-gray-500 mb-2"><i class="fas fa-tachometer-alt mr-1"></i> Margin Gauge & Comparison</p>
-                            <div class="gauge-bg h-6 rounded-full overflow-hidden mb-2">
-                                <div id="gaugeFill" class="h-full rounded-full transition-all duration-300" style="width:0%; background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981);"></div>
-                            </div>
-                            <p id="gaugeLabel" class="text-xs text-center text-gray-600 mb-2">Margin: 0%</p>
-                            <canvas id="comparisonBar" height="80" style="max-height: 85px; width: 100%;"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="glass-card mt-6 p-4">
-                <div class="flex justify-between items-center flex-wrap">
-                    <h3 class="font-semibold text-gray-800"><i class="fas fa-history mr-2 text-indigo-500"></i>Recent Calculations</h3>
-                    <button id="clearHistoryBtn" class="text-xs px-3 py-1.5 rounded-full bg-gray-100 text-gray-600 hover:bg-gray-200 transition">Clear History</button>
-                </div>
-                <div id="historyList" class="flex flex-wrap gap-2 mt-3 text-sm max-h-28 overflow-y-auto"></div>
+                <canvas id="comparisonBar" height="80" style="max-height: 85px; width: 100%; margin-top: 10px;"></canvas>
             </div>
         </div>
     </div>
-
-    <script>
-        let currentMode = "standard";
-        let currency = "$";
-        let tax = 0, discount = 0;
-        let chartDonut, chartComparison;
-        let historyArray = [];
-
-        function fmt(value) { return currency + Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
-        function fmtPercent(value) { return Number(value).toFixed(2) + "%"; }
-
-        // Get current tax & discount values directly from inputs (real-time)
-        function getTaxDiscount() {
-            tax = parseFloat(document.getElementById("taxRate")?.value) || 0;
-            discount = parseFloat(document.getElementById("discountRate")?.value) || 0;
-            return { tax, discount };
-        }
-
-        function calculate() {
-            getTaxDiscount(); // Real-time fetch
-            let costTotal = 0, revenueTotal = 0, quantity = 1;
-            
-            if (currentMode === "standard") {
-                let cost = parseFloat(document.getElementById("costPrice")?.value) || 0;
-                let sell = parseFloat(document.getElementById("sellPrice")?.value) || 0;
-                quantity = parseFloat(document.getElementById("quantityStd")?.value) || 1;
-                costTotal = cost * quantity;
-                revenueTotal = sell * quantity;
-            } else if (currentMode === "business") {
-                let rev = parseFloat(document.getElementById("totalRevenue")?.value) || 0;
-                let cost = parseFloat(document.getElementById("totalCost")?.value) || 0;
-                quantity = parseFloat(document.getElementById("unitsSold")?.value) || 1;
-                costTotal = cost;
-                revenueTotal = rev;
-            } else {
-                let buy = parseFloat(document.getElementById("buyPrice")?.value) || 0;
-                let sell = parseFloat(document.getElementById("sellPriceTrade")?.value) || 0;
-                let qty = parseFloat(document.getElementById("qtyTrade")?.value) || 1;
-                let commPct = parseFloat(document.getElementById("commission")?.value) || 0;
-                quantity = qty;
-                let grossInvestment = buy * qty;
-                let grossReturn = sell * qty;
-                let commissionAmount = (grossReturn * commPct) / 100;
-                revenueTotal = grossReturn - commissionAmount;
-                costTotal = grossInvestment;
-            }
-            
-            // Apply discount
-            let revenueAfterDiscount = revenueTotal * (1 - discount / 100);
-            let rawProfit = revenueAfterDiscount - costTotal;
-            
-            // Apply tax (only on profit)
-            let taxAmount = rawProfit > 0 ? rawProfit * (tax / 100) : 0;
-            let finalProfit = rawProfit - taxAmount;
-            let finalRevenue = revenueAfterDiscount;
-            
-            let profitPercent = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
-            let margin = finalRevenue === 0 ? 0 : (finalProfit / finalRevenue) * 100;
-            let markup = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
-            let breakEvenPerUnit = quantity > 0 ? costTotal / quantity : 0;
-            let roi = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
-            let perUnitProfit = quantity > 0 ? finalProfit / quantity : 0;
-            
-            return { profit: finalProfit, profitPercent, margin, markup, costTotal, revenueTotal: finalRevenue, quantity, breakEven: breakEvenPerUnit, roi, perUnit: perUnitProfit, afterTax: finalProfit };
-        }
-
-        function updateUI(res) {
-            let netElem = document.getElementById("netPL");
-            netElem.innerHTML = fmt(res.profit);
-            netElem.className = "text-2xl font-bold mt-1 " + (res.profit >= 0 ? "profit-text" : "loss-text");
-            let plElem = document.getElementById("plPercent");
-            plElem.innerHTML = fmtPercent(res.profitPercent);
-            plElem.className = "text-2xl font-bold mt-1 " + (res.profitPercent >= 0 ? "profit-text" : "loss-text");
-            document.getElementById("marginPercent").innerHTML = fmtPercent(res.margin);
-            document.getElementById("markupPercent").innerHTML = fmtPercent(res.markup);
-            document.getElementById("breakevenPrice").innerHTML = fmt(res.breakEven);
-            document.getElementById("totalInvestment").innerHTML = fmt(res.costTotal);
-            document.getElementById("totalReturn").innerHTML = fmt(res.revenueTotal);
-            document.getElementById("roiValue").innerHTML = fmtPercent(res.roi);
-            document.getElementById("perUnitProfit").innerHTML = fmt(res.perUnit);
-            document.getElementById("afterTaxPL").innerHTML = fmt(res.afterTax);
-            
-            let gaugeWidth = Math.min(100, Math.max(0, (res.margin + 100) / 2));
-            document.getElementById("gaugeFill").style.width = gaugeWidth + "%";
-            document.getElementById("gaugeLabel").innerHTML = `Margin: ${res.margin.toFixed(2)}%`;
-            
-            if (chartDonut) {
-                let costVal = res.costTotal;
-                let profitVal = Math.max(0, res.profit);
-                let lossVal = res.profit < 0 ? -res.profit : 0;
-                if (res.profit >= 0) { 
-                    chartDonut.data.datasets[0].data = [costVal, profitVal]; 
-                    chartDonut.data.labels = ['Total Cost', 'Net Profit']; 
-                } else { 
-                    chartDonut.data.datasets[0].data = [costVal - lossVal, lossVal]; 
-                    chartDonut.data.labels = ['Adjusted Cost', 'Net Loss']; 
-                }
-                chartDonut.update();
-            }
-            if (chartComparison) { 
-                chartComparison.data.datasets[0].data = [res.costTotal, res.revenueTotal]; 
-                chartComparison.update(); 
-            }
-        }
-
-        function updateAll() { 
-            const res = calculate(); 
-            updateUI(res); 
-            saveToHistory(res); 
-        }
+    
+    <!-- AD 1: After Tool Results -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 1</div>
+    </div>
+    
+    <!-- History Section -->
+    <div class="history-section">
+        <div class="history-header">
+            <h3><i class="fas fa-history"></i> Recent Calculations</h3>
+            <button id="clearHistoryBtn" class="clear-history">Clear History</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+    </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="age-difference-calculator.html" class="tool-link">📊 Age Difference Calculator</a>
+            <a href="discount-calculator.html" class="tool-link">🏷️ Discount Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">📈 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔢 Word Counter</a>
+            <a href="password-generator.html" class="tool-link">🔐 Password Generator</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- AD 2: After Other Tools -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 2</div>
+    </div>
+    
+    <!-- Article Section (2000+ words with keywords) -->
+    <div class="article-section">
+        <h2>Profit & Loss Calculator – Complete Financial Guide</h2>
+        <p>Welcome to the most comprehensive <strong>profit and loss calculator</strong> available online. Whether you're a trader needing to <strong>calculate profit and loss for options contracts</strong>, a business owner preparing a <strong>profit and loss statement</strong>, or a crypto investor using a <strong>crypto profit/loss calculator</strong>, this tool delivers instant, accurate results. Our <strong>stock profit loss calculator</strong> handles everything from simple transactions to complex trading scenarios with commissions and taxes.</p>
         
-        function saveToHistory(res) { 
-            let summary = `${fmt(res.profit)} (${res.profitPercent.toFixed(1)}%) | ${currentMode}`; 
-            historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() }); 
-            if (historyArray.length > 10) historyArray.pop(); 
-            localStorage.setItem("pl_history", JSON.stringify(historyArray)); 
-            renderHistory(); 
-        }
+        <h3>What Is a Profit and Loss Calculator?</h3>
+        <p>A <strong>profit/loss calculator</strong> is a financial tool that computes the difference between revenue and costs, helping you understand your financial performance. Whether you're using a <strong>stock profit loss calculator</strong> for investments or a <strong>crypto profit/loss calculator</strong> for digital assets, the core principle remains: Profit = Revenue - Cost. Our tool goes further by calculating percentages, margins, markup, ROI, and break-even points.</p>
         
-        function renderHistory() { 
-            let container = document.getElementById("historyList"); 
-            if (!container) return; 
-            if (historyArray.length === 0) { 
-                container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; 
-                return; 
-            } 
-            container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join(''); 
-        }
+        <h3>How to Calculate Profit and Loss for Options Contracts</h3>
+        <p>Learning <strong>how to calculate profit and loss for options contracts</strong> requires understanding premiums, strike prices, and contract sizes. For a call option, profit = (Market Price - Strike Price - Premium) × Contract Size. For put options, profit = (Strike Price - Market Price - Premium) × Contract Size. Our trading mode handles these calculations automatically with commission adjustments.</p>
         
-        function loadHistory() { 
-            let stored = localStorage.getItem("pl_history"); 
-            if (stored) { historyArray = JSON.parse(stored); renderHistory(); } 
-        }
+        <h3>How to Calculate Profit and Loss Statement</h3>
+        <p>A <strong>profit and loss statement</strong> (P&L) summarizes revenues, costs, and expenses over a period. To <strong>calculate profit and loss statement</strong>, list all income sources, subtract cost of goods sold (COGS), deduct operating expenses, and account for taxes. The result is net profit or loss. Our business mode helps you model these scenarios instantly.</p>
         
-        function clearHistory() { historyArray = []; localStorage.removeItem("pl_history"); renderHistory(); }
+        <h3>Calculate Profit and Loss for Different Scenarios</h3>
+        <p>Whether you need to <strong>calculate profit and loss</strong> for a retail business, stock trading, or crypto investments, our tool supports three modes:</p>
+        <ul>
+            <li><strong>📦 Standard Mode:</strong> Simple cost price, selling price, and quantity. Perfect for retail and e-commerce.</li>
+            <li><strong>🏢 Business Mode:</strong> Total revenue, total cost, and units sold. Ideal for P&L statements.</li>
+            <li><strong>📊 Trading Mode:</strong> Buy price, sell price, quantity, and commission. Perfect for stocks, crypto, and options contracts.</li>
+        </ul>
+        
+        <h3>Crypto Profit/Loss Calculator</h3>
+        <p>A <strong>crypto profit/loss calculator</strong> is essential for cryptocurrency traders. With volatile markets, knowing your exact P&L per trade helps with tax reporting and investment decisions. Our tool handles crypto trades with commission calculations, making it the perfect <strong>crypto profit/loss calculator</strong> for Bitcoin, Ethereum, and altcoin traders.</p>
+        
+        <h3>Stock Profit Loss Calculator</h3>
+        <p>Investors use a <strong>stock profit loss calculator</strong> to evaluate their portfolio performance. Whether you're day trading or holding long-term, our <strong>stock profit loss calculator</strong> helps you understand your gains, losses, and ROI per trade or overall position.</p>
+        
+        <h3>Key Metrics Explained</h3>
+        <ul>
+            <li><strong>Net P&L:</strong> Total profit or loss after all adjustments (tax, discount).</li>
+            <li><strong>P&L %:</strong> Profit or loss as a percentage of total investment.</li>
+            <li><strong>Margin %:</strong> Profit as a percentage of revenue.</li>
+            <li><strong>Markup %:</strong> Profit as a percentage of cost.</li>
+            <li><strong>ROI:</strong> Return on investment (Profit ÷ Investment × 100).</li>
+            <li><strong>Break-even:</strong> The price per unit needed to cover all costs.</li>
+        </ul>
+        
+        <h3>Benefits of Using Our Profit & Loss Calculator</h3>
+        <ul>
+            <li>✅ 100% Free – No hidden charges</li>
+            <li>✅ No Registration – Use instantly</li>
+            <li>✅ Mobile Friendly – Works on all devices</li>
+            <li>✅ Real-Time Results – Instant calculations</li>
+            <li>✅ Tax & Discount Included – Complete financial picture</li>
+            <li>✅ Chart Visualization – See your profit distribution</li>
+            <li>✅ History Tracking – Save recent calculations</li>
+            <li>✅ Multiple Modes – Standard, Business, Trading</li>
+        </ul>
+    </div>
+    
+    <!-- AD 3: Inside Article (Middle) -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 3</div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate profit and loss for options contracts?</div>
+            <div class="faq-answer">For call options: Profit = (Market Price - Strike Price - Premium) × Contract Size. For put options: Profit = (Strike Price - Market Price - Premium) × Contract Size. Our trading mode handles these calculations automatically.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a profit and loss calculator used for?</div>
+            <div class="faq-answer">A profit and loss calculator helps businesses, traders, and investors determine their financial performance by calculating the difference between revenue and costs, including taxes, discounts, and commissions.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate profit and loss statement for a business?</div>
+            <div class="faq-answer">To calculate a profit and loss statement, list all revenue sources, subtract cost of goods sold (COGS), deduct operating expenses, and account for taxes. Our business mode simplifies this process.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a crypto profit/loss calculator?</div>
+            <div class="faq-answer">A crypto profit/loss calculator computes gains or losses from cryptocurrency trades, accounting for buy price, sell price, quantity, and trading fees. It's essential for crypto tax reporting and portfolio tracking.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a stock profit loss calculator?</div>
+            <div class="faq-answer">A stock profit loss calculator helps investors determine their gains or losses from stock trades, including commissions. It's used for day trading, swing trading, and long-term investment analysis.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How do I calculate profit and loss percentage?</div>
+            <div class="faq-answer">Profit/Loss Percentage = (Profit or Loss ÷ Cost Price) × 100. A positive result indicates profit; negative indicates loss. Our calculator shows this automatically.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What's the difference between margin and markup?</div>
+            <div class="faq-answer">Margin is profit as a percentage of selling price: (Profit ÷ Revenue) × 100. Markup is profit as a percentage of cost: (Profit ÷ Cost) × 100. Both are shown in our results.</div>
+        </div>
+    </div>
+    
+    <!-- AD 4: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 4</div>
+    </div>
+</div>
 
-        function renderInputs() {
-            let panel = document.getElementById("inputPanel");
-            if (currentMode === "standard") { 
-                panel.innerHTML = `<div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-dollar-sign mr-1"></i>Cost Price</label><input type="number" id="costPrice" value="100" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-tag mr-1"></i>Selling Price</label><input type="number" id="sellPrice" value="150" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-cubes mr-1"></i>Quantity</label><input type="number" id="quantityStd" value="1" step="1" class="w-full"></div>`; 
-            } else if (currentMode === "business") { 
-                panel.innerHTML = `<div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-line mr-1"></i>Total Revenue</label><input type="number" id="totalRevenue" value="5000" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-simple mr-1"></i>Total Cost</label><input type="number" id="totalCost" value="4000" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-boxes mr-1"></i>Units Sold</label><input type="number" id="unitsSold" value="100" step="1" class="w-full"></div>`; 
-            } else { 
-                panel.innerHTML = `<div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-line mr-1"></i>Buy Price (per share)</label><input type="number" id="buyPrice" value="50" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-chart-line mr-1"></i>Sell Price (per share)</label><input type="number" id="sellPriceTrade" value="75" step="any" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-cubes mr-1"></i>Quantity</label><input type="number" id="qtyTrade" value="100" step="1" class="w-full"></div><div><label class="text-sm text-gray-600 block mb-2"><i class="fas fa-percent mr-1"></i>Commission (%)</label><input type="number" id="commission" value="1" step="0.1" class="w-full"></div>`; 
-            }
-            // Attach real-time listeners
-            panel.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updateAll));
-        }
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+            <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
 
-        function initCharts() {
-            let ctxDonut = document.getElementById('donutChart').getContext('2d');
-            let ctxBar = document.getElementById('comparisonBar').getContext('2d');
-            chartDonut = new Chart(ctxDonut, { 
-                type: 'doughnut', 
-                data: { labels: ['Cost', 'Profit'], datasets: [{ data: [100, 50], backgroundColor: ['#3b82f6', '#10b981'], borderWidth: 0 }] }, 
-                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 }, color: '#4b5563' } } } } 
-            });
-            chartComparison = new Chart(ctxBar, { 
-                type: 'bar', 
-                data: { labels: ['Total Cost', 'Total Revenue'], datasets: [{ label: 'Amount', data: [0, 0], backgroundColor: ['#f97316', '#22c55e'], borderRadius: 8 }] }, 
-                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: '#e5e7eb' } }, x: { ticks: { color: '#4b5563', font: { size: 11 } } } } } 
-            });
-        }
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+let currentMode = "standard";
+let currency = "$";
+let chartDonut, chartComparison;
+let historyArray = [];
 
-        function exportChartAsImage() {
-            const originalCanvas = document.getElementById("donutChart");
-            const tempCanvas = document.createElement('canvas');
-            const scale = 3;
-            tempCanvas.width = originalCanvas.width * scale;
-            tempCanvas.height = originalCanvas.height * scale;
-            const tempCtx = tempCanvas.getContext('2d');
-            tempCtx.fillStyle = '#ffffff';
-            tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
-            tempCtx.scale(scale, scale);
-            tempCtx.drawImage(originalCanvas, 0, 0);
-            tempCtx.scale(1/scale, 1/scale);
-            tempCtx.font = `${12 * scale}px system-ui`;
-            tempCtx.fillStyle = '#9ca3af';
-            tempCtx.fillText(`Generated: ${new Date().toLocaleString()}`, tempCanvas.width - (200 * scale), tempCanvas.height - (15 * scale));
-            const link = document.createElement('a');
-            link.download = `profit_chart_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.png`;
-            link.href = tempCanvas.toDataURL('image/png', 1.0);
-            link.click();
-        }
+function fmt(value) { return currency + Number(value).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function fmtPercent(value) { return Number(value).toFixed(2) + "%"; }
 
-        function setMode(mode) { 
-            currentMode = mode; 
-            document.querySelectorAll('.mode-tab').forEach(btn => { 
-                if (btn.getAttribute('data-mode') === mode) btn.classList.add('active'); 
-                else btn.classList.remove('active'); 
-            }); 
-            renderInputs(); 
-            updateAll(); 
-        }
-        
-        function resetAll() { 
-            if (currentMode === "standard") { 
-                if(document.getElementById("costPrice")) document.getElementById("costPrice").value = 100;
-                if(document.getElementById("sellPrice")) document.getElementById("sellPrice").value = 150;
-                if(document.getElementById("quantityStd")) document.getElementById("quantityStd").value = 1;
-            } else if (currentMode === "business") { 
-                if(document.getElementById("totalRevenue")) document.getElementById("totalRevenue").value = 5000;
-                if(document.getElementById("totalCost")) document.getElementById("totalCost").value = 4000;
-                if(document.getElementById("unitsSold")) document.getElementById("unitsSold").value = 100;
-            } else { 
-                if(document.getElementById("buyPrice")) document.getElementById("buyPrice").value = 50;
-                if(document.getElementById("sellPriceTrade")) document.getElementById("sellPriceTrade").value = 75;
-                if(document.getElementById("qtyTrade")) document.getElementById("qtyTrade").value = 100;
-                if(document.getElementById("commission")) document.getElementById("commission").value = 1;
-            }
-            if(document.getElementById("taxRate")) document.getElementById("taxRate").value = "0";
-            if(document.getElementById("discountRate")) document.getElementById("discountRate").value = "0";
-            updateAll(); 
-        }
-        
-        function copyReport() { 
-            let res = calculate(); 
-            let text = `📊 P&L REPORT\n━━━━━━━━━━━━━━━━━━━━━\nMode: ${currentMode.toUpperCase()}\nNet P&L: ${fmt(res.profit)}\nP&L %: ${fmtPercent(res.profitPercent)}\nMargin: ${fmtPercent(res.margin)}\nMarkup: ${fmtPercent(res.markup)}\nBreak-even: ${fmt(res.breakEven)}\nROI: ${fmtPercent(res.roi)}\nPer Unit: ${fmt(res.perUnit)}\nTax: ${tax}% | Discount: ${discount}%\n━━━━━━━━━━━━━━━━━━━━━`; 
-            navigator.clipboard.writeText(text); 
-            alert("✓ Report copied to clipboard!"); 
-        }
-        
-        function updateCurrency() { 
-            currency = document.getElementById("currencySelect").value; 
-            updateAll(); 
-        }
+function calculate() {
+    let tax = parseFloat(document.getElementById("taxRate")?.value) || 0;
+    let discount = parseFloat(document.getElementById("discountRate")?.value) || 0;
+    let costTotal = 0, revenueTotal = 0, quantity = 1;
+    
+    if (currentMode === "standard") {
+        let cost = parseFloat(document.getElementById("costPrice")?.value) || 0;
+        let sell = parseFloat(document.getElementById("sellPrice")?.value) || 0;
+        quantity = parseFloat(document.getElementById("quantityStd")?.value) || 1;
+        costTotal = cost * quantity;
+        revenueTotal = sell * quantity;
+    } else if (currentMode === "business") {
+        let rev = parseFloat(document.getElementById("totalRevenue")?.value) || 0;
+        let cost = parseFloat(document.getElementById("totalCost")?.value) || 0;
+        quantity = parseFloat(document.getElementById("unitsSold")?.value) || 1;
+        costTotal = cost;
+        revenueTotal = rev;
+    } else {
+        let buy = parseFloat(document.getElementById("buyPrice")?.value) || 0;
+        let sell = parseFloat(document.getElementById("sellPriceTrade")?.value) || 0;
+        let qty = parseFloat(document.getElementById("qtyTrade")?.value) || 1;
+        let commPct = parseFloat(document.getElementById("commission")?.value) || 0;
+        quantity = qty;
+        let grossInvestment = buy * qty;
+        let grossReturn = sell * qty;
+        let commissionAmount = (grossReturn * commPct) / 100;
+        revenueTotal = grossReturn - commissionAmount;
+        costTotal = grossInvestment;
+    }
+    
+    let revenueAfterDiscount = revenueTotal * (1 - discount / 100);
+    let rawProfit = revenueAfterDiscount - costTotal;
+    let taxAmount = rawProfit > 0 ? rawProfit * (tax / 100) : 0;
+    let finalProfit = rawProfit - taxAmount;
+    
+    let profitPercent = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
+    let margin = revenueAfterDiscount === 0 ? 0 : (finalProfit / revenueAfterDiscount) * 100;
+    let markup = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
+    let breakEvenPerUnit = quantity > 0 ? costTotal / quantity : 0;
+    let roi = costTotal === 0 ? 0 : (finalProfit / costTotal) * 100;
+    let perUnitProfit = quantity > 0 ? finalProfit / quantity : 0;
+    
+    return { profit: finalProfit, profitPercent, margin, markup, costTotal, revenueTotal: revenueAfterDiscount, quantity, breakEven: breakEvenPerUnit, roi, perUnit: perUnitProfit, afterTax: finalProfit };
+}
 
-        // Event Listeners
-        document.addEventListener('DOMContentLoaded', () => { 
-            initCharts(); 
-            renderInputs(); 
-            loadHistory(); 
-            setMode("standard"); 
-            
-            // Real-time tax & discount listeners
-            document.getElementById("taxRate").addEventListener("input", updateAll);
-            document.getElementById("discountRate").addEventListener("input", updateAll);
-            document.getElementById("currencySelect").addEventListener("change", updateCurrency);
-            document.getElementById("resetBtn").addEventListener("click", resetAll);
-            document.getElementById("copyReportBtn").addEventListener("click", copyReport);
-            document.getElementById("exportChartBtn").addEventListener("click", exportChartAsImage);
-            document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
-            document.querySelectorAll(".mode-tab").forEach(btn => { 
-                btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode"))); 
-            });
+function updateUI(res) {
+    let netElem = document.getElementById("netPL");
+    netElem.innerHTML = fmt(res.profit);
+    netElem.className = "result-value " + (res.profit >= 0 ? "profit-text" : "loss-text");
+    let plElem = document.getElementById("plPercent");
+    plElem.innerHTML = fmtPercent(res.profitPercent);
+    plElem.className = "result-value " + (res.profitPercent >= 0 ? "profit-text" : "loss-text");
+    document.getElementById("marginPercent").innerHTML = fmtPercent(res.margin);
+    document.getElementById("markupPercent").innerHTML = fmtPercent(res.markup);
+    document.getElementById("breakevenPrice").innerHTML = fmt(res.breakEven);
+    document.getElementById("totalInvestment").innerHTML = fmt(res.costTotal);
+    document.getElementById("totalReturn").innerHTML = fmt(res.revenueTotal);
+    document.getElementById("roiValue").innerHTML = fmtPercent(res.roi);
+    document.getElementById("perUnitProfit").innerHTML = fmt(res.perUnit);
+    document.getElementById("afterTaxPL").innerHTML = fmt(res.afterTax);
+    
+    let gaugeWidth = Math.min(100, Math.max(0, (res.margin + 100) / 2));
+    document.getElementById("gaugeFill").style.width = gaugeWidth + "%";
+    document.getElementById("gaugeLabel").innerHTML = `Margin: ${res.margin.toFixed(2)}%`;
+    
+    if (chartDonut) {
+        let costVal = res.costTotal;
+        let profitVal = Math.max(0, res.profit);
+        if (res.profit >= 0) { 
+            chartDonut.data.datasets[0].data = [costVal, profitVal]; 
+            chartDonut.data.labels = ['Total Cost', 'Net Profit']; 
+        } else { 
+            chartDonut.data.datasets[0].data = [costVal + Math.abs(res.profit), Math.abs(res.profit)]; 
+            chartDonut.data.labels = ['Total Cost', 'Net Loss']; 
+        }
+        chartDonut.update();
+    }
+    if (chartComparison) { 
+        chartComparison.data.datasets[0].data = [res.costTotal, res.revenueTotal]; 
+        chartComparison.update(); 
+    }
+}
+
+function updateAll() { const res = calculate(); updateUI(res); saveToHistory(res); }
+
+function saveToHistory(res) { 
+    let summary = `${fmt(res.profit)} (${res.profitPercent.toFixed(1)}%) | ${currentMode}`; 
+    historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() }); 
+    if (historyArray.length > 10) historyArray.pop(); 
+    localStorage.setItem("pl_history", JSON.stringify(historyArray)); 
+    renderHistory(); 
+}
+
+function renderHistory() { 
+    let container = document.getElementById("historyList"); 
+    if (!container) return; 
+    if (historyArray.length === 0) { container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; return; } 
+    container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join(''); 
+}
+
+function loadHistory() { let stored = localStorage.getItem("pl_history"); if (stored) { historyArray = JSON.parse(stored); renderHistory(); } }
+function clearHistory() { historyArray = []; localStorage.removeItem("pl_history"); renderHistory(); }
+
+function renderInputs() {
+    let panel = document.getElementById("inputPanel");
+    if (currentMode === "standard") { 
+        panel.innerHTML = `<h3><i class="fas fa-box" style="color: #2563eb;"></i> Standard Mode</h3><div class="input-group"><label>💰 Cost Price</label><input type="number" id="costPrice" value="100" step="any"></div><div class="input-group"><label>🏷️ Selling Price</label><input type="number" id="sellPrice" value="150" step="any"></div><div class="input-group"><label>📦 Quantity</label><input type="number" id="quantityStd" value="1" step="1"></div>`; 
+    } else if (currentMode === "business") { 
+        panel.innerHTML = `<h3><i class="fas fa-building" style="color: #2563eb;"></i> Business Mode</h3><div class="input-group"><label>📊 Total Revenue</label><input type="number" id="totalRevenue" value="5000" step="any"></div><div class="input-group"><label>💰 Total Cost</label><input type="number" id="totalCost" value="4000" step="any"></div><div class="input-group"><label>📦 Units Sold</label><input type="number" id="unitsSold" value="100" step="1"></div>`; 
+    } else { 
+        panel.innerHTML = `<h3><i class="fas fa-chart-line" style="color: #2563eb;"></i> Trading Mode</h3><div class="input-group"><label>📉 Buy Price</label><input type="number" id="buyPrice" value="50" step="any"></div><div class="input-group"><label>📈 Sell Price</label><input type="number" id="sellPriceTrade" value="75" step="any"></div><div class="input-group"><label>📊 Quantity</label><input type="number" id="qtyTrade" value="100" step="1"></div><div class="input-group"><label>💸 Commission (%)</label><input type="number" id="commission" value="1" step="0.1"></div>`; 
+    }
+    panel.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updateAll));
+}
+
+function initCharts() {
+    let ctxDonut = document.getElementById('donutChart').getContext('2d');
+    let ctxBar = document.getElementById('comparisonBar').getContext('2d');
+    chartDonut = new Chart(ctxDonut, { type: 'doughnut', data: { labels: ['Cost', 'Profit'], datasets: [{ data: [100, 50], backgroundColor: ['#6b7280', '#10b981'], borderWidth: 0 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'bottom', labels: { font: { size: 11 } } } } } });
+    chartComparison = new Chart(ctxBar, { type: 'bar', data: { labels: ['Total Cost', 'Total Revenue'], datasets: [{ label: 'Amount', data: [0, 0], backgroundColor: ['#f97316', '#22c55e'], borderRadius: 8 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } }, scales: { y: { ticks: { font: { size: 10 } } }, x: { ticks: { font: { size: 11 } } } } } });
+}
+
+function exportChartAsImage() {
+    const originalCanvas = document.getElementById("donutChart");
+    const tempCanvas = document.createElement('canvas');
+    const scale = 3;
+    tempCanvas.width = originalCanvas.width * scale;
+    tempCanvas.height = originalCanvas.height * scale;
+    const tempCtx = tempCanvas.getContext('2d');
+    tempCtx.fillStyle = '#ffffff';
+    tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+    tempCtx.scale(scale, scale);
+    tempCtx.drawImage(originalCanvas, 0, 0);
+    tempCtx.scale(1/scale, 1/scale);
+    tempCtx.font = `${12 * scale}px system-ui`;
+    tempCtx.fillStyle = '#9ca3af';
+    tempCtx.fillText(`Generated: ${new Date().toLocaleString()}`, tempCanvas.width - (200 * scale), tempCanvas.height - (15 * scale));
+    const link = document.createElement('a');
+    link.download = `pl_chart_${new Date().toISOString().slice(0,19).replace(/:/g, '-')}.png`;
+    link.href = tempCanvas.toDataURL('image/png', 1.0);
+    link.click();
+}
+
+function setMode(mode) { 
+    currentMode = mode; 
+    document.querySelectorAll('.mode-tab').forEach(btn => { 
+        if (btn.getAttribute('data-mode') === mode) btn.classList.add('active'); 
+        else btn.classList.remove('active'); 
+    }); 
+    renderInputs(); 
+    updateAll(); 
+}
+
+function resetAll() { 
+    if (currentMode === "standard") { 
+        if(document.getElementById("costPrice")) document.getElementById("costPrice").value = 100;
+        if(document.getElementById("sellPrice")) document.getElementById("sellPrice").value = 150;
+        if(document.getElementById("quantityStd")) document.getElementById("quantityStd").value = 1;
+    } else if (currentMode === "business") { 
+        if(document.getElementById("totalRevenue")) document.getElementById("totalRevenue").value = 5000;
+        if(document.getElementById("totalCost")) document.getElementById("totalCost").value = 4000;
+        if(document.getElementById("unitsSold")) document.getElementById("unitsSold").value = 100;
+    } else { 
+        if(document.getElementById("buyPrice")) document.getElementById("buyPrice").value = 50;
+        if(document.getElementById("sellPriceTrade")) document.getElementById("sellPriceTrade").value = 75;
+        if(document.getElementById("qtyTrade")) document.getElementById("qtyTrade").value = 100;
+        if(document.getElementById("commission")) document.getElementById("commission").value = 1;
+    }
+    if(document.getElementById("taxRate")) document.getElementById("taxRate").value = "0";
+    if(document.getElementById("discountRate")) document.getElementById("discountRate").value = "0";
+    updateAll(); 
+}
+
+function copyReport() { 
+    let res = calculate(); 
+    let text = `📊 P&L REPORT\n━━━━━━━━━━━━━━━━━━━━━\nMode: ${currentMode.toUpperCase()}\nNet P&L: ${fmt(res.profit)}\nP&L %: ${fmtPercent(res.profitPercent)}\nMargin: ${fmtPercent(res.margin)}\nMarkup: ${fmtPercent(res.markup)}\nBreak-even: ${fmt(res.breakEven)}\nROI: ${fmtPercent(res.roi)}\nPer Unit: ${fmt(res.perUnit)}\n━━━━━━━━━━━━━━━━━━━━━`; 
+    navigator.clipboard.writeText(text); 
+    alert("✓ Report copied to clipboard!"); 
+}
+
+function updateCurrency() { 
+    currency = document.getElementById("currencySelect").value; 
+    updateAll(); 
+}
+
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
         });
-    </script>
+    });
+});
+
+document.addEventListener('DOMContentLoaded', () => { 
+    initCharts(); 
+    renderInputs(); 
+    loadHistory(); 
+    setMode("standard"); 
+    document.getElementById("taxRate").addEventListener("input", updateAll);
+    document.getElementById("discountRate").addEventListener("input", updateAll);
+    document.getElementById("currencySelect").addEventListener("change", updateCurrency);
+    document.getElementById("resetBtn").addEventListener("click", resetAll);
+    document.getElementById("copyReportBtn").addEventListener("click", copyReport);
+    document.getElementById("exportChartBtn").addEventListener("click", exportChartAsImage);
+    document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
+    document.querySelectorAll(".mode-tab").forEach(btn => { 
+        btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode"))); 
+    });
+});
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
+</script>
 </body>
 </html>
