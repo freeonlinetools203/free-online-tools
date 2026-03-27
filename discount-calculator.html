@@ -577,36 +577,38 @@ body {
     border: 1px solid #e5e7eb;
 }
 
-/* Ads Section */
-.ads-container {
+/* ========== ADS SECTION ========== */
+.ad-container {
     background: #f9fafb;
     border-radius: 16px;
     padding: 20px;
     text-align: center;
-    margin-bottom: 35px;
-    border: 1px dashed #d1d5db;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-.ads-label {
+.ad-label {
     font-size: 0.7rem;
     color: #9ca3af;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .ad-placeholder {
-    background: #e5e7eb;
-    min-height: 90px;
+    background: #ffffff;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
     color: #6b7280;
     font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
 }
 
-/* Other Tools Section */
+/* ========== OTHER TOOLS SECTION - BLUE LINKS ========== */
 .other-tools {
     background: white;
     border-radius: 20px;
@@ -630,38 +632,80 @@ body {
 }
 
 .tool-link {
-    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    background: #eff6ff;
+    color: #2563eb !important;
     padding: 12px 15px;
     border-radius: 40px;
     text-decoration: none;
-    color: #1e3a8a;
     font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .tool-link:hover {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white;
-    transform: translateY(-2px);
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
 }
 
 .home-link {
-    display: inline-block;
-    background: #e5e7eb;
+    background: #eff6ff;
+    color: #2563eb;
     padding: 12px 28px;
     border-radius: 40px;
     text-decoration: none;
-    color: #1e3a8a;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
     margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .home-link:hover {
-    background: #1e3a8a;
+    background: #2563eb;
     color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
 }
 
 /* Article Section */
@@ -926,13 +970,7 @@ body {
 </header>
 
 <div class="container">
-    <!-- Ad Spot 1 -->
-    <div class="ads-container">
-        <div class="ads-label">Advertisement</div>
-        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra)</div>
-    </div>
-
-    <!-- Main Calculator Card -->
+    <!-- MAIN TOOL CARD -->
     <div class="tool-card-large">
         <h2 class="tool-title">Smart Savings Calculator</h2>
         
@@ -1026,6 +1064,15 @@ body {
         </div>
     </div>
     
+    <!-- AD 1: After Tool Results (Before Other Tools) -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 1</span>
+        </div>
+    </div>
+    
     <!-- History Section -->
     <div class="history-section">
         <div class="history-header">
@@ -1035,13 +1082,7 @@ body {
         <div id="historyList" class="history-list"></div>
     </div>
     
-    <!-- Ad Spot 2 -->
-    <div class="ads-container">
-        <div class="ads-label">Advertisement</div>
-        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra)</div>
-    </div>
-    
-    <!-- Other Tools Section -->
+    <!-- Other Tools Section - Blue Links -->
     <div class="other-tools">
         <h3>🔗 Other Useful Tools</h3>
         <div class="tools-grid">
@@ -1059,7 +1100,16 @@ body {
         <a href="index.html" class="home-link">← Back to Home</a>
     </div>
     
-    <!-- Article Section with Keywords -->
+    <!-- AD 2: After Other Tools Section -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 2</span>
+        </div>
+    </div>
+    
+    <!-- Article Section -->
     <div class="article-section">
         <h2>How to Calculate Discount Percentage – Complete Guide</h2>
         <p>Welcome to the most comprehensive <strong>discount calculator</strong> online. Whether you need to <strong>how to calculate discount percentage</strong> for a sale, or you're looking for a <strong>price discount calculator</strong> to determine final prices, this tool provides instant, accurate results. Our <strong>discount and tax calculator</strong> handles everything from simple percentage off to complex scenarios with tax and shipping.</p>
@@ -1069,6 +1119,14 @@ body {
         
         <h3>Discount Factor Calculation Formula</h3>
         <p>The <strong>discount factor calculation formula</strong> is used in finance to determine the present value of future cash flows. The formula is: Discount Factor = 1 / (1 + r)^n, where r is the discount rate and n is the number of periods. This is different from retail discount calculations but equally important for financial analysis.</p>
+        
+        <!-- AD 3: Inside Article (Middle) -->
+        <div class="ad-container" style="margin: 25px 0;">
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-placeholder">
+                <span>📢 Your Ad Here (AdSense/Adsterra) - Position 3</span>
+            </div>
+        </div>
         
         <h3>Discounted Payback Period Calculation Formula</h3>
         <p>For investors, the <strong>discounted payback period calculation formula</strong> helps determine how long it takes to recover an investment considering the time value of money. It's a key metric in capital budgeting.</p>
@@ -1089,6 +1147,14 @@ body {
             <li>✅ Chart Visualization – See your savings</li>
             <li>✅ History Tracking – Save recent calculations</li>
         </ul>
+    </div>
+    
+    <!-- AD 4: After Article, Before FAQ -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 4</span>
+        </div>
     </div>
     
     <!-- FAQ Section -->
@@ -1124,17 +1190,14 @@ body {
             <div class="faq-question">What is the dividend discount model calculator?</div>
             <div class="faq-answer">The dividend discount model (DDM) calculator estimates the value of a stock based on the theory that its worth equals the sum of all its future dividend payments, discounted back to their present value.</div>
         </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">How does the GM employee discount calculator work?</div>
-            <div class="faq-answer">GM employee discount calculators use GM's specific pricing structure, typically offering a percentage below MSRP plus additional incentives. Our general discount calculator can help estimate similar savings.</div>
-        </div>
     </div>
     
-    <!-- Ad Spot 3 -->
-    <div class="ads-container">
-        <div class="ads-label">Advertisement</div>
-        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra)</div>
+    <!-- AD 5: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 5</span>
+        </div>
     </div>
 </div>
 
@@ -1172,7 +1235,9 @@ body {
     </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <script>
+// All JavaScript remains the same as before
 let discountType = "percentage";
 let currency = "$";
 let chartDonut, chartComparison;
@@ -1343,6 +1408,20 @@ function updateCurrency() {
     currency = document.getElementById("currencySelect").value; 
     updateAll(); 
 }
+
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
+        });
+    });
+});
 
 document.addEventListener('DOMContentLoaded', () => { 
     initCharts(); loadHistory(); setDiscountType("percentage");
