@@ -506,32 +506,34 @@ body {
 }
 
 /* ========== ADS SECTION ========== */
-.ads-container {
+.ad-container {
     background: #f9fafb;
     border-radius: 16px;
     padding: 20px;
     text-align: center;
-    margin-bottom: 35px;
-    border: 1px dashed #d1d5db;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
-.ads-label {
+.ad-label {
     font-size: 0.7rem;
     color: #9ca3af;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .ad-placeholder {
-    background: #e5e7eb;
-    min-height: 90px;
+    background: #ffffff;
+    min-height: 100px;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 12px;
     color: #6b7280;
     font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
 }
 
 /* ========== OTHER TOOLS SECTION ========== */
@@ -558,41 +560,83 @@ body {
 }
 
 .tool-link {
-    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    background: #eff6ff;
+    color: #2563eb !important;
     padding: 12px 15px;
     border-radius: 40px;
     text-decoration: none;
-    color: #1e3a8a;
     font-weight: 500;
-    transition: all 0.3s ease;
-    border: 1px solid #e5e7eb;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
     display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .tool-link:hover {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white;
-    transform: translateY(-2px);
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
 }
 
 .home-link {
-    display: inline-block;
-    background: #e5e7eb;
+    background: #eff6ff;
+    color: #2563eb;
     padding: 12px 28px;
     border-radius: 40px;
     text-decoration: none;
-    color: #1e3a8a;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
     margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
 }
 
 .home-link:hover {
-    background: #1e3a8a;
+    background: #2563eb;
     color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
 }
 
-/* ========== ARTICLE SECTION ========== */
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* Article Section */
 .article-section {
     background: white;
     border-radius: 20px;
@@ -641,7 +685,7 @@ body {
     color: #4b5563;
 }
 
-/* ========== FAQ SECTION ========== */
+/* FAQ Section */
 .faq-section {
     background: white;
     border-radius: 20px;
@@ -687,7 +731,7 @@ body {
     line-height: 1.5;
 }
 
-/* ========== FOOTER ========== */
+/* Footer */
 .footer {
     background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
     color: #cbd5e1;
@@ -782,6 +826,7 @@ body {
     .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
     .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
     .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 }
 
 @media (max-width: 480px) {
@@ -810,9 +855,9 @@ body {
                     <div class="category-tools" id="cat1Tools">
                         <a href="age-calculator.html">📅 Age Calculator</a>
                         <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
                         <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                         <a href="percentage-calculator.html">📈 Percentage Calculator</a>
-                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
                     </div>
                     <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat2Tools">
@@ -851,15 +896,6 @@ body {
 </header>
 
 <div class="container">
-    <!-- Ad Spot 1 - Top -->
-    <div class="ads-container">
-        <div class="ads-label">Advertisement</div>
-        <div class="ad-placeholder">
-            <!-- AdSense Code Here -->
-            <span>📢 Your Ad Here (AdSense/Adsterra)</span>
-        </div>
-    </div>
-
     <!-- Main Calculator Card -->
     <div class="tool-card-large">
         <h2 class="tool-title">Compare Two Ages</h2>
@@ -929,38 +965,44 @@ body {
             <div class="bar-labels"><span>👶 Younger ←</span><span>→ Older 👴</span></div>
         </div>
     </div>
-
-    <!-- Ad Spot 2 - Middle -->
-    <div class="ads-container">
-        <div class="ads-label">Advertisement</div>
+    
+    <!-- AD 1: After Tool Results (Before Other Tools) -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
         <div class="ad-placeholder">
             <!-- AdSense Code Here -->
-            <span>📢 Your Ad Here (AdSense/Adsterra)</span>
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 1</span>
         </div>
     </div>
-
-    <!-- Other Tools Section with Links -->
+    
+    <!-- Other Tools Section -->
     <div class="other-tools">
         <h3>🔗 Other Useful Tools</h3>
         <div class="tools-grid">
             <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="discount-calculator.html" class="tool-link">🏷️ Discount Calculator</a>
             <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
             <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
             <a href="loan-calculator.html" class="tool-link">📋 Loan Calculator</a>
             <a href="percentage-calculator.html" class="tool-link">📈 Percentage Calculator</a>
             <a href="word-counter.html" class="tool-link">🔢 Word Counter</a>
-            <a href="text-case-converter.html" class="tool-link">🔤 Text Case Converter</a>
             <a href="password-generator.html" class="tool-link">🔐 Password Generator</a>
             <a href="zakat-calculator.html" class="tool-link">🕌 Zakat Calculator</a>
             <a href="spin-the-wheel.html" class="tool-link">🎡 Spin The Wheel</a>
-            <a href="qr-code-generator.html" class="tool-link">📱 QR Code Generator</a>
-            <a href="image-compressor.html" class="tool-link">🗜️ Image Compressor</a>
-            <a href="youtube-thumbnail-downloader.html" class="tool-link">📸 YouTube Thumbnail Downloader</a>
         </div>
         <a href="index.html" class="home-link">← Back to Home</a>
     </div>
-
-    <!-- Article Section (2000+ words with keywords) -->
+    
+    <!-- AD 2: After Other Tools Section -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 2</span>
+        </div>
+    </div>
+    
+    <!-- Article Section -->
     <div class="article-section">
         <h2>Age Difference Calculator – Complete Guide</h2>
         <p>Welcome to the most comprehensive <strong>age difference calculator</strong> available online. Whether you're curious about the age gap between you and your partner, planning for retirement, or need to <strong>calculate age difference between years</strong> for official purposes, this tool delivers instant, accurate results. Our <strong>online chronological age calculator</strong> goes beyond basic calculations, offering insights into months, days, hours, and even seconds.</p>
@@ -981,6 +1023,14 @@ body {
             <li><strong>👶 Development:</strong> An <strong>asq age calculator</strong> ensures correct developmental screening.</li>
         </ul>
         
+        <!-- AD 3: Inside Article (Middle) -->
+        <div class="ad-container" style="margin: 25px 0;">
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-placeholder">
+                <span>📢 Your Ad Here (AdSense/Adsterra) - Position 3</span>
+            </div>
+        </div>
+        
         <h3>How to Calculate Age Difference Between Years?</h3>
         <p>To <strong>calculate age difference between years</strong>, simply subtract one birth year from the other. However, for precise results, you must account for months and days. Our tool does this automatically. For example, if Person 1 was born on March 15, 1990, and Person 2 on July 20, 1995, the age difference is 5 years, 4 months, and 5 days.</p>
         
@@ -1000,7 +1050,15 @@ body {
             <li>✅ Leap Year Aware – Accurate calculations</li>
         </ul>
     </div>
-
+    
+    <!-- AD 4: After Article, Before FAQ -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 4</span>
+        </div>
+    </div>
+    
     <!-- FAQ Section -->
     <div class="faq-section">
         <h2>❓ Frequently Asked Questions</h2>
@@ -1009,38 +1067,43 @@ body {
             <div class="faq-question">What is an age difference calculator?</div>
             <div class="faq-answer">An age difference calculator computes the exact time gap between two dates of birth, showing the difference in years, months, days, hours, minutes, and seconds.</div>
         </div>
+        
         <div class="faq-item">
             <div class="faq-question">How to calculate age difference between two people?</div>
             <div class="faq-answer">Simply enter both birth dates into our tool, optionally add times for more precision, and the calculator instantly displays the complete breakdown of the age gap.</div>
         </div>
+        
         <div class="faq-item">
             <div class="faq-question">What is the half age 7 and minus 7 double rule?</div>
             <div class="faq-answer">This is a popular dating guideline stating that a person should not date anyone younger than half their age plus 7 years. Our tool automatically checks this for you.</div>
         </div>
+        
         <div class="faq-item">
             <div class="faq-question">Can I use this as a retirement calculator for couples with age difference?</div>
             <div class="faq-answer">Yes! While our primary tool calculates age gaps, the data can help couples plan retirement timelines. For example, if one partner is 5 years older, you can determine when both will reach retirement age simultaneously.</div>
         </div>
+        
         <div class="faq-item">
             <div class="faq-question">What is a cat age calculator?</div>
             <div class="faq-answer">A cat age calculator converts a cat's age to human-equivalent years. Cats age faster than humans, especially in their first two years.</div>
         </div>
+        
         <div class="faq-item">
             <div class="faq-question">What is a USSSA age calculator?</div>
             <div class="faq-answer">The USSSA age calculator is used in youth baseball and softball to determine a player's age group based on the USSSA's official age determination date.</div>
         </div>
+        
         <div class="faq-item">
             <div class="faq-question">How do I calculate lunar age?</div>
             <div class="faq-answer">Calculating lunar age involves adding 1 year if the lunar new year has passed since your birth, and sometimes an additional year because the lunar calendar counts time in the womb.</div>
         </div>
     </div>
-
-    <!-- Ad Spot 3 - Bottom -->
-    <div class="ads-container">
-        <div class="ads-label">Advertisement</div>
+    
+    <!-- AD 5: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
         <div class="ad-placeholder">
-            <!-- AdSense Code Here -->
-            <span>📢 Your Ad Here (AdSense/Adsterra)</span>
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 5</span>
         </div>
     </div>
 </div>
@@ -1063,8 +1126,8 @@ body {
             <h4>⭐ Trending Tools</h4>
             <a href="age-calculator.html">📅 Age Calculator</a>
             <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+            <a href="discount-calculator.html">🏷️ Discount Calculator</a>
             <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
-            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
         </div>
         <div class="footer-col">
             <h4>🔧 Popular Tools</h4>
@@ -1079,6 +1142,7 @@ body {
     </div>
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 <script>
 // Age Difference Calculator JavaScript
 let includeTime = false;
@@ -1302,55 +1366,33 @@ toggleAdvanced.addEventListener('click', () => {
     toggleAdvanced.classList.toggle('open');
 });
 
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
+        });
+    });
+});
+
 // Dropdown JavaScript
 (function() {
     const dropdown = document.getElementById('toolsDropdown');
     const dropBtn = document.getElementById('toolsBtn');
     const dropdownContent = document.getElementById('dropdownContent');
-    
     if (!dropdown || !dropBtn || !dropdownContent) return;
-    
-    function closeDropdown() {
-        dropdown.classList.remove('open');
-        document.querySelectorAll('.dropdown-category.active').forEach(cat => {
-            cat.classList.remove('active');
-            const targetId = cat.getAttribute('data-cat');
-            if(targetId) {
-                const toolsDiv = document.getElementById(targetId + 'Tools');
-                if(toolsDiv) toolsDiv.classList.remove('show');
-            }
-        });
-    }
-    
-    function openDropdown() {
-        dropdown.classList.add('open');
-    }
-    
-    function toggleDropdown(e) {
-        e.stopPropagation();
-        if (dropdown.classList.contains('open')) closeDropdown();
-        else openDropdown();
-    }
-    
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
     dropBtn.addEventListener('click', toggleDropdown);
     dropdownContent.addEventListener('click', e => e.stopPropagation());
-    document.addEventListener('click', function(event) {
-        if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown();
-    });
-    
-    document.querySelectorAll('.dropdown-category').forEach(category => {
-        category.addEventListener('click', function(e) {
-            e.stopPropagation();
-            const catId = this.getAttribute('data-cat');
-            if (catId) {
-                const toolsDiv = document.getElementById(catId + 'Tools');
-                if (toolsDiv) {
-                    this.classList.toggle('active');
-                    toolsDiv.classList.toggle('show');
-                }
-            }
-        });
-    });
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
 })();
 
 // Set initial dates
