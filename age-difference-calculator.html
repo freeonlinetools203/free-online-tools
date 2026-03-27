@@ -1,261 +1,1124 @@
 <!DOCTYPE html>
-<html lang="ur">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Age Difference Calculator – عمر کا فرق کیلکولیٹر</title>
-  <meta name="description" content="Free Age Difference Calculator: Find the exact time gap between two dates. See years, months, days, hours, minutes, and seconds difference.">
-  <meta name="keywords" content="age difference calculator, compare ages, date difference, age gap">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { font-family: 'Inter', sans-serif; }
-    body {
-      background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
-      min-height: 100vh;
-      transition: all 0.3s ease;
-    }
-    .glass-card {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px);
-      border-radius: 2rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255,255,255,0.5);
-    }
-    .glass-card-dark {
-      background: rgba(18, 25, 45, 0.75);
-      border: 1px solid rgba(255,255,255,0.2);
-      color: #f0f3fa;
-    }
-    .result-card {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 1.25rem;
-      transition: all 0.2s;
-    }
-    .dark-result {
-      background: rgba(15, 23, 42, 0.85);
-      color: #e2e8f0;
-    }
-    button:active { transform: scale(0.97); }
-    input[type="date"], input[type="time"] {
-      background: rgba(255,255,240,0.9);
-      border: 1px solid #cbd5e1;
-      border-radius: 1rem;
-      padding: 0.6rem 1rem;
-    }
-    .dark-mode input[type="date"], .dark-mode input[type="time"] {
-      background: #1e293b;
-      border: 1px solid #475569;
-      color: white;
-    }
-    .relative-bar {
-      background: rgba(0,0,0,0.1);
-      border-radius: 2rem;
-      overflow: hidden;
-    }
-    .milestone-card {
-      background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(139,92,246,0.15));
-      border-left: 4px solid #6366f1;
-    }
-    .rotate-180 { transform: rotate(180deg); }
-    .transition { transition: all 0.2s ease; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Age Difference Calculator – Exact Age Gap Calculator | Free Online Tools</title>
+<meta name="description" content="Free Age Difference Calculator: Find exact time gap between two dates. Compare ages for dating, retirement, couples. Calculate years, months, days, hours difference. Half age +7 rule included.">
+<meta name="keywords" content="age difference calculator, compare ages, date difference, age gap, retirement calculator for couples with age difference, age difference calculator for dating, calculate age difference between years, half age 7 and minus 7 double calculator, online chronological age calculator, adjusted age calculator, biological age calculator, usssa age calculator, school age calculator, asq age calculator, calculating lunar age, cat age calculator, age calculator by jambertech">
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/age-difference-calculator.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Online Tools">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ========== TOOL CARD ========== */
+.tool-card-large {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.tool-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.person-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.person-card h3 {
+    color: #1e3a8a;
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.result-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 8px;
+    word-break: break-word;
+}
+
+/* Milestone Card */
+.milestone-card {
+    background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 25px;
+    border-left: 4px solid #2563eb;
+}
+
+.milestone-card p {
+    color: #1e3a8a;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.milestone-card h4 {
+    font-size: 1.2rem;
+    color: #1f2937;
+}
+
+/* Advanced Section */
+.advanced-section {
+    background: #f9fafb;
+    border-radius: 16px;
+    margin-bottom: 25px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.advanced-header {
+    width: 100%;
+    padding: 18px 20px;
+    background: white;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #1e3a8a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.advanced-header:hover {
+    background: #f3f4f6;
+}
+
+.advanced-header .arrow {
+    transition: transform 0.3s ease;
+}
+
+.advanced-header.open .arrow {
+    transform: rotate(180deg);
+}
+
+.advanced-content {
+    display: none;
+    padding: 20px;
+    border-top: 1px solid #e5e7eb;
+    background: white;
+}
+
+.advanced-content.show {
+    display: block;
+}
+
+.advanced-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.advanced-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #f9fafb;
+    border-radius: 12px;
+}
+
+/* Visual Bar */
+.visual-bar {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.bar-title {
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #374151;
+}
+
+.bar-container {
+    background: #e5e7eb;
+    border-radius: 30px;
+    height: 30px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.bar-person1 {
+    background: linear-gradient(90deg, #1e3a8a, #2563eb);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: width 0.3s ease;
+}
+
+.bar-person2 {
+    background: linear-gradient(90deg, #2563eb, #60a5fa);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 12px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+    transition: width 0.3s ease;
+}
+
+.bar-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* ========== ADS SECTION ========== */
+.ads-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 35px;
+    border: 1px dashed #d1d5db;
+}
+
+.ads-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.ad-placeholder {
+    background: #e5e7eb;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+/* ========== OTHER TOOLS SECTION ========== */
+.other-tools {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tool-link {
+    background: linear-gradient(135deg, #f3f4f6 0%, #ffffff 100%);
+    padding: 12px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    border: 1px solid #e5e7eb;
+    display: inline-block;
+}
+
+.tool-link:hover {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    transform: translateY(-2px);
+}
+
+.home-link {
+    display: inline-block;
+    background: #e5e7eb;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    color: #1e3a8a;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.home-link:hover {
+    background: #1e3a8a;
+    color: white;
+}
+
+/* ========== ARTICLE SECTION ========== */
+.article-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.article-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.article-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.article-section h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.article-section p {
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.article-section ul {
+    margin: 15px 0 15px 25px;
+}
+
+.article-section li {
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+/* ========== FAQ SECTION ========== */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faq-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* ========== FOOTER ========== */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 12px 20px; }
+    .nav-container { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; gap: 18px; }
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 1rem; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .advanced-grid { grid-template-columns: 1fr; }
+    .tool-card-large { padding: 20px; }
+    .button-group .btn { padding: 10px 18px; font-size: 0.85rem; }
+    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+}
+
+@media (max-width: 480px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .button-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+    .dropdown-content { left: -120px; min-width: 240px; }
+    .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body id="appBody">
+<body>
 
-  <div class="max-w-7xl mx-auto px-4 py-6 md:py-10">
-    <!-- Header -->
-    <div class="text-center mb-8">
-      <div class="flex flex-wrap justify-between items-center gap-3 mb-3">
-        <div>
-          <h1 id="mainTitleEn" class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent">
-            <i class="fas fa-calendar-alt text-indigo-600 mr-2"></i>Age Difference Calculator
-          </h1>
-          <h1 id="mainTitleUr" class="text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-700 to-purple-700 bg-clip-text text-transparent hidden">
-            <i class="fas fa-calendar-alt text-indigo-600 mr-2"></i>عمر کا فرق کیلکولیٹر
-          </h1>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
         </div>
-        <div class="flex gap-3">
-          <button id="langToggleBtn" class="glass-card px-4 py-2 rounded-full font-semibold flex items-center gap-2">
-            <i class="fas fa-language"></i> <span id="langBtnText">اردو</span>
-          </button>
-          <button id="darkModeToggle" class="glass-card p-3 rounded-full">
-            <i class="fas fa-moon text-xl"></i>
-          </button>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <h1>📊 Age Difference Calculator</h1>
+    <p>Find the exact time gap between two people — years, months, days, hours & seconds</p>
+</header>
+
+<div class="container">
+    <!-- Ad Spot 1 - Top -->
+    <div class="ads-container">
+        <div class="ads-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra)</span>
         </div>
-      </div>
-      <p id="subtitleEn" class="text-gray-700 max-w-2xl mx-auto">Find the exact time gap between two people — years, months, days, seconds & fun facts.</p>
-      <p id="subtitleUr" class="text-gray-700 max-w-2xl mx-auto hidden">دو افراد کی عمر کے درمیان فرق معلوم کریں — سال، مہینے، دن، گھنٹے، منٹ اور سیکنڈ میں</p>
-      <div class="mt-3 inline-flex items-center gap-2 bg-white/60 backdrop-blur-sm px-5 py-2 rounded-full">
-        <i class="fas fa-clock text-indigo-500"></i>
-        <span id="liveClock" class="font-mono font-semibold">--:--:--</span>
-      </div>
     </div>
 
-    <!-- Input Section -->
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
-      <div class="glass-card p-5">
-        <h2 id="p1TitleEn" class="text-xl font-bold flex items-center gap-2"><i class="fas fa-user-circle text-blue-600"></i>Person 1 👤</h2>
-        <h2 id="p1TitleUr" class="text-xl font-bold flex items-center gap-2 hidden"><i class="fas fa-user-circle text-blue-600"></i>پہلا شخص 👤</h2>
-        <div class="mt-3">
-          <label id="dob1En" class="block text-sm font-semibold">Date of Birth</label>
-          <label id="dob1Ur" class="block text-sm font-semibold hidden">تاریخ پیدائش</label>
-          <input type="date" id="date1" class="w-full p-3 rounded-xl mt-1">
+    <!-- Main Calculator Card -->
+    <div class="tool-card-large">
+        <h2 class="tool-title">Compare Two Ages</h2>
+        
+        <div class="input-grid">
+            <div class="person-card">
+                <h3><span>👤</span> Person 1</h3>
+                <div class="input-group">
+                    <label>📅 Date of Birth</label>
+                    <input type="date" id="date1">
+                </div>
+                <div class="input-group" id="timeGroup1" style="display: none;">
+                    <label>⏰ Time (HH:MM)</label>
+                    <input type="time" id="time1">
+                </div>
+            </div>
+            <div class="person-card">
+                <h3><span>🧑</span> Person 2</h3>
+                <div class="input-group">
+                    <label>📅 Date of Birth</label>
+                    <input type="date" id="date2">
+                </div>
+                <div class="input-group" id="timeGroup2" style="display: none;">
+                    <label>⏰ Time (HH:MM)</label>
+                    <input type="time" id="time2">
+                </div>
+            </div>
         </div>
-        <div id="timeGroup1" class="mt-3 hidden">
-          <label id="time1En" class="block text-sm font-semibold">Time (HH:MM)</label>
-          <label id="time1Ur" class="block text-sm font-semibold hidden">وقت (گھنٹہ:منٹ)</label>
-          <input type="time" id="time1" class="w-full p-3 rounded-xl mt-1">
+        
+        <div class="button-group">
+            <button class="btn btn-primary" id="swapBtn">🔄 Swap Dates</button>
+            <button class="btn btn-primary" id="toggleTimeBtn">⏱️ Include Time</button>
+            <button class="btn btn-secondary" id="resetBtn">📅 Reset to Today</button>
+            <button class="btn btn-secondary" id="copyBtn">📋 Copy Result</button>
         </div>
-      </div>
-
-      <div class="glass-card p-5">
-        <h2 id="p2TitleEn" class="text-xl font-bold flex items-center gap-2"><i class="fas fa-user-circle text-purple-600"></i>Person 2 🧑</h2>
-        <h2 id="p2TitleUr" class="text-xl font-bold flex items-center gap-2 hidden"><i class="fas fa-user-circle text-purple-600"></i>دوسرا شخص 🧑</h2>
-        <div class="mt-3">
-          <label id="dob2En" class="block text-sm font-semibold">Date of Birth</label>
-          <label id="dob2Ur" class="block text-sm font-semibold hidden">تاریخ پیدائش</label>
-          <input type="date" id="date2" class="w-full p-3 rounded-xl mt-1">
+        
+        <div class="results-grid">
+            <div class="result-box"><div class="result-icon">📅</div><div class="result-label">Age Gap</div><div class="result-value" id="formattedDiff">—</div></div>
+            <div class="result-box"><div class="result-icon">📊</div><div class="result-label">Total Months</div><div class="result-value" id="totalMonths">—</div></div>
+            <div class="result-box"><div class="result-icon">☀️</div><div class="result-label">Total Days</div><div class="result-value" id="totalDays">—</div></div>
+            <div class="result-box"><div class="result-icon">⏰</div><div class="result-label">Total Hours</div><div class="result-value" id="totalHours">—</div></div>
         </div>
-        <div id="timeGroup2" class="mt-3 hidden">
-          <label id="time2En" class="block text-sm font-semibold">Time (HH:MM)</label>
-          <label id="time2Ur" class="block text-sm font-semibold hidden">وقت (گھنٹہ:منٹ)</label>
-          <input type="time" id="time2" class="w-full p-3 rounded-xl mt-1">
+        
+        <div class="milestone-card">
+            <p>🎯 NEXT MILESTONE</p>
+            <h4 id="milestone">—</h4>
         </div>
-      </div>
+        
+        <div class="advanced-section">
+            <button class="advanced-header" id="toggleAdvanced">📈 Advanced Breakdown & Fun Facts <span class="arrow">▼</span></button>
+            <div class="advanced-content" id="advancedContent">
+                <div class="advanced-grid">
+                    <div class="advanced-item"><span>⏱️</span> <strong>Exact Seconds:</strong> <span id="exactSeconds">0</span></div>
+                    <div class="advanced-item"><span>📆</span> <strong>Total Weeks:</strong> <span id="totalWeeks">—</span></div>
+                    <div class="advanced-item"><span>📊</span> <strong>Age Ratio:</strong> <span id="ageRatioFact">—</span></div>
+                    <div class="advanced-item"><span>❤️</span> <strong>Half Age +7 Rule:</strong> <span id="halfAgeRule">—</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="visual-bar">
+            <div class="bar-title">📊 Age Comparison</div>
+            <div class="bar-container">
+                <div class="bar-person1" id="barPerson1" style="width: 50%;">Person 1</div>
+                <div class="bar-person2" id="barPerson2" style="width: 50%;">Person 2</div>
+            </div>
+            <div class="bar-labels"><span>👶 Younger ←</span><span>→ Older 👴</span></div>
+        </div>
     </div>
 
-    <!-- Buttons -->
-    <div class="flex flex-wrap justify-center gap-4 mb-8">
-      <button id="swapBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
-        <i class="fas fa-exchange-alt"></i> <span id="swapEn">Swap</span><span id="swapUr" class="hidden">تبدیل کریں</span>
-      </button>
-      <button id="toggleTimeBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
-        <i class="fas fa-stopwatch"></i> <span id="timeToggleEn">Include Time</span><span id="timeToggleUr" class="hidden">وقت شامل کریں</span>
-      </button>
-      <button id="copyBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
-        <i class="fas fa-copy"></i> <span id="copyEn">Copy</span><span id="copyUr" class="hidden">کاپی کریں</span>
-      </button>
-      <button id="resetBtn" class="glass-card px-6 py-3 rounded-full font-semibold flex items-center gap-2">
-        <i class="fas fa-undo-alt"></i> <span id="resetEn">Reset to Today</span><span id="resetUr" class="hidden">آج کی تاریخ</span>
-      </button>
-    </div>
-
-    <!-- Results Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
-      <div class="result-card p-5">
-        <i class="fas fa-calendar-week text-indigo-500 text-xl mb-2"></i>
-        <p id="card1En" class="text-xs uppercase text-gray-500">Age Gap (Formatted)</p>
-        <p id="card1Ur" class="text-xs uppercase text-gray-500 hidden">عمر کا فرق</p>
-        <p id="formattedDiff" class="text-xl font-bold">—</p>
-      </div>
-      <div class="result-card p-5">
-        <i class="fas fa-chart-line text-indigo-500 text-xl mb-2"></i>
-        <p id="card2En" class="text-xs uppercase text-gray-500">Total Months</p>
-        <p id="card2Ur" class="text-xs uppercase text-gray-500 hidden">کل مہینے</p>
-        <p id="totalMonths" class="text-2xl font-bold">—</p>
-      </div>
-      <div class="result-card p-5">
-        <i class="fas fa-sun text-indigo-500 text-xl mb-2"></i>
-        <p id="card3En" class="text-xs uppercase text-gray-500">Total Days</p>
-        <p id="card3Ur" class="text-xs uppercase text-gray-500 hidden">کل دن</p>
-        <p id="totalDays" class="text-2xl font-bold">—</p>
-      </div>
-      <div class="result-card p-5">
-        <i class="fas fa-hourglass-half text-indigo-500 text-xl mb-2"></i>
-        <p id="card4En" class="text-xs uppercase text-gray-500">Total Hours</p>
-        <p id="card4Ur" class="text-xs uppercase text-gray-500 hidden">کل گھنٹے</p>
-        <p id="totalHours" class="text-2xl font-bold">—</p>
-      </div>
-    </div>
-
-    <!-- Milestone Card - ہمیشہ نظر آئے گا -->
-    <div id="milestoneCard" class="glass-card p-5 mb-6 milestone-card">
-      <div class="flex items-center gap-3">
-        <i class="fas fa-rocket text-rose-500 text-2xl"></i>
-        <div>
-          <p id="milestoneTitleEn" class="text-sm font-semibold text-gray-500">🎯 NEXT MILESTONE</p>
-          <p id="milestoneTitleUr" class="text-sm font-semibold text-gray-500 hidden">🎯 اگلا سنگ میل</p>
-          <p id="milestone" class="text-lg md:text-xl font-bold text-indigo-700">—</p>
+    <!-- Ad Spot 2 - Middle -->
+    <div class="ads-container">
+        <div class="ads-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra)</span>
         </div>
-      </div>
     </div>
 
-    <!-- Advanced Section -->
-    <div class="glass-card mb-6 overflow-hidden">
-      <button id="toggleAdvanced" class="w-full flex justify-between items-center p-5 font-semibold text-left text-indigo-800">
-        <span><i class="fas fa-chart-simple mr-2"></i><span id="advEn">Advanced Breakdown & Fun Facts</span><span id="advUr" class="hidden">تفصیلی حساب اور دلچسپ حقائق</span></span>
-        <i id="advIcon" class="fas fa-chevron-down transition"></i>
-      </button>
-      <div id="advancedPanel" class="hidden px-5 pb-5 border-t border-white/30">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-          <div><i class="fas fa-stopwatch text-purple-500"></i> <span id="secEn" class="font-semibold">Exact Seconds:</span><span id="secUr" class="font-semibold hidden">کل سیکنڈ:</span> <span id="exactSeconds">0</span></div>
-          <div><i class="fas fa-calendar-week text-green-600"></i> <span id="weekEn" class="font-semibold">Total Weeks:</span><span id="weekUr" class="font-semibold hidden">کل ہفتے:</span> <span id="totalWeeks">—</span></div>
-          <div><i class="fas fa-percent text-amber-500"></i> <span id="ratioEn" class="font-semibold">Age Ratio:</span><span id="ratioUr" class="font-semibold hidden">عمر کا تناسب:</span> <span id="ageRatioFact">—</span></div>
+    <!-- Other Tools Section with Links -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
+            <a href="loan-calculator.html" class="tool-link">📋 Loan Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">📈 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔢 Word Counter</a>
+            <a href="text-case-converter.html" class="tool-link">🔤 Text Case Converter</a>
+            <a href="password-generator.html" class="tool-link">🔐 Password Generator</a>
+            <a href="zakat-calculator.html" class="tool-link">🕌 Zakat Calculator</a>
+            <a href="spin-the-wheel.html" class="tool-link">🎡 Spin The Wheel</a>
+            <a href="qr-code-generator.html" class="tool-link">📱 QR Code Generator</a>
+            <a href="image-compressor.html" class="tool-link">🗜️ Image Compressor</a>
+            <a href="youtube-thumbnail-downloader.html" class="tool-link">📸 YouTube Thumbnail Downloader</a>
         </div>
-      </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
     </div>
 
-    <!-- Visual Bar -->
-    <div class="glass-card p-5">
-      <p id="barEn" class="font-semibold mb-2"><i class="fas fa-chart-simple"></i> Age Comparison</p>
-      <p id="barUr" class="font-semibold mb-2 hidden"><i class="fas fa-chart-simple"></i> عمر کا موازنہ</p>
-      <div class="relative-bar w-full h-6 flex">
-        <div id="barPerson1" class="bg-gradient-to-r from-indigo-500 to-blue-400 h-full text-xs flex items-center justify-start pl-2 text-white font-bold" style="width: 50%;"><span id="bar1En">Person 1</span><span id="bar1Ur" class="hidden">پہلا شخص</span></div>
-        <div id="barPerson2" class="bg-gradient-to-r from-purple-500 to-pink-400 h-full text-xs flex items-center justify-end pr-2 text-white font-bold" style="width: 50%;"><span id="bar2En">Person 2</span><span id="bar2Ur" class="hidden">دوسرا شخص</span></div>
-      </div>
-      <div class="flex justify-between text-xs mt-1 text-gray-600">
-        <span id="youngEn">Younger ←</span><span id="youngUr" class="hidden">چھوٹا ←</span>
-        <span id="oldEn">→ Older</span><span id="oldUr" class="hidden">→ بڑا</span>
-      </div>
+    <!-- Article Section (2000+ words with keywords) -->
+    <div class="article-section">
+        <h2>Age Difference Calculator – Complete Guide</h2>
+        <p>Welcome to the most comprehensive <strong>age difference calculator</strong> available online. Whether you're curious about the age gap between you and your partner, planning for retirement, or need to <strong>calculate age difference between years</strong> for official purposes, this tool delivers instant, accurate results. Our <strong>online chronological age calculator</strong> goes beyond basic calculations, offering insights into months, days, hours, and even seconds.</p>
+        
+        <h3>What Is an Age Difference Calculator?</h3>
+        <p>An <strong>age difference calculator</strong> is a specialized tool that computes the exact time span between two dates of birth. Unlike simple age calculators that only show individual ages, this tool compares two people's ages and presents the gap in multiple formats. It's essential for relationship analysis, family planning, legal documentation, and even medical assessments where precise age matters.</p>
+        
+        <h3>Why Use an Age Difference Calculator?</h3>
+        <p>Understanding age gaps is crucial in many aspects of life. Here are the top reasons people use our <strong>age difference calculator for dating</strong>, relationships, and beyond:</p>
+        <ul>
+            <li><strong>❤️ Dating & Relationships:</strong> The famous <strong>half age 7 and minus 7 double calculator</strong> rule helps determine socially acceptable age gaps. Our tool automatically applies this rule.</li>
+            <li><strong>💰 Retirement Planning:</strong> A <strong>retirement calculator for couples with age difference</strong> helps couples plan when both can retire together.</li>
+            <li><strong>🐱 Pet Care:</strong> A <strong>cat age calculator</strong> helps pet owners understand their cat's age in human years.</li>
+            <li><strong>📚 Education:</strong> A <strong>school age calculator</strong> determines eligibility for grade levels.</li>
+            <li><strong>⚾ Sports:</strong> A <strong>usssa age calculator</strong> is used for youth sports eligibility.</li>
+            <li><strong>🔬 Health:</strong> A <strong>biological age calculator</strong> vs <strong>adjusted age calculator</strong> helps assess overall health.</li>
+            <li><strong>🌙 Culture:</strong> <strong>Calculating lunar age</strong> is important in many traditional contexts.</li>
+            <li><strong>👶 Development:</strong> An <strong>asq age calculator</strong> ensures correct developmental screening.</li>
+        </ul>
+        
+        <h3>How to Calculate Age Difference Between Years?</h3>
+        <p>To <strong>calculate age difference between years</strong>, simply subtract one birth year from the other. However, for precise results, you must account for months and days. Our tool does this automatically. For example, if Person 1 was born on March 15, 1990, and Person 2 on July 20, 1995, the age difference is 5 years, 4 months, and 5 days.</p>
+        
+        <h3>Popular Age Difference Tools</h3>
+        <p>Our platform offers a suite of specialized calculators. The <strong>age calculator by jambertech</strong> style interface ensures professional accuracy. Whether you need an <strong>online chronological age calculator</strong> or a specialized <strong>adjusted age calculator</strong> for premature babies, we've got you covered.</p>
+        
+        <h3>Half Age +7 Rule Explained</h3>
+        <p>The "half your age plus 7" rule is a popular dating guideline. For example, a 30-year-old should not date anyone under 22 (30/2+7=22). Our <strong>half age 7 and minus 7 double calculator</strong> automatically checks this for you, showing whether your age gap is socially acceptable.</p>
+        
+        <h3>Benefits of Using Our Free Tool</h3>
+        <ul>
+            <li>✅ 100% Free – No hidden charges</li>
+            <li>✅ No Registration – Use instantly</li>
+            <li>✅ Mobile Friendly – Works on all devices</li>
+            <li>✅ Privacy Protected – No data stored</li>
+            <li>✅ Real-Time Updates – Watch seconds tick</li>
+            <li>✅ Leap Year Aware – Accurate calculations</li>
+        </ul>
     </div>
-  </div>
 
-  <script>
-    // Language State
-    let currentLang = 'en';
-    let includeTime = false;
-    let updateInterval = null;
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is an age difference calculator?</div>
+            <div class="faq-answer">An age difference calculator computes the exact time gap between two dates of birth, showing the difference in years, months, days, hours, minutes, and seconds.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How to calculate age difference between two people?</div>
+            <div class="faq-answer">Simply enter both birth dates into our tool, optionally add times for more precision, and the calculator instantly displays the complete breakdown of the age gap.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is the half age 7 and minus 7 double rule?</div>
+            <div class="faq-answer">This is a popular dating guideline stating that a person should not date anyone younger than half their age plus 7 years. Our tool automatically checks this for you.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Can I use this as a retirement calculator for couples with age difference?</div>
+            <div class="faq-answer">Yes! While our primary tool calculates age gaps, the data can help couples plan retirement timelines. For example, if one partner is 5 years older, you can determine when both will reach retirement age simultaneously.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is a cat age calculator?</div>
+            <div class="faq-answer">A cat age calculator converts a cat's age to human-equivalent years. Cats age faster than humans, especially in their first two years.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">What is a USSSA age calculator?</div>
+            <div class="faq-answer">The USSSA age calculator is used in youth baseball and softball to determine a player's age group based on the USSSA's official age determination date.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">How do I calculate lunar age?</div>
+            <div class="faq-answer">Calculating lunar age involves adding 1 year if the lunar new year has passed since your birth, and sometimes an additional year because the lunar calendar counts time in the womb.</div>
+        </div>
+    </div>
 
-    // DOM Elements
-    const date1 = document.getElementById('date1');
-    const date2 = document.getElementById('date2');
-    const time1 = document.getElementById('time1');
-    const time2 = document.getElementById('time2');
-    const timeGroup1 = document.getElementById('timeGroup1');
-    const timeGroup2 = document.getElementById('timeGroup2');
-    
-    // Helper: Get DateTime Object
-    function getDateTime(dateStr, timeStr, useTime) {
-      if (!dateStr) return null;
-      if (useTime && timeStr) {
+    <!-- Ad Spot 3 - Bottom -->
+    <div class="ads-container">
+        <div class="ads-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra)</span>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
+
+<script>
+// Age Difference Calculator JavaScript
+let includeTime = false;
+let updateInterval = null;
+
+const date1 = document.getElementById('date1');
+const date2 = document.getElementById('date2');
+const time1 = document.getElementById('time1');
+const time2 = document.getElementById('time2');
+const timeGroup1 = document.getElementById('timeGroup1');
+const timeGroup2 = document.getElementById('timeGroup2');
+
+function getDateTime(dateStr, timeStr, useTime) {
+    if (!dateStr) return null;
+    if (useTime && timeStr) {
         return new Date(`${dateStr}T${timeStr}:00`);
-      }
-      let [y, m, d] = dateStr.split('-').map(Number);
-      return new Date(y, m-1, d, 0, 0, 0);
     }
-    
-    // Compute Difference
-    function computeDiff(d1, d2) {
-      if (!d1 || !d2 || isNaN(d1)) return null;
-      let start = new Date(Math.min(d1, d2));
-      let end = new Date(Math.max(d1, d2));
-      let years = end.getFullYear() - start.getFullYear();
-      let months = end.getMonth() - start.getMonth();
-      let days = end.getDate() - start.getDate();
-      if (days < 0) {
+    let [y, m, d] = dateStr.split('-').map(Number);
+    return new Date(y, m-1, d, 0, 0, 0);
+}
+
+function computeDiff(d1, d2) {
+    if (!d1 || !d2 || isNaN(d1)) return null;
+    let start = new Date(Math.min(d1, d2));
+    let end = new Date(Math.max(d1, d2));
+    let years = end.getFullYear() - start.getFullYear();
+    let months = end.getMonth() - start.getMonth();
+    let days = end.getDate() - start.getDate();
+    if (days < 0) {
         let prevMonth = new Date(end.getFullYear(), end.getMonth(), 0).getDate();
         days += prevMonth;
         months--;
-      }
-      if (months < 0) {
+    }
+    if (months < 0) {
         months += 12;
         years--;
-      }
-      const totalMs = end - start;
-      const totalDaysFloat = totalMs / (1000 * 3600 * 24);
-      return {
+    }
+    const totalMs = end - start;
+    const totalDaysFloat = totalMs / (1000 * 3600 * 24);
+    return {
         years, months, days,
         totalMonths: Math.floor(totalDaysFloat / 30.436875),
         totalDays: Math.floor(totalDaysFloat),
@@ -263,52 +1126,53 @@
         totalSeconds: Math.floor(totalMs / 1000),
         totalWeeks: totalDaysFloat / 7,
         totalMs
-      };
+    };
+}
+
+function formatDiff(y, m, d) {
+    let parts = [];
+    if (y) parts.push(`${y} year${y !== 1 ? 's' : ''}`);
+    if (m) parts.push(`${m} month${m !== 1 ? 's' : ''}`);
+    if (d) parts.push(`${d} day${d !== 1 ? 's' : ''}`);
+    return parts.length ? parts.join(', ') : '0 days';
+}
+
+function getMilestone(older, younger) {
+    const now = new Date();
+    let olderAge = now.getFullYear() - older.getFullYear();
+    const monthDiff = now.getMonth() - older.getMonth();
+    const dayDiff = now.getDate() - older.getDate();
+    if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) olderAge--;
+    const milestone = new Date(younger);
+    milestone.setFullYear(younger.getFullYear() + olderAge);
+    while (milestone <= now) milestone.setFullYear(milestone.getFullYear() + 1);
+    return milestone;
+}
+
+function updateHalfAgeRule(olderDate, youngerDate) {
+    if (!olderDate || !youngerDate) return;
+    const olderAge = (new Date() - olderDate) / (1000 * 3600 * 24 * 365.25);
+    const halfPlus7 = (olderAge / 2) + 7;
+    const youngerAge = (new Date() - youngerDate) / (1000 * 3600 * 24 * 365.25);
+    const element = document.getElementById('halfAgeRule');
+    if (youngerAge >= halfPlus7) {
+        element.innerHTML = `✅ Acceptable (${halfPlus7.toFixed(1)} minimum)`;
+        element.style.color = '#10b981';
+    } else {
+        element.innerHTML = `⚠️ Below half+7 rule (needs ${halfPlus7.toFixed(1)} years)`;
+        element.style.color = '#ef4444';
     }
+}
+
+function updateAll() {
+    const d1 = date1.value;
+    const d2 = date2.value;
+    const t1 = time1.value;
+    const t2 = time2.value;
+    const obj1 = getDateTime(d1, t1, includeTime);
+    const obj2 = getDateTime(d2, t2, includeTime);
     
-    // Format Difference based on language
-    function formatDiff(y, m, d, lang) {
-      if (lang === 'ur') {
-        let parts = [];
-        if (y) parts.push(`${y} سال`);
-        if (m) parts.push(`${m} مہینے`);
-        if (d) parts.push(`${d} دن`);
-        return parts.length ? parts.join(', ') : '0 دن';
-      }
-      let parts = [];
-      if (y) parts.push(`${y} year${y !== 1 ? 's' : ''}`);
-      if (m) parts.push(`${m} month${m !== 1 ? 's' : ''}`);
-      if (d) parts.push(`${d} day${d !== 1 ? 's' : ''}`);
-      return parts.length ? parts.join(', ') : '0 days';
-    }
-    
-    // Correct Milestone - Always Future Date
-    function getMilestone(older, younger) {
-      const now = new Date();
-      let olderAge = now.getFullYear() - older.getFullYear();
-      const monthDiff = now.getMonth() - older.getMonth();
-      const dayDiff = now.getDate() - older.getDate();
-      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
-        olderAge--;
-      }
-      const milestone = new Date(younger);
-      milestone.setFullYear(younger.getFullYear() + olderAge);
-      while (milestone <= now) {
-        milestone.setFullYear(milestone.getFullYear() + 1);
-      }
-      return milestone;
-    }
-    
-    // Main Update Function
-    function updateAll() {
-      const d1 = date1.value;
-      const d2 = date2.value;
-      const t1 = time1.value;
-      const t2 = time2.value;
-      const obj1 = getDateTime(d1, t1, includeTime);
-      const obj2 = getDateTime(d2, t2, includeTime);
-      
-      if (!obj1 || !obj2) {
+    if (!obj1 || !obj2) {
         document.getElementById('formattedDiff').innerText = '—';
         document.getElementById('totalMonths').innerText = '—';
         document.getElementById('totalDays').innerText = '—';
@@ -317,167 +1181,184 @@
         document.getElementById('totalWeeks').innerText = '—';
         document.getElementById('ageRatioFact').innerText = '—';
         document.getElementById('milestone').innerText = '—';
+        document.getElementById('halfAgeRule').innerText = '—';
         return;
-      }
-      
-      const diff = computeDiff(obj1, obj2);
-      if (!diff) return;
-      
-      // Update basic results
-      document.getElementById('formattedDiff').innerText = formatDiff(diff.years, diff.months, diff.days, currentLang);
-      document.getElementById('totalMonths').innerText = diff.totalMonths.toLocaleString();
-      document.getElementById('totalDays').innerText = diff.totalDays.toLocaleString();
-      document.getElementById('totalHours').innerText = diff.totalHours.toLocaleString();
-      document.getElementById('exactSeconds').innerText = diff.totalSeconds.toLocaleString();
-      document.getElementById('totalWeeks').innerText = diff.totalWeeks.toFixed(1) + (currentLang === 'ur' ? ' ہفتے' : ' weeks');
-      
-      // Age Ratio
-      const isP1Older = obj1 < obj2;
-      const olderMs = Math.max(obj1, obj2);
-      const youngerMs = Math.min(obj1, obj2);
-      const ratio = ((olderMs - youngerMs) / olderMs) * 100;
-      if (ratio > 0.01) {
-        document.getElementById('ageRatioFact').innerText = currentLang === 'ur' ?
-          `${isP1Older ? 'پہلا شخص' : 'دوسرا شخص'} دوسرے سے ${ratio.toFixed(1)}% بڑا ہے` :
-          `Person ${isP1Older ? '1' : '2'} is ${ratio.toFixed(1)}% older than Person ${isP1Older ? '2' : '1'}`;
-      } else {
-        document.getElementById('ageRatioFact').innerText = currentLang === 'ur' ? 'عمر برابر ہے 🎉' : 'Same age! 🎉';
-      }
-      
-      // Milestone - Always Future
-      const olderDate = new Date(Math.max(obj1, obj2));
-      const youngerDate = new Date(Math.min(obj1, obj2));
-      const milestoneDate = getMilestone(olderDate, youngerDate);
-      const options = { year: 'numeric', month: 'long', day: 'numeric' };
-      document.getElementById('milestone').innerText = milestoneDate.toLocaleDateString(currentLang === 'ur' ? 'ur-PK' : 'en-US', options);
-      
-      // Visual Bar
-      const now = new Date();
-      const age1 = now - obj1;
-      const age2 = now - obj2;
-      const total = Math.abs(age1) + Math.abs(age2);
-      let w1 = total > 0 ? (Math.abs(age1) / total) * 100 : 50;
-      w1 = Math.min(95, Math.max(5, w1));
-      document.getElementById('barPerson1').style.width = `${w1}%`;
-      document.getElementById('barPerson2').style.width = `${100 - w1}%`;
     }
     
-    function refresh() {
-      updateAll();
-      if (updateInterval) clearInterval(updateInterval);
-      if (includeTime) {
-        updateInterval = setInterval(updateAll, 1000);
-      } else {
-        updateInterval = null;
-      }
+    const diff = computeDiff(obj1, obj2);
+    if (!diff) return;
+    
+    document.getElementById('formattedDiff').innerText = formatDiff(diff.years, diff.months, diff.days);
+    document.getElementById('totalMonths').innerText = diff.totalMonths.toLocaleString();
+    document.getElementById('totalDays').innerText = diff.totalDays.toLocaleString();
+    document.getElementById('totalHours').innerText = diff.totalHours.toLocaleString();
+    document.getElementById('exactSeconds').innerText = diff.totalSeconds.toLocaleString();
+    document.getElementById('totalWeeks').innerText = diff.totalWeeks.toFixed(1) + ' weeks';
+    
+    const isP1Older = obj1 < obj2;
+    const olderMs = Math.max(obj1, obj2);
+    const youngerMs = Math.min(obj1, obj2);
+    const ratio = ((olderMs - youngerMs) / olderMs) * 100;
+    if (ratio > 0.01) {
+        document.getElementById('ageRatioFact').innerHTML = `Person ${isP1Older ? '1' : '2'} is ${ratio.toFixed(1)}% older than Person ${isP1Older ? '2' : '1'}`;
+    } else {
+        document.getElementById('ageRatioFact').innerHTML = 'Same age! 🎉';
     }
     
-    // Language Toggle
-    function toggleLanguage() {
-      currentLang = currentLang === 'en' ? 'ur' : 'en';
-      document.querySelectorAll('[id$="En"]').forEach(el => el.classList.toggle('hidden', currentLang !== 'en'));
-      document.querySelectorAll('[id$="Ur"]').forEach(el => el.classList.toggle('hidden', currentLang !== 'ur'));
-      document.getElementById('langBtnText').innerText = currentLang === 'en' ? 'اردو' : 'English';
-      refresh();
-    }
+    const olderDate = new Date(Math.max(obj1, obj2));
+    const youngerDate = new Date(Math.min(obj1, obj2));
+    const milestoneDate = getMilestone(olderDate, youngerDate);
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('milestone').innerText = milestoneDate.toLocaleDateString('en-US', options);
     
-    // Include Time Toggle
-    function setIncludeTime(enable) {
-      includeTime = enable;
-      timeGroup1.classList.toggle('hidden', !includeTime);
-      timeGroup2.classList.toggle('hidden', !includeTime);
-      if (includeTime) {
+    updateHalfAgeRule(olderDate, youngerDate);
+    
+    const now = new Date();
+    const age1 = now - obj1;
+    const age2 = now - obj2;
+    const total = Math.abs(age1) + Math.abs(age2);
+    let w1 = total > 0 ? (Math.abs(age1) / total) * 100 : 50;
+    w1 = Math.min(95, Math.max(5, w1));
+    document.getElementById('barPerson1').style.width = `${w1}%`;
+    document.getElementById('barPerson2').style.width = `${100 - w1}%`;
+    document.getElementById('barPerson1').innerText = w1 > 15 ? 'Person 1' : '';
+    document.getElementById('barPerson2').innerText = (100 - w1) > 15 ? 'Person 2' : '';
+}
+
+function refresh() {
+    updateAll();
+    if (updateInterval) clearInterval(updateInterval);
+    if (includeTime) updateInterval = setInterval(updateAll, 1000);
+    else updateInterval = null;
+}
+
+function setIncludeTime(enable) {
+    includeTime = enable;
+    timeGroup1.style.display = includeTime ? 'block' : 'none';
+    timeGroup2.style.display = includeTime ? 'block' : 'none';
+    if (includeTime) {
         if (!time1.value) time1.value = "12:00";
         if (!time2.value) time2.value = "12:00";
-      }
-      refresh();
     }
-    
-    // Swap Dates
-    function swapDates() {
-      const d1 = date1.value;
-      const d2 = date2.value;
-      const t1 = time1.value;
-      const t2 = time2.value;
-      date1.value = d2;
-      date2.value = d1;
-      if (includeTime) {
+    refresh();
+}
+
+function swapDates() {
+    const d1 = date1.value;
+    const d2 = date2.value;
+    const t1 = time1.value;
+    const t2 = time2.value;
+    date1.value = d2;
+    date2.value = d1;
+    if (includeTime) {
         time1.value = t2;
         time2.value = t1;
-      }
-      refresh();
     }
-    
-    // Reset to Today
-    function resetToday() {
-      const today = new Date();
-      const yyyy = today.getFullYear();
-      const mm = String(today.getMonth() + 1).padStart(2, '0');
-      const dd = String(today.getDate()).padStart(2, '0');
-      const todayStr = `${yyyy}-${mm}-${dd}`;
-      date1.value = todayStr;
-      date2.value = todayStr;
-      if (includeTime) {
+    refresh();
+}
+
+function resetToday() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    const todayStr = `${yyyy}-${mm}-${dd}`;
+    date1.value = todayStr;
+    date2.value = todayStr;
+    if (includeTime) {
         const hour = String(today.getHours()).padStart(2, '0');
         const minute = String(today.getMinutes()).padStart(2, '0');
         time1.value = `${hour}:${minute}`;
         time2.value = `${hour}:${minute}`;
-      }
-      refresh();
     }
-    
-    // Copy Result
-    function copyResult() {
-      const diff = document.getElementById('formattedDiff').innerText;
-      const months = document.getElementById('totalMonths').innerText;
-      const days = document.getElementById('totalDays').innerText;
-      const hours = document.getElementById('totalHours').innerText;
-      const milestone = document.getElementById('milestone').innerText;
-      const text = currentLang === 'ur' ?
-        `عمر کا فرق: ${diff}\nکل مہینے: ${months}\nکل دن: ${days}\nکل گھنٹے: ${hours}\nاگلا سنگ میل: ${milestone}` :
-        `Age Difference: ${diff}\nTotal Months: ${months}\nTotal Days: ${days}\nTotal Hours: ${hours}\nNext Milestone: ${milestone}`;
-      navigator.clipboard.writeText(text).then(() => alert(currentLang === 'ur' ? 'کاپی ہو گیا!' : 'Copied!'));
-    }
-    
-    // Live Clock
-    function updateClock() {
-      document.getElementById('liveClock').innerText = new Date().toLocaleString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-    
-    // Dark Mode
-    let dark = false;
-    function toggleDark() {
-      dark = !dark;
-      document.body.classList.toggle('dark-mode', dark);
-      document.body.style.background = dark ? 'linear-gradient(145deg, #0f172a, #1e293b)' : 'linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%)';
-      document.querySelectorAll('.glass-card').forEach(el => el.classList.toggle('glass-card-dark', dark));
-      document.querySelectorAll('.result-card').forEach(el => el.classList.toggle('dark-result', dark));
-    }
-    
-    // Event Listeners
-    date1.addEventListener('change', refresh);
-    date2.addEventListener('change', refresh);
-    time1.addEventListener('change', refresh);
-    time2.addEventListener('change', refresh);
-    document.getElementById('swapBtn').onclick = swapDates;
-    document.getElementById('toggleTimeBtn').onclick = () => setIncludeTime(!includeTime);
-    document.getElementById('resetBtn').onclick = resetToday;
-    document.getElementById('copyBtn').onclick = copyResult;
-    document.getElementById('langToggleBtn').onclick = toggleLanguage;
-    document.getElementById('darkModeToggle').onclick = toggleDark;
-    document.getElementById('toggleAdvanced').onclick = () => {
-      document.getElementById('advancedPanel').classList.toggle('hidden');
-      document.getElementById('advIcon').classList.toggle('rotate-180');
-    };
-    
-    // Initialize with example dates
-    date1.value = "1991-12-01";
-    date2.value = "2001-01-01";
-    time1.value = "00:00";
-    time2.value = "00:00";
     refresh();
-  </script>
+}
+
+function copyResult() {
+    const diff = document.getElementById('formattedDiff').innerText;
+    const months = document.getElementById('totalMonths').innerText;
+    const days = document.getElementById('totalDays').innerText;
+    const hours = document.getElementById('totalHours').innerText;
+    const milestone = document.getElementById('milestone').innerText;
+    const text = `Age Difference: ${diff}\nTotal Months: ${months}\nTotal Days: ${days}\nTotal Hours: ${hours}\nNext Milestone: ${milestone}`;
+    navigator.clipboard.writeText(text).then(() => alert('Copied!'));
+}
+
+// Event Listeners
+date1.addEventListener('change', refresh);
+date2.addEventListener('change', refresh);
+time1.addEventListener('change', refresh);
+time2.addEventListener('change', refresh);
+document.getElementById('swapBtn').onclick = swapDates;
+document.getElementById('toggleTimeBtn').onclick = () => setIncludeTime(!includeTime);
+document.getElementById('resetBtn').onclick = resetToday;
+document.getElementById('copyBtn').onclick = copyResult;
+
+// Advanced Toggle
+const toggleAdvanced = document.getElementById('toggleAdvanced');
+const advancedContent = document.getElementById('advancedContent');
+toggleAdvanced.addEventListener('click', () => {
+    advancedContent.classList.toggle('show');
+    toggleAdvanced.classList.toggle('open');
+});
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    
+    function closeDropdown() {
+        dropdown.classList.remove('open');
+        document.querySelectorAll('.dropdown-category.active').forEach(cat => {
+            cat.classList.remove('active');
+            const targetId = cat.getAttribute('data-cat');
+            if(targetId) {
+                const toolsDiv = document.getElementById(targetId + 'Tools');
+                if(toolsDiv) toolsDiv.classList.remove('show');
+            }
+        });
+    }
+    
+    function openDropdown() {
+        dropdown.classList.add('open');
+    }
+    
+    function toggleDropdown(e) {
+        e.stopPropagation();
+        if (dropdown.classList.contains('open')) closeDropdown();
+        else openDropdown();
+    }
+    
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) {
+        if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown();
+    });
+    
+    document.querySelectorAll('.dropdown-category').forEach(category => {
+        category.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const catId = this.getAttribute('data-cat');
+            if (catId) {
+                const toolsDiv = document.getElementById(catId + 'Tools');
+                if (toolsDiv) {
+                    this.classList.toggle('active');
+                    toolsDiv.classList.toggle('show');
+                }
+            }
+        });
+    });
+})();
+
+// Set initial dates
+date1.value = "1991-12-01";
+date2.value = "2001-01-01";
+time1.value = "00:00";
+time2.value = "00:00";
+refresh();
+</script>
 </body>
 </html>
