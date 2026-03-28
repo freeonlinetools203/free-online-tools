@@ -19,12 +19,171 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f3f4f6;
     min-height: 100vh;
-    padding: 40px 20px;
 }
 
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== ORIGINAL BMI CALCULATOR STYLES (NO CHANGES) ========== */
 .container {
     max-width: 750px;
-    margin: 0 auto;
+    margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 /* Main Card */
@@ -303,8 +462,9 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
-    body {
-        padding: 20px 15px;
+    .container {
+        padding: 0 15px;
+        margin-top: 20px;
     }
     
     .card-content {
@@ -327,9 +487,82 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* SEO Article Styles */
+.info-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.ad-space {
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
 </style>
 </head>
 <body>
+
+<!-- ========== NAVBAR ADDED (SAME AS OTHER TOOLS) ========== -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="sip-calculator.html">📊 SIP Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
     <!-- Main BMI Calculator Card -->
@@ -393,11 +626,11 @@ body {
         <a href="index.html" class="home-link">← Back to Home</a>
     </div>
     
-    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA INSIDE ========== -->
-    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA INSIDE (NO CHANGES) ========== -->
+    <div class="info-section">
         
         <!-- Ad Space 1 - Top Banner -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -452,7 +685,7 @@ body {
         </ul>
         
         <!-- Ad Space 2 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -515,7 +748,7 @@ body {
         </div>
         
         <!-- Ad Space 3 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -593,7 +826,7 @@ body {
         <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">BMI is a simple yet powerful health indicator that can help you understand your weight status and take proactive steps toward better health. While it's not a perfect measurement, it provides a useful starting point for health assessment. Use our free BMI calculator regularly to stay informed about your health and consult healthcare professionals for personalized advice.</p>
         
         <!-- Ad Space 4 - Bottom Banner -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -672,8 +905,24 @@ document.getElementById('weight').addEventListener('keypress', function(e) {
 document.getElementById('height').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') calculateBMI();
 });
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
 </script>
-<!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
+
+<!-- ========== FOOTER - PROFESSIONAL GRADIENT (NO CHANGES) ========== -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-col">
