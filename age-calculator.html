@@ -19,12 +19,171 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f3f4f6;
     min-height: 100vh;
-    padding: 40px 20px;
 }
 
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== ORIGINAL AGE CALCULATOR STYLES (NO CHANGES) ========== */
 .container {
     max-width: 750px;
-    margin: 0 auto;
+    margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 /* Main Card */
@@ -389,8 +548,9 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
-    body {
-        padding: 20px 15px;
+    .container {
+        padding: 0 15px;
+        margin-top: 20px;
     }
     
     .card-content {
@@ -425,9 +585,82 @@ body {
         font-size: 16px;
     }
 }
+
+/* SEO Article Styles */
+.seo-article {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.ad-space {
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
 </style>
 </head>
 <body>
+
+<!-- ========== NAVBAR ADDED (SAME AS OTHER TOOLS) ========== -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="sip-calculator.html">📊 SIP Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
     <!-- Main Age Calculator Card -->
@@ -509,201 +742,202 @@ body {
         <a href="index.html" class="home-link">← Back to Home</a>
     </div>
 </div>
-    <!-- ========== PROFESSIONAL SEO ARTICLE WITH SCHEMA ========== -->
-    <div class="seo-article" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
-        
-        <!-- Ad Space 1 - Top Banner -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
-            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
-            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
-        </div>
-        
-        <!-- Article Header -->
-        <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
-            <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">📅 EXACT AGE CALCULATOR</span>
-            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Free Live Age Calculator – Calculate Your Exact Age in Years, Months, Days, Hours, Minutes & Seconds</h1>
-            <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 10,000+ Users Daily</p>
-        </div>
-        
-        <!-- Introduction -->
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px; font-size: 16px;">Welcome to the most advanced <strong>Free Live Age Calculator</strong> available online. Whether you need to calculate your exact age for official documents, school admissions, job applications, or simply out of curiosity, this tool provides you with precise results down to the very second. Our <strong>online age calculator</strong> is designed to be fast, accurate, and completely free to use with <strong>no registration required</strong> and <strong>100% privacy guaranteed</strong>.</p>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Unlike traditional age calculators that only show your age in years, our <strong>exact age calculator</strong> provides a complete breakdown of your life duration. You can see exactly how many <strong>years, months, days, hours, minutes, and seconds</strong> you have lived. This level of detail is perfect for those who want to celebrate milestones, track life achievements, or simply satisfy their curiosity about the passage of time.</p>
-        
-        <!-- Key Features Box -->
-        <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 100%); border-radius: 16px; padding: 25px; margin: 25px 0; border: 1px solid #bae6fd;">
-            <h3 style="color: #1e3a8a; margin-bottom: 15px;">✨ Key Features of Our Age Calculator</h3>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
-                <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>100% Free</strong> – No hidden charges</div>
-                <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Live Updates</strong> – Real-time seconds</div>
-                <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Mobile Friendly</strong> – Works on all devices</div>
-                <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>No Registration</strong> – Instant access</div>
-                <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Privacy Protected</strong> – No data stored</div>
-                <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Leap Year Aware</strong> – Accurate calculation</div>
-            </div>
-        </div>
-        
-        <!-- Ad Space 2 - In Content -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
-            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
-            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
-        </div>
-        
-        <!-- Main Content -->
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">What Is an Age Calculator and Why Do You Need One?</h2>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">An <strong>age calculator</strong> is a digital tool that calculates the time difference between your <strong>date of birth (DOB)</strong> and the current date and time. While manual calculation might seem simple, factors like <strong>leap years</strong>, varying month lengths, and <strong>time zones</strong> can make accurate age calculation surprisingly complex. Our <strong>online age calculator</strong> handles all these complexities automatically, providing you with a precise age calculation every time.</p>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Whether you're applying for a job that has age restrictions, filling out passport forms, determining eligibility for retirement benefits, or simply want to know your exact age for personal reasons, having a reliable <strong>age calculator by date of birth</strong> is essential. Many government agencies, educational institutions, and employers require exact age information, and even a one-day difference can impact eligibility. With our tool, you can be confident that your age calculation is accurate.</p>
-        
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How Does Our Live Age Calculator Work?</h2>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Our <strong>live age calculator online</strong> uses a sophisticated algorithm that accounts for all calendar variations. When you enter your <strong>date of birth</strong>, the system calculates the difference between your birth date and the current date and time. The result is then broken down into <strong>years, months, days, hours, minutes, and seconds</strong>. The tool updates in real-time, meaning that as every second passes, your age increases – and you can watch it happen!</p>
-        
-        <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
-            <p style="font-family: monospace; font-size: 18px; font-weight: bold; color: #1e3a8a;">Age = Current Date & Time − Date of Birth</p>
-            <p style="color: #6b7280; margin-top: 10px;">(Automatically accounts for leap years, month variations, and time zones)</p>
-        </div>
-        
-        <h3 style="color: #2563eb; font-size: 22px; margin: 25px 0 12px;">Why Seconds Matter in Age Calculation</h3>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Most basic age calculators stop at years or months, but our <strong>live age calculator with seconds</strong> provides a much more complete picture of your life. Seeing your age increase second by second is not only fascinating but also gives you a true appreciation for the passage of time. For example, if someone is 30 years old, they have lived approximately:</p>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; text-align: center;">
-            <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">360+</strong><br>Months</div>
-            <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">10,950+</strong><br>Days</div>
-            <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">262,800+</strong><br>Hours</div>
-            <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">15.7M+</strong><br>Minutes</div>
-            <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">946M+</strong><br>Seconds</div>
-        </div>
-        
-        <!-- Ad Space 3 - Mid Article -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
-            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
-            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
-        </div>
-        
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Top 10 Practical Uses for an Online Age Calculator</h2>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 20px 0;">
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🎓 <strong>School & University Admissions</strong><br>Age requirements for enrollment</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">💼 <strong>Government Job Applications</strong><br>Age limits for civil services</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🛂 <strong>Passport & Visa Documentation</strong><br>Official age verification</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🏦 <strong>Retirement Planning</strong><br>Calculate retirement eligibility</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">📋 <strong>Insurance Policies</strong><br>Age affects premiums</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">⚖️ <strong>Legal Documentation</strong><br>Wills, contracts, age verification</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">❤️ <strong>Age Difference Calculation</strong><br>Relationships, family trees</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">📝 <strong>Competitive Exams</strong><br>Strict age eligibility criteria</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🏥 <strong>Medical Records</strong><br>Accurate age for treatment</div>
-            <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🎂 <strong>Personal Curiosity</strong><br>Know your exact age!</div>
-        </div>
-        
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our Free Age Calculator</h2>
-        
-        <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li><strong>✅ 100% Free & Unlimited:</strong> Use it as many times as you want, completely free with no hidden charges</li>
-            <li><strong>✅ No Registration Required:</strong> No sign-ups, no email, no personal information needed</li>
-            <li><strong>✅ Fast Loading & Lightweight:</strong> Works instantly on any device with minimal data usage</li>
-            <li><strong>✅ Mobile Friendly Design:</strong> Perfectly responsive on smartphones, tablets, and desktops</li>
-            <li><strong>✅ Real-Time Updates:</strong> Watch your age increase every second with live counter</li>
-            <li><strong>✅ Secure & Private:</strong> All calculations happen in your browser – no data is stored or tracked</li>
-            <li><strong>✅ Professional User Interface:</strong> Clean, modern, and easy to use for all ages</li>
-            <li><strong>✅ Accurate Calculations:</strong> Accounts for leap years, month variations, and time zones</li>
-            <li><strong>✅ Works Offline:</strong> Once loaded, the tool works without internet connection</li>
-            <li><strong>✅ No Downloads Required:</strong> Use directly in your browser, no app installation needed</li>
-        </ul>
-        
-        <!-- Ad Space 4 - Before FAQ -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
-            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
-            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
-        </div>
-        
-        <!-- FAQ Section with Schema -->
-        <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
-            <h2 style="color: #1e3a8a; font-size: 26px; margin-bottom: 20px; text-align: center;">❓ Frequently Asked Questions</h2>
-            
-            <div itemscope="" itemtype="https://schema.org/FAQPage" style="display: flex; flex-direction: column; gap: 15px;">
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this Age Calculator really free?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, it is completely free with unlimited usage. No hidden charges, no premium version – just a free tool for everyone.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does it show live seconds?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, it updates every second in real-time. You can watch your age increase second by second.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use it on mobile?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Absolutely! The tool is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does it store my birth date?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">No, all calculations happen locally in your browser. We do not store, track, or share any personal information.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is the age calculation accurate?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our calculator accounts for leap years, month variations, and time zones for maximum accuracy.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Do I need to select time?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">No! Just select your date of birth. The time is automatically set to 12:00 AM for accurate calculation.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this for official purposes?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">While our calculator is highly accurate, always verify with official documents for legal purposes.</div>
-                    </div>
-                </div>
-                
-                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does it work offline?</h3>
-                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Once the page is loaded, it works offline as well. All calculations are done locally in your browser.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy is our top priority. This tool runs entirely inside your browser. We do not store, track, or share your birth date or any personal information. This makes our <strong>secure age calculator</strong> safe for public use. No data is sent to any server, no cookies are used to track your activity, and no personal information is collected. You can use this tool with complete peace of mind.</p>
-        
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Age represents your life journey measured in time. Our <strong>Free Live Age Calculator Online</strong> provides a powerful and accurate way to calculate your exact age down to every second. Whether you're using it for official purposes, planning life milestones, or simply satisfying your curiosity, this tool delivers reliable results instantly.</p>
-        
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Use this advanced age calculator today and experience real-time age tracking with professional accuracy. Share it with friends and family who might also benefit from knowing their exact age. And remember, every second counts – make the most of your time!</p>
-        
-        <!-- Ad Space 5 - Bottom Banner -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
-            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
-            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+
+<!-- ========== PROFESSIONAL SEO ARTICLE WITH SCHEMA (NO CHANGES) ========== -->
+<div class="seo-article">
+    
+    <!-- Ad Space 1 - Top Banner -->
+    <div class="ad-space">
+        <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+        <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+    </div>
+    
+    <!-- Article Header -->
+    <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
+        <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">📅 EXACT AGE CALCULATOR</span>
+        <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Free Live Age Calculator – Calculate Your Exact Age in Years, Months, Days, Hours, Minutes & Seconds</h1>
+        <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 10,000+ Users Daily</p>
+    </div>
+    
+    <!-- Introduction -->
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px; font-size: 16px;">Welcome to the most advanced <strong>Free Live Age Calculator</strong> available online. Whether you need to calculate your exact age for official documents, school admissions, job applications, or simply out of curiosity, this tool provides you with precise results down to the very second. Our <strong>online age calculator</strong> is designed to be fast, accurate, and completely free to use with <strong>no registration required</strong> and <strong>100% privacy guaranteed</strong>.</p>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Unlike traditional age calculators that only show your age in years, our <strong>exact age calculator</strong> provides a complete breakdown of your life duration. You can see exactly how many <strong>years, months, days, hours, minutes, and seconds</strong> you have lived. This level of detail is perfect for those who want to celebrate milestones, track life achievements, or simply satisfy their curiosity about the passage of time.</p>
+    
+    <!-- Key Features Box -->
+    <div style="background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 100%); border-radius: 16px; padding: 25px; margin: 25px 0; border: 1px solid #bae6fd;">
+        <h3 style="color: #1e3a8a; margin-bottom: 15px;">✨ Key Features of Our Age Calculator</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;">
+            <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>100% Free</strong> – No hidden charges</div>
+            <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Live Updates</strong> – Real-time seconds</div>
+            <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Mobile Friendly</strong> – Works on all devices</div>
+            <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>No Registration</strong> – Instant access</div>
+            <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Privacy Protected</strong> – No data stored</div>
+            <div style="display: flex; align-items: center; gap: 8px;">✅ <strong>Leap Year Aware</strong> – Accurate calculation</div>
         </div>
     </div>
     
-    <script>
-    // Display current date
-    document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    </script>
+    <!-- Ad Space 2 - In Content -->
+    <div class="ad-space">
+        <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+        <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+    </div>
+    
+    <!-- Main Content -->
+    <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">What Is an Age Calculator and Why Do You Need One?</h2>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">An <strong>age calculator</strong> is a digital tool that calculates the time difference between your <strong>date of birth (DOB)</strong> and the current date and time. While manual calculation might seem simple, factors like <strong>leap years</strong>, varying month lengths, and <strong>time zones</strong> can make accurate age calculation surprisingly complex. Our <strong>online age calculator</strong> handles all these complexities automatically, providing you with a precise age calculation every time.</p>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Whether you're applying for a job that has age restrictions, filling out passport forms, determining eligibility for retirement benefits, or simply want to know your exact age for personal reasons, having a reliable <strong>age calculator by date of birth</strong> is essential. Many government agencies, educational institutions, and employers require exact age information, and even a one-day difference can impact eligibility. With our tool, you can be confident that your age calculation is accurate.</p>
+    
+    <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How Does Our Live Age Calculator Work?</h2>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Our <strong>live age calculator online</strong> uses a sophisticated algorithm that accounts for all calendar variations. When you enter your <strong>date of birth</strong>, the system calculates the difference between your birth date and the current date and time. The result is then broken down into <strong>years, months, days, hours, minutes, and seconds</strong>. The tool updates in real-time, meaning that as every second passes, your age increases – and you can watch it happen!</p>
+    
+    <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
+        <p style="font-family: monospace; font-size: 18px; font-weight: bold; color: #1e3a8a;">Age = Current Date & Time − Date of Birth</p>
+        <p style="color: #6b7280; margin-top: 10px;">(Automatically accounts for leap years, month variations, and time zones)</p>
+    </div>
+    
+    <h3 style="color: #2563eb; font-size: 22px; margin: 25px 0 12px;">Why Seconds Matter in Age Calculation</h3>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Most basic age calculators stop at years or months, but our <strong>live age calculator with seconds</strong> provides a much more complete picture of your life. Seeing your age increase second by second is not only fascinating but also gives you a true appreciation for the passage of time. For example, if someone is 30 years old, they have lived approximately:</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; text-align: center;">
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">360+</strong><br>Months</div>
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">10,950+</strong><br>Days</div>
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">262,800+</strong><br>Hours</div>
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">15.7M+</strong><br>Minutes</div>
+        <div style="background: #f3f4f6; padding: 15px; border-radius: 10px;"><strong style="color: #1e3a8a; font-size: 20px;">946M+</strong><br>Seconds</div>
+    </div>
+    
+    <!-- Ad Space 3 - Mid Article -->
+    <div class="ad-space">
+        <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+        <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+    </div>
+    
+    <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Top 10 Practical Uses for an Online Age Calculator</h2>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin: 20px 0;">
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🎓 <strong>School & University Admissions</strong><br>Age requirements for enrollment</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">💼 <strong>Government Job Applications</strong><br>Age limits for civil services</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🛂 <strong>Passport & Visa Documentation</strong><br>Official age verification</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🏦 <strong>Retirement Planning</strong><br>Calculate retirement eligibility</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">📋 <strong>Insurance Policies</strong><br>Age affects premiums</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">⚖️ <strong>Legal Documentation</strong><br>Wills, contracts, age verification</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">❤️ <strong>Age Difference Calculation</strong><br>Relationships, family trees</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">📝 <strong>Competitive Exams</strong><br>Strict age eligibility criteria</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🏥 <strong>Medical Records</strong><br>Accurate age for treatment</div>
+        <div style="background: #f9fafb; padding: 15px; border-radius: 10px; border-left: 4px solid #1e3a8a;">🎂 <strong>Personal Curiosity</strong><br>Know your exact age!</div>
+    </div>
+    
+    <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our Free Age Calculator</h2>
+    
+    <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+        <li><strong>✅ 100% Free & Unlimited:</strong> Use it as many times as you want, completely free with no hidden charges</li>
+        <li><strong>✅ No Registration Required:</strong> No sign-ups, no email, no personal information needed</li>
+        <li><strong>✅ Fast Loading & Lightweight:</strong> Works instantly on any device with minimal data usage</li>
+        <li><strong>✅ Mobile Friendly Design:</strong> Perfectly responsive on smartphones, tablets, and desktops</li>
+        <li><strong>✅ Real-Time Updates:</strong> Watch your age increase every second with live counter</li>
+        <li><strong>✅ Secure & Private:</strong> All calculations happen in your browser – no data is stored or tracked</li>
+        <li><strong>✅ Professional User Interface:</strong> Clean, modern, and easy to use for all ages</li>
+        <li><strong>✅ Accurate Calculations:</strong> Accounts for leap years, month variations, and time zones</li>
+        <li><strong>✅ Works Offline:</strong> Once loaded, the tool works without internet connection</li>
+        <li><strong>✅ No Downloads Required:</strong> Use directly in your browser, no app installation needed</li>
+    </ul>
+    
+    <!-- Ad Space 4 - Before FAQ -->
+    <div class="ad-space">
+        <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+        <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+    </div>
+    
+    <!-- FAQ Section with Schema -->
+    <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
+        <h2 style="color: #1e3a8a; font-size: 26px; margin-bottom: 20px; text-align: center;">❓ Frequently Asked Questions</h2>
+        
+        <div itemscope="" itemtype="https://schema.org/FAQPage" style="display: flex; flex-direction: column; gap: 15px;">
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this Age Calculator really free?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, it is completely free with unlimited usage. No hidden charges, no premium version – just a free tool for everyone.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does it show live seconds?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, it updates every second in real-time. You can watch your age increase second by second.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use it on mobile?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">Absolutely! The tool is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does it store my birth date?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">No, all calculations happen locally in your browser. We do not store, track, or share any personal information.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is the age calculation accurate?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our calculator accounts for leap years, month variations, and time zones for maximum accuracy.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Do I need to select time?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">No! Just select your date of birth. The time is automatically set to 12:00 AM for accurate calculation.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this for official purposes?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">While our calculator is highly accurate, always verify with official documents for legal purposes.</div>
+                </div>
+            </div>
+            
+            <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does it work offline?</h3>
+                <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                    <div itemprop="text" style="color: #374151; line-height: 1.6;">Once the page is loaded, it works offline as well. All calculations are done locally in your browser.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy is our top priority. This tool runs entirely inside your browser. We do not store, track, or share your birth date or any personal information. This makes our <strong>secure age calculator</strong> safe for public use. No data is sent to any server, no cookies are used to track your activity, and no personal information is collected. You can use this tool with complete peace of mind.</p>
+    
+    <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Age represents your life journey measured in time. Our <strong>Free Live Age Calculator Online</strong> provides a powerful and accurate way to calculate your exact age down to every second. Whether you're using it for official purposes, planning life milestones, or simply satisfying your curiosity, this tool delivers reliable results instantly.</p>
+    
+    <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Use this advanced age calculator today and experience real-time age tracking with professional accuracy. Share it with friends and family who might also benefit from knowing their exact age. And remember, every second counts – make the most of your time!</p>
+    
+    <!-- Ad Space 5 - Bottom Banner -->
+    <div class="ad-space">
+        <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+        <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+    </div>
+</div>
+
+<script>
+// Display current date
+document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+</script>
 <script>
 let ageUpdateInterval = null;
 let liveDateTimeInterval = null;
@@ -834,8 +1068,24 @@ document.getElementById('dobDate').addEventListener('keypress', function(e) {
         calculateAndStartAge();
     }
 });
+
+// Dropdown JavaScript (for navbar)
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
 </script>
-<!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
+
+<!-- ========== FOOTER - PROFESSIONAL GRADIENT (NO CHANGES) ========== -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-col">
