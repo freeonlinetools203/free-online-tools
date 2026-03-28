@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Free Image Compressor – Reduce Image Size Without Losing Quality Online</title>
-<meta name="description" content="Compress images online for free without losing quality. Fast, secure, and responsive image compressor tool for JPG, PNG, WEBP. Bulk compression, drag & drop, dark mode.">
-<meta name="keywords" content="image compressor, compress images online, reduce image size, free image optimizer, webp converter, jpg compressor, png optimizer, bulk image compression, compress image to 200kb">
+<meta name="description" content="Compress images online for free without losing quality. Fast, secure, and responsive image compressor tool for JPG, PNG, WEBP. Bulk compression, drag & drop, dark mode. Best image compressor to 200kb, 500kb, 2mb, 5mb. Free image optimizer for Discord, Shopify, and 4k images.">
+<meta name="keywords" content="image compressor, compress images online, reduce image size, free image optimizer, webp converter, jpg compressor, png optimizer, bulk image compression, compress image to 200kb, image compressor to 2mb, 4k image compressor, discord image compressor, shopify image compressor, compress image to 20kb, best image compressor, online image compressor, image compressor free, image compressor app, image compressor without losing quality, image compressor for website, image compressor for email">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/image-compressor.html">
 <meta name="robots" content="index, follow">
 <style>
@@ -19,12 +19,171 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f3f4f6;
     min-height: 100vh;
-    padding: 40px 20px;
 }
 
-.container {
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
     max-width: 1200px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== ORIGINAL IMAGE COMPRESSOR STYLES ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 /* Main Card */
@@ -497,9 +656,91 @@ body.dark .control-group select {
         grid-template-columns: 1fr;
     }
 }
+
+/* SEO Article Styles */
+.info-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    margin-top: 30px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.ad-space {
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
 </style>
 </head>
 <body>
+
+<!-- ========== NAVBAR ADDED ========== -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                        <a href="image-compressor.html">🖼️ Image Compressor</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
     <!-- Dark Mode Toggle -->
@@ -573,31 +814,31 @@ body.dark .control-group select {
             <a href="loan-calculator.html" class="tool-link">🔘 Loan Calculator</a>
             <a href="percentage-calculator.html" class="tool-link">🔘 Percentage Calculator</a>
             <a href="word-counter.html" class="tool-link">🔘 Word Counter Tool</a>
-            <a href="text-case-converter.html" class="tool-link">🔘 Text Case Converter</a>
-            <a href="password-generator.html" class="tool-link">🔘 Password Generator</a>
-            <a href="image-compressor.html" class="tool-link">🔘 Image Compressor</a>
+            <a href="text-case-converter.html" class="tool-link">🔤 Text Case Converter</a>
+            <a href="password-generator.html" class="tool-link">🔐 Password Generator</a>
+            <a href="image-compressor.html" class="tool-link">🖼️ Image Compressor</a>
         </div>
         <a href="index.html" class="home-link">← Back to Home</a>
     </div>
     
-    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA ========== -->
-    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+    <!-- ========== SEO ARTICLE WITH LOW COMPETITION KEYWORDS ========== -->
+    <div class="info-section">
         
         <!-- Ad Space 1 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
         
         <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
             <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">🖼️ IMAGE TOOL</span>
-            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Best Free Image Compressor – Reduce Image Size Without Losing Quality</h1>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Best Free Image Compressor – Reduce Image Size Without Losing Quality | Online Image Compressor</h1>
             <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 300,000+ Users Monthly</p>
         </div>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is an Image Compressor and Why You Need One?</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">An <strong>image compressor</strong> is a tool that reduces the file size of images without significantly affecting visual quality. Our <strong>free image compressor online</strong> helps you optimize images for websites, social media, email, and more. Whether you need a <strong>4k image compressor</strong>, a <strong>discord image compressor</strong>, or a <strong>shopify image compressor</strong>, our tool handles JPG, PNG, and WEBP with zero uploads — fully private and lightning fast.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">An <strong>image compressor</strong> is a tool that reduces the file size of images without significantly affecting visual quality. Our <strong>free image compressor online</strong> helps you optimize images for websites, social media, email, and more. Whether you need a <strong>4k image compressor</strong>, a <strong>discord image compressor</strong>, or a <strong>shopify image compressor</strong>, our tool handles JPG, PNG, and WEBP with zero uploads — fully private and lightning fast. It's the best <strong>online image compressor</strong> for all your needs.</p>
         
         <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
             <p style="font-family: monospace; font-size: 16px; font-weight: bold; color: #1e3a8a;">🎯 Compress images to 200kb, 500kb, 2mb, or 5mb – Full control with quality slider!</p>
@@ -613,11 +854,11 @@ body.dark .control-group select {
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
                 <strong style="color: #1e3a8a;">🎨 All Major Formats</strong>
-                <p style="margin-top: 8px;">Support for JPG, JPEG, PNG, WEBP. Convert to next-gen formats for better performance</p>
+                <p style="margin-top: 8px;">Support for JPG, JPEG, PNG, WEBP. Convert to next-gen formats for better performance – perfect <strong>jpg compressor</strong> and <strong>png optimizer</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
                 <strong style="color: #1e3a8a;">⚡ Adjustable Compression</strong>
-                <p style="margin-top: 8px;">Quality slider from 0% to 100% — achieve exact file sizes like 200kb, 500kb, 2mb</p>
+                <p style="margin-top: 8px;">Quality slider from 0% to 100% — achieve exact file sizes like 200kb, 500kb, 2mb with our <strong>compress image to 200kb</strong> and <strong>image compressor to 2mb</strong> features</p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
                 <strong style="color: #1e3a8a;">🔒 Privacy First</strong>
@@ -625,7 +866,7 @@ body.dark .control-group select {
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
                 <strong style="color: #1e3a8a;">📱 Mobile Responsive</strong>
-                <p style="margin-top: 8px;">Works perfectly on Android, iPhone, iPad, and all devices</p>
+                <p style="margin-top: 8px;">Works perfectly on Android, iPhone, iPad, and all devices as a <strong>image compressor app</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px;">
                 <strong style="color: #1e3a8a;">🌙 Dark Mode</strong>
@@ -635,35 +876,35 @@ body.dark .control-group select {
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Compress Images to Specific Sizes (200kb, 500kb, 2mb, 5mb)</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Many users search for <strong>image compressor to 200kb</strong> or <strong>compress image to 20kb</strong>. Here's how: upload your image, move the quality slider down gradually. Watch the compressed size update in real-time. When the displayed size reaches your target (e.g., 200kb), stop and download. For <strong>image compressor to 2mb</strong> or <strong>5mb</strong>, simply adjust quality until the file size meets your requirement.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Many users search for <strong>image compressor to 200kb</strong> or <strong>compress image to 20kb</strong>. Here's how: upload your image, move the quality slider down gradually. Watch the compressed size update in real-time. When the displayed size reaches your target (e.g., 200kb), stop and download. For <strong>image compressor to 2mb</strong> or <strong>5mb</strong>, simply adjust quality until the file size meets your requirement. Our <strong>compress image to 200kb</strong> feature makes it easy to meet any file size limit.</p>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Special Use Cases: Discord, Shopify, and More</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;"><strong>Discord image compressor</strong> users often need to stay under Discord's 8MB limit. Our tool helps you quickly reduce screenshots and memes. For <strong>shopify image compressor</strong>, compressed product images improve store speed and SEO rankings. Even for <strong>4k image compressor</strong> tasks, our tool delivers high-quality results while maintaining detail.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;"><strong>Discord image compressor</strong> users often need to stay under Discord's 8MB limit. Our tool helps you quickly reduce screenshots and memes. For <strong>shopify image compressor</strong>, compressed product images improve store speed and SEO rankings. Even for <strong>4k image compressor</strong> tasks, our tool delivers high-quality results while maintaining detail. It's the ultimate <strong>image compressor for website</strong> and <strong>image compressor for email</strong>.</p>
         
         <!-- Ad Space 2 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Why Our Tool is the Best Image Compressor for 2025</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">We combine modern UI, <strong>4k image compressor</strong> support, and <strong>bulk image compression</strong> in one free package. Whether you're a professional photographer or a casual user looking for a <strong>free image optimizer</strong>, you'll appreciate the speed, security, and flexibility. No registration, no watermarks, no ads that interrupt workflow.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">We combine modern UI, <strong>4k image compressor</strong> support, and <strong>bulk image compression</strong> in one free package. Whether you're a professional photographer or a casual user looking for a <strong>free image optimizer</strong>, you'll appreciate the speed, security, and flexibility. No registration, no watermarks, no ads that interrupt workflow. It's the <strong>best image compressor</strong> available online.</p>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Image Compressor Tool</h2>
         
         <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li>Drag & drop images or click to select files</li>
+            <li>Drag & drop images or click to select files – works as a <strong>image compressor free</strong> tool</li>
             <li>Adjust quality slider to desired compression level</li>
             <li>Select output format (JPEG, PNG, WEBP, or Auto)</li>
             <li>Optionally set max width for resizing</li>
-            <li>Wait for automatic compression to complete</li>
+            <li>Wait for automatic compression to complete – our <strong>image compressor without losing quality</strong> ensures best results</li>
             <li>Click download button to save compressed images</li>
         </ol>
         
         <!-- Ad Space 3 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -677,7 +918,7 @@ body.dark .control-group select {
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How to compress an image to 200kb or 20kb?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Use the quality slider while watching the compressed size display. Lower quality reduces file size. For precise 200kb target, adjust until you see "200 KB" under compressed preview.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Use the quality slider while watching the compressed size display. Lower quality reduces file size. For precise 200kb target, adjust until you see "200 KB" under compressed preview. Our <strong>compress image to 20kb</strong> feature makes this easy.</div>
                     </div>
                 </div>
                 
@@ -691,7 +932,7 @@ body.dark .control-group select {
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I compress multiple images at once?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes! Our bulk image compressor supports multiple images simultaneously. Simply select multiple files or drag and drop them.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes! Our <strong>bulk image compression</strong> tool supports multiple images simultaneously. Simply select multiple files or drag and drop them.</div>
                     </div>
                 </div>
                 
@@ -705,21 +946,21 @@ body.dark .control-group select {
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the best image compressor for Discord?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our tool is perfect for Discord image compressor needs (under 8MB limit) and Shopify image compressor requirements.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our tool is perfect for <strong>discord image compressor</strong> needs (under 8MB limit) and <strong>shopify image compressor</strong> requirements.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this tool work on mobile?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, fully responsive and touch-friendly. Works on iPhone, Android, and tablets. The mobile image compressor experience is smooth.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, fully responsive and touch-friendly. Works on iPhone, Android, and tablets. The <strong>image compressor app</strong> experience is smooth.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I compress to 2mb or 5mb exactly?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, use the slider to fine-tune. The real-time size display helps you hit image compressor to 2mb or 5mb targets.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, use the slider to fine-tune. The real-time size display helps you hit <strong>image compressor to 2mb</strong> or <strong>5mb</strong> targets.</div>
                     </div>
                 </div>
                 
@@ -729,19 +970,26 @@ body.dark .control-group select {
                         <div itemprop="text" style="color: #374151; line-height: 1.6;">No hard limit, but extremely large images (50MB+) may take longer due to client-side processing. For most images under 20MB, compression is instant.</div>
                     </div>
                 </div>
+                
+                <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the best image compressor without losing quality?</h3>
+                    <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our <strong>image compressor without losing quality</strong> uses advanced algorithms to maintain visual fidelity while reducing file size significantly. Perfect for professional photographers and designers.</div>
+                    </div>
+                </div>
             </div>
         </div>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Privacy and Security</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy matters. This image compressor runs entirely inside your browser. We do not store, track, or share any images or personal information. No data is sent to any server, making this tool completely secure for compressing sensitive images.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Your privacy matters. This <strong>online image compressor</strong> runs entirely inside your browser. We do not store, track, or share any images or personal information. No data is sent to any server, making this tool completely secure for compressing sensitive images.</p>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Stop searching for the <strong>best image compressor</strong> or alternatives — this is the all-in-one solution. Bookmark this page for quick access to the most reliable <strong>online image compressor</strong> that respects your privacy and delivers exceptional results every time.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Stop searching for the <strong>best image compressor</strong> or alternatives — this is the all-in-one solution. Bookmark this page for quick access to the most reliable <strong>online image compressor</strong> that respects your privacy and delivers exceptional results every time. Whether you need to <strong>compress images online</strong> for web, email, or social media, our <strong>free image optimizer</strong> has you covered.</p>
         
         <!-- Ad Space 4 - Bottom -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -1026,6 +1274,21 @@ initDarkMode();
 
 // Current Date
 document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
 </script>
 
 <!-- Footer -->
