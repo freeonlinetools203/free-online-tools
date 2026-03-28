@@ -997,7 +997,7 @@ body {
         <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 2</div>
     </div>
     
-    <!-- Article Section (2000+ words with keywords) -->
+    <!-- Article Section -->
     <div class="article-section">
         <h2>GST Calculator – Complete Tax Guide</h2>
         <p>Welcome to the most comprehensive <strong>GST calculator</strong> available online. Whether you need a <strong>GST calculator India</strong> for Indian tax compliance, a <strong>GST calculator Pakistan</strong> for Pakistani sales tax, or a <strong>UAE VAT calculator</strong> for Dubai businesses, this tool provides instant, accurate results. Our <strong>reverse GST calculator</strong> and <strong>GST inclusive calculator</strong> help you understand tax implications for any transaction.</p>
@@ -1022,9 +1022,6 @@ body {
         <h3>Reverse GST Calculator – Find Original Price</h3>
         <p>A <strong>reverse GST calculator</strong> helps you determine the original price before tax when you only know the total inclusive amount. This is useful for tax invoices and accounting purposes.</p>
         
-        <h3>GST Inclusive vs Exclusive Calculator</h3>
-        <p>Understanding whether a price is <strong>GST inclusive</strong> or <strong>GST exclusive</strong> is crucial for accurate billing. Our <strong>GST inclusive calculator</strong> shows you the tax component within a total price, while the exclusive calculator shows the tax added to a base price.</p>
-        
         <h3>Supported Countries & Tax Rates</h3>
         <ul>
             <li><strong>🇮🇳 India:</strong> GST 5%, 12%, 18%, 28% (INR)</li>
@@ -1047,7 +1044,6 @@ body {
             <li>✅ Real-Time Results – Instant calculations as you type</li>
             <li>✅ Visual Charts – See tax distribution at a glance</li>
             <li>✅ Mobile Friendly – Works perfectly on all devices</li>
-            <li>✅ Export & Print – Copy results or print for records</li>
         </ul>
     </div>
     
@@ -1063,37 +1059,27 @@ body {
         
         <div class="faq-item">
             <div class="faq-question">What is a GST calculator?</div>
-            <div class="faq-answer">A GST calculator is a tool that computes the Goods and Services Tax amount on a given price. It can calculate tax added to a base price (GST exclusive) or extract tax from a total price (GST inclusive).</div>
+            <div class="faq-answer">A GST calculator is a tool that computes the Goods and Services Tax amount on a given price.</div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">How to calculate GST in India?</div>
-            <div class="faq-answer">In India, GST rates are 5%, 12%, 18%, and 28%. To calculate GST, multiply the original amount by the GST rate and divide by 100. Our GST calculator India automatically handles all slabs.</div>
+            <div class="faq-answer">Multiply the original amount by the GST rate and divide by 100. Our GST calculator India automatically handles all slabs.</div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">What is reverse GST calculation?</div>
-            <div class="faq-answer">Reverse GST calculation finds the original price before tax when you only know the total inclusive amount. Formula: Original = Total ÷ (1 + GST Rate/100).</div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">What is the difference between GST inclusive and exclusive?</div>
-            <div class="faq-answer">GST exclusive means tax is added to the base price. GST inclusive means the price already includes tax. Our calculator supports both modes.</div>
+            <div class="faq-answer">Reverse GST calculation finds the original price before tax when you only know the total inclusive amount.</div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">What is the GST rate in Pakistan?</div>
-            <div class="faq-answer">The standard GST rate in Pakistan is 17%. Some goods may have different rates, but our GST calculator Pakistan uses the standard 17% rate.</div>
+            <div class="faq-answer">The standard GST rate in Pakistan is 17%.</div>
         </div>
         
         <div class="faq-item">
             <div class="faq-question">What is VAT in UAE?</div>
-            <div class="faq-answer">VAT in UAE is 5%. Our UAE VAT calculator helps businesses and individuals calculate the correct tax amount for transactions in Dubai, Abu Dhabi, and other emirates.</div>
-        </div>
-        
-        <div class="faq-item">
-            <div class="faq-question">What is HST in Canada?</div>
-            <div class="faq-answer">HST (Harmonized Sales Tax) combines GST and PST. Rates vary by province: 13% in Ontario, 15% in Nova Scotia, etc. Our Canada HST calculator supports these rates.</div>
+            <div class="faq-answer">VAT in UAE is 5%.</div>
         </div>
     </div>
     
@@ -1109,7 +1095,7 @@ body {
     <div class="footer-container">
         <div class="footer-col">
             <h3>✨ Free Online Tools</h3>
-            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities.</p>
         </div>
         <div class="footer-col">
             <h4>📄 Quick Links</h4>
@@ -1134,7 +1120,7 @@ body {
         </div>
     </div>
     <div class="footer-bottom">
-        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved.</p>
     </div>
 </footer>
 
@@ -1142,15 +1128,15 @@ body {
 <script>
 // Country Configurations
 const countryConfig = {
-    IN: { currency: "₹", symbolPos: "left", rates: [5,12,18,28], defaultRate: 18, name: "India" },
-    PK: { currency: "₨", symbolPos: "left", rates: [17], defaultRate: 17, name: "Pakistan" },
-    US: { currency: "$", symbolPos: "left", rates: "custom", defaultRate: 7.5, name: "USA" },
-    CA: { currency: "C$", symbolPos: "left", rates: [5,13,15], defaultRate: 13, name: "Canada" },
-    AE: { currency: "د.إ", symbolPos: "right", rates: [5], defaultRate: 5, name: "UAE" },
-    GB: { currency: "£", symbolPos: "left", rates: [20], defaultRate: 20, name: "UK" },
-    AU: { currency: "A$", symbolPos: "left", rates: [10], defaultRate: 10, name: "Australia" },
-    SG: { currency: "S$", symbolPos: "left", rates: [9], defaultRate: 9, name: "Singapore" },
-    MY: { currency: "RM", symbolPos: "left", rates: [6,8], defaultRate: 6, name: "Malaysia" }
+    IN: { currency: "₹", rates: [5,12,18,28], defaultRate: 18 },
+    PK: { currency: "₨", rates: [17], defaultRate: 17 },
+    US: { currency: "$", rates: "custom", defaultRate: 7.5 },
+    CA: { currency: "C$", rates: [5,13,15], defaultRate: 13 },
+    AE: { currency: "د.إ", rates: [5], defaultRate: 5 },
+    GB: { currency: "£", rates: [20], defaultRate: 20 },
+    AU: { currency: "A$", rates: [10], defaultRate: 10 },
+    SG: { currency: "S$", rates: [9], defaultRate: 9 },
+    MY: { currency: "RM", rates: [6,8], defaultRate: 6 }
 };
 
 let currentCountry = "IN";
@@ -1181,10 +1167,8 @@ function updateSlabButtons() {
 }
 
 function compute() {
-    let rate = parseFloat(document.getElementById("taxRate").value);
-    if (isNaN(rate)) rate = 0;
-    let amount = parseFloat(document.getElementById("amountInput").value);
-    if (isNaN(amount)) amount = 0;
+    let rate = parseFloat(document.getElementById("taxRate").value) || 0;
+    let amount = parseFloat(document.getElementById("amountInput").value) || 0;
     
     let original = 0, gst = 0, total = 0;
     
@@ -1196,7 +1180,7 @@ function compute() {
         total = amount;
         original = total / (1 + rate / 100);
         gst = total - original;
-    } else if (currentMode === "reverse") {
+    } else {
         let inclusiveTotal = amount;
         original = inclusiveTotal / (1 + rate / 100);
         gst = inclusiveTotal - original;
@@ -1213,29 +1197,18 @@ function compute() {
     document.getElementById("gstPercentLabel").innerHTML = gstPercentOfTotal.toFixed(2) + "%";
     document.getElementById("progressFill").style.width = Math.min(100, gstPercentOfTotal) + "%";
     
-    let explanation = "";
-    if (currentMode === "add") {
-        explanation = `Formula: GST = Amount × Rate/100 = ${formatMoney(original)} × ${rate}% = ${formatMoney(gst)}. Total = Original + GST = ${formatMoney(total)}.`;
-    } else if (currentMode === "remove") {
-        explanation = `Formula: Original = Total ÷ (1 + Rate/100) = ${formatMoney(amount)} ÷ ${(1 + rate/100).toFixed(4)} = ${formatMoney(original)}. GST = Total - Original = ${formatMoney(gst)}.`;
-    } else {
-        explanation = `Reverse GST: Original = Inclusive Total ÷ (1 + Rate/100) = ${formatMoney(amount)} ÷ ${(1 + rate/100).toFixed(4)} = ${formatMoney(original)}. GST = Inclusive Total - Original = ${formatMoney(gst)}.`;
-    }
+    let explanation = currentMode === "add" ? `GST = ${formatMoney(original)} × ${rate}% = ${formatMoney(gst)}` :
+                      currentMode === "remove" ? `Original = ${formatMoney(amount)} ÷ ${(1 + rate/100).toFixed(4)} = ${formatMoney(original)}` :
+                      `Original = ${formatMoney(amount)} ÷ ${(1 + rate/100).toFixed(4)} = ${formatMoney(original)}`;
     document.getElementById("formulaExplanation").innerHTML = explanation;
+    document.getElementById("insightMessage").innerHTML = `💡 ${formatMoney(original)} base, ${rate}% GST = ${formatMoney(gst)} → Total ${formatMoney(total)}.`;
     
-    let insightMsg = `💡 Insight: ${formatMoney(original)} base, ${rate}% GST = ${formatMoney(gst)} → Total ${formatMoney(total)}.`;
-    document.getElementById("insightMessage").innerHTML = insightMsg;
-    
-    updateChart(original, gst);
-}
-
-function updateChart(original, gst) {
     if (gstChart) gstChart.destroy();
     let ctx = document.getElementById("gstChart").getContext("2d");
     gstChart = new Chart(ctx, {
         type: 'doughnut',
         data: { labels: ['Base Amount', 'Tax Amount'], datasets: [{ data: [original, gst], backgroundColor: ['#2563eb', '#10b981'], borderWidth: 0 }] },
-        options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${formatMoney(ctx.raw)}` } } } }
+        options: { responsive: true, maintainAspectRatio: true }
     });
 }
 
@@ -1243,9 +1216,7 @@ function setCountry() {
     currentCountry = document.getElementById("countrySelect").value;
     let conf = countryConfig[currentCountry];
     document.getElementById("currencySymbol").innerText = conf.currency;
-    if (conf.rates !== "custom") {
-        document.getElementById("taxRate").value = conf.defaultRate;
-    }
+    if (conf.rates !== "custom") document.getElementById("taxRate").value = conf.defaultRate;
     updateSlabButtons();
     compute();
 }
@@ -1260,45 +1231,22 @@ function setMode(mode) {
 }
 
 function copyResults() {
-    let original = document.getElementById("originalAmount").innerText;
-    let gst = document.getElementById("gstAmount").innerText;
-    let total = document.getElementById("totalAmount").innerText;
-    let text = `💰 GST Calculation\n━━━━━━━━━━━━━━━━━━━━━\nOriginal Amount: ${original}\nGST Amount: ${gst}\nTotal Amount: ${total}\nRate: ${document.getElementById("appliedRate").innerText}\n━━━━━━━━━━━━━━━━━━━━━`;
+    let text = `Original: ${document.getElementById("originalAmount").innerText}\nGST: ${document.getElementById("gstAmount").innerText}\nTotal: ${document.getElementById("totalAmount").innerText}`;
     navigator.clipboard.writeText(text);
-    alert("✓ Results copied to clipboard!");
+    alert("✓ Copied!");
 }
 
-function printPage() {
-    window.print();
-}
+function printPage() { window.print(); }
 
-// Event Listeners
 document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("countrySelect").addEventListener("change", setCountry);
     document.getElementById("taxRate").addEventListener("input", compute);
     document.getElementById("amountInput").addEventListener("input", compute);
-    document.querySelectorAll(".calc-mode-btn").forEach(btn => {
-        btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode")));
-    });
+    document.querySelectorAll(".calc-mode-btn").forEach(btn => btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode"))));
     document.getElementById("copyResultsBtn").addEventListener("click", copyResults);
     document.getElementById("printBtn").addEventListener("click", printPage);
-    
     setCountry();
     compute();
-});
-
-// Page Transition for Links
-document.addEventListener('DOMContentLoaded', function() {
-    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
-    internalLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
-            e.preventDefault();
-            document.body.classList.add('page-transition');
-            setTimeout(() => { window.location.href = href; }, 250);
-        });
-    });
 });
 
 // Dropdown JavaScript
