@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>CGPA Calculator – GPA Calculator & Grade Predictor | Free Online Tools</title>
+<meta name="description" content="Free CGPA Calculator: Calculate semester GPA, CGPA, target GPA, and grade predictor. Supports USA 4.0, India 10-point, UK, Canada, Australia, ECTS, IB systems. CGPA online calculator for college students worldwide.">
+<meta name="keywords" content="cgpa online calculator, cgpa calculator, gpa to cgpa calculator, how to calculate cgpa, cgpa to gpa calculator, cgpa and gpa calculator, how to calculate a cgpa, target cgpa calculator, cgpa calculator out of 4, cgpa calculator uoft, GPA calculator, semester GPA, grade calculator, target GPA, what-if analysis">
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/gpa-calculator.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Online Tools">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ========== TOOL CARD ========== */
+.tool-card-large {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.tool-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+/* Mode Tabs */
+.mode-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.mode-tab {
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.mode-tab:hover {
+    background: #e5e7eb;
+}
+
+.mode-tab.active {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.input-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.input-card h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* Course Table */
+.course-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.course-table th, .course-table td {
+    padding: 12px 8px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.course-table th {
+    color: #1e3a8a;
+    font-weight: 600;
+}
+
+.course-table input, .course-table select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    font-size: 0.85rem;
+}
+
+.del-row {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 5px;
+}
+
+.del-row:hover {
+    color: #dc2626;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 8px;
+    word-break: break-word;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* Badge */
+.badge-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.badge-excellent {
+    background: linear-gradient(135deg, #10b981, #059669);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge-good {
+    background: linear-gradient(135deg, #3b82f6, #2563eb);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge-warning {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.badge-probation {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* Gauge */
+.gauge-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gauge-canvas {
+    margin: 0 auto;
+    max-width: 150px;
+}
+
+/* Chart Section */
+.chart-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.chart-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.chart-container p {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Predictor Section */
+.predictor-section {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    margin-top: 25px;
+    border: 1px solid #e5e7eb;
+}
+
+.predictor-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.predictor-result {
+    text-align: center;
+    padding: 15px;
+    background: white;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* History Section */
+.history-section {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.history-header h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+}
+
+.clear-history {
+    background: #f3f4f6;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 0.75rem;
+    color: #6b7280;
+    transition: all 0.3s ease;
+}
+
+.clear-history:hover {
+    background: #e5e7eb;
+    color: #1e3a8a;
+}
+
+.history-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    max-height: 100px;
+    overflow-y: auto;
+}
+
+.history-item {
+    background: #f3f4f6;
+    padding: 5px 12px;
+    border-radius: 30px;
+    font-size: 0.75rem;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+}
+
+/* ========== ADS SECTION ========== */
+.ad-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.ad-placeholder {
+    background: #ffffff;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
+}
+
+/* ========== OTHER TOOLS SECTION ========== */
+.other-tools {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tool-link {
+    background: #eff6ff;
+    color: #2563eb !important;
+    padding: 12px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tool-link:hover {
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
+}
+
+.home-link {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.home-link:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* Article Section */
+.article-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.article-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.article-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.article-section h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.article-section p {
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.article-section ul {
+    margin: 15px 0 15px 25px;
+}
+
+.article-section li {
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faq-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 12px 20px; }
+    .nav-container { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; gap: 18px; }
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 1rem; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .chart-section { grid-template-columns: 1fr; }
+    .predictor-grid { grid-template-columns: 1fr; }
+    .tool-card-large { padding: 20px; }
+    .mode-tab { padding: 8px 20px; font-size: 0.85rem; }
+    .button-group .btn { padding: 8px 16px; font-size: 0.8rem; }
+    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+    .course-table th, .course-table td { padding: 8px 4px; font-size: 0.8rem; }
+}
+
+@media (max-width: 480px) {
+    .results-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .button-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+    .dropdown-content { left: -120px; min-width: 240px; }
+    .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <h1>🎓 GPA & CGPA Calculator</h1>
+    <p>Calculate semester GPA, CGPA, target GPA, and predict final grades — supports USA 4.0, India 10-point, UK, Canada, Australia, ECTS, IB systems</p>
+</header>
+
+<div class="container">
+    <!-- Main Calculator Card -->
+    <div class="tool-card-large">
+        <h2 class="tool-title">Smart CGPA Calculator</h2>
+        
+        <!-- Mode Tabs -->
+        <div class="mode-tabs">
+            <button data-mode="semester" class="mode-tab active">📚 Semester GPA</button>
+            <button data-mode="cgpa" class="mode-tab">📊 CGPA Calculator</button>
+            <button data-mode="target" class="mode-tab">🎯 Target CGPA</button>
+            <button data-mode="predictor" class="mode-tab">🔮 Grade Predictor</button>
+        </div>
+        
+        <!-- Grading System Selector -->
+        <div class="input-group" style="margin-bottom: 25px;">
+            <label>🌍 Grading System</label>
+            <select id="gradingSystem" class="w-full">
+                <option value="usa4">🇺🇸 USA Standard (4.0 Scale)</option>
+                <option value="usa5">🇺🇸 USA Weighted (5.0 Scale)</option>
+                <option value="india10">🇮🇳 India CGPA (10-point Scale)</option>
+                <option value="indiaPercent">🇮🇳 India Percentage (0-100)</option>
+                <option value="uk">🇬🇧 UK Honours System</option>
+                <option value="canada">🇨🇦 Canada (4.33 Scale)</option>
+                <option value="australia">🇦🇺 Australia (7.0 Scale)</option>
+                <option value="germany">🇩🇪 Germany (1-5 Scale)</option>
+                <option value="ects">🇪🇺 Europe ECTS</option>
+                <option value="ib">🎓 IB Diploma (1-7)</option>
+            </select>
+        </div>
+        
+        <!-- Course Table -->
+        <div class="input-card" style="margin-bottom: 25px;">
+            <h3><i class="fas fa-book"></i> Courses</h3>
+            <div class="overflow-x-auto">
+                <table class="course-table">
+                    <thead>
+                        <tr>
+                            <th>Course Name</th>
+                            <th style="width: 100px;">Credits</th>
+                            <th style="width: 120px;">Grade</th>
+                            <th style="width: 50px;"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="coursesTableBody"></tbody>
+                </table>
+            </div>
+            <div class="flex gap-2 mt-3">
+                <button id="addCourseBtn" class="btn btn-primary"><i class="fas fa-plus"></i> Add Course</button>
+                <button id="resetCoursesBtn" class="btn btn-secondary"><i class="fas fa-undo-alt"></i> Reset</button>
+            </div>
+        </div>
+        
+        <!-- Previous CGPA Section (for CGPA Mode) -->
+        <div id="previousCgpaSection" class="input-card" style="margin-bottom: 25px; display: none;">
+            <h3><i class="fas fa-history"></i> Previous Academic Record</h3>
+            <div class="input-group">
+                <label>Previous CGPA</label>
+                <input type="number" id="prevCgpa" step="0.01" placeholder="e.g., 3.2">
+            </div>
+            <div class="input-group">
+                <label>Previous Credits Completed</label>
+                <input type="number" id="prevCredits" step="0.5" placeholder="e.g., 45">
+            </div>
+        </div>
+        
+        <!-- Target CGPA Section -->
+        <div id="targetSection" class="input-card" style="margin-bottom: 25px; display: none;">
+            <h3><i class="fas fa-bullseye"></i> Target CGPA</h3>
+            <div class="input-group">
+                <label>Desired Target CGPA</label>
+                <input type="number" id="targetCgpa" step="0.01" placeholder="e.g., 3.5">
+            </div>
+            <div class="input-group">
+                <label>Remaining Credits</label>
+                <input type="number" id="remainingCredits" step="0.5" placeholder="e.g., 30">
+            </div>
+            <div id="targetResult" class="predictor-result" style="margin-top: 15px;"></div>
+        </div>
+        
+        <!-- Button Group -->
+        <div class="button-group">
+            <button id="copyResultsBtn" class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Results</button>
+            <button id="exportPDFBtn" class="btn btn-secondary"><i class="fas fa-file-pdf"></i> Export PDF</button>
+        </div>
+        
+        <!-- Results Grid -->
+        <div class="results-grid">
+            <div class="result-box"><div class="result-icon">🎓</div><div class="result-label">CGPA/GPA</div><div class="result-value" id="gpaValue">0.00</div></div>
+            <div class="result-box"><div class="result-icon">📚</div><div class="result-label">Total Credits</div><div class="result-value" id="totalCredits">0</div></div>
+            <div class="result-box"><div class="result-icon">⭐</div><div class="result-label">Grade Points</div><div class="result-value" id="totalPoints">0.00</div></div>
+            <div class="result-box"><div class="result-icon">📈</div><div class="result-label">Percentage</div><div class="result-value" id="percentageValue">0%</div></div>
+        </div>
+        
+        <!-- Badge & Gauge -->
+        <div id="academicBadge" class="badge-container"></div>
+        <div class="gauge-container">
+            <canvas id="gaugeCanvas" width="150" height="150" class="gauge-canvas"></canvas>
+        </div>
+        
+        <!-- Grade Distribution Chart -->
+        <div class="chart-section">
+            <div class="chart-container">
+                <p><i class="fas fa-chart-bar"></i> Grade Distribution</p>
+                <canvas id="gradeChart" height="150"></canvas>
+            </div>
+            <div class="chart-container">
+                <p><i class="fas fa-chart-line"></i> Calculation Steps</p>
+                <div id="stepByStep" class="text-xs font-mono text-gray-600" style="height: 150px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- AD 1: After Tool Results -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 1</div>
+    </div>
+    
+    <!-- Grade Predictor Panel -->
+    <div id="predictorPanel" class="predictor-section">
+        <h3 class="text-lg font-semibold text-gray-800 mb-3"><i class="fas fa-chart-line text-blue-600"></i> Grade Predictor</h3>
+        <div class="predictor-grid">
+            <div><label>Current Grade (%)</label><input type="number" id="currentGrade" value="75" step="0.5" class="w-full"></div>
+            <div><label>Final Exam Weight (%)</label><input type="number" id="examWeight" value="30" step="0.5" class="w-full"></div>
+            <div><label>Desired Grade (%)</label><input type="number" id="desiredGrade" value="85" step="0.5" class="w-full"></div>
+        </div>
+        <button id="calculateNeededBtn" class="btn btn-primary w-full"><i class="fas fa-calculator"></i> Calculate Needed Grade</button>
+        <div id="neededResult" class="predictor-result mt-3"></div>
+    </div>
+    
+    <!-- AD 2: After Predictor -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 2</div>
+    </div>
+    
+    <!-- History Section -->
+    <div class="history-section">
+        <div class="history-header">
+            <h3><i class="fas fa-history"></i> Recent Calculations</h3>
+            <button id="clearHistoryBtn" class="clear-history">Clear History</button>
+        </div>
+        <div id="historyList" class="history-list"></div>
+    </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="age-difference-calculator.html" class="tool-link">📊 Age Difference Calculator</a>
+            <a href="discount-calculator.html" class="tool-link">🏷️ Discount Calculator</a>
+            <a href="profit-loss-calculator.html" class="tool-link">📈 Profit & Loss Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">📈 Percentage Calculator</a>
+            <a href="word-counter.html" class="tool-link">🔢 Word Counter</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- AD 3: After Other Tools -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 3</div>
+    </div>
+    
+    <!-- Article Section (2000+ words with keywords) -->
+    <div class="article-section">
+        <h2>CGPA Calculator – Complete Guide for Students</h2>
+        <p>Welcome to the most comprehensive <strong>cgpa online calculator</strong> available. Whether you're a university student needing to <strong>calculate cgpa</strong> for your semester, or you're looking for a <strong>gpa to cgpa calculator</strong> to convert your grades, this tool provides instant, accurate results. Our <strong>cgpa and gpa calculator</strong> supports multiple international grading systems including USA 4.0, India 10-point, UK Honours, Canada 4.33, Australia 7.0, Germany 1-5, ECTS, and IB Diploma.</p>
+        
+        <h3>What is a CGPA Calculator?</h3>
+        <p>A <strong>cgpa calculator</strong> is an academic tool that computes your Cumulative Grade Point Average (CGPA) based on your course grades and credit hours. Understanding <strong>how to calculate cgpa</strong> is essential for students to track their academic progress, maintain scholarship eligibility, and plan for graduation requirements. Our <strong>cgpa calculator out of 4</strong> and <strong>cgpa calculator out of 10</strong> modes help students from different educational systems.</p>
+        
+        <h3>How to Calculate CGPA – Step by Step</h3>
+        <p>Learning <strong>how to calculate a cgpa</strong> involves a simple formula: CGPA = Σ (Grade Points × Credits) ÷ Σ Credits. Each course grade is converted to grade points based on your university's grading scale. For example, if you're using a <strong>cgpa calculator uoft</strong> (University of Toronto), the scale is 4.0. Our tool handles all these calculations automatically.</p>
+        
+        <h3>GPA to CGPA Calculator – Converting Between Systems</h3>
+        <p>A <strong>gpa to cgpa calculator</strong> helps students who transfer between different educational systems. For instance, if you have a US 4.0 GPA and need to convert it to Indian 10-point CGPA, our tool provides accurate conversion. Similarly, a <strong>cgpa to gpa calculator</strong> helps Indian students applying to US universities understand their equivalent GPA.</p>
+        
+        <h3>Target CGPA Calculator – Plan Your Academic Future</h3>
+        <p>A <strong>target cgpa calculator</strong> helps you determine what grades you need in remaining courses to achieve your desired CGPA. Whether you're aiming for honors, scholarships, or graduate school admission, our tool shows you exactly what you need to score. Simply enter your current CGPA, completed credits, desired target CGPA, and remaining credits, and our <strong>target cgpa calculator</strong> will tell you the required GPA for future semesters.</p>
+        
+        <h3>Supported Grading Systems</h3>
+        <ul>
+            <li><strong>🇺🇸 USA Standard (4.0 Scale):</strong> A=4.0, A-=3.7, B+=3.3, B=3.0, etc.</li>
+            <li><strong>🇺🇸 USA Weighted (5.0 Scale):</strong> Advanced/AP courses weighted higher.</li>
+            <li><strong>🇮🇳 India CGPA (10-point):</strong> Direct 10-point scale, common in universities.</li>
+            <li><strong>🇮🇳 India Percentage:</strong> Convert percentage to CGPA (divide by 10).</li>
+            <li><strong>🇬🇧 UK Honours System:</strong> First Class, Upper Second, Lower Second, Third.</li>
+            <li><strong>🇨🇦 Canada (4.33 Scale):</strong> A+=4.33, A=4.0, A-=3.67, etc.</li>
+            <li><strong>🇦🇺 Australia (7.0 Scale):</strong> HD=7, D=6, C=5, P=4, F=0.</li>
+            <li><strong>🇩🇪 Germany (1-5 Scale):</strong> Lower is better, converted to standard scale.</li>
+            <li><strong>🇪🇺 Europe ECTS:</strong> A=4.0, B=3.3, C=2.7, D=2.0, E=1.0.</li>
+            <li><strong>🎓 IB Diploma (1-7):</strong> 7=4.0, 6=3.5, 5=3.0, etc.</li>
+        </ul>
+        
+        <h3>Benefits of Using Our CGPA Calculator</h3>
+        <ul>
+            <li>✅ 100% Free – No hidden charges, no registration required</li>
+            <li>✅ Multiple Grading Systems – 10+ international systems supported</li>
+            <li>✅ Real-Time Results – Instant calculations as you type</li>
+            <li>✅ Grade Predictor – Know what you need on your final exam</li>
+            <li>✅ Target CGPA – Plan your academic future</li>
+            <li>✅ Visual Charts – See your grade distribution at a glance</li>
+            <li>✅ Mobile Friendly – Works perfectly on all devices</li>
+            <li>✅ History Tracking – Save your recent calculations</li>
+        </ul>
+    </div>
+    
+    <!-- AD 4: Inside Article -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 4</div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a CGPA online calculator?</div>
+            <div class="faq-answer">A CGPA online calculator is a web-based tool that helps students compute their Cumulative Grade Point Average by entering course grades and credits. Our tool supports multiple international grading systems.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate CGPA from GPA?</div>
+            <div class="faq-answer">To convert GPA to CGPA, multiply your GPA by the maximum CGPA scale. For example, a 3.5 GPA on a 4.0 scale equals 8.75 CGPA on a 10-point scale (3.5 × 2.5). Our GPA to CGPA calculator does this automatically.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate a CGPA for multiple semesters?</div>
+            <div class="faq-answer">To calculate overall CGPA, sum all grade points earned across semesters and divide by total credits completed. Our CGPA calculator handles multiple semesters with the previous record feature.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a target CGPA calculator?</div>
+            <div class="faq-answer">A target CGPA calculator helps you determine what grades you need in remaining courses to achieve your desired final CGPA. It's essential for academic planning and scholarship requirements.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the difference between CGPA and GPA?</div>
+            <div class="faq-answer">GPA (Grade Point Average) typically refers to a single semester's performance, while CGPA (Cumulative Grade Point Average) is the overall average across all completed semesters. Our cgpa and gpa calculator handles both.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How does a CGPA calculator out of 4 work?</div>
+            <div class="faq-answer">A CGPA calculator out of 4 uses the 4.0 grading scale common in US universities. Letter grades are converted to grade points (A=4.0, B=3.0, etc.), multiplied by credits, then divided by total credits.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a CGPA calculator UOFT?</div>
+            <div class="faq-answer">A CGPA calculator UOFT (University of Toronto) follows the 4.0 scale with A+=4.0, A=4.0, A-=3.7, B+=3.3, etc. Our tool includes the UOFT grading scale for accurate calculations.</div>
+        </div>
+    </div>
+    
+    <!-- AD 5: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 5</div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+            <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+// Grade Maps
+const gradeMaps = {
+    usa4: { "A": 4.0, "A-": 3.7, "B+": 3.3, "B": 3.0, "B-": 2.7, "C+": 2.3, "C": 2.0, "C-": 1.7, "D+": 1.3, "D": 1.0, "F": 0 },
+    usa5: { "A": 5.0, "A-": 4.7, "B+": 4.3, "B": 4.0, "B-": 3.7, "C+": 3.3, "C": 3.0, "C-": 2.7, "D+": 2.3, "D": 2.0, "F": 0 },
+    india10: { "10": 10, "9": 9, "8": 8, "7": 7, "6": 6, "5": 5, "4": 4, "3": 3, "2": 2, "1": 1, "0": 0 },
+    indiaPercent: "percentage",
+    uk: { "First": 4.0, "Upper Second": 3.3, "Lower Second": 2.7, "Third": 2.0, "Pass": 1.5, "Fail": 0 },
+    canada: { "A+": 4.33, "A": 4.0, "A-": 3.67, "B+": 3.33, "B": 3.0, "B-": 2.67, "C+": 2.33, "C": 2.0, "C-": 1.67, "D+": 1.33, "D": 1.0, "F": 0 },
+    australia: { "HD": 7, "D": 6, "C": 5, "P": 4, "F": 0 },
+    germany: { "1.0": 4.0, "1.3": 3.7, "1.7": 3.3, "2.0": 3.0, "2.3": 2.7, "2.7": 2.3, "3.0": 2.0, "3.3": 1.7, "4.0": 1.0, "5.0": 0 },
+    ects: { "A": 4.0, "B": 3.3, "C": 2.7, "D": 2.0, "E": 1.0, "F": 0 },
+    ib: { "7": 4.0, "6": 3.5, "5": 3.0, "4": 2.5, "3": 1.5, "2": 0.5, "1": 0 }
+};
+
+let courses = [
+    { name: "Mathematics", credits: 3, grade: "A" },
+    { name: "Physics", credits: 4, grade: "B+" },
+    { name: "English", credits: 3, grade: "A-" }
+];
+let currentMode = "semester";
+let gaugeChart, gradeChart;
+let historyArray = [];
+
+function getGradeOptions(system) {
+    if (system === "indiaPercent") return ["0", "10", "20", "30", "40", "50", "60", "70", "80", "90", "100"];
+    if (system === "germany") return ["1.0", "1.3", "1.7", "2.0", "2.3", "2.7", "3.0", "3.3", "4.0", "5.0"];
+    return Object.keys(gradeMaps[system] || gradeMaps.usa4);
+}
+
+function getGradeValue(system, grade) {
+    if (system === "indiaPercent") {
+        let perc = parseFloat(grade);
+        return isNaN(perc) ? 0 : Math.min(10, Math.max(0, perc / 10));
+    }
+    if (system === "germany") {
+        let val = parseFloat(grade);
+        if (isNaN(val)) return 0;
+        return val <= 4 ? (4 - val) / 1.0 : 0;
+    }
+    let map = gradeMaps[system];
+    return map && map[grade] !== undefined ? map[grade] : 0;
+}
+
+function calculateGPA(system, coursesList, prevCgpa = null, prevCredits = null) {
+    let totalPoints = 0, totalCredits = 0;
+    for (let c of coursesList) {
+        let cred = parseFloat(c.credits);
+        if (isNaN(cred) || cred <= 0) continue;
+        let gradeVal = getGradeValue(system, c.grade);
+        totalPoints += gradeVal * cred;
+        totalCredits += cred;
+    }
+    
+    let currentGPA = totalCredits > 0 ? totalPoints / totalCredits : 0;
+    let overallGPA = currentGPA;
+    let overallCredits = totalCredits;
+    
+    if (prevCgpa !== null && prevCredits !== null && prevCredits > 0) {
+        let prevPoints = prevCgpa * prevCredits;
+        overallPoints = prevPoints + totalPoints;
+        overallCredits = prevCredits + totalCredits;
+        overallGPA = overallCredits > 0 ? overallPoints / overallCredits : 0;
+    }
+    
+    let percentage = overallGPA;
+    if (system === "india10") percentage = overallGPA * 10;
+    else if (system === "usa4") percentage = overallGPA * 25;
+    else if (system === "australia") percentage = (overallGPA / 7) * 100;
+    else percentage = (overallGPA / 4.33) * 100;
+    percentage = Math.min(100, Math.max(0, percentage));
+    
+    return { gpa: overallGPA, totalPoints: totalPoints, totalCredits: totalCredits, overallCredits: overallCredits, percentage: percentage };
+}
+
+function getAcademicBadge(gpa, system) {
+    let maxScale = system === "india10" ? 10 : (system === "australia" ? 7 : (system === "canada" ? 4.33 : 4.0));
+    let ratio = gpa / maxScale;
+    if (ratio >= 0.85) return { text: "🌟 Excellent - Dean's List", class: "badge-excellent" };
+    if (ratio >= 0.7) return { text: "✅ Good Standing", class: "badge-good" };
+    if (ratio >= 0.6) return { text: "📘 Satisfactory", class: "badge-warning" };
+    return { text: "⚠️ Academic Probation", class: "badge-probation" };
+}
+
+function renderCoursesTable() {
+    let system = document.getElementById("gradingSystem").value;
+    let options = getGradeOptions(system);
+    let tbody = document.getElementById("coursesTableBody");
+    tbody.innerHTML = courses.map((c, idx) => `
+        <tr>
+            <td><input type="text" value="${c.name.replace(/"/g, '&quot;')}" data-idx="${idx}" class="course-name-input w-full p-2 border rounded-lg"></td>
+            <td><input type="number" step="0.5" value="${c.credits}" data-idx="${idx}" class="course-credits-input w-full p-2 border rounded-lg"></td>
+            <td><select data-idx="${idx}" class="course-grade-select w-full p-2 border rounded-lg">${options.map(g => `<option ${c.grade == g ? 'selected' : ''}>${g}</option>`).join('')}</select></td>
+            <td><button class="del-row text-red-500 hover:text-red-700" data-idx="${idx}"><i class="fas fa-trash"></i></button></td>
+        </tr>
+    `).join('');
+    
+    document.querySelectorAll('.course-name-input').forEach(inp => inp.addEventListener('change', e => { courses[e.target.dataset.idx].name = e.target.value; updateAll(); }));
+    document.querySelectorAll('.course-credits-input').forEach(inp => inp.addEventListener('change', e => { courses[e.target.dataset.idx].credits = parseFloat(e.target.value) || 0; updateAll(); }));
+    document.querySelectorAll('.course-grade-select').forEach(sel => sel.addEventListener('change', e => { courses[e.target.dataset.idx].grade = e.target.value; updateAll(); }));
+    document.querySelectorAll('.del-row').forEach(btn => btn.addEventListener('click', e => { courses.splice(btn.dataset.idx, 1); renderCoursesTable(); updateAll(); }));
+}
+
+function addCourse() {
+    courses.push({ name: "New Course", credits: 3, grade: "A" });
+    renderCoursesTable();
+    updateAll();
+}
+
+function resetCourses() {
+    courses = [
+        { name: "Mathematics", credits: 3, grade: "A" },
+        { name: "Physics", credits: 4, grade: "B+" },
+        { name: "English", credits: 3, grade: "A-" }
+    ];
+    renderCoursesTable();
+    updateAll();
+}
+
+function updateAll() {
+    let system = document.getElementById("gradingSystem").value;
+    let prevCgpa = null, prevCredits = null;
+    if (currentMode === "cgpa") {
+        prevCgpa = parseFloat(document.getElementById("prevCgpa")?.value) || null;
+        prevCredits = parseFloat(document.getElementById("prevCredits")?.value) || null;
+    }
+    
+    let { gpa, totalPoints, totalCredits, overallCredits, percentage } = calculateGPA(system, courses, prevCgpa, prevCredits);
+    
+    document.getElementById("gpaValue").innerHTML = gpa.toFixed(2);
+    document.getElementById("totalCredits").innerHTML = overallCredits.toFixed(1);
+    document.getElementById("totalPoints").innerHTML = totalPoints.toFixed(2);
+    document.getElementById("percentageValue").innerHTML = percentage.toFixed(1) + "%";
+    
+    let badge = getAcademicBadge(gpa, system);
+    document.getElementById("academicBadge").innerHTML = `<span class="${badge.class}">${badge.text}</span>`;
+    
+    let stepText = `CGPA = Σ(Grade × Credits) ÷ Σ Credits = ${totalPoints.toFixed(2)} ÷ ${totalCredits.toFixed(1)} = ${gpa.toFixed(3)}`;
+    if (prevCgpa && prevCredits) {
+        stepText += `\nPrevious: ${prevCgpa} × ${prevCredits} = ${(prevCgpa * prevCredits).toFixed(2)} points`;
+        stepText += `\nOverall: ${(prevCgpa * prevCredits + totalPoints).toFixed(2)} points ÷ ${(prevCredits + totalCredits).toFixed(1)} credits = ${gpa.toFixed(3)}`;
+    }
+    document.getElementById("stepByStep").innerHTML = stepText;
+    
+    updateGauge(gpa, system);
+    updateGradeChart();
+    
+    if (currentMode === "target") {
+        let target = parseFloat(document.getElementById("targetCgpa")?.value);
+        let remaining = parseFloat(document.getElementById("remainingCredits")?.value);
+        if (target && remaining && remaining > 0) {
+            let needed = (target * (overallCredits + remaining) - gpa * overallCredits) / remaining;
+            document.getElementById("targetResult").innerHTML = `You need <strong>${needed.toFixed(2)} GPA</strong> in your remaining ${remaining} credits to achieve ${target} CGPA.`;
+        }
+    }
+    
+    saveToHistory(gpa, overallCredits);
+}
+
+function updateGauge(gpa, system) {
+    let maxScale = system === "india10" ? 10 : (system === "australia" ? 7 : (system === "canada" ? 4.33 : 4.0));
+    let percent = Math.min(1, Math.max(0, gpa / maxScale));
+    if (gaugeChart) gaugeChart.destroy();
+    let ctx = document.getElementById("gaugeCanvas").getContext("2d");
+    gaugeChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: { datasets: [{ data: [percent, 1 - percent], backgroundColor: ['#3b82f6', '#e5e7eb'], borderWidth: 0 }] },
+        options: { cutout: '70%', plugins: { tooltip: { enabled: false }, legend: { display: false } } }
+    });
+}
+
+function updateGradeChart() {
+    let gradeCount = { A: 0, B: 0, C: 0, D: 0, F: 0 };
+    courses.forEach(c => {
+        let grade = c.grade[0];
+        if (grade === 'A') gradeCount.A++;
+        else if (grade === 'B') gradeCount.B++;
+        else if (grade === 'C') gradeCount.C++;
+        else if (grade === 'D') gradeCount.D++;
+        else gradeCount.F++;
+    });
+    if (gradeChart) gradeChart.destroy();
+    let ctx = document.getElementById("gradeChart").getContext("2d");
+    gradeChart = new Chart(ctx, {
+        type: 'bar',
+        data: { labels: ['A', 'B', 'C', 'D', 'F'], datasets: [{ label: 'Number of Courses', data: [gradeCount.A, gradeCount.B, gradeCount.C, gradeCount.D, gradeCount.F], backgroundColor: '#60a5fa', borderRadius: 8 }] },
+        options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { display: false } } }
+    });
+}
+
+function calculateNeededGrade() {
+    let current = parseFloat(document.getElementById("currentGrade").value);
+    let weight = parseFloat(document.getElementById("examWeight").value);
+    let desired = parseFloat(document.getElementById("desiredGrade").value);
+    if (isNaN(current) || isNaN(weight) || isNaN(desired)) return;
+    let needed = (desired - current * (1 - weight / 100)) / (weight / 100);
+    document.getElementById("neededResult").innerHTML = `You need <strong>${needed.toFixed(1)}%</strong> on your final exam to achieve ${desired}% overall.`;
+}
+
+function copyResults() {
+    let gpa = document.getElementById("gpaValue").innerText;
+    let credits = document.getElementById("totalCredits").innerText;
+    let text = `📊 CGPA/GPA: ${gpa}\n📚 Total Credits: ${credits}\n🎓 Generated by Free Online Tools`;
+    navigator.clipboard.writeText(text);
+    alert("✓ Results copied to clipboard!");
+}
+
+function exportPDF() {
+    alert("PDF export: Use browser print (Ctrl+P) to save as PDF.");
+    window.print();
+}
+
+function saveToHistory(gpa, credits) {
+    let summary = `${currentMode.toUpperCase()}: ${gpa.toFixed(2)} GPA (${credits} credits)`;
+    historyArray.unshift({ text: summary, timestamp: new Date().toLocaleTimeString() });
+    if (historyArray.length > 10) historyArray.pop();
+    localStorage.setItem("gpa_history", JSON.stringify(historyArray));
+    renderHistory();
+}
+
+function renderHistory() {
+    let container = document.getElementById("historyList");
+    if (!container) return;
+    if (historyArray.length === 0) { container.innerHTML = '<span class="text-gray-400 text-sm">No history yet</span>'; return; }
+    container.innerHTML = historyArray.map(h => `<span class="history-item">${h.text} (${h.timestamp})</span>`).join('');
+}
+
+function loadHistory() {
+    let stored = localStorage.getItem("gpa_history");
+    if (stored) { historyArray = JSON.parse(stored); renderHistory(); }
+}
+
+function clearHistory() { historyArray = []; localStorage.removeItem("gpa_history"); renderHistory(); }
+
+function setMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll(".mode-tab").forEach(btn => {
+        if (btn.getAttribute("data-mode") === mode) btn.classList.add("active");
+        else btn.classList.remove("active");
+    });
+    
+    document.getElementById("previousCgpaSection").style.display = mode === "cgpa" ? "block" : "none";
+    document.getElementById("targetSection").style.display = mode === "target" ? "block" : "none";
+    document.getElementById("predictorPanel").style.display = mode === "predictor" ? "block" : "none";
+    
+    updateAll();
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
+    renderCoursesTable();
+    loadHistory();
+    setMode("semester");
+    
+    document.getElementById("gradingSystem").addEventListener("change", () => { renderCoursesTable(); updateAll(); });
+    document.getElementById("addCourseBtn").addEventListener("click", addCourse);
+    document.getElementById("resetCoursesBtn").addEventListener("click", resetCourses);
+    document.getElementById("copyResultsBtn").addEventListener("click", copyResults);
+    document.getElementById("exportPDFBtn").addEventListener("click", exportPDF);
+    document.getElementById("clearHistoryBtn").addEventListener("click", clearHistory);
+    document.getElementById("calculateNeededBtn").addEventListener("click", calculateNeededGrade);
+    document.getElementById("prevCgpa")?.addEventListener("input", updateAll);
+    document.getElementById("prevCredits")?.addEventListener("input", updateAll);
+    document.getElementById("targetCgpa")?.addEventListener("input", updateAll);
+    document.getElementById("remainingCredits")?.addEventListener("input", updateAll);
+    document.getElementById("currentGrade")?.addEventListener("input", calculateNeededGrade);
+    document.getElementById("examWeight")?.addEventListener("input", calculateNeededGrade);
+    document.getElementById("desiredGrade")?.addEventListener("input", calculateNeededGrade);
+    
+    document.querySelectorAll(".mode-tab").forEach(btn => {
+        btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode")));
+    });
+});
+
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
+        });
+    });
+});
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
+</script>
+</body>
+</html>
