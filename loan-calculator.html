@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Free Loan Calculator – Calculate Loan Interest & Total Payment Online Instantly</title>
-<meta name="description" content="Use our free online loan calculator to instantly calculate total interest and total payment for home loans, car loans, and personal loans. Fast, accurate, and easy to use.">
-<meta name="keywords" content="loan calculator online, free loan calculator, calculate loan interest, total loan payment, home loan calculator, car loan calculator, personal loan calculator, simple loan calculator">
+<meta name="description" content="Use our free online loan calculator to instantly calculate total interest and total payment for home loans, car loans, and personal loans. Fast, accurate, and easy to use. Includes simple loan calculator, loan interest calculator, and loan payment calculator.">
+<meta name="keywords" content="loan calculator online, free loan calculator, calculate loan interest, total loan payment, home loan calculator, car loan calculator, personal loan calculator, simple loan calculator, loan interest calculator, loan payment calculator, loan amortization calculator, monthly loan payment calculator, simple interest loan calculator, loan repayment calculator, mortgage loan calculator, education loan calculator, business loan calculator">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/loan-calculator.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Free Loan Calculator – Calculate Total Interest & Payment">
@@ -22,12 +22,171 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f3f4f6;
     min-height: 100vh;
-    padding: 40px 20px;
 }
 
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== ORIGINAL LOAN CALCULATOR STYLES ========== */
 .container {
     max-width: 750px;
-    margin: 0 auto;
+    margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 /* Main Card */
@@ -285,8 +444,9 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
-    body {
-        padding: 20px 15px;
+    .container {
+        padding: 0 15px;
+        margin-top: 20px;
     }
     
     .card-content {
@@ -305,9 +465,86 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* SEO Article Styles */
+.info-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    margin-top: 30px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.ad-space {
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
 </style>
 </head>
 <body>
+
+<!-- ========== NAVBAR ADDED ========== -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
     <!-- Main Loan Calculator Card -->
@@ -355,30 +592,30 @@ body {
             <a href="loan-calculator.html" class="tool-link">🔘 Loan Calculator</a>
             <a href="percentage-calculator.html" class="tool-link">🔘 Percentage Calculator</a>
             <a href="word-counter.html" class="tool-link">🔘 Word Counter Tool</a>
-            <a href="text-case-converter.html" class="tool-link">🔘 Text Case Converter</a>
-            <a href="zakat-calculator.html" class="tool-link">🔘 Zakat Calculator</a>
+            <a href="text-case-converter.html" class="tool-link">🔤 Text Case Converter</a>
+            <a href="zakat-calculator.html" class="tool-link">🕌 Zakat Calculator</a>
         </div>
         <a href="index.html" class="home-link">← Back to Home</a>
     </div>
     
-    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA ========== -->
-    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA & LOW COMPETITION KEYWORDS ========== -->
+    <div class="info-section">
         
         <!-- Ad Space 1 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
         
         <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
             <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">💰 LOAN PLANNING</span>
-            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Loan Calculator – Calculate Total Interest & Total Payment Instantly</h1>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">Loan Calculator – Calculate Total Interest & Total Payment Instantly | Simple Loan Calculator</h1>
             <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.9/5 Rating | 75,000+ Users Monthly</p>
         </div>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is a Loan Calculator and Why You Need One?</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>loan calculator</strong> is an essential financial tool that helps you calculate the total interest and total payment for any loan. Whether you're planning to take a <strong>home loan</strong>, <strong>car loan</strong>, or <strong>personal loan</strong>, understanding the total cost of borrowing is crucial for making informed financial decisions. Our <strong>free loan calculator online</strong> gives you instant results, helping you plan your finances better.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>loan calculator</strong> is an essential financial tool that helps you calculate the total interest and total payment for any loan. Whether you're planning to take a <strong>home loan</strong>, <strong>car loan</strong>, or <strong>personal loan</strong>, understanding the total cost of borrowing is crucial for making informed financial decisions. Our <strong>free loan calculator online</strong> gives you instant results, helping you plan your finances better. It's the perfect <strong>simple loan calculator</strong> for all your borrowing needs.</p>
         
         <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
             <p style="font-family: monospace; font-size: 18px; font-weight: bold; color: #1e3a8a;">Simple Interest = Principal × Rate × Time</p>
@@ -391,49 +628,53 @@ body {
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
                 <strong style="color: #1e3a8a; font-size: 20px;">🏠 Home Loan</strong>
-                <p style="margin-top: 8px;">Calculate total interest for your dream home</p>
+                <p style="margin-top: 8px;">Calculate total interest for your dream home with our <strong>home loan calculator</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
                 <strong style="color: #1e3a8a; font-size: 20px;">🚗 Car Loan</strong>
-                <p style="margin-top: 8px;">Plan your car purchase with accurate cost</p>
+                <p style="margin-top: 8px;">Plan your car purchase with accurate <strong>car loan calculator</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
                 <strong style="color: #1e3a8a; font-size: 20px;">💳 Personal Loan</strong>
-                <p style="margin-top: 8px;">Check total payment for personal needs</p>
+                <p style="margin-top: 8px;">Check total payment for personal needs with <strong>personal loan calculator</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
                 <strong style="color: #1e3a8a; font-size: 20px;">🏢 Business Loan</strong>
-                <p style="margin-top: 8px;">Calculate interest for business expansion</p>
+                <p style="margin-top: 8px;">Calculate interest for business expansion using <strong>business loan calculator</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
                 <strong style="color: #1e3a8a; font-size: 20px;">🎓 Education Loan</strong>
-                <p style="margin-top: 8px;">Plan your education financing</p>
+                <p style="margin-top: 8px;">Plan your education financing with <strong>education loan calculator</strong></p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
+                <strong style="color: #1e3a8a; font-size: 20px;">🏠 Mortgage Loan</strong>
+                <p style="margin-top: 8px;">Use our <strong>mortgage loan calculator</strong> for home financing</p>
             </div>
         </div>
         
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Loan Calculator</h2>
-        
-        <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li>Enter the <strong>loan amount</strong> you wish to borrow (in ₹)</li>
-            <li>Enter the <strong>annual interest rate</strong> offered by the lender</li>
-            <li>Enter the <strong>loan tenure</strong> in years</li>
-            <li>Click <strong>"Calculate My Loan"</strong> to see your total interest and total payment</li>
-            <li>Review the <strong>complete loan summary</strong> for better financial planning</li>
-        </ol>
-        
         <!-- Ad Space 2 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
         
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Loan Interest Calculator</h2>
+        
+        <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
+            <li>Enter the <strong>loan amount</strong> you wish to borrow (in ₹) – this is your principal</li>
+            <li>Enter the <strong>annual interest rate</strong> offered by the lender</li>
+            <li>Enter the <strong>loan tenure</strong> in years</li>
+            <li>Click <strong>"Calculate My Loan"</strong> to see your total interest and total payment</li>
+            <li>Review the <strong>complete loan summary</strong> for better financial planning using our <strong>loan payment calculator</strong></li>
+        </ol>
+        
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our Free Loan Calculator</h2>
         
         <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li>✅ <strong>100% Free:</strong> No registration, no hidden charges, unlimited use</li>
+            <li>✅ <strong>100% Free:</strong> No registration, no hidden charges, unlimited use – the best <strong>loan calculator online free</strong></li>
             <li>✅ <strong>Instant Results:</strong> Get total interest and total payment in seconds</li>
-            <li>✅ <strong>Accurate Calculation:</strong> Uses standard simple interest formula</li>
-            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+            <li>✅ <strong>Accurate Calculation:</strong> Uses standard simple interest formula – perfect as a <strong>simple interest loan calculator</strong></li>
+            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices as a <strong>monthly loan payment calculator</strong></li>
             <li>✅ <strong>Financial Planning:</strong> Helps you understand total loan cost before borrowing</li>
             <li>✅ <strong>Compare Loans:</strong> Try different amounts, rates, and tenures</li>
             <li>✅ <strong>Privacy Protected:</strong> No data stored on any server</li>
@@ -442,14 +683,21 @@ body {
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Simple Interest vs Compound Interest</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Our loan calculator uses the <strong>simple interest formula</strong>, which is commonly used for many types of loans. Simple interest is calculated only on the principal amount, making it easier to understand and predict. For loans that use compound interest (like credit cards), the total payment would be higher. This calculator is ideal for:</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Our <strong>loan interest calculator</strong> uses the <strong>simple interest formula</strong>, which is commonly used for many types of loans. Simple interest is calculated only on the principal amount, making it easier to understand and predict. For loans that use compound interest (like credit cards), the total payment would be higher. This <strong>loan amortization calculator</strong> is ideal for:</p>
         
         <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
             <li>Personal loans from banks and financial institutions</li>
             <li>Car loans with fixed interest rates</li>
             <li>Education loans</li>
             <li>Short-term business loans</li>
+            <li>Home loans with simple interest calculation</li>
         </ul>
+        
+        <!-- Ad Space 3 -->
+        <div class="ad-space">
+            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
+            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
+        </div>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Tips to Reduce Your Loan Cost</h2>
         
@@ -457,16 +705,10 @@ body {
             <li>🔹 <strong>Make a larger down payment:</strong> Reduces the principal amount</li>
             <li>🔹 <strong>Choose a shorter tenure:</strong> Less time means less interest accumulation</li>
             <li>🔹 <strong>Improve your credit score:</strong> Better score = lower interest rates</li>
-            <li>🔹 <strong>Compare lenders:</strong> Different banks offer different rates</li>
+            <li>🔹 <strong>Compare lenders:</strong> Different banks offer different rates – use our <strong>loan repayment calculator</strong> to compare</li>
             <li>🔹 <strong>Consider prepayment:</strong> Pay extra when possible to reduce principal</li>
             <li>🔹 <strong>Negotiate interest rates:</strong> Sometimes lenders offer better rates</li>
         </ul>
-        
-        <!-- Ad Space 3 -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
-            <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
-            <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
-        </div>
         
         <!-- FAQ SECTION WITH SCHEMA -->
         <div style="background: #f9fafb; border-radius: 16px; padding: 25px; margin: 30px 0;">
@@ -477,35 +719,35 @@ body {
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this Loan Calculator free?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this loan calculator is completely free to use with unlimited access. No registration or payment required.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this loan calculator is completely free to use with unlimited access. No registration or payment required. It's the best <strong>free loan calculator</strong> available online.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the difference between this loan calculator and EMI calculator?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">This loan calculator shows total interest and total payment using simple interest. The EMI calculator shows monthly installments using compound interest formula. Both are useful for different purposes.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">This <strong>loan interest calculator</strong> shows total interest and total payment using simple interest. The EMI calculator shows monthly installments using compound interest formula. Both are useful for different purposes.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I use this for home loan calculation?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this calculator works for home loans, car loans, personal loans, education loans, and business loans.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this <strong>home loan calculator</strong> works for home loans, car loans, personal loans, education loans, and business loans. It's a versatile <strong>loan payment calculator</strong> for all purposes.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How accurate is this loan calculator?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our loan calculator provides accurate results based on the simple interest formula. It's ideal for loans that use simple interest calculation.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Our <strong>simple loan calculator</strong> provides accurate results based on the simple interest formula. It's ideal for loans that use simple interest calculation.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this calculator work on mobile?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our loan calculator is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our <strong>loan amortization calculator</strong> is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
                     </div>
                 </div>
                 
@@ -519,14 +761,14 @@ body {
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 How does loan tenure affect total payment?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Longer tenure means more interest accumulates, increasing total payment. Shorter tenure reduces total interest but increases monthly burden.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Longer tenure means more interest accumulates, increasing total payment. Shorter tenure reduces total interest but increases monthly burden. Use our <strong>loan repayment calculator</strong> to find your ideal tenure.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the loan calculation formula?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Simple Interest = Principal × Rate × Time. Total Payment = Principal + Interest.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Simple Interest = Principal × Rate × Time. Total Payment = Principal + Interest. This is the standard <strong>simple interest loan calculator</strong> formula.</div>
                     </div>
                 </div>
             </div>
@@ -543,7 +785,7 @@ body {
         <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Remember, a lower interest rate and shorter tenure can save you thousands in interest payments. Use this calculator regularly to stay informed about your financial planning.</p>
         
         <!-- Ad Space 4 - Bottom -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -608,7 +850,23 @@ document.getElementById('loanTenure').addEventListener('keypress', function(e) {
 
 // Display current date
 document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
 </script>
+
 <!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
 <footer class="footer">
     <div class="footer-container">
@@ -757,5 +1015,44 @@ document.getElementById('currentDate').innerText = new Date().toLocaleDateString
     }
 }
 </style>
+
+<script>
+// Footer JavaScript
+(function() {
+    const footerBottom = document.querySelector('.footer-bottom p');
+    if (footerBottom) {
+        const currentYear = new Date().getFullYear();
+        footerBottom.innerHTML = `© ${currentYear} Free Online Tools. All rights reserved. | Made with ❤️ for everyone`;
+    }
+
+    const footerLinks = document.querySelectorAll('.footer-col a');
+    footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            console.log(`Footer link clicked: ${this.textContent} -> ${this.getAttribute('href')}`);
+        });
+    });
+
+    const footerColumns = document.querySelectorAll('.footer-col');
+    footerColumns.forEach(col => {
+        col.addEventListener('mouseenter', function() {
+            this.style.transition = 'all 0.3s ease';
+        });
+    });
+
+    const yearElement = document.querySelector('.footer-bottom p');
+    if (yearElement) {
+        yearElement.style.opacity = '0';
+        yearElement.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+            yearElement.style.transition = 'all 0.5s ease';
+            yearElement.style.opacity = '1';
+            yearElement.style.transform = 'translateY(0)';
+        }, 100);
+    }
+
+    console.log('Footer loaded successfully with JavaScript interactions');
+})();
+</script>
+
 </body>
 </html>
