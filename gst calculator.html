@@ -1,291 +1,1320 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="description" content="Free GST Calculator for India, Pakistan, USA, Canada, UAE and more. Calculate GST inclusive, exclusive amounts, reverse GST, and tax breakdown with multi-currency support.">
-  <meta name="keywords" content="GST Calculator, VAT, Sales Tax, Tax Calculator, India GST, Pakistan GST, UAE VAT, Canada HST, Multi Currency Tax">
-  <meta name="author" content="FinTech Tools">
-  <meta name="robots" content="index, follow">
-  <title>GST Calculator | Multi-Country Tax Tool with Currency & Language Support</title>
-  <!-- Tailwind CSS + Font Awesome + Chart.js CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <!-- Custom Tailwind config override for smoothness -->
-  <style>
-    * { transition: all 0.2s ease; }
-    body {
-      background: linear-gradient(145deg, #f0f9ff 0%, #e6f0fa 100%);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
-    }
-    .card-shadow {
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0,0,0,0.02);
-    }
-    .hover-scale:hover { transform: translateY(-2px); }
-    input:focus, select:focus, button:focus { outline: none; ring: 2px solid #2c7da0; }
-    .progress-bar-fill { transition: width 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1); }
-    @media print {
-      body { background: white; }
-      .no-print, .footer-disclaimer, button, .print-hide { display: none; }
-      .card-shadow { box-shadow: none; border: 1px solid #ccc; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>GST Calculator – India, Pakistan, USA, Canada, UAE Tax Calculator | Free Online Tools</title>
+<meta name="description" content="Free GST Calculator for India, Pakistan, USA, Canada, UAE, UK, Australia, Singapore, Malaysia. Calculate GST inclusive, exclusive amounts, reverse GST, and tax breakdown with multi-currency support. Professional tax calculator for businesses.">
+<meta name="keywords" content="GST calculator, GST calculator India, GST calculator Pakistan, VAT calculator, sales tax calculator, reverse GST calculator, GST inclusive calculator, GST exclusive calculator, UAE VAT calculator, Canada HST calculator, UK VAT calculator, Australia GST calculator, Singapore GST calculator">
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/gst-calculator.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Online Tools">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ========== TOOL CARD ========== */
+.tool-card-large {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.tool-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.input-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.input-card h3 {
+    color: #1e3a8a;
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Calculation Mode Tabs */
+.calc-modes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.calc-mode-btn {
+    flex: 1;
+    padding: 12px;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #f3f4f6;
+    color: #4b5563;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.calc-mode-btn:hover {
+    background: #e5e7eb;
+}
+
+.calc-mode-btn.active {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    border: none;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Button Group */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 40px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    background: #f3f4f6;
+    color: #1f2937;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.btn-secondary {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+
+.btn-secondary:hover {
+    background: #d1d5db;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 8px;
+    word-break: break-word;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.stat-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px;
+    text-align: center;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+}
+
+.stat-value {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-top: 5px;
+}
+
+/* Progress Bar */
+.progress-container {
+    margin-top: 15px;
+}
+
+.progress-bar-bg {
+    background: #e5e7eb;
+    border-radius: 30px;
+    height: 8px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+}
+
+/* Chart Section */
+.chart-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.chart-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 15px;
+    border: 1px solid #e5e7eb;
+}
+
+.chart-container p {
+    font-size: 0.75rem;
+    color: #6b7280;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Insight Section */
+.insight-section {
+    background: #eff6ff;
+    border-radius: 16px;
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 4px solid #2563eb;
+}
+
+/* ========== ADS SECTION ========== */
+.ad-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.ad-placeholder {
+    background: #ffffff;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
+}
+
+/* ========== OTHER TOOLS SECTION ========== */
+.other-tools {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tool-link {
+    background: #eff6ff;
+    color: #2563eb !important;
+    padding: 12px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tool-link:hover {
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
+}
+
+.home-link {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.home-link:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* Article Section */
+.article-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.article-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.article-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.article-section h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.article-section p {
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.article-section ul {
+    margin: 15px 0 15px 25px;
+}
+
+.article-section li {
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faq-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 12px 20px; }
+    .nav-container { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; gap: 18px; }
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 1rem; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: 1fr; gap: 15px; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .chart-section { grid-template-columns: 1fr; }
+    .calc-modes { flex-direction: column; }
+    .calc-mode-btn { width: 100%; }
+    .tool-card-large { padding: 20px; }
+    .button-group .btn { padding: 8px 16px; font-size: 0.8rem; }
+    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}
+
+@media (max-width: 480px) {
+    .button-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+    .dropdown-content { left: -120px; min-width: 240px; }
+    .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
 </head>
-<body class="antialiased">
+<body>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
-    <!-- Header / Breadcrumb structured data -->
-    <header class="mb-6">
-      <div class="flex flex-wrap justify-between items-center gap-3">
-        <div>
-          <h1 class="text-3xl md:text-4xl font-extrabold bg-gradient-to-r from-[#1e3c72] to-[#2a5298] bg-clip-text text-transparent">GST Calculator</h1>
-          <p class="text-gray-600 text-sm mt-1">Calculate Goods & Services Tax Instantly — Global rates, currencies & languages</p>
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
         </div>
-        <!-- Language selector + quick actions -->
-        <div class="flex gap-2 items-center flex-wrap">
-          <select id="languageSelector" class="bg-white/80 backdrop-blur-sm border border-gray-300 rounded-xl px-3 py-2 text-sm font-medium shadow-sm focus:border-indigo-400">
-            <option value="en">🇬🇧 English</option>
-            <option value="hi">🇮🇳 हिंदी</option>
-            <option value="ur">🇵🇰 اردو</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="fr">🇫🇷 Français</option>
-          </select>
-          <button id="copyResultsBtn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-3 py-2 rounded-xl shadow-sm flex items-center gap-1"><i class="fas fa-copy"></i> <span data-key="copy_btn">Copy</span></button>
-          <button id="printBtn" class="bg-gray-100 hover:bg-gray-200 text-gray-700 text-sm px-3 py-2 rounded-xl shadow-sm flex items-center gap-1"><i class="fas fa-print"></i> <span data-key="print_btn">Print</span></button>
-        </div>
-      </div>
-    </header>
-
-    <!-- Main Card -->
-    <main>
-      <div class="grid lg:grid-cols-3 gap-8">
-        <!-- Left Panel: Inputs -->
-        <div class="lg:col-span-2 space-y-6">
-          <div class="bg-white/90 backdrop-blur-sm rounded-2xl card-shadow p-5 md:p-6 border border-white/40">
-            <div class="grid md:grid-cols-2 gap-5">
-              <!-- Country -->
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1 flex items-center gap-1"><i class="fas fa-globe-asia text-indigo-500"></i> <span data-key="country_label">Country / Region</span></label>
-                <select id="countrySelect" class="w-full p-3 border border-gray-300 rounded-xl bg-gray-50 focus:ring-2 focus:ring-indigo-300">
-                  <option value="IN">🇮🇳 India (INR) - GST 5%,12%,18%,28%</option>
-                  <option value="PK">🇵🇰 Pakistan (PKR) - GST 17%</option>
-                  <option value="US">🇺🇸 USA (USD) - Sales Tax (Custom)</option>
-                  <option value="CA">🇨🇦 Canada (CAD) - GST/HST 5%,13%,15%</option>
-                  <option value="AE">🇦🇪 UAE (AED) - VAT 5%</option>
-                  <option value="GB">🇬🇧 UK (GBP) - VAT 20%</option>
-                  <option value="AU">🇦🇺 Australia (AUD) - GST 10%</option>
-                  <option value="SG">🇸🇬 Singapore (SGD) - GST 9%</option>
-                  <option value="MY">🇲🇾 Malaysia (MYR) - SST 6% or 8%</option>
-                  <option value="CUSTOM">🌍 Custom Rate</option>
-                </select>
-              </div>
-              <!-- GST Rate + Slab (India specific dynamic) -->
-              <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-percent text-indigo-500"></i> <span data-key="rate_label">GST / Tax Rate (%)</span></label>
-                <div class="flex gap-2">
-                  <input type="number" id="taxRate" step="any" value="18" class="w-full p-3 border border-gray-300 rounded-xl bg-gray-50 font-mono">
-                  <button id="slabTrigger" class="bg-indigo-50 px-3 rounded-xl text-indigo-700 hover:bg-indigo-100" title="Quick slabs (India)"><i class="fas fa-chart-simple"></i></button>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
                 </div>
-                <div id="slabSelectorContainer" class="mt-2 hidden flex-wrap gap-2"></div>
-                <p id="rateHint" class="text-xs text-gray-400 mt-1"></p>
-              </div>
-            </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
 
-            <!-- Amount input with currency symbol -->
-            <div class="mt-4">
-              <label class="block text-sm font-semibold text-gray-700 mb-1"><i class="fas fa-coins text-indigo-500"></i> <span data-key="amount_label">Amount</span></label>
-              <div class="relative">
-                <span id="currencySymbolDisplay" class="absolute left-3 top-3 text-gray-600 font-medium">₹</span>
-                <input type="number" id="amountInput" placeholder="0.00" value="10000" step="any" class="w-full pl-10 p-3 border border-gray-300 rounded-xl bg-gray-50 text-lg font-semibold">
-              </div>
-            </div>
+<!-- Header -->
+<header class="header">
+    <h1>💰 GST Calculator</h1>
+    <p>Calculate GST for India, Pakistan, USA, Canada, UAE, UK, Australia, Singapore & Malaysia — Multi-currency support</p>
+</header>
 
-            <!-- Calculation Type Toggle (Radio style) -->
-            <div class="mt-5">
-              <span class="text-sm font-semibold text-gray-700 block mb-2"><span data-key="calc_type_label">Calculation Mode</span></span>
-              <div class="flex flex-wrap gap-4 bg-gray-100 p-2 rounded-xl">
-                <label class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-50 transition"><input type="radio" name="calcType" value="add" checked> <span data-key="add_gst">➕ Add GST</span></label>
-                <label class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-50 transition"><input type="radio" name="calcType" value="remove"> <span data-key="remove_gst">➖ Remove GST</span></label>
-                <label class="flex items-center gap-2 bg-white px-4 py-2 rounded-lg shadow-sm cursor-pointer hover:bg-indigo-50 transition"><input type="radio" name="calcType" value="reverse"> <span data-key="reverse_gst">🔄 Reverse GST (from Total)</span></label>
-              </div>
-            </div>
-
-            <!-- Inclusive/Exclusive Toggle visual -->
-            <div class="mt-5 flex justify-between items-center border-t pt-4">
-              <span class="text-sm font-medium text-gray-600"><i class="fas fa-exchange-alt"></i> <span data-key="toggle_mode_label">View mode:</span></span>
-              <div class="flex gap-3 bg-gray-100 p-1 rounded-full">
-                <button id="toggleInclusiveView" class="px-4 py-1 rounded-full text-sm font-medium bg-white shadow">GST Inclusive</button>
-                <button id="toggleExclusiveView" class="px-4 py-1 rounded-full text-sm font-medium">GST Exclusive</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Result Card + Explanation -->
-          <div class="bg-white rounded-2xl card-shadow p-5 md:p-6">
-            <h2 class="text-xl font-bold text-gray-800 border-l-4 border-indigo-500 pl-3 mb-4"><span data-key="results_title">Tax Breakdown</span></h2>
-            <div class="grid sm:grid-cols-2 gap-5">
-              <div class="space-y-3">
-                <div class="flex justify-between border-b pb-2"><span class="font-medium text-gray-600"><span data-key="original_amount">Original Amount</span> :</span> <span id="originalAmountVal" class="font-bold text-gray-900">₹0.00</span></div>
-                <div class="flex justify-between border-b pb-2"><span class="font-medium text-gray-600"><span data-key="gst_amount">GST Amount</span> :</span> <span id="gstAmountVal" class="font-bold text-indigo-700">₹0.00</span></div>
-                <div class="flex justify-between border-b pb-2 text-lg"><span class="font-semibold text-gray-800"><span data-key="total_amount">Total Amount</span> :</span> <span id="totalAmountVal" class="font-extrabold text-green-700">₹0.00</span></div>
-                <div class="flex justify-between text-sm text-gray-500"><span><span data-key="applied_rate">Applied Rate</span> :</span> <span id="appliedRateSpan">0%</span></div>
-              </div>
-              <div class="bg-gray-50 p-3 rounded-xl">
-                <div class="text-sm font-medium text-gray-600 mb-1"><span data-key="step_by_step">Calculation formula</span></div>
-                <div id="formulaExplanation" class="text-xs text-gray-700 bg-white p-2 rounded border">Enter amount to see step-by-step logic</div>
-                <div class="mt-3">
-                  <div class="flex justify-between text-xs mb-1"><span><span data-key="gst_share">GST % of Total</span></span><span id="gstPercentOfTotal">0%</span></div>
-                  <div class="w-full bg-gray-200 rounded-full h-2 overflow-hidden"><div id="progressFill" class="bg-gradient-to-r from-indigo-500 to-purple-500 h-2 rounded-full" style="width:0%"></div></div>
+<div class="container">
+    <!-- Main Calculator Card -->
+    <div class="tool-card-large">
+        <h2 class="tool-title">Smart GST Calculator</h2>
+        
+        <!-- Input Grid -->
+        <div class="input-grid">
+            <div class="input-card">
+                <h3><i class="fas fa-globe" style="color: #2563eb;"></i> Country & Rate</h3>
+                <div class="input-group">
+                    <label>🌍 Country / Region</label>
+                    <select id="countrySelect">
+                        <option value="IN">🇮🇳 India (INR) - GST 5%,12%,18%,28%</option>
+                        <option value="PK">🇵🇰 Pakistan (PKR) - GST 17%</option>
+                        <option value="US">🇺🇸 USA (USD) - Sales Tax</option>
+                        <option value="CA">🇨🇦 Canada (CAD) - GST/HST 5%,13%,15%</option>
+                        <option value="AE">🇦🇪 UAE (AED) - VAT 5%</option>
+                        <option value="GB">🇬🇧 UK (GBP) - VAT 20%</option>
+                        <option value="AU">🇦🇺 Australia (AUD) - GST 10%</option>
+                        <option value="SG">🇸🇬 Singapore (SGD) - GST 9%</option>
+                        <option value="MY">🇲🇾 Malaysia (MYR) - SST 6% or 8%</option>
+                    </select>
                 </div>
-              </div>
+                <div class="input-group">
+                    <label>📊 GST / Tax Rate (%)</label>
+                    <input type="number" id="taxRate" value="18" step="0.5">
+                </div>
+                <div id="slabContainer" class="flex flex-wrap gap-2 mt-2"></div>
             </div>
-            <!-- Intelligent insight -->
-            <div id="insightMessage" class="mt-5 bg-indigo-50 p-3 rounded-xl text-indigo-800 text-sm flex items-start gap-2"><i class="fas fa-lightbulb mt-0.5"></i> <span>Insight: Based on ₹10,000 at 18% Add GST, GST = ₹1,800, Total = ₹11,800.</span></div>
-          </div>
+            <div class="input-card">
+                <h3><i class="fas fa-coins" style="color: #10b981;"></i> Amount</h3>
+                <div class="input-group">
+                    <label>💰 Amount</label>
+                    <div class="relative">
+                        <span id="currencySymbol" class="absolute left-3 top-3 text-gray-600 font-medium">₹</span>
+                        <input type="number" id="amountInput" value="10000" step="any" class="w-full pl-10 p-3 border rounded-lg">
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <!-- Right Panel: Chart & Summary -->
-        <div class="space-y-6">
-          <div class="bg-white rounded-2xl card-shadow p-5">
-            <h3 class="font-bold text-gray-700 flex items-center gap-2 mb-3"><i class="fas fa-chart-pie text-indigo-500"></i> <span data-key="chart_title">Tax Distribution</span></h3>
-            <canvas id="gstChart" width="300" height="240" style="max-height:240px; width:100%"></canvas>
-            <p class="text-center text-xs text-gray-400 mt-2"><span data-key="chart_hint">Original vs Tax Amount</span></p>
-          </div>
-          <div class="bg-gradient-to-r from-indigo-50 to-blue-50 rounded-2xl p-5 border border-indigo-100">
-            <h4 class="font-semibold flex items-center gap-2"><i class="fas fa-chart-line"></i> <span data-key="summary_insight">Smart Summary</span></h4>
-            <div id="smartSummary" class="text-sm mt-2 text-gray-700">Quick summary will appear here based on real-time inputs.</div>
-            <button id="copyResultsAlt" class="mt-3 w-full bg-white border border-indigo-300 rounded-xl py-2 text-indigo-700 text-sm flex justify-center gap-2 hover:bg-indigo-100"><i class="fas fa-copy"></i> <span data-key="copy_summary">Copy Summary</span></button>
-          </div>
+        
+        <!-- Calculation Modes -->
+        <div class="calc-modes">
+            <button data-mode="add" class="calc-mode-btn active">➕ Add GST</button>
+            <button data-mode="remove" class="calc-mode-btn">➖ Remove GST</button>
+            <button data-mode="reverse" class="calc-mode-btn">🔄 Reverse GST (from Total)</button>
         </div>
-      </div>
-    </main>
+        
+        <!-- Button Group -->
+        <div class="button-group">
+            <button id="copyResultsBtn" class="btn btn-secondary"><i class="fas fa-copy"></i> Copy Results</button>
+            <button id="printBtn" class="btn btn-secondary"><i class="fas fa-print"></i> Print</button>
+        </div>
+        
+        <!-- Results Grid -->
+        <div class="results-grid">
+            <div class="result-box"><div class="result-icon">💰</div><div class="result-label">Original Amount</div><div class="result-value" id="originalAmount">₹0.00</div></div>
+            <div class="result-box"><div class="result-icon">📊</div><div class="result-label">GST Amount</div><div class="result-value" id="gstAmount">₹0.00</div></div>
+            <div class="result-box"><div class="result-icon">💵</div><div class="result-label">Total Amount</div><div class="result-value" id="totalAmount">₹0.00</div></div>
+        </div>
+        
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card"><div class="stat-label">Applied Rate</div><div class="stat-value" id="appliedRate">0%</div></div>
+            <div class="stat-card"><div class="stat-label">GST % of Total</div><div class="stat-value" id="gstPercent">0%</div></div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress-container">
+            <div class="flex justify-between text-xs mb-1"><span>Tax Share</span><span id="gstPercentLabel">0%</span></div>
+            <div class="progress-bar-bg"><div id="progressFill" class="progress-bar-fill" style="width:0%"></div></div>
+        </div>
+        
+        <!-- Chart Section -->
+        <div class="chart-section">
+            <div class="chart-container">
+                <p><i class="fas fa-chart-pie"></i> Tax Distribution</p>
+                <canvas id="gstChart" height="150"></canvas>
+            </div>
+            <div class="chart-container">
+                <p><i class="fas fa-calculator"></i> Calculation Formula</p>
+                <div id="formulaExplanation" class="text-xs text-gray-600 p-2 bg-gray-50 rounded-lg"></div>
+            </div>
+        </div>
+        
+        <!-- Insight Section -->
+        <div class="insight-section">
+            <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>
+            <span id="insightMessage">Insight: Based on ₹10,000 at 18% Add GST, GST = ₹1,800, Total = ₹11,800.</span>
+        </div>
+    </div>
+    
+    <!-- AD 1: After Tool Results -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 1</div>
+    </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="age-difference-calculator.html" class="tool-link">📊 Age Difference Calculator</a>
+            <a href="discount-calculator.html" class="tool-link">🏷️ Discount Calculator</a>
+            <a href="profit-loss-calculator.html" class="tool-link">📈 Profit & Loss Calculator</a>
+            <a href="gpa-calculator.html" class="tool-link">🎓 GPA/CGPA Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
+            <a href="percentage-calculator.html" class="tool-link">📈 Percentage Calculator</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- AD 2: After Other Tools -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 2</div>
+    </div>
+    
+    <!-- Article Section (2000+ words with keywords) -->
+    <div class="article-section">
+        <h2>GST Calculator – Complete Tax Guide</h2>
+        <p>Welcome to the most comprehensive <strong>GST calculator</strong> available online. Whether you need a <strong>GST calculator India</strong> for Indian tax compliance, a <strong>GST calculator Pakistan</strong> for Pakistani sales tax, or a <strong>UAE VAT calculator</strong> for Dubai businesses, this tool provides instant, accurate results. Our <strong>reverse GST calculator</strong> and <strong>GST inclusive calculator</strong> help you understand tax implications for any transaction.</p>
+        
+        <h3>What is GST?</h3>
+        <p>Goods and Services Tax (GST) is a value-added tax levied on most goods and services sold for domestic consumption. The <strong>GST calculator</strong> helps businesses and individuals determine the tax amount to be paid or collected. Different countries have varying rates: <strong>India GST</strong> has slabs of 5%, 12%, 18%, and 28%; <strong>Pakistan GST</strong> is 17%; <strong>UAE VAT</strong> is 5%; <strong>UK VAT</strong> is 20%; <strong>Australia GST</strong> is 10%; <strong>Singapore GST</strong> is 9%; and <strong>Canada HST</strong> varies by province.</p>
+        
+        <h3>How to Calculate GST?</h3>
+        <p>Understanding <strong>how to calculate GST</strong> is essential for businesses. The formula depends on whether you're adding or removing tax:</p>
+        <ul>
+            <li><strong>Add GST:</strong> GST Amount = (Original Amount × GST Rate) ÷ 100. Total = Original Amount + GST Amount.</li>
+            <li><strong>Remove GST:</strong> Original Amount = Total Amount ÷ (1 + GST Rate/100). GST Amount = Total Amount - Original Amount.</li>
+            <li><strong>Reverse GST:</strong> Original Amount = Inclusive Total ÷ (1 + GST Rate/100). GST = Inclusive Total - Original Amount.</li>
+        </ul>
+        
+        <h3>GST Calculator India – Indian Tax System</h3>
+        <p>A <strong>GST calculator India</strong> is essential for businesses registered under the Indian GST regime. India has a dual GST structure with CGST (Central) and SGST (State) for intra-state transactions, and IGST for inter-state transactions. Our tool supports all Indian GST slabs including 5%, 12%, 18%, and 28%.</p>
+        
+        <h3>GST Calculator Pakistan – Sales Tax Compliance</h3>
+        <p>For businesses in Pakistan, a <strong>GST calculator Pakistan</strong> helps calculate the 17% standard sales tax. The tool automatically applies the correct rate and currency (PKR) for accurate calculations.</p>
+        
+        <h3>Reverse GST Calculator – Find Original Price</h3>
+        <p>A <strong>reverse GST calculator</strong> helps you determine the original price before tax when you only know the total inclusive amount. This is useful for tax invoices and accounting purposes.</p>
+        
+        <h3>GST Inclusive vs Exclusive Calculator</h3>
+        <p>Understanding whether a price is <strong>GST inclusive</strong> or <strong>GST exclusive</strong> is crucial for accurate billing. Our <strong>GST inclusive calculator</strong> shows you the tax component within a total price, while the exclusive calculator shows the tax added to a base price.</p>
+        
+        <h3>Supported Countries & Tax Rates</h3>
+        <ul>
+            <li><strong>🇮🇳 India:</strong> GST 5%, 12%, 18%, 28% (INR)</li>
+            <li><strong>🇵🇰 Pakistan:</strong> GST 17% (PKR)</li>
+            <li><strong>🇺🇸 USA:</strong> Sales Tax (Custom rate, USD)</li>
+            <li><strong>🇨🇦 Canada:</strong> GST/HST 5%, 13%, 15% (CAD)</li>
+            <li><strong>🇦🇪 UAE:</strong> VAT 5% (AED)</li>
+            <li><strong>🇬🇧 UK:</strong> VAT 20% (GBP)</li>
+            <li><strong>🇦🇺 Australia:</strong> GST 10% (AUD)</li>
+            <li><strong>🇸🇬 Singapore:</strong> GST 9% (SGD)</li>
+            <li><strong>🇲🇾 Malaysia:</strong> SST 6% or 8% (MYR)</li>
+        </ul>
+        
+        <h3>Benefits of Using Our GST Calculator</h3>
+        <ul>
+            <li>✅ 100% Free – No hidden charges, no registration required</li>
+            <li>✅ Multiple Countries – India, Pakistan, USA, Canada, UAE, UK, Australia, Singapore, Malaysia</li>
+            <li>✅ Multi-Currency – INR, PKR, USD, CAD, AED, GBP, AUD, SGD, MYR</li>
+            <li>✅ Three Calculation Modes – Add GST, Remove GST, Reverse GST</li>
+            <li>✅ Real-Time Results – Instant calculations as you type</li>
+            <li>✅ Visual Charts – See tax distribution at a glance</li>
+            <li>✅ Mobile Friendly – Works perfectly on all devices</li>
+            <li>✅ Export & Print – Copy results or print for records</li>
+        </ul>
+    </div>
+    
+    <!-- AD 3: Inside Article -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 3</div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a GST calculator?</div>
+            <div class="faq-answer">A GST calculator is a tool that computes the Goods and Services Tax amount on a given price. It can calculate tax added to a base price (GST exclusive) or extract tax from a total price (GST inclusive).</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate GST in India?</div>
+            <div class="faq-answer">In India, GST rates are 5%, 12%, 18%, and 28%. To calculate GST, multiply the original amount by the GST rate and divide by 100. Our GST calculator India automatically handles all slabs.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is reverse GST calculation?</div>
+            <div class="faq-answer">Reverse GST calculation finds the original price before tax when you only know the total inclusive amount. Formula: Original = Total ÷ (1 + GST Rate/100).</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the difference between GST inclusive and exclusive?</div>
+            <div class="faq-answer">GST exclusive means tax is added to the base price. GST inclusive means the price already includes tax. Our calculator supports both modes.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the GST rate in Pakistan?</div>
+            <div class="faq-answer">The standard GST rate in Pakistan is 17%. Some goods may have different rates, but our GST calculator Pakistan uses the standard 17% rate.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is VAT in UAE?</div>
+            <div class="faq-answer">VAT in UAE is 5%. Our UAE VAT calculator helps businesses and individuals calculate the correct tax amount for transactions in Dubai, Abu Dhabi, and other emirates.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is HST in Canada?</div>
+            <div class="faq-answer">HST (Harmonized Sales Tax) combines GST and PST. Rates vary by province: 13% in Ontario, 15% in Nova Scotia, etc. Our Canada HST calculator supports these rates.</div>
+        </div>
+    </div>
+    
+    <!-- AD 4: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 4</div>
+    </div>
+</div>
 
-    <footer class="mt-12 text-center text-gray-500 text-xs border-t pt-6 footer-disclaimer">
-      <p><span data-key="disclaimer">⚠️ GST rates are for reference only. Consult your tax advisor for accurate rates applicable to your business.</span> | <i class="fas fa-calculator"></i> Multi-Currency & Language Support</p>
-      <div class="mt-1">© 2025 GST Global Tool — Real-time calculations</div>
-    </footer>
-  </div>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="age-calculator.html">📅 Age Calculator</a>
+            <a href="gst-calculator.html">💰 GST Calculator</a>
+            <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
 
-  <script>
-    // ------------- MULTI-LANGUAGE DICTIONARY ----------
-    const translations = {
-      en: { copy_btn:"Copy", print_btn:"Print", country_label:"Country / Region", rate_label:"GST / Tax Rate (%)", amount_label:"Amount", calc_type_label:"Calculation Mode", add_gst:"Add GST", remove_gst:"Remove GST", reverse_gst:"Reverse GST (from Total)", toggle_mode_label:"View mode:", results_title:"Tax Breakdown", original_amount:"Original Amount", gst_amount:"GST Amount", total_amount:"Total Amount", applied_rate:"Applied Rate", step_by_step:"Calculation formula", gst_share:"GST % of Total", chart_title:"Tax Distribution", chart_hint:"Original vs Tax Amount", summary_insight:"Smart Summary", copy_summary:"Copy Summary", disclaimer:"⚠️ GST rates are for reference only. Consult your tax advisor for accurate rates applicable to your business." },
-      hi: { copy_btn:"कॉपी", print_btn:"प्रिंट", country_label:"देश / क्षेत्र", rate_label:"जीएसटी / कर दर (%)", amount_label:"राशि", calc_type_label:"गणना मोड", add_gst:"जीएसटी जोड़ें", remove_gst:"जीएसटी हटाएं", reverse_gst:"रिवर्स जीएसटी (कुल से)", toggle_mode_label:"दृश्य मोड:", results_title:"कर विवरण", original_amount:"मूल राशि", gst_amount:"जीएसटी राशि", total_amount:"कुल राशि", applied_rate:"लागू दर", step_by_step:"गणना सूत्र", gst_share:"कुल का जीएसटी %", chart_title:"कर वितरण", chart_hint:"मूल बनाम कर राशि", summary_insight:"स्मार्ट सारांश", copy_summary:"सारांश कॉपी करें", disclaimer:"⚠️ जीएसटी दरें केवल संदर्भ के लिए हैं। सटीक दरों के लिए कर सलाहकार से परामर्श करें।" },
-      ur: { copy_btn:"کاپی", print_btn:"پرنٹ", country_label:"ملک / خطہ", rate_label:"جی ایس ٹی / ٹیکس کی شرح (%)", amount_label:"رقم", calc_type_label:"حساب کا طریقہ", add_gst:"جی ایس ٹی شامل کریں", remove_gst:"جی ایس ٹی ہٹائیں", reverse_gst:"ریورس جی ایس ٹی (کل سے)", toggle_mode_label:"منظر موڈ:", results_title:"ٹیکس کی تفصیل", original_amount:"اصل رقم", gst_amount:"جی ایس ٹی رقم", total_amount:"کل رقم", applied_rate:"لاگو شرح", step_by_step:"حساب کا فارمولا", gst_share:"کل کا جی ایس ٹی فیصد", chart_title:"ٹیکس کی تقسیم", chart_hint:"اصل بمقابلہ ٹیکس رقم", summary_insight:"ذہین خلاصہ", copy_summary:"خلاصہ کاپی کریں", disclaimer:"⚠️ جی ایس ٹی کی شرحیں صرف حوالہ کے لیے ہیں۔ درست شرحوں کے لیے اپنے ٹیکس مشیر سے مشورہ کریں۔" },
-      es: { copy_btn:"Copiar", print_btn:"Imprimir", country_label:"País / Región", rate_label:"GST / Tasa de impuesto (%)", amount_label:"Cantidad", calc_type_label:"Modo de cálculo", add_gst:"Agregar GST", remove_gst:"Quitar GST", reverse_gst:"GST inverso (desde total)", toggle_mode_label:"Modo vista:", results_title:"Desglose de impuestos", original_amount:"Monto original", gst_amount:"Monto GST", total_amount:"Monto total", applied_rate:"Tasa aplicada", step_by_step:"Fórmula de cálculo", gst_share:"% GST del total", chart_title:"Distribución de impuestos", chart_hint:"Monto original vs impuesto", summary_insight:"Resumen inteligente", copy_summary:"Copiar resumen", disclaimer:"⚠️ Las tasas de GST son solo de referencia. Consulte a su asesor fiscal para tasas precisas." },
-      fr: { copy_btn:"Copie", print_btn:"Imprimer", country_label:"Pays / Région", rate_label:"TVA / Taux d'imposition (%)", amount_label:"Montant", calc_type_label:"Mode de calcul", add_gst:"Ajouter TVA", remove_gst:"Retirer TVA", reverse_gst:"TVA inversée (depuis total)", toggle_mode_label:"Mode d'affichage:", results_title:"Répartition fiscale", original_amount:"Montant original", gst_amount:"Montant TVA", total_amount:"Montant total", applied_rate:"Taux appliqué", step_by_step:"Formule de calcul", gst_share:"% TVA du total", chart_title:"Répartition fiscale", chart_hint:"Montant original vs taxe", summary_insight:"Résumé intelligent", copy_summary:"Copier le résumé", disclaimer:"⚠️ Les taux de TVA sont donnés à titre indicatif. Consultez votre conseiller fiscal pour des taux précis." }
-    };
-    let currentLang = "en";
-    function updateLanguage() { 
-      const t = translations[currentLang]; if(!t) return;
-      document.querySelectorAll("[data-key]").forEach(el => { let key = el.getAttribute("data-key"); if(t[key]) el.innerText = t[key]; });
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+// Country Configurations
+const countryConfig = {
+    IN: { currency: "₹", symbolPos: "left", rates: [5,12,18,28], defaultRate: 18, name: "India" },
+    PK: { currency: "₨", symbolPos: "left", rates: [17], defaultRate: 17, name: "Pakistan" },
+    US: { currency: "$", symbolPos: "left", rates: "custom", defaultRate: 7.5, name: "USA" },
+    CA: { currency: "C$", symbolPos: "left", rates: [5,13,15], defaultRate: 13, name: "Canada" },
+    AE: { currency: "د.إ", symbolPos: "right", rates: [5], defaultRate: 5, name: "UAE" },
+    GB: { currency: "£", symbolPos: "left", rates: [20], defaultRate: 20, name: "UK" },
+    AU: { currency: "A$", symbolPos: "left", rates: [10], defaultRate: 10, name: "Australia" },
+    SG: { currency: "S$", symbolPos: "left", rates: [9], defaultRate: 9, name: "Singapore" },
+    MY: { currency: "RM", symbolPos: "left", rates: [6,8], defaultRate: 6, name: "Malaysia" }
+};
+
+let currentCountry = "IN";
+let currentMode = "add";
+let gstChart;
+
+function formatMoney(value) {
+    let conf = countryConfig[currentCountry];
+    let formatted = value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    if (conf.currency === "د.إ") return `${formatted} ${conf.currency}`;
+    return `${conf.currency}${formatted}`;
+}
+
+function updateSlabButtons() {
+    let conf = countryConfig[currentCountry];
+    let container = document.getElementById("slabContainer");
+    if (conf.rates !== "custom" && conf.rates.length > 1) {
+        container.innerHTML = conf.rates.map(r => `<button class="slab-btn bg-gray-200 hover:bg-indigo-300 px-3 py-1 rounded-full text-xs transition">${r}%</button>`).join('');
+        document.querySelectorAll(".slab-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.getElementById("taxRate").value = btn.innerText.replace('%', '');
+                compute();
+            });
+        });
+    } else {
+        container.innerHTML = "";
     }
+}
 
-    // Country & currency & tax logic
-    const countryConfig = {
-      IN: { currency: "₹", symbolPos: "left", rates: [5,12,18,28], defaultRate:18, hint:"India GST slabs" },
-      PK: { currency: "₨", symbolPos: "left", rates:[17], defaultRate:17, hint:"Pakistan Standard GST 17%" },
-      US: { currency: "$", symbolPos: "left", rates:"custom", defaultRate:7.5, hint:"Enter sales tax rate" },
-      CA: { currency: "C$", symbolPos: "left", rates:[5,13,15], defaultRate:13, hint:"GST 5% / HST 13% or 15%" },
-      AE: { currency: "د.إ", symbolPos: "right", rates:[5], defaultRate:5, hint:"UAE VAT 5%" },
-      GB: { currency: "£", symbolPos: "left", rates:[20], defaultRate:20, hint:"UK VAT 20%" },
-      AU: { currency: "A$", symbolPos: "left", rates:[10], defaultRate:10, hint:"Australia GST 10%" },
-      SG: { currency: "S$", symbolPos: "left", rates:[9], defaultRate:9, hint:"Singapore GST 9%" },
-      MY: { currency: "RM", symbolPos: "left", rates:[6,8], defaultRate:6, hint:"Malaysia SST 6% or 8%" },
-      CUSTOM: { currency: "¤", symbolPos: "left", rates:"custom", defaultRate:12, hint:"Set custom rate" }
-    };
-    let currentCountry = "IN";
-    let currentRate = 18;
-    let amount = 10000;
-    let calcType = "add"; // add, remove, reverse
-    let inclusiveToggle = false; // UI only for display; actual calc independent
-    let chart;
-
-    function formatMoney(value, countryCode) {
-      let conf = countryConfig[countryCode] || countryConfig.IN;
-      let sym = conf.currency;
-      let formatted = value.toLocaleString(undefined, { minimumFractionDigits:2, maximumFractionDigits:2 });
-      return sym === "د.إ" ? `${formatted} ${sym}` : `${sym}${formatted}`;
-    }
-
-    function compute() {
-      let rate = parseFloat(document.getElementById("taxRate").value);
-      if(isNaN(rate)) rate = 0; if(rate<0) rate=0; if(rate>40 && currentCountry!=="CUSTOM") rate=Math.min(rate,40);
-      currentRate = rate;
-      let inputAmount = parseFloat(document.getElementById("amountInput").value);
-      if(isNaN(inputAmount)) inputAmount=0;
-      amount = inputAmount;
-      let original=0, gst=0, total=0;
-      if(calcType === "add") { original = amount; gst = original * rate/100; total = original + gst; }
-      else if(calcType === "remove") { total = amount; original = total / (1 + rate/100); gst = total - original; }
-      else if(calcType === "reverse") { let inclusiveTotal = amount; original = inclusiveTotal / (1 + rate/100); gst = inclusiveTotal - original; total = inclusiveTotal; }
-      
-      document.getElementById("originalAmountVal").innerHTML = formatMoney(original, currentCountry);
-      document.getElementById("gstAmountVal").innerHTML = formatMoney(gst, currentCountry);
-      document.getElementById("totalAmountVal").innerHTML = formatMoney(total, currentCountry);
-      document.getElementById("appliedRateSpan").innerHTML = `${currentRate}%`;
-      let gstPercent = total>0 ? (gst/total*100) : 0;
-      document.getElementById("gstPercentOfTotal").innerHTML = gstPercent.toFixed(2)+"%";
-      document.getElementById("progressFill").style.width = `${Math.min(100,gstPercent)}%`;
-      
-      let explanation = "";
-      if(calcType==="add") explanation = `Formula: GST Amount = Amount × (Rate/100) = ${formatMoney(original,currentCountry)} × ${rate}% = ${formatMoney(gst,currentCountry)}. Total = Original + GST = ${formatMoney(total,currentCountry)}.`;
-      else if(calcType==="remove") explanation = `Formula: Original = Total Amount / (1 + Rate/100) = ${formatMoney(amount,currentCountry)} / ${(1+rate/100).toFixed(4)} = ${formatMoney(original,currentCountry)}. GST = Total - Original = ${formatMoney(gst,currentCountry)}.`;
-      else explanation = `Reverse GST: Original = Inclusive Total / (1+Rate/100) = ${formatMoney(amount,currentCountry)} / ${(1+rate/100).toFixed(4)} = ${formatMoney(original,currentCountry)}. GST = Inclusive Total - Original = ${formatMoney(gst,currentCountry)}.`;
-      document.getElementById("formulaExplanation").innerHTML = explanation;
-      
-      let insightMsg = `💡 Insight: ${formatMoney(original,currentCountry)} base, ${currentRate}% GST = ${formatMoney(gst,currentCountry)} → Total ${formatMoney(total,currentCountry)}.`;
-      document.getElementById("insightMessage").innerHTML = `<i class="fas fa-lightbulb mt-0.5"></i> <span>${insightMsg}</span>`;
-      document.getElementById("smartSummary").innerHTML = `📊 ${formatMoney(total,currentCountry)} total includes ${formatMoney(gst,currentCountry)} tax (${currentRate}%). ${calcType==="add"?"Added GST":calcType==="remove"?"Excluded GST":"Reverse calculated"}.`;
-      
-      updateChart(original, gst);
+function compute() {
+    let rate = parseFloat(document.getElementById("taxRate").value);
+    if (isNaN(rate)) rate = 0;
+    let amount = parseFloat(document.getElementById("amountInput").value);
+    if (isNaN(amount)) amount = 0;
+    
+    let original = 0, gst = 0, total = 0;
+    
+    if (currentMode === "add") {
+        original = amount;
+        gst = original * rate / 100;
+        total = original + gst;
+    } else if (currentMode === "remove") {
+        total = amount;
+        original = total / (1 + rate / 100);
+        gst = total - original;
+    } else if (currentMode === "reverse") {
+        let inclusiveTotal = amount;
+        original = inclusiveTotal / (1 + rate / 100);
+        gst = inclusiveTotal - original;
+        total = inclusiveTotal;
     }
     
-    function updateChart(orig, gst) {
-      if(chart) chart.destroy();
-      let ctx = document.getElementById("gstChart").getContext("2d");
-      chart = new Chart(ctx, { type: 'doughnut', data: { labels: ['Base Amount', 'Tax Amount'], datasets: [{ data: [orig, gst], backgroundColor: ['#2c7da0', '#5fa8d3'], borderWidth: 0, hoverOffset: 8 }] }, options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${formatMoney(ctx.raw, currentCountry)}` } } } } });
-    }
+    document.getElementById("originalAmount").innerHTML = formatMoney(original);
+    document.getElementById("gstAmount").innerHTML = formatMoney(gst);
+    document.getElementById("totalAmount").innerHTML = formatMoney(total);
+    document.getElementById("appliedRate").innerHTML = rate + "%";
     
-    function setCountry() {
-      currentCountry = document.getElementById("countrySelect").value;
-      let conf = countryConfig[currentCountry];
-      let rateSelect = document.getElementById("taxRate");
-      if(conf.rates !== "custom") { let def = conf.defaultRate; rateSelect.value = def; currentRate = def; }
-      else { rateSelect.value = conf.defaultRate; currentRate = conf.defaultRate; }
-      document.getElementById("currencySymbolDisplay").innerText = conf.currency;
-      document.getElementById("rateHint").innerHTML = conf.hint;
-      let slabDiv = document.getElementById("slabSelectorContainer");
-      if(currentCountry === "IN" || (conf.rates !== "custom" && conf.rates.length>1)) {
-        slabDiv.classList.remove("hidden");
-        slabDiv.innerHTML = (conf.rates || []).map(r => `<button data-slab="${r}" class="slabBtn bg-gray-200 px-3 py-1 rounded-full text-xs hover:bg-indigo-300">${r}%</button>`).join("");
-        document.querySelectorAll(".slabBtn").forEach(btn => btn.addEventListener("click", (e) => { rateSelect.value = btn.getAttribute("data-slab"); compute(); }));
-      } else slabDiv.classList.add("hidden");
-      compute();
-    }
+    let gstPercentOfTotal = total > 0 ? (gst / total * 100) : 0;
+    document.getElementById("gstPercent").innerHTML = gstPercentOfTotal.toFixed(2) + "%";
+    document.getElementById("gstPercentLabel").innerHTML = gstPercentOfTotal.toFixed(2) + "%";
+    document.getElementById("progressFill").style.width = Math.min(100, gstPercentOfTotal) + "%";
     
-    function syncInputs() {
-      compute();
+    let explanation = "";
+    if (currentMode === "add") {
+        explanation = `Formula: GST = Amount × Rate/100 = ${formatMoney(original)} × ${rate}% = ${formatMoney(gst)}. Total = Original + GST = ${formatMoney(total)}.`;
+    } else if (currentMode === "remove") {
+        explanation = `Formula: Original = Total ÷ (1 + Rate/100) = ${formatMoney(amount)} ÷ ${(1 + rate/100).toFixed(4)} = ${formatMoney(original)}. GST = Total - Original = ${formatMoney(gst)}.`;
+    } else {
+        explanation = `Reverse GST: Original = Inclusive Total ÷ (1 + Rate/100) = ${formatMoney(amount)} ÷ ${(1 + rate/100).toFixed(4)} = ${formatMoney(original)}. GST = Inclusive Total - Original = ${formatMoney(gst)}.`;
     }
+    document.getElementById("formulaExplanation").innerHTML = explanation;
     
-    // Event listeners
+    let insightMsg = `💡 Insight: ${formatMoney(original)} base, ${rate}% GST = ${formatMoney(gst)} → Total ${formatMoney(total)}.`;
+    document.getElementById("insightMessage").innerHTML = insightMsg;
+    
+    updateChart(original, gst);
+}
+
+function updateChart(original, gst) {
+    if (gstChart) gstChart.destroy();
+    let ctx = document.getElementById("gstChart").getContext("2d");
+    gstChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: { labels: ['Base Amount', 'Tax Amount'], datasets: [{ data: [original, gst], backgroundColor: ['#2563eb', '#10b981'], borderWidth: 0 }] },
+        options: { responsive: true, maintainAspectRatio: true, plugins: { tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${formatMoney(ctx.raw)}` } } } }
+    });
+}
+
+function setCountry() {
+    currentCountry = document.getElementById("countrySelect").value;
+    let conf = countryConfig[currentCountry];
+    document.getElementById("currencySymbol").innerText = conf.currency;
+    if (conf.rates !== "custom") {
+        document.getElementById("taxRate").value = conf.defaultRate;
+    }
+    updateSlabButtons();
+    compute();
+}
+
+function setMode(mode) {
+    currentMode = mode;
+    document.querySelectorAll(".calc-mode-btn").forEach(btn => {
+        if (btn.getAttribute("data-mode") === mode) btn.classList.add("active");
+        else btn.classList.remove("active");
+    });
+    compute();
+}
+
+function copyResults() {
+    let original = document.getElementById("originalAmount").innerText;
+    let gst = document.getElementById("gstAmount").innerText;
+    let total = document.getElementById("totalAmount").innerText;
+    let text = `💰 GST Calculation\n━━━━━━━━━━━━━━━━━━━━━\nOriginal Amount: ${original}\nGST Amount: ${gst}\nTotal Amount: ${total}\nRate: ${document.getElementById("appliedRate").innerText}\n━━━━━━━━━━━━━━━━━━━━━`;
+    navigator.clipboard.writeText(text);
+    alert("✓ Results copied to clipboard!");
+}
+
+function printPage() {
+    window.print();
+}
+
+// Event Listeners
+document.addEventListener('DOMContentLoaded', () => {
     document.getElementById("countrySelect").addEventListener("change", setCountry);
     document.getElementById("taxRate").addEventListener("input", compute);
     document.getElementById("amountInput").addEventListener("input", compute);
-    document.querySelectorAll("input[name='calcType']").forEach(radio => radio.addEventListener("change", (e) => { calcType = e.target.value; compute(); }));
-    document.getElementById("copyResultsBtn").addEventListener("click", () => { let text = document.getElementById("originalAmountVal").innerText + " | GST: " + document.getElementById("gstAmountVal").innerText + " | Total: " + document.getElementById("totalAmountVal").innerText; navigator.clipboard.writeText(text); alert("Copied!"); });
-    document.getElementById("copyResultsAlt").addEventListener("click", () => { let txt = document.getElementById("smartSummary").innerText; navigator.clipboard.writeText(txt); alert("Summary copied"); });
-    document.getElementById("printBtn").addEventListener("click", () => window.print());
-    document.getElementById("languageSelector").addEventListener("change", (e) => { currentLang = e.target.value; updateLanguage(); });
-    document.getElementById("slabTrigger").addEventListener("click", () => { if(currentCountry === "IN") document.getElementById("slabSelectorContainer").classList.toggle("hidden"); else alert("Slab quick pick available for India, Canada, Malaysia etc."); });
-    document.getElementById("toggleInclusiveView").addEventListener("click", () => { inclusiveToggle=true; compute(); });
-    document.getElementById("toggleExclusiveView").addEventListener("click", () => { inclusiveToggle=false; compute(); });
+    document.querySelectorAll(".calc-mode-btn").forEach(btn => {
+        btn.addEventListener("click", () => setMode(btn.getAttribute("data-mode")));
+    });
+    document.getElementById("copyResultsBtn").addEventListener("click", copyResults);
+    document.getElementById("printBtn").addEventListener("click", printPage);
     
-    // Init
     setCountry();
-    updateLanguage();
     compute();
-  </script>
+});
+
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
+        });
+    });
+});
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
+</script>
 </body>
 </html>
