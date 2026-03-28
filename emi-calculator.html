@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <title>Free EMI Calculator – Calculate Home, Car & Personal Loan EMI Online Instantly</title>
-<meta name="description" content="Calculate your monthly loan EMI instantly with our free EMI Calculator. Plan home loan, car loan, personal loan with accurate results. Fast, easy & mobile-friendly.">
-<meta name="keywords" content="EMI calculator online free, loan EMI calculator, home loan EMI calculator, car loan EMI calculator, personal loan EMI, monthly EMI calculator, EMI formula, loan repayment calculator">
+<meta name="description" content="Calculate your monthly loan EMI instantly with our free EMI Calculator. Plan home loan, car loan, personal loan with accurate results. Fast, easy & mobile-friendly. Includes loan repayment calculator, EMI formula, and financial planning tools.">
+<meta name="keywords" content="EMI calculator online free, loan EMI calculator, home loan EMI calculator, car loan EMI calculator, personal loan EMI, monthly EMI calculator, EMI formula, loan repayment calculator, EMI loan calculator, EMI calculator for home loan, car loan EMI calculator India, personal loan EMI calculator, education loan EMI calculator, business loan EMI calculator, EMI calculation formula, monthly installment calculator, loan amortization calculator">
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/emi-calculator.html">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Free EMI Calculator – Calculate Loan EMI Instantly">
@@ -22,12 +22,171 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: #f3f4f6;
     min-height: 100vh;
-    padding: 40px 20px;
 }
 
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== ORIGINAL EMI CALCULATOR STYLES ========== */
 .container {
     max-width: 750px;
-    margin: 0 auto;
+    margin: 40px auto 0;
+    padding: 0 20px;
 }
 
 /* Main Card */
@@ -285,8 +444,9 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
-    body {
-        padding: 20px 15px;
+    .container {
+        padding: 0 15px;
+        margin-top: 20px;
     }
     
     .card-content {
@@ -305,9 +465,85 @@ body {
         grid-template-columns: 1fr;
     }
 }
+
+/* SEO Article Styles */
+.info-section {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 35px;
+    margin-top: 30px;
+    max-width: 750px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.ad-space {
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
 </style>
 </head>
 <body>
+
+<!-- ========== NAVBAR ADDED ========== -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
 
 <div class="container">
     <!-- Main EMI Calculator Card -->
@@ -346,7 +582,7 @@ body {
     </div>
     
     <!-- AD SPACE 1 - After Calculator Tool -->
-    <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 20px 0;">
+    <div class="ad-space">
         <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
         <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
     </div>
@@ -368,79 +604,87 @@ body {
     </div>
     
     <!-- AD SPACE 2 - After Other Tools Links -->
-    <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 20px 0;">
+    <div class="ad-space">
         <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
         <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
     </div>
     
-    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA ========== -->
-    <div class="info-section" style="background: #ffffff; border-radius: 14px; padding: 35px; margin-top: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+    <!-- ========== SEO ARTICLE WITH FAQ SCHEMA & LOW COMPETITION KEYWORDS ========== -->
+    <div class="info-section">
         
         <!-- AD SPACE 3 - Top of Article -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-bottom: 30px;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
         
         <div style="text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e5e7eb;">
             <span style="background: #1e3a8a; color: white; padding: 5px 15px; border-radius: 20px; font-size: 12px; display: inline-block; margin-bottom: 15px;">💰 LOAN CALCULATOR</span>
-            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">EMI Calculator – Calculate Your Monthly Loan Installment Instantly</h1>
+            <h1 style="color: #1e3a8a; font-size: 32px; margin: 15px 0 10px;">EMI Calculator – Calculate Your Monthly Loan Installment Instantly | Loan Repayment Calculator</h1>
             <p style="color: #6b7280; font-size: 14px;">Last Updated: <span id="currentDate"></span> | ⭐ 4.8/5 Rating | 100,000+ Users Monthly</p>
         </div>
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 25px 0 15px;">What is EMI and Why You Need an EMI Calculator?</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;"><strong>EMI (Equated Monthly Installment)</strong> is the fixed amount you pay every month to repay a loan. It consists of both principal and interest components. Our <strong>free EMI calculator</strong> helps you calculate your monthly payment instantly, making it easier to plan your finances before taking any loan.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;"><strong>EMI (Equated Monthly Installment)</strong> is the fixed amount you pay every month to repay a loan. It consists of both principal and interest components. Our <strong>free EMI calculator</strong> helps you calculate your monthly payment instantly, making it easier to plan your finances before taking any loan. Whether you're looking for a <strong>home loan EMI calculator</strong>, <strong>car loan EMI calculator</strong>, or <strong>personal loan EMI calculator</strong>, this tool provides accurate results.</p>
         
         <div style="background: #f3f4f6; padding: 20px; border-radius: 12px; margin: 25px 0; text-align: center;">
             <p style="font-family: monospace; font-size: 18px; font-weight: bold; color: #1e3a8a;">EMI = [P × R × (1+R)^N] / [(1+R)^N - 1]</p>
-            <p style="color: #6b7280; margin-top: 10px;">Where: P = Principal, R = Monthly Interest Rate, N = Number of Months</p>
+            <p style="color: #6b7280; margin-top: 10px;">Where: P = Principal, R = Monthly Interest Rate, N = Number of Months (EMI calculation formula)</p>
         </div>
         
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Types of Loans You Can Calculate</h2>
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Types of Loans You Can Calculate with Our EMI Loan Calculator</h2>
         
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 20px 0;">
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
-                <strong style="color: #1e3a8a; font-size: 20px;">🏠 Home Loan</strong>
-                <p style="margin-top: 8px;">Calculate monthly EMI for your dream home</p>
+                <strong style="color: #1e3a8a; font-size: 20px;">🏠 Home Loan EMI</strong>
+                <p style="margin-top: 8px;">Calculate monthly EMI for your dream home using our <strong>EMI calculator for home loan</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
-                <strong style="color: #1e3a8a; font-size: 20px;">🚗 Car Loan</strong>
-                <p style="margin-top: 8px;">Plan your car purchase with accurate EMI</p>
+                <strong style="color: #1e3a8a; font-size: 20px;">🚗 Car Loan EMI</strong>
+                <p style="margin-top: 8px;">Plan your car purchase with accurate <strong>car loan EMI calculator India</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
-                <strong style="color: #1e3a8a; font-size: 20px;">💳 Personal Loan</strong>
-                <p style="margin-top: 8px;">Check EMI for any personal financial need</p>
+                <strong style="color: #1e3a8a; font-size: 20px;">💳 Personal Loan EMI</strong>
+                <p style="margin-top: 8px;">Check EMI for any personal financial need with <strong>personal loan EMI calculator</strong></p>
             </div>
             <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
                 <strong style="color: #1e3a8a; font-size: 20px;">🏢 Business Loan</strong>
-                <p style="margin-top: 8px;">Calculate EMI for business expansion</p>
+                <p style="margin-top: 8px;">Calculate EMI for business expansion using <strong>business loan EMI calculator</strong></p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
+                <strong style="color: #1e3a8a; font-size: 20px;">🎓 Education Loan</strong>
+                <p style="margin-top: 8px;">Plan your education financing with <strong>education loan EMI calculator</strong></p>
+            </div>
+            <div style="background: #eff6ff; padding: 15px; border-radius: 12px; text-align: center;">
+                <strong style="color: #1e3a8a; font-size: 20px;">📊 Loan Amortization</strong>
+                <p style="margin-top: 8px;">Track your <strong>loan amortization calculator</strong> schedule</p>
             </div>
         </div>
         
         <!-- AD SPACE 4 - Middle of Article -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
         
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This EMI Calculator</h2>
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">How to Use This Monthly Installment Calculator</h2>
         
         <ol style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li>Enter the <strong>loan amount</strong> you wish to borrow (in ₹)</li>
+            <li>Enter the <strong>loan amount</strong> you wish to borrow (in ₹) – this is your principal</li>
             <li>Enter the <strong>annual interest rate</strong> offered by the lender</li>
             <li>Enter the <strong>loan tenure</strong> in years</li>
             <li>Click <strong>"Calculate My EMI"</strong> to see your monthly payment</li>
-            <li>View the <strong>total payment</strong> and <strong>total interest</strong> breakdown</li>
+            <li>View the <strong>total payment</strong> and <strong>total interest</strong> breakdown with our <strong>loan repayment calculator</strong></li>
         </ol>
         
-        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our EMI Calculator</h2>
+        <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Benefits of Using Our EMI Calculator Online Free</h2>
         
         <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li>✅ <strong>100% Free:</strong> No registration or payment required</li>
+            <li>✅ <strong>100% Free:</strong> No registration or payment required – truly <strong>EMI calculator online free</strong></li>
             <li>✅ <strong>Instant Results:</strong> Get EMI calculation in seconds</li>
-            <li>✅ <strong>Accurate Formula:</strong> Uses standard EMI calculation formula</li>
-            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices</li>
+            <li>✅ <strong>Accurate Formula:</strong> Uses standard <strong>EMI calculation formula</strong></li>
+            <li>✅ <strong>Mobile Friendly:</strong> Works perfectly on all devices as a <strong>monthly installment calculator</strong></li>
             <li>✅ <strong>Financial Planning:</strong> Helps you budget your monthly expenses</li>
             <li>✅ <strong>Compare Loans:</strong> Try different tenures and rates to find best option</li>
             <li>✅ <strong>No Data Storage:</strong> All calculations done locally in your browser</li>
@@ -449,7 +693,7 @@ body {
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Factors Affecting Your EMI</h2>
         
         <ul style="color: #374151; line-height: 1.8; margin: 15px 0 15px 25px;">
-            <li><strong>💰 Loan Amount:</strong> Higher principal means higher EMI</li>
+            <li><strong>💰 Loan Amount:</strong> Higher principal means higher EMI – use <strong>EMI loan calculator</strong> to compare</li>
             <li><strong>📈 Interest Rate:</strong> Lower interest rates reduce your EMI</li>
             <li><strong>⏱️ Loan Tenure:</strong> Longer tenure means lower EMI but more total interest</li>
             <li><strong>🏦 Processing Fees:</strong> Some lenders charge additional fees</li>
@@ -457,7 +701,7 @@ body {
         </ul>
         
         <!-- AD SPACE 5 - Before FAQ Section -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin: 30px 0;">
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -488,35 +732,35 @@ body {
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Is this EMI Calculator free?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this EMI calculator is completely free to use with unlimited access. No registration required.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this EMI calculator is completely free to use with unlimited access. No registration required. It's the best <strong>EMI calculator online free</strong> available.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the EMI formula?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">EMI = [P × R × (1+R)^N] ÷ [(1+R)^N - 1], where P = Principal, R = Monthly Interest Rate, N = Number of Months.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">EMI = [P × R × (1+R)^N] ÷ [(1+R)^N - 1], where P = Principal, R = Monthly Interest Rate, N = Number of Months. This is the standard <strong>EMI calculation formula</strong>.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Can I calculate home loan EMI with this tool?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this EMI calculator works for all types of loans including home loans, car loans, personal loans, and business loans.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, this <strong>EMI calculator for home loan</strong> works for all types of loans including home loans, car loans, personal loans, business loans, and education loans.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does a longer tenure reduce EMI?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, increasing the loan tenure reduces the monthly EMI amount, but you pay more total interest over the loan period.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, increasing the loan tenure reduces the monthly EMI amount, but you pay more total interest over the loan period. Use our <strong>loan repayment calculator</strong> to compare.</div>
                     </div>
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
                     <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 Does this calculator work on mobile?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our EMI calculator is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">Yes, our <strong>monthly installment calculator</strong> is fully responsive and works perfectly on smartphones, tablets, and desktops.</div>
                     </div>
                 </div>
                 
@@ -528,9 +772,9 @@ body {
                 </div>
                 
                 <div itemscope="" itemprop="mainEntity" itemtype="https://schema.org/Question" style="background: white; border-radius: 12px; padding: 20px; border: 1px solid #e5e7eb;">
-                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is the difference between EMI and simple interest?</h3>
+                    <h3 itemprop="name" style="color: #2563eb; font-size: 18px; margin-bottom: 10px;">📌 What is a loan amortization calculator?</h3>
                     <div itemscope="" itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
-                        <div itemprop="text" style="color: #374151; line-height: 1.6;">EMI includes both principal and interest, while simple interest is calculated only on the principal amount. EMI is used for most loan products.</div>
+                        <div itemprop="text" style="color: #374151; line-height: 1.6;">A <strong>loan amortization calculator</strong> shows how your loan payments are split between principal and interest over time. Our EMI calculator provides this breakdown.</div>
                     </div>
                 </div>
             </div>
@@ -542,12 +786,12 @@ body {
         
         <h2 style="color: #1e3a8a; font-size: 26px; margin: 30px 0 15px;">Final Thoughts</h2>
         
-        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Planning a loan is a major financial decision. Our <strong>free EMI calculator</strong> helps you understand your monthly obligations before you commit. Whether you're planning a home loan, car loan, or personal loan, this tool gives you the clarity you need to make informed financial decisions. Use it to compare different loan options, adjust tenures, and find the EMI that fits your budget.</p>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Planning a loan is a major financial decision. Our <strong>free EMI calculator</strong> helps you understand your monthly obligations before you commit. Whether you're planning a home loan, car loan, personal loan, or education loan, this tool gives you the clarity you need to make informed financial decisions. Use it to compare different loan options, adjust tenures, and find the EMI that fits your budget.</p>
         
         <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">Remember, a lower EMI might seem attractive, but a shorter tenure saves you more on total interest. Use this calculator to find the perfect balance for your financial situation.</p>
         
-        <!-- AD SPACE 6 - Bottom of Article (Before Footer) - ONLY 1 AD HERE NOW (PHELE 2 THE, AB 1 HAI) -->
-        <div class="ad-space" style="background: #f8f9fa; border: 1px dashed #ccc; border-radius: 12px; padding: 15px; text-align: center; margin-top: 30px;">
+        <!-- AD SPACE 6 - Bottom of Article -->
+        <div class="ad-space">
             <p style="color: #6b7280; font-size: 12px;">━━━━━ Advertisement Space ━━━━━</p>
             <p style="color: #9ca3af;">Your Ad Here (Adsterra/AdSense)</p>
         </div>
@@ -619,6 +863,21 @@ document.getElementById('loanTenure').addEventListener('keypress', function(e) {
 
 // Display current date
 document.getElementById('currentDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
 </script>
 
 <!-- ========== FOOTER - PROFESSIONAL GRADIENT ========== -->
