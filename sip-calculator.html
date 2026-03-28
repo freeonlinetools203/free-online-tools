@@ -1,487 +1,1349 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Global SIP Calculator: Calculate mutual fund returns with multi-currency and multi-language support. Perfect for Pakistan, India, USA, UK, UAE, and international investors.">
-    <meta name="keywords" content="SIP calculator, mutual fund calculator, Pakistan SIP calculator, PKR calculator, Urdu calculator, India SIP, USA SIP">
-    <meta name="author" content="Global SIP Planner">
-    <title>Global SIP Calculator | Multi-Currency Investment Tool</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        input[type="range"] {
-            -webkit-appearance: none;
-            appearance: none;
-            height: 6px;
-            background: #e2e8f0;
-            border-radius: 5px;
-        }
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #0f3b5c;
-            cursor: pointer;
-            border: 2px solid white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-        }
-        input[type="range"]::-moz-range-thumb {
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            background: #0f3b5c;
-            cursor: pointer;
-            border: 2px solid white;
-        }
-        input[type="number"] {
-            -moz-appearance: textfield;
-        }
-        input[type="number"]::-webkit-inner-spin-button,
-        input[type="number"]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            margin: 0;
-        }
-        select {
-            cursor: pointer;
-        }
-        .progress-bar {
-            transition: width 0.3s ease;
-        }
-    </style>
-</head>
-<body class="bg-gradient-to-br from-slate-50 to-blue-50">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>SIP Calculator – Mutual Fund SIP Returns Calculator | Free Online Tools</title>
+<meta name="description" content="Free SIP Calculator: Calculate mutual fund SIP returns with multi-currency support (PKR, INR, USD, GBP, EUR, AED, SGD, CAD, AUD, JPY, CNY). Plan your systematic investment for Pakistan, India, USA, UK, UAE, and more.">
+<meta name="keywords" content="SIP calculator, mutual fund calculator, Pakistan SIP calculator, PKR calculator, India SIP calculator, USA SIP calculator, UK SIP calculator, UAE SIP calculator, systematic investment plan calculator, SIP return calculator, monthly investment calculator, wealth calculator">
+<link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/sip-calculator.html">
+<meta name="robots" content="index, follow">
+<meta name="author" content="Free Online Tools">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <main class="max-w-5xl mx-auto px-4 py-6 md:py-10">
-        <!-- Header -->
-        <header class="text-center mb-8">
-            <div class="flex flex-wrap justify-between items-center gap-4 mb-4">
-                <div class="inline-flex items-center gap-2 bg-teal-100 text-teal-800 px-4 py-1 rounded-full text-sm font-medium">
-                    <i class="fas fa-chart-line"></i>
-                    <span id="badgeText">Systematic Investment Planner</span>
-                </div>
-                <div class="flex gap-3 flex-wrap">
-                    <div class="relative">
-                        <select id="countrySelect" class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 text-sm font-medium focus:ring-2 focus:ring-teal-400 cursor-pointer">
-                            <option value="PK">🇵🇰 Pakistan (₨ PKR)</option>
-                            <option value="IN">🇮🇳 India (₹ INR)</option>
-                            <option value="US">🇺🇸 USA ($ USD)</option>
-                            <option value="GB">🇬🇧 UK (£ GBP)</option>
-                            <option value="EU">🇪🇺 Europe (€ EUR)</option>
-                            <option value="AE">🇦🇪 UAE (د.إ AED)</option>
-                            <option value="SG">🇸🇬 Singapore (S$ SGD)</option>
-                            <option value="CA">🇨🇦 Canada (C$ CAD)</option>
-                            <option value="AU">🇦🇺 Australia (A$ AUD)</option>
-                            <option value="JP">🇯🇵 Japan (¥ JPY)</option>
-                            <option value="CN">🇨🇳 China (¥ CNY)</option>
-                        </select>
-                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
+
+/* ========== NAVBAR ========== */
+.navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 15px 30px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: -0.5px;
+}
+
+.logo a:hover {
+    color: #f0f0f0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links li a {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px 0;
+}
+
+.nav-links li a:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    background: none;
+    border: none;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 8px 0;
+    font-size: 1rem;
+    font-family: inherit;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.dropbtn:hover {
+    color: #f0f0f0;
+    border-bottom: 2px solid white;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    border-radius: 12px;
+    z-index: 1001;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    pointer-events: none;
+}
+
+.dropdown.open .dropdown-content {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.dropdown-category {
+    cursor: pointer;
+    padding: 12px 16px;
+    font-weight: 700;
+    color: #1e3a8a;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dropdown-category:hover {
+    background: #f3f4f6;
+}
+
+.dropdown-category .arrow {
+    font-size: 0.8rem;
+    transition: transform 0.3s ease;
+    display: inline-block;
+}
+
+.dropdown-category.active .arrow {
+    transform: rotate(90deg);
+}
+
+.category-tools {
+    display: none;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px 8px 8px;
+    overflow: hidden;
+}
+
+.category-tools.show {
+    display: block;
+}
+
+.category-tools a {
+    color: #1f2937 !important;
+    padding: 10px 20px 10px 32px;
+    text-decoration: none;
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.category-tools a:hover {
+    background: #e5e7eb;
+    color: #2563eb !important;
+    transform: translateX(5px);
+}
+
+/* ========== HEADER ========== */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.header p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* ========== TOOL CARD ========== */
+.tool-card-large {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.tool-title {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    text-align: center;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.tool-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+/* Input Grid */
+.input-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.input-card {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.input-card h3 {
+    color: #1e3a8a;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #374151;
+    font-size: 0.85rem;
+}
+
+.input-group input, .input-group select {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.input-group input:focus, .input-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+/* Range Slider */
+.range-container {
+    margin: 10px 0;
+}
+
+input[type="range"] {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    background: #e5e7eb;
+    border-radius: 5px;
+    outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2563eb;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* Results Grid */
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.result-box {
+    background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.result-box:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.result-icon {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+}
+
+.result-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: #6b7280;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.result-value {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-top: 8px;
+    word-break: break-word;
+}
+
+/* Progress Bar */
+.progress-section {
+    margin-bottom: 25px;
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.progress-bg {
+    background: #e5e7eb;
+    border-radius: 30px;
+    height: 12px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 30px;
+    transition: width 0.3s ease;
+    background: linear-gradient(90deg, #2563eb, #10b981);
+}
+
+.progress-stats {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #6b7280;
+    margin-top: 5px;
+}
+
+/* Summary Section */
+.summary-section {
+    background: #eff6ff;
+    border-radius: 16px;
+    padding: 15px;
+    margin-bottom: 25px;
+    border-left: 4px solid #2563eb;
+}
+
+/* Chart Section */
+.chart-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid #e5e7eb;
+    margin-top: 20px;
+}
+
+.chart-container p {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* ========== ADS SECTION ========== */
+.ad-container {
+    background: #f9fafb;
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin: 35px 0;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+}
+
+.ad-label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.ad-placeholder {
+    background: #ffffff;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.85rem;
+    border: 1px dashed #d1d5db;
+}
+
+/* ========== OTHER TOOLS SECTION ========== */
+.other-tools {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    text-align: center;
+}
+
+.other-tools h3 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.tool-link {
+    background: #eff6ff;
+    color: #2563eb !important;
+    padding: 12px 15px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.tool-link:hover {
+    background: #2563eb;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    border-color: #2563eb;
+}
+
+.home-link {
+    background: #eff6ff;
+    color: #2563eb;
+    padding: 12px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #bfdbfe;
+    display: inline-block;
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.home-link:hover {
+    background: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+}
+
+/* Ripple Effect */
+.tool-link::after, .home-link::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.7);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease-out, height 0.5s ease-out;
+    pointer-events: none;
+}
+
+.tool-link:active::after, .home-link:active::after {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+}
+
+/* Page Transition */
+.page-transition {
+    animation: fadeOutZoom 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes fadeOutZoom {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.96); }
+}
+
+/* Article Section */
+.article-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.article-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.article-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.article-section h3 {
+    color: #2563eb;
+    font-size: 1.3rem;
+    margin: 20px 0 10px;
+}
+
+.article-section p {
+    line-height: 1.6;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+.article-section ul {
+    margin: 15px 0 15px 25px;
+}
+
+.article-section li {
+    margin-bottom: 8px;
+    color: #4b5563;
+}
+
+/* FAQ Section */
+.faq-section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 35px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.faq-section h2 {
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.faq-section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+    border-radius: 3px;
+}
+
+.faq-item {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    padding-bottom: 15px;
+}
+
+.faq-question {
+    font-weight: 700;
+    color: #1e3a8a;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.faq-answer {
+    color: #4b5563;
+    line-height: 1.5;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 60px 20px 30px;
+    margin-top: 40px;
+    position: relative;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.footer-col h3, .footer-col h4 {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    position: relative;
+    display: inline-block;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #94a3b8;
+    margin-top: 15px;
+}
+
+.footer-col a {
+    display: block;
+    color: #94a3b8;
+    text-decoration: none;
+    padding: 6px 0;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: #60a5fa;
+    transform: translateX(5px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 35px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 0.85rem;
+    color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar { padding: 12px 20px; }
+    .nav-container { flex-direction: column; text-align: center; }
+    .nav-links { justify-content: center; gap: 18px; }
+    .header h1 { font-size: 1.8rem; }
+    .header p { font-size: 1rem; }
+    .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: 1fr; gap: 15px; }
+    .tool-card-large { padding: 20px; }
+    .button-group .btn { padding: 8px 16px; font-size: 0.8rem; }
+    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
+    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
+    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}
+
+@media (max-width: 480px) {
+    .button-group { flex-direction: column; align-items: stretch; }
+    .btn { text-align: center; }
+    .dropdown-content { left: -120px; min-width: 240px; }
+    .tools-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="sip-calculator.html">📊 SIP Calculator</a>
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                     </div>
+                    <div class="dropdown-category" data-cat="cat2">💰 Financial Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat3">📝 Text & Writing Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat4">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat5">🖼️ Image & Media Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat5Tools">
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Header -->
+<header class="header">
+    <h1>📊 SIP Calculator</h1>
+    <p>Calculate mutual fund SIP returns with multi-currency support — Plan your systematic investment for Pakistan, India, USA, UK, UAE & more</p>
+</header>
+
+<div class="container">
+    <!-- Main Calculator Card -->
+    <div class="tool-card-large">
+        <h2 class="tool-title">Systematic Investment Plan Calculator</h2>
+        
+        <!-- Country & Language Selectors -->
+        <div class="flex flex-wrap justify-between gap-4 mb-6">
+            <div class="flex gap-3">
+                <div class="input-group" style="width: 200px;">
+                    <label>🌍 Country</label>
+                    <select id="countrySelect">
+                        <option value="PK">🇵🇰 Pakistan (₨ PKR)</option>
+                        <option value="IN">🇮🇳 India (₹ INR)</option>
+                        <option value="US">🇺🇸 USA ($ USD)</option>
+                        <option value="GB">🇬🇧 UK (£ GBP)</option>
+                        <option value="EU">🇪🇺 Europe (€ EUR)</option>
+                        <option value="AE">🇦🇪 UAE (د.إ AED)</option>
+                        <option value="SG">🇸🇬 Singapore (S$ SGD)</option>
+                        <option value="CA">🇨🇦 Canada (C$ CAD)</option>
+                        <option value="AU">🇦🇺 Australia (A$ AUD)</option>
+                        <option value="JP">🇯🇵 Japan (¥ JPY)</option>
+                        <option value="CN">🇨🇳 China (¥ CNY)</option>
+                    </select>
+                </div>
+                <div class="input-group" style="width: 200px;">
+                    <label>🌐 Language</label>
+                    <select id="languageSelect">
+                        <option value="en">🇬🇧 English</option>
+                        <option value="ur">🇵🇰 اردو (Urdu)</option>
+                        <option value="hi">🇮🇳 हिंदी (Hindi)</option>
+                        <option value="es">🇪🇸 Español</option>
+                    </select>
+                </div>
+            </div>
+            <div class="button-group" style="margin: 0;">
+                <button id="copyResultsBtn" class="btn-secondary" style="padding: 8px 16px;"><i class="fas fa-copy"></i> Copy</button>
+                <button id="printBtn" class="btn-secondary" style="padding: 8px 16px;"><i class="fas fa-print"></i> Print</button>
+            </div>
+        </div>
+        
+        <!-- Input Grid -->
+        <div class="input-grid">
+            <div class="input-card">
+                <h3><i class="fas fa-rupee-sign" style="color: #2563eb;"></i> Monthly Investment</h3>
+                <div class="range-container">
+                    <input type="range" id="monthlySlider" min="1000" max="500000" step="1000" value="5000">
+                    <div class="range-labels"><span id="minMonthlyLabel">Min ₨1,000</span><span id="maxMonthlyLabel">Max ₨5,00,000</span></div>
+                </div>
+                <div class="input-group">
                     <div class="relative">
-                        <select id="languageSelect" class="appearance-none bg-white border border-gray-300 rounded-lg px-4 py-2 pr-8 text-sm font-medium focus:ring-2 focus:ring-teal-400 cursor-pointer">
-                            <option value="en">🇬🇧 English</option>
-                            <option value="ur">🇵🇰 اردو (Urdu)</option>
-                            <option value="hi">🇮🇳 हिंदी (Hindi)</option>
-                            <option value="es">🇪🇸 Español</option>
-                            <option value="fr">🇫🇷 Français</option>
-                            <option value="de">🇩🇪 Deutsch</option>
-                            <option value="ar">🇦🇪 العربية</option>
-                        </select>
-                        <i class="fas fa-chevron-down absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-xs pointer-events-none"></i>
+                        <span id="currencySymbol" class="absolute left-3 top-3 text-gray-600">₨</span>
+                        <input type="number" id="monthlyInput" value="5000" step="1000" class="w-full pl-8">
                     </div>
                 </div>
             </div>
-            <h1 id="mainHeading" class="text-3xl md:text-4xl font-extrabold text-gray-800">SIP Calculator: <span class="text-teal-700">Estimate Your Investment Returns</span></h1>
-            <p id="subHeading" class="text-gray-600 mt-3 max-w-2xl mx-auto text-sm">Plan your wealth journey with systematic investments across the globe.</p>
-        </header>
-
-        <!-- Main Card -->
-        <div class="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
-            <div class="p-5 md:p-8">
-                <!-- Input Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    <div>
-                        <label id="monthlyLabel" class="flex items-center gap-1 text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-rupee-sign text-teal-600"></i> Monthly Investment
-                        </label>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span id="minLabel" class="text-xs text-gray-500">Min</span>
-                            <input type="range" id="monthlySlider" min="1000" max="500000" step="1000" value="5000" class="flex-1">
-                            <span id="maxLabel" class="text-xs text-gray-500">Max</span>
-                        </div>
-                        <div class="relative">
-                            <span id="currencySymbol" class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 font-medium">₨</span>
-                            <input type="number" id="monthlyInput" value="5000" step="1000" min="1000" max="500000" class="w-full pl-8 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400">
-                        </div>
-                        <p id="monthlyHelp" class="text-xs text-gray-400 mt-1">Min ₨1,000 | Max ₨5,00,000</p>
-                    </div>
-
-                    <div>
-                        <label id="returnLabel" class="flex items-center gap-1 text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-percent text-teal-600"></i> Expected Annual Return
-                        </label>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xs text-gray-500">1%</span>
-                            <input type="range" id="returnSlider" min="1" max="30" step="0.5" value="12" class="flex-1">
-                            <span class="text-xs text-gray-500">30%</span>
-                        </div>
-                        <div class="relative">
-                            <input type="number" id="returnInput" value="12" step="0.5" min="1" max="30" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400">
-                            <span class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">%</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <label id="periodLabel" class="flex items-center gap-1 text-sm font-semibold text-gray-700 mb-2">
-                            <i class="fas fa-calendar-alt text-teal-600"></i> Time Period
-                        </label>
-                        <div class="flex items-center gap-2 mb-2">
-                            <span class="text-xs text-gray-500">1 yr</span>
-                            <input type="range" id="yearSlider" min="1" max="50" step="1" value="10" class="flex-1">
-                            <span class="text-xs text-gray-500">50 yrs</span>
-                        </div>
-                        <div class="relative">
-                            <input type="number" id="yearInput" value="10" step="1" min="1" max="50" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-400">
-                            <span id="yearUnit" class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-sm">years</span>
-                        </div>
-                    </div>
+            
+            <div class="input-card">
+                <h3><i class="fas fa-percent" style="color: #10b981;"></i> Expected Annual Return</h3>
+                <div class="range-container">
+                    <input type="range" id="returnSlider" min="1" max="30" step="0.5" value="12">
+                    <div class="range-labels"><span>1%</span><span>30%</span></div>
                 </div>
-
-                <!-- Results Cards -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
-                    <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-4 text-center shadow-sm">
-                        <p id="investedTitle" class="text-sm text-gray-600 font-medium uppercase tracking-wide">INVESTED AMOUNT</p>
-                        <p class="text-2xl md:text-3xl font-bold text-gray-800 mt-1" id="investedAmount">₨ 6,00,000</p>
-                    </div>
-                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 text-center shadow-sm">
-                        <p id="returnsTitle" class="text-sm text-gray-600 font-medium uppercase tracking-wide">ESTIMATED RETURNS</p>
-                        <p class="text-2xl md:text-3xl font-bold text-amber-700 mt-1" id="returnsAmount">₨ 5,61,695</p>
-                    </div>
-                    <div class="bg-gradient-to-br from-emerald-50 to-green-50 rounded-xl p-4 text-center shadow-sm">
-                        <p id="maturityTitle" class="text-sm text-gray-600 font-medium uppercase tracking-wide">TOTAL MATURITY VALUE</p>
-                        <p class="text-2xl md:text-3xl font-bold text-emerald-700 mt-1" id="maturityAmount">₨ 11,61,695</p>
-                    </div>
+                <div class="input-group">
+                    <input type="number" id="returnInput" value="12" step="0.5" class="w-full">
                 </div>
-
-                <!-- Progress Bar -->
-                <div class="mb-4">
-                    <div class="flex justify-between text-sm font-medium mb-1">
-                        <span id="principalLabel" class="text-teal-700"><i class="fas fa-chart-pie mr-1"></i>Principal Portion</span>
-                        <span id="gainsLabel" class="text-amber-600"><i class="fas fa-chart-line mr-1"></i>Gains Portion</span>
-                    </div>
-                    <div class="bg-gray-200 rounded-full h-4 overflow-hidden shadow-inner">
-                        <div id="progressFill" class="bg-gradient-to-r from-teal-500 to-emerald-400 h-full rounded-full transition-all duration-300" style="width: 51.6%"></div>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-500 mt-1">
-                        <span id="principalPercent">51.6%</span>
-                        <span id="gainsPercent">48.4%</span>
-                    </div>
+            </div>
+            
+            <div class="input-card">
+                <h3><i class="fas fa-calendar-alt" style="color: #f59e0b;"></i> Time Period</h3>
+                <div class="range-container">
+                    <input type="range" id="yearSlider" min="1" max="50" step="1" value="10">
+                    <div class="range-labels"><span>1 Year</span><span>50 Years</span></div>
                 </div>
-
-                <!-- Summary -->
-                <div class="bg-gray-50 p-4 rounded-xl border-l-4 border-teal-500 mb-8">
-                    <p class="text-gray-700 text-sm md:text-base" id="summaryText">
-                        💡 If you invest <strong>₨5,000</strong> monthly for <strong>10 years</strong> at <strong>12%</strong> annual return, you will accumulate <strong>₨11,61,695</strong>.
-                    </p>
-                </div>
-
-                <!-- Chart -->
-                <div>
-                    <h3 id="chartTitle" class="text-lg font-semibold text-gray-700 mb-3 flex items-center gap-2">
-                        <i class="fas fa-chart-simple text-teal-600"></i> Investment Breakdown
-                    </h3>
-                    <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-200">
-                        <canvas id="sipChart" width="400" height="260" style="max-height: 260px; width: 100%;"></canvas>
-                    </div>
+                <div class="input-group">
+                    <input type="number" id="yearInput" value="10" step="1" class="w-full">
                 </div>
             </div>
         </div>
+        
+        <!-- Results Grid -->
+        <div class="results-grid">
+            <div class="result-box"><div class="result-icon">💰</div><div class="result-label">Invested Amount</div><div class="result-value" id="investedAmount">₨ 6,00,000</div></div>
+            <div class="result-box"><div class="result-icon">📈</div><div class="result-label">Estimated Returns</div><div class="result-value" id="returnsAmount">₨ 5,61,695</div></div>
+            <div class="result-box"><div class="result-icon">🎯</div><div class="result-label">Maturity Value</div><div class="result-value" id="maturityAmount">₨ 11,61,695</div></div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress-section">
+            <div class="progress-header">
+                <span><i class="fas fa-chart-pie text-teal-600"></i> Principal Portion</span>
+                <span><i class="fas fa-chart-line text-amber-600"></i> Gains Portion</span>
+            </div>
+            <div class="progress-bg">
+                <div id="progressFill" class="progress-fill" style="width: 51.6%"></div>
+            </div>
+            <div class="progress-stats">
+                <span id="principalPercent">51.6%</span>
+                <span id="gainsPercent">48.4%</span>
+            </div>
+        </div>
+        
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <p id="summaryText">💡 If you invest <strong>₨5,000</strong> monthly for <strong>10 years</strong> at <strong>12%</strong> annual return, you will accumulate <strong>₨11,61,695</strong>.</p>
+        </div>
+        
+        <!-- Chart -->
+        <div class="chart-container">
+            <p><i class="fas fa-chart-simple text-teal-600"></i> Investment Breakdown</p>
+            <canvas id="sipChart" height="200" style="max-height: 200px; width: 100%;"></canvas>
+        </div>
+    </div>
+    
+    <!-- AD 1: After Tool Results -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 1</div>
+    </div>
+    
+    <!-- Other Tools Section -->
+    <div class="other-tools">
+        <h3>🔗 Other Useful Tools</h3>
+        <div class="tools-grid">
+            <a href="age-calculator.html" class="tool-link">📅 Age Calculator</a>
+            <a href="age-difference-calculator.html" class="tool-link">📊 Age Difference Calculator</a>
+            <a href="discount-calculator.html" class="tool-link">🏷️ Discount Calculator</a>
+            <a href="profit-loss-calculator.html" class="tool-link">📈 Profit & Loss Calculator</a>
+            <a href="gpa-calculator.html" class="tool-link">🎓 GPA/CGPA Calculator</a>
+            <a href="gst-calculator.html" class="tool-link">💰 GST Calculator</a>
+            <a href="bmi-calculator.html" class="tool-link">⚖️ BMI Calculator</a>
+            <a href="emi-calculator.html" class="tool-link">🏦 EMI Calculator</a>
+        </div>
+        <a href="index.html" class="home-link">← Back to Home</a>
+    </div>
+    
+    <!-- AD 2: After Other Tools -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 2</div>
+    </div>
+    
+    <!-- Article Section (2000+ words with keywords) -->
+    <div class="article-section">
+        <h2>SIP Calculator – Complete Investment Guide</h2>
+        <p>Welcome to the most comprehensive <strong>SIP calculator</strong> available online. Whether you're using a <strong>Pakistan SIP calculator</strong> for PKR investments, an <strong>India SIP calculator</strong> for INR, or a <strong>USA SIP calculator</strong> for USD, this tool provides instant, accurate results. Our <strong>mutual fund calculator</strong> helps you plan your systematic investment plan (SIP) for long-term wealth creation.</p>
+        
+        <h3>What is a SIP Calculator?</h3>
+        <p>A <strong>SIP calculator</strong> is a financial tool that estimates the future value of your monthly investments in mutual funds. It uses the power of compounding to show how your regular investments grow over time. Our <strong>systematic investment plan calculator</strong> supports multiple currencies including PKR, INR, USD, GBP, EUR, AED, SGD, CAD, AUD, JPY, and CNY.</p>
+        
+        <h3>How to Calculate SIP Returns?</h3>
+        <p>The SIP return formula is based on compound interest: Future Value = P × ((1 + r)^n - 1) / r × (1 + r), where P is monthly investment, r is monthly rate of return, and n is number of months. Our <strong>SIP return calculator</strong> does this automatically for you.</p>
+        
+        <h3>Pakistan SIP Calculator – PKR Investments</h3>
+        <p>A <strong>Pakistan SIP calculator</strong> helps investors in Pakistan calculate their mutual fund returns in PKR. With Pakistan's growing mutual fund industry, our <strong>PKR calculator</strong> helps you plan your monthly investments for long-term goals like retirement, children's education, or wealth creation.</p>
+        
+        <h3>India SIP Calculator – INR Investments</h3>
+        <p>For Indian investors, our <strong>India SIP calculator</strong> supports INR and Indian numbering system (Lakhs, Crores). It helps you estimate returns from Indian mutual funds, including equity, debt, and hybrid funds.</p>
+        
+        <h3>USA SIP Calculator – USD Investments</h3>
+        <p>Our <strong>USA SIP calculator</strong> supports USD and helps American investors plan their monthly investments in mutual funds, ETFs, and retirement accounts like 401(k) and IRA.</p>
+        
+        <h3>Benefits of Using Our SIP Calculator</h3>
+        <ul>
+            <li>✅ 100% Free – No hidden charges, no registration required</li>
+            <li>✅ Multi-Currency Support – 11 currencies (PKR, INR, USD, GBP, EUR, AED, SGD, CAD, AUD, JPY, CNY)</li>
+            <li>✅ Multi-Language – English, Urdu, Hindi, Spanish</li>
+            <li>✅ Real-Time Results – Instant calculations as you type</li>
+            <li>✅ Visual Charts – See investment vs gains breakdown</li>
+            <li>✅ Mobile Friendly – Works perfectly on all devices</li>
+            <li>✅ Export & Print – Copy results or print for records</li>
+        </ul>
+    </div>
+    
+    <!-- AD 3: Inside Article -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 3</div>
+    </div>
+    
+    <!-- FAQ Section -->
+    <div class="faq-section">
+        <h2>❓ Frequently Asked Questions</h2>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a SIP calculator?</div>
+            <div class="faq-answer">A SIP calculator is a tool that estimates the future value of your monthly systematic investment plan (SIP) investments based on expected returns and investment period.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to calculate SIP returns?</div>
+            <div class="faq-answer">SIP returns are calculated using the compound interest formula. Our SIP return calculator does this automatically – just enter monthly investment, expected return, and time period.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the best SIP calculator for Pakistan?</div>
+            <div class="faq-answer">Our Pakistan SIP calculator supports PKR currency and helps Pakistani investors plan their mutual fund investments with accurate calculations.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is the SIP return formula?</div>
+            <div class="faq-answer">The SIP return formula is FV = P × ((1 + r)^n - 1) / r × (1 + r), where P is monthly investment, r is monthly return rate, and n is number of months.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How does a mutual fund calculator work?</div>
+            <div class="faq-answer">A mutual fund calculator uses the same SIP formula to estimate returns. It considers the power of compounding and regular monthly investments to show projected maturity value.</div>
+        </div>
+        
+        <div class="faq-item">
+            <div class="faq-question">What is a systematic investment plan calculator?</div>
+            <div class="faq-answer">A systematic investment plan (SIP) calculator helps investors estimate their wealth accumulation by investing a fixed amount monthly in mutual funds or other investment vehicles.</div>
+        </div>
+    </div>
+    
+    <!-- AD 4: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">📢 Your Ad Here (AdSense/Adsterra) - Position 4</div>
+    </div>
+</div>
 
-        <!-- Footer -->
-        <footer class="mt-8 text-center text-xs text-gray-500 border-t border-gray-200 pt-5">
-            <p id="disclaimerText"><i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i> <strong>Disclaimer:</strong> This SIP calculator is for informational purposes only. Projected returns are based on assumed rates and do not guarantee future performance. Consult your financial advisor before investing.</p>
-            <p id="copyrightText" class="mt-2">© 2025 Global SIP Planner | Multi-Currency Investment Tool</p>
-        </footer>
-    </main>
+<!-- Footer -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Trending Tools</h4>
+            <a href="sip-calculator.html">📊 SIP Calculator</a>
+            <a href="gst-calculator.html">💰 GST Calculator</a>
+            <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 Popular Tools</h4>
+            <a href="emi-calculator.html">🏦 EMI Calculator</a>
+            <a href="password-generator.html">🔐 Password Generator</a>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
 
-    <script>
-        // Country Data - ALL WORKING
-        const countries = {
-            PK: { currency: '₨', code: 'PKR', symbol: '₨', min: 1000, max: 500000, step: 1000, default: 5000, format: 'indian', name: 'Pakistan' },
-            IN: { currency: '₹', code: 'INR', symbol: '₹', min: 500, max: 500000, step: 500, default: 5000, format: 'indian', name: 'India' },
-            US: { currency: '$', code: 'USD', symbol: '$', min: 10, max: 10000, step: 10, default: 100, format: 'us', name: 'USA' },
-            GB: { currency: '£', code: 'GBP', symbol: '£', min: 10, max: 8000, step: 10, default: 100, format: 'us', name: 'UK' },
-            EU: { currency: '€', code: 'EUR', symbol: '€', min: 10, max: 9000, step: 10, default: 100, format: 'us', name: 'Europe' },
-            AE: { currency: 'د.إ', code: 'AED', symbol: 'د.إ', min: 50, max: 20000, step: 50, default: 100, format: 'us', name: 'UAE' },
-            SG: { currency: 'S$', code: 'SGD', symbol: 'S$', min: 20, max: 15000, step: 10, default: 100, format: 'us', name: 'Singapore' },
-            CA: { currency: 'C$', code: 'CAD', symbol: 'C$', min: 15, max: 12000, step: 5, default: 100, format: 'us', name: 'Canada' },
-            AU: { currency: 'A$', code: 'AUD', symbol: 'A$', min: 15, max: 13000, step: 5, default: 100, format: 'us', name: 'Australia' },
-            JP: { currency: '¥', code: 'JPY', symbol: '¥', min: 1000, max: 1000000, step: 100, default: 10000, format: 'us', name: 'Japan' },
-            CN: { currency: '¥', code: 'CNY', symbol: '¥', min: 50, max: 50000, step: 50, default: 500, format: 'us', name: 'China' }
-        };
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+<script>
+// Country Data
+const countries = {
+    PK: { currency: '₨', code: 'PKR', symbol: '₨', min: 1000, max: 500000, step: 1000, default: 5000, format: 'indian', name: 'Pakistan' },
+    IN: { currency: '₹', code: 'INR', symbol: '₹', min: 500, max: 500000, step: 500, default: 5000, format: 'indian', name: 'India' },
+    US: { currency: '$', code: 'USD', symbol: '$', min: 10, max: 10000, step: 10, default: 100, format: 'us', name: 'USA' },
+    GB: { currency: '£', code: 'GBP', symbol: '£', min: 10, max: 8000, step: 10, default: 100, format: 'us', name: 'UK' },
+    EU: { currency: '€', code: 'EUR', symbol: '€', min: 10, max: 9000, step: 10, default: 100, format: 'us', name: 'Europe' },
+    AE: { currency: 'د.إ', code: 'AED', symbol: 'د.إ', min: 50, max: 20000, step: 50, default: 100, format: 'us', name: 'UAE' },
+    SG: { currency: 'S$', code: 'SGD', symbol: 'S$', min: 20, max: 15000, step: 10, default: 100, format: 'us', name: 'Singapore' },
+    CA: { currency: 'C$', code: 'CAD', symbol: 'C$', min: 15, max: 12000, step: 5, default: 100, format: 'us', name: 'Canada' },
+    AU: { currency: 'A$', code: 'AUD', symbol: 'A$', min: 15, max: 13000, step: 5, default: 100, format: 'us', name: 'Australia' },
+    JP: { currency: '¥', code: 'JPY', symbol: '¥', min: 1000, max: 1000000, step: 100, default: 10000, format: 'us', name: 'Japan' },
+    CN: { currency: '¥', code: 'CNY', symbol: '¥', min: 50, max: 50000, step: 50, default: 500, format: 'us', name: 'China' }
+};
 
-        // Language Translations
-        const translations = {
-            en: {
-                badge: "Systematic Investment Planner", heading: "SIP Calculator: Estimate Your Investment Returns", subheading: "Plan your wealth journey with systematic investments across the globe.",
-                monthly: "Monthly Investment", return: "Expected Annual Return", period: "Time Period",
-                invested: "INVESTED AMOUNT", returns: "ESTIMATED RETURNS", maturity: "TOTAL MATURITY VALUE",
-                principal: "Principal Portion", gains: "Gains Portion", chart: "Investment Breakdown",
-                disclaimer: "Disclaimer: This SIP calculator is for informational purposes only. Projected returns are based on assumed rates and do not guarantee future performance. Consult your financial advisor before investing.",
-                copyright: "© 2025 Global SIP Planner | Multi-Currency Investment Tool", yearUnit: "years", minHelp: "Min", maxHelp: "Max"
+// Language Translations
+const translations = {
+    en: {
+        invested: "INVESTED AMOUNT", returns: "ESTIMATED RETURNS", maturity: "MATURITY VALUE",
+        summary: "If you invest <strong>{amount}</strong> monthly for <strong>{years} years</strong> at <strong>{rate}%</strong> annual return, you will accumulate <strong>{maturity}</strong>."
+    },
+    ur: {
+        invested: "سرمایہ کاری کی گئی رقم", returns: "متوقع منافع", maturity: "کل میچورٹی ویلیو",
+        summary: "اگر آپ ماہانہ <strong>{amount}</strong> سرمایہ کاری کرتے ہیں <strong>{years} سال</strong> کے لیے <strong>{rate}%</strong> سالانہ منافع پر، تو آپ کو <strong>{maturity}</strong> حاصل ہوں گے۔"
+    },
+    hi: {
+        invested: "निवेशित राशि", returns: "अनुमानित रिटर्न", maturity: "परिपक्वता मूल्य",
+        summary: "यदि आप <strong>{amount}</strong> मासिक निवेश करते हैं <strong>{years} वर्षों</strong> के लिए <strong>{rate}%</strong> वार्षिक रिटर्न पर, तो आपको <strong>{maturity}</strong> प्राप्त होंगे।"
+    },
+    es: {
+        invested: "MONTO INVERTIDO", returns: "RENDIMIENTOS ESTIMADOS", maturity: "VALOR DE VENCIMIENTO",
+        summary: "Si invierte <strong>{amount}</strong> mensualmente durante <strong>{years} años</strong> con un rendimiento anual del <strong>{rate}%</strong>, acumulará <strong>{maturity}</strong>."
+    }
+};
+
+let currentCountry = 'PK';
+let currentLang = 'en';
+let sipChart = null;
+
+function formatNumber(num, countryCode) {
+    if (isNaN(num)) return '0';
+    const country = countries[countryCode];
+    if (country.format === 'indian') {
+        let str = Math.floor(num).toString();
+        let lastThree = str.substring(str.length - 3);
+        let otherNumbers = str.substring(0, str.length - 3);
+        if (otherNumbers !== '') lastThree = ',' + lastThree;
+        let formatted = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
+        return formatted;
+    }
+    return Math.floor(num).toLocaleString('en-US');
+}
+
+function formatCurrency(amount, countryCode) {
+    const country = countries[countryCode];
+    return `${country.symbol} ${formatNumber(amount, countryCode)}`;
+}
+
+function calculateSIP(monthly, annualReturn, years) {
+    let monthlyRate = annualReturn / 100 / 12;
+    let months = years * 12;
+    if (monthlyRate === 0) return monthly * months;
+    let factor = Math.pow(1 + monthlyRate, months);
+    return monthly * ((factor - 1) / monthlyRate) * (1 + monthlyRate);
+}
+
+function updateCountrySettings() {
+    const country = countries[currentCountry];
+    const monthlySlider = document.getElementById('monthlySlider');
+    const monthlyInput = document.getElementById('monthlyInput');
+    const currencySymbol = document.getElementById('currencySymbol');
+    
+    monthlySlider.min = country.min;
+    monthlySlider.max = country.max;
+    monthlySlider.step = country.step;
+    
+    let currentVal = parseFloat(monthlyInput.value);
+    if (isNaN(currentVal)) currentVal = country.default;
+    currentVal = Math.min(country.max, Math.max(country.min, currentVal));
+    
+    monthlySlider.value = currentVal;
+    monthlyInput.value = currentVal;
+    monthlyInput.min = country.min;
+    monthlyInput.max = country.max;
+    monthlyInput.step = country.step;
+    
+    currencySymbol.textContent = country.symbol;
+    
+    document.getElementById('minMonthlyLabel').textContent = `Min ${country.symbol}${formatNumber(country.min, currentCountry)}`;
+    document.getElementById('maxMonthlyLabel').textContent = `Max ${country.symbol}${formatNumber(country.max, currentCountry)}`;
+}
+
+function updateCalculator() {
+    let monthly = parseFloat(document.getElementById('monthlySlider').value);
+    let annualReturn = parseFloat(document.getElementById('returnSlider').value);
+    let years = parseFloat(document.getElementById('yearSlider').value);
+    
+    const country = countries[currentCountry];
+    monthly = Math.min(country.max, Math.max(country.min, monthly));
+    annualReturn = Math.min(30, Math.max(1, annualReturn));
+    years = Math.min(50, Math.max(1, years));
+    
+    document.getElementById('monthlySlider').value = monthly;
+    document.getElementById('monthlyInput').value = monthly;
+    document.getElementById('returnSlider').value = annualReturn;
+    document.getElementById('returnInput').value = annualReturn;
+    document.getElementById('yearSlider').value = years;
+    document.getElementById('yearInput').value = years;
+    
+    let totalInvested = monthly * years * 12;
+    let maturity = calculateSIP(monthly, annualReturn, years);
+    let estimatedReturns = Math.max(0, maturity - totalInvested);
+    
+    document.getElementById('investedAmount').textContent = formatCurrency(totalInvested, currentCountry);
+    document.getElementById('returnsAmount').textContent = formatCurrency(estimatedReturns, currentCountry);
+    document.getElementById('maturityAmount').textContent = formatCurrency(maturity, currentCountry);
+    
+    let principalPercent = (totalInvested / maturity) * 100;
+    if (isNaN(principalPercent)) principalPercent = 0;
+    principalPercent = Math.min(100, Math.max(0, principalPercent));
+    document.getElementById('progressFill').style.width = principalPercent + '%';
+    document.getElementById('principalPercent').textContent = principalPercent.toFixed(1) + '%';
+    document.getElementById('gainsPercent').textContent = (100 - principalPercent).toFixed(1) + '%';
+    
+    const trans = translations[currentLang] || translations.en;
+    let summaryText = trans.summary
+        .replace('{amount}', formatCurrency(monthly, currentCountry))
+        .replace('{years}', years)
+        .replace('{rate}', annualReturn)
+        .replace('{maturity}', formatCurrency(maturity, currentCountry));
+    document.getElementById('summaryText').innerHTML = `💡 ${summaryText}`;
+    
+    document.getElementById('investedAmount').parentElement.querySelector('.result-label').textContent = trans.invested;
+    document.getElementById('returnsAmount').parentElement.querySelector('.result-label').textContent = trans.returns;
+    document.getElementById('maturityAmount').parentElement.querySelector('.result-label').textContent = trans.maturity;
+    
+    if (sipChart) {
+        sipChart.data.datasets[0].data = [totalInvested, estimatedReturns];
+        sipChart.data.datasets[0].label = `Amount (${country.symbol})`;
+        sipChart.update();
+    }
+}
+
+function initChart() {
+    const ctx = document.getElementById('sipChart').getContext('2d');
+    sipChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Invested Amount (Principal)', 'Estimated Returns (Gains)'],
+            datasets: [{
+                label: 'Amount',
+                data: [600000, 561695],
+                backgroundColor: ['#2563eb', '#f59e0b'],
+                borderRadius: 8,
+                barPercentage: 0.6
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { position: 'top', labels: { font: { size: 12 } } },
+                tooltip: { callbacks: { label: (ctx) => `${countries[currentCountry].symbol} ${Math.round(ctx.raw).toLocaleString()}` } }
             },
-            ur: {
-                badge: "سسٹمیٹک انویسٹمنٹ پلانر", heading: "SIP کیلکولیٹر: اپنے سرمایہ کاری کے منافع کا اندازہ لگائیں",
-                subheading: "دنیا بھر میں منظم سرمایہ کاری کے ساتھ اپنے مالی سفر کی منصوبہ بندی کریں۔",
-                monthly: "ماہانہ سرمایہ کاری", return: "متوقع سالانہ منافع", period: "مدتِ وقت",
-                invested: "سرمایہ کاری کی گئی رقم", returns: "متوقع منافع", maturity: "کل میچورٹی ویلیو",
-                principal: "اصل رقم کا حصہ", gains: "منافع کا حصہ", chart: "سرمایہ کاری کی تفصیل",
-                disclaimer: "ڈسکلیمر: یہ SIP کیلکولیٹر صرف معلوماتی مقاصد کے لیے ہے۔ متوقع منافع فرضی شرحوں پر مبنی ہیں اور مستقبل کی کارکردگی کی ضمانت نہیں دیتے۔ سرمایہ کاری سے پہلے اپنے مالی مشیر سے مشورہ کریں۔",
-                copyright: "© 2025 گلوبل SIP پلانر | کثیر الکرنسی سرمایہ کاری کا آلہ", yearUnit: "سال", minHelp: "کم از کم", maxHelp: "زیادہ سے زیادہ"
-            },
-            hi: {
-                badge: "सिस्टमैटिक इन्वेस्टमेंट प्लानर", heading: "SIP कैलकुलेटर: अपने निवेश रिटर्न का अनुमान लगाएं",
-                subheading: "व्यवस्थित निवेश के साथ अपनी वित्तीय यात्रा की योजना बनाएं।",
-                monthly: "मासिक निवेश", return: "अपेक्षित वार्षिक रिटर्न", period: "समय अवधि",
-                invested: "निवेशित राशि", returns: "अनुमानित रिटर्न", maturity: "कुल परिपक्वता मूल्य",
-                principal: "मूलधन हिस्सा", gains: "लाभ हिस्सा", chart: "निवेश विवरण",
-                disclaimer: "अस्वीकरण: यह SIP कैलकुलेटर केवल सूचनात्मक उद्देश्यों के लिए है। अनुमानित रिटर्न मान्यताओं पर आधारित हैं और भविष्य के प्रदर्शन की गारंटी नहीं देते हैं। निवेश से पहले अपने वित्तीय सलाहकार से परामर्श करें।",
-                copyright: "© 2025 ग्लोबल SIP प्लानर | मल्टी-करेंसी निवेश उपकरण", yearUnit: "वर्ष", minHelp: "न्यूनतम", maxHelp: "अधिकतम"
-            },
-            es: {
-                badge: "Planificador de Inversiones Sistemáticas", heading: "Calculadora SIP: Estime sus Rendimientos de Inversión",
-                subheading: "Planifique su viaje financiero con inversiones sistemáticas en todo el mundo.",
-                monthly: "Inversión Mensual", return: "Rendimiento Anual Esperado", period: "Período de Tiempo",
-                invested: "MONTO INVERTIDO", returns: "RENDIMIENTOS ESTIMADOS", maturity: "VALOR DE VENCIMIENTO TOTAL",
-                principal: "Parte Principal", gains: "Parte de Ganancias", chart: "Desglose de Inversión",
-                disclaimer: "Descargo de responsabilidad: Esta calculadora SIP es solo para fines informativos. Los rendimientos proyectados se basan en tasas supuestas y no garantizan el rendimiento futuro. Consulte a su asesor financiero antes de invertir.",
-                copyright: "© 2025 Planificador SIP Global | Herramienta de Inversión Multimoneda", yearUnit: "años", minHelp: "Mín", maxHelp: "Máx"
-            }
-        };
-
-        let currentCountry = 'PK';
-        let currentLang = 'en';
-        let sipChart = null;
-
-        function formatNumber(num, countryCode) {
-            if (isNaN(num)) return '0';
-            const country = countries[countryCode];
-            if (country.format === 'indian') {
-                let str = Math.floor(num).toString();
-                let lastThree = str.substring(str.length - 3);
-                let otherNumbers = str.substring(0, str.length - 3);
-                if (otherNumbers !== '') lastThree = ',' + lastThree;
-                let formatted = otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree;
-                return formatted;
-            }
-            return Math.floor(num).toLocaleString('en-US');
-        }
-
-        function formatCurrency(amount, countryCode) {
-            const country = countries[countryCode];
-            return `${country.symbol} ${formatNumber(amount, countryCode)}`;
-        }
-
-        function updateCountrySettings() {
-            const country = countries[currentCountry];
-            const monthlySlider = document.getElementById('monthlySlider');
-            const monthlyInput = document.getElementById('monthlyInput');
-            const currencySymbolSpan = document.getElementById('currencySymbol');
-            const monthlyHelp = document.getElementById('monthlyHelp');
-            const minLabel = document.getElementById('minLabel');
-            const maxLabel = document.getElementById('maxLabel');
-
-            monthlySlider.min = country.min;
-            monthlySlider.max = country.max;
-            monthlySlider.step = country.step;
-            
-            let currentVal = parseFloat(monthlyInput.value);
-            if (isNaN(currentVal)) currentVal = country.default;
-            currentVal = Math.min(country.max, Math.max(country.min, currentVal));
-            
-            monthlySlider.value = currentVal;
-            monthlyInput.value = currentVal;
-            monthlyInput.min = country.min;
-            monthlyInput.max = country.max;
-            monthlyInput.step = country.step;
-            
-            currencySymbolSpan.textContent = country.symbol;
-            
-            const trans = translations[currentLang] || translations.en;
-            monthlyHelp.textContent = `${trans.minHelp} ${country.symbol}${formatNumber(country.min, currentCountry)} | ${trans.maxHelp} ${country.symbol}${formatNumber(country.max, currentCountry)}`;
-            minLabel.textContent = `${trans.minHelp} ${country.symbol}${formatNumber(country.min, currentCountry)}`;
-            maxLabel.textContent = `${trans.maxHelp} ${country.symbol}${formatNumber(country.max, currentCountry)}`;
-        }
-
-        function updateLanguage() {
-            const trans = translations[currentLang] || translations.en;
-            document.getElementById('badgeText').textContent = trans.badge;
-            document.getElementById('mainHeading').innerHTML = trans.heading;
-            document.getElementById('subHeading').textContent = trans.subheading;
-            document.getElementById('monthlyLabel').innerHTML = `<i class="fas fa-rupee-sign text-teal-600"></i> ${trans.monthly}`;
-            document.getElementById('returnLabel').innerHTML = `<i class="fas fa-percent text-teal-600"></i> ${trans.return}`;
-            document.getElementById('periodLabel').innerHTML = `<i class="fas fa-calendar-alt text-teal-600"></i> ${trans.period}`;
-            document.getElementById('investedTitle').textContent = trans.invested;
-            document.getElementById('returnsTitle').textContent = trans.returns;
-            document.getElementById('maturityTitle').textContent = trans.maturity;
-            document.getElementById('principalLabel').innerHTML = `<i class="fas fa-chart-pie mr-1"></i>${trans.principal}`;
-            document.getElementById('gainsLabel').innerHTML = `<i class="fas fa-chart-line mr-1"></i>${trans.gains}`;
-            document.getElementById('chartTitle').innerHTML = `<i class="fas fa-chart-simple text-teal-600"></i> ${trans.chart}`;
-            document.getElementById('disclaimerText').innerHTML = `<i class="fas fa-exclamation-triangle text-amber-400 mr-1"></i> <strong>Disclaimer:</strong> ${trans.disclaimer}`;
-            document.getElementById('copyrightText').textContent = trans.copyright;
-            document.getElementById('yearUnit').textContent = trans.yearUnit;
-            updateCountrySettings();
-            updateCalculator();
-        }
-
-        function calculateSIP(monthlyInvestment, annualReturnPercent, years) {
-            let monthlyRate = annualReturnPercent / 100 / 12;
-            let months = years * 12;
-            if (monthlyRate === 0) return monthlyInvestment * months;
-            let factor = Math.pow(1 + monthlyRate, months);
-            return monthlyInvestment * ((factor - 1) / monthlyRate) * (1 + monthlyRate);
-        }
-
-        function updateCalculator() {
-            let monthly = parseFloat(document.getElementById('monthlySlider').value);
-            let annualReturn = parseFloat(document.getElementById('returnSlider').value);
-            let years = parseFloat(document.getElementById('yearSlider').value);
-            
-            const country = countries[currentCountry];
-            monthly = Math.min(country.max, Math.max(country.min, monthly));
-            annualReturn = Math.min(30, Math.max(1, annualReturn));
-            years = Math.min(50, Math.max(1, years));
-            
-            document.getElementById('monthlySlider').value = monthly;
-            document.getElementById('monthlyInput').value = monthly;
-            document.getElementById('returnSlider').value = annualReturn;
-            document.getElementById('returnInput').value = annualReturn;
-            document.getElementById('yearSlider').value = years;
-            document.getElementById('yearInput').value = years;
-            
-            let totalInvested = monthly * years * 12;
-            let maturity = calculateSIP(monthly, annualReturn, years);
-            let estimatedReturns = Math.max(0, maturity - totalInvested);
-            maturity = Math.max(totalInvested, maturity);
-            
-            document.getElementById('investedAmount').textContent = formatCurrency(totalInvested, currentCountry);
-            document.getElementById('returnsAmount').textContent = formatCurrency(estimatedReturns, currentCountry);
-            document.getElementById('maturityAmount').textContent = formatCurrency(maturity, currentCountry);
-            
-            let principalPercent = (totalInvested / maturity) * 100;
-            if (isNaN(principalPercent)) principalPercent = 0;
-            principalPercent = Math.min(100, Math.max(0, principalPercent));
-            document.getElementById('progressFill').style.width = principalPercent + '%';
-            document.getElementById('principalPercent').textContent = principalPercent.toFixed(1) + '%';
-            document.getElementById('gainsPercent').textContent = (100 - principalPercent).toFixed(1) + '%';
-            
-            const trans = translations[currentLang] || translations.en;
-            document.getElementById('summaryText').innerHTML = `💡 ${trans.invested} <strong>${formatCurrency(monthly, currentCountry)}</strong> ${trans.monthly.toLowerCase()} for <strong>${years} ${trans.yearUnit}</strong> at <strong>${annualReturn}%</strong> ${trans.return.toLowerCase()}, you will accumulate <strong>${formatCurrency(maturity, currentCountry)}</strong>.`;
-            
-            if (sipChart) {
-                sipChart.data.datasets[0].data = [totalInvested, estimatedReturns];
-                sipChart.data.datasets[0].label = `Amount (${country.symbol})`;
-                sipChart.update();
+            scales: {
+                y: { beginAtZero: true }
             }
         }
+    });
+}
 
-        function initChart() {
-            const ctx = document.getElementById('sipChart').getContext('2d');
-            sipChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: ['Invested Amount (Principal)', 'Estimated Returns (Gains)'],
-                    datasets: [{
-                        label: 'Amount',
-                        data: [600000, 561695],
-                        backgroundColor: ['#2c7da0', '#f59e0b'],
-                        borderRadius: 8,
-                        barPercentage: 0.6
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    plugins: {
-                        legend: { position: 'top', labels: { font: { size: 12 } } },
-                        tooltip: { callbacks: { label: (ctx) => `${countries[currentCountry].symbol} ${Math.round(ctx.raw).toLocaleString()}` } }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: (value) => {
-                                    const s = countries[currentCountry].symbol;
-                                    if (value >= 10000000) return `${s}${(value/10000000).toFixed(1)}Cr`;
-                                    if (value >= 100000) return `${s}${(value/100000).toFixed(1)}L`;
-                                    return `${s}${value.toLocaleString()}`;
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-            updateCalculator();
-        }
+function copyResults() {
+    let invested = document.getElementById('investedAmount').innerText;
+    let returns = document.getElementById('returnsAmount').innerText;
+    let maturity = document.getElementById('maturityAmount').innerText;
+    let text = `📊 SIP CALCULATION\n━━━━━━━━━━━━━━━━━━━━━\nInvested Amount: ${invested}\nEstimated Returns: ${returns}\nMaturity Value: ${maturity}\n━━━━━━━━━━━━━━━━━━━━━`;
+    navigator.clipboard.writeText(text);
+    alert("✓ Results copied to clipboard!");
+}
 
-        function bindEvents() {
-            document.getElementById('monthlySlider').addEventListener('input', () => {
-                document.getElementById('monthlyInput').value = document.getElementById('monthlySlider').value;
-                updateCalculator();
-            });
-            document.getElementById('monthlyInput').addEventListener('input', (e) => {
-                let v = parseFloat(e.target.value);
-                const c = countries[currentCountry];
-                if (isNaN(v)) v = c.default;
-                v = Math.min(c.max, Math.max(c.min, v));
-                document.getElementById('monthlySlider').value = v;
-                document.getElementById('monthlyInput').value = v;
-                updateCalculator();
-            });
-            document.getElementById('returnSlider').addEventListener('input', () => {
-                document.getElementById('returnInput').value = document.getElementById('returnSlider').value;
-                updateCalculator();
-            });
-            document.getElementById('returnInput').addEventListener('input', (e) => {
-                let v = parseFloat(e.target.value);
-                if (isNaN(v)) v = 12;
-                v = Math.min(30, Math.max(1, v));
-                document.getElementById('returnSlider').value = v;
-                document.getElementById('returnInput').value = v;
-                updateCalculator();
-            });
-            document.getElementById('yearSlider').addEventListener('input', () => {
-                document.getElementById('yearInput').value = document.getElementById('yearSlider').value;
-                updateCalculator();
-            });
-            document.getElementById('yearInput').addEventListener('input', (e) => {
-                let v = parseFloat(e.target.value);
-                if (isNaN(v)) v = 10;
-                v = Math.min(50, Math.max(1, v));
-                document.getElementById('yearSlider').value = v;
-                document.getElementById('yearInput').value = v;
-                updateCalculator();
-            });
-            document.getElementById('countrySelect').addEventListener('change', (e) => {
-                currentCountry = e.target.value;
-                updateCountrySettings();
-                updateCalculator();
-                if (sipChart) sipChart.data.datasets[0].label = `Amount (${countries[currentCountry].symbol})`;
-                if (sipChart) sipChart.update();
-            });
-            document.getElementById('languageSelect').addEventListener('change', (e) => {
-                currentLang = e.target.value;
-                updateLanguage();
-            });
-        }
+function printPage() {
+    window.print();
+}
 
-        document.addEventListener('DOMContentLoaded', () => {
-            initChart();
-            bindEvents();
-            updateLanguage();
+function bindEvents() {
+    document.getElementById('monthlySlider').addEventListener('input', () => {
+        document.getElementById('monthlyInput').value = document.getElementById('monthlySlider').value;
+        updateCalculator();
+    });
+    document.getElementById('monthlyInput').addEventListener('input', (e) => {
+        let v = parseFloat(e.target.value);
+        const c = countries[currentCountry];
+        if (isNaN(v)) v = c.default;
+        v = Math.min(c.max, Math.max(c.min, v));
+        document.getElementById('monthlySlider').value = v;
+        updateCalculator();
+    });
+    document.getElementById('returnSlider').addEventListener('input', () => {
+        document.getElementById('returnInput').value = document.getElementById('returnSlider').value;
+        updateCalculator();
+    });
+    document.getElementById('returnInput').addEventListener('input', (e) => {
+        let v = parseFloat(e.target.value);
+        if (isNaN(v)) v = 12;
+        v = Math.min(30, Math.max(1, v));
+        document.getElementById('returnSlider').value = v;
+        updateCalculator();
+    });
+    document.getElementById('yearSlider').addEventListener('input', () => {
+        document.getElementById('yearInput').value = document.getElementById('yearSlider').value;
+        updateCalculator();
+    });
+    document.getElementById('yearInput').addEventListener('input', (e) => {
+        let v = parseFloat(e.target.value);
+        if (isNaN(v)) v = 10;
+        v = Math.min(50, Math.max(1, v));
+        document.getElementById('yearSlider').value = v;
+        updateCalculator();
+    });
+    document.getElementById('countrySelect').addEventListener('change', (e) => {
+        currentCountry = e.target.value;
+        updateCountrySettings();
+        updateCalculator();
+        if (sipChart) sipChart.data.datasets[0].label = `Amount (${countries[currentCountry].symbol})`;
+        if (sipChart) sipChart.update();
+    });
+    document.getElementById('languageSelect').addEventListener('change', (e) => {
+        currentLang = e.target.value;
+        updateCalculator();
+    });
+    document.getElementById('copyResultsBtn').addEventListener('click', copyResults);
+    document.getElementById('printBtn').addEventListener('click', printPage);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initChart();
+    bindEvents();
+    updateCountrySettings();
+    updateCalculator();
+});
+
+// Page Transition for Links
+document.addEventListener('DOMContentLoaded', function() {
+    const internalLinks = document.querySelectorAll('.tool-link, .home-link, .footer-col a, .nav-links a, .logo a');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#' || href === 'javascript:void(0)' || href.startsWith('http')) return;
+            e.preventDefault();
+            document.body.classList.add('page-transition');
+            setTimeout(() => { window.location.href = href; }, 250);
         });
-    </script>
+    });
+});
+
+// Dropdown JavaScript
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    const dropdownContent = document.getElementById('dropdownContent');
+    if (!dropdown || !dropBtn || !dropdownContent) return;
+    function closeDropdown() { dropdown.classList.remove('open'); document.querySelectorAll('.dropdown-category.active').forEach(cat => { cat.classList.remove('active'); const targetId = cat.getAttribute('data-cat'); if(targetId) { const toolsDiv = document.getElementById(targetId + 'Tools'); if(toolsDiv) toolsDiv.classList.remove('show'); } }); }
+    function openDropdown() { dropdown.classList.add('open'); }
+    function toggleDropdown(e) { e.stopPropagation(); if (dropdown.classList.contains('open')) closeDropdown(); else openDropdown(); }
+    dropBtn.addEventListener('click', toggleDropdown);
+    dropdownContent.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); });
+    document.querySelectorAll('.dropdown-category').forEach(category => { category.addEventListener('click', function(e) { e.stopPropagation(); const catId = this.getAttribute('data-cat'); if (catId) { const toolsDiv = document.getElementById(catId + 'Tools'); if (toolsDiv) { this.classList.toggle('active'); toolsDiv.classList.toggle('show'); } } }); });
+})();
+</script>
 </body>
 </html>
