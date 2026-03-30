@@ -21,7 +21,6 @@
 <link rel="stylesheet" href="style.css">
 
 <!-- ===== ADS ===== -->
-<!-- Adsterra Popunder Ad (loads after page load via JS) -->
 <!-- Adsterra Social Bar -->
 <script src="https://pl29012896.profitablecpmratenetwork.com/86/d3/1c/86d31ce48bf0dc72f2aaf88ec52b7ad0.js"></script>
 </head>
@@ -119,7 +118,7 @@
     <p>Simple, Fast & 100% Free Tools For Everyday Use</p>
 </header>
 
-<!-- ===== NATIVE BANNER AD - PROPERLY PLACED ===== -->
+<!-- ===== NATIVE BANNER AD - ONLY ONE (Fixed) ===== -->
 <div class="ad-container">
     <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
     <div id="container-924c895be8de72804ebea2516f4413c8"></div>
@@ -144,12 +143,6 @@
         </div>
     </div>
 
-    <!-- Native Banner Ad - Between Sections -->
-    <div class="ad-container">
-        <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
-        <div id="container-924c895be8de72804ebea2516f4413c8-2"></div>
-    </div>
-
     <!-- Financial Tools -->
     <div class="section">
         <h2>💰 Financial Tools</h2>
@@ -168,12 +161,6 @@
             <div class="tool-card"><a href="text-case-converter.html">🔤 Text Case Converter</a></div>
             <div class="tool-card"><a href="password-generator.html">🔐 Password Generator</a></div>
         </div>
-    </div>
-
-    <!-- Native Banner Ad - Between Sections -->
-    <div class="ad-container">
-        <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
-        <div id="container-924c895be8de72804ebea2516f4413c8-3"></div>
     </div>
 
     <!-- Random & Fun Tools -->
@@ -249,12 +236,6 @@
     </div>
 </div>
 
-<!-- Native Banner Ad - Before Footer -->
-<div class="ad-container">
-    <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
-    <div id="container-924c895be8de72804ebea2516f4413c8-4"></div>
-</div>
-
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
@@ -290,15 +271,14 @@
     </div>
 </footer>
 
-<!-- ===== POPUNDER AD - Loads after page load for better speed ===== -->
+<!-- ===== POPUNDER AD - Loads after 3 seconds ===== -->
 <script>
-    // Load popunder ad after page loads - this prevents slow loading
     window.addEventListener('load', function() {
         setTimeout(function() {
             var popunderScript = document.createElement('script');
             popunderScript.src = 'https://pl29012895.profitablecpmratenetwork.com/2a/f7/d4/2af7d45ca74f4644fd1e1e83138eec44.js';
             document.body.appendChild(popunderScript);
-        }, 1500); // 1.5 seconds delay after page load
+        }, 3000);
     });
 </script>
 
