@@ -16,638 +16,18 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Free Online Tools – 10+ Professional Calculators">
 <meta name="twitter:description" content="Free online tools including Age Calculator, BMI Calculator, EMI Calculator, Loan Calculator, and more.">
-<script defer src="https://pl29012895.profitablecpmratenetwork.com/2a/f7/d4/2af7d45ca74f4644fd1e1e83138eec44.js"></script>
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f3f4f6;
-    min-height: 100vh;
-}
+<!-- External CSS -->
+<link rel="stylesheet" href="style.css">
 
-/* ========== NAVBAR ========== */
-.navbar {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    padding: 15px 30px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.nav-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.logo a {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-decoration: none;
-    letter-spacing: -0.5px;
-}
-
-.logo a:hover {
-    color: #f0f0f0;
-}
-
-.nav-links {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: all 0.3s ease;
-    padding: 8px 0;
-}
-
-.nav-links li a:hover {
-    color: #f0f0f0;
-    border-bottom: 2px solid white;
-}
-
-/* Dropdown - Enhanced stable version */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background: none;
-    border: none;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 8px 0;
-    font-size: 1rem;
-    font-family: inherit;
-    transition: all 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.dropbtn:hover {
-    color: #f0f0f0;
-    border-bottom: 2px solid white;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background: white;
-    min-width: 280px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    z-index: 1001;
-    top: 40px;
-    left: 0;
-    padding: 8px 0;
-    opacity: 0;
-    transform: translateY(-10px);
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    pointer-events: none;
-}
-
-.dropdown.open .dropdown-content {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
-/* Category Accordion Style */
-.dropdown-category {
-    cursor: pointer;
-    padding: 12px 16px;
-    font-weight: 700;
-    color: #1e3a8a;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.3s ease;
-}
-
-.dropdown-category:hover {
-    background: #f3f4f6;
-}
-
-.dropdown-category .arrow {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
-    display: inline-block;
-}
-
-.dropdown-category.active .arrow {
-    transform: rotate(90deg);
-}
-
-.category-tools {
-    display: none;
-    background: #f9fafb;
-    border-radius: 8px;
-    margin: 4px 8px 8px 8px;
-    overflow: hidden;
-}
-
-.category-tools.show {
-    display: block;
-}
-
-.category-tools a {
-    color: #1f2937 !important;
-    padding: 10px 20px 10px 32px;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s ease;
-    font-size: 14px;
-    font-weight: 500;
-    border-bottom: none !important;
-}
-
-.category-tools a:hover {
-    background: #e5e7eb;
-    color: #2563eb !important;
-    transform: translateX(5px);
-}
-
-/* ========== STATS SECTION ========== */
-.stats-section {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    padding: 40px 20px;
-    color: white;
-}
-
-.stats-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    text-align: center;
-}
-
-.stat-item {
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-/* ========== HEADER ========== */
-.header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-    margin-top: 0;
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-/* ========== SECTIONS ========== */
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.section {
-    background: white;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-.section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-    border-radius: 3px;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
-    margin-top: 25px;
-}
-
-.tool-card {
-    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
-}
-
-.tool-card a {
-    display: block;
-    padding: 18px 15px;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-    border-radius: 12px;
-    transition: all 0.3s ease;
-}
-
-.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
-}
-
-/* ========== FEATURES SECTION ========== */
-.features-section {
-    background: white;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-    text-align: center;
-}
-
-.features-section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.features-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-    border-radius: 3px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-}
-
-.feature-item {
-    padding: 25px 20px;
-    background: #f9fafb;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    transition: all 0.3s ease;
-}
-
-.feature-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.feature-item h3 {
-    color: #1e3a8a;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-.feature-item p {
-    color: #6b7280;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-/* ========== TESTIMONIAL SECTION ========== */
-.testimonial-section {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 100%);
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    text-align: center;
-    border: 1px solid #bae6fd;
-}
-
-.testimonial-section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.testimonial-item {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.testimonial-text {
-    font-style: italic;
-    color: #374151;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.testimonial-author {
-    font-weight: 700;
-    color: #1e3a8a;
-}
-
-/* ========== PROFESSIONAL FOOTER ========== */
-.footer {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: #cbd5e1;
-    padding: 60px 20px 30px;
-    margin-top: 40px;
-    position: relative;
-    border-top: 1px solid rgba(255,255,255,0.1);
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    position: relative;
-    z-index: 1;
-}
-
-.footer-col h3, .footer-col h4 {
-    color: white;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    font-weight: 600;
-    position: relative;
-    display: inline-block;
-}
-
-.footer-col h3::after, .footer-col h4::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6);
-    border-radius: 2px;
-}
-
-.footer-col p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #94a3b8;
-    margin-top: 15px;
-}
-
-.footer-col a {
-    display: block;
-    color: #94a3b8;
-    text-decoration: none;
-    padding: 6px 0;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.footer-col a:hover {
-    color: #60a5fa;
-    transform: translateX(5px);
-}
-
-.footer-social {
-    display: flex;
-    gap: 12px;
-    margin-top: 15px;
-}
-
-.footer-social a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 34px;
-    height: 34px;
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    padding: 0;
-    font-size: 1rem;
-}
-
-.footer-social a:hover {
-    background: #3b82f6;
-    color: white;
-    transform: translateY(-3px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 35px;
-    margin-top: 40px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.85rem;
-    color: #64748b;
-}
-
-.footer-bottom a {
-    color: #60a5fa;
-    text-decoration: none;
-}
-
-.footer-bottom a:hover {
-    text-decoration: underline;
-}
-
-/* ========== RESPONSIVE ========== */
-@media (max-width: 768px) {
-    .navbar {
-        padding: 12px 20px;
-    }
-    
-    .nav-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .nav-links {
-        justify-content: center;
-        gap: 18px;
-    }
-    
-    .stats-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .stat-number {
-        font-size: 1.8rem;
-    }
-    
-    .header h1 {
-        font-size: 1.8rem;
-    }
-    
-    .header p {
-        font-size: 1rem;
-    }
-    
-    .section {
-        padding: 25px;
-    }
-    
-    .section h2 {
-        font-size: 1.5rem;
-    }
-    
-    .tools-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-        gap: 15px;
-    }
-    
-    .features-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .testimonial-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: 35px;
-    }
-    
-    .footer-col h3::after, .footer-col h4::after {
-        left: 50%;
-        transform: translateX(-50%);
-    }
-    
-    .footer-col a {
-        display: inline-block;
-        margin: 0 8px;
-        padding: 5px 10px;
-    }
-    
-    .footer-social {
-        justify-content: center;
-    }
-    
-    .dropdown-content {
-        left: -100px;
-        min-width: 260px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-links {
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-    
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-    
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .tool-card a {
-        padding: 14px;
-    }
-    
-    .dropdown-content {
-        left: -120px;
-        min-width: 240px;
-    }
-    
-    .footer {
-        padding: 40px 15px 25px;
-    }
-}
-</style>
+<!-- ===== ADS ===== -->
+<!-- Adsterra Popunder Ad (loads after page load via JS) -->
+<!-- Adsterra Social Bar -->
+<script src="https://pl29012896.profitablecpmratenetwork.com/86/d3/1c/86d31ce48bf0dc72f2aaf88ec52b7ad0.js"></script>
 </head>
 <body>
-<script src="https://pl29012896.profitablecpmratenetwork.com/86/d3/1c/86d31ce48bf0dc72f2aaf88ec52b7ad0.js"></script>
 
-<!-- Navbar with ACCORDION STYLE DROPDOWN - FULLY FIXED (always works) -->
+<!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -658,7 +38,6 @@ body {
             <li class="dropdown" id="toolsDropdown">
                 <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
-                    <!-- Category 1: Popular Calculators -->
                     <div class="dropdown-category" data-cat="cat1">
                         📊 Popular Tools <span class="arrow">▶</span>
                     </div>
@@ -668,15 +47,13 @@ body {
                         <a href="discount-calculator.html">🏷️ Discount Calculator</a>
                         <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
                         <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
-                    	<a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
                         <a href="sip-calculator.html">📊 SIP Calculator</a>
                         <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                         <a href="percentage-calculator.html">📈 Percentage Calculator</a>
                         <a href="qr-code-generator.html">📱 QR Code Generator</a>
                         <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
                     </div>
-                    
-                    <!-- Category 2: Financial Tools -->
                     <div class="dropdown-category" data-cat="cat2">
                         💰 Financial Tools <span class="arrow">▶</span>
                     </div>
@@ -685,8 +62,6 @@ body {
                         <a href="loan-calculator.html">📋 Loan Calculator</a>
                         <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
                     </div>
-                    
-                    <!-- Category 3: Text & Writing Tools -->
                     <div class="dropdown-category" data-cat="cat3">
                         📝 Text & Writing Tools <span class="arrow">▶</span>
                     </div>
@@ -695,22 +70,17 @@ body {
                         <a href="text-case-converter.html">🔤 Text Case Converter</a>
                         <a href="password-generator.html">🔐 Password Generator</a>
                     </div>
-                    
-                    <!-- Category 4: Random & Fun Tools -->
                     <div class="dropdown-category" data-cat="cat4">
                         🎲 Random & Fun Tools <span class="arrow">▶</span>
                     </div>
                     <div class="category-tools" id="cat4Tools">
                         <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
                     </div>
-                    
-                    <!-- Category 5: Image & Media Tools (NEW) -->
                     <div class="dropdown-category" data-cat="cat5">
                         🖼️ Image & Media Tools <span class="arrow">▶</span>
                     </div>
                     <div class="category-tools" id="cat5Tools">
                         <a href="image-compressor.html">🗜️ Image Compressor</a>
-                        <!-- Future media tools yahan add kar sakte hain -->
                     </div>
                 </div>
             </li>
@@ -748,23 +118,38 @@ body {
     <h1>All Free Online Tools</h1>
     <p>Simple, Fast & 100% Free Tools For Everyday Use</p>
 </header>
+
+<!-- ===== NATIVE BANNER AD - PROPERLY PLACED ===== -->
+<div class="ad-container">
+    <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
+    <div id="container-924c895be8de72804ebea2516f4413c8"></div>
+</div>
+
 <div class="container">
     <!-- Popular Calculators -->
     <div class="section">
         <h2>📊 Popular Calculators</h2>
-       <div class="tools-grid">
-    <div class="tool-card"><a href="age-calculator.html">📅 Age Calculator</a></div>
-    <div class="tool-card"><a href="age-difference-calculator.html">📊 Age Difference Calculator</a></div>
-    <div class="tool-card"><a href="discount-calculator.html">🏷️ Discount Calculator</a></div>
-    <div class="tool-card"><a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a></div>
-    <div class="tool-card"><a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a></div>
-    <div class="tool-card"><a href="gst-calculator.html">💰 GST Calculator</a></div>
-    <div class="tool-card"><a href="sip-calculator.html">📊 SIP Calculator</a></div>
-    <div class="tool-card"><a href="bmi-calculator.html">⚖️ BMI Calculator</a></div>
-    <div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
-    <div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
-    <div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div>
-</div>
+        <div class="tools-grid">
+            <div class="tool-card"><a href="age-calculator.html">📅 Age Calculator</a></div>
+            <div class="tool-card"><a href="age-difference-calculator.html">📊 Age Difference Calculator</a></div>
+            <div class="tool-card"><a href="discount-calculator.html">🏷️ Discount Calculator</a></div>
+            <div class="tool-card"><a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a></div>
+            <div class="tool-card"><a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a></div>
+            <div class="tool-card"><a href="gst-calculator.html">💰 GST Calculator</a></div>
+            <div class="tool-card"><a href="sip-calculator.html">📊 SIP Calculator</a></div>
+            <div class="tool-card"><a href="bmi-calculator.html">⚖️ BMI Calculator</a></div>
+            <div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
+            <div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
+            <div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div>
+        </div>
+    </div>
+
+    <!-- Native Banner Ad - Between Sections -->
+    <div class="ad-container">
+        <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
+        <div id="container-924c895be8de72804ebea2516f4413c8-2"></div>
+    </div>
+
     <!-- Financial Tools -->
     <div class="section">
         <h2>💰 Financial Tools</h2>
@@ -774,6 +159,7 @@ body {
             <div class="tool-card"><a href="zakat-calculator.html">🕌 Zakat Calculator</a></div>
         </div>
     </div>
+
     <!-- Text & Writing Tools -->
     <div class="section">
         <h2>📝 Text & Writing Tools</h2>
@@ -783,6 +169,13 @@ body {
             <div class="tool-card"><a href="password-generator.html">🔐 Password Generator</a></div>
         </div>
     </div>
+
+    <!-- Native Banner Ad - Between Sections -->
+    <div class="ad-container">
+        <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
+        <div id="container-924c895be8de72804ebea2516f4413c8-3"></div>
+    </div>
+
     <!-- Random & Fun Tools -->
     <div class="section">
         <h2>🎲 Random & Fun Tools</h2>
@@ -790,13 +183,15 @@ body {
             <div class="tool-card"><a href="spin-the-wheel.html">🎡 Spin The Wheel</a></div>
         </div>
     </div>
-    <!-- 🟢 NEW: Image & Media Tools -->
+
+    <!-- Image & Media Tools -->
     <div class="section">
         <h2>🖼️ Image & Media Tools</h2>
         <div class="tools-grid">
             <div class="tool-card"><a href="image-compressor.html">🗜️ Image Compressor</a></div>
         </div>
     </div>
+
     <!-- Why Choose Us Section -->
     <div class="features-section">
         <h2>✨ Why Choose Our Free Tools?</h2>
@@ -833,6 +228,7 @@ body {
             </div>
         </div>
     </div>
+
     <!-- Testimonial Section -->
     <div class="testimonial-section">
         <h2>❤️ What Users Say</h2>
@@ -852,7 +248,14 @@ body {
         </div>
     </div>
 </div>
-<!-- ========== FOOTER - PROFESSIONAL WITH TRENDING TOOLS + ANIMATIONS ========== -->
+
+<!-- Native Banner Ad - Before Footer -->
+<div class="ad-container">
+    <script async="async" data-cfasync="false" src="https://pl29012897.profitablecpmratenetwork.com/924c895be8de72804ebea2516f4413c8/invoke.js"></script>
+    <div id="container-924c895be8de72804ebea2516f4413c8-4"></div>
+</div>
+
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-col fade-in-up">
@@ -887,152 +290,19 @@ body {
     </div>
 </footer>
 
-<style>
-/* Footer animations (keeping existing) */
-.fade-in-up {
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.6s ease forwards;
-}
-@keyframes fadeInUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-.slide-up {
-    opacity: 0;
-    transform: translateY(20px);
-    animation: slideUp 0.5s ease 0.4s forwards;
-}
-@keyframes slideUp {
-    to { opacity: 1; transform: translateY(0); }
-}
-</style>
-
-<!-- FIXED JAVASCRIPT: Stable dropdown toggle with click outside, hover-free, always working -->
+<!-- ===== POPUNDER AD - Loads after page load for better speed ===== -->
 <script>
-(function() {
-    // DOM elements
-    const dropdown = document.getElementById('toolsDropdown');
-    const dropBtn = document.getElementById('toolsBtn');
-    const dropdownContent = document.getElementById('dropdownContent');
-    
-    // Ensure all elements exist
-    if (!dropdown || !dropBtn || !dropdownContent) {
-        console.warn("Dropdown elements missing");
-        return;
-    }
-    
-    // Function to close dropdown
-    function closeDropdown() {
-        dropdown.classList.remove('open');
-        // Also reset any open category accordions inside if needed (optional)
-        const allActiveCats = document.querySelectorAll('.dropdown-category.active');
-        allActiveCats.forEach(cat => {
-            cat.classList.remove('active');
-            const targetId = cat.getAttribute('data-cat');
-            if(targetId) {
-                const toolsDiv = document.getElementById(targetId + 'Tools');
-                if(toolsDiv) toolsDiv.classList.remove('show');
-            }
-        });
-    }
-    
-    // Function to open dropdown
-    function openDropdown() {
-        dropdown.classList.add('open');
-    }
-    
-    // Toggle function for button click
-    function toggleDropdown(e) {
-        e.stopPropagation();  // Prevent event from bubbling to document
-        if (dropdown.classList.contains('open')) {
-            closeDropdown();
-        } else {
-            openDropdown();
-        }
-    }
-    
-    // Handle button click
-    dropBtn.addEventListener('click', toggleDropdown);
-    
-    // Prevent clicks inside dropdown-content from closing it
-    dropdownContent.addEventListener('click', function(e) {
-        e.stopPropagation();
+    // Load popunder ad after page loads - this prevents slow loading
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            var popunderScript = document.createElement('script');
+            popunderScript.src = 'https://pl29012895.profitablecpmratenetwork.com/2a/f7/d4/2af7d45ca74f4644fd1e1e83138eec44.js';
+            document.body.appendChild(popunderScript);
+        }, 1500); // 1.5 seconds delay after page load
     });
-    
-    // Close dropdown when clicking outside anywhere on document
-    document.addEventListener('click', function(event) {
-        // If dropdown is open and click target is not inside dropdown or button, close it
-        if (dropdown.classList.contains('open')) {
-            const isClickInside = dropdown.contains(event.target);
-            if (!isClickInside) {
-                closeDropdown();
-            }
-        }
-    });
-    
-    // Accordion functionality for categories (stays same, but ensures no conflicts)
-    const categories = document.querySelectorAll('.dropdown-category');
-    categories.forEach(category => {
-        category.addEventListener('click', function(e) {
-            e.stopPropagation();  // Prevent dropdown from closing when clicking category
-            const catId = this.getAttribute('data-cat');
-            if (catId) {
-                const toolsDiv = document.getElementById(catId + 'Tools');
-                if (toolsDiv) {
-                    // Toggle active class on category
-                    this.classList.toggle('active');
-                    // Toggle show class on tools div
-                    toolsDiv.classList.toggle('show');
-                } else {
-                    // Fallback toggle
-                    this.classList.toggle('active');
-                    const nextDiv = this.nextElementSibling;
-                    if(nextDiv && nextDiv.classList.contains('category-tools')) {
-                        nextDiv.classList.toggle('show');
-                    }
-                }
-            } else {
-                // Fallback for any category without data-cat
-                this.classList.toggle('active');
-                const nextDiv = this.nextElementSibling;
-                if(nextDiv && nextDiv.classList.contains('category-tools')) {
-                    nextDiv.classList.toggle('show');
-                }
-            }
-        });
-    });
-    
-    // Prevent accidental closing when clicking on category links
-    const allToolLinks = document.querySelectorAll('.category-tools a');
-    allToolLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.stopPropagation();  // Keep dropdown open when navigating? Actually link will navigate, but safe to stop propagation
-            // No need to close dropdown immediately, navigation will happen naturally
-        });
-    });
-    
-    // Also ensure that if any category is active initially, no conflict
-    // Additionally, for mobile, make sure dropdown doesn't have hover issues
-    // Add a small fix: On window resize, if dropdown is open on mobile maybe reset, but not needed.
-    // To avoid any "sometimes works" issue, we also add a touchstart compatibility for mobile
-    // Also ensure button has proper cursor
-    dropBtn.style.cursor = 'pointer';
-    
-    // For reliability, also handle keyboard or focus (optional)
-    dropBtn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleDropdown(e);
-        }
-    });
-    
-    // Small improvement: Prevent hover from interfering (we are using click only)
-    // That ensures consistent behavior across devices.
-})();
 </script>
 
-<!-- Adsterra Ad Script (defer added for faster page load) -->
-<script src="https://pl29012895.profitablecpmratenetwork.com/2a/f7/d4/2af7d45ca74f4644fd1e1e83138eec44.js"></script>
-
+<!-- External JavaScript -->
+<script src="script.js"></script>
 </body>
 </html>
