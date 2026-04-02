@@ -179,9 +179,9 @@ body {
     transform: translateX(5px);
 }
 
-/* ========== ORIGINAL AGE CALCULATOR STYLES (NO CHANGES) ========== */
+/* ========== MAIN CONTAINER - FIXED ========== */
 .container {
-    max-width: 750px;
+    max-width: 900px;
     margin: 40px auto 0;
     padding: 0 20px;
 }
@@ -189,43 +189,42 @@ body {
 /* Main Card */
 .age-card {
     background: #ffffff;
-    border-radius: 14px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     margin-bottom: 30px;
 }
 
 .card-header {
     background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    padding: 25px 30px;
+    padding: 30px 25px;
     text-align: center;
 }
 
 .card-header h1 {
     color: white;
-    font-size: 26px;
-    margin-bottom: 8px;
+    font-size: 28px;
+    margin-bottom: 10px;
     font-weight: 700;
 }
 
 .card-header p {
     color: rgba(255,255,255,0.9);
-    font-size: 15px;
+    font-size: 16px;
 }
 
 .card-content {
-    padding: 30px;
+    padding: 35px;
 }
 
 /* Live Date & Time Box */
 .live-datetime {
     background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 100%);
-    border-radius: 12px;
-    padding: 15px 20px;
-    margin-bottom: 25px;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 30px;
     text-align: center;
     border: 1px solid #bae6fd;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
 
 .live-datetime-label {
@@ -234,7 +233,7 @@ body {
     letter-spacing: 1px;
     color: #0284c7;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -254,44 +253,44 @@ body {
 
 .live-date {
     font-size: 18px;
-    font-weight: 700;
+    font-weight: 600;
     color: #0f172a;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
 }
 
 .live-time {
-    font-size: 24px;
+    font-size: 32px;
     font-weight: 800;
     color: #1e3a8a;
     font-family: monospace;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .live-timezone {
-    font-size: 11px;
+    font-size: 12px;
     color: #64748b;
-    margin-top: 5px;
+    margin-top: 6px;
 }
 
 /* Input Group */
 .input-group {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
 }
 
 .input-group label {
     display: block;
     font-weight: 600;
     color: #1f2937;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
     font-size: 16px;
 }
 
 .date-input-wrapper input {
     width: 100%;
-    padding: 14px 18px;
+    padding: 16px 20px;
     font-size: 16px;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
+    border: 2px solid #e5e7eb;
+    border-radius: 16px;
     transition: all 0.3s ease;
     font-family: inherit;
     background: #ffffff;
@@ -300,34 +299,34 @@ body {
 .date-input-wrapper input:focus {
     outline: none;
     border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
 /* Calculate Button */
 .calc-btn {
     width: 100%;
-    padding: 14px;
+    padding: 16px;
     background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 16px;
+    border-radius: 16px;
+    font-size: 18px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
 }
 
 .calc-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
 }
 
 /* Result Box */
 .result-box {
     background: #f9fafb;
-    border-radius: 12px;
-    padding: 20px;
+    border-radius: 20px;
+    padding: 25px;
     border: 1px solid #e5e7eb;
 }
 
@@ -335,10 +334,10 @@ body {
     display: inline-block;
     background: #10b981;
     color: white;
-    font-size: 11px;
-    padding: 4px 12px;
-    border-radius: 20px;
-    margin-bottom: 15px;
+    font-size: 12px;
+    padding: 5px 16px;
+    border-radius: 30px;
+    margin-bottom: 20px;
     animation: pulse 1.5s infinite;
 }
 
@@ -347,106 +346,87 @@ body {
     50% { opacity: 0.7; }
 }
 
+/* FIXED: Result Grid - Better Spacing */
 .result-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
 }
 
 .result-item {
     background: white;
-    border-radius: 10px;
-    padding: 12px 8px;
+    border-radius: 16px;
+    padding: 16px 10px;
     text-align: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
     transition: all 0.2s ease;
 }
 
 .result-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
 }
 
 .result-label {
     font-size: 11px;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
     color: #6b7280;
-    font-weight: 600;
-    margin-bottom: 8px;
+    font-weight: 700;
+    margin-bottom: 10px;
 }
 
-/* Professional Colors for Each Value */
 .result-value {
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 800;
     line-height: 1.2;
 }
 
-.years-value {
-    color: #1e3a8a;
-}
-
-.months-value {
-    color: #059669;
-}
-
-.days-value {
-    color: #d97706;
-}
-
-.hours-value {
-    color: #7c3aed;
-}
-
-.minutes-value {
-    color: #db2777;
-}
-
-.seconds-value {
-    color: #dc2626;
-    font-size: 28px;
-    animation: pulseRed 1s infinite;
-}
+.years-value { color: #1e3a8a; }
+.months-value { color: #059669; }
+.days-value { color: #d97706; }
+.hours-value { color: #7c3aed; }
+.minutes-value { color: #db2777; }
+.seconds-value { color: #dc2626; font-size: 32px; animation: pulseRed 1s infinite; }
 
 @keyframes pulseRed {
     0%, 100% { opacity: 1; text-shadow: 0 0 5px rgba(220, 38, 38, 0.3); }
     50% { opacity: 0.85; text-shadow: 0 0 12px rgba(220, 38, 38, 0.6); }
 }
 
-/* Other Tools Section with Animation */
+/* Other Tools Section */
 .other-tools {
     background: #ffffff;
-    border-radius: 14px;
-    padding: 25px;
+    border-radius: 24px;
+    padding: 30px;
     margin-top: 30px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    margin-bottom: 30px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
 }
 
 .other-tools h3 {
     color: #1e3a8a;
-    margin-bottom: 18px;
-    font-size: 20px;
+    margin-bottom: 20px;
+    font-size: 22px;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
 }
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 12px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
-/* Animated Links */
 .tool-link {
     display: block;
     padding: 12px 18px;
     background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
     color: white;
     text-decoration: none;
-    border-radius: 10px;
+    border-radius: 12px;
     text-align: center;
     font-size: 14px;
     font-weight: 500;
@@ -496,22 +476,14 @@ body {
 
 .home-link {
     display: inline-block;
-    padding: 10px 24px;
+    padding: 12px 28px;
     background: #6b7280;
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 40px;
     font-size: 14px;
     font-weight: 500;
     transition: all 0.3s ease;
-    animation: fadeIn 0.5s ease 0.45s forwards;
-    opacity: 0;
-}
-
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-    }
 }
 
 .home-link:hover {
@@ -527,9 +499,9 @@ body {
     transform: translateX(-50%);
     background: #1f2937;
     color: white;
-    padding: 10px 20px;
-    border-radius: 40px;
-    font-size: 13px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    font-size: 14px;
     z-index: 1000;
     animation: slideUp 0.3s ease;
     box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -546,15 +518,88 @@ body {
     }
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* ========== FIXED: SEO ARTICLE WIDTH MATCH ========== */
+.seo-article {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 40px;
+    margin: 30px auto 0;
+    max-width: 900px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.ad-space {
+    background: #f8f9fa;
+    border: 1px dashed #ccc;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    margin: 30px 0;
+}
+
+/* ========== FIXED: RESPONSIVE BREAKPOINTS ========== */
+@media (max-width: 768px) {
     .container {
-        padding: 0 15px;
         margin-top: 20px;
+        padding: 0 16px;
     }
     
     .card-content {
-        padding: 20px;
+        padding: 25px 20px;
+    }
+    
+    .card-header {
+        padding: 25px 20px;
+    }
+    
+    .card-header h1 {
+        font-size: 24px;
+    }
+    
+    .live-time {
+        font-size: 26px;
+    }
+    
+    .result-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .result-value {
+        font-size: 24px;
+    }
+    
+    .seconds-value {
+        font-size: 28px;
+    }
+    
+    .result-item {
+        padding: 12px 8px;
+    }
+    
+    .seo-article {
+        padding: 25px 20px;
+        margin: 20px 16px 0;
+        width: auto;
+    }
+    
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .other-tools {
+        padding: 25px 20px;
+        margin: 20px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .live-time {
+        font-size: 22px;
+    }
+    
+    .live-date {
+        font-size: 14px;
     }
     
     .result-value {
@@ -565,46 +610,18 @@ body {
         font-size: 24px;
     }
     
-    .result-grid {
-        grid-template-columns: repeat(2, 1fr);
+    .result-label {
+        font-size: 10px;
     }
     
-    .card-header h1 {
-        font-size: 22px;
-    }
-    
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .live-time {
-        font-size: 20px;
-    }
-    
-    .live-date {
+    .calc-btn {
         font-size: 16px;
+        padding: 14px;
     }
-}
-
-/* SEO Article Styles */
-.seo-article {
-    background: #ffffff;
-    border-radius: 14px;
-    padding: 35px;
-    margin-top: 30px;
-    max-width: 1200px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-}
-
-.ad-space {
-    background: #f8f9fa;
-    border: 1px dashed #ccc;
-    border-radius: 12px;
-    padding: 15px;
-    text-align: center;
-    margin: 30px 0;
+    
+    .date-input-wrapper input {
+        padding: 14px 16px;
+    }
 }
 </style>
 </head>
