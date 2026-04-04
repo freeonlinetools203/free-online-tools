@@ -9,7 +9,7 @@
 <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/age-difference-calculator.html">
 <meta name="robots" content="index, follow">
 <meta name="author" content="Free Online Tools">
-</style>
+<style>
 * {
     margin: 0;
     padding: 0;
@@ -199,9 +199,9 @@ body {
     opacity: 0.9;
 }
 
-/* ========== MAIN CONTAINER - FIXED WIDTH ========== */
+/* ========== MAIN CONTAINER ========== */
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
 }
@@ -209,19 +209,19 @@ body {
 /* ========== TOOL CARD ========== */
 .tool-card-large {
     background: white;
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 35px;
     margin-bottom: 35px;
-    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .tool-title {
     color: #1e3a8a;
     font-size: 1.8rem;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     text-align: center;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .tool-title::after {
@@ -230,7 +230,7 @@ body {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 70px;
+    width: 60px;
     height: 3px;
     background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
     border-radius: 3px;
@@ -246,27 +246,22 @@ body {
 
 .person-card {
     background: #f9fafb;
-    border-radius: 20px;
-    padding: 25px;
+    border-radius: 16px;
+    padding: 20px;
     border: 1px solid #e5e7eb;
-    transition: all 0.3s ease;
-}
-
-.person-card:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
 }
 
 .person-card h3 {
     color: #1e3a8a;
     font-size: 1.3rem;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
 .input-group {
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 .input-group label {
@@ -278,9 +273,9 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 14px 16px;
-    border: 2px solid #e5e7eb;
-    border-radius: 14px;
+    padding: 12px 15px;
+    border: 1px solid #d1d5db;
+    border-radius: 12px;
     font-size: 1rem;
     transition: all 0.3s ease;
 }
@@ -288,7 +283,7 @@ body {
 .input-group input:focus {
     outline: none;
     border-color: #2563eb;
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
 }
 
 /* Button Group */
@@ -301,13 +296,13 @@ body {
 }
 
 .btn {
-    padding: 12px 28px;
+    padding: 12px 24px;
     border: none;
     border-radius: 40px;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     background: #f3f4f6;
     color: #1f2937;
 }
@@ -319,7 +314,7 @@ body {
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
 
 .btn-secondary {
@@ -329,10 +324,9 @@ body {
 
 .btn-secondary:hover {
     background: #d1d5db;
-    transform: translateY(-2px);
 }
 
-/* Results Grid - FIXED: Better Desktop Layout */
+/* Results Grid */
 .results-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -342,16 +336,16 @@ body {
 
 .result-box {
     background: linear-gradient(135deg, #f9fafb 0%, #ffffff 100%);
-    border-radius: 20px;
-    padding: 20px 15px;
+    border-radius: 16px;
+    padding: 20px;
     text-align: center;
     border: 1px solid #e5e7eb;
     transition: all 0.3s ease;
 }
 
 .result-box:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
 }
 
 .result-icon {
@@ -360,15 +354,15 @@ body {
 }
 
 .result-label {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
     color: #6b7280;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .result-value {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: #1e3a8a;
     margin-top: 8px;
@@ -378,10 +372,10 @@ body {
 /* Milestone Card */
 .milestone-card {
     background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-    border-radius: 20px;
-    padding: 20px 25px;
+    border-radius: 16px;
+    padding: 20px;
     margin-bottom: 25px;
-    border-left: 5px solid #2563eb;
+    border-left: 4px solid #2563eb;
 }
 
 .milestone-card p {
@@ -398,7 +392,7 @@ body {
 /* Advanced Section */
 .advanced-section {
     background: #f9fafb;
-    border-radius: 20px;
+    border-radius: 16px;
     margin-bottom: 25px;
     overflow: hidden;
     border: 1px solid #e5e7eb;
@@ -406,7 +400,7 @@ body {
 
 .advanced-header {
     width: 100%;
-    padding: 18px 24px;
+    padding: 18px 20px;
     background: white;
     border: none;
     display: flex;
@@ -433,7 +427,7 @@ body {
 
 .advanced-content {
     display: none;
-    padding: 24px;
+    padding: 20px;
     border-top: 1px solid #e5e7eb;
     background: white;
 }
@@ -451,34 +445,33 @@ body {
 .advanced-item {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 12px 15px;
+    gap: 10px;
+    padding: 10px;
     background: #f9fafb;
-    border-radius: 14px;
+    border-radius: 12px;
 }
 
 /* Visual Bar */
 .visual-bar {
     background: white;
-    border-radius: 20px;
-    padding: 25px;
+    border-radius: 16px;
+    padding: 20px;
     border: 1px solid #e5e7eb;
 }
 
 .bar-title {
     font-weight: 700;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
     color: #374151;
-    font-size: 1rem;
 }
 
 .bar-container {
     background: #e5e7eb;
-    border-radius: 40px;
-    height: 40px;
+    border-radius: 30px;
+    height: 30px;
     display: flex;
     overflow: hidden;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
 }
 
 .bar-person1 {
@@ -486,10 +479,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-left: 15px;
+    padding-left: 12px;
     color: white;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: width 0.3s ease;
 }
 
@@ -498,28 +491,29 @@ body {
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding-right: 15px;
+    padding-right: 12px;
     color: white;
     font-weight: 600;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     transition: width 0.3s ease;
 }
 
 .bar-labels {
     display: flex;
     justify-content: space-between;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     color: #6b7280;
 }
 
 /* ========== ADS SECTION ========== */
 .ad-container {
     background: #f9fafb;
-    border-radius: 20px;
+    border-radius: 16px;
     padding: 20px;
     text-align: center;
     margin: 35px 0;
     border: 1px solid #e5e7eb;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .ad-label {
@@ -545,10 +539,10 @@ body {
 /* ========== OTHER TOOLS SECTION ========== */
 .other-tools {
     background: white;
-    border-radius: 24px;
+    border-radius: 20px;
     padding: 35px;
     margin-bottom: 35px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
     text-align: center;
 }
 
@@ -560,7 +554,7 @@ body {
 
 .tools-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 12px;
     margin-bottom: 25px;
 }
@@ -568,7 +562,7 @@ body {
 .tool-link {
     background: #eff6ff;
     color: #2563eb !important;
-    padding: 12px 18px;
+    padding: 12px 15px;
     border-radius: 40px;
     text-decoration: none;
     font-weight: 500;
@@ -591,7 +585,7 @@ body {
 .home-link {
     background: #eff6ff;
     color: #2563eb;
-    padding: 12px 32px;
+    padding: 12px 28px;
     border-radius: 40px;
     text-decoration: none;
     font-weight: 600;
@@ -645,10 +639,10 @@ body {
 /* Article Section */
 .article-section {
     background: white;
-    border-radius: 24px;
-    padding: 40px;
+    border-radius: 20px;
+    padding: 35px;
     margin-bottom: 35px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .article-section h2 {
@@ -656,7 +650,7 @@ body {
     font-size: 1.8rem;
     margin-bottom: 20px;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .article-section h2::after {
@@ -664,7 +658,7 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 70px;
+    width: 60px;
     height: 3px;
     background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
     border-radius: 3px;
@@ -673,13 +667,13 @@ body {
 .article-section h3 {
     color: #2563eb;
     font-size: 1.3rem;
-    margin: 25px 0 12px;
+    margin: 20px 0 10px;
 }
 
 .article-section p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: #374151;
-    margin-bottom: 18px;
+    margin-bottom: 15px;
 }
 
 .article-section ul {
@@ -689,24 +683,23 @@ body {
 .article-section li {
     margin-bottom: 8px;
     color: #4b5563;
-    line-height: 1.6;
 }
 
 /* FAQ Section */
 .faq-section {
     background: white;
-    border-radius: 24px;
-    padding: 40px;
+    border-radius: 20px;
+    padding: 35px;
     margin-bottom: 35px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
 }
 
 .faq-section h2 {
     color: #1e3a8a;
     font-size: 1.8rem;
-    margin-bottom: 30px;
+    margin-bottom: 25px;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 10px;
 }
 
 .faq-section h2::after {
@@ -714,28 +707,28 @@ body {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 70px;
+    width: 60px;
     height: 3px;
     background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
     border-radius: 3px;
 }
 
 .faq-item {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 18px;
+    padding-bottom: 15px;
 }
 
 .faq-question {
     font-weight: 700;
     color: #1e3a8a;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-size: 1.1rem;
 }
 
 .faq-answer {
     color: #4b5563;
-    line-height: 1.6;
+    line-height: 1.5;
 }
 
 /* Footer */
@@ -762,7 +755,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
     position: relative;
     z-index: 1;
@@ -818,55 +811,30 @@ body {
     color: #64748b;
 }
 
-/* ========== RESPONSIVE FIXES ========== */
-@media (max-width: 900px) {
-    .container {
-        max-width: 95%;
-    }
-    
-    .results-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px;
-    }
-}
-
+/* Responsive */
 @media (max-width: 768px) {
     .navbar { padding: 12px 20px; }
     .nav-container { flex-direction: column; text-align: center; }
-    .nav-links { justify-content: center; gap: 18px; flex-wrap: wrap; }
+    .nav-links { justify-content: center; gap: 18px; }
     .header h1 { font-size: 1.8rem; }
     .header p { font-size: 1rem; }
     .input-grid { grid-template-columns: 1fr; gap: 20px; }
+    .results-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     .advanced-grid { grid-template-columns: 1fr; }
-    .tool-card-large { padding: 25px; }
-    .button-group .btn { padding: 10px 20px; font-size: 0.85rem; }
+    .tool-card-large { padding: 20px; }
+    .button-group .btn { padding: 10px 18px; font-size: 0.85rem; }
     .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
     .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
     .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
-    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
-    .article-section, .faq-section { padding: 25px; }
-}
-
-@media (max-width: 600px) {
-    .results-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    .result-value {
-        font-size: 1.4rem;
-    }
+    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
 }
 
 @media (max-width: 480px) {
+    .results-grid { grid-template-columns: 1fr; }
     .button-group { flex-direction: column; align-items: stretch; }
     .btn { text-align: center; }
     .dropdown-content { left: -120px; min-width: 240px; }
     .tools-grid { grid-template-columns: 1fr; }
-    .tool-title { font-size: 1.4rem; }
-    .person-card { padding: 18px; }
-    .person-card h3 { font-size: 1.1rem; }
-    .result-box { padding: 15px 12px; }
 }
 </style>
 </head>
@@ -998,6 +966,15 @@ body {
         </div>
     </div>
     
+    <!-- AD 1: After Tool Results (Before Other Tools) -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 1</span>
+        </div>
+    </div>
+    
    <!-- Other Tools Section with Animated Links (Same as Age Calculator) -->
 <div class="other-tools">
     <h3>🔗 Other Useful Tools</h3>
@@ -1013,7 +990,16 @@ body {
     </div>
     <a href="index.html" class="home-link">← Back to Home</a>
 </div>
-       
+    
+    <!-- AD 2: After Other Tools Section -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <!-- AdSense Code Here -->
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 2</span>
+        </div>
+    </div>
+    
     <!-- Article Section -->
     <div class="article-section">
         <h2>Age Difference Calculator – Complete Guide</h2>
@@ -1035,7 +1021,13 @@ body {
             <li><strong>👶 Development:</strong> An <strong>asq age calculator</strong> ensures correct developmental screening.</li>
         </ul>
         
-
+        <!-- AD 3: Inside Article (Middle) -->
+        <div class="ad-container" style="margin: 25px 0;">
+            <div class="ad-label">Advertisement</div>
+            <div class="ad-placeholder">
+                <span>📢 Your Ad Here (AdSense/Adsterra) - Position 3</span>
+            </div>
+        </div>
         
         <h3>How to Calculate Age Difference Between Years?</h3>
         <p>To <strong>calculate age difference between years</strong>, simply subtract one birth year from the other. However, for precise results, you must account for months and days. Our tool does this automatically. For example, if Person 1 was born on March 15, 1990, and Person 2 on July 20, 1995, the age difference is 5 years, 4 months, and 5 days.</p>
@@ -1055,6 +1047,14 @@ body {
             <li>✅ Real-Time Updates – Watch seconds tick</li>
             <li>✅ Leap Year Aware – Accurate calculations</li>
         </ul>
+    </div>
+    
+    <!-- AD 4: After Article, Before FAQ -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 4</span>
+        </div>
     </div>
     
     <!-- FAQ Section -->
@@ -1097,6 +1097,15 @@ body {
         </div>
     </div>
     
+    <!-- AD 5: Before Footer -->
+    <div class="ad-container">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+            <span>📢 Your Ad Here (AdSense/Adsterra) - Position 5</span>
+        </div>
+    </div>
+</div>
+
 <!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
