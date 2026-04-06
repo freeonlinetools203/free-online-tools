@@ -1,1 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Yes/No Wheel - Decision Maker | Free Online Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%);
+            min-height: 100vh;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%);
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 24px 20px 32px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .card {
+            background: #1e293b;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            color: #1E3A8A;
+            font-size: 24px;
+        }
+
+        body.dark-mode h1 {
+            color: #0D9488;
+        }
+
+        .sub {
+            color: #0D9488;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        body.dark-mode .sub {
+            color: #5eead4;
+        }
+
+        .dark-toggle {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        body.dark-mode .dark-toggle {
+            background: #334155;
+            color: white;
+        }
+
+        .wheel-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .wheel {
+            width: 260px;
+            height: 260px;
+            border-radius: 50%;
+            transition: transform 0.1s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #dc2626;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+            z-index: 10;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        .spin-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .spin-btn:active {
+            transform: scale(0.98);
+        }
+
+        .result-card {
+            border-radius: 24px;
+            padding: 25px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        /* YES Animation */
+        .result-card.yes-animation {
+            background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+            animation: yesPop 0.6s ease-out, yesGlow 1.5s ease-in-out infinite;
+        }
+
+        @keyframes yesPop {
+            0% { transform: scale(0.8); opacity: 0; }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes yesGlow {
+            0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            50% { box-shadow: 0 0 0 15px rgba(34, 197, 94, 0.3); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+        }
+
+        /* NO Animation */
+        .result-card.no-animation {
+            background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+            animation: noShake 0.5s ease-out, noPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes noShake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        @keyframes noPulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .decision-text {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .decision-sub {
+            font-size: 14px;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: gold;
+            position: absolute;
+            animation: confettiFall 2s ease-out forwards;
+            z-index: 1000;
+        }
+
+        @keyframes confettiFall {
+            0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .question-section {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        body.dark-mode .question-section {
+            background: #334155;
+        }
+
+        .question-label {
+            font-weight: 700;
+            color: #1E3A8A;
+            margin-bottom: 10px;
+            font-size: 14px;
+            display: block;
+        }
+
+        body.dark-mode .question-label {
+            color: #5eead4;
+        }
+
+        .question-input {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            font-size: 16px;
+            background: white;
+        }
+
+        body.dark-mode .question-input {
+            background: #1e293b;
+            color: white;
+            border-color: #0D9488;
+        }
+
+        .history-section {
+            margin-top: 20px;
+        }
+
+        .history-title {
+            font-weight: 700;
+            color: #1E3A8A;
+            margin-bottom: 12px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body.dark-mode .history-title {
+            color: #0D9488;
+        }
+
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .history-item {
+            background: #f1f5f9;
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 13px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        body.dark-mode .history-item {
+            background: #334155;
+            color: white;
+        }
+
+        .history-item:active {
+            transform: scale(0.95);
+        }
+
+        .history-decision {
+            font-weight: bold;
+        }
+
+        .history-decision.yes {
+            color: #22c55e;
+        }
+
+        .history-decision.no {
+            color: #dc2626;
+        }
+
+        .clear-history {
+            background: none;
+            border: none;
+            color: #dc2626;
+            font-size: 12px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            flex: 1;
+            background: #0D9488;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .info-text {
+            text-align: center;
+            color: #0D9488;
+            font-size: 12px;
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        body.dark-mode .info-text {
+            background: #0f766e;
+            color: #ccfbf1;
+        }
+
+        @media (min-width: 600px) {
+            body { padding: 30px; }
+            .container { max-width: 550px; margin: 0 auto; }
+            .wheel { width: 320px; height: 320px; }
+            .decision-text { font-size: 64px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div>
+                    <h1>🎡 Yes/No Wheel</h1>
+                    <p class="sub">Spin the wheel to make a decision</p>
+                </div>
+                <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+            </div>
+
+            <div class="question-section">
+                <label class="question-label">❓ Ask a Question</label>
+                <input type="text" id="questionInput" class="question-input" placeholder="e.g., Should I go out today?">
+            </div>
+
+            <div class="wheel-wrapper">
+                <div class="pointer"></div>
+                <canvas id="yesNoWheel" class="wheel" width="500" height="500"></canvas>
+            </div>
+
+            <button class="spin-btn" onclick="spinWheel()">🎡 SPIN THE WHEEL</button>
+
+            <div class="result-card" id="resultCard">
+                <div class="decision-text" id="decisionText">—</div>
+                <div class="decision-sub" id="decisionSub">Spin the wheel to get your answer</div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" onclick="resetWheel()">🔄 Reset</button>
+                <button class="action-btn" onclick="copyDecision()">📋 Copy Decision</button>
+            </div>
+
+            <div class="history-section">
+                <div class="history-title">
+                    📜 Decision History
+                    <button class="clear-history" onclick="clearHistory()">Clear All</button>
+                </div>
+                <div class="history-list" id="historyList"></div>
+            </div>
+
+            <div class="info-text">
+                💡 Spin the wheel to get Yes or No answer • Click history to reuse questions
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentAngle = 0;
+        let spinning = false;
+        let spinStartTime = 0;
+        let spinDuration = 2000;
+        let spinEndAngle = 0;
+        let currentDecision = '';
+        let decisionHistory = [];
+
+        const yesColor = '#22c55e';
+        const noColor = '#dc2626';
+        const colors = [yesColor, noColor];
+        const sections = ['YES', 'NO'];
+
+        let canvas = document.getElementById('yesNoWheel');
+        let ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            let size = window.innerWidth < 600 ? 260 : 320;
+            canvas.width = size;
+            canvas.height = size;
+            canvas.style.width = size + 'px';
+            canvas.style.height = size + 'px';
+            drawWheel(currentAngle);
+        }
+
+        function drawWheel(angle) {
+            let size = canvas.width;
+            let centerX = size / 2;
+            let centerY = size / 2;
+            let radius = size / 2;
+            let angleStep = (Math.PI * 2) / 2;
+
+            ctx.clearRect(0, 0, size, size);
+
+            for (let i = 0; i < 2; i++) {
+                let startAngle = i * angleStep + angle;
+                let endAngle = (i + 1) * angleStep + angle;
+                
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.closePath();
+                
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+                
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.lineTo(centerX, centerY);
+                ctx.stroke();
+                
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(startAngle + angleStep / 2);
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.font = `bold ${size * 0.08}px "Segoe UI"`;
+                ctx.fillStyle = 'white';
+                ctx.shadowBlur = 0;
+                ctx.fillText(sections[i], radius * 0.6, 0);
+                ctx.restore();
+            }
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.12, 0, Math.PI * 2);
+            ctx.fillStyle = '#1E3A8A';
+            ctx.fill();
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        function getDecisionAtPointer() {
+            let pointerAngle = -Math.PI / 2;
+            let actualAngle = pointerAngle - currentAngle;
+            
+            while (actualAngle < 0) actualAngle += Math.PI * 2;
+            while (actualAngle >= Math.PI * 2) actualAngle -= Math.PI * 2;
+            
+            let angleStep = (Math.PI * 2) / 2;
+            let index = Math.floor(actualAngle / angleStep);
+            index = Math.min(index, 1);
+            
+            return sections[index];
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.width = Math.random() * 8 + 4 + 'px';
+                confetti.style.height = Math.random() * 8 + 4 + 'px';
+                confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                confetti.style.animationDuration = Math.random() * 1 + 1.5 + 's';
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
+
+        function playSound(type) {
+            // Simple beep using Web Audio API
+            try {
+                let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                let oscillator = audioCtx.createOscillator();
+                let gainNode = audioCtx.createGain();
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+                oscillator.type = type === 'yes' ? 'sine' : 'square';
+                oscillator.frequency.value = type === 'yes' ? 880 : 440;
+                gainNode.gain.value = 0.3;
+                oscillator.start();
+                gainNode.gain.exponentialRampToValueAtTime(0.00001, audioCtx.currentTime + 0.5);
+                oscillator.stop(audioCtx.currentTime + 0.5);
+            } catch(e) { }
+        }
+
+        function showYesAnimation() {
+            let resultCard = document.getElementById('resultCard');
+            resultCard.classList.remove('no-animation');
+            resultCard.classList.add('yes-animation');
+            
+            let decisionText = document.getElementById('decisionText');
+            let decisionSub = document.getElementById('decisionSub');
+            
+            decisionText.innerHTML = 'YES ✅';
+            decisionSub.innerHTML = '🎉 Great choice! Go for it! 🎉';
+            
+            createConfetti();
+            playSound('yes');
+            
+            setTimeout(() => {
+                resultCard.classList.remove('yes-animation');
+            }, 2000);
+        }
+
+        function showNoAnimation() {
+            let resultCard = document.getElementById('resultCard');
+            resultCard.classList.remove('yes-animation');
+            resultCard.classList.add('no-animation');
+            
+            let decisionText = document.getElementById('decisionText');
+            let decisionSub = document.getElementById('decisionSub');
+            
+            decisionText.innerHTML = 'NO ❌';
+            decisionSub.innerHTML = '😔 Maybe next time! Don\'t lose hope!';
+            
+            playSound('no');
+            
+            setTimeout(() => {
+                resultCard.classList.remove('no-animation');
+            }, 2000);
+        }
+
+        function spinWheel() {
+            if (spinning) return;
+            
+            spinning = true;
+            spinStartTime = performance.now();
+            
+            let fullRotations = 5 + Math.random() * 5;
+            let finalAngleOffset = Math.random() * Math.PI * 2;
+            spinEndAngle = currentAngle + (fullRotations * Math.PI * 2) + finalAngleOffset;
+            
+            if (navigator.vibrate) navigator.vibrate(50);
+            
+            animateSpin(spinStartTime);
+        }
+
+        function animateSpin(now) {
+            let elapsed = performance.now() - now;
+            let t = Math.min(1, elapsed / spinDuration);
+            let easeOut = 1 - Math.pow(1 - t, 3);
+            
+            let newAngle = currentAngle + (spinEndAngle - currentAngle) * easeOut;
+            currentAngle = newAngle % (Math.PI * 2);
+            drawWheel(currentAngle);
+            
+            if (t < 1) {
+                requestAnimationFrame(() => animateSpin(now));
+            } else {
+                spinning = false;
+                let decision = getDecisionAtPointer();
+                currentDecision = decision;
+                
+                if (decision === 'YES') {
+                    showYesAnimation();
+                } else {
+                    showNoAnimation();
+                }
+                
+                let question = document.getElementById('questionInput').value.trim();
+                if (question === '') {
+                    question = 'Question';
+                }
+                addToHistory(question, decision);
+                
+                if (navigator.vibrate) navigator.vibrate(100);
+                
+                showFeedback(`Decision: ${decision}!`, decision === 'YES' ? '#22c55e' : '#dc2626');
+            }
+        }
+
+        function resetWheel() {
+            if (spinning) return;
+            currentAngle = 0;
+            drawWheel(currentAngle);
+            
+            let resultCard = document.getElementById('resultCard');
+            resultCard.classList.remove('yes-animation', 'no-animation');
+            resultCard.style.background = '';
+            document.getElementById('decisionText').innerHTML = '—';
+            document.getElementById('decisionSub').innerHTML = 'Spin the wheel to get your answer';
+            showFeedback('Wheel reset!', '#0D9488');
+        }
+
+        function copyDecision() {
+            let decision = document.getElementById('decisionText').innerHTML;
+            let question = document.getElementById('questionInput').value.trim();
+            if (decision === '—') {
+                showFeedback('Please spin the wheel first!', '#dc2626');
+                return;
+            }
+            let text = question ? `Question: ${question}\nDecision: ${decision}` : `Decision: ${decision}`;
+            navigator.clipboard.writeText(text);
+            showFeedback('✅ Decision copied!', '#0D9488');
+        }
+
+        function loadHistory() {
+            let saved = localStorage.getItem('yesNoHistory');
+            if (saved) {
+                decisionHistory = JSON.parse(saved);
+                renderHistory();
+            }
+        }
+
+        function saveHistory() {
+            localStorage.setItem('yesNoHistory', JSON.stringify(decisionHistory));
+        }
+
+        function addToHistory(question, decision) {
+            let now = new Date();
+            let time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            decisionHistory.unshift({ question: question, decision: decision, time: time });
+            if (decisionHistory.length > 10) decisionHistory.pop();
+            saveHistory();
+            renderHistory();
+        }
+
+        function renderHistory() {
+            let container = document.getElementById('historyList');
+            container.innerHTML = '';
+            decisionHistory.forEach((item, index) => {
+                let div = document.createElement('div');
+                div.className = 'history-item';
+                div.onclick = () => {
+                    document.getElementById('questionInput').value = item.question;
+                    showFeedback(`Question loaded: ${item.question}`, '#0D9488');
+                };
+                div.innerHTML = `
+                    <span>${item.question.substring(0, 30)}</span>
+                    <span class="history-decision ${item.decision === 'YES' ? 'yes' : 'no'}">${item.decision}</span>
+                    <span style="font-size: 10px; color: #64748b;">${item.time}</span>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function clearHistory() {
+            decisionHistory = [];
+            saveHistory();
+            renderHistory();
+            showFeedback('History cleared!', '#dc2626');
+        }
+
+        function showFeedback(msg, bgColor) {
+            let feedback = document.createElement('div');
+            feedback.innerText = msg;
+            feedback.style.position = 'fixed';
+            feedback.style.bottom = '30px';
+            feedback.style.left = '50%';
+            feedback.style.transform = 'translateX(-50%)';
+            feedback.style.backgroundColor = bgColor;
+            feedback.style.color = 'white';
+            feedback.style.padding = '12px 24px';
+            feedback.style.borderRadius = '50px';
+            feedback.style.fontSize = '14px';
+            feedback.style.zIndex = '1000';
+            feedback.style.boxShadow = '0 5px 15px rgba(0,0,0,0.2)';
+            document.body.appendChild(feedback);
+            setTimeout(() => { feedback.remove(); }, 2000);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let btn = document.querySelector('.dark-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = '☀️ Light Mode';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.innerHTML = '🌙 Dark Mode';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        function loadDarkMode() {
+            let darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.dark-toggle').innerHTML = '☀️ Light Mode';
+            }
+        }
+
+        window.addEventListener('resize', () => { resizeCanvas(); });
+
+        window.onload = () => {
+            resizeCanvas();
+            loadDarkMode();
+            loadHistory();
+            drawWheel(currentAngle);
+        };
+    </script>
+</body>
+</html>
