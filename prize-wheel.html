@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Prize Wheel - Spin to Win | Free Online Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%);
+            min-height: 100vh;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%);
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 24px 20px 32px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        body.dark-mode .card {
+            background: #1e293b;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            color: #1E3A8A;
+            font-size: 24px;
+        }
+
+        body.dark-mode h1 {
+            color: #0D9488;
+        }
+
+        .sub {
+            color: #0D9488;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        body.dark-mode .sub {
+            color: #5eead4;
+        }
+
+        .dark-toggle {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        body.dark-mode .dark-toggle {
+            background: #334155;
+            color: white;
+        }
+
+        /* Prize Settings */
+        .settings-section {
+            background: #f8fafc;
+            border-radius: 24px;
+            padding: 20px;
+            margin-bottom: 24px;
+        }
+
+        body.dark-mode .settings-section {
+            background: #334155;
+        }
+
+        .settings-title {
+            font-weight: 700;
+            color: #1E3A8A;
+            margin-bottom: 15px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        body.dark-mode .settings-title {
+            color: #5eead4;
+        }
+
+        .prizes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .prize-item {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .prize-input {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 13px;
+            background: white;
+        }
+
+        body.dark-mode .prize-input {
+            background: #1e293b;
+            color: white;
+            border-color: #0D9488;
+        }
+
+        .remove-prize {
+            background: #dc2626;
+            color: white;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .add-prize-btn {
+            background: #0D9488;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Preset Buttons */
+        .preset-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .preset-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        body.dark-mode .preset-btn {
+            background: #475569;
+            color: white;
+        }
+
+        /* Wheel Container */
+        .wheel-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .wheel {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            transition: transform 0.1s ease;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            cursor: pointer;
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 20px solid transparent;
+            border-right: 20px solid transparent;
+            border-top: 40px solid #dc2626;
+            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.2));
+            z-index: 10;
+            animation: bounce 1s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Spin Button */
+        .spin-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            font-size: 20px;
+            font-weight: bold;
+            border-radius: 60px;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.2s;
+        }
+
+        .spin-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Result Card */
+        .result-card {
+            background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%);
+            border-radius: 24px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .result-label {
+            font-size: 12px;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 2px;
+        }
+
+        .result-prize {
+            font-size: 28px;
+            font-weight: bold;
+            color: white;
+            margin-top: 8px;
+        }
+
+        /* History */
+        .history-section {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .history-title {
+            font-weight: 700;
+            color: #1E3A8A;
+            font-size: 14px;
+        }
+
+        body.dark-mode .history-title {
+            color: #5eead4;
+        }
+
+        .clear-history {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .history-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        .history-item {
+            background: #f1f5f9;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+        }
+
+        body.dark-mode .history-item {
+            background: #334155;
+            color: white;
+        }
+
+        .info-text {
+            text-align: center;
+            color: #0D9488;
+            font-size: 12px;
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        body.dark-mode .info-text {
+            background: #0f766e;
+            color: #ccfbf1;
+        }
+
+        @media (min-width: 600px) {
+            body { padding: 30px; }
+            .container { max-width: 600px; margin: 0 auto; }
+            .wheel { width: 350px; height: 350px; }
+            .result-prize { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="header">
+                <div>
+                    <h1>🎡 Prize Wheel</h1>
+                    <p class="sub">Spin to Win! Customize your prizes</p>
+                </div>
+                <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+            </div>
+
+            <!-- Prize Settings -->
+            <div class="settings-section">
+                <div class="settings-title">
+                    🎁 Customize Prizes
+                    <button class="preset-btn" onclick="loadPreset('contest')">🏆 Contest</button>
+                    <button class="preset-btn" onclick="loadPreset('game')">🎮 Game</button>
+                    <button class="preset-btn" onclick="loadPreset('gift')">🎁 Gift</button>
+                </div>
+                <div class="prizes-list" id="prizesList">
+                    <div class="prize-item">
+                        <input type="text" class="prize-input" placeholder="Prize 1" value="$100 Gift Card">
+                        <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                    </div>
+                    <div class="prize-item">
+                        <input type="text" class="prize-input" placeholder="Prize 2" value="Free Coffee">
+                        <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                    </div>
+                    <div class="prize-item">
+                        <input type="text" class="prize-input" placeholder="Prize 3" value="20% Discount">
+                        <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                    </div>
+                    <div class="prize-item">
+                        <input type="text" class="prize-input" placeholder="Prize 4" value="Try Again">
+                        <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                    </div>
+                    <div class="prize-item">
+                        <input type="text" class="prize-input" placeholder="Prize 5" value="Free Shipping">
+                        <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                    </div>
+                    <div class="prize-item">
+                        <input type="text" class="prize-input" placeholder="Prize 6" value="Grand Prize!">
+                        <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                    </div>
+                </div>
+                <button class="add-prize-btn" onclick="addPrize()">+ Add Prize</button>
+            </div>
+
+            <!-- Wheel -->
+            <div class="wheel-wrapper">
+                <div class="pointer"></div>
+                <canvas id="prizeWheel" class="wheel" width="500" height="500"></canvas>
+            </div>
+
+            <!-- Spin Button -->
+            <button class="spin-btn" onclick="spinWheel()">🎡 SPIN THE WHEEL</button>
+
+            <!-- Result -->
+            <div class="result-card" id="resultCard">
+                <div class="result-label">🏆 YOU WON!</div>
+                <div class="result-prize" id="resultPrize">Spin to win</div>
+            </div>
+
+            <!-- History -->
+            <div class="history-section">
+                <div class="history-header">
+                    <span class="history-title">📜 Spin History</span>
+                    <button class="clear-history" onclick="clearHistory()">Clear All</button>
+                </div>
+                <div class="history-list" id="historyList"></div>
+            </div>
+
+            <div class="info-text">
+                💡 Add your own prizes • Spin the wheel • Win amazing prizes!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let prizes = ['$100 Gift Card', 'Free Coffee', '20% Discount', 'Try Again', 'Free Shipping', 'Grand Prize!'];
+        let colors = [];
+        let currentAngle = 0;
+        let spinning = false;
+        let spinStartTime = 0;
+        let spinDuration = 2500;
+        let spinEndAngle = 0;
+        let history = [];
+
+        let canvas = document.getElementById('prizeWheel');
+        let ctx = canvas.getContext('2d');
+
+        function generateColors(count) {
+            let colorList = [];
+            let predefined = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'];
+            for (let i = 0; i < count; i++) {
+                if (i < predefined.length) {
+                    colorList.push(predefined[i % predefined.length]);
+                } else {
+                    let hue = (i * 360 / count) % 360;
+                    colorList.push(`hsl(${hue}, 65%, 60%)`);
+                }
+            }
+            return colorList;
+        }
+
+        function updatePrizesFromInputs() {
+            let inputs = document.querySelectorAll('.prize-input');
+            prizes = [];
+            inputs.forEach(input => {
+                let val = input.value.trim();
+                if (val !== '') {
+                    prizes.push(val);
+                }
+            });
+            if (prizes.length === 0) prizes = ['Prize'];
+            colors = generateColors(prizes.length);
+            resizeCanvas();
+            drawWheel(currentAngle);
+        }
+
+        function addPrize() {
+            let list = document.getElementById('prizesList');
+            let div = document.createElement('div');
+            div.className = 'prize-item';
+            div.innerHTML = `
+                <input type="text" class="prize-input" placeholder="New Prize" value="New Prize">
+                <button class="remove-prize" onclick="removePrize(this)">✕</button>
+            `;
+            list.appendChild(div);
+            updatePrizesFromInputs();
+        }
+
+        function removePrize(btn) {
+            let list = document.getElementById('prizesList');
+            if (list.children.length <= 2) {
+                showToast('At least 2 prizes required!', '#dc2626');
+                return;
+            }
+            btn.parentElement.remove();
+            updatePrizesFromInputs();
+        }
+
+        function loadPreset(type) {
+            let list = document.getElementById('prizesList');
+            list.innerHTML = '';
+            let presetPrizes = [];
+            
+            if (type === 'contest') {
+                presetPrizes = ['🏆 Grand Prize', '🥇 First Prize', '🥈 Second Prize', '🥉 Third Prize', '🎁 Consolation', '🎫 Try Again'];
+            } else if (type === 'game') {
+                presetPrizes = ['⚔️ Sword', '🛡️ Shield', '💎 Gem', '🔑 Key', '💰 Gold', '🧪 Potion'];
+            } else if (type === 'gift') {
+                presetPrizes = ['📱 Phone', '💻 Laptop', '⌚ Watch', '🎧 Headphones', '📚 Book', '🧸 Teddy Bear'];
+            }
+            
+            presetPrizes.forEach(prize => {
+                let div = document.createElement('div');
+                div.className = 'prize-item';
+                div.innerHTML = `
+                    <input type="text" class="prize-input" value="${prize}">
+                    <button class="remove-prize" onclick="removePrize(this)">✕</button>
+                `;
+                list.appendChild(div);
+            });
+            
+            updatePrizesFromInputs();
+            showToast(`${presetPrizes.length} prizes loaded!`, '#0D9488');
+        }
+
+        function resizeCanvas() {
+            let size = window.innerWidth < 600 ? 280 : 350;
+            canvas.width = size;
+            canvas.height = size;
+            canvas.style.width = size + 'px';
+            canvas.style.height = size + 'px';
+            drawWheel(currentAngle);
+        }
+
+        function drawWheel(angle) {
+            if (prizes.length === 0) return;
+            
+            let size = canvas.width;
+            let centerX = size / 2;
+            let centerY = size / 2;
+            let radius = size / 2;
+            let angleStep = (Math.PI * 2) / prizes.length;
+
+            ctx.clearRect(0, 0, size, size);
+
+            for (let i = 0; i < prizes.length; i++) {
+                let startAngle = i * angleStep + angle;
+                let endAngle = (i + 1) * angleStep + angle;
+                
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.closePath();
+                
+                ctx.fillStyle = colors[i];
+                ctx.fill();
+                
+                ctx.strokeStyle = 'white';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(centerX, centerY);
+                ctx.arc(centerX, centerY, radius, startAngle, endAngle);
+                ctx.lineTo(centerX, centerY);
+                ctx.stroke();
+                
+                ctx.save();
+                ctx.translate(centerX, centerY);
+                ctx.rotate(startAngle + angleStep / 2);
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                let fontSize = Math.min(size * 0.03, 11);
+                ctx.font = `500 ${fontSize}px "Segoe UI"`;
+                ctx.fillStyle = 'white';
+                let text = prizes[i];
+                if (text.length > 12) text = text.substring(0, 10) + '..';
+                ctx.fillText(text, radius * 0.7, 0);
+                ctx.restore();
+            }
+            
+            ctx.beginPath();
+            ctx.arc(centerX, centerY, radius * 0.1, 0, Math.PI * 2);
+            ctx.fillStyle = '#1E3A8A';
+            ctx.fill();
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+        }
+
+        function getPrizeAtPointer() {
+            let pointerAngle = -Math.PI / 2;
+            let actualAngle = pointerAngle - currentAngle;
+            
+            while (actualAngle < 0) actualAngle += Math.PI * 2;
+            while (actualAngle >= Math.PI * 2) actualAngle -= Math.PI * 2;
+            
+            let angleStep = (Math.PI * 2) / prizes.length;
+            let index = Math.floor(actualAngle / angleStep);
+            index = Math.min(index, prizes.length - 1);
+            
+            return prizes[index];
+        }
+
+        function createConfetti() {
+            for (let i = 0; i < 100; i++) {
+                let confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = Math.random() * 8 + 4 + 'px';
+                confetti.style.height = Math.random() * 8 + 4 + 'px';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = '-10px';
+                confetti.style.borderRadius = '2px';
+                confetti.style.zIndex = '1000';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.animation = `confettiFall ${Math.random() * 1.5 + 1}s ease-out forwards`;
+                document.body.appendChild(confetti);
+                setTimeout(() => confetti.remove(), 2000);
+            }
+        }
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes confettiFall {
+                0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+                100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function spinWheel() {
+            if (spinning) return;
+            if (prizes.length < 2) {
+                showToast('Add at least 2 prizes!', '#dc2626');
+                return;
+            }
+            
+            spinning = true;
+            spinStartTime = performance.now();
+            
+            let fullRotations = 8 + Math.random() * 6;
+            let finalAngleOffset = Math.random() * Math.PI * 2;
+            spinEndAngle = currentAngle + (fullRotations * Math.PI * 2) + finalAngleOffset;
+            
+            if (navigator.vibrate) navigator.vibrate(50);
+            animateSpin(spinStartTime);
+        }
+
+        function animateSpin(now) {
+            let elapsed = performance.now() - now;
+            let t = Math.min(1, elapsed / spinDuration);
+            let easeOut = 1 - Math.pow(1 - t, 3);
+            
+            let newAngle = currentAngle + (spinEndAngle - currentAngle) * easeOut;
+            currentAngle = newAngle % (Math.PI * 2);
+            drawWheel(currentAngle);
+            
+            if (t < 1) {
+                requestAnimationFrame(() => animateSpin(now));
+            } else {
+                spinning = false;
+                let prize = getPrizeAtPointer();
+                
+                document.getElementById('resultPrize').innerHTML = prize;
+                let resultCard = document.getElementById('resultCard');
+                resultCard.classList.add('winner');
+                
+                if (prize !== 'Try Again' && !prize.includes('Try')) {
+                    createConfetti();
+                }
+                
+                addToHistory(prize);
+                
+                if (navigator.vibrate) navigator.vibrate(200);
+                
+                setTimeout(() => {
+                    resultCard.classList.remove('winner');
+                }, 600);
+                
+                showToast(`🎉 You won: ${prize}! 🎉`, '#22c55e');
+            }
+        }
+
+        function addToHistory(prize) {
+            let now = new Date();
+            let time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            history.unshift({ prize: prize, time: time });
+            if (history.length > 8) history.pop();
+            renderHistory();
+        }
+
+        function renderHistory() {
+            let container = document.getElementById('historyList');
+            container.innerHTML = '';
+            history.forEach(item => {
+                let div = document.createElement('div');
+                div.className = 'history-item';
+                div.innerHTML = `${item.prize}`;
+                container.appendChild(div);
+            });
+        }
+
+        function clearHistory() {
+            history = [];
+            renderHistory();
+            showToast('History cleared!', '#dc2626');
+        }
+
+        function showToast(msg, bgColor) {
+            let toast = document.createElement('div');
+            toast.innerText = msg;
+            toast.style.position = 'fixed';
+            toast.style.bottom = '30px';
+            toast.style.left = '50%';
+            toast.style.transform = 'translateX(-50%)';
+            toast.style.backgroundColor = bgColor;
+            toast.style.color = 'white';
+            toast.style.padding = '12px 24px';
+            toast.style.borderRadius = '50px';
+            toast.style.fontSize = '14px';
+            toast.style.fontWeight = 'bold';
+            toast.style.zIndex = '1000';
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            let btn = document.querySelector('.dark-toggle');
+            if (document.body.classList.contains('dark-mode')) {
+                btn.innerHTML = '☀️ Light Mode';
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                btn.innerHTML = '🌙 Dark Mode';
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        }
+
+        function loadDarkMode() {
+            let darkMode = localStorage.getItem('darkMode');
+            if (darkMode === 'enabled') {
+                document.body.classList.add('dark-mode');
+                document.querySelector('.dark-toggle').innerHTML = '☀️ Light Mode';
+            }
+        }
+
+        document.addEventListener('input', function(e) {
+            if (e.target.classList && e.target.classList.contains('prize-input')) {
+                updatePrizesFromInputs();
+            }
+        });
+
+        window.addEventListener('resize', () => { resizeCanvas(); });
+
+        window.onload = () => {
+            loadDarkMode();
+            updatePrizesFromInputs();
+            drawWheel(currentAngle);
+        };
+    </script>
+</body>
+</html>
