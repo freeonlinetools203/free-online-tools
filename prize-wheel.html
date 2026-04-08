@@ -105,6 +105,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         body.dark-mode .settings-title {
@@ -179,11 +181,16 @@
             border-radius: 50px;
             font-size: 11px;
             cursor: pointer;
+            transition: 0.2s;
         }
 
         body.dark-mode .preset-btn {
             background: #475569;
             color: white;
+        }
+
+        .preset-btn:active {
+            transform: scale(0.95);
         }
 
         /* Wheel Container */
@@ -249,6 +256,17 @@
             padding: 20px;
             text-align: center;
             margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .result-card.animate {
+            animation: winnerPop 0.5s ease-out;
+        }
+
+        @keyframes winnerPop {
+            0% { transform: scale(0.9); opacity: 0; }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); opacity: 1; }
         }
 
         .result-label {
@@ -355,9 +373,11 @@
             <div class="settings-section">
                 <div class="settings-title">
                     🎁 Customize Prizes
-                    <button class="preset-btn" onclick="loadPreset('contest')">🏆 Contest</button>
-                    <button class="preset-btn" onclick="loadPreset('game')">🎮 Game</button>
-                    <button class="preset-btn" onclick="loadPreset('gift')">🎁 Gift</button>
+                    <div style="display: flex; gap: 5px;">
+                        <button class="preset-btn" onclick="loadPreset('contest')">🏆 Contest</button>
+                        <button class="preset-btn" onclick="loadPreset('game')">🎮 Game</button>
+                        <button class="preset-btn" onclick="loadPreset('gift')">🎁 Gift</button>
+                    </div>
                 </div>
                 <div class="prizes-list" id="prizesList">
                     <div class="prize-item">
@@ -431,16 +451,22 @@
         let canvas = document.getElementById('prizeWheel');
         let ctx = canvas.getContext('2d');
 
+        // ========== UNIQUE COLOR SCHEME FOR PRIZE WHEEL (Premium Colors) ==========
         function generateColors(count) {
+            // Premium color palette: Gold, Silver, Bronze, Jewel tones
+            const premiumColors = [
+                '#FFD700', // Gold
+                '#C0C0C0', // Silver
+                '#CD7F32', // Bronze
+                '#FF6B6B', // Coral Red
+                '#4ECDC4', // Turquoise
+                '#9B59B6', // Amethyst
+                '#F39C12', // Orange
+                '#2ECC71'  // Emerald
+            ];
             let colorList = [];
-            let predefined = ['#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD', '#98D8C8', '#F7DC6F', '#BB8FCE', '#85C1E2'];
             for (let i = 0; i < count; i++) {
-                if (i < predefined.length) {
-                    colorList.push(predefined[i % predefined.length]);
-                } else {
-                    let hue = (i * 360 / count) % 360;
-                    colorList.push(`hsl(${hue}, 65%, 60%)`);
-                }
+                colorList.push(premiumColors[i % premiumColors.length]);
             }
             return colorList;
         }
@@ -648,7 +674,7 @@
                 
                 document.getElementById('resultPrize').innerHTML = prize;
                 let resultCard = document.getElementById('resultCard');
-                resultCard.classList.add('winner');
+                resultCard.classList.add('animate');
                 
                 if (prize !== 'Try Again' && !prize.includes('Try')) {
                     createConfetti();
@@ -659,8 +685,8 @@
                 if (navigator.vibrate) navigator.vibrate(200);
                 
                 setTimeout(() => {
-                    resultCard.classList.remove('winner');
-                }, 600);
+                    resultCard.classList.remove('animate');
+                }, 500);
                 
                 showToast(`🎉 You won: ${prize}! 🎉`, '#22c55e');
             }
