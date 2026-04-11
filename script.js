@@ -1,130 +1,117 @@
-(function() {
-    // DOM elements
-    const dropdown = document.getElementById('toolsDropdown');
-    const dropBtn = document.getElementById('toolsBtn');
-    const dropdownContent = document.getElementById('dropdownContent');
+// ========== MEGA MENU DROPDOWN ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const categories = document.querySelectorAll('.mega-category');
     
-    // Ensure all elements exist
-    if (!dropdown || !dropBtn || !dropdownContent) {
-        console.warn("Dropdown elements missing");
-        return;
-    }
-    
-    // Function to close dropdown
-    function closeDropdown() {
-        dropdown.classList.remove('open');
-        // Reset any open category accordions inside
-        const allActiveCats = document.querySelectorAll('.dropdown-category.active');
-        allActiveCats.forEach(cat => {
-            cat.classList.remove('active');
-            const targetId = cat.getAttribute('data-cat');
-            if(targetId) {
-                const toolsDiv = document.getElementById(targetId + 'Tools');
-                if(toolsDiv) toolsDiv.classList.remove('show');
-            }
-        });
-    }
-    
-    // Function to open dropdown
-    function openDropdown() {
-        dropdown.classList.add('open');
-    }
-    
-    // Toggle function for button click
-    function toggleDropdown(e) {
-        e.stopPropagation();
-        if (dropdown.classList.contains('open')) {
-            closeDropdown();
-        } else {
-            openDropdown();
-        }
-    }
-    
-    // Handle button click
-    dropBtn.addEventListener('click', toggleDropdown);
-    
-    // Prevent clicks inside dropdown-content from closing it
-    dropdownContent.addEventListener('click', function(e) {
-        e.stopPropagation();
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(event) {
-        if (dropdown.classList.contains('open')) {
-            const isClickInside = dropdown.contains(event.target);
-            if (!isClickInside) {
-                closeDropdown();
-            }
-        }
-    });
-    
-    // Accordion functionality for categories
-    const categories = document.querySelectorAll('.dropdown-category');
     categories.forEach(category => {
         category.addEventListener('click', function(e) {
             e.stopPropagation();
-            const catId = this.getAttribute('data-cat');
-            if (catId) {
-                const toolsDiv = document.getElementById(catId + 'Tools');
-                if (toolsDiv) {
-                    this.classList.toggle('active');
-                    toolsDiv.classList.toggle('show');
-                } else {
-                    this.classList.toggle('active');
-                    const nextDiv = this.nextElementSibling;
-                    if(nextDiv && nextDiv.classList.contains('category-tools')) {
-                        nextDiv.classList.toggle('show');
-                    }
-                }
-            } else {
-                this.classList.toggle('active');
-                const nextDiv = this.nextElementSibling;
-                if(nextDiv && nextDiv.classList.contains('category-tools')) {
-                    nextDiv.classList.toggle('show');
-                }
-            }
-        });
-    });
-    
-    // Prevent closing when clicking on category links
-    const allToolLinks = document.querySelectorAll('.category-tools a');
-    allToolLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.stopPropagation();
-        });
-    });
-    
-    dropBtn.style.cursor = 'pointer';
-    
-    // Keyboard support
-    dropBtn.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            toggleDropdown(e);
-        }
-    });
-})();
-
-// Lazy load native banner ads for better performance
-document.addEventListener('DOMContentLoaded', function() {
-    // All ad containers will load naturally via async scripts
-    // This ensures page content loads first before heavy ad scripts
-    
-    // Add scroll-based lazy loading for ads (optional)
-    const adContainers = document.querySelectorAll('.ad-container');
-    
-    if ('IntersectionObserver' in window) {
-        const adObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    // Ad already has script tags, they load automatically
-                    adObserver.unobserve(entry.target);
+            
+            categories.forEach(cat => {
+                if (cat !== this && cat.classList.contains('active')) {
+                    cat.classList.remove('active');
                 }
             });
-        }, { threshold: 0.1 });
-        
-        adContainers.forEach(container => {
-            adObserver.observe(container);
+            
+            this.classList.toggle('active');
+        });
+    });
+    
+    document.addEventListener('click', function() {
+        categories.forEach(category => {
+            category.classList.remove('active');
+        });
+    });
+});
+
+// ========== PAGE LOAD ANIMATION ==========
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.2s ease';
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 10);
+});
+
+// ========== BUTTON CLICK ANIMATION ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const allButtons = document.querySelectorAll('.tool-card a, .support-btn, .animated-link, .submit-review');
+    
+    allButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            this.style.transform = 'scale(0.98)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    });
+});
+
+// ========== STAR RATING FUNCTIONALITY ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const stars = document.querySelectorAll('.star-rating span');
+    const ratingInput = document.getElementById('ratingValue');
+    
+    if (stars.length) {
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const value = this.getAttribute('data-value');
+                ratingInput.value = value;
+                
+                stars.forEach(s => {
+                    const starValue = parseInt(s.getAttribute('data-value'));
+                    if (starValue <= value) {
+                        s.textContent = '★';
+                        s.classList.add('active');
+                    } else {
+                        s.textContent = '☆';
+                        s.classList.remove('active');
+                    }
+                });
+            });
+            
+            star.addEventListener('mouseenter', function() {
+                const value = this.getAttribute('data-value');
+                stars.forEach(s => {
+                    const starValue = parseInt(s.getAttribute('data-value'));
+                    if (starValue <= value) {
+                        s.style.color = '#f59e0b';
+                    } else {
+                        s.style.color = '#d1d5db';
+                    }
+                });
+            });
+            
+            star.addEventListener('mouseleave', function() {
+                stars.forEach(s => {
+                    s.style.color = '';
+                });
+            });
+        });
+    }
+    
+    // Handle review form submission
+    const reviewForm = document.getElementById('userReviewForm');
+    if (reviewForm) {
+        reviewForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('reviewerName').value;
+            const message = document.getElementById('reviewMessage').value;
+            const rating = document.getElementById('ratingValue').value;
+            
+            if (name && message) {
+                alert('Thank you for your review! It will appear after approval.');
+                reviewForm.reset();
+                ratingInput.value = '5';
+                stars.forEach(s => {
+                    const starValue = parseInt(s.getAttribute('data-value'));
+                    if (starValue <= 5) {
+                        s.textContent = '★';
+                        s.classList.add('active');
+                    }
+                });
+            } else {
+                alert('Please fill all fields.');
+            }
         });
     }
 });
