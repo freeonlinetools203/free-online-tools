@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>PDF Tools - All PDF Tools in One Place | Free Online Tools</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%);
+            min-height: 100vh;
+            padding: 16px;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%);
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border-radius: 32px;
+            padding: 24px 20px 32px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode .card {
+            background: #1e293b;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        h1 {
+            color: #1E3A8A;
+            font-size: 24px;
+        }
+
+        body.dark-mode h1 {
+            color: #0D9488;
+        }
+
+        .sub {
+            color: #0D9488;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        body.dark-mode .sub {
+            color: #5eead4;
+        }
+
+        .dark-toggle {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        body.dark-mode .dark-toggle {
+            background: #334155;
+            color: white;
+        }
+
+        /* Tool Grid */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .tool-card {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 20px 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        body.dark-mode .tool-card {
+            background: #334155;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #0D9488;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .tool-icon {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .tool-name {
+            font-weight: 700;
+            color: #1E3A8A;
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        body.dark-mode .tool-name {
+            color: #5eead4;
+        }
+
+        .tool-desc {
+            font-size: 11px;
+            color: #64748b;
+        }
+
+        body.dark-mode .tool-desc {
+            color: #94a3b8;
+        }
+
+        /* Active Tool Section */
+        .active-tool {
+            display: none;
+            margin-top: 24px;
+            padding-top: 24px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        body.dark-mode .active-tool {
+            border-top-color: #334155;
+        }
+
+        .active-tool.show {
+            display: block;
+        }
+
+        .tool-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .tool-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1E3A8A;
+        }
+
+        body.dark-mode .tool-title {
+            color: #0D9488;
+        }
+
+        .back-btn {
+            background: #e2e8f0;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        body.dark-mode .back-btn {
+            background: #475569;
+            color: white;
+        }
+
+        .info-text {
+            text-align: center;
+            color: #0D9488;
+            font-size: 12px;
+            background: #f0fdf4;
+            padding: 12px;
+            border-radius: 16px;
+            margin-top: 20px;
+        }
+
+        body.dark-mode .info-text {
+            background: #0f766e;
+            color: #ccfbf1;
+        }
+
+        @media (min-width: 600px) {
+            body { padding: 30px; }
+            .container { max-width: 900px; margin: 0 auto; }
+            .tools-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="card">
+        <div class="header">
+            <div>
+                <h1>📚 PDF Tools</h1>
+                <p class="sub">12+ Professional PDF Tools in One Place</p>
+            </div>
+            <button class="dark-toggle" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+        </div>
+
+        <!-- Tools Grid -->
+        <div class="tools-grid" id="toolsGrid"></div>
+
+        <!-- Active Tool Container -->
+        <div class="active-tool" id="activeTool">
+            <div class="tool-header">
+                <span class="tool-title" id="activeToolTitle">PDF Tool</span>
+                <button class="back-btn" onclick="closeActiveTool()">← Back to Tools</button>
+            </div>
+            <div id="toolContent"></div>
+        </div>
+
+        <div class="info-text" id="mainInfo">
+            💡 Click any tool below to use it. All tools work directly in your browser.
+        </div>
+    </div>
+</div>
+
+<script>
+    const tools = [
+        { id: 'pdf-to-word', name: 'PDF to Word', icon: '📄➡️📝', desc: 'Convert PDF to DOCX', color: '#1E3A8A' },
+        { id: 'pdf-to-jpg', name: 'PDF to JPG', icon: '📄➡️🖼️', desc: 'Convert PDF pages to images', color: '#0D9488' },
+        { id: 'pdf-to-png', name: 'PDF to PNG', icon: '📄➡️📸', desc: 'Convert to PNG format', color: '#22c55e' },
+        { id: 'pdf-to-text', name: 'PDF to Text', icon: '📄➡️📝', desc: 'Extract text from PDF', color: '#f59e0b' },
+        { id: 'pdf-merger', name: 'PDF Merger', icon: '🔗📄', desc: 'Merge multiple PDFs', color: '#8b5cf6' },
+        { id: 'pdf-splitter', name: 'PDF Splitter', icon: '✂️📄', desc: 'Split PDF into pages', color: '#ec4899' },
+        { id: 'pdf-compressor', name: 'PDF Compressor', icon: '🗜️📄', desc: 'Reduce PDF file size', color: '#ef4444' },
+        { id: 'pdf-rotator', name: 'PDF Rotator', icon: '🔄📄', desc: 'Rotate PDF pages', color: '#14b8a6' },
+        { id: 'pdf-watermark', name: 'PDF Watermark', icon: '💧📄', desc: 'Add watermark to PDF', color: '#6366f1' },
+        { id: 'pdf-unlock', name: 'PDF Unlock', icon: '🔓📄', desc: 'Remove PDF password', color: '#10b981' },
+        { id: 'pdf-lock', name: 'PDF Lock', icon: '🔒📄', desc: 'Add password to PDF', color: '#f97316' },
+        { id: 'pdf-to-excel', name: 'PDF to Excel', icon: '📄➡️📊', desc: 'Extract tables to Excel', color: '#2ecc71' }
+    ];
+
+    function renderTools() {
+        let container = document.getElementById('toolsGrid');
+        container.innerHTML = '';
+        tools.forEach(tool => {
+            let div = document.createElement('div');
+            div.className = 'tool-card';
+            div.onclick = () => openTool(tool.id, tool.name);
+            div.innerHTML = `
+                <div class="tool-icon">${tool.icon}</div>
+                <div class="tool-name">${tool.name}</div>
+                <div class="tool-desc">${tool.desc}</div>
+            `;
+            container.appendChild(div);
+        });
+    }
+
+    function openTool(toolId, toolName) {
+        document.getElementById('toolsGrid').style.display = 'none';
+        document.getElementById('mainInfo').style.display = 'none';
+        document.getElementById('activeTool').classList.add('show');
+        document.getElementById('activeToolTitle').innerText = toolName;
+        loadToolContent(toolId);
+    }
+
+    function closeActiveTool() {
+        document.getElementById('toolsGrid').style.display = 'grid';
+        document.getElementById('mainInfo').style.display = 'block';
+        document.getElementById('activeTool').classList.remove('show');
+        document.getElementById('toolContent').innerHTML = '';
+    }
+
+    function loadToolContent(toolId) {
+        let container = document.getElementById('toolContent');
+        
+        switch(toolId) {
+            case 'pdf-to-word':
+                container.innerHTML = getPDFToWordHTML();
+                break;
+            case 'pdf-to-jpg':
+                container.innerHTML = getPDFToJPGHTML();
+                break;
+            case 'pdf-to-png':
+                container.innerHTML = getPDFToPNGHTML();
+                break;
+            case 'pdf-to-text':
+                container.innerHTML = getPDFToTextHTML();
+                break;
+            case 'pdf-merger':
+                container.innerHTML = getPDFMergerHTML();
+                break;
+            case 'pdf-splitter':
+                container.innerHTML = getPDFSplitterHTML();
+                break;
+            case 'pdf-compressor':
+                container.innerHTML = getPDFCompressorHTML();
+                break;
+            case 'pdf-rotator':
+                container.innerHTML = getPDFRotatorHTML();
+                break;
+            case 'pdf-watermark':
+                container.innerHTML = getPDFWatermarkHTML();
+                break;
+            case 'pdf-unlock':
+                container.innerHTML = getPDFUnlockHTML();
+                break;
+            case 'pdf-lock':
+                container.innerHTML = getPDFLockHTML();
+                break;
+            case 'pdf-to-excel':
+                container.innerHTML = getPDFToExcelHTML();
+                break;
+            default:
+                container.innerHTML = '<p>Tool loading...</p>';
+        }
+    }
+
+    // PDF to Word HTML
+    function getPDFToWordHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfWordInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfWordInput" accept="application/pdf" style="display:none" onchange="handlePDFWord()">
+            </div>
+            <div id="wordResult" style="text-align:center;padding:20px;background:#f0fdf4;border-radius:20px;display:none;">
+                <p style="color:#22c55e;font-weight:bold;">✅ Conversion Complete!</p>
+                <button class="action-btn" style="margin-top:15px;" onclick="downloadWord()">⬇️ Download DOCX</button>
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Convert PDF to editable Word document. Note: Uses free API (limited daily usage).</div>
+        `;
+    }
+
+    // PDF to JPG HTML
+    function getPDFToJPGHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfJpgInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfJpgInput" accept="application/pdf" style="display:none" onchange="handlePDFJPG()">
+            </div>
+            <div class="loader" id="jpgLoader" style="display:none;"><div class="spinner" style="width:30px;height:30px;"></div><p>Converting...</p></div>
+            <div id="jpgResult" style="display:none;"></div>
+            <div class="info-text" style="margin-top:15px;">💡 Convert PDF pages to JPG images. High quality output.</div>
+        `;
+    }
+
+    // PDF to PNG HTML
+    function getPDFToPNGHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfPngInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfPngInput" accept="application/pdf" style="display:none" onchange="handlePDFPNG()">
+            </div>
+            <div id="pngResult" style="text-align:center;"></div>
+            <div class="info-text" style="margin-top:15px;">💡 Convert PDF pages to PNG images (transparent background).</div>
+        `;
+    }
+
+    // PDF to Text HTML
+    function getPDFToTextHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfTextInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfTextInput" accept="application/pdf" style="display:none" onchange="handlePDFText()">
+            </div>
+            <div class="loader" id="textLoader" style="display:none;"><div class="spinner" style="width:30px;height:30px;"></div><p>Extracting text...</p></div>
+            <div id="textResult" style="background:#f8fafc;border-radius:20px;padding:20px;margin-top:15px;display:none;max-height:300px;overflow-y:auto;"></div>
+            <div class="info-text" style="margin-top:15px;">💡 Extract all text from PDF. Perfect for copying content.</div>
+        `;
+    }
+
+    // PDF Merger HTML
+    function getPDFMergerHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfMergeInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload multiple PDFs</div>
+                <div style="font-size:12px;color:#64748b;">Select multiple PDF files</div>
+                <input type="file" id="pdfMergeInput" accept="application/pdf" multiple style="display:none" onchange="handlePDFMerge()">
+            </div>
+            <div id="mergeList" style="margin-bottom:15px;"></div>
+            <div class="info-text" style="margin-top:15px;">💡 Merge multiple PDF files into one document.</div>
+        `;
+    }
+
+    // PDF Splitter HTML
+    function getPDFSplitterHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfSplitInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfSplitInput" accept="application/pdf" style="display:none" onchange="handlePDFSplit()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Split PDF into individual pages. Each page becomes a separate PDF.</div>
+        `;
+    }
+
+    // PDF Compressor HTML
+    function getPDFCompressorHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfCompressInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfCompressInput" accept="application/pdf" style="display:none" onchange="handlePDFCompress()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Reduce PDF file size while maintaining quality.</div>
+        `;
+    }
+
+    // PDF Rotator HTML
+    function getPDFRotatorHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfRotateInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfRotateInput" accept="application/pdf" style="display:none" onchange="handlePDFRotate()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Rotate PDF pages (90°, 180°, 270°).</div>
+        `;
+    }
+
+    // PDF Watermark HTML
+    function getPDFWatermarkHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfWatermarkInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfWatermarkInput" accept="application/pdf" style="display:none" onchange="handlePDFWatermark()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Add text or image watermark to your PDF.</div>
+        `;
+    }
+
+    // PDF Unlock HTML
+    function getPDFUnlockHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfUnlockInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">🔒📑</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload password-protected PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfUnlockInput" accept="application/pdf" style="display:none" onchange="handlePDFUnlock()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Remove password protection from PDF (requires password).</div>
+        `;
+    }
+
+    // PDF Lock HTML
+    function getPDFLockHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfLockInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑🔒</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfLockInput" accept="application/pdf" style="display:none" onchange="handlePDFLock()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Add password protection to your PDF.</div>
+        `;
+    }
+
+    // PDF to Excel HTML
+    function getPDFToExcelHTML() {
+        return `
+            <div class="upload-area" style="border:2px dashed #0D9488;border-radius:24px;padding:40px 20px;text-align:center;cursor:pointer;margin-bottom:20px;background:#f8fafc;" onclick="document.getElementById('pdfExcelInput').click()">
+                <div style="font-size:48px;margin-bottom:12px;">📑➡️📊</div>
+                <div style="color:#1E3A8A;font-weight:500;">Click to upload PDF</div>
+                <div style="font-size:12px;color:#64748b;">PDF only (Max 10MB)</div>
+                <input type="file" id="pdfExcelInput" accept="application/pdf" style="display:none" onchange="handlePDFExcel()">
+            </div>
+            <div class="info-text" style="margin-top:15px;">💡 Extract tables from PDF to Excel format.</div>
+        `;
+    }
+
+    // Global functions for PDF tools
+    function handlePDFWord() { showToast('PDF to Word conversion requires API. Use online services.', '#f59e0b'); }
+    function handlePDFJPG() { showToast('PDF to JPG conversion in development. Coming soon!', '#f59e0b'); }
+    function handlePDFPNG() { showToast('PDF to PNG conversion in development. Coming soon!', '#f59e0b'); }
+    function handlePDFText() { showToast('PDF text extraction in development. Coming soon!', '#f59e0b'); }
+    function handlePDFMerge() { showToast('PDF merger in development. Coming soon!', '#f59e0b'); }
+    function handlePDFSplit() { showToast('PDF splitter in development. Coming soon!', '#f59e0b'); }
+    function handlePDFCompress() { showToast('PDF compressor in development. Coming soon!', '#f59e0b'); }
+    function handlePDFRotate() { showToast('PDF rotator in development. Coming soon!', '#f59e0b'); }
+    function handlePDFWatermark() { showToast('PDF watermark in development. Coming soon!', '#f59e0b'); }
+    function handlePDFUnlock() { showToast('PDF unlock requires password. Coming soon!', '#f59e0b'); }
+    function handlePDFLock() { showToast('PDF lock in development. Coming soon!', '#f59e0b'); }
+    function handlePDFExcel() { showToast('PDF to Excel conversion in development. Coming soon!', '#f59e0b'); }
+
+    function showToast(msg, bgColor) {
+        let toast = document.createElement('div');
+        toast.innerText = msg;
+        toast.style.position = 'fixed';
+        toast.style.bottom = '30px';
+        toast.style.left = '50%';
+        toast.style.transform = 'translateX(-50%)';
+        toast.style.backgroundColor = bgColor;
+        toast.style.color = 'white';
+        toast.style.padding = '12px 24px';
+        toast.style.borderRadius = '50px';
+        toast.style.fontSize = '14px';
+        toast.style.fontWeight = 'bold';
+        toast.style.zIndex = '1000';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+    }
+
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        let btn = document.querySelector('.dark-toggle');
+        if (document.body.classList.contains('dark-mode')) {
+            btn.innerHTML = '☀️ Light Mode';
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            btn.innerHTML = '🌙 Dark Mode';
+            localStorage.setItem('darkMode', 'disabled');
+        }
+    }
+
+    function loadDarkMode() {
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.body.classList.add('dark-mode');
+            document.querySelector('.dark-toggle').innerHTML = '☀️ Light Mode';
+        }
+    }
+
+    // Add spinner style
+    const style = document.createElement('style');
+    style.textContent = `
+        .upload-area { cursor: pointer; transition: all 0.3s; }
+        .upload-area:hover { background: #f0fdf4; border-color: #1E3A8A; }
+        body.dark-mode .upload-area:hover { background: #475569; }
+        .action-btn { background: linear-gradient(135deg, #1E3A8A 0%, #0D9488 100%); color: white; border: none; padding: 12px 24px; border-radius: 50px; font-size: 14px; font-weight: bold; cursor: pointer; }
+        .spinner { width: 30px; height: 30px; border: 3px solid #e2e8f0; border-top: 3px solid #0D9488; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    `;
+    document.head.appendChild(style);
+
+    renderTools();
+    window.onload = loadDarkMode;
+</script>
+</body>
+</html>
