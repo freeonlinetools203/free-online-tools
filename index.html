@@ -976,42 +976,65 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 10);
 });
 
-// ========== 🔍 SEARCH BAR FUNCTIONALITY ==========
+// ========== 🔍 SEARCH BAR FUNCTIONALITY (UPDATED) ==========
 (function() {
     document.addEventListener('DOMContentLoaded', function() {
         const searchInput = document.getElementById('toolSearch');
         
         if (!searchInput) {
-            console.error('Search input not found! Check ID="toolSearch"');
+            console.error('Search input not found!');
             return;
         }
         
-        console.log('✅ Search bar found! Working...');
+        console.log('✅ Search bar found!');
         
         function filterTools() {
             const searchTerm = searchInput.value.toLowerCase().trim();
-            const allToolCards = document.querySelectorAll('.tool-card');
+            
+            // Find all tool links (a tags inside tool-card or direct links)
+            let allTools = document.querySelectorAll('.tool-card a, .tools-grid a, .section a');
+            
+            // Agar upar se koi nahi mila to saare links dhundo jo tool pages ki taraf point karte hain
+            if (allTools.length === 0) {
+                allTools = document.querySelectorAll('a[href*="calculator.html"], a[href*="generator.html"], a[href*="converter.html"], a[href*="checker.html"]');
+            }
+            
             let visibleCount = 0;
             
             if (searchTerm === '') {
-                allToolCards.forEach(card => card.style.display = '');
-                document.querySelectorAll('.section').forEach(section => section.style.display = '');
+                // Sab dikhayein
+                allTools.forEach(tool => {
+                    if (tool.parentElement) tool.parentElement.style.display = '';
+                });
+                document.querySelectorAll('.section, .tools-grid, .tool-card').forEach(el => {
+                    el.style.display = '';
+                });
                 return;
             }
             
-            allToolCards.forEach(card => {
-                const toolName = card.innerText.toLowerCase();
+            // Filter tools
+            allTools.forEach(tool => {
+                const toolName = tool.innerText.toLowerCase();
+                const parent = tool.parentElement;
+                
                 if (toolName.includes(searchTerm)) {
-                    card.style.display = '';
+                    if (parent) parent.style.display = '';
                     visibleCount++;
                 } else {
-                    card.style.display = 'none';
+                    if (parent) parent.style.display = 'none';
                 }
             });
             
+            // Hide empty sections
             document.querySelectorAll('.section').forEach(section => {
-                const visibleCards = section.querySelectorAll('.tool-card:not([style*="display: none"])');
-                section.style.display = visibleCards.length === 0 ? 'none' : '';
+                const visibleLinks = section.querySelectorAll('a[href*=".html"]');
+                let hasVisible = false;
+                visibleLinks.forEach(link => {
+                    if (link.parentElement && link.parentElement.style.display !== 'none') {
+                        hasVisible = true;
+                    }
+                });
+                section.style.display = hasVisible ? '' : 'none';
             });
             
             console.log(`🔍 Found ${visibleCount} tools matching "${searchTerm}"`);
