@@ -678,47 +678,35 @@
 </head>
 <body>
 
-<!-- ========== TWO-ROW NAVBAR - COPY THIS ENTIRE SECTION ON EVERY PAGE ========== -->
+<!-- Navbar -->
 <nav class="navbar">
-    <!-- ROW 1: Main pages (Home, About, Contact, Privacy, Terms, Disclaimer) -->
-    <div class="nav-row-top">
-        <div class="nav-container-top">
-            <div class="logo">
-                <a href="index.html">✨ Free Online Tools</a>
-            </div>
-            <ul class="main-nav-links">
-                <li><a href="index.html">🏠 Home</a></li>
-                <li><a href="about.html">ℹ️ About</a></li>
-                <li><a href="contact.html">📧 Contact</a></li>
-                <li><a href="privacy-policy.html">🔒 Privacy</a></li>
-                <li><a href="terms.html">📜 Terms</a></li>
-                <li><a href="disclaimer.html">⚠️ Disclaimer</a></li>
-            </ul>
+    <div class="nav-container">
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
         </div>
-    </div>
-
-    <!-- ROW 2: Tool Categories in one horizontal line -->
-    <div class="nav-row-bottom">
-        <div class="nav-container-bottom">
-            <!-- Color Tools -->
-            <div class="category-trigger" data-category="colorToolsCat">
-                <button class="category-btn">🎨 Color Tools ▼</button>
-                <div class="category-dropdown-panel" id="panel-colorToolsCat">
-                    <div class="tools-list">
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    
+                    <!-- 🎨 COLOR TOOLS -->
+                    <div class="dropdown-category" data-cat="cat_color">
+                        🎨 Color Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat_colorTools">
                         <a href="color-shades-generator.html">🌈 Color Shades Generator</a>
                         <a href="color-gradient-maker.html">🌈 Color Gradient Maker</a>
                         <a href="color-contrast-checker.html">🎨 Color Contrast Checker</a>
                         <a href="color-name-finder.html">🏷️ Color Name Finder</a>
                         <a href="random-color-picker.html">🎲 Random Color Picker</a>
                     </div>
-                </div>
-            </div>
 
-            <!-- Popular Calculators -->
-            <div class="category-trigger" data-category="popularCalcCat">
-                <button class="category-btn">📊 Popular Calculators ▼</button>
-                <div class="category-dropdown-panel" id="panel-popularCalcCat">
-                    <div class="tools-list">
+                    <!-- 📊 POPULAR CALCULATORS -->
+                    <div class="dropdown-category" data-cat="cat1">
+                        📊 Popular Calculators <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat1Tools">
                         <a href="unit-converter.html">📏 Unit Converter</a>
                         <a href="age-calculator.html">📅 Age Calculator</a>
                         <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
@@ -732,101 +720,91 @@
                         <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
                         <a href="currency-converter.html">💱 Currency Converter</a>
                     </div>
-                </div>
-            </div>
 
-            <!-- Health & Fitness -->
-            <div class="category-trigger" data-category="healthCat">
-                <button class="category-btn">🏃‍♂️ Health & Fitness ▼</button>
-                <div class="category-dropdown-panel" id="panel-healthCat">
-                    <div class="tools-list">
+                    <!-- 🏃‍♂️ HEALTH & FITNESS -->
+                    <div class="dropdown-category" data-cat="cat2">
+                        🏃‍♂️ Health & Fitness <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat2Tools">
                         <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                         <a href="bmr-calculator.html">🔥 BMR Calculator</a>
                         <a href="calorie-calculator.html">🔥 Calorie Calculator</a>
                         <a href="tdee-calculator.html">📊 TDEE Calculator</a>
                     </div>
-                </div>
-            </div>
 
-            <!-- Financial Tools -->
-            <div class="category-trigger" data-category="financialCat">
-                <button class="category-btn">💰 Financial Tools ▼</button>
-                <div class="category-dropdown-panel" id="panel-financialCat">
-                    <div class="tools-list">
+                    <!-- 💰 FINANCIAL TOOLS -->
+                    <div class="dropdown-category" data-cat="cat3">
+                        💰 Financial Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat3Tools">
                         <a href="emi-calculator.html">🏦 EMI Calculator</a>
                         <a href="loan-calculator.html">📋 Loan Calculator</a>
                         <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
                     </div>
-                </div>
-            </div>
 
-            <!-- Text & Writing Tools -->
-            <div class="category-trigger" data-category="textCat">
-                <button class="category-btn">📝 Text & Writing ▼</button>
-                <div class="category-dropdown-panel" id="panel-textCat">
-                    <div class="tools-list">
+                    <!-- 📝 TEXT & WRITING TOOLS -->
+                    <div class="dropdown-category" data-cat="cat4">
+                        📝 Text & Writing Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat4Tools">
                         <a href="word-counter.html">🔢 Word Counter</a>
                         <a href="line-counter.html">📝 Line Counter</a>
                         <a href="text-case-converter.html">🔤 Text Case Converter</a>
                         <a href="password-generator.html">🔐 Password Generator</a>
                         <a href="password-checker.html">🔐 Password Strength Checker</a>
                     </div>
-                </div>
-            </div>
 
-            <!-- PDF Tools -->
-            <div class="category-trigger" data-category="pdfCat">
-                <button class="category-btn">📄 PDF Tools ▼</button>
-                <div class="category-dropdown-panel" id="panel-pdfCat">
-                    <div class="tools-list">
-                        <a href="pdf-merger.html">📄 PDF Merger</a>
-                        <a href="pdf-splitter.html">✂️ PDF Splitter</a>
-                        <a href="pdf-to-excel.html">📊 PDF to Excel</a>
-                        <a href="pdf-to-image.html">📸 PDF to Image</a>
-                        <a href="pdf-to-word.html">📄 PDF to Word</a>
-                        <a href="pdf-to-text.html">📝 PDF to Text</a>
-                        <a href="pdf-rotator.html">🔄 PDF Rotator</a>
-                    </div>
-                </div>
-            </div>
+                   
+<!-- 📄 PDF TOOLS -->
+<div class="dropdown-category" data-cat="cat_pdf">
+    📄 PDF Tools <span class="arrow">▶</span>
+</div>
+<div class="category-tools" id="cat_pdfTools">
+    <a href="pdf-merger.html">📄 PDF Merger</a>
+    <a href="pdf-splitter.html">✂️ PDF Splitter</a>
+    <a href="pdf-to-excel.html">📊 PDF to Excel</a>
+    <a href="pdf-to-image.html">📸 PDF to Image</a>
+    <a href="pdf-to-word.html">📄 PDF to Word</a>
+    <a href="pdf-to-text.html">📝 PDF to Text</a>
+    <a href="pdf-rotator.html">🔄 PDF Rotator</a>
+</div>
 
-            <!-- Image Tools -->
-            <div class="category-trigger" data-category="imageCat">
-                <button class="category-btn">🖼️ Image Tools ▼</button>
-                <div class="category-dropdown-panel" id="panel-imageCat">
-                    <div class="tools-list">
-                        <a href="image-color-extractor.html">🎨 Image Color Extractor</a>
-                        <a href="image-converter.html">🖼️ Image Converter</a>
-                        <a href="image-cropper.html">✂️ Image Cropper</a>
-                        <a href="image-resizer.html">📐 Image Resizer</a>
-                        <a href="image-to-pdf.html">📄 Image to PDF</a>
-                        <a href="image-upscaler.html">🖼️ Image Upscaler</a>
-                        <a href="image-compressor.html">🗜️ Image Compressor</a>
-                    </div>
-                </div>
-            </div>
+<!-- 🖼️ IMAGE TOOLS -->
+<div class="dropdown-category" data-cat="cat_image">
+    🖼️ Image Tools <span class="arrow">▶</span>
+</div>
+<div class="category-tools" id="cat_imageTools">
+    <a href="image-color-extractor.html">🎨 Image Color Extractor</a>
+    <a href="image-converter.html">🖼️ Image Converter</a>
+    <a href="image-cropper.html">✂️ Image Cropper</a>
+    <a href="image-resizer.html">📐 Image Resizer</a>
+    <a href="image-to-pdf.html">📄 Image to PDF</a>
+    <a href="image-upscaler.html">🖼️ Image Upscaler</a>
+    <a href="image-compressor.html">🗜️ Image Compressor</a>
 
-            <!-- Random & Fun Tools -->
-            <div class="category-trigger" data-category="randomCat">
-                <button class="category-btn">🎲 Random & Fun ▼</button>
-                <div class="category-dropdown-panel" id="panel-randomCat">
-                    <div class="tools-list">
-                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
-                        <a href="random-color-picker.html">🎨 Random Color Picker</a>
-                        <a href="yes-no-wheel.html">✅ Yes/No Wheel</a>
-                        <a href="decision-roulette.html">🎯 Decision Roulette</a>
-                        <a href="random-name-picker.html">🏆 Random Name Picker</a>
-                        <a href="random-number-generator.html">🔢 Random Number Generator</a>
-                        <a href="prize-wheel.html">🏆 Prize Wheel</a>
-                        <a href="task-spinner.html">✅ Task Spinner</a>
-                    </div>
+                   <!-- 🎲 RANDOM & FUN TOOLS -->
+<div class="dropdown-category" data-cat="cat7">
+    🎲 Random & Fun Tools <span class="arrow">▶</span>
+</div>
+<div class="category-tools" id="cat7Tools">
+    <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+    <a href="random-color-picker.html">🎨 Random Color Picker</a>
+    <a href="yes-no-wheel.html">✅ Yes/No Wheel</a>
+    <a href="decision-roulette.html">🎯 Decision Roulette</a>
+    <a href="random-name-picker.html">🏆 Random Name Picker</a>
+    <a href="random-number-generator.html">🔢 Random Number Generator</a>
+    <a href="prize-wheel.html">🏆 Prize Wheel</a>
+    <a href="task-spinner.html">✅ Task Spinner</a>
+</div>
+
                 </div>
-            </div>
-        </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
     </div>
 </nav>
-
-<!-- ========== REQUIRED CSS FOR NAVBAR (Add this in <style> section of each page) ========== -->
 <style>
 /* Navbar Styles - Copy this whole style block to every page */
 .navbar {
