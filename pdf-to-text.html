@@ -552,28 +552,122 @@
 <!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
-        <div class="logo"><a href="index.html">✨ Free Online Tools</a></div>
+        <div class="logo">
+            <a href="index.html">✨ Free Online Tools</a>
+        </div>
         <ul class="nav-links">
             <li><a href="index.html">🏠 Home</a></li>
             <li class="dropdown" id="toolsDropdown">
                 <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
-                    <div class="dropdown-category" data-cat="cat_pdf">📄 PDF Tools <span class="arrow">▶</span></div>
-                    <div class="category-tools" id="cat_pdfTools">
-                        <a href="pdf-to-text.html">📝 PDF to Text</a>
-                        <a href="pdf-merger.html">📄 PDF Merger</a>
-                        <a href="pdf-splitter.html">✂️ PDF Splitter</a>
-                        <a href="pdf-to-excel.html">📊 PDF to Excel</a>
-                        <a href="pdf-to-image.html">📸 PDF to Image</a>
-                        <a href="pdf-rotator.html">🔄 PDF Rotator</a>
+                    
+                    <!-- 🎨 COLOR TOOLS -->
+                    <div class="dropdown-category" data-cat="cat_color">
+                        🎨 Color Tools <span class="arrow">▶</span>
                     </div>
-                    <div class="dropdown-category" data-cat="cat_image">🖼️ Image Tools <span class="arrow">▶</span></div>
-                    <div class="category-tools" id="cat_imageTools">
-                        <a href="image-resizer.html">📐 Image Resizer</a>
-                        <a href="image-converter.html">🖼️ Image Converter</a>
-                        <a href="image-cropper.html">✂️ Image Cropper</a>
-                        <a href="image-color-extractor.html">🎨 Image Color Extractor</a>
+                    <div class="category-tools" id="cat_colorTools">
+                        <a href="color-shades-generator.html">🌈 Color Shades Generator</a>
+                        <a href="color-gradient-maker.html">🌈 Color Gradient Maker</a>
+                        <a href="color-contrast-checker.html">🎨 Color Contrast Checker</a>
+                        <a href="color-name-finder.html">🏷️ Color Name Finder</a>
+                        <a href="random-color-picker.html">🎲 Random Color Picker</a>
                     </div>
+
+                    <!-- 📊 POPULAR CALCULATORS -->
+                    <div class="dropdown-category" data-cat="cat1">
+                        📊 Popular Calculators <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="unit-converter.html">📏 Unit Converter</a>
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="date-calculator.html">📅 Date Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                        <a href="currency-converter.html">💱 Currency Converter</a>
+                    </div>
+
+                    <!-- 🏃‍♂️ HEALTH & FITNESS -->
+                    <div class="dropdown-category" data-cat="cat2">
+                        🏃‍♂️ Health & Fitness <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="bmr-calculator.html">🔥 BMR Calculator</a>
+                        <a href="calorie-calculator.html">🔥 Calorie Calculator</a>
+                        <a href="tdee-calculator.html">📊 TDEE Calculator</a>
+                    </div>
+
+                    <!-- 💰 FINANCIAL TOOLS -->
+                    <div class="dropdown-category" data-cat="cat3">
+                        💰 Financial Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+
+                    <!-- 📝 TEXT & WRITING TOOLS -->
+                    <div class="dropdown-category" data-cat="cat4">
+                        📝 Text & Writing Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="line-counter.html">📝 Line Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                        <a href="password-checker.html">🔐 Password Strength Checker</a>
+                    </div>
+
+                   
+<!-- 📄 PDF TOOLS -->
+<div class="dropdown-category" data-cat="cat_pdf">
+    📄 PDF Tools <span class="arrow">▶</span>
+</div>
+<div class="category-tools" id="cat_pdfTools">
+    <a href="pdf-merger.html">📄 PDF Merger</a>
+    <a href="pdf-splitter.html">✂️ PDF Splitter</a>
+    <a href="pdf-to-excel.html">📊 PDF to Excel</a>
+    <a href="pdf-to-image.html">📸 PDF to Image</a>
+    <a href="pdf-to-word.html">📄 PDF to Word</a>
+    <a href="pdf-to-text.html">📝 PDF to Text</a>
+    <a href="pdf-rotator.html">🔄 PDF Rotator</a>
+</div>
+
+<!-- 🖼️ IMAGE TOOLS -->
+<div class="dropdown-category" data-cat="cat_image">
+    🖼️ Image Tools <span class="arrow">▶</span>
+</div>
+<div class="category-tools" id="cat_imageTools">
+    <a href="image-color-extractor.html">🎨 Image Color Extractor</a>
+    <a href="image-converter.html">🖼️ Image Converter</a>
+    <a href="image-cropper.html">✂️ Image Cropper</a>
+    <a href="image-resizer.html">📐 Image Resizer</a>
+    <a href="image-to-pdf.html">📄 Image to PDF</a>
+    <a href="image-upscaler.html">🖼️ Image Upscaler</a>
+    <a href="image-compressor.html">🗜️ Image Compressor</a>
+
+                   <!-- 🎲 RANDOM & FUN TOOLS -->
+<div class="dropdown-category" data-cat="cat7">
+    🎲 Random & Fun Tools <span class="arrow">▶</span>
+</div>
+<div class="category-tools" id="cat7Tools">
+    <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+    <a href="random-color-picker.html">🎨 Random Color Picker</a>
+    <a href="yes-no-wheel.html">✅ Yes/No Wheel</a>
+    <a href="decision-roulette.html">🎯 Decision Roulette</a>
+    <a href="random-name-picker.html">🏆 Random Name Picker</a>
+    <a href="random-number-generator.html">🔢 Random Number Generator</a>
+    <a href="prize-wheel.html">🏆 Prize Wheel</a>
+    <a href="task-spinner.html">✅ Task Spinner</a>
+</div>
+
                 </div>
             </li>
             <li><a href="about.html">ℹ️ About</a></li>
@@ -582,7 +676,6 @@
         </ul>
     </div>
 </nav>
-
 <div class="container">
     <div class="tool-card">
         <div class="card-header">
@@ -631,16 +724,69 @@
         </div>
     </div>
 
-    <div class="other-tools">
-        <h3>🔗 Other PDF Tools</h3>
-        <div class="tools-grid">
-            <a href="pdf-to-text.html" class="tool-link">📝 PDF to Text</a>
-            <a href="pdf-merger.html" class="tool-link">📄 PDF Merger</a>
-            <a href="pdf-splitter.html" class="tool-link">✂️ PDF Splitter</a>
-            <a href="pdf-to-excel.html" class="tool-link">📊 PDF to Excel</a>
-        </div>
-        <a href="index.html" class="home-link">← Back to Home</a>
-    </div>
+     <!-- Category Footer & Back to Home Button -->
+<div class="category-footer" style="max-width: 1200px; margin: 40px auto 20px; padding: 0 20px;">
+  <div style="text-align: center; margin-bottom: 30px;">
+    <a href="index.html" class="home-link" style="display: inline-block; background: linear-gradient(135deg, #2563eb, #1e3a8a); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">🔘 Back to Home</a>
+  </div>
+  <div id="dynamicCategoryFooter"></div>
+</div>
+
+<script>
+  (function() {
+    // Automatic category detection from filename
+    function getCurrentCategory() {
+      const path = window.location.pathname;
+      console.log("Current path:", path);
+      if (path.includes('age-calculator') || path.includes('gst') || path.includes('percentage') || path.includes('sip') || path.includes('discount') || path.includes('profit-loss') || path.includes('gpa') || path.includes('date-calculator') || path.includes('qr-code') || path.includes('youtube-thumbnail') || path.includes('currency-converter') || path.includes('age-difference')) return 'popular';
+      if (path.includes('bmi') || path.includes('bmr') || path.includes('calorie') || path.includes('meal-planner')) return 'health';
+      if (path.includes('emi') || path.includes('loan') || path.includes('zakat')) return 'financial';
+      if (path.includes('word-counter') || path.includes('line-counter') || path.includes('text-case') || path.includes('password-generator')) return 'text';
+      if (path.includes('image-compressor')) return 'media';
+      if (path.includes('spin') || path.includes('yes-no') || path.includes('decision-roulette') || path.includes('random-number')) return 'fun';
+      return 'popular';
+    }
+
+    const categories = {
+      popular: { name: "📊 Popular Calculators", tools: [ { name: "Age Calculator", url: "age-calculator.html" }, { name: "Age Difference", url: "age-difference-calculator.html" }, { name: "Discount Calculator", url: "discount-calculator.html" }, { name: "Profit & Loss", url: "profit-loss-calculator.html" }, { name: "GPA Calculator", url: "gpa-calculator.html" }, { name: "GST Calculator", url: "gst-calculator.html" }, { name: "SIP Calculator", url: "sip-calculator.html" }, { name: "Percentage Calculator", url: "percentage-calculator.html" }, { name: "Date Calculator", url: "date-calculator.html" }, { name: "QR Code Generator", url: "qr-code-generator.html" }, { name: "YouTube Thumbnail", url: "youtube-thumbnail-downloader.html" }, { name: "Currency Converter", url: "currency-converter.html" } ] },
+      health: { name: "🏃‍♂️ Health & Fitness", tools: [ { name: "BMI Calculator", url: "bmi-calculator.html" }, { name: "BMR Calculator", url: "bmr-calculator.html" }, { name: "Calorie Calculator", url: "calorie-calculator.html" }, { name: "Meal Planner", url: "meal-planner.html" } ] },
+      financial: { name: "💰 Financial Tools", tools: [ { name: "EMI Calculator", url: "emi-calculator.html" }, { name: "Loan Calculator", url: "loan-calculator.html" }, { name: "Zakat Calculator", url: "zakat-calculator.html" } ] },
+      text: { name: "📝 Text & Writing", tools: [ { name: "Word Counter", url: "word-counter.html" }, { name: "Line Counter", url: "line-counter.html" }, { name: "Text Case Converter", url: "text-case-converter.html" }, { name: "Password Generator", url: "password-generator.html" } ] },
+      media: { name: "🖼️ Image & Media", tools: [ { name: "Image Compressor", url: "image-compressor.html" } ] },
+      fun: { name: "🎲 Random & Fun", tools: [ { name: "Spin The Wheel", url: "spin-the-wheel.html" }, { name: "Yes/No Wheel", url: "yes-no-wheel.html" }, { name: "Decision Roulette", url: "decision-roulette.html" }, { name: "Random Number", url: "random-number-generator.html" } ] }
+    };
+
+    function renderFooter() {
+      const footerContainer = document.getElementById('dynamicCategoryFooter');
+      if (!footerContainer) {
+        console.error("Element #dynamicCategoryFooter not found");
+        return;
+      }
+      const currentCategory = getCurrentCategory();
+      console.log("Detected category:", currentCategory);
+      const cat = categories[currentCategory];
+      if (!cat) {
+        footerContainer.innerHTML = '<p style="text-align:center;">Tools loading...</p>';
+        return;
+      }
+      let html = `<div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                    <h3 style="color: #1e3a8a; margin-bottom: 20px;">🔗 Other Tools in ${cat.name}</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">`;
+      cat.tools.forEach(tool => {
+        html += `<a href="${tool.url}" style="background: linear-gradient(135deg, #2563eb, #1e3a8a); color: white; text-decoration: none; padding: 12px; border-radius: 40px; text-align: center; font-weight: 500; transition: 0.2s; display: block;">🔘 ${tool.name}</a>`;
+      });
+      html += `</div></div>`;
+      footerContainer.innerHTML = html;
+    }
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderFooter);
+    } else {
+      renderFooter();
+    }
+  })();
+</script>
 
     <!-- ========== 2500+ WORD SEO ARTICLE ========== -->
     <div class="info-section">
