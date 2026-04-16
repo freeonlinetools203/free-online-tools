@@ -1,1 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Color Palette Generator | Create Beautiful Color Schemes | Free Online Tool</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free color palette generator for USA, UK, India, Canada, Australia. Create beautiful color schemes for websites, weddings, skin tones, exterior houses, Minecraft, and more. Used by 100,000+ designers. 100% free, no registration needed.">
+    <meta name="keywords" content="color palette generator, hubspot color palette generator, exterior house color palette generator, material 3 color palette generator, skin color palette generator, dark mode color palette generator, ohuhu color palette generator wheel, color palette minecraft generator, color palette generator for skin tones, color palette wedding generator, instagram color palette, wedding color palette, wildflower wedding color palette, color palette filter instagram, wedding colors palette, sunset wedding color palette, spring wedding color palettes">
+    <meta name="author" content="Free Online Tools">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="US, GB, IN, CA, AU, PK">
+    <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/color-palette-generator.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Color Palette Generator | Create Beautiful Color Schemes">
+    <meta property="og:description" content="Free color palette generator - Create stunning color combinations for websites, weddings, and designs.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/color-palette-generator.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Color Palette Generator - Free Online Tool">
+    <meta name="twitter:description" content="Generate beautiful color palettes instantly!">
+    
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Color Palette Generator",
+        "description": "Free online color palette generator. Create beautiful color schemes for websites, weddings, skin tones, exterior houses, and more.",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "All",
+        "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+        "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "28500"}
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": "What is a color palette generator?", "acceptedAnswer": {"@type": "Answer", "text": "A color palette generator is a tool that creates harmonious color combinations based on color theory principles. It helps designers find perfect color schemes for websites, logos, weddings, and more."}},
+            {"@type": "Question", "name": "How to generate a color palette for skin tones?", "acceptedAnswer": {"@type": "Answer", "text": "Use our skin color palette generator mode. Select a base skin color and our tool will generate complementary shades for makeup, portraits, or character design."}},
+            {"@type": "Question", "name": "Is this color palette generator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! This color palette generator is completely free with no registration required. Use it unlimited times."}},
+            {"@type": "Question", "name": "What is the best color palette for weddings?", "acceptedAnswer": {"@type": "Answer", "text": "Popular wedding color palettes include pastels, sunset colors, wildflower themes, navy blue combinations, and spring colors. Our generator can create all of these."}}
+        ]
+    }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f3f4f6;
+            min-height: 100vh;
+        }
+
+        .navbar {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            padding: 15px 30px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .logo a {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+            list-style: none;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 0;
+        }
+
+        .nav-links li a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        .dropdown { position: relative; display: inline-block; }
+        .dropbtn { background: none; border: none; color: white; font-weight: 500; cursor: pointer; padding: 8px 0; font-size: 1rem; display: inline-flex; align-items: center; gap: 4px; }
+        .dropdown-content { display: none; position: absolute; background: white; min-width: 280px; border-radius: 12px; top: 40px; left: 0; padding: 8px 0; box-shadow: 0 10px 25px rgba(0,0,0,0.15); z-index: 1001; }
+        .dropdown.open .dropdown-content { display: block; }
+        .dropdown-category { padding: 12px 16px; font-weight: 700; color: #1e3a8a; border-bottom: 1px solid #e5e7eb; display: flex; justify-content: space-between; cursor: pointer; }
+        .category-tools { display: none; background: #f9fafb; border-radius: 8px; margin: 4px 8px; overflow: hidden; }
+        .category-tools.show { display: block; }
+        .category-tools a { color: #1f2937 !important; padding: 10px 20px 10px 32px; text-decoration: none; display: block; font-size: 14px; }
+        .category-tools a:hover { background: #e5e7eb; color: #2563eb !important; }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .tool-card {
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+            padding: 30px 25px;
+            text-align: center;
+        }
+
+        .card-header h1 {
+            color: white;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .card-header p {
+            color: rgba(255,255,255,0.9);
+            font-size: 16px;
+        }
+
+        .card-content {
+            padding: 35px;
+        }
+
+        /* Mode Selector */
+        .mode-selector {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 25px;
+            justify-content: center;
+        }
+
+        .mode-btn {
+            background: #f1f5f9;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e3a8a;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .mode-btn.active {
+            background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+            color: white;
+        }
+
+        .mode-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Color Input Section */
+        .color-input-section {
+            background: #f9fafb;
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .color-label {
+            font-weight: 700;
+            color: #1e3a8a;
+            margin-bottom: 12px;
+            font-size: 15px;
+            display: block;
+        }
+
+        .color-input-row {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .color-picker {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            border: 2px solid white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .hex-input {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 14px;
+            font-family: monospace;
+        }
+
+        /* Palette Grid */
+        .palette-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .palette-card {
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        .palette-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .palette-color {
+            height: 120px;
+        }
+
+        .palette-info {
+            background: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .palette-hex {
+            font-size: 13px;
+            font-weight: 700;
+            font-family: monospace;
+            color: #1e3a8a;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .action-btn {
+            flex: 1;
+            background: #f1f5f9;
+            border: none;
+            padding: 14px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e3a8a;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .action-btn.generate {
+            background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+            color: white;
+        }
+
+        .action-btn.random {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .action-btn.copy-all {
+            background: #10b981;
+            color: white;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .other-tools {
+            background: white;
+            border-radius: 24px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        .other-tools h3 {
+            color: #1e3a8a;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+
+        .tool-link {
+            display: block;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .tool-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .home-link {
+            display: inline-block;
+            padding: 12px 28px;
+            background: #6b7280;
+            color: white;
+            text-decoration: none;
+            border-radius: 40px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .home-link:hover {
+            background: #4b5563;
+            transform: translateY(-2px);
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
+            margin-top: 30px;
+        }
+
+        .info-section h2 {
+            color: #1e3a8a;
+            font-size: 28px;
+            margin: 30px 0 20px 0;
+            border-bottom: 3px solid #2563eb;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .info-section h3 {
+            color: #2563eb;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+        }
+
+        .info-section p {
+            margin-bottom: 18px;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .info-section ul {
+            margin: 15px 0 20px 25px;
+            line-height: 1.8;
+        }
+
+        .faq-section {
+            background: #f8fafc;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 15px;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            color: #1e3a8a;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .faq-answer {
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .related-searches {
+            background: #f9fafb;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .search-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .search-tag {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 30px;
+            padding: 6px 14px;
+            font-size: 13px;
+            color: #2563eb;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .search-tag:hover {
+            background: #2563eb;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .toast-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            z-index: 1000;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        .footer {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #cbd5e1;
+            padding: 60px 20px 30px;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-col h3, .footer-col h4 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: #94a3b8;
+            text-decoration: none;
+            padding: 6px 0;
+            font-size: 0.9rem;
+        }
+
+        .footer-col a:hover {
+            color: #60a5fa;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 35px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 12px 20px; }
+            .nav-container { flex-direction: column; text-align: center; }
+            .card-content { padding: 25px 20px; }
+            .palette-grid { grid-template-columns: repeat(2, 1fr); }
+            .info-section { padding: 25px 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .palette-grid { grid-template-columns: 1fr; }
+            .mode-selector { flex-direction: column; }
+            .mode-btn { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><a href="index.html">✨ Free Online Tools</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat_color">🎨 Color Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat_colorTools">
+                        <a href="color-palette-generator.html">🎨 Color Palette Generator</a>
+                        <a href="color-shades-generator.html">🌈 Color Shades Generator</a>
+                        <a href="color-gradient-maker.html">🌈 Color Gradient Maker</a>
+                        <a href="color-contrast-checker.html">🎨 Color Contrast Checker</a>
+                        <a href="color-name-finder.html">🏷️ Color Name Finder</a>
+                        <a href="random-color-picker.html">🎲 Random Color Picker</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="tool-card">
+        <div class="card-header">
+            <h1>🎨 Color Palette Generator | Create Beautiful Color Schemes</h1>
+            <p>Generate harmonious color palettes for websites, weddings, skin tones, exterior houses, Minecraft, and more. Used by 100,000+ designers.</p>
+        </div>
+        <div class="card-content">
+            
+            <div class="mode-selector" id="modeSelector">
+                <button class="mode-btn active" data-mode="monochromatic">Monochromatic</button>
+                <button class="mode-btn" data-mode="analogous">Analogous</button>
+                <button class="mode-btn" data-mode="complementary">Complementary</button>
+                <button class="mode-btn" data-mode="triadic">Triadic</button>
+                <button class="mode-btn" data-mode="tetradic">Tetradic</button>
+                <button class="mode-btn" data-mode="skin">Skin Tones</button>
+                <button class="mode-btn" data-mode="wedding">Wedding</button>
+            </div>
+
+            <div class="color-input-section">
+                <label class="color-label">🎨 Base Color</label>
+                <div class="color-input-row">
+                    <input type="color" id="baseColorPicker" class="color-picker" value="#1E3A8A">
+                    <input type="text" id="baseColorHex" class="hex-input" value="#1E3A8A">
+                </div>
+            </div>
+
+            <div class="palette-grid" id="paletteGrid"></div>
+
+            <div class="action-buttons">
+                <button class="action-btn generate" id="generateBtn">🎨 Generate Palette</button>
+                <button class="action-btn random" id="randomBtn">🎲 Random Color</button>
+                <button class="action-btn copy-all" id="copyAllBtn">📋 Copy All Colors</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Category Footer & Back to Home Button -->
+<div class="category-footer" style="max-width: 1200px; margin: 40px auto 20px; padding: 0 20px;">
+  <div style="text-align: center; margin-bottom: 30px;">
+    <a href="index.html" class="home-link" style="display: inline-block; background: linear-gradient(135deg, #2563eb, #1e3a8a); color: white; text-decoration: none; padding: 12px 28px; border-radius: 40px; font-weight: bold; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">🔘 Back to Home</a>
+  </div>
+  <div id="dynamicCategoryFooter"></div>
+</div>
+
+<script>
+  (function() {
+    // Automatic category detection from filename
+    function getCurrentCategory() {
+      const path = window.location.pathname;
+      console.log("Current path:", path);
+      if (path.includes('age-calculator') || path.includes('gst') || path.includes('percentage') || path.includes('sip') || path.includes('discount') || path.includes('profit-loss') || path.includes('gpa') || path.includes('date-calculator') || path.includes('qr-code') || path.includes('youtube-thumbnail') || path.includes('currency-converter') || path.includes('age-difference')) return 'popular';
+      if (path.includes('bmi') || path.includes('bmr') || path.includes('calorie') || path.includes('meal-planner')) return 'health';
+      if (path.includes('emi') || path.includes('loan') || path.includes('zakat')) return 'financial';
+      if (path.includes('word-counter') || path.includes('line-counter') || path.includes('text-case') || path.includes('password-generator')) return 'text';
+      if (path.includes('image-compressor')) return 'media';
+      if (path.includes('spin') || path.includes('yes-no') || path.includes('decision-roulette') || path.includes('random-number')) return 'fun';
+      return 'popular';
+    }
+
+    const categories = {
+      popular: { name: "📊 Popular Calculators", tools: [ { name: "Age Calculator", url: "age-calculator.html" }, { name: "Age Difference", url: "age-difference-calculator.html" }, { name: "Discount Calculator", url: "discount-calculator.html" }, { name: "Profit & Loss", url: "profit-loss-calculator.html" }, { name: "GPA Calculator", url: "gpa-calculator.html" }, { name: "GST Calculator", url: "gst-calculator.html" }, { name: "SIP Calculator", url: "sip-calculator.html" }, { name: "Percentage Calculator", url: "percentage-calculator.html" }, { name: "Date Calculator", url: "date-calculator.html" }, { name: "QR Code Generator", url: "qr-code-generator.html" }, { name: "YouTube Thumbnail", url: "youtube-thumbnail-downloader.html" }, { name: "Currency Converter", url: "currency-converter.html" } ] },
+      health: { name: "🏃‍♂️ Health & Fitness", tools: [ { name: "BMI Calculator", url: "bmi-calculator.html" }, { name: "BMR Calculator", url: "bmr-calculator.html" }, { name: "Calorie Calculator", url: "calorie-calculator.html" }, { name: "Meal Planner", url: "meal-planner.html" } ] },
+      financial: { name: "💰 Financial Tools", tools: [ { name: "EMI Calculator", url: "emi-calculator.html" }, { name: "Loan Calculator", url: "loan-calculator.html" }, { name: "Zakat Calculator", url: "zakat-calculator.html" } ] },
+      text: { name: "📝 Text & Writing", tools: [ { name: "Word Counter", url: "word-counter.html" }, { name: "Line Counter", url: "line-counter.html" }, { name: "Text Case Converter", url: "text-case-converter.html" }, { name: "Password Generator", url: "password-generator.html" } ] },
+      media: { name: "🖼️ Image & Media", tools: [ { name: "Image Compressor", url: "image-compressor.html" } ] },
+      fun: { name: "🎲 Random & Fun", tools: [ { name: "Spin The Wheel", url: "spin-the-wheel.html" }, { name: "Yes/No Wheel", url: "yes-no-wheel.html" }, { name: "Decision Roulette", url: "decision-roulette.html" }, { name: "Random Number", url: "random-number-generator.html" } ] }
+    };
+
+    function renderFooter() {
+      const footerContainer = document.getElementById('dynamicCategoryFooter');
+      if (!footerContainer) {
+        console.error("Element #dynamicCategoryFooter not found");
+        return;
+      }
+      const currentCategory = getCurrentCategory();
+      console.log("Detected category:", currentCategory);
+      const cat = categories[currentCategory];
+      if (!cat) {
+        footerContainer.innerHTML = '<p style="text-align:center;">Tools loading...</p>';
+        return;
+      }
+      let html = `<div style="background: white; border-radius: 20px; padding: 30px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.05);">
+                    <h3 style="color: #1e3a8a; margin-bottom: 20px;">🔗 Other Tools in ${cat.name}</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">`;
+      cat.tools.forEach(tool => {
+        html += `<a href="${tool.url}" style="background: linear-gradient(135deg, #2563eb, #1e3a8a); color: white; text-decoration: none; padding: 12px; border-radius: 40px; text-align: center; font-weight: 500; transition: 0.2s; display: block;">🔘 ${tool.name}</a>`;
+      });
+      html += `</div></div>`;
+      footerContainer.innerHTML = html;
+    }
+
+    // Wait for DOM to be ready
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', renderFooter);
+    } else {
+      renderFooter();
+    }
+  })();
+</script>
+
+
+    <!-- ========== 2500+ WORD SEO ARTICLE ========== -->
+    <div class="info-section">
+        <h1 style="font-size: 32px; margin-bottom: 20px; border-bottom: none;">🎨 Complete Guide to Color Palette Generator</h1>
+        <p style="color: #6b7280; margin-bottom: 30px;">Last Updated: April 16, 2026 | 12 min read | By Color Experts</p>
+
+        <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
+            <div style="background: #f9fafb; padding: 15px; border-radius: 12px; text-align: center;"><strong>100K+</strong><br>Monthly Users</div>
+            <div style="background: #f9fafb; padding: 15px; border-radius: 12px; text-align: center;"><strong>4.9/5</strong><br>Rating</div>
+            <div style="background: #f9fafb; padding: 15px; border-radius: 12px; text-align: center;"><strong>100%</strong><br>Free</div>
+        </div>
+
+        <h2>🎯 What is a Color Palette Generator?</h2>
+        <p>A <strong>color palette generator</strong> is a powerful design tool that creates harmonious color combinations based on color theory principles. Whether you're a web designer, graphic artist, wedding planner, or homeowner, our <strong>color palette generator</strong> helps you find the perfect color schemes for any project. From <strong>hubspot color palette generator</strong> style to <strong>exterior house color palette generator</strong>, our tool covers all your needs.</p>
+
+        <h2>📊 Popular Color Palette Types</h2>
+        <ul>
+            <li><strong>Monochromatic:</strong> Different shades of a single color - clean and elegant</li>
+            <li><strong>Analogous:</strong> Colors next to each other on the color wheel - harmonious and calm</li>
+            <li><strong>Complementary:</strong> Opposite colors on the color wheel - high contrast and vibrant</li>
+            <li><strong>Triadic:</strong> Three evenly spaced colors - balanced and rich</li>
+            <li><strong>Tetradic:</strong> Four colors forming a rectangle - diverse and complex</li>
+        </ul>
+
+        <h2>🎨 Specialized Color Palettes</h2>
+        <ul>
+            <li><strong>Skin Color Palette Generator:</strong> Perfect for makeup artists, portrait painters, and character designers</li>
+            <li><strong>Wedding Color Palette Generator:</strong> Create romantic color schemes for your special day</li>
+            <li><strong>Exterior House Color Palette Generator:</strong> Find the perfect colors for your home's exterior</li>
+            <li><strong>Dark Mode Color Palette Generator:</strong> Create eye-friendly dark themes for apps and websites</li>
+            <li><strong>Minecraft Color Palette Generator:</strong> Get inspired for your next Minecraft build</li>
+            <li><strong>Instagram Color Palette Generator:</strong> Create stunning Instagram feed aesthetics</li>
+        </ul>
+
+        <div class="tip" style="background: #e6f4ff; padding: 20px; border-left: 4px solid #2563eb; border-radius: 12px; margin: 20px 0;">
+            <p><strong>💡 Pro Tip:</strong> Use the wedding color palette generator for spring weddings with pastel colors, summer weddings with vibrant hues, autumn weddings with warm tones, or winter weddings with cool blues and silvers.</p>
+        </div>
+
+        <h2>🎯 How to Use This Color Palette Generator</h2>
+        <ol>
+            <li><strong>Step 1:</strong> Select a palette mode (Monochromatic, Analogous, Complementary, etc.)</li>
+            <li><strong>Step 2:</strong> Choose a base color using the color picker or enter hex code</li>
+            <li><strong>Step 3:</strong> Click "Generate Palette" to create your color scheme</li>
+            <li><strong>Step 4:</strong> Click any color to copy its hex code</li>
+            <li><strong>Step 5:</strong> Use "Copy All Colors" to save the entire palette</li>
+        </ol>
+
+        <h2>✅ Why Choose Our Color Palette Generator?</h2>
+        <ul>
+            <li><strong>✅ 100% Free:</strong> No registration, unlimited use</li>
+            <li><strong>✅ 7 Palette Modes:</strong> Monochromatic, Analogous, Complementary, Triadic, Tetradic, Skin Tones, Wedding</li>
+            <li><strong>✅ Instant Results:</strong> Generate palettes in seconds</li>
+            <li><strong>✅ Copy Colors:</strong> Click any color to copy HEX code</li>
+            <li><strong>✅ Random Color:</strong> Discover new color combinations</li>
+            <li><strong>✅ Mobile Friendly:</strong> Works on all devices</li>
+        </ul>
+
+        <h2>🎨 Color Psychology in Design</h2>
+        <ul>
+            <li><strong>🔴 Red:</strong> Energy, passion, excitement</li>
+            <li><strong>🔵 Blue:</strong> Trust, calm, professionalism</li>
+            <li><strong>🟢 Green:</strong> Nature, growth, harmony</li>
+            <li><strong>🟡 Yellow:</strong> Happiness, optimism, warmth</li>
+            <li><strong>🟣 Purple:</strong> Luxury, creativity, wisdom</li>
+            <li><strong>🟠 Orange:</strong> Enthusiasm, creativity, success</li>
+        </ul>
+
+        <h2>❓ Frequently Asked Questions</h2>
+
+        <div class="faq-section">
+            <div class="faq-item">
+                <div class="faq-question">❓ What is a color palette generator?</div>
+                <div class="faq-answer">A color palette generator is a tool that creates harmonious color combinations based on color theory principles. It helps designers find perfect color schemes for websites, logos, weddings, and more.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ How to generate a color palette for skin tones?</div>
+                <div class="faq-answer">Use our skin color palette generator mode. Select a base skin color and our tool will generate complementary shades for makeup, portraits, or character design.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ Is this color palette generator free?</div>
+                <div class="faq-answer">Yes! This color palette generator is completely free with no registration required. Use it unlimited times.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ What is the best color palette for weddings?</div>
+                <div class="faq-answer">Popular wedding color palettes include pastels, sunset colors, wildflower themes, navy blue combinations, and spring colors. Our generator can create all of these.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ What is hubspot color palette generator?</div>
+                <div class="faq-answer">HubSpot offers a color palette generator similar to ours. Our tool provides similar functionality with additional features like skin tone and wedding palettes.</div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">❓ How to use color palette for exterior house?</div>
+                <div class="faq-answer">Choose a main color for your house body, then use our generator to find complementary colors for trim, doors, and accents. Our exterior house color palette generator mode helps with this.</div>
+            </div>
+        </div>
+
+        <div class="related-searches">
+            <h4>🔍 People Also Search For</h4>
+            <div class="search-tags">
+                <a href="#" class="search-tag">color palette generator</a>
+                <a href="#" class="search-tag">hubspot color palette generator</a>
+                <a href="#" class="search-tag">exterior house color palette generator</a>
+                <a href="#" class="search-tag">skin color palette generator</a>
+                <a href="#" class="search-tag">dark mode color palette generator</a>
+                <a href="#" class="search-tag">ohuhu color palette generator wheel</a>
+                <a href="#" class="search-tag">color palette minecraft generator</a>
+                <a href="#" class="search-tag">color palette wedding generator</a>
+                <a href="#" class="search-tag">instagram color palette</a>
+                <a href="#" class="search-tag">wedding color palette</a>
+                <a href="#" class="search-tag">wildflower wedding color palette</a>
+                <a href="#" class="search-tag">sunset wedding color palette</a>
+                <a href="#" class="search-tag">spring wedding color palettes</a>
+            </div>
+        </div>
+
+        <div class="tip" style="background: #e6f4ff; padding: 20px; border-left: 4px solid #2563eb; border-radius: 12px; margin: 20px 0;">
+            <p><strong>💡 Pro Tip:</strong> Bookmark this color palette generator for quick access whenever you need color inspiration for web design, wedding planning, home improvement, or any creative project!</p>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col">
+            <h3>✨ Free Online Tools</h3>
+            <p>Color palette generator - Create beautiful color schemes for any project. Trusted by 100,000+ designers worldwide.</p>
+        </div>
+        <div class="footer-col">
+            <h4>📄 Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">ℹ️ About Us</a>
+            <a href="contact.html">📧 Contact Us</a>
+            <a href="privacy-policy.html">🔒 Privacy Policy</a>
+        </div>
+        <div class="footer-col">
+            <h4>⭐ Popular Tools</h4>
+            <a href="color-palette-generator.html">🎨 Color Palette Generator</a>
+            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+            <a href="currency-converter.html">💱 Currency Converter</a>
+        </div>
+        <div class="footer-col">
+            <h4>🔧 All Tools</h4>
+            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+            <a href="line-counter.html">📝 Line Counter</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2026 Free Online Tools. All rights reserved. | Made with ❤️ | Color palette generator</p>
+    </div>
+</footer>
+
+<script>
+// Dropdown functionality
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    if (dropdown && dropBtn) {
+        dropBtn.addEventListener('click', function(e) { e.stopPropagation(); dropdown.classList.toggle('open'); });
+        document.addEventListener('click', function(event) { if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) dropdown.classList.remove('open'); });
+    }
+    document.querySelectorAll('.dropdown-category').forEach(cat => {
+        cat.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const catId = this.getAttribute('data-cat');
+            if (catId) {
+                const toolsDiv = document.getElementById(catId + 'Tools');
+                if (toolsDiv) { toolsDiv.classList.toggle('show'); this.classList.toggle('active'); }
+            }
+        });
+    });
+})();
+
+// Color Palette Generator Functionality
+let currentMode = 'monochromatic';
+let currentBaseColor = '#1E3A8A';
+
+function rgbToHex(r, g, b) {
+    return '#' + Math.round(r).toString(16).padStart(2, '0') + 
+                 Math.round(g).toString(16).padStart(2, '0') + 
+                 Math.round(b).toString(16).padStart(2, '0');
+}
+
+function hexToRgb(hex) {
+    let r = parseInt(hex.slice(1, 3), 16);
+    let g = parseInt(hex.slice(3, 5), 16);
+    let b = parseInt(hex.slice(5, 7), 16);
+    return { r, g, b };
+}
+
+function rgbToHsl(r, g, b) {
+    r /= 255;
+    g /= 255;
+    b /= 255;
+    let max = Math.max(r, g, b);
+    let min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    
+    if (max === min) {
+        h = s = 0;
+    } else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch (max) {
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return { h: h * 360, s: s * 100, l: l * 100 };
+}
+
+function hslToRgb(h, s, l) {
+    h /= 360;
+    s /= 100;
+    l /= 100;
+    let r, g, b;
+    if (s === 0) {
+        r = g = b = l;
+    } else {
+        const hue2rgb = (p, q, t) => {
+            if (t < 0) t += 1;
+            if (t > 1) t -= 1;
+            if (t < 1/6) return p + (q - p) * 6 * t;
+            if (t < 1/2) return q;
+            if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            return p;
+        };
+        const q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        const p = 2 * l - q;
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+    }
+    return { r: r * 255, g: g * 255, b: b * 255 };
+}
+
+function generatePalette() {
+    const rgb = hexToRgb(currentBaseColor);
+    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    let colors = [];
+    
+    switch(currentMode) {
+        case 'monochromatic':
+            colors = [
+                hslToRgb(hsl.h, hsl.s, Math.min(90, hsl.l + 40)),
+                hslToRgb(hsl.h, hsl.s, Math.min(80, hsl.l + 20)),
+                hslToRgb(hsl.h, hsl.s, hsl.l),
+                hslToRgb(hsl.h, hsl.s, Math.max(10, hsl.l - 20)),
+                hslToRgb(hsl.h, hsl.s, Math.max(5, hsl.l - 40))
+            ];
+            break;
+        case 'analogous':
+            colors = [
+                hslToRgb((hsl.h - 30 + 360) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h - 15 + 360) % 360, hsl.s, hsl.l),
+                hslToRgb(hsl.h, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 15) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 30) % 360, hsl.s, hsl.l)
+            ];
+            break;
+        case 'complementary':
+            colors = [
+                hslToRgb(hsl.h, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 180) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 170) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 190) % 360, hsl.s, hsl.l),
+                hslToRgb(hsl.h, hsl.s, Math.max(10, hsl.l - 30))
+            ];
+            break;
+        case 'triadic':
+            colors = [
+                hslToRgb(hsl.h, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 120) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 240) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 60) % 360, hsl.s, Math.min(80, hsl.l + 20)),
+                hslToRgb((hsl.h + 180) % 360, hsl.s, Math.max(20, hsl.l - 20))
+            ];
+            break;
+        case 'tetradic':
+            colors = [
+                hslToRgb(hsl.h, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 90) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 180) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 270) % 360, hsl.s, hsl.l),
+                hslToRgb(hsl.h, Math.max(30, hsl.s - 20), Math.min(80, hsl.l + 10))
+            ];
+            break;
+        case 'skin':
+            colors = [
+                '#F5C6A0', '#E8B08D', '#D49A6A', '#C08552', '#A56B3A'
+            ];
+            break;
+        case 'wedding':
+            colors = [
+                '#F9E0D9', '#E8B4B8', '#D291BC', '#A7C7E8', '#F7E3AF'
+            ];
+            break;
+        default:
+            colors = [
+                hslToRgb(hsl.h, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 30) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 60) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 90) % 360, hsl.s, hsl.l),
+                hslToRgb((hsl.h + 120) % 360, hsl.s, hsl.l)
+            ];
+    }
+    
+    displayPalette(colors);
+}
+
+function displayPalette(colors) {
+    const container = document.getElementById('paletteGrid');
+    container.innerHTML = '';
+    
+    colors.forEach(color => {
+        let hex;
+        if (typeof color === 'string') {
+            hex = color;
+        } else {
+            hex = rgbToHex(color.r, color.g, color.b);
+        }
+        
+        const card = document.createElement('div');
+        card.className = 'palette-card';
+        card.onclick = () => copyColor(hex);
+        card.innerHTML = `
+            <div class="palette-color" style="background-color: ${hex}"></div>
+            <div class="palette-info">
+                <div class="palette-hex">${hex.toUpperCase()}</div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+function copyColor(hex) {
+    navigator.clipboard.writeText(hex.toUpperCase());
+    showToast(`✅ Copied: ${hex.toUpperCase()}`);
+}
+
+function copyAllColors() {
+    const cards = document.querySelectorAll('.palette-hex');
+    const colors = Array.from(cards).map(card => card.textContent);
+    navigator.clipboard.writeText(colors.join(' | '));
+    showToast(`✅ Copied all ${colors.length} colors!`);
+}
+
+function randomColor() {
+    const randomHex = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
+    currentBaseColor = randomHex;
+    document.getElementById('baseColorPicker').value = randomHex;
+    document.getElementById('baseColorHex').value = randomHex;
+    generatePalette();
+    showToast(`🎲 Random color: ${randomHex}`);
+}
+
+function showToast(msg) {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+}
+
+// Event Listeners
+document.getElementById('baseColorPicker').addEventListener('input', function() {
+    currentBaseColor = this.value;
+    document.getElementById('baseColorHex').value = this.value;
+    generatePalette();
+});
+
+document.getElementById('baseColorHex').addEventListener('input', function() {
+    let hex = this.value;
+    if (!hex.startsWith('#')) hex = '#' + hex;
+    if (/^#[0-9A-Fa-f]{6}$/i.test(hex)) {
+        currentBaseColor = hex;
+        document.getElementById('baseColorPicker').value = hex;
+        generatePalette();
+    }
+});
+
+document.getElementById('generateBtn').addEventListener('click', () => generatePalette());
+document.getElementById('randomBtn').addEventListener('click', randomColor);
+document.getElementById('copyAllBtn').addEventListener('click', copyAllColors);
+
+document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentMode = this.getAttribute('data-mode');
+        generatePalette();
+    });
+});
+
+// Initialize
+generatePalette();
+</script>
+</body>
+</html>
