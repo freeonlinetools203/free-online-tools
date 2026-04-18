@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>الٹراساؤنڈ رپورٹ سکینر + ڈاکٹر نمبر</title>
+    <!-- Tesseract.js for OCR -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0a2a44, #0c3b5e);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 1400px;
+            width: 100%;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 25px 50px -12px black;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(95deg, #0b2b44, #1a4d7a);
+            padding: 28px 25px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 1.7rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background: #ffd966;
+            color: #0b2b44;
+            padding: 5px 15px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .two-columns {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .left-panel {
+            flex: 1.2;
+            background: #f8fafc;
+            padding: 28px 25px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .right-panel {
+            flex: 1;
+            padding: 28px 25px;
+            background: white;
+        }
+
+        /* اپ لوڈ ایریا */
+        .upload-area {
+            border: 2px dashed #8bb3d0;
+            border-radius: 28px;
+            padding: 25px 20px;
+            text-align: center;
+            background: #eef4fc;
+            margin-bottom: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .upload-area:hover {
+            background: #e4edf7;
+            border-color: #146b9e;
+        }
+
+        .upload-icon {
+            font-size: 2.5rem;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .ocr-status {
+            font-size: 12px;
+            color: #146b9e;
+            margin-top: 10px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #1e293b;
+            display: block;
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-family: monospace;
+            resize: vertical;
+            min-height: 180px;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #1e6f9f;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 40px;
+            border: 2px solid #cbd5e1;
+            background: white;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        button {
+            width: 100%;
+            background: #0f5582;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 40px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #0a3f61;
+            transform: scale(0.98);
+        }
+
+        /* ڈاکٹر نمبر والا کارڈ */
+        .doctor-card {
+            background: linear-gradient(135deg, #e8f0fe, #d4e4fc);
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 20px;
+            border: 1px solid #bbd4f0;
+        }
+
+        .doctor-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #0b4b6e;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .phone-number {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #0f5582;
+            font-family: monospace;
+            letter-spacing: 1px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            display: inline-block;
+            margin: 8px 0;
+        }
+
+        .call-btn {
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: auto;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .call-btn:hover {
+            background: #128C7E;
+            transform: none;
+        }
+
+        .result-box {
+            background: #eef2ff;
+            border-radius: 24px;
+            padding: 18px;
+            margin-bottom: 20px;
+        }
+
+        .result-item {
+            background: white;
+            padding: 12px 18px;
+            border-radius: 16px;
+            margin-bottom: 12px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .result-label {
+            font-weight: 800;
+            color: #0c4e6e;
+        }
+
+        .result-value {
+            color: #1f2937;
+            text-align: right;
+            word-break: break-word;
+        }
+
+        .full-text {
+            background: #fef9e6;
+            padding: 16px;
+            border-radius: 20px;
+            border-left: 5px solid #1e6f9f;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 780px) {
+            .left-panel {
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+            .result-item {
+                flex-direction: column;
+            }
+            .result-value {
+                text-align: left;
+            }
+            .phone-number {
+                font-size: 1.1rem;
+            }
+        }
+
+        footer {
+            background: #f1f5f9;
+            text-align: center;
+            padding: 16px;
+            font-size: 0.75rem;
+            color: #2c5a7a;
+            border-top: 1px solid #dce3ec;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>
+            🩺 الٹراساؤنڈ سکینر + ڈاکٹر نمبر
+            <span class="badge">📞 براہ راست کال کریں</span>
+        </h1>
+        <p style="margin-top: 8px;">تصویر اپ لوڈ کریں → خودکار متن + ڈاکٹر کا فون نمبر نکالے → کال بٹن دبائیں</p>
+    </div>
+
+    <div class="two-columns">
+        <!-- بائیں طرف -->
+        <div class="left-panel">
+            <!-- تصویر اپ لوڈ -->
+            <div class="upload-area" id="uploadClickArea">
+                <div class="upload-icon">📸 📄</div>
+                <div style="font-weight: bold; margin: 10px 0;">رپورٹ کی تصویر اپ لوڈ کریں (JPG/PNG)</div>
+                <input type="file" id="fileInput" accept="image/*">
+                <div id="ocrStatus" class="ocr-status">⬆️ کلک کریں اور تصویر منتخب کریں</div>
+            </div>
+
+            <!-- خود لکھنے کا آپشن -->
+            <label>✍️ یا خود رپورٹ کا متن لکھیں/پیسٹ کریں:</label>
+            <textarea id="manualText" placeholder="مثال:
+CRL = 2.5 cm
+Fetal Heart Beat = Present
+Gestational Age = 09 weeks
+AFTAB DIAGNOSTIC CENTER
+CELL: 0301-2515306"></textarea>
+
+            <!-- زبان -->
+            <label>🌐 نتیجہ کن زبان میں چاہیے؟</label>
+            <select id="targetLang">
+                <option value="ur">🇵🇰 اردو (Urdu)</option>
+                <option value="en">🇺🇸 English</option>
+                <option value="hi">🇮🇳 हिन्दी</option>
+                <option value="de">🇩🇪 Deutsch</option>
+                <option value="fr">🇫🇷 French</option>
+                <option value="es">🇪🇸 Spanish</option>
+                <option value="ar">🇸🇦 العربية</option>
+                <option value="zh">🇨🇳 中文</option>
+            </select>
+
+            <button id="processBtn">🔍 تجزیہ کریں (معلومات + فون نمبر)</button>
+        </div>
+
+        <!-- دائیں طرف -->
+        <div class="right-panel">
+            <!-- ڈاکٹر / سینٹر کا فون نمبر کارڈ -->
+            <div class="doctor-card" id="doctorCard">
+                <div class="doctor-title">
+                    📞 🏥 رپورٹ میں موجود نمبر:
+                </div>
+                <div id="phoneDisplay" style="text-align: center;">
+                    <span class="phone-number">—</span>
+                </div>
+                <div style="text-align: center; margin-top: 8px;" id="callButtonDiv">
+                </div>
+                <p style="font-size: 11px; margin-top: 10px; text-align: center;">⚠️ نمبر خودکار رپورٹ سے نکالا گیا ہے</p>
+            </div>
+
+            <!-- باقی رپورٹ نتائج -->
+            <h3 style="color: #0b4b6e; margin-bottom: 12px;">📋 حمل کی معلومات</h3>
+            <div class="result-box">
+                <div class="result-item"><span class="result-label">🤰 حمل کی مدت:</span><span id="weeksRes" class="result-value">—</span></div>
+                <div class="result-item"><span class="result-label">📏 CRL لمبائی:</span><span id="crlRes" class="result-value">—</span></div>
+                <div class="result-item"><span class="result-label">❤️ دل کی دھڑکن:</span><span id="hbRes" class="result-value">—</span></div>
+                <div class="result-item"><span class="result-label">💧 پانی کی مقدار:</span><span id="liqRes" class="result-value">—</span></div>
+                <div class="result-item"><span class="result-label">👶 جنس:</span><span id="genderRes" class="result-value">—</span></div>
+            </div>
+            <div class="full-text">
+                <strong>🌍 ترجمہ شدہ خلاصہ:</strong><br>
+                <div id="translatedSummary">—</div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        ✅ تصویر اپ لوڈ کریں → OCR خودکار متن نکالے گا → فون نمبر پہچان کر کال کا بٹن دکھائے گا
+    </footer>
+</div>
+
+<script>
+    // DOM elements
+    const fileInput = document.getElementById('fileInput');
+    const ocrStatus = document.getElementById('ocrStatus');
+    const manualTextarea = document.getElementById('manualText');
+    const targetLangSelect = document.getElementById('targetLang');
+    const processBtn = document.getElementById('processBtn');
+    
+    // output elements
+    const weeksRes = document.getElementById('weeksRes');
+    const crlRes = document.getElementById('crlRes');
+    const hbRes = document.getElementById('hbRes');
+    const liqRes = document.getElementById('liqRes');
+    const genderRes = document.getElementById('genderRes');
+    const translatedSummary = document.getElementById('translatedSummary');
+    const phoneDisplay = document.getElementById('phoneDisplay');
+    const callButtonDiv = document.getElementById('callButtonDiv');
+    
+    let currentPhoneNumber = "";
+    
+    // ========== فون نمبر نکالنے کا فنکشن ==========
+    function extractPhoneNumber(text) {
+        // پاکستانی نمبر فارمیٹ: 03xx-xxxxxxx, 03xx xxxxxxx, +92 3xx xxxxxxx, 0300-1234567, 0343-3089433 etc.
+        const patterns = [
+            /(03\d{2}[-.\s]?\d{7})/g,           // 0300-1234567 or 0300 1234567
+            /(\+92[-.\s]?3\d{2}[-.\s]?\d{7})/g,  // +92 300 1234567
+            /(0\d{2,3}[-.\s]?\d{6,7})/g,         // landline: 021-1234567
+            /(\d{4}[-.\s]?\d{7})/g,              // 0301-2515306
+            /(CELL[:\s]*[\d\-]+)/gi,
+            /(Phone[:\s]*[\d\-]+)/gi,
+            /(Mobile[:\s]*[\d\-]+)/gi
+        ];
+        
+        for (let pattern of patterns) {
+            let match = text.match(pattern);
+            if (match) {
+                // clean the number: remove spaces and extra text
+                let raw = match[0];
+                let numMatch = raw.match(/(03\d{2}[-.\s]?\d{7}|\+92[-.\s]?3\d{2}[-.\s]?\d{7}|\d{4}[-.\s]?\d{7})/);
+                if (numMatch) {
+                    return numMatch[0].replace(/[\s\-]/g, ''); // clean format
+                }
+                return raw.replace(/[^\d\+]/g, '').substring(0, 15);
+            }
+        }
+        return null;
+    }
+    
+    // ========== معلومات نکالنا (weeks, CRL etc) ==========
+    function extractMedicalInfo(text) {
+        const lower = text.toLowerCase();
+        let weeks = "معلوم نہیں";
+        let crl = "معلوم نہیں";
+        let heartbeat = "معلوم نہیں";
+        let liquor = "معلوم نہیں";
+        let gender = "واضح نہیں (18 ہفتے بعد)";
+        
+        // Weeks
+        let weekMatch = text.match(/(\d+)\s*(weeks?|week|wk|ہفتے)/i) || text.match(/gestational age[\s:]*(\d+)/i);
+        if (weekMatch) weeks = weekMatch[1] + " weeks";
+        else if (lower.includes("09 week")) weeks = "9 weeks";
+        
+        // CRL
+        let crlMatch = text.match(/CRL\s*[=:]\s*([\d\.]+)\s*cm/i);
+        if (crlMatch) crl = crlMatch[1] + " cm";
+        
+        // Heartbeat
+        if (lower.includes("heart beat present") || lower.includes("fetal heart beat present")) heartbeat = "✅ موجود";
+        else if (lower.includes("present") && lower.includes("heart")) heartbeat = "موجود";
+        else if (lower.includes("absent")) heartbeat = "❌ غیر موجود";
+        
+        // Liquor
+        if (lower.includes("adequate")) liquor = "مناسب";
+        else if (lower.includes("normal")) liquor = "نارمل";
+        else if (lower.includes("low")) liquor = "کم";
+        
+        // Gender
+        if (lower.includes("male") || lower.includes("boy")) gender = "لڑکا ♂";
+        else if (lower.includes("female") || lower.includes("girl")) gender = "لڑکی ♀";
+        
+        return { weeks, crl, heartbeat, liquor, gender };
+    }
+    
+    // ترجمہ فنکشن
+    async function translateText(text, targetLang) {
+        if (!text || text.trim() === "") return "";
+        try {
+            const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLang}&dt=t&q=${encodeURIComponent(text)}`;
+            const resp = await fetch(url);
+            const data = await resp.json();
+            if (data && data[0]) return data[0].map(item => item[0]).join('');
+            return text;
+        } catch(e) { return text; }
+    }
+    
+    // مرکزی پروسیسنگ
+    async function processReport() {
+        let reportText = manualTextarea.value.trim();
+        if (!reportText) {
+            alert("⚠️ براہ کرم رپورٹ کا متن لکھیں یا تصویر اپ لوڈ کریں!");
+            return;
+        }
+        
+        // 1) فون نمبر نکالیں
+        const phone = extractPhoneNumber(reportText);
+        currentPhoneNumber = phone || "";
+        
+        if (currentPhoneNumber) {
+            phoneDisplay.innerHTML = `<span class="phone-number">📞 ${currentPhoneNumber}</span>`;
+            callButtonDiv.innerHTML = `<a href="tel:${currentPhoneNumber}" style="text-decoration: none;"><button class="call-btn">📞 ابھی کال کریں</button></a>`;
+        } else {
+            phoneDisplay.innerHTML = `<span class="phone-number">❌ کوئی نمبر نہیں ملا</span>`;
+            callButtonDiv.innerHTML = `<p style="color: gray;">رپورٹ میں موبائل نمبر موجود نہیں</p>`;
+        }
+        
+        // 2) طبی معلومات نکالیں
+        const medical = extractMedicalInfo(reportText);
+        
+        // 3) ترجمہ
+        const targetLang = targetLangSelect.value;
+        const transWeeks = await translateText(medical.weeks, targetLang);
+        const transCrl = await translateText(medical.crl, targetLang);
+        const transHb = await translateText(medical.heartbeat, targetLang);
+        const transLiq = await translateText(medical.liquor, targetLang);
+        const transGender = await translateText(medical.gender, targetLang);
+        
+        const fullSummary = `Gestational Age: ${medical.weeks}, CRL: ${medical.crl}, Heartbeat: ${medical.heartbeat}, Fluid: ${medical.liquor}, Gender: ${medical.gender}`;
+        const transFull = await translateText(fullSummary, targetLang);
+        
+        // 4) ڈسپلے
+        weeksRes.innerText = transWeeks;
+        crlRes.innerText = transCrl;
+        hbRes.innerText = transHb;
+        liqRes.innerText = transLiq;
+        genderRes.innerText = transGender;
+        translatedSummary.innerText = transFull;
+    }
+    
+    // ========== OCR: تصویر اپ لوڈ ==========
+    fileInput.addEventListener('change', async function(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        
+        ocrStatus.innerHTML = "⏳ OCR ہو رہا ہے... تصویر سے متن نکالا جا رہا ہے (10-20 سیکنڈ)";
+        ocrStatus.style.color = "#ff8c00";
+        
+        try {
+            const { data: { text } } = await Tesseract.recognize(file, 'eng+urd', {
+                logger: m => console.log(m)
+            });
+            manualTextarea.value = text;
+            ocrStatus.innerHTML = "✅ OCR مکمل! متن نیچے ڈال دیا گیا۔ اب 'تجزیہ کریں' بٹن دبائیں۔";
+            ocrStatus.style.color = "#146b9e";
+            
+            // خودکار تجزیہ نہیں کریں گے، صارف بٹن دبائے گا
+        } catch(err) {
+            console.error(err);
+            ocrStatus.innerHTML = "❌ OCR میں مسئلہ۔ براہ کرم خود متن لکھیں۔";
+            ocrStatus.style.color = "red";
+        }
+    });
+    
+    // اپ لوڈ ایریا پر کلک
+    document.getElementById('uploadClickArea').addEventListener('click', () => {
+        fileInput.click();
+    });
+    
+    processBtn.addEventListener('click', processReport);
+    
+    // صفحہ لوڈ ہوتے ہی نمونہ ڈیٹا
+    window.addEventListener('load', () => {
+        manualTextarea.value = `AFTAB DIAGNOSTIC CENTER
+CELL: 0301-2515306
+CRL = 2.5 cm
+Fetal Heart Beat = Present
+Gestational Age = 09 weeks
+Amount of Liquor = Adequate
+Single Intra Uterine Pregnancy`;
+        setTimeout(() => processReport(), 300);
+    });
+</script>
+</body>
+</html>
