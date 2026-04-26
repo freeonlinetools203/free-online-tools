@@ -951,6 +951,81 @@ body {
 </footer>
 
 <script>
+// ========== 🔍 SEARCH BAR FUNCTIONALITY ==========
+(function() {
+    function initSearch() {
+        const searchInput = document.getElementById('toolSearch');
+        const searchCount = document.getElementById('searchCount');
+        
+        if (!searchInput) {
+            setTimeout(initSearch, 500);
+            return;
+        }
+        
+        function getAllToolLinks() {
+            let allTools = [];
+            document.querySelectorAll('.tool-card a, .tools-grid a, .section a').forEach(link => {
+                if (link.innerText && link.href && link.innerText !== 'Back to Home' && !link.innerText.includes('Back')) {
+                    if (!allTools.some(t => t.element === link)) {
+                        allTools.push({
+                            element: link,
+                            parent: link.closest('.tool-card') || link.parentElement,
+                            text: link.innerText.toLowerCase(),
+                            href: link.href
+                        });
+                    }
+                }
+            });
+            return allTools;
+        }
+        
+        function filterTools() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const allTools = getAllToolLinks();
+            let visibleCount = 0;
+            
+            if (searchTerm === '') {
+                allTools.forEach(tool => { if (tool.parent) tool.parent.style.display = ''; });
+                document.querySelectorAll('.section').forEach(el => { if (el) el.style.display = ''; });
+                if (searchCount) searchCount.style.display = 'none';
+                return;
+            }
+            
+            allTools.forEach(tool => {
+                if (tool.text.includes(searchTerm)) {
+                    if (tool.parent) tool.parent.style.display = '';
+                    visibleCount++;
+                } else {
+                    if (tool.parent) tool.parent.style.display = 'none';
+                }
+            });
+            
+            document.querySelectorAll('.section').forEach(section => {
+                let hasVisible = false;
+                section.querySelectorAll('.tool-card, a').forEach(link => {
+                    if (link.style.display !== 'none') hasVisible = true;
+                });
+                section.style.display = hasVisible ? '' : 'none';
+            });
+            
+            if (searchCount) {
+                searchCount.style.display = 'block';
+                searchCount.innerHTML = `🔍 Found ${visibleCount} tool${visibleCount !== 1 ? 's' : ''} matching "${searchTerm}"`;
+            }
+        }
+        
+        searchInput.addEventListener('keyup', filterTools);
+        searchInput.addEventListener('search', filterTools);
+    }
+    
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSearch);
+    } else {
+        initSearch();
+    }
+})();
+</script>
+  
 // ========== DROPDOWN FUNCTIONALITY ==========
 (function() {
     const dropdown = document.getElementById('toolsDropdown');
