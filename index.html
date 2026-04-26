@@ -951,31 +951,48 @@ body {
 </footer>
 
 <script>
-// ========== 🔍 SEARCH BAR FUNCTIONALITY ==========
+// ========== SEARCH BAR FUNCTIONALITY (FIXED) ==========
 (function() {
     function initSearch() {
         const searchInput = document.getElementById('toolSearch');
         const searchCount = document.getElementById('searchCount');
         
         if (!searchInput) {
+            console.log('Waiting for search input...');
             setTimeout(initSearch, 500);
             return;
         }
         
+        console.log('✅ Search bar initialized!');
+        
+        // Get all tool links from the page
         function getAllToolLinks() {
             let allTools = [];
+            
+            // Get links from tool-card class
             document.querySelectorAll('.tool-card a, .tools-grid a, .section a').forEach(link => {
-                if (link.innerText && link.href && link.innerText !== 'Back to Home' && !link.innerText.includes('Back')) {
+                // Skip Back to Home and other non-tool links
+                const linkText = link.innerText.toLowerCase();
+                if (linkText && link.href && 
+                    !linkText.includes('back to home') && 
+                    !linkText.includes('about us') &&
+                    !linkText.includes('contact') &&
+                    !linkText.includes('privacy') &&
+                    !linkText.includes('terms') &&
+                    !linkText.includes('disclaimer') &&
+                    !linkText.includes('home')) {
+                    
                     if (!allTools.some(t => t.element === link)) {
                         allTools.push({
                             element: link,
                             parent: link.closest('.tool-card') || link.parentElement,
-                            text: link.innerText.toLowerCase(),
+                            text: linkText,
                             href: link.href
                         });
                     }
                 }
             });
+            
             return allTools;
         }
         
@@ -985,12 +1002,18 @@ body {
             let visibleCount = 0;
             
             if (searchTerm === '') {
-                allTools.forEach(tool => { if (tool.parent) tool.parent.style.display = ''; });
-                document.querySelectorAll('.section').forEach(el => { if (el) el.style.display = ''; });
+                // Show all tools
+                allTools.forEach(tool => {
+                    if (tool.parent) tool.parent.style.display = '';
+                });
+                document.querySelectorAll('.section').forEach(section => {
+                    if (section) section.style.display = '';
+                });
                 if (searchCount) searchCount.style.display = 'none';
                 return;
             }
             
+            // Filter based on search term
             allTools.forEach(tool => {
                 if (tool.text.includes(searchTerm)) {
                     if (tool.parent) tool.parent.style.display = '';
@@ -1000,14 +1023,17 @@ body {
                 }
             });
             
+            // Hide empty sections
             document.querySelectorAll('.section').forEach(section => {
                 let hasVisible = false;
-                section.querySelectorAll('.tool-card, a').forEach(link => {
+                const visibleLinks = section.querySelectorAll('.tool-card, .tools-grid a');
+                visibleLinks.forEach(link => {
                     if (link.style.display !== 'none') hasVisible = true;
                 });
                 section.style.display = hasVisible ? '' : 'none';
             });
             
+            // Show count
             if (searchCount) {
                 searchCount.style.display = 'block';
                 searchCount.innerHTML = `🔍 Found ${visibleCount} tool${visibleCount !== 1 ? 's' : ''} matching "${searchTerm}"`;
@@ -1024,6 +1050,69 @@ body {
         initSearch();
     }
 })();
+
+// ========== DROPDOWN FUNCTIONALITY (FIXED) ==========
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    
+    if (!dropdown || !dropBtn) {
+        console.log('Dropdown elements not found');
+        return;
+    }
+    
+    function closeDropdown() { 
+        dropdown.classList.remove('open'); 
+    }
+    
+    function toggleDropdown(e) { 
+        e.stopPropagation(); 
+        dropdown.classList.toggle('open');
+    }
+    
+    dropBtn.addEventListener('click', toggleDropdown);
+    
+    document.addEventListener('click', function(event) { 
+        if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) {
+            closeDropdown();
+        }
+    });
+    
+    // Category toggle
+    document.querySelectorAll('.dropdown-category').forEach(category => { 
+        category.addEventListener('click', function(e) { 
+            e.stopPropagation(); 
+            const catId = this.getAttribute('data-cat'); 
+            if (catId) { 
+                const toolsDiv = document.getElementById(catId + 'Tools'); 
+                if (toolsDiv) { 
+                    // Close other open categories
+                    document.querySelectorAll('.dropdown-category.active').forEach(cat => {
+                        if (cat !== this) {
+                            cat.classList.remove('active');
+                            const otherId = cat.getAttribute('data-cat');
+                            if (otherId) {
+                                const otherDiv = document.getElementById(otherId + 'Tools');
+                                if (otherDiv) otherDiv.classList.remove('show');
+                            }
+                        }
+                    });
+                    this.classList.toggle('active'); 
+                    toolsDiv.classList.toggle('show'); 
+                } 
+            } 
+        }); 
+    });
+})();
+
+// ========== PAGE LOAD FADE-IN ==========
+document.addEventListener('DOMContentLoaded', function() {
+    document.body.style.opacity = '0';
+    document.body.style.transition = 'opacity 0.2s ease';
+    setTimeout(() => {
+        document.body.style.opacity = '1';
+    }, 50);
+});
 </script>
   
 // ========== DROPDOWN FUNCTIONALITY ==========
