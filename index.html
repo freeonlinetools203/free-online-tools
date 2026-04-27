@@ -965,97 +965,70 @@ body {
 </footer>
 
 <script>
-// ========== SEARCH BAR FUNCTIONALITY (FIXED) ==========
+// ========== SEARCH BAR FUNCTIONALITY ==========
 (function() {
     function initSearch() {
         const searchInput = document.getElementById('toolSearch');
         const searchCount = document.getElementById('searchCount');
         
         if (!searchInput) {
-            console.log('Waiting for search input...');
-            setTimeout(initSearch, 500);
+            setTimeout(initSearch, 300);
             return;
         }
         
-        console.log('✅ Search bar initialized!');
-        
-        // Get all tool links from the page
-        function getAllToolLinks() {
-            let allTools = [];
-            
-            // Get links from tool-card class
-            document.querySelectorAll('.tool-card a, .tools-grid a, .section a').forEach(link => {
-                // Skip Back to Home and other non-tool links
-                const linkText = link.innerText.toLowerCase();
-                if (linkText && link.href && 
-                    !linkText.includes('back to home') && 
-                    !linkText.includes('about us') &&
-                    !linkText.includes('contact') &&
-                    !linkText.includes('privacy') &&
-                    !linkText.includes('terms') &&
-                    !linkText.includes('disclaimer') &&
-                    !linkText.includes('home')) {
-                    
-                    if (!allTools.some(t => t.element === link)) {
-                        allTools.push({
-                            element: link,
-                            parent: link.closest('.tool-card') || link.parentElement,
-                            text: linkText,
-                            href: link.href
-                        });
-                    }
+        // Get all tool cards
+        function getAllToolCards() {
+            let allCards = [];
+            document.querySelectorAll('.tool-card').forEach(card => {
+                const link = card.querySelector('a');
+                if (link) {
+                    allCards.push({
+                        element: card,
+                        text: link.innerText.toLowerCase()
+                    });
                 }
             });
-            
-            return allTools;
+            return allCards;
         }
         
         function filterTools() {
             const searchTerm = searchInput.value.toLowerCase().trim();
-            const allTools = getAllToolLinks();
+            const allCards = getAllToolCards();
             let visibleCount = 0;
             
             if (searchTerm === '') {
-                // Show all tools
-                allTools.forEach(tool => {
-                    if (tool.parent) tool.parent.style.display = '';
-                });
-                document.querySelectorAll('.section').forEach(section => {
-                    if (section) section.style.display = '';
-                });
+                allCards.forEach(card => { card.element.style.display = ''; });
+                document.querySelectorAll('.section').forEach(section => { section.style.display = ''; });
                 if (searchCount) searchCount.style.display = 'none';
                 return;
             }
             
-            // Filter based on search term
-            allTools.forEach(tool => {
-                if (tool.text.includes(searchTerm)) {
-                    if (tool.parent) tool.parent.style.display = '';
+            allCards.forEach(card => {
+                if (card.text.includes(searchTerm)) {
+                    card.element.style.display = '';
                     visibleCount++;
                 } else {
-                    if (tool.parent) tool.parent.style.display = 'none';
+                    card.element.style.display = 'none';
                 }
             });
             
             // Hide empty sections
             document.querySelectorAll('.section').forEach(section => {
                 let hasVisible = false;
-                const visibleLinks = section.querySelectorAll('.tool-card, .tools-grid a');
-                visibleLinks.forEach(link => {
-                    if (link.style.display !== 'none') hasVisible = true;
+                section.querySelectorAll('.tool-card').forEach(card => {
+                    if (card.style.display !== 'none') hasVisible = true;
                 });
                 section.style.display = hasVisible ? '' : 'none';
             });
             
-            // Show count
             if (searchCount) {
                 searchCount.style.display = 'block';
-                searchCount.innerHTML = `🔍 Found ${visibleCount} tool${visibleCount !== 1 ? 's' : ''} matching "${searchTerm}"`;
+                searchCount.innerHTML = `🔍 ${visibleCount} tool${visibleCount !== 1 ? 's' : ''} found for "${searchTerm}"`;
             }
         }
         
-        searchInput.addEventListener('keyup', filterTools);
-        searchInput.addEventListener('search', filterTools);
+        searchInput.addEventListener('input', filterTools);
+        console.log('✅ Search working!');
     }
     
     if (document.readyState === 'loading') {
@@ -1065,128 +1038,68 @@ body {
     }
 })();
 
-// ========== DROPDOWN FUNCTIONALITY (FIXED) ==========
+// ========== DROPDOWN MENU (SINGLE VERSION) ==========
 (function() {
     const dropdown = document.getElementById('toolsDropdown');
     const dropBtn = document.getElementById('toolsBtn');
     
-    if (!dropdown || !dropBtn) {
-        console.log('Dropdown elements not found');
-        return;
+    if (!dropdown || !dropBtn) return;
+    
+    function closeAllCategories() {
+        document.querySelectorAll('.dropdown-category.active').forEach(cat => {
+            cat.classList.remove('active');
+            const targetId = cat.getAttribute('data-cat');
+            if (targetId) {
+                const toolsDiv = document.getElementById(targetId + 'Tools');
+                if (toolsDiv) toolsDiv.classList.remove('show');
+            }
+        });
     }
     
     function closeDropdown() { 
-        dropdown.classList.remove('open'); 
+        dropdown.classList.remove('open');
+        closeAllCategories();
     }
     
-    function toggleDropdown(e) { 
-        e.stopPropagation(); 
+    dropBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         dropdown.classList.toggle('open');
-    }
+        if (!dropdown.classList.contains('open')) {
+            closeAllCategories();
+        }
+    });
     
-    dropBtn.addEventListener('click', toggleDropdown);
-    
-    document.addEventListener('click', function(event) { 
+    document.addEventListener('click', function(event) {
         if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) {
             closeDropdown();
         }
     });
     
-    // Category toggle
-    document.querySelectorAll('.dropdown-category').forEach(category => { 
-        category.addEventListener('click', function(e) { 
-            e.stopPropagation(); 
-            const catId = this.getAttribute('data-cat'); 
-            if (catId) { 
-                const toolsDiv = document.getElementById(catId + 'Tools'); 
-                if (toolsDiv) { 
-                    // Close other open categories
-                    document.querySelectorAll('.dropdown-category.active').forEach(cat => {
-                        if (cat !== this) {
-                            cat.classList.remove('active');
-                            const otherId = cat.getAttribute('data-cat');
-                            if (otherId) {
-                                const otherDiv = document.getElementById(otherId + 'Tools');
-                                if (otherDiv) otherDiv.classList.remove('show');
-                            }
-                        }
-                    });
-                    this.classList.toggle('active'); 
-                    toolsDiv.classList.toggle('show'); 
-                } 
-            } 
-        }); 
+    document.querySelectorAll('.dropdown-category').forEach(category => {
+        category.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const catId = this.getAttribute('data-cat');
+            if (catId) {
+                const toolsDiv = document.getElementById(catId + 'Tools');
+                if (toolsDiv) {
+                    const isActive = this.classList.contains('active');
+                    closeAllCategories();
+                    if (!isActive) {
+                        this.classList.add('active');
+                        toolsDiv.classList.add('show');
+                    }
+                }
+            }
+        });
     });
 })();
 
-// ========== PAGE LOAD FADE-IN ==========
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.2s ease';
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 50);
-});
-</script>
-  
-// ========== DROPDOWN FUNCTIONALITY ==========
-(function() {
-    const dropdown = document.getElementById('toolsDropdown');
-    const dropBtn = document.getElementById('toolsBtn');
-    const dropdownContent = document.getElementById('dropdownContent');
-    if (!dropdown || !dropBtn || !dropdownContent) return;
-    
-    function closeDropdown() { 
-        dropdown.classList.remove('open'); 
-        document.querySelectorAll('.dropdown-category.active').forEach(cat => { 
-            cat.classList.remove('active'); 
-            const targetId = cat.getAttribute('data-cat'); 
-            if(targetId) { 
-                const toolsDiv = document.getElementById(targetId + 'Tools'); 
-                if(toolsDiv) toolsDiv.classList.remove('show'); 
-            } 
-        }); 
-    }
-    
-    function openDropdown() { 
-        dropdown.classList.add('open'); 
-    }
-    
-    function toggleDropdown(e) { 
-        e.stopPropagation(); 
-        if (dropdown.classList.contains('open')) closeDropdown(); 
-        else openDropdown(); 
-    }
-    
-    dropBtn.addEventListener('click', toggleDropdown);
-    dropdownContent.addEventListener('click', e => e.stopPropagation());
-    document.addEventListener('click', function(event) { 
-        if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown(); 
-    });
-    
-    document.querySelectorAll('.dropdown-category').forEach(category => { 
-        category.addEventListener('click', function(e) { 
-            e.stopPropagation(); 
-            const catId = this.getAttribute('data-cat'); 
-            if (catId) { 
-                const toolsDiv = document.getElementById(catId + 'Tools'); 
-                if (toolsDiv) { 
-                    this.classList.toggle('active'); 
-                    toolsDiv.classList.toggle('show'); 
-                } 
-            } 
-        }); 
-    });
-})();
-
-// ========== PAGE LOAD FADE-IN ==========
-document.addEventListener('DOMContentLoaded', function() {
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.2s ease';
-    setTimeout(() => {
-        document.body.style.opacity = '1';
-    }, 10);
-});
+// ========== PAGE FADE-IN ==========
+document.body.style.opacity = '0';
+document.body.style.transition = 'opacity 0.2s ease';
+setTimeout(() => {
+    document.body.style.opacity = '1';
+}, 50);
 </script>
 </body>
 </html>
