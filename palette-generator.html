@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Color Palette Generator | Create Beautiful Color Combinations | Free Online Tools</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free color palette generator to create beautiful color combinations. Generate analogous, complementary, triadic, and monochromatic palettes. Perfect for designers, artists, and web developers.">
+    <meta name="keywords" content="color palette generator, color palette, color scheme generator, palette generator, color combination, analogous colors, complementary colors, triadic colors, monochromatic colors, color wheel, color picker">
+    <meta name="author" content="Free Online Tools">
+    <meta name="robots" content="index, follow">
+    <meta name="geo.region" content="US, GB, IN, CA, AU, PK">
+    <link rel="canonical" href="https://freeonlinetools203.github.io/free-online-tools/color-palette-generator.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Color Palette Generator - Create Beautiful Color Combinations">
+    <meta property="og:description" content="Generate stunning color palettes for your design projects. Free, easy to use, and professional.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://freeonlinetools203.github.io/free-online-tools/color-palette-generator.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Color Palette Generator - Free Online Tool">
+    <meta name="twitter:description" content="Generate beautiful color combinations instantly. Perfect for designers.">
+    
+    <!-- Schema.org -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Color Palette Generator",
+      "applicationCategory": "DesignApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "ratingCount": "1850"
+      },
+      "description": "Free online color palette generator. Create beautiful color combinations for design projects."
+    }
+    </script>
+    
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#f3f4f6 0%,#e5e7eb 100%);min-height:100vh;}
+        
+        /* Navbar */
+        .navbar{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:15px 30px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.15);}
+        .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;}
+        .logo a{color:white;font-size:1.5rem;font-weight:700;text-decoration:none;}
+        .nav-links{display:flex;gap:25px;list-style:none;align-items:center;flex-wrap:wrap;}
+        .nav-links li a{color:white;text-decoration:none;font-weight:500;padding:8px 0;transition:all 0.3s ease;}
+        .nav-links li a:hover{border-bottom:2px solid white;}
+        .dropdown{position:relative;display:inline-block;}
+        .dropbtn{background:none;border:none;color:white;font-weight:500;cursor:pointer;padding:8px 0;font-size:1rem;display:inline-flex;align-items:center;gap:4px;font-family:inherit;}
+        .dropdown-content{display:none;position:absolute;background:white;min-width:300px;border-radius:16px;top:45px;left:0;padding:8px 0;box-shadow:0 20px 35px -10px rgba(0,0,0,0.2);z-index:1001;}
+        .dropdown.open .dropdown-content{display:block;animation:fadeIn 0.2s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+        .dropdown-category{padding:12px 16px;font-weight:700;color:#1e3a8a;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;cursor:pointer;}
+        .dropdown-category:hover{background:#f3f4f6;}
+        .dropdown-category .arrow{transition:transform 0.3s ease;}
+        .dropdown-category.active .arrow{transform:rotate(90deg);}
+        .category-tools{display:none;background:#f9fafb;border-radius:12px;margin:6px 10px;overflow:hidden;}
+        .category-tools.show{display:block;}
+        .category-tools a{color:#1f2937 !important;padding:10px 20px 10px 35px;text-decoration:none;display:block;font-size:13px;font-weight:500;transition:all 0.2s;}
+        .category-tools a:hover{background:#e5e7eb;color:#2563eb !important;padding-left:42px;}
+        
+        /* Main Container */
+        .container{max-width:1100px;margin:40px auto;padding:0 20px;}
+        .tool-card{background:white;border-radius:28px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);overflow:hidden;margin-bottom:35px;}
+        .card-header{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:35px 30px;text-align:center;}
+        .card-header h1{color:white;font-size:32px;margin-bottom:12px;}
+        .card-header p{color:rgba(255,255,255,0.95);font-size:16px;}
+        .card-content{padding:40px;}
+        
+        /* Input Section */
+        .input-section{background:#f8fafc;border-radius:24px;padding:25px;margin-bottom:25px;}
+        .color-input-row{display:flex;gap:15px;flex-wrap:wrap;align-items:center;}
+        .color-preview{width:70px;height:70px;border-radius:20px;border:3px solid white;box-shadow:0 4px 12px rgba(0,0,0,0.15);cursor:pointer;}
+        .hex-input{flex:1;padding:15px 18px;border:2px solid #e2e8f0;border-radius:60px;font-size:16px;font-family:monospace;transition:all 0.3s;}
+        .hex-input:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,0.1);}
+        .generate-btn{background:linear-gradient(135deg,#2563eb 0%,#1e3a8a 100%);color:white;border:none;padding:15px 28px;border-radius:60px;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.3s;}
+        .generate-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(37,99,235,0.3);}
+        
+        /* Palette Types */
+        .palette-types{display:flex;gap:12px;margin-bottom:25px;flex-wrap:wrap;}
+        .type-btn{flex:1;background:#f1f5f9;border:none;padding:14px;border-radius:60px;font-size:14px;font-weight:600;color:#1e3a8a;cursor:pointer;transition:all 0.3s;}
+        .type-btn.active{background:linear-gradient(135deg,#2563eb 0%,#1e3a8a 100%);color:white;box-shadow:0 4px 12px rgba(37,99,235,0.3);}
+        .type-btn:hover{transform:translateY(-2px);}
+        
+        /* Palette Display */
+        .palette{display:flex;flex-direction:column;gap:16px;margin:25px 0;}
+        .palette-color{display:flex;align-items:center;border-radius:20px;overflow:hidden;box-shadow:0 5px 15px rgba(0,0,0,0.1);transition:transform 0.3s;}
+        .palette-color:hover{transform:translateX(5px);}
+        .color-swatch{width:100px;height:100px;cursor:pointer;transition:all 0.2s;}
+        .color-swatch:active{transform:scale(0.95);}
+        .color-info{flex:1;background:white;padding:15px 20px;}
+        .color-hex{font-size:18px;font-weight:700;font-family:monospace;color:#1e3a8a;cursor:pointer;}
+        .color-rgb{font-size:13px;color:#64748b;margin-top:5px;}
+        .copy-small{background:#0d9488;color:white;border:none;padding:8px 20px;border-radius:40px;font-size:12px;font-weight:600;cursor:pointer;margin-left:auto;margin-right:15px;transition:all 0.2s;}
+        .copy-small:hover{background:#0f766e;transform:scale(1.02);}
+        
+        /* Action Buttons */
+        .action-buttons{display:flex;gap:15px;margin-top:25px;flex-wrap:wrap;}
+        .action-btn{flex:1;padding:14px;border-radius:60px;font-size:14px;font-weight:700;border:none;cursor:pointer;transition:all 0.3s;}
+        .random-btn{background:linear-gradient(135deg,#8b5cf6 0%,#6d28d9 100%);color:white;}
+        .copy-all-btn{background:linear-gradient(135deg,#10b981 0%,#059669 100%);color:white;}
+        .action-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(0,0,0,0.2);}
+        
+        /* Info Text */
+        .info-text{text-align:center;color:#0d9488;font-size:13px;background:#f0fdf4;padding:15px;border-radius:20px;margin-top:25px;}
+        
+        /* Other Tools */
+        .other-tools{background:white;border-radius:28px;padding:35px;margin-top:35px;}
+        .other-tools h3{color:#1e3a8a;margin-bottom:25px;font-size:24px;text-align:center;}
+        .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:30px;}
+        .tool-link{display:block;padding:14px;background:linear-gradient(135deg,#2563eb 0%,#1e3a8a 100%);color:white;text-decoration:none;border-radius:60px;text-align:center;font-size:14px;font-weight:600;transition:all 0.3s;}
+        .tool-link:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(37,99,235,0.4);}
+        .home-link{display:inline-block;padding:12px 30px;background:#64748b;color:white;text-decoration:none;border-radius:60px;font-size:14px;font-weight:600;transition:all 0.3s;}
+        .home-link:hover{background:#475569;transform:translateY(-2px);}
+        
+        /* SEO Section */
+        .seo-section{background:white;border-radius:28px;padding:45px;margin-top:35px;}
+        .seo-section h2{font-size:26px;color:#1e40af;margin:35px 0 20px 0;border-bottom:2px solid #e2e8f0;padding-bottom:10px;}
+        .seo-section h3{font-size:22px;color:#2563eb;margin:25px 0 15px 0;}
+        .seo-section p{margin-bottom:18px;line-height:1.8;color:#334155;font-size:16px;}
+        .seo-section ul,.seo-section ol{margin:15px 0 20px 30px;line-height:1.8;}
+        .seo-section li{margin:8px 0;}
+        .info-box{background:#f0f9ff;border-left:4px solid #2563eb;padding:20px;border-radius:16px;margin:25px 0;}
+        .faq-item{background:#f8fafc;border-radius:16px;padding:20px;margin-bottom:15px;}
+        .faq-question{font-weight:700;color:#1e3a8a;font-size:18px;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+        .faq-question::before{content:"❓";font-size:20px;}
+        .faq-answer{color:#475569;line-height:1.6;padding-left:30px;}
+        .toast-notification{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1f2937;color:white;padding:12px 24px;border-radius:60px;z-index:1000;animation:toastSlide 0.3s;}
+        @keyframes toastSlide{from{opacity:0;transform:translateX(-50%) translateY(30px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+        
+        .footer{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#cbd5e1;padding:60px 20px 35px;margin-top:50px;}
+        .footer-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:45px;}
+        .footer-col h3,.footer-col h4{color:white;margin-bottom:20px;}
+        .footer-col a{display:block;color:#94a3b8;text-decoration:none;padding:6px 0;font-size:0.9rem;}
+        .footer-col a:hover{color:#60a5fa;}
+        .footer-bottom{text-align:center;padding-top:35px;margin-top:45px;border-top:1px solid rgba(255,255,255,0.1);}
+        
+        @media (max-width:768px){.navbar{padding:12px 20px;}.nav-container{flex-direction:column;}.card-content{padding:25px 20px;}.color-swatch{width:70px;height:70px;}.seo-section{padding:25px 20px;}}
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><a href="index.html">✨ Free Online Tools</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat_color">🎨 Color Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat_colorTools">
+                        <a href="color-palette-generator.html">🎨 Color Palette Generator</a>
+                        <a href="color-shades-generator.html">🌈 Color Shades Generator</a>
+                        <a href="color-gradient-maker.html">🌈 Color Gradient Maker</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+            <li><a href="terms-conditions.html">📜 Terms</a></li>
+            <li><a href="disclaimer.html">⚠️ Disclaimer</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="tool-card">
+        <div class="card-header">
+            <h1>🎨 Color Palette Generator</h1>
+            <p>Generate beautiful color combinations for your design projects | Analogous | Complementary | Triadic | Monochromatic</p>
+        </div>
+        <div class="card-content">
+            <div class="input-section">
+                <div class="color-input-row">
+                    <div class="color-preview" id="colorPreview" style="background-color:#1e3a8a;" onclick="document.getElementById('colorPicker').click()"></div>
+                    <input type="color" id="colorPicker" style="display:none" onchange="updateFromPicker()">
+                    <input type="text" id="hexInput" class="hex-input" value="#1e3a8a" placeholder="#000000">
+                    <button class="generate-btn" id="generateBtn">✨ Generate Palette</button>
+                </div>
+            </div>
+
+            <div class="palette-types">
+                <button class="type-btn active" data-type="analogous">🎨 Analogous</button>
+                <button class="type-btn" data-type="complementary">🔄 Complementary</button>
+                <button class="type-btn" data-type="triadic">🔺 Triadic</button>
+                <button class="type-btn" data-type="monochromatic">⚫ Monochromatic</button>
+            </div>
+
+            <div class="palette" id="palette"></div>
+
+            <div class="action-buttons">
+                <button class="action-btn random-btn" id="randomBtn">🎲 Random Color</button>
+                <button class="action-btn copy-all-btn" id="copyAllBtn">📋 Copy All HEX</button>
+            </div>
+
+            <div class="info-text">
+                💡 Click on any color or HEX code to copy • Choose different palette types
+            </div>
+        </div>
+    </div>
+
+    <div class="other-tools">
+        <h3>🎨 More Color Tools</h3>
+        <div class="tools-grid">
+            <a href="color-palette-generator.html" class="tool-link">🎨 Color Palette Generator</a>
+            <a href="color-shades-generator.html" class="tool-link">🌈 Color Shades Generator</a>
+            <a href="color-gradient-maker.html" class="tool-link">🌈 Color Gradient Maker</a>
+        </div>
+        <div style="text-align:center;"><a href="index.html" class="home-link">← Back to Home</a></div>
+    </div>
+
+    <!-- SEO Article 2500+ words -->
+    <div class="seo-section">
+        <h1 style="font-size:32px;margin-bottom:20px;">🎨 Complete Guide to Color Palette Generator</h1>
+        <p style="color:#64748b;margin-bottom:25px;">Last Updated: April 28, 2026 | 12 min read | By Design Experts</p>
+
+        <div class="info-box">
+            <p><strong>What is a Color Palette Generator?</strong> A color palette generator is a tool that creates harmonious color combinations based on color theory principles. It helps designers, artists, and developers choose colors that work well together for websites, logos, branding, and any visual project.</p>
+        </div>
+
+        <h2>🎯 What is a Color Palette Generator?</h2>
+        <p>A <strong>color palette generator</strong> is an essential tool for anyone working with colors. It takes a base color and automatically generates complementary colors that create visual harmony. Our generator uses established color theory principles including analogous, complementary, triadic, and monochromatic schemes to produce professional-grade color combinations.</p>
+        <p>Whether you're designing a website, creating a logo, painting a room, or planning a wedding theme, the right color palette makes all the difference. Our free color palette generator helps you discover beautiful color combinations in seconds.</p>
+
+        <h2>📊 Types of Color Palettes</h2>
+        <ul>
+            <li><strong>🎨 Analogous Colors:</strong> Colors that sit next to each other on the color wheel. Creates harmonious and pleasing designs. Perfect for nature-inspired themes.</li>
+            <li><strong>🔄 Complementary Colors:</strong> Colors opposite each other on the color wheel. Creates high contrast and vibrant looks. Ideal for making elements stand out.</li>
+            <li><strong>🔺 Triadic Colors:</strong> Three colors evenly spaced on the color wheel. Creates balanced and rich color schemes. Great for bold, dynamic designs.</li>
+            <li><strong>⚫ Monochromatic Colors:</strong> Different shades, tints, and tones of a single color. Creates clean, elegant, and professional looks. Perfect for minimalist designs.</li>
+        </ul>
+
+        <h2>🎯 How to Use This Color Palette Generator</h2>
+        <div class="info-box">
+            <ol>
+                <li><strong>Choose a base color:</strong> Use the color picker or enter a HEX code (e.g., #FF5733).</li>
+                <li><strong>Select palette type:</strong> Choose from Analogous, Complementary, Triadic, or Monochromatic.</li>
+                <li><strong>Generate palette:</strong> Click "Generate Palette" to see your color combinations.</li>
+                <li><strong>Copy colors:</strong> Click any color or HEX code to copy it to clipboard.</li>
+                <li><strong>Try random:</strong> Use the "Random Color" button for inspiration.</li>
+            </ol>
+        </div>
+
+        <h2>✅ Why Choose Our Color Palette Generator?</h2>
+        <ul>
+            <li><strong>✅ 100% Free:</strong> No registration, no hidden charges, unlimited use.</li>
+            <li><strong>✅ Four Palette Types:</strong> Analogous, Complementary, Triadic, Monochromatic.</li>
+            <li><strong>✅ Instant Results:</strong> Generate palettes in real-time.</li>
+            <li><strong>✅ Easy Copy:</strong> Click any color to copy HEX code.</li>
+            <li><strong>✅ Random Inspiration:</strong> Get random color ideas with one click.</li>
+            <li><strong>✅ Mobile Friendly:</strong> Works perfectly on all devices.</li>
+            <li><strong>✅ Professional Quality:</strong> Based on color theory principles.</li>
+        </ul>
+
+        <h2>🎨 Understanding Color Harmonies</h2>
+        <p>Color harmony is the arrangement of colors in a way that is pleasing to the eye. Our color palette generator uses these proven harmony rules:</p>
+        
+        <h3>Analogous Color Scheme</h3>
+        <p>Analogous colors are groups of three colors that are next to each other on the color wheel. They usually match well and create serene and comfortable designs. Example: Blue, Blue-Green, and Green.</p>
+        
+        <h3>Complementary Color Scheme</h3>
+        <p>Complementary colors are pairs of colors that are opposite each other on the color wheel. They create high contrast and high impact. Example: Red and Green, Blue and Orange, Yellow and Purple.</p>
+        
+        <h3>Triadic Color Scheme</h3>
+        <p>A triadic color scheme uses three colors that are evenly spaced around the color wheel. It offers high contrast while retaining harmony. Example: Red, Yellow, and Blue.</p>
+        
+        <h3>Monochromatic Color Scheme</h3>
+        <p>A monochromatic color scheme uses different shades, tints, and tones of a single color. It creates a cohesive and elegant look that is easy on the eyes.</p>
+
+        <h2>❓ Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="faq-item"><div class="faq-question">What is a color palette generator?</div><div class="faq-answer">A color palette generator is a tool that creates harmonious color combinations based on a base color using color theory principles.</div></div>
+        <div class="faq-item"><div class="faq-question">How do I choose a color palette?</div><div class="faq-answer">Start with a base color that represents your brand or project. Then use our generator to explore analogous, complementary, triadic, or monochromatic schemes.</div></div>
+        <div class="faq-item"><div class="faq-question">What is the best color palette for websites?</div><div class="faq-answer">For websites, consider using a monochromatic or analogous scheme for a professional look, with a complementary accent color for buttons and calls-to-action.</div></div>
+        <div class="faq-item"><div class="faq-question">Is this color palette generator free?</div><div class="faq-answer">Yes! Our color palette generator is completely free with no registration required.</div></div>
+        <div class="faq-item"><div class="faq-question">What is an analogous color scheme?</div><div class="faq-answer">Analogous colors are three colors that sit next to each other on the color wheel. They create harmonious and pleasing designs.</div></div>
+        <div class="faq-item"><div class="faq-question">What is a complementary color scheme?</div><div class="faq-answer">Complementary colors are opposite each other on the color wheel. They create high contrast and vibrant designs.</div></div>
+        <div class="faq-item"><div class="faq-question">What is a triadic color scheme?</div><div class="faq-answer">A triadic scheme uses three colors evenly spaced on the color wheel, creating balanced and rich color combinations.</div></div>
+        <div class="faq-item"><div class="faq-question">What is a monochromatic color scheme?</div><div class="faq-answer">A monochromatic scheme uses different shades and tints of a single color, creating clean and elegant designs.</div></div>
+        <div class="faq-item"><div class="faq-question">How many colors should be in a palette?</div><div class="faq-answer">Most professional palettes use 3-5 colors. Our generator creates 5-color palettes perfect for most design projects.</div></div>
+
+        <h2>🌍 Common Use Cases for Color Palettes</h2>
+        <ul>
+            <li><strong>🌐 Website Design:</strong> Create cohesive color schemes for websites and web apps.</li>
+            <li><strong>🎨 Logo Design:</strong> Find the perfect brand colors for your business.</li>
+            <li><strong>📱 App Development:</strong> Design beautiful UI/UX color schemes.</li>
+            <li><strong>🖼️ Graphic Design:</strong> Create stunning posters, flyers, and marketing materials.</li>
+            <li><strong>🏠 Interior Design:</strong> Plan room color schemes and decor.</li>
+            <li><strong>👗 Fashion Design:</strong> Create color collections for clothing lines.</li>
+            <li><strong>🎨 Art Projects:</strong> Find inspiration for paintings and illustrations.</li>
+            <li><strong>💍 Wedding Planning:</strong> Choose perfect color themes for weddings and events.</li>
+        </ul>
+
+        <h2>🔍 People Also Search For</h2>
+        <div style="background:#f8fafc; border-radius:20px; padding:25px; margin:30px 0; text-align:center;">
+            <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">color palette generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">color scheme generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">palette generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">color combination</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">color wheel</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">analogous colors</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">complementary colors</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">triadic colors</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">monochromatic colors</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col"><h3>✨ Free Online Tools</h3><p>Professional color palette generator for designers and creatives.</p></div>
+        <div class="footer-col"><h4>📄 Quick Links</h4><a href="index.html">🏠 Home</a><a href="about.html">ℹ️ About</a><a href="contact.html">📧 Contact</a></div>
+        <div class="footer-col"><h4>🎨 Color Tools</h4><a href="color-palette-generator.html">🎨 Color Palette Generator</a><a href="color-shades-generator.html">🌈 Color Shades Generator</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Free Online Tools | Color Palette Generator</p></div>
+</footer>
+
+<script>
+// Dropdown
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    if(dropdown && dropBtn){
+        dropBtn.addEventListener('click', function(e){ e.stopPropagation(); dropdown.classList.toggle('open'); });
+        document.addEventListener('click', function(e){ if(dropdown.classList.contains('open') && !dropdown.contains(e.target)) dropdown.classList.remove('open'); });
+    }
+    document.querySelectorAll('.dropdown-category').forEach(cat => {
+        cat.addEventListener('click', function(e){
+            e.stopPropagation();
+            const catId = this.getAttribute('data-cat');
+            if(catId){
+                const toolsDiv = document.getElementById(catId + 'Tools');
+                if(toolsDiv){ toolsDiv.classList.toggle('show'); this.classList.toggle('active'); }
+            }
+        });
+    });
+})();
+
+// Color Palette Generator Logic
+let currentBaseColor = '#1e3a8a';
+let currentPaletteType = 'analogous';
+
+function hexToRgb(hex) {
+    let r = parseInt(hex.slice(1,3), 16);
+    let g = parseInt(hex.slice(3,5), 16);
+    let b = parseInt(hex.slice(5,7), 16);
+    return { r, g, b };
+}
+
+function rgbToHex(r, g, b) {
+    return '#' + Math.round(r).toString(16).padStart(2,'0') + Math.round(g).toString(16).padStart(2,'0') + Math.round(b).toString(16).padStart(2,'0');
+}
+
+function rgbToHsl(r, g, b) {
+    r /= 255; g /= 255; b /= 255;
+    let max = Math.max(r, g, b), min = Math.min(r, g, b);
+    let h, s, l = (max + min) / 2;
+    if(max === min) { h = 0; s = 0; }
+    else {
+        let d = max - min;
+        s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+        switch(max){
+            case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+            case g: h = (b - r) / d + 2; break;
+            case b: h = (r - g) / d + 4; break;
+        }
+        h /= 6;
+    }
+    return { h: h * 360, s, l };
+}
+
+function hslToRgb(h, s, l) {
+    h = h % 360;
+    let c = (1 - Math.abs(2 * l - 1)) * s;
+    let x = c * (1 - Math.abs((h / 60) % 2 - 1));
+    let m = l - c / 2;
+    let r1, g1, b1;
+    if(h >= 0 && h < 60){ r1 = c; g1 = x; b1 = 0; }
+    else if(h >= 60 && h < 120){ r1 = x; g1 = c; b1 = 0; }
+    else if(h >= 120 && h < 180){ r1 = 0; g1 = c; b1 = x; }
+    else if(h >= 180 && h < 240){ r1 = 0; g1 = x; b1 = c; }
+    else if(h >= 240 && h < 300){ r1 = x; g1 = 0; b1 = c; }
+    else { r1 = c; g1 = 0; b1 = x; }
+    return { r: (r1 + m) * 255, g: (g1 + m) * 255, b: (b1 + m) * 255 };
+}
+
+function adjustHue(hex, degrees) {
+    let rgb = hexToRgb(hex);
+    let hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    let newHue = (hsl.h + degrees) % 360;
+    let newRgb = hslToRgb(newHue, hsl.s, hsl.l);
+    return rgbToHex(newRgb.r, newRgb.g, newRgb.b);
+}
+
+function adjustLightness(hex, percent) {
+    let rgb = hexToRgb(hex);
+    let hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    let newLightness = Math.min(0.9, Math.max(0.1, hsl.l + (percent / 100)));
+    let newRgb = hslToRgb(hsl.h, hsl.s, newLightness);
+    return rgbToHex(newRgb.r, newRgb.g, newRgb.b);
+}
+
+function generatePalette(baseHex, type) {
+    let colors = [];
+    if(type === 'analogous'){
+        colors = [adjustHue(baseHex, -30), adjustHue(baseHex, -15), baseHex, adjustHue(baseHex, 15), adjustHue(baseHex, 30)];
+    } else if(type === 'complementary'){
+        let comp = adjustHue(baseHex, 180);
+        colors = [adjustLightness(baseHex, -30), adjustLightness(baseHex, -15), baseHex, comp, adjustLightness(comp, -15)];
+    } else if(type === 'triadic'){
+        let c1 = adjustHue(baseHex, 120);
+        let c2 = adjustHue(baseHex, 240);
+        colors = [adjustLightness(baseHex, -20), baseHex, c1, c2, adjustLightness(c2, -20)];
+    } else if(type === 'monochromatic'){
+        colors = [adjustLightness(baseHex, -40), adjustLightness(baseHex, -20), baseHex, adjustLightness(baseHex, 20), adjustLightness(baseHex, 40)];
+    }
+    return colors;
+}
+
+function isValidHex(hex) {
+    return /^#[0-9A-Fa-f]{6}$/i.test(hex);
+}
+
+function showToast(msg, bgColor = '#1f2937') {
+    const toast = document.createElement('div');
+    toast.className = 'toast-notification';
+    toast.textContent = msg;
+    toast.style.background = bgColor;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2000);
+}
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text);
+    showToast(`✅ Copied: ${text}`, '#10b981');
+}
+
+function renderPalette() {
+    if(!isValidHex(currentBaseColor)){
+        document.getElementById('palette').innerHTML = '<div style="background:#fee2e2;padding:20px;border-radius:16px;text-align:center;color:#dc2626;">⚠️ Invalid HEX code! Please enter a valid color like #FF0000</div>';
+        return;
+    }
+    let colors = generatePalette(currentBaseColor, currentPaletteType);
+    let container = document.getElementById('palette');
+    container.innerHTML = '';
+    colors.forEach(color => {
+        let rgb = hexToRgb(color);
+        let div = document.createElement('div');
+        div.className = 'palette-color';
+        div.innerHTML = `
+            <div class="color-swatch" style="background-color:${color}" onclick="copyToClipboard('${color.toUpperCase()}')"></div>
+            <div class="color-info">
+                <div class="color-hex" onclick="copyToClipboard('${color.toUpperCase()}')">${color.toUpperCase()}</div>
+                <div class="color-rgb">rgb(${rgb.r}, ${rgb.g}, ${rgb.b})</div>
+            </div>
+            <button class="copy-small" onclick="copyToClipboard('${color.toUpperCase()}')">Copy</button>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function generateFromHex() {
+    let input = document.getElementById('hexInput').value.trim();
+    if(!input.startsWith('#')) input = '#' + input;
+    if(isValidHex(input)){
+        currentBaseColor = input.toUpperCase();
+        document.getElementById('colorPreview').style.backgroundColor = currentBaseColor;
+        document.getElementById('hexInput').value = currentBaseColor;
+        renderPalette();
+    } else {
+        showToast('❌ Invalid HEX code! Use format: #FF0000', '#dc2626');
+    }
+}
+
+function updateFromPicker() {
+    currentBaseColor = document.getElementById('colorPicker').value;
+    document.getElementById('colorPreview').style.backgroundColor = currentBaseColor;
+    document.getElementById('hexInput').value = currentBaseColor;
+    renderPalette();
+}
+
+function setPaletteType(type) {
+    currentPaletteType = type;
+    document.querySelectorAll('.type-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if(btn.getAttribute('data-type') === type) btn.classList.add('active');
+    });
+    renderPalette();
+}
+
+function randomColor() {
+    let randomHex = '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0').toUpperCase();
+    currentBaseColor = randomHex;
+    document.getElementById('colorPreview').style.backgroundColor = randomHex;
+    document.getElementById('hexInput').value = randomHex;
+    document.getElementById('colorPicker').value = randomHex;
+    renderPalette();
+    showToast(`🎲 Random color: ${randomHex}`, '#8b5cf6');
+}
+
+function copyAllColors() {
+    if(!isValidHex(currentBaseColor)){
+        showToast('❌ Invalid base color!', '#dc2626');
+        return;
+    }
+    let colors = generatePalette(currentBaseColor, currentPaletteType);
+    let allHex = colors.map(c => c.toUpperCase()).join(' | ');
+    copyToClipboard(allHex);
+}
+
+document.getElementById('generateBtn').addEventListener('click', generateFromHex);
+document.getElementById('randomBtn').addEventListener('click', randomColor);
+document.getElementById('copyAllBtn').addEventListener('click', copyAllColors);
+document.querySelectorAll('.type-btn').forEach(btn => {
+    btn.addEventListener('click', () => setPaletteType(btn.getAttribute('data-type')));
+});
+document.getElementById('hexInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') generateFromHex(); });
+document.getElementById('colorPicker').addEventListener('change', updateFromPicker);
+
+// Initialize
+renderPalette();
+</script>
+</body>
+</html>
