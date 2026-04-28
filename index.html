@@ -1058,43 +1058,49 @@ body {
         }
         
         function filterTools() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const allCards = getAllToolCards();
-            let visibleCount = 0;
-            
-            if (searchTerm === '') {
-                allCards.forEach(card => { card.element.style.display = ''; });
-                document.querySelectorAll('.section').forEach(section => { section.style.display = ''; });
-                if (searchCount) searchCount.style.display = 'none';
-                return;
-            }
-            
-            allCards.forEach(card => {
-                if (matchesSearch(card.text, searchTerm)) {
-                    card.element.style.display = '';
-                    visibleCount++;
-                } else {
-                    card.element.style.display = 'none';
-                }
+    const searchTerm = searchInput.value.toLowerCase().trim();
+    const allCards = getAllToolCards();
+    let visibleCount = 0;
+    
+    // پہلے سارے سیکشن چھپا دو
+    document.querySelectorAll('.section').forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    if (searchTerm === '') {
+        // سرچ خالی ہو تو سب دکھا دو
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.display = '';
+            section.querySelectorAll('.tool-card').forEach(card => {
+                card.style.display = '';
             });
-            
-            document.querySelectorAll('.section').forEach(section => {
-                let hasVisible = false;
-                section.querySelectorAll('.tool-card').forEach(card => {
-                    if (card.style.display !== 'none') hasVisible = true;
-                });
-                section.style.display = hasVisible ? '' : 'none';
-            });
-            
-            if (searchCount) {
-                if (visibleCount === 0) {
-                    searchCount.innerHTML = `❌ No tools found for "${searchTerm}"`;
-                } else {
-                    searchCount.innerHTML = `✅ ${visibleCount} tool${visibleCount !== 1 ? 's' : ''} found for "${searchTerm}"`;
-                }
-                searchCount.style.display = 'block';
-            }
+        });
+        if (searchCount) searchCount.style.display = 'none';
+        return;
+    }
+    
+    const sectionsWithMatches = new Set();
+    
+    allCards.forEach(card => {
+        if (card.text.includes(searchTerm)) {
+            card.element.style.display = '';
+            visibleCount++;
+            sectionsWithMatches.add(card.parentSection);
+        } else {
+            card.element.style.display = 'none';
         }
+    });
+    
+    // صرف وہی سیکشن دکھاؤ جن میں میچ ہے
+    sectionsWithMatches.forEach(section => {
+        section.style.display = '';
+    });
+    
+    if (searchCount) {
+        searchCount.innerHTML = visibleCount === 0 ? `❌ "${searchTerm}" کے لیے کوئی ٹول نہیں ملا` : `✅ "${searchTerm}" کے لیے ${visibleCount} ٹول مل گئے`;
+        searchCount.style.display = 'block';
+    }
+}
         
         searchInput.addEventListener('input', filterTools);
         console.log('✅ Search ready! Try: bm, age, pdf');
