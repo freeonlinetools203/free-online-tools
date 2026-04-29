@@ -756,7 +756,8 @@
 </head>
 <body>
 
-<!-- ========== NAVBAR ========== -->
+<!-- ========== NAVBAR ADDED (SAME AS OTHER TOOLS) ========== -->
+<!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -765,31 +766,150 @@
         <ul class="nav-links">
             <li><a href="index.html">🏠 Home</a></li>
             <li class="dropdown" id="toolsDropdown">
-                <button class="dropbtn" id="toolsBtn">🛠️ Tools ▼</button>
+                <button class="dropbtn" id="toolsBtn">🛠️ All Categories ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
-                    <div class="dropdown-category" data-cat="cat_pdf">📄 PDF Tools <span class="arrow">▶</span></div>
+                    
+                    <!-- 🐾 ANIMAL PREGNANCY TOOLS -->
+                    <div class="dropdown-category" data-cat="cat_pregnancy">
+                        🐾 Animal Pregnancy Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat_pregnancyTools">
+                        <a href="dog-pregnancy-calculator.html">🐕 Dog Pregnancy Calculator</a>
+                        <a href="cat-pregnancy-calculator.html">🐱 Cat Pregnancy Calculator</a>
+                        <a href="cow-pregnancy-calculator.html">🐄 Cow Pregnancy Calculator</a>
+                        <a href="rabbit-pregnancy-calculator.html">🐰 Rabbit Pregnancy Calculator</a>
+                        <a href="goat-pregnancy-calculator.html">🐐 Goat Pregnancy Calculator</a>
+                        <a href="horse-pregnancy-calculator.html">🐎 Horse Pregnancy Calculator</a>
+                        <a href="sheep-pregnancy-calculator.html">🐑 Sheep Pregnancy Calculator</a>
+                        <a href="pig-pregnancy-calculator.html">🐖 Pig Pregnancy Calculator</a>
+                    </div>
+
+                    <!-- 🔐 DEVELOPER & SECURITY TOOLS (NEW - ADDED) -->
+                    <div class="dropdown-category" data-cat="cat_dev">
+                        🔐 Developer & Security Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat_devTools">
+                        <a href="md5-generator.html">🔐 MD5 Hash Generator</a>
+                        <a href="sha256-generator.html">🔐 SHA-256 Hash Generator</a>
+                        <a href="sha1-generator.html">🔐 SHA-1 Hash Generator</a>
+                        <a href="base64-encoder-decoder.html">📝 Base64 Encoder/Decoder</a>
+                        <a href="url-encoder-decoder.html">🔗 URL Encoder/Decoder</a>
+                        <a href="html-encoder-decoder.html">🌐 HTML Encoder/Decoder</a>
+                    </div>
+
+                    <!-- 🎨 COLOR TOOLS -->
+                    <div class="dropdown-category" data-cat="cat_color">
+                        🎨 Color Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat_colorTools">
+                        <a href="color-palette-generator.html">🎨 Color Palette Generator</a>
+                        <a href="color-shades-generator.html">🌈 Color Shades Generator</a>
+                        <a href="color-gradient-maker.html">🌈 Color Gradient Maker</a>
+                        <a href="color-contrast-checker.html">🎨 Color Contrast Checker</a>
+                        <a href="color-name-finder.html">🏷️ Color Name Finder</a>
+                        <a href="random-color-picker.html">🎲 Random Color Picker</a>
+                    </div>
+
+                    <!-- 📊 POPULAR CALCULATORS -->
+                    <div class="dropdown-category" data-cat="cat1">
+                        📊 Popular Calculators <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat1Tools">
+                        <a href="unit-converter.html">📏 Unit Converter</a>
+                        <a href="age-calculator.html">📅 Age Calculator</a>
+                        <a href="age-difference-calculator.html">📊 Age Difference Calculator</a>
+                        <a href="discount-calculator.html">🏷️ Discount Calculator</a>
+                        <a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a>
+                        <a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a>
+                        <a href="gst-calculator.html">💰 GST Calculator</a>
+                        <a href="percentage-calculator.html">📈 Percentage Calculator</a>
+                        <a href="date-calculator.html">📅 Date Calculator</a>
+                        <a href="qr-code-generator.html">📱 QR Code Generator</a>
+                        <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
+                        <a href="currency-converter.html">💱 Currency Converter</a>
+                    </div>
+
+                    <!-- 🏃‍♂️ HEALTH & FITNESS -->
+                    <div class="dropdown-category" data-cat="cat2">
+                        🏃‍♂️ Health & Fitness <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat2Tools">
+                        <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
+                        <a href="bmr-calculator.html">🔥 BMR Calculator</a>
+                        <a href="calorie-calculator.html">🔥 Calorie Calculator</a>
+                        <a href="tdee-calculator.html">📊 TDEE Calculator</a>
+                    </div>
+
+                    <!-- 💰 FINANCIAL TOOLS -->
+                    <div class="dropdown-category" data-cat="cat3">
+                        💰 Financial Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat3Tools">
+                        <a href="emi-calculator.html">🏦 EMI Calculator</a>
+                        <a href="loan-calculator.html">📋 Loan Calculator</a>
+                        <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
+                    </div>
+
+                    <!-- 📝 TEXT & WRITING TOOLS -->
+                    <div class="dropdown-category" data-cat="cat4">
+                        📝 Text & Writing Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat4Tools">
+                        <a href="word-counter.html">🔢 Word Counter</a>
+                        <a href="line-counter.html">📝 Line Counter</a>
+                        <a href="text-case-converter.html">🔤 Text Case Converter</a>
+                        <a href="password-generator.html">🔐 Password Generator</a>
+                        <a href="password-checker.html">🔐 Password Strength Checker</a>
+                    </div>
+
+                    <!-- 📄 PDF TOOLS -->
+                    <div class="dropdown-category" data-cat="cat_pdf">
+                        📄 PDF Tools <span class="arrow">▶</span>
+                    </div>
                     <div class="category-tools" id="cat_pdfTools">
                         <a href="pdf-merger.html">📄 PDF Merger</a>
                         <a href="pdf-splitter.html">✂️ PDF Splitter</a>
                         <a href="pdf-to-image.html">📸 PDF to Image</a>
                         <a href="pdf-to-jpg.html">📸 PDF to JPG</a>
                         <a href="pdf-to-png.html">📸 PDF to PNG</a>
+                        <a href="pdf-to-bmp.html">📸 PDF to BMP</a>
+                        <a href="pdf-to-webp.html">📸 PDF to WEBP</a>
+                        <a href="pdf-to-tiff.html">📸 PDF to TIFF</a>
                         <a href="pdf-to-word.html">📄 PDF to Word</a>
                         <a href="pdf-to-excel.html">📊 PDF to Excel</a>
                         <a href="pdf-to-text.html">📝 PDF to Text</a>
                         <a href="pdf-rotator.html">🔄 PDF Rotator</a>
                     </div>
-                    <div class="dropdown-category" data-cat="cat_animal">🐾 Animal Pregnancy Tools <span class="arrow">▶</span></div>
-                    <div class="category-tools" id="cat_animalTools">
-                        <a href="dog-pregnancy-calculator.html">🐕 Dog Pregnancy (63 days)</a>
-                        <a href="cat-pregnancy-calculator.html">🐱 Cat Pregnancy (65 days)</a>
-                        <a href="cow-pregnancy-calculator.html">🐄 Cow Pregnancy (283 days)</a>
-                        <a href="rabbit-pregnancy-calculator.html">🐰 Rabbit Pregnancy (31 days)</a>
-                        <a href="goat-pregnancy-calculator.html">🐐 Goat Pregnancy (150 days)</a>
-                        <a href="horse-pregnancy-calculator.html">🐎 Horse Pregnancy (340 days)</a>
-                        <a href="sheep-pregnancy-calculator.html">🐑 Sheep Pregnancy (147 days)</a>
-                        <a href="pig-pregnancy-calculator.html">🐖 Pig Pregnancy (114 days)</a>
+
+                    <!-- 🖼️ IMAGE TOOLS -->
+                    <div class="dropdown-category" data-cat="cat_image">
+                        🖼️ Image Tools <span class="arrow">▶</span>
                     </div>
+                    <div class="category-tools" id="cat_imageTools">
+                        <a href="image-color-extractor.html">🎨 Image Color Extractor</a>
+                        <a href="image-converter.html">🖼️ Image Converter</a>
+                        <a href="image-cropper.html">✂️ Image Cropper</a>
+                        <a href="image-resizer.html">📐 Image Resizer</a>
+                        <a href="image-to-pdf.html">📄 Image to PDF</a>
+                        <a href="image-upscaler.html">🖼️ Image Upscaler</a>
+                        <a href="image-compressor.html">🗜️ Image Compressor</a>
+                    </div>
+
+                    <!-- 🎲 RANDOM & FUN TOOLS -->
+                    <div class="dropdown-category" data-cat="cat7">
+                        🎲 Random & Fun Tools <span class="arrow">▶</span>
+                    </div>
+                    <div class="category-tools" id="cat7Tools">
+                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
+                        <a href="random-color-picker.html">🎨 Random Color Picker</a>
+                        <a href="yes-no-wheel.html">✅ Yes/No Wheel</a>
+                        <a href="decision-roulette.html">🎯 Decision Roulette</a>
+                        <a href="random-name-picker.html">🏆 Random Name Picker</a>
+                        <a href="random-number-generator.html">🔢 Random Number Generator</a>
+                        <a href="prize-wheel.html">🏆 Prize Wheel</a>
+                        <a href="task-spinner.html">✅ Task Spinner</a>
+                    </div>
+
                 </div>
             </li>
             <li><a href="about.html">ℹ️ About</a></li>
