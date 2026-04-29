@@ -992,145 +992,117 @@ body {
 </footer>
 
 <script>
-// ========== SEARCH BAR - ALL WORDS WORK ==========
+// ========== PAGE LOAD FADE-IN ==========
+document.body.style.opacity = '0';
+document.body.style.transition = 'opacity 0.2s ease';
+setTimeout(() => {
+    document.body.style.opacity = '1';
+}, 50);
+
+// ========== SEARCH BAR FUNCTIONALITY (FIXED) ==========
 (function() {
     function initSearch() {
         const searchInput = document.getElementById('toolSearch');
         const searchCount = document.getElementById('searchCount');
         
         if (!searchInput) {
+            console.log('Waiting for search input...');
             setTimeout(initSearch, 300);
             return;
         }
         
-        // Exact keyword to tools mapping
-        const keywordMapping = {
-            'age': ['age calculator', 'age difference'],
-            'bm': ['bmi calculator', 'bmr calculator'],
-            'bmi': ['bmi calculator'],
-            'bmr': ['bmr calculator'],
-            'pdf': ['pdf merger', 'pdf splitter', 'pdf to image', 'pdf to jpg', 'pdf to png', 'pdf to word', 'pdf to excel', 'pdf to text', 'pdf rotator'],
-            'image': ['image color extractor', 'image converter', 'image cropper', 'image resizer', 'image to pdf', 'image upscaler', 'image compressor'],
-            'img': ['image color extractor', 'image converter', 'image cropper', 'image resizer', 'image to pdf', 'image upscaler', 'image compressor'],
-            'color': ['color shades', 'color gradient', 'color contrast', 'color name', 'random color'],
-            'wheel': ['spin the wheel', 'yes/no wheel', 'decision roulette', 'prize wheel', 'task spinner'],
-            'password': ['password generator', 'password checker'],
-            'emi': ['emi calculator'],
-            'loan': ['loan calculator'],
-            'zakat': ['zakat calculator'],
-            'gpa': ['gpa calculator'],
-            'gst': ['gst calculator'],
-            'percentage': ['percentage calculator'],
-            'date': ['date calculator'],
-            'qr': ['qr code generator'],
-            'currency': ['currency converter'],
-            'unit': ['unit converter'],
-            'discount': ['discount calculator'],
-            'profit': ['profit & loss'],
-            'word': ['word counter'],
-            'line': ['line counter'],
-            'text': ['text case converter'],
-            'calorie': ['calorie calculator'],
-            'tdee': ['tdee calculator'],
-            'dog': ['dog pregnancy'],
-            'cat': ['cat pregnancy'],
-            'cow': ['cow pregnancy'],
-            'rabbit': ['rabbit pregnancy'],
-            'goat': ['goat pregnancy'],
-            'horse': ['horse pregnancy'],
-            'sheep': ['sheep pregnancy'],
-            'pig': ['pig pregnancy']
-        };
+        console.log('✅ Search bar initialized!');
         
-        function matchesSearch(toolText, searchTerm) {
-            toolText = toolText.toLowerCase();
-            searchTerm = searchTerm.toLowerCase().trim();
+        // Get all tool cards and their sections
+        function getAllTools() {
+            const tools = [];
+            const sections = document.querySelectorAll('.section');
             
-            if (searchTerm === '') return false;
-            
-            // Check keyword mapping first
-            for (let [keyword, tools] of Object.entries(keywordMapping)) {
-                if (searchTerm === keyword || searchTerm.includes(keyword) || keyword.includes(searchTerm)) {
-                    for (let tool of tools) {
-                        if (toolText.includes(tool)) return true;
+            sections.forEach(section => {
+                const cards = section.querySelectorAll('.tool-card');
+                cards.forEach(card => {
+                    const link = card.querySelector('a');
+                    if (link && link.innerText) {
+                        tools.push({
+                            card: card,
+                            section: section,
+                            text: link.innerText.toLowerCase()
+                        });
                     }
-                }
-            }
-            
-            // Direct match in tool text
-            if (toolText.includes(searchTerm)) return true;
-            
-            // Check if search term matches start of tool name
-            const words = toolText.split(' ');
-            for (let word of words) {
-                if (word.startsWith(searchTerm) && searchTerm.length >= 2) return true;
-                if (word === searchTerm) return true;
-            }
-            
-            return false;
-        }
-        
-        function getAllToolCards() {
-            let allCards = [];
-            document.querySelectorAll('.tool-card').forEach(card => {
-                const link = card.querySelector('a');
-                if (link) {
-                    allCards.push({
-                        element: card,
-                        text: link.innerText.toLowerCase()
-                    });
-                }
+                });
             });
-            return allCards;
+            
+            return tools;
         }
         
         function filterTools() {
-    const searchTerm = searchInput.value.toLowerCase().trim();
-    const allCards = getAllToolCards();
-    let visibleCount = 0;
-    
-    // پہلے سارے سیکشن چھپا دو
-    document.querySelectorAll('.section').forEach(section => {
-        section.style.display = 'none';
-    });
-    
-    if (searchTerm === '') {
-        // سرچ خالی ہو تو سب دکھا دو
-        document.querySelectorAll('.section').forEach(section => {
-            section.style.display = '';
-            section.querySelectorAll('.tool-card').forEach(card => {
-                card.style.display = '';
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const allTools = getAllTools();
+            let visibleCount = 0;
+            
+            // First hide all sections
+            document.querySelectorAll('.section').forEach(section => {
+                section.style.display = 'none';
             });
-        });
-        if (searchCount) searchCount.style.display = 'none';
-        return;
-    }
-    
-    const sectionsWithMatches = new Set();
-    
-    allCards.forEach(card => {
-        if (card.text.includes(searchTerm)) {
-            card.element.style.display = '';
-            visibleCount++;
-            sectionsWithMatches.add(card.parentSection);
-        } else {
-            card.element.style.display = 'none';
+            
+            if (searchTerm === '') {
+                // Show all sections and cards
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = '';
+                    section.querySelectorAll('.tool-card').forEach(card => {
+                        card.style.display = '';
+                    });
+                });
+                if (searchCount) searchCount.style.display = 'none';
+                return;
+            }
+            
+            // Track which sections have visible tools
+            const sectionsWithMatches = new Set();
+            
+            // Filter tools
+            allTools.forEach(tool => {
+                const match = tool.text.includes(searchTerm);
+                
+                if (match) {
+                    tool.card.style.display = '';
+                    visibleCount++;
+                    sectionsWithMatches.add(tool.section);
+                } else {
+                    tool.card.style.display = 'none';
+                }
+            });
+            
+            // Show only sections that have matches
+            sectionsWithMatches.forEach(section => {
+                section.style.display = '';
+            });
+            
+            // Update search count display
+            if (searchCount) {
+                if (visibleCount === 0) {
+                    searchCount.innerHTML = `❌ "${searchTerm}" کے لیے کوئی ٹول نہیں ملا`;
+                    searchCount.style.backgroundColor = '#fee2e2';
+                    searchCount.style.color = '#dc2626';
+                } else {
+                    searchCount.innerHTML = `✅ "${searchTerm}" کے لیے ${visibleCount} ٹول مل گئے`;
+                    searchCount.style.backgroundColor = '#d1fae5';
+                    searchCount.style.color = '#065f46';
+                }
+                searchCount.style.display = 'block';
+                searchCount.style.padding = '8px 16px';
+                searchCount.style.borderRadius = '40px';
+                searchCount.style.marginTop = '10px';
+                searchCount.style.fontSize = '13px';
+                searchCount.style.fontWeight = '500';
+            }
         }
-    });
-    
-    // صرف وہی سیکشن دکھاؤ جن میں میچ ہے
-    sectionsWithMatches.forEach(section => {
-        section.style.display = '';
-    });
-    
-    if (searchCount) {
-        searchCount.innerHTML = visibleCount === 0 ? `❌ "${searchTerm}" کے لیے کوئی ٹول نہیں ملا` : `✅ "${searchTerm}" کے لیے ${visibleCount} ٹول مل گئے`;
-        searchCount.style.display = 'block';
-    }
-}
         
         searchInput.addEventListener('input', filterTools);
-        console.log('✅ Search ready! Try: bm, age, pdf');
+        searchInput.addEventListener('search', filterTools);
+        
+        // Initial run
+        filterTools();
     }
     
     if (document.readyState === 'loading') {
@@ -1140,12 +1112,15 @@ body {
     }
 })();
 
-// ========== DROPDOWN MENU ==========
+// ========== DROPDOWN MENU (WORKING) ==========
 (function() {
     const dropdown = document.getElementById('toolsDropdown');
     const dropBtn = document.getElementById('toolsBtn');
     
-    if (!dropdown || !dropBtn) return;
+    if (!dropdown || !dropBtn) {
+        console.log('Dropdown elements not found');
+        return;
+    }
     
     function closeAllCategories() {
         document.querySelectorAll('.dropdown-category.active').forEach(cat => {
@@ -1163,20 +1138,27 @@ body {
         closeAllCategories();
     }
     
+    function openDropdown() {
+        dropdown.classList.add('open');
+    }
+    
     dropBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        dropdown.classList.toggle('open');
-        if (!dropdown.classList.contains('open')) {
-            closeAllCategories();
+        if (dropdown.classList.contains('open')) {
+            closeDropdown();
+        } else {
+            openDropdown();
         }
     });
     
+    // Close dropdown when clicking outside
     document.addEventListener('click', function(event) {
         if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) {
             closeDropdown();
         }
     });
     
+    // Category click handler
     document.querySelectorAll('.dropdown-category').forEach(category => {
         category.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1194,14 +1176,32 @@ body {
             }
         });
     });
+    
+    console.log('✅ Dropdown menu initialized!');
 })();
 
-// ========== PAGE FADE-IN ==========
-document.body.style.opacity = '0';
-document.body.style.transition = 'opacity 0.2s ease';
-setTimeout(() => {
-    document.body.style.opacity = '1';
-}, 50);
+// ========== RESPONSIVE MENU ==========
+(function() {
+    // Close dropdown on window resize (mobile)
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            const dropdown = document.getElementById('toolsDropdown');
+            if (dropdown && dropdown.classList.contains('open')) {
+                dropdown.classList.remove('open');
+                document.querySelectorAll('.dropdown-category.active').forEach(cat => {
+                    cat.classList.remove('active');
+                    const catId = cat.getAttribute('data-cat');
+                    if (catId) {
+                        const toolsDiv = document.getElementById(catId + 'Tools');
+                        if (toolsDiv) toolsDiv.classList.remove('show');
+                    }
+                });
+            }
+        }, 250);
+    });
+})();
 </script>
 </body>
 </html>
