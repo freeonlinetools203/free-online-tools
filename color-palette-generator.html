@@ -806,7 +806,13 @@
     <!-- ========== 2500+ WORD SEO ARTICLE ========== -->
     <div class="info-section">
         <h1 style="font-size: 32px; margin-bottom: 20px; border-bottom: none;">🎨 Complete Guide to Color Palette Generator</h1>
-        <p style="color: #6b7280; margin-bottom: 30px;">Last Updated: April 16, 2026 | 12 min read | By Color Experts</p>
+       <p style="color: #6b7280; margin-bottom: 30px;" id="last-updated"></p>
+
+<script>
+const date = new Date();
+const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+document.getElementById('last-updated').innerHTML = `📅 Updated: ${formattedDate} | 👁️ 12 min read | 👤 Color Experts`;
+</script>
 
         <div class="stats-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0;">
             <div style="background: #f9fafb; padding: 15px; border-radius: 12px; text-align: center;"><strong>100K+</strong><br>Monthly Users</div>
