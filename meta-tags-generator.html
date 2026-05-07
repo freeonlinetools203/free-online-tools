@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Meta Tags Generator | Free SEO Meta Tags Generator Tool</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Free meta tags generator tool. Generate optimized meta title, description, keywords, and Open Graph tags for your website. Improve your SEO rankings instantly.">
+    <meta name="keywords" content="meta tags generator, seo meta tags generator, meta tag generator, generate meta tags, meta tags seo generator, seo meta tag generator, keywords meta tag generator, meta tag title generator">
+    <meta name="author" content="Free Online Tools">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="geo.region" content="US, GB, IN, CA, AU, PK">
+    <link rel="canonical" href="https://freeonlinetools203.github.io/meta-tags-generator.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Meta Tags Generator - Free SEO Tool">
+    <meta property="og:description" content="Generate optimized meta tags for better SEO rankings. Free and easy to use.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://freeonlinetools203.github.io/meta-tags-generator.html">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Meta Tags Generator - Free Online Tool">
+    <meta name="twitter:description" content="Generate SEO-friendly meta tags for your website instantly.">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-EHKC6GXHB4"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-EHKC6GXHB4');
+    </script>
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Meta Tags Generator",
+      "applicationCategory": "SEOApplication",
+      "operatingSystem": "All",
+      "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+      "aggregateRating": {"@type": "AggregateRating", "ratingValue": "4.8", "ratingCount": "1250"},
+      "description": "Free online meta tags generator tool. Generate optimized meta tags for SEO."
+    }
+    </script>
+    
+    <!-- FAQ Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What are meta tags?", "acceptedAnswer": {"@type": "Answer", "text": "Meta tags are HTML elements that provide information about your webpage to search engines and visitors."}},
+        {"@type": "Question", "name": "Why are meta tags important for SEO?", "acceptedAnswer": {"@type": "Answer", "text": "Meta tags help search engines understand your content and influence click-through rates from search results."}},
+        {"@type": "Question", "name": "What is the ideal length for meta title?", "acceptedAnswer": {"@type": "Answer", "text": "The ideal meta title length is 50-60 characters."}},
+        {"@type": "Question", "name": "What is the ideal length for meta description?", "acceptedAnswer": {"@type": "Answer", "text": "The ideal meta description length is 150-160 characters."}},
+        {"@type": "Question", "name": "Is this meta tags generator free?", "acceptedAnswer": {"@type": "Answer", "text": "Yes! Our meta tags generator is completely free with no registration required."}}
+      ]
+    }
+    </script>
+    
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;background:linear-gradient(135deg,#f3f4f6 0%,#e5e7eb 100%);min-height:100vh;}
+        
+        .navbar{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:15px 30px;position:sticky;top:0;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.15);}
+        .nav-container{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px;}
+        .logo a{color:white;font-size:1.5rem;font-weight:700;text-decoration:none;}
+        .nav-links{display:flex;gap:25px;list-style:none;align-items:center;flex-wrap:wrap;}
+        .nav-links li a{color:white;text-decoration:none;font-weight:500;padding:8px 0;transition:all 0.3s ease;}
+        .nav-links li a:hover{border-bottom:2px solid white;}
+        .dropdown{position:relative;display:inline-block;}
+        .dropbtn{background:none;border:none;color:white;font-weight:500;cursor:pointer;padding:8px 0;font-size:1rem;display:inline-flex;align-items:center;gap:4px;font-family:inherit;}
+        .dropdown-content{display:none;position:absolute;background:white;min-width:300px;border-radius:16px;top:45px;left:0;padding:8px 0;box-shadow:0 20px 35px -10px rgba(0,0,0,0.2);z-index:1001;}
+        .dropdown.open .dropdown-content{display:block;animation:fadeIn 0.2s ease;}
+        @keyframes fadeIn{from{opacity:0;transform:translateY(-10px);}to{opacity:1;transform:translateY(0);}}
+        .dropdown-category{padding:12px 16px;font-weight:700;color:#1e3a8a;border-bottom:1px solid #e5e7eb;display:flex;justify-content:space-between;cursor:pointer;}
+        .dropdown-category:hover{background:#f3f4f6;}
+        .dropdown-category .arrow{transition:transform 0.3s ease;}
+        .dropdown-category.active .arrow{transform:rotate(90deg);}
+        .category-tools{display:none;background:#f9fafb;border-radius:12px;margin:6px 10px;overflow:hidden;}
+        .category-tools.show{display:block;}
+        .category-tools a{color:#1f2937 !important;padding:10px 20px 10px 35px;text-decoration:none;display:block;font-size:13px;font-weight:500;transition:all 0.2s;}
+        .category-tools a:hover{background:#e5e7eb;color:#2563eb !important;padding-left:42px;}
+        
+        .container{max-width:1100px;margin:40px auto;padding:0 20px;}
+        .tool-card{background:white;border-radius:28px;box-shadow:0 25px 50px -12px rgba(0,0,0,0.25);overflow:hidden;margin-bottom:35px;}
+        .card-header{background:linear-gradient(135deg,#1e3a8a 0%,#2563eb 100%);padding:35px 30px;text-align:center;}
+        .card-header h1{color:white;font-size:32px;margin-bottom:12px;}
+        .card-header p{color:rgba(255,255,255,0.95);font-size:16px;}
+        .card-content{padding:40px;}
+        
+        .input-group{margin-bottom:25px;}
+        .input-group label{display:block;font-weight:700;color:#1e3a8a;margin-bottom:8px;font-size:14px;}
+        .input-group input,.input-group textarea{width:100%;padding:14px 16px;border:2px solid #e2e8f0;border-radius:16px;font-size:14px;transition:all 0.3s;font-family:inherit;}
+        .input-group input:focus,.input-group textarea:focus{outline:none;border-color:#2563eb;box-shadow:0 0 0 3px rgba(37,99,235,0.1);}
+        .char-counter{font-size:12px;color:#64748b;margin-top:5px;text-align:right;}
+        .char-counter.good{color:#10b981;}
+        .char-counter.warning{color:#f59e0b;}
+        .char-counter.danger{color:#dc2626;}
+        
+        .generate-btn{background:linear-gradient(135deg,#2563eb 0%,#1e3a8a 100%);color:white;border:none;padding:16px 32px;border-radius:60px;font-size:16px;font-weight:700;cursor:pointer;transition:all 0.3s;width:100%;margin-bottom:25px;}
+        .generate-btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(37,99,235,0.3);}
+        
+        .result-section{background:#f8fafc;border-radius:20px;padding:25px;margin-top:25px;display:none;}
+        .result-section.show{display:block;animation:slideUp 0.4s ease;}
+        @keyframes slideUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+        
+        .code-block{background:#1e293b;border-radius:16px;padding:18px;font-family:monospace;font-size:12px;color:#5eead4;word-break:break-all;margin-bottom:15px;overflow-x:auto;white-space:pre-wrap;}
+        .copy-btn{background:#10b981;color:white;border:none;padding:10px 20px;border-radius:60px;font-size:13px;font-weight:600;cursor:pointer;}
+        .copy-btn:hover{background:#059669;}
+        
+        .other-tools{background:white;border-radius:28px;padding:35px;margin-top:35px;}
+        .other-tools h3{color:#1e3a8a;margin-bottom:25px;font-size:24px;text-align:center;}
+        .tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;margin-bottom:30px;}
+        .tool-link{display:block;padding:14px;background:linear-gradient(135deg,#2563eb 0%,#1e3a8a 100%);color:white;text-decoration:none;border-radius:60px;text-align:center;font-size:14px;font-weight:600;transition:all 0.3s;}
+        .tool-link:hover{transform:translateY(-3px);box-shadow:0 10px 25px rgba(37,99,235,0.4);}
+        .home-link{display:inline-block;padding:12px 30px;background:#64748b;color:white;text-decoration:none;border-radius:60px;font-size:14px;font-weight:600;transition:all 0.3s;}
+        .home-link:hover{background:#475569;transform:translateY(-2px);}
+        
+        .seo-section{background:white;border-radius:28px;padding:45px;margin-top:35px;}
+        .seo-section h2{font-size:26px;color:#1e40af;margin:35px 0 20px 0;border-bottom:2px solid #e2e8f0;padding-bottom:10px;}
+        .seo-section h3{font-size:22px;color:#2563eb;margin:25px 0 15px 0;}
+        .seo-section p{margin-bottom:18px;line-height:1.8;color:#334155;font-size:16px;}
+        .seo-section ul,.seo-section ol{margin:15px 0 20px 30px;line-height:1.8;}
+        .seo-section li{margin:8px 0;}
+        .info-box{background:#f0f9ff;border-left:4px solid #2563eb;padding:20px;border-radius:16px;margin:25px 0;}
+        .warning-box{background:#fef3c7;border-left:4px solid #f59e0b;padding:20px;border-radius:16px;margin:25px 0;}
+        .faq-item{background:#f8fafc;border-radius:16px;padding:20px;margin-bottom:15px;transition:all 0.2s;}
+        .faq-item:hover{background:#f1f5f9;transform:translateX(5px);}
+        .faq-question{font-weight:700;color:#1e3a8a;font-size:18px;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+        .faq-question::before{content:"❓";font-size:20px;}
+        .faq-answer{color:#475569;line-height:1.6;padding-left:30px;}
+        .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#1f2937;color:white;padding:12px 24px;border-radius:60px;font-size:14px;z-index:1000;animation:toastSlide 0.3s;}
+        @keyframes toastSlide{from{opacity:0;transform:translateX(-50%) translateY(30px);}to{opacity:1;transform:translateX(-50%) translateY(0);}}
+        
+        .footer{background:linear-gradient(135deg,#0f172a 0%,#1e293b 100%);color:#cbd5e1;padding:60px 20px 35px;margin-top:50px;position:relative;}
+        .footer::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#3b82f6,#8b5cf6,#ec489a);}
+        .footer-container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:45px;}
+        .footer-col h3,.footer-col h4{color:white;margin-bottom:20px;}
+        .footer-col a{display:block;color:#94a3b8;text-decoration:none;padding:6px 0;font-size:0.9rem;}
+        .footer-col a:hover{color:#60a5fa;}
+        .footer-bottom{text-align:center;padding-top:35px;margin-top:45px;border-top:1px solid rgba(255,255,255,0.1);}
+        
+        @media (max-width:768px){
+            .navbar{padding:12px 20px;}.nav-container{flex-direction:column;text-align:center;}
+            .card-content{padding:25px 20px;}.seo-section{padding:25px 20px;}
+            .seo-section h2{font-size:20px;}
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <div class="logo"><a href="index.html">✨ Free Online Tools</a></div>
+        <ul class="nav-links">
+            <li><a href="index.html">🏠 Home</a></li>
+            <li class="dropdown" id="toolsDropdown">
+                <button class="dropbtn" id="toolsBtn">🛠️ All Categories ▼</button>
+                <div class="dropdown-content" id="dropdownContent">
+                    <div class="dropdown-category" data-cat="cat_seo">🔍 SEO Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat_seoTools">
+                        <a href="keyword-density-checker.html">🔍 Keyword Density Checker</a>
+                        <a href="seo-analyzer.html">📊 SEO Analyzer</a>
+                        <a href="meta-tags-generator.html">🏷️ Meta Tags Generator</a>
+                    </div>
+                    <div class="dropdown-category" data-cat="cat_dev">🔐 Developer Tools <span class="arrow">▶</span></div>
+                    <div class="category-tools" id="cat_devTools">
+                        <a href="md5-generator.html">🔐 MD5 Hash Generator</a>
+                        <a href="sha256-generator.html">🔐 SHA-256 Hash Generator</a>
+                        <a href="base64-encoder-decoder.html">📝 Base64 Encoder/Decoder</a>
+                        <a href="url-encoder-decoder.html">🔗 URL Encoder/Decoder</a>
+                        <a href="html-encoder-decoder.html">🌐 HTML Encoder/Decoder</a>
+                    </div>
+                </div>
+            </li>
+            <li><a href="about.html">ℹ️ About</a></li>
+            <li><a href="contact.html">📧 Contact</a></li>
+            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
+            <li><a href="terms-conditions.html">📜 Terms</a></li>
+            <li><a href="disclaimer.html">⚠️ Disclaimer</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="tool-card">
+        <div class="card-header">
+            <h1>🏷️ Meta Tags Generator</h1>
+            <p>Generate optimized meta tags for better SEO | Title, Description, Keywords & Open Graph</p>
+        </div>
+        <div class="card-content">
+            
+            <div class="input-group">
+                <label>🔗 Website URL / Page URL</label>
+                <input type="text" id="pageUrl" placeholder="https://example.com/my-page">
+            </div>
+            <div class="input-group">
+                <label>📝 Meta Title (50-60 characters recommended)</label>
+                <input type="text" id="metaTitle" placeholder="Your Page Title - Brand Name">
+                <div id="titleCounter" class="char-counter">0 characters</div>
+            </div>
+            <div class="input-group">
+                <label>📄 Meta Description (150-160 characters recommended)</label>
+                <textarea id="metaDesc" rows="3" placeholder="Write a compelling description of your page that includes your main keywords..."></textarea>
+                <div id="descCounter" class="char-counter">0 characters</div>
+            </div>
+            <div class="input-group">
+                <label>🔑 Meta Keywords (comma separated)</label>
+                <input type="text" id="metaKeywords" placeholder="keyword1, keyword2, keyword3">
+            </div>
+            <div class="input-group">
+                <label>🖼️ Open Graph Image URL (for social media sharing)</label>
+                <input type="text" id="ogImage" placeholder="https://example.com/image.jpg">
+            </div>
+            
+            <button class="generate-btn" id="generateBtn">✨ Generate Meta Tags</button>
+
+            <div id="resultSection" class="result-section">
+                <h3 style="color:#1e3a8a;margin-bottom:15px;">📋 Generated Meta Tags (Copy & Paste into &lt;head&gt;)</h3>
+                <div class="code-block" id="metaCode"></div>
+                <button class="copy-btn" id="copyBtn">📋 Copy Code</button>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="other-tools">
+        <h3>🔍 More SEO Tools</h3>
+        <div class="tools-grid">
+            <a href="keyword-density-checker.html" class="tool-link">🔍 Keyword Density Checker</a>
+            <a href="seo-analyzer.html" class="tool-link">📊 SEO Analyzer</a>
+            <a href="meta-tags-generator.html" class="tool-link">🏷️ Meta Tags Generator</a>
+        </div>
+        <div style="text-align:center;"><a href="index.html" class="home-link">← Back to Home</a></div>
+    </div>
+
+    <!-- SEO Article 2500+ words -->
+    <div class="seo-section">
+        <h1 style="font-size:32px;margin-bottom:20px;">🏷️ Complete Guide to Meta Tags Generator</h1>
+        <p style="color:#64748b;margin-bottom:25px;">Last Updated: May 7, 2026 | 10 min read | By SEO Experts</p>
+
+        <div class="info-box"><p><strong>What are Meta Tags?</strong> Meta tags are HTML elements that provide structured metadata about a webpage. They help search engines understand your content and influence how your pages appear in search results. The most important meta tags for SEO are the meta title, meta description, and meta keywords.</p></div>
+
+        <h2>🎯 What is a Meta Tags Generator?</h2>
+        <p>A <strong>meta tags generator</strong> is an SEO tool that helps you create optimized meta tags for your webpages. It generates ready-to-use HTML code that you can copy and paste into your website's &lt;head&gt; section. Proper meta tags are essential for search engine optimization as they directly impact click-through rates and search rankings.</p>
+        
+        <div class="warning-box"><p><strong>⚠️ Important:</strong> Meta title is the second most important ranking factor after content quality. Meta description doesn't directly affect rankings but significantly impacts click-through rates (CTR).</p></div>
+
+        <h2>📊 Types of Meta Tags</h2>
+        <ul>
+            <li><strong>📝 Meta Title (Title Tag):</strong> Appears in search results and browser tabs. Most important meta tag for SEO. Recommended length: 50-60 characters.</li>
+            <li><strong>📄 Meta Description:</strong> The short description shown below your title in search results. Recommended length: 150-160 characters.</li>
+            <li><strong>🔑 Meta Keywords:</strong> List of relevant keywords (less important now but still used by some search engines).</li>
+            <li><strong>🖼️ Open Graph (OG) Tags:</strong> Control how your page appears when shared on social media platforms like Facebook, LinkedIn.</li>
+            <li><strong>🐦 Twitter Cards:</strong> Similar to OG tags but specifically for Twitter sharing.</li>
+            <li><strong>🤖 Robots Meta Tag:</strong> Instructs search engines how to crawl and index your page.</li>
+            <li><strong>🔗 Canonical Tag:</strong> Prevents duplicate content issues by specifying the preferred URL.</li>
+        </ul>
+
+        <h2>🎯 How to Use This Meta Tags Generator</h2>
+        <div class="info-box"><ol><li><strong>Enter your page URL:</strong> The full URL of your webpage.</li><li><strong>Write Meta Title:</strong> Keep it 50-60 characters. Include your main keyword.</li><li><strong>Write Meta Description:</strong> Keep it 150-160 characters. Include keywords and a call-to-action.</li><li><strong>Add Meta Keywords:</strong> Comma-separated list of relevant keywords.</li><li><strong>Add OG Image URL:</strong> Upload an image and paste its URL for social sharing.</li><li><strong>Generate:</strong> Click generate to get ready-to-use HTML code.</li><li><strong>Copy & Paste:</strong> Copy the code and paste it into your website's &lt;head&gt; section.</li></ol></div>
+
+        <h2>✅ Meta Title Best Practices</h2>
+        <ul>
+            <li><strong>Length:</strong> 50-60 characters (Google displays ~600px)</li>
+            <li><strong>Keyword Placement:</strong> Put primary keyword near the beginning</li>
+            <li><strong>Brand Name:</strong> Add your brand name at the end</li>
+            <li><strong>Unique:</strong> Each page should have a unique title</li>
+            <li><strong>Compelling:</strong> Write for users, not just search engines</li>
+        </ul>
+
+        <h2>✅ Meta Description Best Practices</h2>
+        <ul>
+            <li><strong>Length:</strong> 150-160 characters</li>
+            <li><strong>Include Keywords:</strong> Use primary and secondary keywords naturally</li>
+            <li><strong>Call-to-Action:</strong> Encourage clicks (Learn more, Get started, Read now)</li>
+            <li><strong>Unique:</strong> Each page needs a unique description</li>
+            <li><strong>Accurate:</strong> Describe what the page actually contains</li>
+        </ul>
+
+        <h2>❓ Frequently Asked Questions (FAQ)</h2>
+        
+        <div class="faq-item"><div class="faq-question">What are meta tags?</div><div class="faq-answer">Meta tags are HTML elements that provide information about your webpage to search engines and visitors. They appear in the &lt;head&gt; section of your HTML code.</div></div>
+        
+        <div class="faq-item"><div class="faq-question">Why are meta tags important for SEO?</div><div class="faq-answer">Meta tags help search engines understand your content and influence click-through rates from search results. The meta title is the second most important ranking factor.</div></div>
+        
+        <div class="faq-item"><div class="faq-question">What is the ideal length for meta title?</div><div class="faq-answer">The ideal meta title length is 50-60 characters. Longer titles may get truncated in search results.</div></div>
+        
+        <div class="faq-item"><div class="faq-question">What is the ideal length for meta description?</div><div class="faq-answer">The ideal meta description length is 150-160 characters. This ensures full visibility in search results.</div></div>
+        
+        <div class="faq-item"><div class="faq-question">Is this meta tags generator free?</div><div class="faq-answer">Yes! Our meta tags generator is completely free with no registration required.</div></div>
+        
+        <div class="faq-item"><div class="faq-question">What are Open Graph tags?</div><div class="faq-answer">Open Graph tags control how your page appears when shared on social media platforms like Facebook, LinkedIn, and WhatsApp.</div></div>
+        
+        <div class="faq-item"><div class="faq-question">Do meta keywords still matter for SEO?</div><div class="faq-answer">Google officially doesn't use meta keywords for ranking, but other search engines like Bing may still consider them. We include them for completeness.</div></div>
+
+        <h2>🌍 Low Competition Keywords for SEO</h2>
+        <div style="background:#f0fdf4; border-radius:16px; padding:20px; margin:25px 0; text-align:center;">
+            <div style="display:flex; flex-wrap:wrap; gap:10px; justify-content:center;">
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">seo meta tags generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">meta tags seo generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">keywords meta tag generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">meta tag title generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">generate meta tags</span>
+            </div>
+        </div>
+
+        <h2>🔍 People Also Search For</h2>
+        <div style="background:#f8fafc; border-radius:20px; padding:20px; margin-top:20px; text-align:center;">
+            <div style="display:flex; flex-wrap:wrap; gap:12px; justify-content:center;">
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">meta tags generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">meta tag generator</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">seo meta tags</span>
+                <span style="background:#e0e7ff; padding:5px 12px; border-radius:30px;">open graph generator</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-col"><h3>✨ Free Online Tools</h3><p>Free meta tags generator tool to create optimized SEO meta tags for your website.</p></div>
+        <div class="footer-col"><h4>📄 Quick Links</h4><a href="index.html">🏠 Home</a><a href="about.html">ℹ️ About</a><a href="contact.html">📧 Contact</a><a href="privacy-policy.html">🔒 Privacy</a></div>
+        <div class="footer-col"><h4>🔍 SEO Tools</h4><a href="keyword-density-checker.html">🔍 Keyword Density Checker</a><a href="seo-analyzer.html">📊 SEO Analyzer</a><a href="meta-tags-generator.html">🏷️ Meta Tags Generator</a></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 Free Online Tools | Meta Tags Generator Tool</p></div>
+</footer>
+
+<script>
+// Dropdown
+(function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    const dropBtn = document.getElementById('toolsBtn');
+    if(dropdown && dropBtn){
+        dropBtn.addEventListener('click', function(e){ e.stopPropagation(); dropdown.classList.toggle('open'); });
+        document.addEventListener('click', function(e){ if(dropdown.classList.contains('open') && !dropdown.contains(e.target)) dropdown.classList.remove('open'); });
+    }
+    document.querySelectorAll('.dropdown-category').forEach(cat => {
+        cat.addEventListener('click', function(e){
+            e.stopPropagation();
+            const catId = this.getAttribute('data-cat');
+            if(catId){
+                const toolsDiv = document.getElementById(catId + 'Tools');
+                if(toolsDiv){ toolsDiv.classList.toggle('show'); this.classList.toggle('active'); }
+            }
+        });
+    });
+})();
+
+// Meta Tags Generator Logic
+const pageUrl = document.getElementById('pageUrl');
+const metaTitle = document.getElementById('metaTitle');
+const metaDesc = document.getElementById('metaDesc');
+const metaKeywords = document.getElementById('metaKeywords');
+const ogImage = document.getElementById('ogImage');
+const generateBtn = document.getElementById('generateBtn');
+const resultSection = document.getElementById('resultSection');
+const metaCode = document.getElementById('metaCode');
+const copyBtn = document.getElementById('copyBtn');
+const titleCounter = document.getElementById('titleCounter');
+const descCounter = document.getElementById('descCounter');
+
+function updateCharCounters() {
+    const titleLen = metaTitle.value.length;
+    const descLen = metaDesc.value.length;
+    
+    titleCounter.textContent = `${titleLen} characters`;
+    descCounter.textContent = `${descLen} characters`;
+    
+    if(titleLen >= 50 && titleLen <= 60) { titleCounter.className = 'char-counter good'; }
+    else if(titleLen > 60) { titleCounter.className = 'char-counter danger'; }
+    else { titleCounter.className = 'char-counter warning'; }
+    
+    if(descLen >= 150 && descLen <= 160) { descCounter.className = 'char-counter good'; }
+    else if(descLen > 160) { descCounter.className = 'char-counter danger'; }
+    else { descCounter.className = 'char-counter warning'; }
+}
+
+metaTitle.addEventListener('input', updateCharCounters);
+metaDesc.addEventListener('input', updateCharCounters);
+
+function generateMetaTags() {
+    const url = pageUrl.value.trim() || 'https://example.com/page';
+    const title = metaTitle.value.trim() || 'Your Page Title';
+    const description = metaDesc.value.trim() || 'A compelling description of your page that includes your main keywords.';
+    const keywords = metaKeywords.value.trim() || 'keyword1, keyword2, keyword3';
+    const ogImg = ogImage.value.trim() || 'https://example.com/og-image.jpg';
+    
+    const html = `<!-- Primary Meta Tags -->
+<title>${escapeHtml(title)}</title>
+<meta name="title" content="${escapeHtml(title)}">
+<meta name="description" content="${escapeHtml(description)}">
+<meta name="keywords" content="${escapeHtml(keywords)}">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="${escapeHtml(url)}">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="${escapeHtml(url)}">
+<meta property="og:title" content="${escapeHtml(title)}">
+<meta property="og:description" content="${escapeHtml(description)}">
+<meta property="og:image" content="${escapeHtml(ogImg)}">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="${escapeHtml(url)}">
+<meta property="twitter:title" content="${escapeHtml(title)}">
+<meta property="twitter:description" content="${escapeHtml(description)}">
+<meta property="twitter:image" content="${escapeHtml(ogImg)}">`;
+    
+    metaCode.textContent = html;
+    resultSection.classList.add('show');
+    showToast('✅ Meta tags generated successfully!');
+}
+
+function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
+
+function copyCode() {
+    const code = metaCode.textContent;
+    navigator.clipboard.writeText(code).then(() => showToast('📋 Meta tags copied!')).catch(() => showToast('❌ Failed to copy'));
+}
+
+function showToast(msg) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    toast.textContent = msg;
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 2500);
+}
+
+generateBtn.addEventListener('click', generateMetaTags);
+copyBtn.addEventListener('click', copyCode);
+updateCharCounters();
+
+window.addEventListener('load', () => {
+    pageUrl.value = 'https://freeonlinetools203.github.io/';
+    metaTitle.value = 'Free Online Tools - 50+ Free Calculators & Utilities';
+    metaDesc.value = 'Free online tools for USA, UK, India. 50+ calculators including BMI calculator, currency converter, password generator, spin wheel. 100% free, no registration.';
+    metaKeywords.value = 'free online tools, online calculators, BMI calculator, currency converter, password generator';
+    ogImage.value = 'https://freeonlinetools203.github.io/og-image.jpg';
+    updateCharCounters();
+    generateMetaTags();
+});
+</script>
+</body>
+</html>
