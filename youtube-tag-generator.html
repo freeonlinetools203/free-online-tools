@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Free YouTube Tag Generator | AI SEO Video Tags Tool</title>
+  <meta name="description" content="Generate viral, trending and SEO-friendly YouTube tags instantly for videos and Shorts using our free YouTube Tag Generator Tool.">
+  <meta name="keywords" content="YouTube tag generator, SEO tags, viral tags, YouTube Shorts tags, video ranking tags">
+  <meta name="author" content="YouTube Tag Tool">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.yourdomain.com/youtube-tag-generator">
+  <meta property="og:title" content="Free YouTube Tag Generator Tool Online">
+  <meta property="og:description" content="Boost your YouTube video ranking with smart tags for SEO, viral growth, and Shorts success.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://via.placeholder.com/1200x630?text=YouTube+Tag+Generator">
+  <meta property="og:url" content="https://www.yourdomain.com/youtube-tag-generator">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="YouTube Tag Generator - Free SEO Tool">
+  <meta name="twitter:description" content="Generate high-ranking tags for YouTube videos, Shorts, and vlogs. Fast and free.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s ease, color 0.2s, border 0.2s;
+    }
+
+    :root {
+      --bg-start: #f9f9f9;
+      --bg-end: #e9ecef;
+      --card-bg: rgba(255, 255, 255, 0.9);
+      --glass-border: rgba(0, 0, 0, 0.08);
+      --text-primary: #1e1e2a;
+      --text-secondary: #4b5563;
+      --accent: #ff0000;
+      --accent-dark: #cc0000;
+      --accent-grad: linear-gradient(135deg, #ff0000, #cc0000);
+      --chip-bg: #f1f3f5;
+      --chip-hover: #ffe0e0;
+      --shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.12);
+      --ad-bg: #eef2f5;
+    }
+
+    body.dark {
+      --bg-start: #0f0f0f;
+      --bg-end: #1a1a1a;
+      --card-bg: rgba(30, 30, 35, 0.9);
+      --glass-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f0f0f0;
+      --text-secondary: #b0b0b0;
+      --chip-bg: #2a2a2f;
+      --chip-hover: #3a2828;
+      --ad-bg: #25252a;
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--bg-start), var(--bg-end));
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    #particles-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.3;
+    }
+
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .glass-card {
+      backdrop-filter: blur(12px);
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      margin-bottom: 2rem;
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: var(--accent-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .input-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin: 1.8rem 0 1.2rem;
+    }
+    .keyword-input {
+      flex: 1;
+      padding: 1rem 1.5rem;
+      border-radius: 60px;
+      background: var(--card-bg);
+      border: 1px solid var(--glass-border);
+      color: var(--text-primary);
+      font-size: 1rem;
+      outline: none;
+    }
+    .keyword-input:focus {
+      border-color: #ff0000;
+      box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.15);
+    }
+    .action-btn {
+      background: var(--accent-grad);
+      border: none;
+      padding: 0 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .action-btn.outline {
+      background: transparent;
+      border: 1px solid #ff0000;
+      color: #ff0000;
+      background: var(--card-bg);
+    }
+    .action-btn.outline:hover {
+      background: #ff0000;
+      color: white;
+    }
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      background: var(--chip-bg);
+      border-radius: 60px;
+      padding: 0.8rem 1.5rem;
+      margin: 1.2rem 0;
+    }
+    .trending-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin: 1rem 0;
+    }
+    .trending-chip {
+      background: var(--chip-bg);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: 0.1s;
+    }
+    .trending-chip:hover {
+      background: var(--accent);
+      color: white;
+    }
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    .category-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(4px);
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      border: 1px solid var(--glass-border);
+    }
+    .category-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+    }
+    .tag-chip {
+      background: var(--chip-bg);
+      padding: 0.4rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: 0.1s;
+    }
+    .tag-chip:hover {
+      background: var(--accent);
+      color: white;
+      transform: translateY(-2px);
+    }
+    .star-icon {
+      font-size: 0.9rem;
+      cursor: pointer;
+      opacity: 0.7;
+    }
+    .star-icon.active {
+      color: gold;
+      opacity: 1;
+    }
+    .favorites-section, .live-preview {
+      background: var(--card-bg);
+      border-radius: 1.5rem;
+      padding: 1rem;
+      margin: 1.2rem 0;
+      border: 1px solid var(--glass-border);
+    }
+    .ad-placeholder {
+      background: var(--ad-bg);
+      border-radius: 1.2rem;
+      text-align: center;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border: 1px dashed var(--glass-border);
+    }
+    .scroll-top {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--accent);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: 0.3s;
+      z-index: 99;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .scroll-top.show { opacity: 1; }
+    .toast-msg {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #1e1e2f;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      z-index: 1000;
+      font-weight: 500;
+      pointer-events: none;
+    }
+    button:disabled { opacity: 0.6; cursor: wait; }
+    @media (max-width: 760px) {
+      .container { padding: 0; }
+      .glass-card { padding: 1.2rem; }
+    }
+    .faq-item { margin: 1rem 0; }
+    .faq-question { font-weight: 700; cursor: pointer; }
+    .footer { text-align: center; margin-top: 2rem; font-size: 0.85rem; opacity: 0.8; }
+    textarea { resize: vertical; font-family: inherit; }
+  </style>
+</head>
+<body>
+<canvas id="particles-canvas"></canvas>
+<div class="container">
+  <div class="glass-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;">
+      <h1>🎬 YouTube Tag Generator</h1>
+      <button id="themeToggle" class="action-btn outline">🌓 Dark/Light</button>
+    </div>
+    <p style="margin-top: 0.5rem;">AI-powered SEO tags, viral keywords & Shorts tags for YouTube success 📈</p>
+
+    <div class="input-group">
+      <input type="text" id="keywordInput" class="keyword-input" placeholder="e.g., gaming, free fire, cooking recipes, AI tools, islamic videos" value="gaming">
+      <button id="generateBtn" class="action-btn">✨ Generate Tags</button>
+    </div>
+
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+      <button id="copyAllBtn" class="action-btn outline">📋 Copy All Tags</button>
+      <button id="downloadBtn" class="action-btn outline">💾 Download TXT</button>
+      <button id="clearBtn" class="action-btn outline">🗑️ Clear All</button>
+    </div>
+
+    <div class="stats-row">
+      <span>🏷️ Tags count: <strong id="totalCount">0</strong> (YouTube max 500 chars)</span>
+      <span>🔡 Characters: <strong id="charCount">0</strong></span>
+    </div>
+
+    <div><strong>🔥 Trending Searches (click to use)</strong></div>
+    <div id="trendingTopicsContainer" class="trending-chips"></div>
+
+    <div class="ad-placeholder"><!-- AdSense Ad Placeholder --> 📢 Ad Space - Top Banner</div>
+
+    <!-- 6 Tag Categories -->
+    <div class="category-grid" id="tagsGrid">
+      <div class="category-card"><div class="category-title">📈 Trending Tags</div><div id="trendingList" class="tag-list"></div></div>
+      <div class="category-card"><div class="category-title">⚡ Viral Tags</div><div id="viralList" class="tag-list"></div></div>
+      <div class="category-card"><div class="category-title">📱 Shorts Tags</div><div id="shortsList" class="tag-list"></div></div>
+      <div class="category-card"><div class="category-title">🔍 SEO Tags</div><div id="seoList" class="tag-list"></div></div>
+      <div class="category-card"><div class="category-title">🔗 Long-tail Tags</div><div id="longtailList" class="tag-list"></div></div>
+      <div class="category-card"><div class="category-title">⭐ Recommended</div><div id="recommendedList" class="tag-list"></div></div>
+    </div>
+
+    <!-- Favorites Section -->
+    <div class="favorites-section">
+      <div style="display: flex; justify-content: space-between;"><strong>⭐ My Favorite Tags</strong> <span id="clearFavBtn" style="cursor:pointer; font-size:0.8rem;">🗑️ clear all</span></div>
+      <div id="favoritesContainer" class="tag-list" style="margin-top: 12px;"></div>
+    </div>
+
+    <!-- Live Preview: YouTube Upload Style -->
+    <div class="live-preview">
+      <label><strong>✏️ Video Title (preview tags)</strong></label>
+      <input type="text" id="videoTitleInput" class="keyword-input" style="width:100%; margin-top:6px;" placeholder="e.g., How to make money online" value="Epic Gaming Moments">
+      <div id="livePreview" style="margin-top: 12px; background: var(--chip-bg); padding: 12px; border-radius: 20px;"></div>
+      <small>📌 YouTube tags field will look like this (space-separated)</small>
+    </div>
+
+    <!-- YouTube SEO Tips -->
+    <div style="margin: 2rem 0;">
+      <h3>🎯 YouTube SEO Tips</h3>
+      <ul style="padding-left: 1.5rem;">
+        <li>✅ Use 5-10 relevant tags, avoid overstuffing</li>
+        <li>🔥 First 3 tags are most important for ranking</li>
+        <li>📱 Shorts tags: include #Shorts + niche keywords</li>
+        <li>🚀 Use long-tail tags like "how to [topic]" for discovery</li>
+        <li>⚡ Analyze competitor tags with our tool</li>
+      </ul>
+    </div>
+
+    <!-- FAQ Section -->
+    <div>
+      <h3>❓ Frequently Asked Questions</h3>
+      <div class="faq-item"><div class="faq-question">👉 What is a YouTube tag generator?</div><div>It creates optimized tags based on your video topic to help YouTube understand and rank your content.</div></div>
+      <div class="faq-item"><div class="faq-question">👉 Do YouTube tags help ranking?</div><div>Yes, tags help YouTube categorize video; they are part of video SEO strategy.</div></div>
+      <div class="faq-item"><div class="faq-question">👉 Best tags for YouTube Shorts?</div><div>Use #Shorts + niche + trending keywords (e.g., #Shorts #Gaming)</div></div>
+      <div class="faq-item"><div class="faq-question">👉 How many tags should I use?</div><div>Between 5-15 relevant tags; avoid irrelevant tags.</div></div>
+    </div>
+
+    <div class="ad-placeholder"><!-- AdSense Ad Placeholder --> 📢 Ad Space - Bottom Banner</div>
+    <div class="footer">© 2026 YouTube Tag Generator — Optimize your video reach</div>
+  </div>
+</div>
+<div id="scrollTopBtn" class="scroll-top">↑</div>
+<div id="toastMessage" class="toast-msg" style="display: none;"></div>
+
+<script>
+  // DOM elements
+  const keywordInput = document.getElementById('keywordInput');
+  const generateBtn = document.getElementById('generateBtn');
+  const copyAllBtn = document.getElementById('copyAllBtn');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const clearBtn = document.getElementById('clearBtn');
+  const themeToggle = document.getElementById('themeToggle');
+  const totalCountSpan = document.getElementById('totalCount');
+  const charCountSpan = document.getElementById('charCount');
+  const videoTitleInput = document.getElementById('videoTitleInput');
+  const livePreviewDiv = document.getElementById('livePreview');
+  const trendingContainer = document.getElementById('trendingTopicsContainer');
+  const favoritesContainer = document.getElementById('favoritesContainer');
+  const clearFavBtn = document.getElementById('clearFavBtn');
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+  // category containers
+  const trendingList = document.getElementById('trendingList');
+  const viralList = document.getElementById('viralList');
+  const shortsList = document.getElementById('shortsList');
+  const seoList = document.getElementById('seoList');
+  const longtailList = document.getElementById('longtailList');
+  const recommendedList = document.getElementById('recommendedList');
+
+  let currentAllTags = [];
+  let currentCategories = { trending:[], viral:[], shorts:[], seo:[], longtail:[], recommended:[] };
+  let favorites = JSON.parse(localStorage.getItem('yt_favorites') || '[]');
+  let recentSearches = JSON.parse(localStorage.getItem('yt_recent') || '[]');
+
+  function showToast(msg, isErr = false) {
+    const toast = document.getElementById('toastMessage');
+    toast.textContent = msg;
+    toast.style.display = 'block';
+    toast.style.background = isErr ? '#dc2626' : '#1e1e2f';
+    setTimeout(() => toast.style.display = 'none', 2000);
+  }
+
+  function saveFavorites() {
+    localStorage.setItem('yt_favorites', JSON.stringify(favorites));
+    renderFavorites();
+  }
+
+  function toggleFavorite(tag) {
+    if (favorites.includes(tag)) {
+      favorites = favorites.filter(f => f !== tag);
+      showToast(`Removed ${tag} from favorites`);
+    } else {
+      favorites.push(tag);
+      showToast(`⭐ Saved ${tag} to favorites`);
+    }
+    saveFavorites();
+    renderAllCategories(currentCategories);
+  }
+
+  function isFavorite(tag) { return favorites.includes(tag); }
+
+  // 🧠 Smart YouTube tag generator
+  function generateYTTags(keyword) {
+    const kw = keyword.trim().toLowerCase().replace(/\s+/g, '');
+    const spaced = keyword.trim();
+    const titleCase = kw.charAt(0).toUpperCase() + kw.slice(1);
+    const words = spaced.split(/\s+/);
+    const joined = words.join('');
+    const currentYear = new Date().getFullYear();
+
+    // trending tags (popular structures)
+    let trending = [`${kw}`, `${kw} video`, `${kw} 2026`, `trending ${kw}`, `${kw} viral`, `${kw} gameplay`, `${kw} review`];
+    let viral = [`viral ${kw}`, `${kw} explosion`, `must watch ${kw}`, `${kw} gone viral`, `crazy ${kw}`, `epic ${kw}`];
+    let shorts = [`#Shorts`, `#${kw}Shorts`, `${kw} shorts video`, `shorts ${kw}`, `youtube shorts ${kw}`, `#ShortFeed`];
+    let seo = [`best ${kw}`, `how to ${kw}`, `${kw} tutorial`, `${kw} tips`, `${kw} for beginners`, `${kw} guide ${currentYear}`, `learn ${kw} fast`];
+    let longtail = [`how to ${kw} step by step`, `${kw} for beginners 2026`, `complete ${kw} tutorial`, `everything about ${kw}`, `${kw} secrets revealed`];
+    let recommended = [`${kw} official`, `${kw} masterclass`, `top ${kw}`, `${kw} strategies`, `${kw} hacks`, `ultimate ${kw} guide`];
+
+    if (words.length > 1) {
+      trending.push(`${joined}`, `${joined} moments`);
+      viral.push(`${joined} wave`);
+      shorts.push(`#${joined}Shorts`);
+      seo.push(`${joined} full guide`);
+      longtail.push(`how to ${spaced} easily`);
+    }
+
+    const uniq = (arr) => [...new Map(arr.map(v => [v.toLowerCase(), v])).values()].slice(0, 8);
+    return {
+      trending: uniq(trending),
+      viral: uniq(viral),
+      shorts: uniq(shorts),
+      seo: uniq(seo),
+      longtail: uniq(longtail),
+      recommended: uniq(recommended)
+    };
+  }
+
+  function renderChips(container, tagsArray) {
+    container.innerHTML = '';
+    tagsArray.forEach(tag => {
+      const chip = document.createElement('div');
+      chip.className = 'tag-chip';
+      const starSpan = document.createElement('span');
+      starSpan.className = `star-icon ${isFavorite(tag) ? 'active' : ''}`;
+      starSpan.innerHTML = isFavorite(tag) ? '★' : '☆';
+      starSpan.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleFavorite(tag);
+        renderAllCategories(currentCategories);
+      });
+      const textSpan = document.createElement('span');
+      textSpan.innerText = tag;
+      textSpan.style.cursor = 'pointer';
+      textSpan.addEventListener('click', () => {
+        navigator.clipboard.writeText(tag);
+        showToast(`📋 Copied: ${tag}`);
+      });
+      chip.appendChild(starSpan);
+      chip.appendChild(textSpan);
+      container.appendChild(chip);
+    });
+    if (!tagsArray.length) container.innerHTML = '<span style="opacity:0.5;">✨ Generate tags</span>';
+  }
+
+  function renderAllCategories(categories) {
+    renderChips(trendingList, categories.trending);
+    renderChips(viralList, categories.viral);
+    renderChips(shortsList, categories.shorts);
+    renderChips(seoList, categories.seo);
+    renderChips(longtailList, categories.longtail);
+    renderChips(recommendedList, categories.recommended);
+    const all = [...categories.trending, ...categories.viral, ...categories.shorts, ...categories.seo, ...categories.longtail, ...categories.recommended];
+    currentAllTags = [...new Map(all.map(t => [t.toLowerCase(), t])).values()];
+    totalCountSpan.innerText = currentAllTags.length;
+    const fullStr = currentAllTags.join(' ');
+    charCountSpan.innerText = fullStr.length;
+    updateLivePreview();
+  }
+
+  function updateLivePreview() {
+    const title = videoTitleInput.value.trim();
+    const tagsStr = currentAllTags.join(' ');
+    const previewText = title ? `${title}\n\n📌 Tags: ${tagsStr}` : `📌 Tags: ${tagsStr}`;
+    livePreviewDiv.innerText = previewText || '✨ Tags will appear here';
+  }
+
+  async function generateTags() {
+    const kw = keywordInput.value.trim();
+    if (!kw) { showToast('Enter a video topic!', true); return; }
+    generateBtn.disabled = true;
+    generateBtn.innerHTML = '⏳ Generating...';
+    await new Promise(r => setTimeout(r, 500));
+    const categories = generateYTTags(kw);
+    currentCategories = categories;
+    renderAllCategories(categories);
+    // save recent search
+    if (kw && !recentSearches.includes(kw)) {
+      recentSearches.unshift(kw);
+      if (recentSearches.length > 6) recentSearches.pop();
+      localStorage.setItem('yt_recent', JSON.stringify(recentSearches));
+      renderTrendingTopics();
+    }
+    generateBtn.disabled = false;
+    generateBtn.innerHTML = '✨ Generate Tags';
+    showToast(`✅ Generated ${currentAllTags.length} tags for "${kw}"`);
+  }
+
+  function copyAllTags() {
+    if (!currentAllTags.length) { showToast('No tags to copy', true); return; }
+    navigator.clipboard.writeText(currentAllTags.join(' '));
+    showToast(`📋 Copied ${currentAllTags.length} tags`);
+  }
+
+  function downloadTXT() {
+    if (!currentAllTags.length) { showToast('Generate tags first', true); return; }
+    let content = `YOUTUBE TAGS — ${keywordInput.value.trim()}\nGenerated: ${new Date().toLocaleString()}\n\n`;
+    content += `TRENDING: ${currentCategories.trending.join(' ')}\n\nVIRAL: ${currentCategories.viral.join(' ')}\n\nSHORTS: ${currentCategories.shorts.join(' ')}\n\nSEO: ${currentCategories.seo.join(' ')}\n\nLONG-TAIL: ${currentCategories.longtail.join(' ')}\n\nRECOMMENDED: ${currentCategories.recommended.join(' ')}\n\nAll tags: ${currentAllTags.join(' ')}`;
+    const blob = new Blob([content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    a.href = url;
+    a.download = `youtube_tags_${keywordInput.value.trim().replace(/\s/g, '_')}.txt`;
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    showToast('📁 Downloaded as .txt');
+  }
+
+  function clearAll() {
+    keywordInput.value = '';
+    currentCategories = { trending:[], viral:[], shorts:[], seo:[], longtail:[], recommended:[] };
+    renderAllCategories(currentCategories);
+    showToast('Cleared');
+  }
+
+  function renderFavorites() {
+    favoritesContainer.innerHTML = '';
+    favorites.forEach(tag => {
+      const chip = document.createElement('div');
+      chip.className = 'tag-chip';
+      chip.innerHTML = `<span>${tag}</span> <span style="margin-left:6px; font-size:0.7rem;">🗑️</span>`;
+      chip.addEventListener('click', (e) => {
+        if (e.target.innerText === '🗑️') {
+          e.stopPropagation();
+          favorites = favorites.filter(f => f !== tag);
+          saveFavorites();
+          renderAllCategories(currentCategories);
+        } else {
+          navigator.clipboard.writeText(tag);
+          showToast(`Copied ${tag}`);
+        }
+      });
+      favoritesContainer.appendChild(chip);
+    });
+    if (!favorites.length) favoritesContainer.innerHTML = '<span>⭐ Click star on any tag to save here</span>';
+  }
+
+  function renderTrendingTopics() {
+    const topics = ['gaming', 'free fire', 'minecraft', 'cooking recipes', 'tech reviews', 'motivation', 'AI tools', 'islamic videos', 'vlog', 'education'];
+    trendingContainer.innerHTML = '';
+    topics.forEach(topic => {
+      const chip = document.createElement('div');
+      chip.className = 'trending-chip';
+      chip.innerText = topic;
+      chip.addEventListener('click', () => {
+        keywordInput.value = topic;
+        generateTags();
+      });
+      trendingContainer.appendChild(chip);
+    });
+    // show recent searches
+    if (recentSearches.length) {
+      const recDiv = document.createElement('div');
+      recDiv.style.marginTop = '0.6rem';
+      recDiv.innerHTML = '<small>🕒 Recent: </small>';
+      recentSearches.forEach(r => {
+        const span = document.createElement('span');
+        span.style.background = 'var(--chip-bg)'; span.style.borderRadius='30px'; span.style.padding='4px 12px'; span.style.margin='0 5px'; span.style.cursor='pointer';
+        span.innerText = r;
+        span.addEventListener('click', () => { keywordInput.value = r; generateTags(); });
+        recDiv.appendChild(span);
+      });
+      trendingContainer.appendChild(recDiv);
+    }
+  }
+
+  function initTheme() {
+    const saved = localStorage.getItem('ytTheme');
+    if (saved === 'dark') document.body.classList.add('dark');
+    else if (saved === 'light') document.body.classList.remove('dark');
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.body.classList.add('dark');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      const isDark = document.body.classList.contains('dark');
+      localStorage.setItem('ytTheme', isDark ? 'dark' : 'light');
+    });
+  }
+
+  // particles background
+  function initParticles() {
+    const canvas = document.getElementById('particles-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height, particles = [];
+    function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width=width; canvas.height=height; }
+    function createParticles() { particles = []; let num = Math.min(60, Math.floor(width*height/15000)); for(let i=0;i<num;i++) particles.push({x:Math.random()*width, y:Math.random()*height, r:Math.random()*2+1, alpha:Math.random()*0.4, vx:(Math.random()-0.5)*0.3, vy:(Math.random()-0.5)*0.2}); }
+    function draw() { if(!ctx) return; ctx.clearRect(0,0,width,height); particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(255,0,0,${p.alpha*0.3})`; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<0) p.x=width; if(p.x>width) p.x=0; if(p.y<0) p.y=height; if(p.y>height) p.y=0; }); requestAnimationFrame(draw); }
+    window.addEventListener('resize', ()=>{ resize(); createParticles(); });
+    resize(); createParticles(); draw();
+  }
+
+  function initScroll() {
+    window.addEventListener('scroll', () => scrollTopBtn.classList.toggle('show', window.scrollY>400));
+    scrollTopBtn.addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+  }
+
+  videoTitleInput.addEventListener('input', updateLivePreview);
+  generateBtn.addEventListener('click', generateTags);
+  copyAllBtn.addEventListener('click', copyAllTags);
+  downloadBtn.addEventListener('click', downloadTXT);
+  clearBtn.addEventListener('click', clearAll);
+  clearFavBtn.addEventListener('click', () => { favorites = []; saveFavorites(); renderAllCategories(currentCategories); showToast('Favorites cleared'); });
+  keywordInput.addEventListener('keypress', (e) => { if(e.key === 'Enter') generateTags(); });
+
+  initTheme();
+  renderTrendingTopics();
+  renderFavorites();
+  initParticles();
+  initScroll();
+  generateTags(); // default
+</script>
+</body>
+</html>
+```
