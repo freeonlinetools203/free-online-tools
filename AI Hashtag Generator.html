@@ -20,8 +20,6 @@
   <meta name="twitter:title" content="AI Hashtag Generator - Free SEO & Viral Tags">
   <meta name="twitter:description" content="Instant platform-specific hashtags, trending tags and copy-ready results.">
   <meta name="twitter:image" content="https://via.placeholder.com/1200x600?text=AI+Hashtags">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <style>
     * {
@@ -71,7 +69,6 @@
       overflow-x: hidden;
     }
 
-    /* canvas particles */
     #particles-canvas {
       position: fixed;
       top: 0;
@@ -90,7 +87,6 @@
       z-index: 2;
     }
 
-    /* glass card */
     .glass-card {
       backdrop-filter: blur(12px);
       background: var(--card-bg);
@@ -134,10 +130,6 @@
       border-color: var(--accent);
       color: white;
       box-shadow: 0 4px 12px rgba(139, 92, 246, 0.4);
-    }
-
-    input, .action-btn {
-      font-size: 1rem;
     }
 
     .keyword-input {
@@ -344,10 +336,8 @@
       </div>
       <p style="margin-top: 0.5rem; color: var(--text-secondary);">Trending · Viral · SEO · Niche smart tags for any platform</p>
 
-      <!-- Keyword Input -->
       <input type="text" id="keywordInput" class="keyword-input" placeholder="e.g., gaming, travel, cooking, tech reviews, islamic quotes" value="gaming">
       
-      <!-- Platform Selector Buttons -->
       <div class="platform-buttons" id="platformButtons">
         <button data-platform="instagram" class="platform-btn active">📸 Instagram</button>
         <button data-platform="youtube" class="platform-btn">🎬 YouTube</button>
@@ -356,7 +346,6 @@
         <button data-platform="twitter" class="platform-btn">🐦 X (Twitter)</button>
       </div>
 
-      <!-- Action Buttons -->
       <div class="button-group">
         <button id="generateBtn" class="action-btn">✨ Generate Hashtags</button>
         <button id="copyAllBtn" class="action-btn outline">📋 Copy All</button>
@@ -364,22 +353,18 @@
         <button id="clearBtn" class="action-btn outline">🗑️ Clear</button>
       </div>
 
-      <!-- Stats Row -->
       <div class="stats-row">
         <span>🏷️ Total Hashtags: <strong id="totalCount">0</strong></span>
         <span>🔤 Characters: <strong id="charCount">0</strong></span>
       </div>
 
-      <!-- Trending Sample Section (Dynamically updated) -->
       <div class="trending-sample" id="trendingSampleSection">
         <span style="font-weight: 600;">🔥 Trending Now (Sample)</span>
         <div id="sampleTrendingList" style="display: flex; flex-wrap: wrap; gap: 8px;"></div>
       </div>
 
-      <!-- Ad Placeholder Top -->
       <div class="ad-placeholder"><!-- AdSense Ad Placeholder --> 📢 Ad Space - Top Banner</div>
 
-      <!-- Hashtags Categories Grid -->
       <div class="category-grid" id="hashtagsGrid">
         <div class="category-card"><div class="category-title">📈 Trending</div><div id="trendingList" class="hashtag-list">✨ Generate tags</div></div>
         <div class="category-card"><div class="category-title">⚡ Viral</div><div id="viralList" class="hashtag-list">✨ Generate tags</div></div>
@@ -387,16 +372,13 @@
         <div class="category-card"><div class="category-title">🎯 Niche</div><div id="nicheList" class="hashtag-list">✨ Generate tags</div></div>
       </div>
 
-      <!-- Middle Ad -->
       <div class="ad-placeholder"><!-- AdSense Ad Placeholder --> 📢 Ad Space - Rectangle</div>
 
-      <!-- Recent Searches -->
       <div style="margin-top: 1.2rem;">
         <span>🕒 Recent:</span>
         <div id="recentContainer" class="recent-searches"></div>
       </div>
 
-      <!-- Bottom Ad -->
       <div class="ad-placeholder"><!-- AdSense Ad Placeholder --> 📢 Ad Space - Bottom Banner</div>
     </div>
   </div>
@@ -404,7 +386,7 @@
   <div id="toastMessage" class="toast-msg" style="display: none;"></div>
 
   <script>
-    // ---------- DOM Elements ----------
+    // DOM Elements
     const keywordInput = document.getElementById('keywordInput');
     const generateBtn = document.getElementById('generateBtn');
     const copyAllBtn = document.getElementById('copyAllBtn');
@@ -417,7 +399,6 @@
     const recentContainer = document.getElementById('recentContainer');
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     
-    // Category containers
     const trendingContainer = document.getElementById('trendingList');
     const viralContainer = document.getElementById('viralList');
     const seoContainer = document.getElementById('seoList');
@@ -425,9 +406,8 @@
 
     let currentPlatform = 'instagram';
     let isLoading = false;
-    let currentAllHashtags = []; // store all hashtag strings for copy/download
+    let currentAllHashtags = [];
 
-    // ---------- Helper Functions ----------
     function showToast(msg, isError = false) {
       const toast = document.getElementById('toastMessage');
       toast.textContent = msg;
@@ -436,15 +416,12 @@
       setTimeout(() => { toast.style.display = 'none'; }, 2000);
     }
 
-    // Smart Hashtag Generator (AI style) based on keyword & platform
     function generateHashtags(keyword, platform) {
       const kw = keyword.trim().toLowerCase().replace(/\s+/g, '');
       const kwSpaced = keyword.trim().toLowerCase();
       const words = kwSpaced.split(/\s+/);
       const base = kw || 'trend';
-      const capBase = keyword.trim().replace(/\s/g, '');
       
-      // platform specific prefixes
       let platTags = [];
       if (platform === 'instagram') platTags = ['#explorepage', '#instagood', '#instagram', '#reelsinstagram'];
       else if (platform === 'youtube') platTags = ['#youtube', '#subscribe', '#youtuber', '#viralvideo'];
@@ -452,16 +429,11 @@
       else if (platform === 'facebook') platTags = ['#facebookreels', '#viralposts', '#trendingnow'];
       else if (platform === 'twitter') platTags = ['#trendingtopic', '#viral', '#X', '#explore'];
 
-      // trending (mix of generic + platform + keyword)
       const trending = [`#${base}`, `#${base}trends`, `#trending${base.charAt(0).toUpperCase() + base.slice(1)}`, `#${base}community`, `#${base}vibes`, ...platTags.slice(0,2)];
-      // viral tags
       const viral = [`#viral${base.charAt(0).toUpperCase() + base.slice(1)}`, `#${base}mania`, `#fyp${base}`, `#${base}explosion`, '#viralreels', '#trendingaudio', ...platTags.slice(1,3)];
-      // SEO focused long-tail
       const seo = [`#best${base}`, `#${base}${new Date().getFullYear()}`, `#howto${base}`, `#${base}strategy`, `#${base}tips`, `#${base}guide`, `#${base}seo`, `#learn${base}`];
-      // Niche specific
       const niche = [`#${base}life`, `#${base}addict`, `#${base}daily`, `#${base}lover`, `#${base}world`, `#${base}style`, `#${base}goals`, `#${base}inspo`];
       
-      // additional customizations: if multiple words combine long
       if (words.length > 1) {
         const joined = words.join('');
         trending.push(`#${joined}`, `#${joined}central`);
@@ -479,7 +451,6 @@
       };
     }
 
-    // Generate trending sample (dynamic based on keyword & platform)
     function generateTrendingSample(keyword, platform) {
       const kw = keyword.trim() || 'social';
       const sampleList = [`#${kw}now`, `#trending${kw}`, `#${kw}trends`, `#viral${kw}`, `#${kw}community`, `#${kw}shorts`];
@@ -488,26 +459,6 @@
       return sampleList.slice(0, 6);
     }
 
-    // Render all hashtag categories
-    function renderAllCategories(keyword, platform) {
-      const { trending, viral, seo, niche } = generateHashtags(keyword, platform);
-      renderChips(trendingContainer, trending);
-      renderChips(viralContainer, viral);
-      renderChips(seoContainer, seo);
-      renderChips(nicheContainer, niche);
-      
-      const allTags = [...trending, ...viral, ...seo, ...niche];
-      currentAllHashtags = allTags;
-      const total = allTags.length;
-      const fullString = allTags.join(' ');
-      totalCountSpan.innerText = total;
-      charCountSpan.innerText = fullString.length;
-      
-      // Update trending sample section
-      const sampleTrends = generateTrendingSample(keyword, platform);
-      renderChips(sampleTrendingDiv, sampleTrends);
-    }
-    
     function renderChips(container, tagsArray) {
       container.innerHTML = '';
       tagsArray.forEach(tag => {
@@ -516,7 +467,7 @@
         chip.innerText = tag;
         chip.addEventListener('click', (e) => {
           e.stopPropagation();
-          copyToClipboard(tag);
+          navigator.clipboard.writeText(tag);
           showToast(`Copied: ${tag}`);
         });
         container.appendChild(chip);
@@ -524,40 +475,66 @@
       if(tagsArray.length === 0) container.innerHTML = '<span style="opacity:0.6;">No tags</span>';
     }
 
-    async function copyToClipboard(text) {
-      try {
-        await navigator.clipboard.writeText(text);
-      } catch(e) { console.warn(e); }
+    function renderAllCategories(keyword, platform) {
+      const { trending, viral, seo, niche } = generateHashtags(keyword, platform);
+      renderChips(trendingContainer, trending);
+      renderChips(viralContainer, viral);
+      renderChips(seoContainer, seo);
+      renderChips(nicheContainer, niche);
+      
+      currentAllHashtags = [...trending, ...viral, ...seo, ...niche];
+      const total = currentAllHashtags.length;
+      const fullString = currentAllHashtags.join(' ');
+      totalCountSpan.innerText = total;
+      charCountSpan.innerText = fullString.length;
+      
+      const sampleTrends = generateTrendingSample(keyword, platform);
+      renderChips(sampleTrendingDiv, sampleTrends);
+    }
+
+    // FIXED DOWNLOAD FUNCTION
+    function downloadTXT() {
+      if (!currentAllHashtags.length) {
+        showToast('No hashtags to download. Generate some first!', true);
+        return;
+      }
+      const keyword = keywordInput.value.trim() || 'hashtags';
+      // Collect current tags from each category
+      const getTagsFromContainer = (container) => {
+        return Array.from(container.querySelectorAll('.hashtag-chip')).map(chip => chip.innerText);
+      };
+      const trendingTags = getTagsFromContainer(trendingContainer);
+      const viralTags = getTagsFromContainer(viralContainer);
+      const seoTags = getTagsFromContainer(seoContainer);
+      const nicheTags = getTagsFromContainer(nicheContainer);
+      
+      let content = `# AI Hashtags for "${keyword}"\n`;
+      content += `Generated: ${new Date().toLocaleString()}\n`;
+      content += `Platform: ${currentPlatform.toUpperCase()}\n`;
+      content += `───────────────────────────────\n\n`;
+      if(trendingTags.length) content += `📈 TRENDING (${trendingTags.length}):\n${trendingTags.join(' ')}\n\n`;
+      if(viralTags.length) content += `⚡ VIRAL (${viralTags.length}):\n${viralTags.join(' ')}\n\n`;
+      if(seoTags.length) content += `🔍 SEO (${seoTags.length}):\n${seoTags.join(' ')}\n\n`;
+      if(nicheTags.length) content += `🎯 NICHE (${nicheTags.length}):\n${nicheTags.join(' ')}\n\n`;
+      content += `───────────────────────────────\nTotal hashtags: ${currentAllHashtags.length}\n`;
+      
+      const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `hashtags_${keyword.replace(/[^a-z0-9_]/gi, '_')}.txt`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('📁 Hashtags downloaded successfully!');
     }
 
     function copyAllHashtags() {
       if (!currentAllHashtags.length) { showToast('No hashtags to copy', true); return; }
       const allText = currentAllHashtags.join(' ');
-      copyToClipboard(allText);
+      navigator.clipboard.writeText(allText);
       showToast(`✅ Copied ${currentAllHashtags.length} hashtags!`);
-    }
-
-    function downloadTXT() {
-      if (!currentAllHashtags.length) { showToast('Nothing to download', true); return; }
-      const keyword = keywordInput.value.trim() || 'hashtags';
-      let content = `# AI Hashtags for "${keyword}"\n\n`;
-      const categories = ['Trending', 'Viral', 'SEO', 'Niche'];
-      const containers = [trendingContainer, viralContainer, seoContainer, nicheContainer];
-      containers.forEach((cont, idx) => {
-        const chips = cont.querySelectorAll('.hashtag-chip');
-        const tags = Array.from(chips).map(chip => chip.innerText);
-        if (tags.length) content += `📌 ${categories[idx]}:\n${tags.join(' ')}\n\n`;
-      });
-      const blob = new Blob([content], { type: 'text/plain' });
-      const a = document.createElement('a');
-      const url = URL.createObjectURL(blob);
-      a.href = url;
-      a.download = `hashtags_${keyword.replace(/\s/g, '_')}.txt`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast('📁 Downloaded as TXT file');
     }
 
     function clearAll() {
@@ -573,7 +550,6 @@
       showToast('Cleared!');
     }
 
-    // show loading animation & simulate AI generation
     async function generateWithLoading() {
       const keyword = keywordInput.value.trim();
       if (!keyword) {
@@ -585,19 +561,16 @@
       generateBtn.disabled = true;
       generateBtn.innerHTML = '⏳ Generating ...';
       
-      // Simulate AI processing delay
       await new Promise(resolve => setTimeout(resolve, 500));
-      
       renderAllCategories(keyword, currentPlatform);
-      // Save to recent searches
       saveRecentSearch(keyword);
+      
       generateBtn.disabled = false;
       generateBtn.innerHTML = '✨ Generate Hashtags';
       isLoading = false;
       showToast(`✅ Generated smart hashtags for "${keyword}"`);
     }
-    
-    // LocalStorage Recent Searches
+
     function saveRecentSearch(keyword) {
       if(!keyword) return;
       let recents = JSON.parse(localStorage.getItem('hashtagRecents') || '[]');
@@ -624,7 +597,6 @@
       if(recents.length === 0) recentContainer.innerHTML = '<span style="opacity:0.6;">No recent searches</span>';
     }
     
-    // Platform selector
     function initPlatformSelector() {
       const btns = document.querySelectorAll('.platform-btn');
       btns.forEach(btn => {
@@ -637,7 +609,6 @@
       });
     }
     
-    // dark/light mode
     function initTheme() {
       const saved = localStorage.getItem('hashtagTheme');
       if (saved === 'light') document.body.classList.add('light');
@@ -651,7 +622,6 @@
       });
     }
     
-    // particles background (simple performance friendly)
     function initParticles() {
       const canvas = document.getElementById('particles-canvas');
       const ctx = canvas.getContext('2d');
@@ -705,7 +675,6 @@
       draw();
     }
     
-    // Scroll to top button
     function initScrollTop() {
       window.addEventListener('scroll', () => {
         if(window.scrollY > 400) scrollTopBtn.classList.add('show');
@@ -716,33 +685,30 @@
       });
     }
     
-    // Keyboard shortcuts: Enter on keyword
     function initKeyboard() {
       keywordInput.addEventListener('keypress', (e) => {
         if(e.key === 'Enter') generateWithLoading();
       });
     }
     
-    // initial load
-    window.addEventListener('DOMContentLoaded', () => {
-      initTheme();
-      initPlatformSelector();
-      renderRecentList();
-      initParticles();
-      initScrollTop();
-      initKeyboard();
-      
-      generateBtn.addEventListener('click', generateWithLoading);
-      copyAllBtn.addEventListener('click', copyAllHashtags);
-      downloadBtn.addEventListener('click', downloadTXT);
-      clearBtn.addEventListener('click', clearAll);
-      
-      // initial generation on load with default gaming & instagram
-      setTimeout(() => {
-        if(keywordInput.value.trim()) generateWithLoading();
-        else renderAllCategories('gaming', currentPlatform);
-      }, 200);
-    });
+    // Event Listeners
+    generateBtn.addEventListener('click', generateWithLoading);
+    copyAllBtn.addEventListener('click', copyAllHashtags);
+    downloadBtn.addEventListener('click', downloadTXT);
+    clearBtn.addEventListener('click', clearAll);
+    
+    // Initialization
+    initTheme();
+    initPlatformSelector();
+    renderRecentList();
+    initParticles();
+    initScrollTop();
+    initKeyboard();
+    
+    setTimeout(() => {
+      if(keywordInput.value.trim()) generateWithLoading();
+      else renderAllCategories('gaming', currentPlatform);
+    }, 200);
   </script>
 </body>
 </html>
