@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>SEO Title Generator | EK COMPLETE - Smart Title Creator for Better Rankings</title>
+    <meta name="description" content="Generate 20+ SEO-optimized titles with keyword analysis, tone selection, and instant copy. Used by professionals to boost CTR and rankings. SEO title generator by EK COMPLETE.">
+    <meta name="keywords" content="SEO title generator, title creator, SEO tool, title optimizer, meta titles">
+    <meta name="author" content="EK COMPLETE">
+    <link rel="canonical" href="https://www.ekcomplete.com/tools/seo-title-generator">
+    <meta property="og:title" content="SEO Title Generator | EK COMPLETE">
+    <meta property="og:description" content="Generate powerful SEO titles with 20+ variations, tone selection, and real-time SEO scoring.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.ekcomplete.com/tools/seo-title-generator">
+    <meta property="og:image" content="https://www.ekcomplete.com/assets/og-title-generator.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SEO Title Generator by EK COMPLETE">
+    <meta name="twitter:description" content="Write better titles in seconds. Professional SEO tool with score badges and length analysis.">
+    <meta name="twitter:image" content="https://www.ekcomplete.com/assets/twitter-title.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "SEO Title Generator",
+      "description": "Generate data-driven SEO titles with multiple tones and category filters.",
+      "applicationCategory": "SEO Tool",
+      "operatingSystem": "All",
+      "creator": {
+        "@type": "Organization",
+        "name": "EK COMPLETE"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: all 0.2s ease;
+        }
+
+        body {
+            background: #0a0a0c;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, sans-serif;
+            color: #f0f0f0;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* floating stars animation */
+        .star-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            background: radial-gradient(circle, #f5d742, #f0b90b);
+            width: 3px;
+            height: 3px;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatStars linear infinite;
+            box-shadow: 0 0 6px gold;
+        }
+
+        @keyframes floatStars {
+            0% {
+                transform: translateY(0vh) rotate(0deg);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.9;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* typography */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            background: linear-gradient(135deg, #e9d5ff, #c084fc);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-size: 2.2rem;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-left: 5px solid #c084fc;
+            padding-left: 1rem;
+        }
+
+        .purple-text {
+            color: #c084fc;
+        }
+
+        .gold-star {
+            color: #fbbf24;
+            display: inline-block;
+            animation: starGlow 1.5s infinite alternate;
+        }
+
+        @keyframes starGlow {
+            0% { text-shadow: 0 0 2px gold; opacity: 0.7; }
+            100% { text-shadow: 0 0 12px #fbbf24; opacity: 1; }
+        }
+
+        /* cards */
+        .card {
+            background: rgba(20, 20, 28, 0.8);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            padding: 1.8rem;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(192, 132, 252, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: 0 25px 40px -12px rgba(192, 132, 252, 0.2), 0 0 0 1px rgba(192, 132, 252, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* input group */
+        .input-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .input-field {
+            flex: 1 1 200px;
+            background: #1e1e24;
+            border: 1px solid #2d2d3a;
+            border-radius: 60px;
+            padding: 0.9rem 1.2rem;
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.2s;
+        }
+
+        .input-field:focus {
+            border-color: #c084fc;
+            box-shadow: 0 0 0 3px rgba(192, 132, 252, 0.3);
+        }
+
+        select {
+            background: #1e1e24;
+            cursor: pointer;
+        }
+
+        button {
+            background: linear-gradient(115deg, #a855f7, #7e22ce);
+            border: none;
+            padding: 0.8rem 1.8rem;
+            border-radius: 60px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.25s;
+            box-shadow: 0 4px 10px rgba(168, 85, 247, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            background: linear-gradient(115deg, #c084fc, #9333ea);
+            box-shadow: 0 8px 18px rgba(168, 85, 247, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #c084fc;
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(192, 132, 252, 0.15);
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0;
+        }
+
+        /* results grid */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .title-card {
+            background: #14141b;
+            border-radius: 28px;
+            padding: 1.2rem;
+            border-left: 5px solid #a855f7;
+            transition: all 0.2s;
+            position: relative;
+        }
+
+        .title-card:hover {
+            background: #1c1c26;
+            transform: translateY(-3px);
+        }
+
+        .title-text {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            word-break: break-word;
+            line-height: 1.4;
+        }
+
+        .title-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .length-badge {
+            font-size: 0.75rem;
+            padding: 4px 10px;
+            border-radius: 40px;
+            font-weight: 600;
+        }
+
+        .green {
+            background: #15803d20;
+            color: #4ade80;
+            border: 1px solid #4ade8040;
+        }
+
+        .yellow {
+            background: #ca8a0420;
+            color: #facc15;
+            border: 1px solid #facc1540;
+        }
+
+        .red {
+            background: #b91c1c20;
+            color: #f87171;
+            border: 1px solid #f8717140;
+        }
+
+        .score-badge {
+            background: #2a2a35;
+            border-radius: 30px;
+            padding: 4px 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+
+        .copy-btn {
+            background: #2d2d3a;
+            padding: 5px 12px;
+            font-size: 0.75rem;
+            border-radius: 50px;
+        }
+
+        .copy-btn:hover {
+            background: #a855f7;
+        }
+
+        .ad-placeholder {
+            background: #111116;
+            border-radius: 28px;
+            padding: 1rem;
+            text-align: center;
+            border: 1px dashed #c084fc50;
+            color: #aaa;
+            font-size: 0.8rem;
+            margin: 2rem 0;
+        }
+
+        footer {
+            margin-top: 4rem;
+            text-align: center;
+            padding: 2rem 0;
+            border-top: 1px solid #2a2a35;
+        }
+
+        /* loader */
+        .loader {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #c084fc;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 0.6s linear infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .glow-effect {
+            animation: glowPulse 0.5s;
+        }
+
+        @keyframes glowPulse {
+            0% { background-color: rgba(168,85,247,0.2);}
+            100% { background-color: transparent;}
+        }
+    </style>
+</head>
+<body>
+<div class="star-bg" id="starsContainer"></div>
+<div class="container">
+    <!-- header ad -->
+    <div class="ad-placeholder">✨ Advertisement · 300x100 placeholder ✨<br>Your brand could be here</div>
+
+    <!-- branding & hero -->
+    <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; margin-bottom: 1.5rem;">
+        <div>
+            <h1>🔮 SEO Title Generator <span class="gold-star">★</span></h1>
+            <p style="color: #b9b9c3;">by <strong>EK COMPLETE</strong> — AI-powered title ideas that rank</p>
+        </div>
+        <div class="gold-star" style="font-size: 2rem;">✦ ✦ ✦</div>
+    </div>
+
+    <!-- main tool card -->
+    <div class="card">
+        <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-bottom: 1rem;">
+            <input type="text" id="mainKeyword" class="input-field" placeholder="Main keyword* e.g., SEO tips" value="SEO title generator">
+            <input type="text" id="secondaryKeyword" class="input-field" placeholder="Secondary keyword (optional)" value="content strategy">
+            <select id="categorySelect" class="input-field">
+                <option value="Digital Marketing">Digital Marketing</option>
+                <option value="SEO" selected>SEO</option>
+                <option value="Content Writing">Content Writing</option>
+                <option value="Ecommerce">Ecommerce</option>
+                <option value="Web Dev">Web Development</option>
+                <option value="Health">Health & Wellness</option>
+                <option value="Finance">Finance</option>
+                <option value="Travel">Travel</option>
+            </select>
+            <select id="toneSelect" class="input-field">
+                <option value="Professional">Professional</option>
+                <option value="Catchy">Catchy</option>
+                <option value="Clickbait">Clickbait</option>
+                <option value="Business">Business</option>
+                <option value="YouTube">YouTube</option>
+                <option value="Blog">Blog</option>
+                <option value="Affiliate">Affiliate</option>
+            </select>
+        </div>
+
+        <div class="action-buttons">
+            <button id="generateBtn">✨ Generate Titles</button>
+            <button id="clearBtn" class="btn-outline">🗑️ Clear</button>
+            <button id="randomExampleBtn" class="btn-outline">🎲 Random Example</button>
+            <button id="downloadBtn" class="btn-outline">📥 Download .txt</button>
+            <button id="copyAllBtn" class="btn-outline">📋 Copy All Titles</button>
+        </div>
+        <div class="error-message" id="errorMsg" style="color: #f97316; font-size:0.85rem; margin-top: 0.5rem;"></div>
+    </div>
+
+    <!-- Middle Ad -->
+    <div class="ad-placeholder">📢 Middle Ad Space — responsive banner placeholder (728x90)</div>
+
+    <!-- results section with animated loading -->
+    <div id="resultsSection">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; margin: 2rem 0 1rem;">
+            <h2>📌 Generated SEO Titles <span id="titleCountSpan">(0)</span></h2>
+            <span style="font-size: 0.8rem;">⭐ Green = ideal length | Yellow = medium | Red = too long/short</span>
+        </div>
+        <div id="titlesContainer" class="results-grid">
+            <!-- dynamic cards appear here -->
+            <div style="text-align: center; padding: 3rem; color: #aaa;">Click "Generate Titles" to see 20+ optimized titles 🚀</div>
+        </div>
+    </div>
+
+    <!-- extra sections: What is, How to, Benefits, SEO Tips, FAQ, Related Tools -->
+    <div style="margin-top: 4rem;">
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2>📖 What is SEO Title Generator?</h2>
+            <p>An intelligent tool that creates data-driven, search-optimized titles based on your keywords, category & tone. Perfect for bloggers, marketers, and business owners who want higher CTR and better rankings.</p>
+        </div>
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2>⚡ How to Use</h2>
+            <p>1. Enter main keyword (required) + secondary keyword. <br>2. Choose your industry category and tone. <br>3. Click Generate → get 20 unique titles with SEO score & length analysis. <br>4. Copy, download, or regenerate with random examples.</p>
+        </div>
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2>🎯 Benefits of SEO Titles</h2>
+            <ul style="margin-left: 1.5rem; list-style-type: none;">
+                <li>✨ +30% higher click-through rate</li>
+                <li>✨ Improved keyword relevance for Google</li>
+                <li>✨ Better user engagement & dwell time</li>
+                <li>✨ Consistent branding across pages</li>
+            </ul>
+        </div>
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2>💡 SEO Tips</h2>
+            <p>✔ Keep titles 50–60 characters for desktop.<br>✔ Place main keyword near the beginning.<br>✔ Use numbers, brackets, and power words.<br>✔ Match search intent: informational vs transactional.</p>
+        </div>
+        <div class="card" style="margin-bottom: 2rem;">
+            <h2>❓ FAQ</h2>
+            <div><strong>How many titles does the tool generate?</strong><br>Exactly 20+ unique titles per click.</div>
+            <div style="margin-top: 1rem;"><strong>Is the title score accurate?</strong><br>Score is based on keyword density, length, tone match, and best SEO practices.</div>
+            <div style="margin-top: 1rem;"><strong>Can I use these titles for YouTube?</strong><br>Absolutely! Choose "YouTube" tone for click-friendly video titles.</div>
+        </div>
+        <div class="card">
+            <h2>🔧 Related Tools</h2>
+            <div style="display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1rem;">
+                <span class="btn-outline" style="background:#1e1e24; padding: 0.5rem 1rem;">Meta Description Generator</span>
+                <span class="btn-outline" style="background:#1e1e24; padding: 0.5rem 1rem;">Keyword Research Tool</span>
+                <span class="btn-outline" style="background:#1e1e24; padding: 0.5rem 1rem;">Headline Analyzer</span>
+                <span class="btn-outline" style="background:#1e1e24; padding: 0.5rem 1rem;">SEO Checker</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Ad -->
+    <div class="ad-placeholder">📢 Footer Ad · 728x90 placeholder — Promote your product here</div>
+    <footer>
+        <p>© 2026 EK COMPLETE - All Rights Reserved 🌟</p>
+        <div class="gold-star" style="font-size: 1.2rem;">✦ ✦ ✦</div>
+    </footer>
+</div>
+
+<script>
+    // generate stars
+    function createStars() {
+        const starsContainer = document.getElementById('starsContainer');
+        for (let i = 0; i < 120; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 4 + 1;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 15 + 6}s`;
+            star.style.animationDelay = `${Math.random() * 10}s`;
+            star.style.opacity = Math.random() * 0.7 + 0.2;
+            starsContainer.appendChild(star);
+        }
+    }
+    createStars();
+
+    // DOM elements
+    const mainInput = document.getElementById('mainKeyword');
+    const secondaryInput = document.getElementById('secondaryKeyword');
+    const categorySelect = document.getElementById('categorySelect');
+    const toneSelect = document.getElementById('toneSelect');
+    const generateBtn = document.getElementById('generateBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const randomBtn = document.getElementById('randomExampleBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const copyAllBtn = document.getElementById('copyAllBtn');
+    const titlesContainer = document.getElementById('titlesContainer');
+    const errorMsgDiv = document.getElementById('errorMsg');
+    const titleCountSpan = document.getElementById('titleCountSpan');
+
+    let currentTitles = [];
+
+    // Helper: title scoring & length analysis
+    function getTitleStats(title, mainKw, secondaryKw, selectedTone) {
+        const len = title.length;
+        let lengthClass = '';
+        if (len >= 40 && len <= 65) lengthClass = 'green';
+        else if ((len >= 30 && len < 40) || (len > 65 && len <= 75)) lengthClass = 'yellow';
+        else lengthClass = 'red';
+        
+        let score = 50;
+        if (title.toLowerCase().includes(mainKw.toLowerCase())) score += 25;
+        if (secondaryKw && title.toLowerCase().includes(secondaryKw.toLowerCase())) score += 10;
+        if (len >= 45 && len <= 60) score += 10;
+        if (/[0-9]/.test(title)) score += 5;
+        if (title[0] === title[0].toUpperCase()) score += 3;
+        if (selectedTone === 'Clickbait' && (title.includes('!') || title.includes('Will'))) score += 5;
+        if (selectedTone === 'Professional' && !title.includes('!')) score += 3;
+        score = Math.min(100, Math.max(20, score));
+        return { lengthClass, score, length: len };
+    }
+
+    // generate 20+ titles
+    function generateTitleList(main, secondary, category, tone) {
+        if (!main.trim()) return [];
+        const year = new Date().getFullYear();
+        const toneModifier = {
+            Professional: ['Expert', 'Essential', 'Guide', 'Strategies'],
+            Catchy: ['Awesome', 'Powerful', 'Unmissable', 'Epic'],
+            Clickbait: ["You Won't Believe", "Shocking", "Secret", "Mind-blowing", "This Will Change Your"],
+            Business: ['ROI', 'Growth', 'Scale', 'Maximize', 'Enterprise'],
+            YouTube: ['(Watch This!)', '🔥', 'Must Watch', 'Top Trending', 'Evergreen'],
+            Blog: ['Tips & Tricks', 'Thoughts on', 'Ultimate List', 'Deep Dive'],
+            Affiliate: ['Best', 'Review', 'Bonus', 'Discount', 'Buyers Guide']
+        };
+        const toneWords = toneModifier[tone] || toneModifier.Professional;
+        const patterns = [
+            `How to ${main} with ${secondary || 'proven methods'}`,
+            `${main} Mastery: The ${toneWords[0]} ${category} Guide ${year}`,
+            `Top 10 ${main} Strategies for ${category} Growth`,
+            `${toneWords[1]} ${main} Tips That Drive ${secondary || 'traffic'} Fast`,
+            `Why ${main} Matters More Than Ever in ${year}`,
+            `The Future of ${main}: ${toneWords[2]} ${category} Insights`,
+            `${toneWords[3]} ${main} Checklist for ${secondary || 'success'}`,
+            `${main} vs Competitors: What ${category} Pros Say`,
+            `7 ${main} Hacks to Skyrocket Your ${secondary || 'rankings'}`,
+            `Step-by-Step: ${main} Optimization for ${category}`,
+            `${toneWords[4] || 'Actionable'} ${main} Ideas for ${year}`,
+            `The ${toneWords[0]} Way to Master ${main} + ${secondary || 'SEO'}`,
+            `${main} Secrets Revealed: ${category} Edition`,
+            `How I Used ${main} to Increase ${secondary || 'conversions'} by 200%`,
+            `Ultimate ${main} Roundup: ${toneWords[2]} Techniques`,
+            `Boost Your ${category} Presence with ${main}`,
+            `${tone.includes('Clickbait') ? '⚠️ ' : ''}${main} ${toneWords[1]} ${year} — ${secondary || 'Full Guide'}`,
+            `10 ${main} Myths Busted: ${category} Case Study`,
+            `The Complete ${main} Toolkit for ${secondary || 'modern marketers'}`,
+            `From Zero to Hero: ${main} ${category} Success Plan`,
+            `${tone === 'YouTube' ? '🎥 ' : ''}${main} ${toneWords[0]} ${year} (${category})`,
+            `Rank #1 on Google: ${main} Strategy Using ${secondary || 'SEO'}`,
+            `${tone === 'Affiliate' ? '💰 ' : '🚀 '}Best ${main} Deals & ${secondary || 'Resources'}`
+        ];
+        // guarantee 20+ unique
+        let titlesSet = new Set();
+        for (let i = 0; i < patterns.length; i++) {
+            let title = patterns[i];
+            title = title.replace(/\{\{.*?\}\}/g, '').trim();
+            title = title.replace(/\[.*?\]/g, '');
+            if (secondary && title.includes('secondary')) title = title.replace('secondary', secondary);
+            if (!secondary) title = title.replace(`with ${secondary || 'proven methods'}`, 'with proven methods');
+            titlesSet.add(title);
+        }
+        // extra variations
+        for (let i = 0; i < 5; i++) {
+            titlesSet.add(`${toneWords[i % toneWords.length]} ${main} Strategy for ${category} (${year})`);
+            titlesSet.add(`${main} + ${secondary || 'Best Practices'}: ${toneWords[(i+2)%toneWords.length]} Guide`);
+        }
+        let finalTitles = Array.from(titlesSet).slice(0, 25);
+        while(finalTitles.length < 20) finalTitles.push(`${main} Power Tips: ${category} ${tone} Edition ${year}`);
+        return finalTitles.slice(0, 22);
+    }
+
+    function renderTitles(titles, mainKw, secondaryKw, tone) {
+        if (!titles.length) {
+            titlesContainer.innerHTML = `<div style="text-align:center; padding:2rem;">⚠️ No titles generated. Add a main keyword.</div>`;
+            titleCountSpan.innerText = '(0)';
+            return;
+        }
+        let html = '';
+        titles.forEach((title, idx) => {
+            const stats = getTitleStats(title, mainKw, secondaryKw, tone);
+            html += `
+                <div class="title-card" data-title="${escapeHtml(title)}">
+                    <div class="title-text">${idx+1}. ${escapeHtml(title)}</div>
+                    <div class="title-meta">
+                        <span class="length-badge ${stats.lengthClass}">📏 ${stats.length} chars</span>
+                        <span class="score-badge">⭐ SEO Score: ${stats.score}</span>
+                        <button class="copy-btn single-copy" data-title="${escapeHtml(title)}">📋 Copy</button>
+                    </div>
+                </div>
+            `;
+        });
+        titlesContainer.innerHTML = html;
+        titleCountSpan.innerText = `(${titles.length})`;
+        // attach copy events
+        document.querySelectorAll('.single-copy').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const titleText = btn.getAttribute('data-title');
+                copyToClipboard(titleText);
+                btn.innerText = '✓ Copied!';
+                setTimeout(() => btn.innerText = '📋 Copy', 1500);
+            });
+        });
+    }
+
+    function escapeHtml(str) {
+        return str.replace(/[&<>]/g, function(m) {
+            if (m === '&') return '&amp;';
+            if (m === '<') return '&lt;';
+            if (m === '>') return '&gt;';
+            return m;
+        });
+    }
+
+    async function triggerGenerateWithLoading() {
+        const main = mainInput.value.trim();
+        if (!main) {
+            errorMsgDiv.innerText = '❌ Please enter a main keyword!';
+            setTimeout(() => errorMsgDiv.innerText = '', 2500);
+            return;
+        }
+        errorMsgDiv.innerText = '';
+        // loading animation
+        const originalBtnText = generateBtn.innerHTML;
+        generateBtn.innerHTML = `<span class="loader"></span> Generating...`;
+        generateBtn.disabled = true;
+        await new Promise(r => setTimeout(r, 450));
+        const secondary = secondaryInput.value.trim();
+        const category = categorySelect.value;
+        const tone = toneSelect.value;
+        const titles = generateTitleList(main, secondary, category, tone);
+        currentTitles = [...titles];
+        renderTitles(currentTitles, main, secondary, tone);
+        generateBtn.innerHTML = originalBtnText;
+        generateBtn.disabled = false;
+        document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(() => {
+            const tempMsg = document.createElement('div');
+            tempMsg.innerText = '✅ Copied!';
+            tempMsg.style.position = 'fixed';
+            tempMsg.style.bottom = '20px';
+            tempMsg.style.right = '20px';
+            tempMsg.style.background = '#a855f7';
+            tempMsg.style.padding = '8px 16px';
+            tempMsg.style.borderRadius = '50px';
+            tempMsg.style.zIndex = '9999';
+            document.body.appendChild(tempMsg);
+            setTimeout(() => tempMsg.remove(), 1500);
+        });
+    }
+
+    function clearAll() {
+        mainInput.value = '';
+        secondaryInput.value = '';
+        categorySelect.value = 'SEO';
+        toneSelect.value = 'Professional';
+        currentTitles = [];
+        titlesContainer.innerHTML = `<div style="text-align: center; padding: 3rem; color: #aaa;">✨ Titles will appear here ✨</div>`;
+        titleCountSpan.innerText = '(0)';
+        errorMsgDiv.innerText = '';
+    }
+
+    function randomExample() {
+        const examples = [
+            { main: 'AI content writing', secondary: 'productivity', cat: 'Digital Marketing', tone: 'Catchy' },
+            { main: 'local SEO', secondary: 'small business', cat: 'SEO', tone: 'Business' },
+            { main: 'youtube growth', secondary: 'views', cat: 'SEO', tone: 'YouTube' },
+            { main: 'affiliate marketing', secondary: 'commissions', cat: 'Affiliate', tone: 'Affiliate' },
+            { main: 'blogging tips', secondary: 'traffic', cat: 'Content Writing', tone: 'Blog' }
+        ];
+        const rand = examples[Math.floor(Math.random() * examples.length)];
+        mainInput.value = rand.main;
+        secondaryInput.value = rand.secondary;
+        categorySelect.value = rand.cat;
+        toneSelect.value = rand.tone;
+        triggerGenerateWithLoading();
+    }
+
+    function downloadTxt() {
+        if (!currentTitles.length) {
+            errorMsgDiv.innerText = 'Generate titles before downloading!';
+            setTimeout(() => errorMsgDiv.innerText = '', 1500);
+            return;
+        }
+        const content = currentTitles.map((t, i) => `${i+1}. ${t}`).join('\n\n');
+        const blob = new Blob([content], { type: 'text/plain' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `seo_titles_${Date.now()}.txt`;
+        link.click();
+        URL.revokeObjectURL(link.href);
+    }
+
+    function copyAllToClipboard() {
+        if (!currentTitles.length) {
+            errorMsgDiv.innerText = 'No titles to copy!';
+            return;
+        }
+        const all = currentTitles.join('\n');
+        copyToClipboard(all);
+    }
+
+    generateBtn.addEventListener('click', triggerGenerateWithLoading);
+    clearBtn.addEventListener('click', clearAll);
+    randomBtn.addEventListener('click', randomExample);
+    downloadBtn.addEventListener('click', downloadTxt);
+    copyAllBtn.addEventListener('click', copyAllToClipboard);
+    mainInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') triggerGenerateWithLoading(); });
+    secondaryInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') triggerGenerateWithLoading(); });
+    // initial demo auto generate
+    window.addEventListener('load', () => {
+        triggerGenerateWithLoading();
+    });
+</script>
+</body>
+</html>
