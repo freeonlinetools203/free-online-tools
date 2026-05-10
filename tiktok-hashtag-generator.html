@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Free TikTok Hashtag Generator Tool | Viral & FYP Hashtags 2026</title>
+    <meta name="description" content="Generate viral, trending and FYP TikTok hashtags instantly using our free TikTok Hashtag Generator Tool for better reach and engagement. Boost your TikTok growth now!">
+    <meta name="keywords" content="TikTok hashtag generator, viral hashtags, FYP hashtags, trending hashtags, TikTok growth, hashtag tool">
+    <meta name="author" content="TikTok Hashtag Tool">
+    <link rel="canonical" href="https://www.yoursite.com/tiktok-hashtag-generator">
+    <meta property="og:title" content="Free TikTok Hashtag Generator Tool | Viral & FYP Hashtags">
+    <meta property="og:description" content="Generate viral, trending and FYP TikTok hashtags instantly. Free tool for better reach and engagement.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.yoursite.com/tiktok-hashtag-generator">
+    <meta property="og:image" content="https://www.yoursite.com/tiktok-og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free TikTok Hashtag Generator Tool">
+    <meta name="twitter:description" content="Generate viral TikTok hashtags instantly. Free tool for creators and marketers.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "TikTok Hashtag Generator Tool",
+      "description": "Generate viral, trending and FYP TikTok hashtags instantly",
+      "applicationCategory": "Social Media Tool",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(20, 20, 30, 0.9);
+            --neon-pink: #ff0050;
+            --neon-cyan: #00f2fe;
+            --neon-purple: #8b5cf6;
+            --text-light: #ffffff;
+            --text-gray: #a0a0b0;
+            --gradient-1: linear-gradient(135deg, #ff0050, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #00f2fe, #4facfe);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Background */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 0, 80, 0.15), transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(0, 242, 254, 0.1), transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #ff0050, #8b5cf6);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 20px rgba(255, 0, 80, 0.2);
+        }
+
+        /* Header */
+        h1 {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* Search Box */
+        .search-box {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            background: rgba(30, 30, 40, 0.95);
+            border: 2px solid rgba(255, 0, 80, 0.3);
+            border-radius: 60px;
+            color: white;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--neon-pink);
+            box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--gradient-1);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 80, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 0, 80, 0.5);
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 0, 80, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Hashtag Categories Grid */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .category-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            border-left: 4px solid var(--neon-pink);
+        }
+
+        .hashtag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .hashtag-item {
+            background: linear-gradient(135deg, rgba(255, 0, 80, 0.2), rgba(139, 92, 246, 0.2));
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 0, 80, 0.3);
+        }
+
+        .hashtag-item:hover {
+            background: var(--neon-pink);
+            transform: scale(1.05);
+        }
+
+        /* Stats */
+        .stats-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 20px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-1);
+            padding: 12px 24px;
+            border-radius: 60px;
+            color: white;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Scroll to top */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: var(--neon-pink);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        /* Trending Topics */
+        .trending-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .trending-topic {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .trending-topic:hover {
+            background: var(--neon-pink);
+            transform: translateY(-2px);
+        }
+
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Light Mode */
+        body.light-mode {
+            --bg-dark: #f5f5f5;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --text-light: #1a1a1a;
+            --text-gray: #666;
+        }
+
+        .ad-placeholder {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px dashed rgba(255, 0, 80, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-particles" id="particles"></div>
+    
+    <div class="theme-toggle" id="themeToggle">🌙 Dark</div>
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <div class="container">
+        <!-- Top Ad -->
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Top Banner -->
+            <span>📢 Advertisement - 728x90 Banner</span>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="glass-card" style="text-align: center; margin-bottom: 30px;">
+            <h1>🎵 TikTok Hashtag Generator Tool</h1>
+            <p style="color: var(--text-gray); margin-top: 10px;">Generate viral, trending & FYP hashtags instantly for better TikTok reach</p>
+        </div>
+
+        <!-- Tool Section -->
+        <div class="glass-card">
+            <input type="text" id="keywordInput" class="search-box" placeholder="Enter your topic... e.g., dance, gaming, fitness, comedy, motivation" autocomplete="off">
+            <div style="display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap;">
+                <button class="btn-primary" id="generateBtn">✨ Generate Hashtags</button>
+                <button class="btn-secondary" id="copyAllBtn">📋 Copy All Hashtags</button>
+                <button class="btn-secondary" id="downloadBtn">💾 Download TXT</button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">📊 Total Hashtags: <span id="totalCount">0</span></div>
+                <div class="stat-card">📝 Total Characters: <span id="totalChars">0</span></div>
+                <div class="stat-card">✅ TikTok Limit: 3-5 hashtags recommended</div>
+            </div>
+        </div>
+
+        <!-- Middle Ad -->
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Rectangle -->
+            <span>📢 Advertisement - 300x250 Rectangle</span>
+        </div>
+
+        <!-- Live Preview -->
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>📱 Live TikTok Caption Preview</h3>
+            <div id="livePreview" style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 20px; margin-top: 10px; font-family: monospace; word-break: break-all;">
+                Your hashtags will appear here...
+            </div>
+        </div>
+
+        <!-- Generated Hashtags Section -->
+        <div id="resultsSection">
+            <h2>🔥 Generated Hashtags</h2>
+            <div class="categories-grid" id="categoriesGrid"></div>
+        </div>
+
+        <!-- Trending Topics -->
+        <div class="glass-card" style="margin: 30px 0;">
+            <h3>⚡ Trending Topics</h3>
+            <div class="trending-topics" id="trendingTopics">
+                <div class="trending-topic">dance</div>
+                <div class="trending-topic">comedy</div>
+                <div class="trending-topic">gaming</div>
+                <div class="trending-topic">fitness</div>
+                <div class="trending-topic">beauty</div>
+                <div class="trending-topic">travel</div>
+                <div class="trending-topic">food</div>
+                <div class="trending-topic">motivation</div>
+            </div>
+        </div>
+
+        <!-- Recent Searches -->
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>🕒 Recent Searches</h3>
+            <div id="recentSearches" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+        </div>
+
+        <!-- TikTok Growth Tips -->
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>📈 TikTok Growth Tips</h3>
+            <ul style="margin-top: 15px; list-style: none;">
+                <li>✅ Use 3-5 relevant hashtags per video for FYP algorithm</li>
+                <li>✅ Combine viral, niche, and branded hashtags</li>
+                <li>✅ Post consistently between 6-9 PM for best engagement</li>
+                <li>✅ Engage with comments within first hour to boost reach</li>
+                <li>✅ Use trending sounds & participate in challenges</li>
+            </ul>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>❓ Frequently Asked Questions</h3>
+            <div style="margin-top: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <strong>What is a TikTok hashtag generator?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">A tool that creates relevant, trending hashtags based on your video topic to increase visibility and reach on TikTok.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>Do hashtags help TikTok videos go viral?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Yes! Proper hashtags help the algorithm understand your content and show it to interested users, increasing viral potential.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>Best hashtags for TikTok FYP?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Use #fyp, #foryou, #foryoupage, #viral, plus 2-3 niche-specific hashtags for best results.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>How many hashtags should I use?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">TikTok recommends 3-5 hashtags per video for optimal engagement without looking spammy.</p>
+                </div>
+                <div>
+                    <strong>Are hashtags important on TikTok?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Absolutely! Hashtags are crucial for discoverability and reaching your target audience on TikTok.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Ad -->
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Bottom Banner -->
+            <span>📢 Advertisement - 728x90 Banner</span>
+        </div>
+
+        <footer style="text-align: center; padding: 40px 0; color: var(--text-gray);">
+            <p>© 2026 TikTok Hashtag Generator Tool | Boost Your TikTok Growth</p>
+        </footer>
+    </div>
+
+    <script>
+        // Particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Hashtag Database Generator
+        function generateHashtags(keyword) {
+            const lowerKeyword = keyword.toLowerCase().trim();
+            if(!lowerKeyword) return null;
+
+            const viral = [`#${lowerKeyword}`, `#viral${lowerKeyword}`, `#trending${lowerKeyword}`, `#${lowerKeyword}challenge`, `#${lowerKeyword}tiktok`];
+            const trending = [`#fyp`, `#foryou`, `#foryoupage`, `#viral`, `#trending`, `#tiktokviral`];
+            const fyp = [`#fypシ`, `#fypage`, `#fypviral`, `#fypdong`, `#fypchallenge`];
+            const seo = [`#${lowerKeyword}2026`, `#best${lowerKeyword}`, `#${lowerKeyword}ideas`, `#learn${lowerKeyword}`, `#${lowerKeyword}tips`];
+            const niche = [`#${lowerKeyword}life`, `#${lowerKeyword}addict`, `#${lowerKeyword}community`, `#${lowerKeyword}world`, `#${lowerKeyword}goals`];
+            const recommended = [`#explorepage`, `#explore`, `#trendingaudio`, `#blowthisup`, `#fypppppppppppppp`];
+
+            // Add variety based on keyword
+            if(lowerKeyword === 'gaming') {
+                viral.push('#gamergirl', '#gamingsetup', '#pubg', '#freefire');
+                niche.push('#twitchstreamer', '#playstation');
+            }
+            if(lowerKeyword === 'fitness') {
+                viral.push('#workout', '#gymlife', '#fitnessmotivation');
+                niche.push('#healthylifestyle', '#bodybuilding');
+            }
+            if(lowerKeyword === 'dance') {
+                viral.push('#dancechallenge', '#dancetrend', '#choreography');
+                niche.push('#dancerlife', '#dancevideo');
+            }
+            if(lowerKeyword === 'comedy') {
+                viral.push('#comedyvideo', '#funnyvideos', '#comedyskit');
+                niche.push('#lol', '#humor');
+            }
+            if(lowerKeyword === 'beauty') {
+                viral.push('#makeup', '#skincare', '#beautytips');
+                niche.push('#makeuptutorial', '#beautyhacks');
+            }
+
+            return { viral, trending, fyp, seo, niche, recommended };
+        }
+
+        let currentHashtags = null;
+        let currentKeyword = '';
+
+        function renderHashtags(hashtagData) {
+            if(!hashtagData) return;
+            
+            const categories = [
+                { title: "🔥 Viral Hashtags", data: hashtagData.viral },
+                { title: "📈 Trending Hashtags", data: hashtagData.trending },
+                { title: "⭐ FYP Hashtags", data: hashtagData.fyp },
+                { title: "🔍 SEO Hashtags", data: hashtagData.seo },
+                { title: "🎯 Niche Hashtags", data: hashtagData.niche },
+                { title: "💡 Recommended Hashtags", data: hashtagData.recommended }
+            ];
+
+            let html = '';
+            categories.forEach(cat => {
+                html += `
+                    <div class="category-card">
+                        <h3>${cat.title}</h3>
+                        <div class="hashtag-list" data-category="${cat.title}">
+                            ${cat.data.map(tag => `<div class="hashtag-item" data-hashtag="${tag}">${tag}</div>`).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('categoriesGrid').innerHTML = html;
+
+            // Add click listeners for copy
+            document.querySelectorAll('.hashtag-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    const hashtag = item.getAttribute('data-hashtag');
+                    copyToClipboard(hashtag);
+                    showToast(`✅ Copied: ${hashtag}`);
+                });
+            });
+
+            // Update stats and preview
+            updateStatsAndPreview(hashtagData);
+        }
+
+        function updateStatsAndPreview(hashtagData) {
+            const allTags = [...hashtagData.viral, ...hashtagData.trending, ...hashtagData.fyp, ...hashtagData.seo, ...hashtagData.niche, ...hashtagData.recommended];
+            const totalCount = allTags.length;
+            const totalChars = allTags.join(' ').length;
+            document.getElementById('totalCount').innerText = totalCount;
+            document.getElementById('totalChars').innerText = totalChars;
+            
+            const preview = allTags.join(' ');
+            document.getElementById('livePreview').innerHTML = preview;
+        }
+
+        function getAllHashtagsText() {
+            if(!currentHashtags) return '';
+            const all = [...currentHashtags.viral, ...currentHashtags.trending, ...currentHashtags.fyp, ...currentHashtags.seo, ...currentHashtags.niche, ...currentHashtags.recommended];
+            return all.join(' ');
+        }
+
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text);
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        async function generateWithAnimation() {
+            const keyword = document.getElementById('keywordInput').value.trim();
+            if(!keyword) {
+                showToast('❌ Please enter a keyword!');
+                return;
+            }
+
+            const btn = document.getElementById('generateBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> Generating...';
+            btn.disabled = true;
+
+            setTimeout(() => {
+                const hashtags = generateHashtags(keyword);
+                if(hashtags) {
+                    currentHashtags = hashtags;
+                    currentKeyword = keyword;
+                    renderHashtags(hashtags);
+                    saveRecentSearch(keyword);
+                    showToast('✨ Hashtags generated successfully!');
+                } else {
+                    showToast('⚠️ Please enter a valid keyword');
+                }
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 500);
+        }
+
+        // Recent Searches
+        function saveRecentSearch(keyword) {
+            let searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+            searches = [keyword, ...searches.filter(s => s !== keyword)];
+            searches = searches.slice(0, 5);
+            localStorage.setItem('recentSearches', JSON.stringify(searches));
+            displayRecentSearches();
+        }
+
+        function displayRecentSearches() {
+            const searches = JSON.parse(localStorage.getItem('recentSearches') || '[]');
+            const container = document.getElementById('recentSearches');
+            if(searches.length === 0) {
+                container.innerHTML = '<p style="color: gray;">No recent searches</p>';
+                return;
+            }
+            container.innerHTML = searches.map(s => 
+                `<div class="trending-topic" style="background: var(--neon-pink);" onclick="document.getElementById('keywordInput').value='${s}'; generateWithAnimation();">${s}</div>`
+            ).join('');
+        }
+
+        // Theme Toggle
+        let isDark = true;
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            isDark = !isDark;
+            if(isDark) {
+                document.body.classList.remove('light-mode');
+                document.getElementById('themeToggle').innerHTML = '🌙 Dark';
+            } else {
+                document.body.classList.add('light-mode');
+                document.getElementById('themeToggle').innerHTML = '☀️ Light';
+            }
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme');
+        if(savedTheme === 'light') {
+            isDark = false;
+            document.body.classList.add('light-mode');
+            document.getElementById('themeToggle').innerHTML = '☀️ Light';
+        }
+
+        // Scroll to top
+        document.getElementById('scrollTop').addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Copy All
+        document.getElementById('copyAllBtn').addEventListener('click', () => {
+            if(!currentHashtags) {
+                showToast('⚠️ Generate hashtags first!');
+                return;
+            }
+            const allText = getAllHashtagsText();
+            copyToClipboard(allText);
+            showToast('📋 All hashtags copied!');
+        });
+
+        // Download
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            if(!currentHashtags) {
+                showToast('⚠️ Generate hashtags first!');
+                return;
+            }
+            const allText = getAllHashtagsText();
+            const blob = new Blob([allText], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `tiktok_hashtags_${currentKeyword}.txt`;
+            link.click();
+            showToast('💾 Downloaded successfully!');
+        });
+
+        // Generate button
+        document.getElementById('generateBtn').addEventListener('click', generateWithAnimation);
+        
+        // Enter key support
+        document.getElementById('keywordInput').addEventListener('keypress', (e) => {
+            if(e.key === 'Enter') generateWithAnimation();
+        });
+
+        // Trending topics
+        document.querySelectorAll('.trending-topic').forEach(topic => {
+            topic.addEventListener('click', () => {
+                document.getElementById('keywordInput').value = topic.innerText;
+                generateWithAnimation();
+            });
+        });
+
+        // Load recent searches
+        displayRecentSearches();
+
+        // Initial demo hashtags
+        setTimeout(() => {
+            document.getElementById('keywordInput').value = 'tiktok';
+            generateWithAnimation();
+        }, 100);
+    </script>
+</body>
+</html>
