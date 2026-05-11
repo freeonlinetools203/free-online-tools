@@ -95,7 +95,7 @@ body {
     border-bottom: 2px solid white;
 }
 
-/* Dropdown - FIXED SCROLLING ISSUE */
+/* ========== DROPDOWN WITH SMOOTH ANIMATION (LIKE KEYWORD DENSITY TOOL) ========== */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -121,7 +121,7 @@ body {
     border-bottom: 2px solid white;
 }
 
-/* FIX: dropdown content scrolls independently, page remains stable */
+/* Dropdown Content - with fadeIn animation */
 .dropdown-content {
     display: none;
     position: absolute;
@@ -130,20 +130,39 @@ body {
     max-height: 70vh;
     overflow-y: auto;
     overflow-x: hidden;
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 35px -10px rgba(0, 0, 0, 0.2);
     border-radius: 16px;
     z-index: 1002;
     top: 45px;
     left: 0;
     padding: 8px 0;
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-10px);
     transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
     scrollbar-width: thin;
 }
 
-/* custom scrollbar for better look */
+/* WHEN DROPDOWN IS OPEN - SAME ANIMATION AS REFERENCE TOOL */
+.dropdown.open .dropdown-content {
+    display: block;
+    animation: fadeIn 0.2s ease forwards;
+    pointer-events: auto;
+}
+
+/* FADEIN KEYFRAMES - EXACT SAME AS KEYWORD DENSITY CHECKER */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom scrollbar for dropdown */
 .dropdown-content::-webkit-scrollbar {
     width: 6px;
 }
@@ -159,13 +178,7 @@ body {
     background: #5b6e8c;
 }
 
-.dropdown.open .dropdown-content {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-}
-
+/* Dropdown Categories */
 .dropdown-category {
     cursor: pointer;
     padding: 12px 18px;
@@ -195,6 +208,7 @@ body {
     transform: rotate(90deg);
 }
 
+/* Category Tools */
 .category-tools {
     display: none;
     background: #f9fafb;
@@ -545,35 +559,175 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
+/* ========== RESPONSIVE DESIGN - PERFECT FOR ALL DEVICES ========== */
+/* Tablet and Mobile (max-width: 992px) */
+@media (max-width: 992px) {
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+/* Mobile (max-width: 768px) */
 @media (max-width: 768px) {
-    .navbar { padding: 12px 20px; }
-    .nav-container { flex-direction: column; text-align: center; }
-    .nav-links { justify-content: center; gap: 18px; }
-    .stats-container { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .stat-number { font-size: 1.8rem; }
-    .header h1 { font-size: 1.8rem; }
-    .header p { font-size: 1rem; }
-    .section { padding: 25px; }
-    .section h2 { font-size: 1.5rem; }
-    .tools-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
-    .features-grid { grid-template-columns: 1fr; }
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
-    .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
-    .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
-    /* mobile dropdown position adjust */
+    .navbar {
+        padding: 12px 20px;
+    }
+    .nav-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-links {
+        justify-content: center;
+        gap: 15px;
+    }
+    .stats-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    .stat-number {
+        font-size: 1.8rem;
+    }
+    .header h1 {
+        font-size: 1.8rem;
+    }
+    .header p {
+        font-size: 1rem;
+    }
+    .section {
+        padding: 25px;
+    }
+    .section h2 {
+        font-size: 1.5rem;
+    }
+    .tools-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 12px;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .testimonial-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 35px;
+    }
+    .footer-col h3::after, .footer-col h4::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .footer-col a {
+        display: inline-block;
+        margin: 0 8px;
+        padding: 5px 10px;
+    }
+    /* Dropdown mobile adjustment */
     .dropdown-content {
         min-width: 280px;
         left: -20px;
         max-height: 60vh;
+        position: absolute;
     }
 }
 
+/* Small Mobile (max-width: 480px) */
 @media (max-width: 480px) {
-    .stats-container { grid-template-columns: 1fr; }
-    .tools-grid { grid-template-columns: 1fr; }
-    .tool-card a { padding: 14px; }
+    .stats-container {
+        grid-template-columns: 1fr;
+    }
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    .tool-card a {
+        padding: 14px;
+    }
+    .stats-section {
+        padding: 30px 15px;
+    }
+    .header {
+        padding: 40px 15px;
+    }
+    .container {
+        padding: 0 15px;
+    }
+    .section {
+        padding: 20px;
+        margin-bottom: 25px;
+    }
+    .dropdown-content {
+        min-width: 260px;
+        left: -15px;
+        max-height: 55vh;
+    }
+}
+
+/* iPhone SE and very small devices (max-width: 380px) */
+@media (max-width: 380px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+    .logo a {
+        font-size: 1.2rem;
+    }
+    .nav-links {
+        gap: 12px;
+    }
+    .nav-links li a {
+        font-size: 0.85rem;
+    }
+    .dropbtn {
+        font-size: 0.85rem;
+    }
+    .dropdown-content {
+        min-width: 240px;
+        left: -10px;
+    }
+    .stat-number {
+        font-size: 1.5rem;
+    }
+    .section h2 {
+        font-size: 1.3rem;
+    }
+    .tool-card a {
+        font-size: 0.85rem;
+        padding: 12px;
+    }
+}
+
+/* Landscape mode fix for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .dropdown-content {
+        max-height: 80vh;
+        top: 40px;
+    }
+    .stats-section {
+        padding: 20px;
+    }
+    .header {
+        padding: 30px 20px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .dropdown-category {
+        padding: 14px 18px;
+    }
+    .category-tools a {
+        padding: 12px 20px 12px 35px;
+    }
+    .tool-card a {
+        padding: 14px 12px;
+    }
+    .nav-links li a {
+        padding: 10px 0;
+    }
 }
 </style>
 </head>
