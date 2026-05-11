@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Free YouTube Shorts Script Generator | Viral Scripts for Shorts 2026</title>
+    <meta name="description" content="Generate viral, engaging and professional YouTube Shorts scripts instantly using our free YouTube Shorts Script Generator Tool. Perfect for creators!">
+    <meta name="keywords" content="YouTube Shorts script generator, viral scripts, shorts scripts, motivational scripts, gaming scripts, content creator tool">
+    <meta name="author" content="YouTube Shorts Script Tool">
+    <link rel="canonical" href="https://www.yoursite.com/youtube-shorts-script-generator">
+    <meta property="og:title" content="Free YouTube Shorts Script Generator | Viral Scripts">
+    <meta property="og:description" content="Generate viral, engaging and professional YouTube Shorts scripts instantly. Free tool for creators!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.yoursite.com/shorts-script-og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free YouTube Shorts Script Generator">
+    <meta name="twitter:description" content="Generate viral YouTube Shorts scripts instantly. Free tool for creators.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube Shorts Script Generator Tool",
+      "description": "Generate viral, engaging and professional YouTube Shorts scripts instantly",
+      "applicationCategory": "Content Tool",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(20, 20, 30, 0.95);
+            --yt-red: #ff0000;
+            --yt-dark-red: #cc0000;
+            --neon-pink: #ff6b6b;
+            --neon-purple: #8b5cf6;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --gradient-1: linear-gradient(135deg, #ff0000, #8b5cf6);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.1), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #ff0000, #8b5cf6);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.2; }
+            90% { opacity: 0.2; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 30px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            background: rgba(30, 30, 40, 0.95);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            border-radius: 60px;
+            color: var(--text-light);
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--yt-red);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .style-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .style-btn, .length-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .style-btn.active, .length-btn.active {
+            background: linear-gradient(135deg, #ff0000, #8b5cf6);
+            border-color: transparent;
+            color: white;
+        }
+
+        .style-btn:hover, .length-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .scripts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .script-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            border-left: 4px solid #ff0000;
+            transition: all 0.3s;
+        }
+
+        .script-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .script-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .script-item {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 15px;
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .script-item:hover {
+            background: rgba(255, 0, 0, 0.25);
+            transform: scale(1.01);
+        }
+
+        .script-content {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 10px;
+            white-space: pre-wrap;
+        }
+
+        .script-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .char-count {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+        }
+
+        .copy-script {
+            background: rgba(255, 0, 0, 0.2);
+            border: none;
+            padding: 5px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            font-size: 0.7rem;
+            transition: all 0.2s;
+        }
+
+        .copy-script:hover {
+            background: #ff0000;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 20px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff0000, #8b5cf6);
+            padding: 12px 24px;
+            border-radius: 60px;
+            color: white;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #ff0000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover { transform: scale(1.1); }
+
+        .trending-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .trending-topic {
+            background: rgba(255, 0, 0, 0.15);
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .trending-topic:hover {
+            background: #ff0000;
+            transform: translateY(-2px);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.8rem; }
+            .scripts-grid { grid-template-columns: 1fr; }
+        }
+
+        body.light-mode {
+            --bg-dark: #f5f5f5;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --text-light: #1a1a1a;
+            --text-gray: #666;
+        }
+
+        .ad-placeholder {
+            background: rgba(255, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px dashed rgba(255, 0, 0, 0.3);
+        }
+
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 6px;
+            color: gold;
+        }
+
+        .live-preview {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-family: monospace;
+            white-space: pre-wrap;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-particles" id="particles"></div>
+    
+    <div class="theme-toggle" id="themeToggle">🌙 Dark</div>
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <div class="container">
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Top Banner -->
+            <span>📢 Advertisement - 728x90 Banner</span>
+        </div>
+
+        <div class="glass-card" style="text-align: center; margin-bottom: 30px;">
+            <h1>🎬 YouTube Shorts Script Generator</h1>
+            <p style="color: var(--text-gray);">Generate viral, engaging & professional Shorts scripts in seconds</p>
+        </div>
+
+        <div class="glass-card">
+            <input type="text" id="keywordInput" class="search-box" placeholder="Enter topic... e.g., AI tools, motivation, gaming, facts, business tips" autocomplete="off">
+            
+            <div style="margin: 20px 0 10px 0;"><strong>📝 Script Style:</strong></div>
+            <div class="style-buttons" id="styleButtons">
+                <div class="style-btn" data-style="viral">🔥 Viral</div>
+                <div class="style-btn" data-style="motivational">💪 Motivational</div>
+                <div class="style-btn" data-style="educational">📚 Educational</div>
+                <div class="style-btn" data-style="gaming">🎮 Gaming</div>
+                <div class="style-btn" data-style="storytelling">📖 Storytelling</div>
+                <div class="style-btn" data-style="funny">😂 Funny</div>
+                <div class="style-btn" data-style="professional">💼 Professional</div>
+            </div>
+
+            <div style="margin: 20px 0 10px 0;"><strong>⏱️ Script Length:</strong></div>
+            <div class="style-buttons" id="lengthButtons">
+                <div class="length-btn" data-length="15">15 Seconds</div>
+                <div class="length-btn" data-length="30">30 Seconds</div>
+                <div class="length-btn" data-length="60">60 Seconds</div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap;">
+                <button class="btn-primary" id="generateBtn">✨ Generate Scripts</button>
+                <button class="btn-secondary" id="copyAllBtn">📋 Copy All</button>
+                <button class="btn-secondary" id="downloadBtn">💾 Download TXT</button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">📊 Total Scripts: <span id="totalCount">0</span></div>
+                <div class="stat-card">📝 Avg Words: <span id="avgWords">0</span></div>
+                <div class="stat-card">✅ Best: 30-60 seconds</div>
+            </div>
+        </div>
+
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Rectangle -->
+            <span>📢 Advertisement - 300x250 Rectangle</span>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>🎥 Script Preview</h3>
+            <div id="livePreview" class="live-preview">
+                Your script preview will appear here...
+            </div>
+        </div>
+
+        <div id="resultsSection">
+            <h2>✨ Generated Shorts Scripts</h2>
+            <div class="scripts-grid" id="scriptsGrid"></div>
+        </div>
+
+        <div class="glass-card" style="margin: 30px 0;">
+            <h3>⚡ Trending Shorts Topics</h3>
+            <div class="trending-topics" id="trendingTopics">
+                <div class="trending-topic">AI tools</div>
+                <div class="trending-topic">motivation</div>
+                <div class="trending-topic">free fire</div>
+                <div class="trending-topic">minecraft</div>
+                <div class="trending-topic">facts</div>
+                <div class="trending-topic">business tips</div>
+                <div class="trending-topic">cooking hacks</div>
+                <div class="trending-topic">technology</div>
+            </div>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>🕒 Recent Searches</h3>
+            <div id="recentSearches" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+            <h3 style="margin-top: 20px;">⭐ Favorite Scripts</h3>
+            <div id="favoritesList" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>📈 YouTube Shorts Tips</h3>
+            <ul style="margin-top: 15px; list-style: none;">
+                <li>✅ Hook viewers in first 3 seconds - use a question or bold statement</li>
+                <li>✅ Keep scripts under 60 seconds (15-30s works best)</li>
+                <li>✅ Add text overlays to reinforce key points</li>
+                <li>✅ End with a call-to-action (like, subscribe, comment)</li>
+                <li>✅ Post Shorts daily for algorithm boost</li>
+            </ul>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>❓ Frequently Asked Questions</h3>
+            <div style="margin-top: 20px;">
+                <div><strong>What is a YouTube Shorts script generator?</strong><p style="color: var(--text-gray);">AI tool that creates engaging, platform-optimized scripts for vertical videos under 60 seconds.</p></div>
+                <div style="margin-top: 15px;"><strong>How long should Shorts scripts be?</strong><p style="color: var(--text-gray);">15-45 seconds is ideal. 60 seconds maximum for full retention.</p></div>
+                <div style="margin-top: 15px;"><strong>Best hooks for Shorts?</strong><p style="color: var(--text-gray);">Start with "Wait for it...", "Did you know?", "This is crazy...", "I tried this..."</p></div>
+                <div style="margin-top: 15px;"><strong>How to increase Shorts engagement?</strong><p style="color: var(--text-gray);">Use trending sounds, add captions, ask questions, and keep content fast-paced.</p></div>
+                <div style="margin-top: 15px;"><strong>Are scripts important for Shorts success?</strong><p style="color: var(--text-gray);">Absolutely! A well-structured script keeps viewers watching till the end.</p></div>
+            </div>
+        </div>
+
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Bottom Banner -->
+            <span>📢 Advertisement - 728x90 Banner</span>
+        </div>
+
+        <footer style="text-align: center; padding: 40px 0; color: var(--text-gray);">
+            <p>© 2026 YouTube Shorts Script Generator | Create Viral Shorts Faster</p>
+        </footer>
+    </div>
+
+    <script>
+        createParticles();
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        let currentStyle = 'viral';
+        let currentLength = '30';
+        let currentScripts = [];
+        let favorites = JSON.parse(localStorage.getItem('shortsScriptFavorites') || '[]');
+
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentStyle = btn.dataset.style;
+            });
+        });
+        document.querySelectorAll('.length-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.length-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentLength = btn.dataset.length;
+            });
+        });
+        document.querySelector('.style-btn').classList.add('active');
+        document.querySelector('.length-btn').classList.add('active');
+
+        function generateScripts(keyword, style, lengthSec) {
+            const lowerKeyword = keyword.toLowerCase().trim();
+            if(!lowerKeyword) return [];
+            
+            const hooks = {
+                viral: [`🔥 NEVER expected this!`, `WAIT FOR THE END 👀`, `99% will get this WRONG`, `I'm SHOOK 😲`, `This changes EVERYTHING`],
+                motivational: [`💪 You CAN do this`, `NEVER give up`, `Your future self will thank you`, `Small steps = big results`, `Believe in yourself`],
+                educational: [`📚 Did you know?`, `Here's why...`, `The truth about ${lowerKeyword}`, `3 facts you missed`, `Let me explain`],
+                gaming: [`🎮 Let's go!`, `INSANE play`, `How to win`, `Pro tip incoming`, `Watch this trick`],
+                storytelling: [`📖 So here's what happened...`, `Let me tell you a story`, `I'll never forget this`, `Picture this...`, `Back in 2023...`],
+                funny: [`😂 You won't believe this`, `POV: You're me`, `This is so relatable`, `I can't even 🤣`, `Wait, what?!`],
+                professional: [`💼 Here's a pro tip`, `Industry secret`, `Value bomb incoming`, `Let's get straight to it`, `Actionable advice`]
+            };
+            
+            const bodies = {
+                15: [`${hooks[style][Math.floor(Math.random()*hooks[style].length)]} ${lowerKeyword.toUpperCase()} is the key. Try it now.`, 
+                     `Quick ${lowerKeyword} hack: do this daily. Results in 7 days.`],
+                30: [`${hooks[style][Math.floor(Math.random()*hooks[style].length)]} ${lowerKeyword} changed my life. Here's why: it saves time, money, and stress. Start today!`,
+                     `Most people ignore ${lowerKeyword}. But the top 1% use it daily. Here's how: 1. Start small. 2. Stay consistent. 3. Track progress. That's it.`],
+                60: [`${hooks[style][Math.floor(Math.random()*hooks[style].length)]} Let me break down ${lowerKeyword} in 60 seconds. First, understand the basics. Second, practice daily. Third, learn from mistakes. Fourth, share your journey. Fifth, never stop improving. That's how you master ${lowerKeyword}. Now go take action!`,
+                     `Want to crush ${lowerKeyword}? Follow these 5 steps. Step 1: Set clear goals. Step 2: Learn from experts. Step 3: Take massive action. Step 4: Adjust and improve. Step 5: Teach others. That's the formula. Subscribe for more tips!`]
+            };
+            
+            let scripts = [];
+            for(let i = 0; i < 6; i++) {
+                let hook = hooks[style][i % hooks[style].length];
+                let body = bodies[lengthSec][i % bodies[lengthSec].length];
+                let fullScript = `${hook} ${body}`;
+                scripts.push(fullScript);
+            }
+            while(scripts.length < 12) scripts.push(...scripts);
+            return scripts.slice(0, 12);
+        }
+
+        function renderScripts(scripts) {
+            const categories = [
+                { title: "🔥 Viral Scripts", data: scripts.slice(0, 4) },
+                { title: "⭐ High Engagement Scripts", data: scripts.slice(4, 8) },
+                { title: "💡 Recommended Scripts", data: scripts.slice(8, 12) }
+            ];
+            
+            let allScripts = [];
+            let html = '';
+            categories.forEach(cat => {
+                if(cat.data.length > 0) {
+                    html += `
+                        <div class="script-card">
+                            <h3>${cat.title}</h3>
+                            <div class="script-list">
+                                ${cat.data.map((script, idx) => `
+                                    <div class="script-item" data-script="${escapeHtml(script)}">
+                                        <div class="script-content">${idx+1}. 🎬 ${escapeHtml(script)}</div>
+                                        <div class="script-meta">
+                                            <span class="char-count">📝 ${script.length} chars / ~${Math.ceil(script.length/15)} sec read</span>
+                                            <div>
+                                                <button class="copy-script">📋 Copy</button>
+                                                <button class="favorite-btn" data-script="${escapeHtml(script)}">⭐</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                    allScripts = [...allScripts, ...cat.data];
+                }
+            });
+            
+            document.getElementById('scriptsGrid').innerHTML = html;
+            document.getElementById('totalCount').innerText = allScripts.length;
+            let avgWords = Math.round(allScripts.reduce((a,b) => a + b.split(' ').length, 0) / allScripts.length);
+            document.getElementById('avgWords').innerText = avgWords;
+            document.getElementById('livePreview').innerHTML = allScripts[0] || 'No scripts generated';
+            
+            document.querySelectorAll('.script-item').forEach(item => {
+                const script = item.getAttribute('data-script');
+                const copyBtn = item.querySelector('.copy-script');
+                const favBtn = item.querySelector('.favorite-btn');
+                copyBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    copyToClipboard(script);
+                    showToast(`✅ Copied!`);
+                });
+                favBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(script);
+                });
+            });
+            return allScripts;
+        }
+
+        function toggleFavorite(script) {
+            if(favorites.includes(script)) {
+                favorites = favorites.filter(s => s !== script);
+                showToast(`❌ Removed from favorites`);
+            } else {
+                favorites.push(script);
+                showToast(`⭐ Added to favorites`);
+            }
+            localStorage.setItem('shortsScriptFavorites', JSON.stringify(favorites));
+            displayFavorites();
+        }
+
+        function displayFavorites() {
+            const container = document.getElementById('favoritesList');
+            if(favorites.length === 0) { container.innerHTML = '<p style="color: gray;">No favorite scripts yet</p>'; return; }
+            container.innerHTML = favorites.map(script => 
+                `<div class="trending-topic" style="background: #ff0000; cursor: pointer;" onclick="copyToClipboard('${escapeHtml(script)}'); showToast('✅ Copied!');">🎬 ${script.substring(0, 40)}... ❌</div>`
+            ).join('');
+        }
+
+        function escapeHtml(str) { return str.replace(/[&<>]/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;'})[m]); }
+        function copyToClipboard(text) { navigator.clipboard.writeText(text); }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        async function generateWithAnimation() {
+            const keyword = document.getElementById('keywordInput').value.trim();
+            if(!keyword) { showToast('❌ Please enter a topic!'); return; }
+            const btn = document.getElementById('generateBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> Generating...';
+            btn.disabled = true;
+            setTimeout(() => {
+                const scripts = generateScripts(keyword, currentStyle, currentLength);
+                currentScripts = scripts;
+                renderScripts(scripts);
+                saveRecentSearch(keyword);
+                showToast('✨ Scripts generated successfully!');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 500);
+        }
+
+        function saveRecentSearch(keyword) {
+            let searches = JSON.parse(localStorage.getItem('shortsRecentSearches') || '[]');
+            searches = [keyword, ...searches.filter(s => s !== keyword)];
+            searches = searches.slice(0, 5);
+            localStorage.setItem('shortsRecentSearches', JSON.stringify(searches));
+            displayRecentSearches();
+        }
+
+        function displayRecentSearches() {
+            const searches = JSON.parse(localStorage.getItem('shortsRecentSearches') || '[]');
+            const container = document.getElementById('recentSearches');
+            if(searches.length === 0) { container.innerHTML = '<p style="color: gray;">No recent searches</p>'; return; }
+            container.innerHTML = searches.map(s => `<div class="trending-topic" onclick="document.getElementById('keywordInput').value='${s}'; generateWithAnimation();">${s}</div>`).join('');
+        }
+
+        let isDark = true;
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            isDark = !isDark;
+            if(isDark) {
+                document.body.classList.remove('light-mode');
+                document.getElementById('themeToggle').innerHTML = '🌙 Dark';
+            } else {
+                document.body.classList.add('light-mode');
+                document.getElementById('themeToggle').innerHTML = '☀️ Light';
+            }
+            localStorage.setItem('shortsTheme', isDark ? 'dark' : 'light');
+        });
+        if(localStorage.getItem('shortsTheme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('themeToggle').innerHTML = '☀️ Light';
+        }
+
+        document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        document.getElementById('generateBtn').addEventListener('click', generateWithAnimation);
+        document.getElementById('copyAllBtn').addEventListener('click', () => {
+            if(!currentScripts.length) { showToast('⚠️ Generate scripts first!'); return; }
+            copyToClipboard(currentScripts.join('\n\n---\n\n'));
+            showToast('📋 All scripts copied!');
+        });
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            if(!currentScripts.length) { showToast('⚠️ Generate scripts first!'); return; }
+            const blob = new Blob([currentScripts.join('\n\n---\n\n')], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `shorts_scripts_${Date.now()}.txt`;
+            link.click();
+            showToast('💾 Downloaded successfully!');
+        });
+        document.getElementById('keywordInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') generateWithAnimation(); });
+        document.querySelectorAll('.trending-topic').forEach(topic => {
+            topic.addEventListener('click', () => {
+                document.getElementById('keywordInput').value = topic.innerText;
+                generateWithAnimation();
+            });
+        });
+        displayRecentSearches();
+        displayFavorites();
+        setTimeout(() => {
+            document.getElementById('keywordInput').value = 'productivity';
+            generateWithAnimation();
+        }, 100);
+    </script>
+</body>
+</html>
