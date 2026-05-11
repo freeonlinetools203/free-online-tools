@@ -24,7 +24,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-EHKC6GXHB4');
 </script>
 
@@ -96,7 +95,7 @@ body {
     border-bottom: 2px solid white;
 }
 
-/* Dropdown */
+/* Dropdown - FIXED SCROLLING ISSUE */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -122,21 +121,42 @@ body {
     border-bottom: 2px solid white;
 }
 
+/* FIX: dropdown content scrolls independently, page remains stable */
 .dropdown-content {
     display: none;
     position: absolute;
     background: white;
-    min-width: 280px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    border-radius: 12px;
-    z-index: 1001;
-    top: 40px;
+    min-width: 320px;
+    max-height: 70vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+    border-radius: 16px;
+    z-index: 1002;
+    top: 45px;
     left: 0;
     padding: 8px 0;
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px);
     transition: opacity 0.2s ease, transform 0.2s ease;
     pointer-events: none;
+    scrollbar-width: thin;
+}
+
+/* custom scrollbar for better look */
+.dropdown-content::-webkit-scrollbar {
+    width: 6px;
+}
+.dropdown-content::-webkit-scrollbar-track {
+    background: #e2e8f0;
+    border-radius: 8px;
+}
+.dropdown-content::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 8px;
+}
+.dropdown-content::-webkit-scrollbar-thumb:hover {
+    background: #5b6e8c;
 }
 
 .dropdown.open .dropdown-content {
@@ -148,7 +168,7 @@ body {
 
 .dropdown-category {
     cursor: pointer;
-    padding: 12px 16px;
+    padding: 12px 18px;
     font-weight: 700;
     color: #1e3a8a;
     font-size: 0.9rem;
@@ -158,15 +178,16 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background 0.2s;
 }
 
 .dropdown-category:hover {
-    background: #f3f4f6;
+    background: #f1f5f9;
 }
 
 .dropdown-category .arrow {
-    font-size: 0.8rem;
-    transition: transform 0.3s ease;
+    font-size: 0.75rem;
+    transition: transform 0.25s ease;
     display: inline-block;
 }
 
@@ -177,8 +198,8 @@ body {
 .category-tools {
     display: none;
     background: #f9fafb;
-    border-radius: 8px;
-    margin: 4px 8px 8px 8px;
+    border-radius: 10px;
+    margin: 4px 12px 12px 12px;
     overflow: hidden;
 }
 
@@ -188,17 +209,18 @@ body {
 
 .category-tools a {
     color: #1f2937 !important;
-    padding: 10px 20px 10px 32px;
+    padding: 10px 20px 10px 35px;
     text-decoration: none;
     display: block;
     font-size: 14px;
     font-weight: 500;
+    transition: all 0.2s;
 }
 
 .category-tools a:hover {
-    background: #e5e7eb;
-    color: #2563eb !important;
-    transform: translateX(5px);
+    background: #e0e7ff;
+    color: #1e3a8a !important;
+    transform: translateX(4px);
 }
 
 /* ========== STATS SECTION ========== */
@@ -540,6 +562,12 @@ body {
     .footer-container { grid-template-columns: 1fr; text-align: center; gap: 35px; }
     .footer-col h3::after, .footer-col h4::after { left: 50%; transform: translateX(-50%); }
     .footer-col a { display: inline-block; margin: 0 8px; padding: 5px 10px; }
+    /* mobile dropdown position adjust */
+    .dropdown-content {
+        min-width: 280px;
+        left: -20px;
+        max-height: 60vh;
+    }
 }
 
 @media (max-width: 480px) {
@@ -551,11 +579,9 @@ body {
 </head>
 <body>
 
-<!-- ========== NAVBAR ADDED (SAME AS OTHER TOOLS) ========== -->
-<!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
-    <div class="logo">
+        <div class="logo">
             <a href="index.html">✨ Free Online Tools</a>
         </div>
         <ul class="nav-links">
@@ -563,16 +589,13 @@ body {
             <li class="dropdown" id="toolsDropdown">
                 <button class="dropbtn" id="toolsBtn">🛠️ All Categories ▼</button>
                 <div class="dropdown-content" id="dropdownContent">
-                      <div class="dropdown-category" data-cat="cat_seo">🔍 SEO Tools <span class="arrow">▶</span></div>
+                    <div class="dropdown-category" data-cat="cat_seo">🔍 SEO Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat_seoTools">
                         <a href="keyword-density-checker.html">🔍 Keyword Density Checker</a>
                         <a href="seo-analyzer.html">📊 SEO Analyzer</a>
                         <a href="meta-tags-generator.html">🏷️ Meta Tags Generator</a>
                     </div>
-                    <!-- 🐾 ANIMAL PREGNANCY TOOLS -->
-                    <div class="dropdown-category" data-cat="cat_pregnancy">
-                        🐾 Animal Pregnancy Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat_pregnancy">🐾 Animal Pregnancy Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat_pregnancyTools">
                         <a href="dog-pregnancy-calculator.html">🐕 Dog Pregnancy Calculator</a>
                         <a href="cat-pregnancy-calculator.html">🐱 Cat Pregnancy Calculator</a>
@@ -583,11 +606,7 @@ body {
                         <a href="sheep-pregnancy-calculator.html">🐑 Sheep Pregnancy Calculator</a>
                         <a href="pig-pregnancy-calculator.html">🐖 Pig Pregnancy Calculator</a>
                     </div>
-
-                    <!-- 🔐 DEVELOPER & SECURITY TOOLS (NEW - ADDED) -->
-                    <div class="dropdown-category" data-cat="cat_dev">
-                        🔐 Developer & Security Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat_dev">🔐 Developer & Security Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat_devTools">
                         <a href="md5-generator.html">🔐 MD5 Hash Generator</a>
                         <a href="sha256-generator.html">🔐 SHA-256 Hash Generator</a>
@@ -596,11 +615,7 @@ body {
                         <a href="url-encoder-decoder.html">🔗 URL Encoder/Decoder</a>
                         <a href="html-encoder-decoder.html">🌐 HTML Encoder/Decoder</a>
                     </div>
-
-                    <!-- 🎨 COLOR TOOLS -->
-                    <div class="dropdown-category" data-cat="cat_color">
-                        🎨 Color Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat_color">🎨 Color Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat_colorTools">
                         <a href="color-palette-generator.html">🎨 Color Palette Generator</a>
                         <a href="color-shades-generator.html">🌈 Color Shades Generator</a>
@@ -609,11 +624,7 @@ body {
                         <a href="color-name-finder.html">🏷️ Color Name Finder</a>
                         <a href="random-color-picker.html">🎲 Random Color Picker</a>
                     </div>
-
-                    <!-- 📊 POPULAR CALCULATORS -->
-                    <div class="dropdown-category" data-cat="cat1">
-                        📊 Popular Calculators <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat1">📊 Popular Calculators <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat1Tools">
                         <a href="unit-converter.html">📏 Unit Converter</a>
                         <a href="age-calculator.html">📅 Age Calculator</a>
@@ -628,32 +639,20 @@ body {
                         <a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a>
                         <a href="currency-converter.html">💱 Currency Converter</a>
                     </div>
-
-                    <!-- 🏃‍♂️ HEALTH & FITNESS -->
-                    <div class="dropdown-category" data-cat="cat2">
-                        🏃‍♂️ Health & Fitness <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat2">🏃‍♂️ Health & Fitness <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat2Tools">
                         <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
                         <a href="bmr-calculator.html">🔥 BMR Calculator</a>
                         <a href="calorie-calculator.html">🔥 Calorie Calculator</a>
                         <a href="tdee-calculator.html">📊 TDEE Calculator</a>
                     </div>
-
-                    <!-- 💰 FINANCIAL TOOLS -->
-                    <div class="dropdown-category" data-cat="cat3">
-                        💰 Financial Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat3">💰 Financial Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat3Tools">
                         <a href="emi-calculator.html">🏦 EMI Calculator</a>
                         <a href="loan-calculator.html">📋 Loan Calculator</a>
                         <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
                     </div>
-
-                    <!-- 📝 TEXT & WRITING TOOLS -->
-                    <div class="dropdown-category" data-cat="cat4">
-                        📝 Text & Writing Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat4">📝 Text & Writing Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat4Tools">
                         <a href="word-counter.html">🔢 Word Counter</a>
                         <a href="line-counter.html">📝 Line Counter</a>
@@ -661,11 +660,7 @@ body {
                         <a href="password-generator.html">🔐 Password Generator</a>
                         <a href="password-checker.html">🔐 Password Strength Checker</a>
                     </div>
-
-                    <!-- 📄 PDF TOOLS -->
-                    <div class="dropdown-category" data-cat="cat_pdf">
-                        📄 PDF Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat_pdf">📄 PDF Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat_pdfTools">
                         <a href="pdf-merger.html">📄 PDF Merger</a>
                         <a href="pdf-splitter.html">✂️ PDF Splitter</a>
@@ -680,11 +675,7 @@ body {
                         <a href="pdf-to-text.html">📝 PDF to Text</a>
                         <a href="pdf-rotator.html">🔄 PDF Rotator</a>
                     </div>
-
-                    <!-- 🖼️ IMAGE TOOLS -->
-                    <div class="dropdown-category" data-cat="cat_image">
-                        🖼️ Image Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat_image">🖼️ Image Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat_imageTools">
                         <a href="image-color-extractor.html">🎨 Image Color Extractor</a>
                         <a href="image-converter.html">🖼️ Image Converter</a>
@@ -694,11 +685,7 @@ body {
                         <a href="image-upscaler.html">🖼️ Image Upscaler</a>
                         <a href="image-compressor.html">🗜️ Image Compressor</a>
                     </div>
-
-                    <!-- 🎲 RANDOM & FUN TOOLS -->
-                    <div class="dropdown-category" data-cat="cat7">
-                        🎲 Random & Fun Tools <span class="arrow">▶</span>
-                    </div>
+                    <div class="dropdown-category" data-cat="cat7">🎲 Random & Fun Tools <span class="arrow">▶</span></div>
                     <div class="category-tools" id="cat7Tools">
                         <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
                         <a href="random-color-picker.html">🎨 Random Color Picker</a>
@@ -709,7 +696,6 @@ body {
                         <a href="prize-wheel.html">🏆 Prize Wheel</a>
                         <a href="task-spinner.html">✅ Task Spinner</a>
                     </div>
-
                 </div>
             </li>
             <li><a href="about.html">ℹ️ About</a></li>
@@ -721,402 +707,64 @@ body {
     </div>
 </nav>
   
-<!-- Stats Section -->
 <div class="stats-section">
     <div class="stats-container">
-        <div class="stat-item">
-            <div class="stat-number">50+</div>
-            <div class="stat-label">Free Tools</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">50K+</div>
-            <div class="stat-label">Monthly Users</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Free Forever</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">4.9</div>
-            <div class="stat-label">User Rating</div>
-        </div>
+        <div class="stat-item"><div class="stat-number">50+</div><div class="stat-label">Free Tools</div></div>
+        <div class="stat-item"><div class="stat-number">50K+</div><div class="stat-label">Monthly Users</div></div>
+        <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">Free Forever</div></div>
+        <div class="stat-item"><div class="stat-number">4.9</div><div class="stat-label">User Rating</div></div>
     </div>
 </div>
 
-<!-- Header WITH Search Bar -->
 <header class="header">
     <h1>All Free Online Tools</h1>
     <p>Simple, Fast & 100% Free Tools For Everyday Use</p>
 </header>
   
 <div class="container">
-    
-   <!-- ==================== HOME PAGE DASHBOARD ==================== -->
-
-<!-- 🔐 DEVELOPER & SECURITY TOOLS -->
-<div class="section">
-    <h2>🔐 Developer & Security Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="md5-generator.html">🔐 MD5 Hash Generator</a></div>
-        <div class="tool-card"><a href="sha256-generator.html">🔐 SHA-256 Hash Generator</a></div>
-        <div class="tool-card"><a href="sha1-generator.html">🔐 SHA-1 Hash Generator</a></div>
-        <div class="tool-card"><a href="base64-encoder-decoder.html">📝 Base64 Encoder/Decoder</a></div>
-        <div class="tool-card"><a href="url-encoder-decoder.html">🔗 URL Encoder/Decoder</a></div>
-        <div class="tool-card"><a href="html-encoder-decoder.html">🌐 HTML Encoder/Decoder</a></div>
-    </div>
+    <div class="section"><h2>🔐 Developer & Security Tools</h2><div class="tools-grid"><div class="tool-card"><a href="md5-generator.html">🔐 MD5 Hash Generator</a></div><div class="tool-card"><a href="sha256-generator.html">🔐 SHA-256 Hash Generator</a></div><div class="tool-card"><a href="sha1-generator.html">🔐 SHA-1 Hash Generator</a></div><div class="tool-card"><a href="base64-encoder-decoder.html">📝 Base64 Encoder/Decoder</a></div><div class="tool-card"><a href="url-encoder-decoder.html">🔗 URL Encoder/Decoder</a></div><div class="tool-card"><a href="html-encoder-decoder.html">🌐 HTML Encoder/Decoder</a></div></div></div>
+    <div class="section"><h2>🎨 Color Tools</h2><div class="tools-grid"><div class="tool-card"><a href="color-palette-generator.html">🎨 Color Palette Generator</a></div><div class="tool-card"><a href="color-shades-generator.html">🌈 Color Shades Generator</a></div><div class="tool-card"><a href="color-gradient-maker.html">🌈 Color Gradient Maker</a></div><div class="tool-card"><a href="color-contrast-checker.html">🎨 Color Contrast Checker</a></div><div class="tool-card"><a href="color-name-finder.html">🏷️ Color Name Finder</a></div><div class="tool-card"><a href="random-color-picker.html">🎲 Random Color Picker</a></div></div></div>
+    <div class="section"><h2>🐾 Animal Pregnancy Tools</h2><div class="tools-grid"><div class="tool-card"><a href="dog-pregnancy-calculator.html">🐕 Dog Pregnancy (63 days)</a></div><div class="tool-card"><a href="cat-pregnancy-calculator.html">🐱 Cat Pregnancy (65 days)</a></div><div class="tool-card"><a href="cow-pregnancy-calculator.html">🐄 Cow Pregnancy (283 days)</a></div><div class="tool-card"><a href="rabbit-pregnancy-calculator.html">🐰 Rabbit Pregnancy (31 days)</a></div><div class="tool-card"><a href="goat-pregnancy-calculator.html">🐐 Goat Pregnancy (150 days)</a></div><div class="tool-card"><a href="horse-pregnancy-calculator.html">🐎 Horse Pregnancy (340 days)</a></div><div class="tool-card"><a href="sheep-pregnancy-calculator.html">🐑 Sheep Pregnancy (147 days)</a></div><div class="tool-card"><a href="pig-pregnancy-calculator.html">🐖 Pig Pregnancy (114 days)</a></div></div></div>
+    <div class="section"><h2>📄 PDF Tools</h2><div class="tools-grid"><div class="tool-card"><a href="pdf-merger.html">📄 PDF Merger</a></div><div class="tool-card"><a href="pdf-splitter.html">✂️ PDF Splitter</a></div><div class="tool-card"><a href="pdf-to-image.html">📸 PDF to Image</a></div><div class="tool-card"><a href="pdf-to-jpg.html">📸 PDF to JPG</a></div><div class="tool-card"><a href="pdf-to-png.html">📸 PDF to PNG</a></div><div class="tool-card"><a href="pdf-to-bmp.html">📸 PDF to BMP</a></div><div class="tool-card"><a href="pdf-to-webp.html">📸 PDF to WEBP</a></div><div class="tool-card"><a href="pdf-to-tiff.html">📸 PDF to TIFF</a></div><div class="tool-card"><a href="pdf-to-word.html">📄 PDF to Word</a></div><div class="tool-card"><a href="pdf-to-excel.html">📊 PDF to Excel</a></div><div class="tool-card"><a href="pdf-to-text.html">📝 PDF to Text</a></div><div class="tool-card"><a href="pdf-rotator.html">🔄 PDF Rotator</a></div></div></div>
+    <div class="section"><h2>🖼️ Image Tools</h2><div class="tools-grid"><div class="tool-card"><a href="image-color-extractor.html">🎨 Image Color Extractor</a></div><div class="tool-card"><a href="image-converter.html">🖼️ Image Converter</a></div><div class="tool-card"><a href="image-cropper.html">✂️ Image Cropper</a></div><div class="tool-card"><a href="image-resizer.html">📐 Image Resizer</a></div><div class="tool-card"><a href="image-to-pdf.html">📄 Image to PDF</a></div><div class="tool-card"><a href="image-upscaler.html">🖼️ Image Upscaler</a></div><div class="tool-card"><a href="image-compressor.html">🗜️ Image Compressor</a></div></div></div>
+    <div class="section"><h2>📊 Popular Calculators</h2><div class="tools-grid"><div class="tool-card"><a href="unit-converter.html">📏 Unit Converter</a></div><div class="tool-card"><a href="age-calculator.html">📅 Age Calculator</a></div><div class="tool-card"><a href="age-difference-calculator.html">📊 Age Difference Calculator</a></div><div class="tool-card"><a href="discount-calculator.html">🏷️ Discount Calculator</a></div><div class="tool-card"><a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a></div><div class="tool-card"><a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a></div><div class="tool-card"><a href="gst-calculator.html">💰 GST Calculator</a></div><div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div><div class="tool-card"><a href="date-calculator.html">📅 Date Calculator</a></div><div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div><div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div><div class="tool-card"><a href="currency-converter.html">💱 Currency Converter</a></div></div></div>
+    <div class="section"><h2>🏃‍♂️ Health & Fitness Tools</h2><div class="tools-grid"><div class="tool-card"><a href="bmi-calculator.html">⚖️ BMI Calculator</a></div><div class="tool-card"><a href="bmr-calculator.html">🔥 BMR Calculator</a></div><div class="tool-card"><a href="calorie-calculator.html">🔥 Calorie Calculator</a></div><div class="tool-card"><a href="tdee-calculator.html">📊 TDEE Calculator</a></div></div></div>
+    <div class="section"><h2>💰 Financial Tools</h2><div class="tools-grid"><div class="tool-card"><a href="emi-calculator.html">🏦 EMI Calculator</a></div><div class="tool-card"><a href="loan-calculator.html">📋 Loan Calculator</a></div><div class="tool-card"><a href="zakat-calculator.html">🕌 Zakat Calculator</a></div></div></div>
+    <div class="section"><h2>📝 Text & Writing Tools</h2><div class="tools-grid"><div class="tool-card"><a href="word-counter.html">🔢 Word Counter</a></div><div class="tool-card"><a href="line-counter.html">📝 Line Counter</a></div><div class="tool-card"><a href="text-case-converter.html">🔤 Text Case Converter</a></div><div class="tool-card"><a href="password-generator.html">🔐 Password Generator</a></div><div class="tool-card"><a href="password-checker.html">🔐 Password Strength Checker</a></div></div></div>
+    <div class="section"><h2>🎲 Random & Fun Tools</h2><div class="tools-grid"><div class="tool-card"><a href="spin-the-wheel.html">🎡 Spin The Wheel</a></div><div class="tool-card"><a href="yes-no-wheel.html">✅ Yes/No Wheel</a></div><div class="tool-card"><a href="decision-roulette.html">🎯 Decision Roulette</a></div><div class="tool-card"><a href="random-name-picker.html">🏆 Random Name Picker</a></div><div class="tool-card"><a href="random-number-generator.html">🔢 Random Number Generator</a></div><div class="tool-card"><a href="prize-wheel.html">🏆 Prize Wheel</a></div><div class="tool-card"><a href="task-spinner.html">✅ Task Spinner</a></div><div class="tool-card"><a href="random-color-picker.html">🎲 Random Color Picker</a></div></div></div>
 </div>
 
-<!-- 🎨 COLOR TOOLS -->
-<div class="section">
-    <h2>🎨 Color Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="color-palette-generator.html">🎨 Color Palette Generator</a></div>
-        <div class="tool-card"><a href="color-shades-generator.html">🌈 Color Shades Generator</a></div>
-        <div class="tool-card"><a href="color-gradient-maker.html">🌈 Color Gradient Maker</a></div>
-        <div class="tool-card"><a href="color-contrast-checker.html">🎨 Color Contrast Checker</a></div>
-        <div class="tool-card"><a href="color-name-finder.html">🏷️ Color Name Finder</a></div>
-        <div class="tool-card"><a href="random-color-picker.html">🎲 Random Color Picker</a></div>
-    </div>
-</div>
-
-<!-- 🐾 ANIMAL PREGNANCY TOOLS -->
-<div class="section">
-    <h2>🐾 Animal Pregnancy Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="dog-pregnancy-calculator.html">🐕 Dog Pregnancy (63 days)</a></div>
-        <div class="tool-card"><a href="cat-pregnancy-calculator.html">🐱 Cat Pregnancy (65 days)</a></div>
-        <div class="tool-card"><a href="cow-pregnancy-calculator.html">🐄 Cow Pregnancy (283 days)</a></div>
-        <div class="tool-card"><a href="rabbit-pregnancy-calculator.html">🐰 Rabbit Pregnancy (31 days)</a></div>
-        <div class="tool-card"><a href="goat-pregnancy-calculator.html">🐐 Goat Pregnancy (150 days)</a></div>
-        <div class="tool-card"><a href="horse-pregnancy-calculator.html">🐎 Horse Pregnancy (340 days)</a></div>
-        <div class="tool-card"><a href="sheep-pregnancy-calculator.html">🐑 Sheep Pregnancy (147 days)</a></div>
-        <div class="tool-card"><a href="pig-pregnancy-calculator.html">🐖 Pig Pregnancy (114 days)</a></div>
-    </div>
-</div>
-
-<!-- 📄 PDF TOOLS -->
-<div class="section">
-    <h2>📄 PDF Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="pdf-merger.html">📄 PDF Merger</a></div>
-        <div class="tool-card"><a href="pdf-splitter.html">✂️ PDF Splitter</a></div>
-        <div class="tool-card"><a href="pdf-to-image.html">📸 PDF to Image</a></div>
-        <div class="tool-card"><a href="pdf-to-jpg.html">📸 PDF to JPG</a></div>
-        <div class="tool-card"><a href="pdf-to-png.html">📸 PDF to PNG</a></div>
-        <div class="tool-card"><a href="pdf-to-bmp.html">📸 PDF to BMP</a></div>
-        <div class="tool-card"><a href="pdf-to-webp.html">📸 PDF to WEBP</a></div>
-        <div class="tool-card"><a href="pdf-to-tiff.html">📸 PDF to TIFF</a></div>
-        <div class="tool-card"><a href="pdf-to-word.html">📄 PDF to Word</a></div>
-        <div class="tool-card"><a href="pdf-to-excel.html">📊 PDF to Excel</a></div>
-        <div class="tool-card"><a href="pdf-to-text.html">📝 PDF to Text</a></div>
-        <div class="tool-card"><a href="pdf-rotator.html">🔄 PDF Rotator</a></div>
-    </div>
-</div>
-
-<!-- 🖼️ IMAGE TOOLS -->
-<div class="section">
-    <h2>🖼️ Image Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="image-color-extractor.html">🎨 Image Color Extractor</a></div>
-        <div class="tool-card"><a href="image-converter.html">🖼️ Image Converter</a></div>
-        <div class="tool-card"><a href="image-cropper.html">✂️ Image Cropper</a></div>
-        <div class="tool-card"><a href="image-resizer.html">📐 Image Resizer</a></div>
-        <div class="tool-card"><a href="image-to-pdf.html">📄 Image to PDF</a></div>
-        <div class="tool-card"><a href="image-upscaler.html">🖼️ Image Upscaler</a></div>
-        <div class="tool-card"><a href="image-compressor.html">🗜️ Image Compressor</a></div>
-    </div>
-</div>
-
-<!-- 📊 POPULAR CALCULATORS -->
-<div class="section">
-    <h2>📊 Popular Calculators</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="unit-converter.html">📏 Unit Converter</a></div>
-        <div class="tool-card"><a href="age-calculator.html">📅 Age Calculator</a></div>
-        <div class="tool-card"><a href="age-difference-calculator.html">📊 Age Difference Calculator</a></div>
-        <div class="tool-card"><a href="discount-calculator.html">🏷️ Discount Calculator</a></div>
-        <div class="tool-card"><a href="profit-loss-calculator.html">📈 Profit & Loss Calculator</a></div>
-        <div class="tool-card"><a href="gpa-calculator.html">🎓 GPA/CGPA Calculator</a></div>
-        <div class="tool-card"><a href="gst-calculator.html">💰 GST Calculator</a></div>
-        <div class="tool-card"><a href="percentage-calculator.html">📈 Percentage Calculator</a></div>
-        <div class="tool-card"><a href="date-calculator.html">📅 Date Calculator</a></div>
-        <div class="tool-card"><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
-        <div class="tool-card"><a href="youtube-thumbnail-downloader.html">📸 YouTube Thumbnail Downloader</a></div>
-        <div class="tool-card"><a href="currency-converter.html">💱 Currency Converter</a></div>
-    </div>
-</div>
-
-<!-- 🏃‍♂️ HEALTH & FITNESS TOOLS -->
-<div class="section">
-    <h2>🏃‍♂️ Health & Fitness Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="bmi-calculator.html">⚖️ BMI Calculator</a></div>
-        <div class="tool-card"><a href="bmr-calculator.html">🔥 BMR Calculator</a></div>
-        <div class="tool-card"><a href="calorie-calculator.html">🔥 Calorie Calculator</a></div>
-        <div class="tool-card"><a href="tdee-calculator.html">📊 TDEE Calculator</a></div>
-    </div>
-</div>
-
-<!-- 💰 FINANCIAL TOOLS -->
-<div class="section">
-    <h2>💰 Financial Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="emi-calculator.html">🏦 EMI Calculator</a></div>
-        <div class="tool-card"><a href="loan-calculator.html">📋 Loan Calculator</a></div>
-        <div class="tool-card"><a href="zakat-calculator.html">🕌 Zakat Calculator</a></div>
-    </div>
-</div>
-
-<!-- 📝 TEXT & WRITING TOOLS -->
-<div class="section">
-    <h2>📝 Text & Writing Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="word-counter.html">🔢 Word Counter</a></div>
-        <div class="tool-card"><a href="line-counter.html">📝 Line Counter</a></div>
-        <div class="tool-card"><a href="text-case-converter.html">🔤 Text Case Converter</a></div>
-        <div class="tool-card"><a href="password-generator.html">🔐 Password Generator</a></div>
-        <div class="tool-card"><a href="password-checker.html">🔐 Password Strength Checker</a></div>
-    </div>
-</div>
-
-<!-- 🎲 RANDOM & FUN TOOLS -->
-<div class="section">
-    <h2>🎲 Random & Fun Tools</h2>
-    <div class="tools-grid">
-        <div class="tool-card"><a href="spin-the-wheel.html">🎡 Spin The Wheel</a></div>
-        <div class="tool-card"><a href="yes-no-wheel.html">✅ Yes/No Wheel</a></div>
-        <div class="tool-card"><a href="decision-roulette.html">🎯 Decision Roulette</a></div>
-        <div class="tool-card"><a href="random-name-picker.html">🏆 Random Name Picker</a></div>
-        <div class="tool-card"><a href="random-number-generator.html">🔢 Random Number Generator</a></div>
-        <div class="tool-card"><a href="prize-wheel.html">🏆 Prize Wheel</a></div>
-        <div class="tool-card"><a href="task-spinner.html">✅ Task Spinner</a></div>
-        <div class="tool-card"><a href="random-color-picker.html">🎲 Random Color Picker</a></div>
-    </div>
-</div>
-</div>
-
-<!-- ✨ Why Choose Us Section -->
 <div class="features-section">
     <h2>✨ Why Choose Our Free Tools?</h2>
-    <div class="features-grid">
-        <div class="feature-item">
-            <div class="feature-icon">🚀</div>
-            <h3>100% Free</h3>
-            <p>No hidden charges, no registration required. Use all tools unlimited times.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">📱</div>
-            <h3>Mobile Friendly</h3>
-            <p>All tools work perfectly on smartphones, tablets, and desktop devices.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">⚡</div>
-            <h3>Fast & Accurate</h3>
-            <p>Instant results with precise calculations. Save time and effort.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">🔒</div>
-            <h3>Privacy Protected</h3>
-            <p>No data stored. All calculations happen locally in your browser.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">🌙</div>
-            <h3>Dark Mode Ready</h3>
-            <p>Most tools include dark mode for comfortable night usage.</p>
-        </div>
-        <div class="feature-item">
-            <div class="feature-icon">📊</div>
-            <h3>SEO Optimized</h3>
-            <p>Tools with FAQ schema for better Google search visibility.</p>
-        </div>
-    </div>
+    <div class="features-grid"><div class="feature-item"><div class="feature-icon">🚀</div><h3>100% Free</h3><p>No hidden charges, no registration required. Use all tools unlimited times.</p></div><div class="feature-item"><div class="feature-icon">📱</div><h3>Mobile Friendly</h3><p>All tools work perfectly on smartphones, tablets, and desktop devices.</p></div><div class="feature-item"><div class="feature-icon">⚡</div><h3>Fast & Accurate</h3><p>Instant results with precise calculations. Save time and effort.</p></div><div class="feature-item"><div class="feature-icon">🔒</div><h3>Privacy Protected</h3><p>No data stored. All calculations happen locally in your browser.</p></div><div class="feature-item"><div class="feature-icon">🌙</div><h3>Dark Mode Ready</h3><p>Most tools include dark mode for comfortable night usage.</p></div><div class="feature-item"><div class="feature-icon">📊</div><h3>SEO Optimized</h3><p>Tools with FAQ schema for better Google search visibility.</p></div></div>
 </div>
 
-<!-- ❤️ Testimonial Section -->
 <div class="testimonial-section">
     <h2>❤️ What Users Say</h2>
-    <div class="testimonial-grid">
-        <div class="testimonial-item">
-            <div class="testimonial-text">"Best collection of free online tools! The Age Calculator and BMI Calculator are my favorites. Highly recommended!"</div>
-            <div class="testimonial-author">— Ahmed R., Pakistan</div>
-        </div>
-        <div class="testimonial-item">
-            <div class="testimonial-text">"I use the Calorie Calculator and Meal Planner daily. It helps me stay on track with my fitness goals. 5 stars!"</div>
-            <div class="testimonial-author">— Fatima K., UAE</div>
-        </div>
-        <div class="testimonial-item">
-            <div class="testimonial-text">"The Password Generator and Word Counter save me hours of work. These tools are a must-have for everyone!"</div>
-            <div class="testimonial-author">— Muhammad A., Saudi Arabia</div>
-        </div>
-    </div>
-</div>
+    <div class="testimonial-grid"><div class="testimonial-item"><div class="testimonial-text">"Best collection of free online tools! The Age Calculator and BMI Calculator are my favorites. Highly recommended!"</div><div class="testimonial-author">— Ahmed R., Pakistan</div></div><div class="testimonial-item"><div class="testimonial-text">"I use the Calorie Calculator and Meal Planner daily. It helps me stay on track with my fitness goals. 5 stars!"</div><div class="testimonial-author">— Fatima K., UAE</div></div><div class="testimonial-item"><div class="testimonial-text">"The Password Generator and Word Counter save me hours of work. These tools are a must-have for everyone!"</div><div class="testimonial-author">— Muhammad A., Saudi Arabia</div></div></div>
 </div>
 
-<!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
-        <div class="footer-col fade-in-up">
-            <h3>✨ Free Online Tools</h3>
-            <p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide. 100% free, no signup required.</p>
-        </div>
-        <div class="footer-col fade-in-up" style="animation-delay: 0.1s;">
-            <h4>📄 Quick Links</h4>
-            <a href="index.html">🏠 Home</a>
-            <a href="about.html">ℹ️ About Us</a>
-            <a href="contact.html">📧 Contact Us</a>
-            <a href="privacy-policy.html">🔒 Privacy Policy</a>
-        </div>
-        <div class="footer-col fade-in-up" style="animation-delay: 0.2s;">
-            <h4>⭐ Trending Tools</h4>
-            <a href="calorie-calculator.html">🔥 Calorie Calculator</a>
-            <a href="bmi-calculator.html">⚖️ BMI Calculator</a>
-            <a href="age-calculator.html">📅 Age Calculator</a>
-            <a href="qr-code-generator.html">📱 QR Code Generator</a>
-        </div>
-        <div class="footer-col fade-in-up" style="animation-delay: 0.3s;">
-            <h4>🔧 Popular Tools</h4>
-            <a href="emi-calculator.html">🏦 EMI Calculator</a>
-            <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
-            <a href="password-generator.html">🔐 Password Generator</a>
-            <a href="zakat-calculator.html">🕌 Zakat Calculator</a>
-        </div>
+        <div class="footer-col fade-in-up"><h3>✨ Free Online Tools</h3><p>Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide. 100% free, no signup required.</p></div>
+        <div class="footer-col fade-in-up" style="animation-delay: 0.1s;"><h4>📄 Quick Links</h4><a href="index.html">🏠 Home</a><a href="about.html">ℹ️ About Us</a><a href="contact.html">📧 Contact Us</a><a href="privacy-policy.html">🔒 Privacy Policy</a></div>
+        <div class="footer-col fade-in-up" style="animation-delay: 0.2s;"><h4>⭐ Trending Tools</h4><a href="calorie-calculator.html">🔥 Calorie Calculator</a><a href="bmi-calculator.html">⚖️ BMI Calculator</a><a href="age-calculator.html">📅 Age Calculator</a><a href="qr-code-generator.html">📱 QR Code Generator</a></div>
+        <div class="footer-col fade-in-up" style="animation-delay: 0.3s;"><h4>🔧 Popular Tools</h4><a href="emi-calculator.html">🏦 EMI Calculator</a><a href="spin-the-wheel.html">🎡 Spin The Wheel</a><a href="password-generator.html">🔐 Password Generator</a><a href="zakat-calculator.html">🕌 Zakat Calculator</a></div>
     </div>
-    <div class="footer-bottom slide-up">
-        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
-    </div>
+    <div class="footer-bottom slide-up"><p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p></div>
 </footer>
 
 <script>
-// ========== PAGE LOAD FADE-IN ==========
 document.body.style.opacity = '0';
 document.body.style.transition = 'opacity 0.2s ease';
-setTimeout(() => {
-    document.body.style.opacity = '1';
-}, 50);
+setTimeout(() => { document.body.style.opacity = '1'; }, 50);
 
-// ========== SEARCH BAR FUNCTIONALITY (FIXED) ==========
-(function() {
-    function initSearch() {
-        const searchInput = document.getElementById('toolSearch');
-        const searchCount = document.getElementById('searchCount');
-        
-        if (!searchInput) {
-            console.log('Waiting for search input...');
-            setTimeout(initSearch, 300);
-            return;
-        }
-        
-        console.log('✅ Search bar initialized!');
-        
-        // Get all tool cards and their sections
-        function getAllTools() {
-            const tools = [];
-            const sections = document.querySelectorAll('.section');
-            
-            sections.forEach(section => {
-                const cards = section.querySelectorAll('.tool-card');
-                cards.forEach(card => {
-                    const link = card.querySelector('a');
-                    if (link && link.innerText) {
-                        tools.push({
-                            card: card,
-                            section: section,
-                            text: link.innerText.toLowerCase()
-                        });
-                    }
-                });
-            });
-            
-            return tools;
-        }
-        
-        function filterTools() {
-            const searchTerm = searchInput.value.toLowerCase().trim();
-            const allTools = getAllTools();
-            let visibleCount = 0;
-            
-            // First hide all sections
-            document.querySelectorAll('.section').forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            if (searchTerm === '') {
-                // Show all sections and cards
-                document.querySelectorAll('.section').forEach(section => {
-                    section.style.display = '';
-                    section.querySelectorAll('.tool-card').forEach(card => {
-                        card.style.display = '';
-                    });
-                });
-                if (searchCount) searchCount.style.display = 'none';
-                return;
-            }
-            
-            // Track which sections have visible tools
-            const sectionsWithMatches = new Set();
-            
-            // Filter tools
-            allTools.forEach(tool => {
-                const match = tool.text.includes(searchTerm);
-                
-                if (match) {
-                    tool.card.style.display = '';
-                    visibleCount++;
-                    sectionsWithMatches.add(tool.section);
-                } else {
-                    tool.card.style.display = 'none';
-                }
-            });
-            
-            // Show only sections that have matches
-            sectionsWithMatches.forEach(section => {
-                section.style.display = '';
-            });
-            
-            // Update search count display
-            if (searchCount) {
-                if (visibleCount === 0) {
-                    searchCount.innerHTML = `❌ "${searchTerm}" کے لیے کوئی ٹول نہیں ملا`;
-                    searchCount.style.backgroundColor = '#fee2e2';
-                    searchCount.style.color = '#dc2626';
-                } else {
-                    searchCount.innerHTML = `✅ "${searchTerm}" کے لیے ${visibleCount} ٹول مل گئے`;
-                    searchCount.style.backgroundColor = '#d1fae5';
-                    searchCount.style.color = '#065f46';
-                }
-                searchCount.style.display = 'block';
-                searchCount.style.padding = '8px 16px';
-                searchCount.style.borderRadius = '40px';
-                searchCount.style.marginTop = '10px';
-                searchCount.style.fontSize = '13px';
-                searchCount.style.fontWeight = '500';
-            }
-        }
-        
-        searchInput.addEventListener('input', filterTools);
-        searchInput.addEventListener('search', filterTools);
-        
-        // Initial run
-        filterTools();
-    }
-    
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initSearch);
-    } else {
-        initSearch();
-    }
-})();
-
-// ========== DROPDOWN MENU (WORKING) ==========
+// DROPDOWN: independent scroll only inside tools, dashboard scroll undisturbed
 (function() {
     const dropdown = document.getElementById('toolsDropdown');
     const dropBtn = document.getElementById('toolsBtn');
-    
-    if (!dropdown || !dropBtn) {
-        console.log('Dropdown elements not found');
-        return;
-    }
-    
+    if (!dropdown || !dropBtn) return;
+
     function closeAllCategories() {
         document.querySelectorAll('.dropdown-category.active').forEach(cat => {
             cat.classList.remove('active');
@@ -1127,33 +775,23 @@ setTimeout(() => {
             }
         });
     }
-    
+
     function closeDropdown() { 
         dropdown.classList.remove('open');
         closeAllCategories();
     }
-    
-    function openDropdown() {
-        dropdown.classList.add('open');
-    }
-    
+    function openDropdown() { dropdown.classList.add('open'); }
+
     dropBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        if (dropdown.classList.contains('open')) {
-            closeDropdown();
-        } else {
-            openDropdown();
-        }
+        if (dropdown.classList.contains('open')) closeDropdown();
+        else openDropdown();
     });
-    
-    // Close dropdown when clicking outside
+
     document.addEventListener('click', function(event) {
-        if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) {
-            closeDropdown();
-        }
+        if (dropdown.classList.contains('open') && !dropdown.contains(event.target)) closeDropdown();
     });
-    
-    // Category click handler
+
     document.querySelectorAll('.dropdown-category').forEach(category => {
         category.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -1171,32 +809,28 @@ setTimeout(() => {
             }
         });
     });
-    
-    console.log('✅ Dropdown menu initialized!');
+
+    // prevent scroll from dropdown content causing dashboard movement (just natural isolation)
+    const dropdownContent = document.querySelector('.dropdown-content');
+    if(dropdownContent) {
+        dropdownContent.addEventListener('wheel', function(e) {
+            e.stopPropagation();
+        }, { passive: false });
+    }
 })();
 
-// ========== RESPONSIVE MENU ==========
-(function() {
-    // Close dropdown on window resize (mobile)
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(function() {
-            const dropdown = document.getElementById('toolsDropdown');
-            if (dropdown && dropdown.classList.contains('open')) {
-                dropdown.classList.remove('open');
-                document.querySelectorAll('.dropdown-category.active').forEach(cat => {
-                    cat.classList.remove('active');
-                    const catId = cat.getAttribute('data-cat');
-                    if (catId) {
-                        const toolsDiv = document.getElementById(catId + 'Tools');
-                        if (toolsDiv) toolsDiv.classList.remove('show');
-                    }
-                });
-            }
-        }, 250);
-    });
-})();
+// optional resize handling
+window.addEventListener('resize', function() {
+    const dropdown = document.getElementById('toolsDropdown');
+    if (dropdown && dropdown.classList.contains('open')) {
+        dropdown.classList.remove('open');
+        document.querySelectorAll('.dropdown-category.active').forEach(cat => {
+            cat.classList.remove('active');
+            const catId = cat.getAttribute('data-cat');
+            if(catId) document.getElementById(catId + 'Tools')?.classList.remove('show');
+        });
+    }
+});
 </script>
 </body>
 </html>
