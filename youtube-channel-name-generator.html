@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Free YouTube Channel Name Generator | Unique & Catchy Names 2026</title>
+    <meta name="description" content="Generate unique, catchy and viral YouTube channel names instantly using our free YouTube Channel Name Generator Tool. Perfect for gaming, tech, vlog & more.">
+    <meta name="keywords" content="YouTube channel name generator, channel name ideas, gaming channel names, tech channel names, vlog names, brand name generator">
+    <meta name="author" content="YouTube Channel Name Tool">
+    <link rel="canonical" href="https://www.yoursite.com/youtube-channel-name-generator">
+    <meta property="og:title" content="Free YouTube Channel Name Generator | Unique & Catchy Names">
+    <meta property="og:description" content="Generate unique, catchy and viral YouTube channel names instantly. Perfect for creators!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://www.yoursite.com/yt-name-og.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Free YouTube Channel Name Generator Tool">
+    <meta name="twitter:description" content="Generate viral YouTube channel names instantly. Free tool for creators.">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube Channel Name Generator Tool",
+      "description": "Generate unique, catchy and viral YouTube channel names instantly",
+      "applicationCategory": "Branding Tool",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(20, 20, 30, 0.95);
+            --yt-red: #ff0000;
+            --yt-dark-red: #cc0000;
+            --yt-light-red: #ff4444;
+            --neon-pink: #ff6b6b;
+            --neon-purple: #8b5cf6;
+            --text-light: #ffffff;
+            --text-gray: #b0b0b0;
+            --gradient-1: linear-gradient(135deg, #ff0000, #8b5cf6);
+            --gradient-2: linear-gradient(135deg, #ff4444, #ff0000);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.1), transparent 60%),
+                        radial-gradient(circle at 80% 70%, rgba(139, 92, 246, 0.08), transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .floating-particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            background: linear-gradient(135deg, #ff0000, #8b5cf6);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.2;
+            }
+            90% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            padding: 30px;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 18px 24px;
+            font-size: 1.1rem;
+            background: rgba(30, 30, 40, 0.95);
+            border: 2px solid rgba(255, 0, 0, 0.3);
+            border-radius: 60px;
+            color: var(--text-light);
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-box:focus {
+            border-color: var(--yt-red);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+        }
+
+        .style-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .style-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .style-btn.active {
+            background: linear-gradient(135deg, #ff0000, #8b5cf6);
+            border-color: transparent;
+            color: white;
+        }
+
+        .style-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            border: none;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 1rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 40px;
+            color: var(--text-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 0, 0, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .names-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .name-card {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            border-left: 4px solid #ff0000;
+            transition: all 0.3s;
+        }
+
+        .name-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .name-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .name-item {
+            background: linear-gradient(135deg, rgba(255, 0, 0, 0.1), rgba(139, 92, 246, 0.1));
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(255, 0, 0, 0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .name-item:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: translateX(5px);
+        }
+
+        .name-text {
+            flex: 1;
+            font-weight: 500;
+        }
+
+        .copy-name {
+            background: rgba(255, 0, 0, 0.2);
+            border: none;
+            padding: 4px 12px;
+            border-radius: 30px;
+            cursor: pointer;
+            color: white;
+            font-size: 0.7rem;
+            transition: all 0.2s;
+        }
+
+        .copy-name:hover {
+            background: #ff0000;
+        }
+
+        .stats-container {
+            display: flex;
+            gap: 20px;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .stat-card {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 12px 20px;
+            border-radius: 20px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 1000;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #ff0000, #8b5cf6);
+            padding: 12px 24px;
+            border-radius: 60px;
+            color: white;
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #ff0000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        .scroll-top:hover {
+            transform: scale(1.1);
+        }
+
+        .trending-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .trending-topic {
+            background: rgba(255, 0, 0, 0.15);
+            padding: 8px 20px;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .trending-topic:hover {
+            background: #ff0000;
+            transform: translateY(-2px);
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.6s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            h1 {
+                font-size: 1.8rem;
+            }
+            .names-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        body.light-mode {
+            --bg-dark: #f5f5f5;
+            --bg-card: rgba(255, 255, 255, 0.95);
+            --text-light: #1a1a1a;
+            --text-gray: #666;
+        }
+
+        .ad-placeholder {
+            background: rgba(255, 0, 0, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 2px dashed rgba(255, 0, 0, 0.3);
+        }
+
+        .favorite-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: 4px;
+            color: gold;
+        }
+
+        .live-preview {
+            background: rgba(0,0,0,0.3);
+            padding: 20px;
+            border-radius: 20px;
+            margin-top: 10px;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-align: center;
+            font-family: monospace;
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+    <div class="floating-particles" id="particles"></div>
+    
+    <div class="theme-toggle" id="themeToggle">🌙 Dark</div>
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <div class="container">
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Top Banner -->
+            <span>📢 Advertisement - 728x90 Banner</span>
+        </div>
+
+        <div class="glass-card" style="text-align: center; margin-bottom: 30px;">
+            <h1>🎬 YouTube Channel Name Generator</h1>
+            <p style="color: var(--text-gray);">Generate unique, catchy & viral channel names for gaming, tech, vlog, AI & more</p>
+        </div>
+
+        <div class="glass-card">
+            <input type="text" id="keywordInput" class="search-box" placeholder="Enter your niche or keyword... e.g., gaming, tech, cooking, vlog, AI, motivation" autocomplete="off">
+            
+            <div style="margin: 20px 0 10px 0;"><strong>🎨 Channel Style:</strong></div>
+            <div class="style-buttons" id="styleButtons">
+                <div class="style-btn" data-style="gaming">🎮 Gaming</div>
+                <div class="style-btn" data-style="professional">💼 Professional</div>
+                <div class="style-btn" data-style="funny">😂 Funny</div>
+                <div class="style-btn" data-style="tech">💻 Tech</div>
+                <div class="style-btn" data-style="ai">🤖 AI</div>
+                <div class="style-btn" data-style="shorts">📱 Shorts Creator</div>
+                <div class="style-btn" data-style="vlog">📹 Vlog</div>
+                <div class="style-btn" data-style="minimal">✨ Minimal</div>
+                <div class="style-btn" data-style="brand">🏷️ Brand Style</div>
+            </div>
+
+            <div style="display: flex; gap: 15px; margin: 20px 0; flex-wrap: wrap;">
+                <button class="btn-primary" id="generateBtn">✨ Generate Names</button>
+                <button class="btn-secondary" id="copyAllBtn">📋 Copy All</button>
+                <button class="btn-secondary" id="downloadBtn">💾 Download TXT</button>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">📊 Total Names: <span id="totalCount">0</span></div>
+                <div class="stat-card">📝 Avg Length: <span id="avgLength">0</span> chars</div>
+                <div class="stat-card">✅ Best: 3-20 characters</div>
+            </div>
+        </div>
+
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Rectangle -->
+            <span>📢 Advertisement - 300x250 Rectangle</span>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>🎯 YouTube Channel Preview</h3>
+            <div id="livePreview" class="live-preview">
+                Your channel name preview will appear here
+            </div>
+        </div>
+
+        <div id="resultsSection">
+            <h2>✨ Generated Channel Names</h2>
+            <div class="names-grid" id="namesGrid"></div>
+        </div>
+
+        <div class="glass-card" style="margin: 30px 0;">
+            <h3>⚡ Trending Niches</h3>
+            <div class="trending-topics" id="trendingTopics">
+                <div class="trending-topic">gaming</div>
+                <div class="trending-topic">tech</div>
+                <div class="trending-topic">AI tools</div>
+                <div class="trending-topic">motivation</div>
+                <div class="trending-topic">cooking</div>
+                <div class="trending-topic">vlog</div>
+                <div class="trending-topic">business</div>
+                <div class="trending-topic">fitness</div>
+            </div>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>🕒 Recent Searches</h3>
+            <div id="recentSearches" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+            <h3 style="margin-top: 20px;">⭐ Favorite Names</h3>
+            <div id="favoritesList" style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;"></div>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>📈 YouTube Branding Tips</h3>
+            <ul style="margin-top: 15px; list-style: none;">
+                <li>✅ Keep your channel name short, memorable, and easy to spell</li>
+                <li>✅ Use keywords related to your niche for better discoverability</li>
+                <li>✅ Avoid numbers and special characters unless they add value</li>
+                <li>✅ Choose a name that allows room for future content expansion</li>
+                <li>✅ Check if the name is available across all social platforms</li>
+            </ul>
+        </div>
+
+        <div class="glass-card" style="margin: 20px 0;">
+            <h3>❓ Frequently Asked Questions</h3>
+            <div style="margin-top: 20px;">
+                <div style="margin-bottom: 20px;">
+                    <strong>What is a YouTube channel name generator?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">An AI tool that creates unique, catchy channel names based on your niche and preferred style.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>How to choose a good channel name?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Keep it short, relevant to your content, memorable, and easy to pronounce.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>Should channel names be short?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Yes! 3-20 characters is ideal. Short names are easier to remember and type.</p>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <strong>Best gaming channel names?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Use words like "Gamer", "Plays", "Gaming", "Pro", "Legend" + your name or keyword.</p>
+                </div>
+                <div>
+                    <strong>Can a good name help channel growth?</strong>
+                    <p style="color: var(--text-gray); margin-top: 5px;">Absolutely! A memorable name boosts brand recognition and subscriber loyalty.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ad-placeholder">
+            <!-- AdSense Ad Placeholder - Bottom Banner -->
+            <span>📢 Advertisement - 728x90 Banner</span>
+        </div>
+
+        <footer style="text-align: center; padding: 40px 0; color: var(--text-gray);">
+            <p>© 2026 YouTube Channel Name Generator | Start Your YouTube Journey Today</p>
+        </footer>
+    </div>
+
+    <script>
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for(let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.width = Math.random() * 5 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = Math.random() * 10 + 5 + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        let currentStyle = 'gaming';
+        let currentNames = [];
+        let favorites = JSON.parse(localStorage.getItem('ytNameFavorites') || '[]');
+
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentStyle = btn.dataset.style;
+            });
+        });
+        document.querySelector('.style-btn').classList.add('active');
+
+        function generateNames(keyword, style) {
+            const lowerKeyword = keyword.toLowerCase().trim();
+            if(!lowerKeyword) return [];
+            
+            const prefixes = {
+                gaming: ['Gamer', 'Pro', 'Legend', 'King', 'Queen', 'Master', 'Elite', 'Beast', 'Shadow', 'Fusion', 'Nova', 'Rogue', 'Phantom', 'Vortex'],
+                professional: ['Official', 'Media', 'Studio', 'Productions', 'Network', 'Global', 'Insights', 'Academy', 'Group', 'Solutions'],
+                funny: ['Crazy', 'Silly', 'Funny', 'LOL', 'Goofy', 'Wacky', 'Zany', 'Hilarious', 'Comedy', 'Jester', 'Panda', 'Noodle'],
+                tech: ['Tech', 'Digital', 'Cyber', 'Code', 'Dev', 'Innovate', 'Future', 'NextGen', 'Alpha', 'Beta', 'Quantum', 'Pixel', 'Byte', 'Cloud'],
+                ai: ['AI', 'Neural', 'Smart', 'Intelligent', 'Deep', 'Cognitive', 'Auto', 'Genius', 'Synth', 'Mind', 'Logic', 'Data', 'Robot'],
+                shorts: ['Shorts', 'Quick', 'Fast', 'Snappy', 'Daily', 'Bite', 'Flash', 'Mini', 'Reel', 'Viral', 'Trend', 'Now'],
+                vlog: ['Vlog', 'Daily', 'Life', 'Journey', 'Moments', 'Diary', 'Adventures', 'Stories', 'Living', 'Real', 'Simple', 'Everyday'],
+                minimal: ['One', 'Pure', 'True', 'Just', 'Only', 'Simple', 'Basic', 'Clear', 'Pure', 'Solo', 'Me', 'Us', 'Essence', 'Core'],
+                brand: ['Co', 'Brand', 'Creative', 'Vision', 'Empire', 'Media', 'House', 'Collective', 'Society', 'League', 'Nation']
+            };
+            
+            const suffixes = {
+                gaming: ['Plays', 'TV', 'Zone', 'World', 'Nation', 'Empire', 'Squad', 'Clan', 'Army', 'Lab', 'Central', 'HQ', 'Network'],
+                professional: ['Hub', 'Central', 'HQ', 'Network', 'Platform', 'Portal', 'Connect', 'Link', 'Bridge', 'Point'],
+                funny: ['Zone', 'Land', 'Time', 'Show', 'Club', 'Nation', 'World', 'Fails', 'Moments', 'Fun', 'Humor'],
+                tech: ['Lab', 'Hub', 'Central', 'Sys', 'Net', 'Codex', 'Forge', 'Works', 'Factory', 'Source', 'Base', 'Core'],
+                ai: ['Mind', 'Core', 'Engine', 'Forge', 'Works', 'Studio', 'Lab', 'Brain', 'Logic', 'Sense', 'Spark'],
+                shorts: ['Cut', 'Clip', 'Snap', 'Tap', 'Now', 'Spot', 'Dash', 'Spark', 'Flash', 'Rush', 'Burst'],
+                vlog: ['World', 'Life', 'Days', 'Time', 'Space', 'Room', 'Place', 'Vibes', 'Scenes', 'Tales', 'Chronicles'],
+                minimal: ['Now', 'Here', 'There', 'Flow', 'Wave', 'Light', 'Space', 'Moment', 'Essence', 'Being'],
+                brand: ['Official', 'Studios', 'Creative', 'Collective', 'Empire', 'Group', 'Co', 'Labs', 'Agency', 'House']
+            };
+            
+            let prefixList = prefixes[style] || prefixes.brand;
+            let suffixList = suffixes[style] || suffixes.brand;
+            
+            let names = new Set();
+            
+            // Generate combinations
+            for(let i = 0; i < prefixList.length; i++) {
+                let name = `${prefixList[i]} ${lowerKeyword}`;
+                names.add(name);
+                names.add(`${lowerKeyword} ${suffixList[i % suffixList.length]}`);
+                names.add(`${prefixList[i]}${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`);
+                names.add(`${lowerKeyword}${suffixList[i % suffixList.length]}`);
+            }
+            
+            // Add more variations
+            const additional = [
+                `Mr${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`,
+                `The${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}Guy`,
+                `${lowerKeyword}Master`,
+                `Just${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`,
+                `Hello${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`,
+                `${lowerKeyword}Expert`,
+                `Simply${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`,
+                `${lowerKeyword}Man`,
+                `Real${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`,
+                `${lowerKeyword}Cafe`,
+                `${lowerKeyword}Spot`,
+                `The${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}Show`,
+                `${lowerKeyword}Unlimited`,
+                `Go${lowerKeyword.charAt(0).toUpperCase() + lowerKeyword.slice(1)}`
+            ];
+            additional.forEach(n => names.add(n));
+            
+            let nameArray = Array.from(names);
+            nameArray = nameArray.filter(n => n.length >= 3 && n.length <= 30);
+            nameArray = nameArray.slice(0, 24);
+            
+            return nameArray;
+        }
+
+        function renderNames(names) {
+            const categories = [
+                { title: "🔥 Trending Names", data: names.slice(0, 8) },
+                { title: "🌟 Unique Names", data: names.slice(8, 16) },
+                { title: "💡 Recommended Names", data: names.slice(16, 24) }
+            ];
+            
+            let allNames = [];
+            let html = '';
+            categories.forEach(cat => {
+                if(cat.data.length > 0) {
+                    html += `
+                        <div class="name-card">
+                            <h3>${cat.title}</h3>
+                            <div class="name-list">
+                                ${cat.data.map(name => `
+                                    <div class="name-item" data-name="${escapeHtml(name)}">
+                                        <span class="name-text">🏷️ ${escapeHtml(name)}</span>
+                                        <div>
+                                            <button class="copy-name">📋 Copy</button>
+                                            <button class="favorite-btn" data-name="${escapeHtml(name)}">⭐</button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                    allNames = [...allNames, ...cat.data];
+                }
+            });
+            
+            document.getElementById('namesGrid').innerHTML = html;
+            document.getElementById('totalCount').innerText = allNames.length;
+            let avgLen = Math.round(allNames.reduce((a,b) => a + b.length, 0) / allNames.length);
+            document.getElementById('avgLength').innerText = avgLen;
+            document.getElementById('livePreview').innerHTML = allNames[0] || 'Your Channel Name';
+            
+            document.querySelectorAll('.name-item').forEach(item => {
+                const name = item.getAttribute('data-name');
+                const copyBtn = item.querySelector('.copy-name');
+                const favBtn = item.querySelector('.favorite-btn');
+                copyBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    copyToClipboard(name);
+                    showToast(`✅ Copied: ${name}`);
+                });
+                favBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    toggleFavorite(name);
+                });
+            });
+            
+            return allNames;
+        }
+
+        function toggleFavorite(name) {
+            if(favorites.includes(name)) {
+                favorites = favorites.filter(f => f !== name);
+                showToast(`❌ Removed: ${name}`);
+            } else {
+                favorites.push(name);
+                showToast(`⭐ Added to favorites: ${name}`);
+            }
+            localStorage.setItem('ytNameFavorites', JSON.stringify(favorites));
+            displayFavorites();
+        }
+
+        function displayFavorites() {
+            const container = document.getElementById('favoritesList');
+            if(favorites.length === 0) {
+                container.innerHTML = '<p style="color: gray;">No favorite names yet</p>';
+                return;
+            }
+            container.innerHTML = favorites.map(name => 
+                `<div class="trending-topic" style="background: #ff0000; cursor: pointer;" onclick="copyToClipboard('${escapeHtml(name)}'); showToast('✅ Copied: ${name}');">🏷️ ${name} ❌</div>`
+            ).join('');
+        }
+
+        function escapeHtml(str) {
+            return str.replace(/[&<>]/g, function(m) {
+                if(m === '&') return '&amp;';
+                if(m === '<') return '&lt;';
+                if(m === '>') return '&gt;';
+                return m;
+            });
+        }
+
+        function copyToClipboard(text) { navigator.clipboard.writeText(text); }
+        
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+
+        async function generateWithAnimation() {
+            const keyword = document.getElementById('keywordInput').value.trim();
+            if(!keyword) { showToast('❌ Please enter a keyword!'); return; }
+            const btn = document.getElementById('generateBtn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner"></span> Generating...';
+            btn.disabled = true;
+            setTimeout(() => {
+                const names = generateNames(keyword, currentStyle);
+                currentNames = names;
+                renderNames(names);
+                saveRecentSearch(keyword);
+                showToast('✨ Channel names generated successfully!');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            }, 500);
+        }
+
+        function saveRecentSearch(keyword) {
+            let searches = JSON.parse(localStorage.getItem('ytNameRecentSearches') || '[]');
+            searches = [keyword, ...searches.filter(s => s !== keyword)];
+            searches = searches.slice(0, 5);
+            localStorage.setItem('ytNameRecentSearches', JSON.stringify(searches));
+            displayRecentSearches();
+        }
+
+        function displayRecentSearches() {
+            const searches = JSON.parse(localStorage.getItem('ytNameRecentSearches') || '[]');
+            const container = document.getElementById('recentSearches');
+            if(searches.length === 0) { container.innerHTML = '<p style="color: gray;">No recent searches</p>'; return; }
+            container.innerHTML = searches.map(s => `<div class="trending-topic" onclick="document.getElementById('keywordInput').value='${s}'; generateWithAnimation();">${s}</div>`).join('');
+        }
+
+        let isDark = true;
+        document.getElementById('themeToggle').addEventListener('click', () => {
+            isDark = !isDark;
+            if(isDark) {
+                document.body.classList.remove('light-mode');
+                document.getElementById('themeToggle').innerHTML = '🌙 Dark';
+            } else {
+                document.body.classList.add('light-mode');
+                document.getElementById('themeToggle').innerHTML = '☀️ Light';
+            }
+            localStorage.setItem('ytNameTheme', isDark ? 'dark' : 'light');
+        });
+        if(localStorage.getItem('ytNameTheme') === 'light') {
+            document.body.classList.add('light-mode');
+            document.getElementById('themeToggle').innerHTML = '☀️ Light';
+        }
+
+        document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        document.getElementById('generateBtn').addEventListener('click', generateWithAnimation);
+        document.getElementById('copyAllBtn').addEventListener('click', () => {
+            if(!currentNames.length) { showToast('⚠️ Generate names first!'); return; }
+            copyToClipboard(currentNames.join('\n'));
+            showToast('📋 All names copied!');
+        });
+        document.getElementById('downloadBtn').addEventListener('click', () => {
+            if(!currentNames.length) { showToast('⚠️ Generate names first!'); return; }
+            const blob = new Blob([currentNames.join('\n')], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `youtube_channel_names_${Date.now()}.txt`;
+            link.click();
+            showToast('💾 Downloaded successfully!');
+        });
+        document.getElementById('keywordInput').addEventListener('keypress', (e) => { if(e.key === 'Enter') generateWithAnimation(); });
+        document.querySelectorAll('.trending-topic').forEach(topic => {
+            topic.addEventListener('click', () => {
+                document.getElementById('keywordInput').value = topic.innerText;
+                generateWithAnimation();
+            });
+        });
+        displayRecentSearches();
+        displayFavorites();
+        setTimeout(() => {
+            document.getElementById('keywordInput').value = 'creator';
+            generateWithAnimation();
+        }, 100);
+    </script>
+</body>
+</html>
