@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>YouTube Thumbnail Split Tester | Find Your Best CTR Design</title>
+    <meta name="description" content="Compare YouTube thumbnails and find the best high CTR design using our free YouTube Thumbnail Split Tester Tool. Optimize your click-through rate." />
+    <meta name="keywords" content="thumbnail split test, YouTube thumbnail tester, CTR test, thumbnail A/B test, optimize thumbnail" />
+    <meta name="author" content="Thumbnail Tester" />
+    <link rel="canonical" href="https://www.yoursite.com/thumbnail-split-tester" />
+    <meta property="og:title" content="YouTube Thumbnail Split Tester | CTR Optimizer" />
+    <meta property="og:description" content="Analyze and compare two thumbnails to see which one will get more clicks." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "YouTube Thumbnail Split Tester",
+      "description": "Compare and analyze YouTube thumbnail designs for CTR optimization",
+      "applicationCategory": "Design Tool",
+      "operatingSystem": "All"
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: rgba(18, 18, 26, 0.96);
+            --yt-red: #ff0000;
+            --gradient-1: linear-gradient(135deg, #ff0000, #8b5cf6);
+            --text-light: #ffffff;
+            --text-gray: #aaa;
+            --border-glow: rgba(255, 0, 0, 0.3);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255,0,0,0.08), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(12px);
+            border-radius: 32px;
+            padding: 28px;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-bottom: 28px;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .upload-zone {
+            border: 2px dashed var(--border-glow);
+            border-radius: 28px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+            background: rgba(0,0,0,0.2);
+        }
+
+        .upload-zone:hover {
+            border-color: #ff0000;
+            background: rgba(255,0,0,0.05);
+        }
+
+        .thumbnail-preview {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin-top: 15px;
+        }
+
+        .score-meter {
+            background: rgba(255,255,255,0.1);
+            border-radius: 30px;
+            height: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .score-fill {
+            background: linear-gradient(90deg, #ff0000, #8b5cf6);
+            width: 0%;
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .winner-badge {
+            background: #ff0000;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--gradient-1);
+            border: none;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .btn-secondary {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,0,0,0.4);
+            padding: 8px 16px;
+            border-radius: 40px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            border-radius: 50px;
+            padding: 8px 16px;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--gradient-1);
+            padding: 12px 24px;
+            border-radius: 60px;
+            z-index: 1000;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #ff0000;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+        }
+
+        .ad-placeholder {
+            background: rgba(255,0,0,0.05);
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            border: 1px dashed rgba(255,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container { padding: 15px; }
+            h1 { font-size: 1.8rem; }
+        }
+
+        body.light-mode {
+            --bg-dark: #f5f5f5;
+            --bg-card: rgba(255,255,255,0.95);
+            --text-light: #1a1a1a;
+            --text-gray: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="animated-bg"></div>
+<div class="theme-toggle" id="themeToggle">🌙 Dark</div>
+<div class="scroll-top" id="scrollTop">↑</div>
+
+<div class="container">
+    <div class="ad-placeholder"><!-- AdSense Top --> 📢 Ad Space - 728x90</div>
+
+    <div class="glass-card" style="text-align: center;">
+        <h1>🖼️ YouTube Thumbnail Split Tester</h1>
+        <p>Upload two thumbnails → Compare CTR scores → Find the winner</p>
+    </div>
+
+    <div class="glass-card">
+        <div class="grid-2">
+            <div>
+                <div class="upload-zone" id="uploadZoneA">
+                    📸 Drop or Click to Upload Thumbnail A
+                    <input type="file" id="fileInputA" accept="image/jpeg,image/png,image/webp" style="display:none;">
+                </div>
+                <img id="previewA" class="thumbnail-preview" style="display:none;">
+                <button class="btn-secondary" id="removeA" style="margin-top:10px; display:none;">🗑️ Remove</button>
+                <div id="scoreA" style="margin-top: 15px;"></div>
+            </div>
+            <div>
+                <div class="upload-zone" id="uploadZoneB">
+                    📸 Drop or Click to Upload Thumbnail B
+                    <input type="file" id="fileInputB" accept="image/jpeg,image/png,image/webp" style="display:none;">
+                </div>
+                <img id="previewB" class="thumbnail-preview" style="display:none;">
+                <button class="btn-secondary" id="removeB" style="margin-top:10px; display:none;">🗑️ Remove</button>
+                <div id="scoreB" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:20px;">
+            <button class="btn-primary" id="compareBtn">⚡ Compare & Analyze</button>
+        </div>
+    </div>
+
+    <div id="resultSection" style="display: none;">
+        <div class="glass-card">
+            <h2>📊 Winner Analysis</h2>
+            <div id="winnerDisplay" style="margin: 15px 0;"></div>
+            <div class="grid-2">
+                <div><h3>Thumbnail A Scores</h3><div id="scoresADetail"></div></div>
+                <div><h3>Thumbnail B Scores</h3><div id="scoresBDetail"></div></div>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h2>💡 Improvement Suggestions</h2>
+            <ul id="suggestionsList"></ul>
+        </div>
+
+        <div class="glass-card">
+            <h2>📱 Live Preview (YouTube Mockup)</h2>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <div><strong>Thumbnail A Preview:</strong><br><img id="livePreviewA" style="width:160px; border-radius:12px;"></div>
+                <div><strong>Thumbnail B Preview:</strong><br><img id="livePreviewB" style="width:160px; border-radius:12px;"></div>
+            </div>
+        </div>
+
+        <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <button class="btn-secondary" id="copyReportBtn">📋 Copy Full Report</button>
+            <button class="btn-secondary" id="downloadReportBtn">💾 Download TXT</button>
+        </div>
+    </div>
+
+    <div class="glass-card">
+        <h3>🔍 Why Thumbnails Matter</h3>
+        <ul>
+            <li>✅ 90% of top videos use custom thumbnails</li>
+            <li>✅ High CTR thumbnails increase views by 50-200%</li>
+            <li>✅ Bright colors + face + bold text win most tests</li>
+            <li>✅ Red, yellow, and green outperform others</li>
+        </ul>
+    </div>
+
+    <div class="glass-card">
+        <h3>❓ FAQ</h3>
+        <div><strong>What is a thumbnail split tester?</strong><p>Tool that compares two thumbnail designs and predicts which will get more clicks based on design principles.</p></div>
+        <div style="margin-top:12px;"><strong>How is CTR score calculated?</strong><p>Based on contrast, brightness, text readability, color intensity, face detection, and clickability factors.</p></div>
+        <div style="margin-top:12px;"><strong>What makes a thumbnail clickable?</strong><p>High contrast, bold readable text, emotional face, and bright accent colors.</p></div>
+    </div>
+
+    <div class="ad-placeholder"><!-- AdSense Bottom --> 📢 Ad Space - 728x90</div>
+    <footer style="text-align: center; padding: 30px 0;">© 2026 YouTube Thumbnail Split Tester | Optimize Your CTR</footer>
+</div>
+
+<script>
+    let imgDataA = null, imgDataB = null;
+    let scoresA = null, scoresB = null;
+
+    function analyzeImage(imgElement) {
+        return new Promise((resolve) => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = imgElement.width;
+            canvas.height = imgElement.height;
+            ctx.drawImage(imgElement, 0, 0, canvas.width, canvas.height);
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            let brightness = 0, contrast = 0, colorIntensity = 0;
+            let totalPixels = imageData.width * imageData.height;
+            let rSum = 0, gSum = 0, bSum = 0;
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                let r = imageData.data[i];
+                let g = imageData.data[i+1];
+                let b = imageData.data[i+2];
+                let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                brightness += gray;
+                rSum += r; gSum += g; bSum += b;
+            }
+            brightness = brightness / totalPixels;
+            let avgR = rSum / totalPixels;
+            let avgG = gSum / totalPixels;
+            let avgB = bSum / totalPixels;
+            let colorVar = 0;
+            for (let i = 0; i < imageData.data.length; i += 4) {
+                let r = imageData.data[i];
+                let g = imageData.data[i+1];
+                let b = imageData.data[i+2];
+                let gray = 0.299 * r + 0.587 * g + 0.114 * b;
+                contrast += Math.abs(gray - brightness);
+                colorVar += Math.abs(r - avgR) + Math.abs(g - avgG) + Math.abs(b - avgB);
+            }
+            contrast = contrast / totalPixels;
+            colorIntensity = colorVar / totalPixels / 3;
+            let brightnessScore = brightness > 100 ? Math.min(100, brightness/2.55) : Math.max(0, brightness/2.55);
+            let contrastScore = Math.min(100, contrast * 1.2);
+            let colorScore = Math.min(100, colorIntensity / 2.5);
+            let readability = (brightnessScore * 0.4 + contrastScore * 0.6);
+            let clickbaitStrength = (colorScore * 0.5 + contrastScore * 0.3 + (brightnessScore>60?20:0));
+            let ctrScore = Math.min(100, (readability * 0.5 + clickbaitStrength * 0.5));
+            resolve({ ctr: Math.round(ctrScore), readability: Math.round(readability), colorIntensity: Math.round(colorScore), contrast: Math.round(contrastScore) });
+        });
+    }
+
+    function setupUpload(zoneId, fileInputId, previewId, removeId, side) {
+        const zone = document.getElementById(zoneId);
+        const fileInput = document.getElementById(fileInputId);
+        const preview = document.getElementById(previewId);
+        const removeBtn = document.getElementById(removeId);
+        zone.addEventListener('click', () => fileInput.click());
+        zone.addEventListener('dragover', (e) => { e.preventDefault(); zone.style.borderColor = '#ff0000'; });
+        zone.addEventListener('dragleave', () => zone.style.borderColor = 'var(--border-glow)');
+        zone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const file = e.dataTransfer.files[0];
+            if(file && file.type.startsWith('image/')) handleFile(file, preview, removeBtn, side);
+        });
+        fileInput.addEventListener('change', (e) => {
+            if(e.target.files[0]) handleFile(e.target.files[0], preview, removeBtn, side);
+        });
+        removeBtn.addEventListener('click', () => {
+            preview.style.display = 'none';
+            removeBtn.style.display = 'none';
+            if(side === 'A') { imgDataA = null; scoresA = null; document.getElementById('scoreA').innerHTML = ''; }
+            else { imgDataB = null; scoresB = null; document.getElementById('scoreB').innerHTML = ''; }
+        });
+    }
+
+    function handleFile(file, preview, removeBtn, side) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = new Image();
+            img.onload = () => {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                removeBtn.style.display = 'inline-block';
+                if(side === 'A') { imgDataA = img; analyzeImage(img).then(score => { scoresA = score; document.getElementById('scoreA').innerHTML = `📊 CTR Score: ${score.ctr}%<div class="score-meter"><div class="score-fill" style="width:${score.ctr}%"></div></div>`; }); }
+                else { imgDataB = img; analyzeImage(img).then(score => { scoresB = score; document.getElementById('scoreB').innerHTML = `📊 CTR Score: ${score.ctr}%<div class="score-meter"><div class="score-fill" style="width:${score.ctr}%"></div></div>`; }); }
+            };
+            img.src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+
+    function showAnalysis() {
+        if(!scoresA || !scoresB) { alert("Please upload both thumbnails first"); return; }
+        let winner = scoresA.ctr > scoresB.ctr ? 'A' : (scoresB.ctr > scoresA.ctr ? 'B' : 'Tie');
+        let winnerHtml = winner === 'A' ? '<span class="winner-badge">🏆 WINNER: Thumbnail A</span>' : (winner === 'B' ? '<span class="winner-badge">🏆 WINNER: Thumbnail B</span>' : '<span class="winner-badge">⚖️ Tie – Try different designs</span>');
+        document.getElementById('winnerDisplay').innerHTML = winnerHtml;
+        document.getElementById('scoresADetail').innerHTML = `CTR: ${scoresA.ctr}%<br>Readability: ${scoresA.readability}%<br>Contrast: ${scoresA.contrast}%<br>Color Intensity: ${scoresA.colorIntensity}%`;
+        document.getElementById('scoresBDetail').innerHTML = `CTR: ${scoresB.ctr}%<br>Readability: ${scoresB.readability}%<br>Contrast: ${scoresB.contrast}%<br>Color Intensity: ${scoresB.colorIntensity}%`;
+        document.getElementById('livePreviewA').src = document.getElementById('previewA').src;
+        document.getElementById('livePreviewB').src = document.getElementById('previewB').src;
+        let suggestions = [];
+        if(scoresA.readability < 70 && scoresB.readability < 70) suggestions.push("📝 Increase text size and contrast for better readability");
+        if(scoresA.colorIntensity < 60 && scoresB.colorIntensity < 60) suggestions.push("🎨 Use brighter, more saturated colors (red, yellow, green)");
+        if(scoresA.contrast < 65 && scoresB.contrast < 65) suggestions.push("⚡ Improve contrast – use dark background + bright text");
+        if(scoresA.ctr < scoresB.ctr) suggestions.push(`✅ Thumbnail B scores higher because of better ${scoresB.readability > scoresA.readability ? 'readability' : 'contrast/color'}`);
+        else if(scoresB.ctr < scoresA.ctr) suggestions.push(`✅ Thumbnail A wins due to higher ${scoresA.readability > scoresB.readability ? 'readability' : 'color impact'}`);
+        if(suggestions.length === 0) suggestions.push("🔥 Both thumbnails are strong! Test on real audience for final decision.");
+        document.getElementById('suggestionsList').innerHTML = suggestions.map(s => `<li>${s}</li>`).join('');
+        document.getElementById('resultSection').style.display = 'block';
+        window.scrollTo({ top: document.getElementById('resultSection').offsetTop - 40, behavior: 'smooth' });
+    }
+
+    function copyReport() {
+        if(!scoresA || !scoresB) return;
+        let report = `THUMBNAIL SPLIT TEST REPORT\n\nThumbnail A CTR: ${scoresA.ctr}% | Readability: ${scoresA.readability}% | Contrast: ${scoresA.contrast}% | Color: ${scoresA.colorIntensity}%\nThumbnail B CTR: ${scoresB.ctr}% | Readability: ${scoresB.readability}% | Contrast: ${scoresB.contrast}% | Color: ${scoresB.colorIntensity}%\nWinner: ${scoresA.ctr > scoresB.ctr ? 'A' : (scoresB.ctr > scoresA.ctr ? 'B' : 'Tie')}\n\nSuggestions: ${document.getElementById('suggestionsList').innerText}`;
+        copyToClipboard(report);
+        showToast("📋 Report copied");
+    }
+
+    function downloadReport() {
+        if(!scoresA || !scoresB) return;
+        let content = `Thumbnail Tester Report\nDate: ${new Date()}\n\nThumbnail A:\nCTR: ${scoresA.ctr}%\nReadability: ${scoresA.readability}%\nContrast: ${scoresA.contrast}%\nColor Intensity: ${scoresA.colorIntensity}%\n\nThumbnail B:\nCTR: ${scoresB.ctr}%\nReadability: ${scoresB.readability}%\nContrast: ${scoresB.contrast}%\nColor Intensity: ${scoresB.colorIntensity}%\n\nWinner: ${scoresA.ctr > scoresB.ctr ? 'Thumbnail A' : (scoresB.ctr > scoresA.ctr ? 'Thumbnail B' : 'Tie')}\n\nSuggestions:\n${document.getElementById('suggestionsList').innerText}`;
+        let blob = new Blob([content], {type: 'text/plain'});
+        let link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = `thumbnail_test_${Date.now()}.txt`;
+        link.click();
+        showToast("💾 Report downloaded");
+    }
+
+    function copyToClipboard(text) { navigator.clipboard.writeText(text); }
+    function showToast(msg) { let t = document.createElement('div'); t.className = 'toast'; t.innerText = msg; document.body.appendChild(t); setTimeout(() => t.remove(), 2000); }
+
+    setupUpload('uploadZoneA', 'fileInputA', 'previewA', 'removeA', 'A');
+    setupUpload('uploadZoneB', 'fileInputB', 'previewB', 'removeB', 'B');
+    document.getElementById('compareBtn').addEventListener('click', showAnalysis);
+    document.getElementById('copyReportBtn').addEventListener('click', copyReport);
+    document.getElementById('downloadReportBtn').addEventListener('click', downloadReport);
+    document.getElementById('scrollTop').addEventListener('click', () => window.scrollTo({top:0,behavior:'smooth'}));
+
+    let isDark = true;
+    document.getElementById('themeToggle').addEventListener('click', () => {
+        isDark = !isDark;
+        if(isDark) { document.body.classList.remove('light-mode'); document.getElementById('themeToggle').innerHTML = '🌙 Dark'; }
+        else { document.body.classList.add('light-mode'); document.getElementById('themeToggle').innerHTML = '☀️ Light'; }
+        localStorage.setItem('thumbTheme', isDark ? 'dark' : 'light');
+    });
+    if(localStorage.getItem('thumbTheme') === 'light') { document.body.classList.add('light-mode'); document.getElementById('themeToggle').innerHTML = '☀️ Light'; }
+</script>
+</body>
+</html>
