@@ -8,7 +8,18 @@
 <meta name="keywords" content="free online tools, online calculators, free SEO tools, BMI calculator, currency converter, password generator, PDF tools">
 <meta name="author" content="Free Online Tools">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://freeonlinetools203.com/">
+<meta name="googlebot" content="index, follow">
+<link rel="canonical" href="https://freeonlinetools203.com/index.html">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Free Online Tools | 100+ Free Calculators & Utilities">
+<meta property="og:description" content="100+ free online tools including BMI calculator, currency converter, password generator.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freeonlinetools203.com/">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Tools | 100+ Free Calculators">
 
 <!-- Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-EQ8DLY7HYN"></script>
@@ -19,650 +30,23 @@
   gtag('config', 'G-EQ8DLY7HYN');
 </script>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #f3f4f6;
-    color: #1f2937;
-    line-height: 1.6;
-    min-height: 100vh;
-}
-
-/* ======================================== */
-/* NAVBAR - PEHLE JAISA COLOR (FIXED) */
-/* ======================================== */
-.navbar {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    padding: 15px 30px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-.nav-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-}
-
-.logo a {
-    color: white;
-    font-size: 1.5rem;
-    font-weight: 700;
-    text-decoration: none;
-}
-
-.nav-links {
-    display: flex;
-    gap: 25px;
-    list-style: none;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.nav-links li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    padding: 8px 0;
-    transition: all 0.3s ease;
-}
-
-.nav-links li a:hover {
-    border-bottom: 2px solid white;
-    color: #f0f0f0;
-}
-
-/* Dropdown */
-.dropdown {
-    position: relative;
-}
-
-.dropbtn {
-    background: none;
-    border: none;
-    color: white;
-    font-weight: 500;
-    cursor: pointer;
-    padding: 8px 0;
-    font-size: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    font-family: inherit;
-    transition: all 0.3s ease;
-}
-
-.dropbtn:hover {
-    color: #f0f0f0;
-    border-bottom: 2px solid white;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 45px;
-    left: 0;
-    background: white;
-    min-width: 300px;
-    border-radius: 16px;
-    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
-    z-index: 1001;
-    display: none;
-    max-height: 70vh;
-    overflow-y: auto;
-    padding: 8px 0;
-}
-
-.dropdown.open .dropdown-menu {
-    display: block;
-    animation: fadeIn 0.2s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.top-category {
-    padding: 12px 20px;
-    font-weight: 700;
-    color: #1e3a8a;
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e5e7eb;
-    transition: background 0.2s;
-}
-
-.top-category:hover {
-    background: #f3f4f6;
-}
-
-.top-category .arrow {
-    transition: transform 0.3s ease;
-    font-size: 0.75rem;
-    color: #2563eb;
-}
-
-.top-category.active .arrow {
-    transform: rotate(90deg);
-}
-
-.top-tools {
-    display: none;
-    background: #f9fafb;
-    border-radius: 12px;
-    margin: 6px 10px;
-    overflow: hidden;
-}
-
-.top-tools.show {
-    display: block;
-}
-
-.top-tools a {
-    color: #1f2937 !important;
-    padding: 10px 20px 10px 35px;
-    text-decoration: none;
-    display: block;
-    font-size: 13px;
-    font-weight: 500;
-    transition: all 0.2s;
-}
-
-.top-tools a:hover {
-    background: #e5e7eb;
-    color: #2563eb !important;
-    padding-left: 42px;
-}
-
-/* ======================================== */
-/* CATEGORIES BAR - PEHLE JAISA COLOR SCHEME */
-/* ======================================== */
-.categories-bar {
-    background: white;
-    padding: 12px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    position: sticky;
-    top: 72px;
-    z-index: 999;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: thin;
-}
-
-.categories-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.category-wrapper {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    background: #f0f2f5;
-    border-radius: 40px;
-    padding: 0 8px 0 0;
-    transition: all 0.2s;
-    position: relative;
-}
-
-.category-wrapper:hover {
-    background: #e4e7eb;
-}
-
-.cat-btn {
-    background: transparent;
-    border: none;
-    padding: 10px 16px;
-    border-radius: 40px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: #1f2937;
-    font-family: inherit;
-}
-
-.cat-btn:hover {
-    background: #2563eb;
-    color: white;
-}
-
-.cat-btn.active {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white;
-    box-shadow: 0 2px 8px rgba(37,99,235,0.3);
-}
-
-/* Inline Dropdown Button */
-.inline-dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.cat-dropdown-btn {
-    background: transparent;
-    border: none;
-    font-size: 0.7rem;
-    cursor: pointer;
-    padding: 4px 8px;
-    border-radius: 20px;
-    transition: all 0.2s;
-    color: #1e3a8a;
-    font-weight: bold;
-}
-
-.cat-dropdown-btn:hover {
-    background: #2563eb;
-    color: white;
-}
-
-.inline-dropdown-menu {
-    position: absolute;
-    top: 45px;
-    left: 0;
-    background: white;
-    min-width: 260px;
-    border-radius: 16px;
-    box-shadow: 0 20px 35px -10px rgba(0,0,0,0.2);
-    z-index: 1002;
-    display: none;
-    max-height: 400px;
-    overflow-y: auto;
-    padding: 8px 0;
-}
-
-.inline-dropdown-menu.show {
-    display: block;
-    animation: fadeIn 0.2s ease;
-}
-
-.inline-dropdown-content a {
-    display: block;
-    padding: 10px 20px;
-    color: #1f2937;
-    text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-    border-bottom: 1px solid #f0f0f0;
-}
-
-.inline-dropdown-content a:hover {
-    background: #eef2ff;
-    color: #1e3a8a;
-    padding-left: 28px;
-}
-
-/* ======================================== */
-/* STATS SECTION */
-/* ======================================== */
-.stats-section {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    padding: 40px 20px;
-    color: white;
-}
-
-.stats-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    text-align: center;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 8px;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    opacity: 0.9;
-}
-
-/* ======================================== */
-/* HEADER */
-/* ======================================== */
-.header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white;
-    text-align: center;
-    padding: 60px 20px;
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-/* ======================================== */
-/* MAIN CONTAINER */
-/* ======================================== */
-.container {
-    max-width: 1400px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.section {
-    background: white;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    text-align: center;
-}
-
-.section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 25px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-    border-radius: 3px;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 16px;
-    margin-top: 20px;
-}
-
-.tool-card {
-    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(37,99,235,0.2);
-}
-
-.tool-card a {
-    display: block;
-    padding: 16px 12px;
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-align: center;
-    border-radius: 12px;
-}
-
-.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(37,99,235,0.3);
-}
-
-.loader {
-    text-align: center;
-    padding: 50px;
-    font-size: 1.2rem;
-    color: #1e3a8a;
-}
-
-/* Features Section */
-.features-section {
-    background: white;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    text-align: center;
-}
-
-.features-section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.features-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, #2563eb 0%, #1e3a8a 100%);
-    border-radius: 3px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    margin-top: 20px;
-}
-
-.feature-item {
-    padding: 25px 20px;
-    background: #f9fafb;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    transition: all 0.3s ease;
-}
-
-.feature-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.feature-item h3 {
-    color: #1e3a8a;
-    margin-bottom: 10px;
-    font-size: 1.2rem;
-}
-
-.feature-item p {
-    color: #6b7280;
-    font-size: 0.9rem;
-    line-height: 1.5;
-}
-
-/* Testimonial Section */
-.testimonial-section {
-    background: linear-gradient(135deg, #f0f9ff 0%, #e6f4ff 100%);
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 35px;
-    text-align: center;
-    border: 1px solid #bae6fd;
-}
-
-.testimonial-section h2 {
-    color: #1e3a8a;
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.testimonial-item {
-    background: white;
-    padding: 25px;
-    border-radius: 16px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-}
-
-.testimonial-text {
-    font-style: italic;
-    color: #374151;
-    line-height: 1.6;
-    margin-bottom: 15px;
-}
-
-.testimonial-author {
-    font-weight: 700;
-    color: #1e3a8a;
-}
-
-.testimonial-rating {
-    color: #fbbf24;
-    margin-top: 10px;
-}
-
-/* Footer */
-.footer {
-    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-    color: #cbd5e1;
-    padding: 60px 20px 35px;
-    margin-top: 50px;
-    position: relative;
-}
-
-.footer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec489a);
-}
-
-.footer-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 45px;
-}
-
-.footer-col h3, .footer-col h4 {
-    color: white;
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    font-weight: 600;
-}
-
-.footer-col p {
-    font-size: 0.9rem;
-    line-height: 1.6;
-    color: #94a3b8;
-    margin-top: 15px;
-}
-
-.footer-col a {
-    display: block;
-    color: #94a3b8;
-    text-decoration: none;
-    padding: 6px 0;
-    font-size: 0.9rem;
-    transition: all 0.3s ease;
-}
-
-.footer-col a:hover {
-    color: #60a5fa;
-    transform: translateX(5px);
-}
-
-.footer-bottom {
-    text-align: center;
-    padding-top: 35px;
-    margin-top: 45px;
-    border-top: 1px solid rgba(255,255,255,0.1);
-    font-size: 0.85rem;
-    color: #64748b;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-        text-align: center;
-    }
-    .nav-links {
-        justify-content: center;
-        gap: 15px;
-    }
-    .categories-bar {
-        top: 110px;
-    }
-    .stats-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    .stat-number {
-        font-size: 1.8rem;
-    }
-    .header h1 {
-        font-size: 1.8rem;
-    }
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    .footer-container {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-}
-
-@media (max-width: 480px) {
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-    .tools-grid {
-        grid-template-columns: 1fr;
-    }
-    .cat-btn {
-        padding: 7px 12px;
-        font-size: 0.8rem;
-    }
-}
-</style>
+<!-- CSS -->
+<link rel="stylesheet" href="style.css">
+
+<!-- JSON-LD Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Free Online Tools",
+  "url": "https://freeonlinetools203.com/",
+  "description": "100+ free online tools including calculators, converters, SEO tools, PDF tools, and more."
+}
+</script>
 </head>
 <body>
 
+<!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -670,9 +54,12 @@ body {
         </div>
         <ul class="nav-links">
             <li><a href="index.html">🏠 Home</a></li>
+            <!-- All Tools Dropdown - Top Menu (Sirf yahan ek baar) -->
             <li class="dropdown" id="allToolsDropdown">
                 <button class="dropbtn" id="allToolsBtn">📊 All Tools ▼</button>
-                <div class="dropdown-menu" id="allToolsMenu"></div>
+                <div class="dropdown-menu" id="allToolsMenu">
+                    <div class="dropdown-loading">Loading...</div>
+                </div>
             </li>
             <li><a href="about.html">ℹ️ About</a></li>
             <li><a href="contact.html">📧 Contact</a></li>
@@ -683,90 +70,69 @@ body {
     </div>
 </nav>
 
-<!-- CATEGORIES BAR - UPDATED WITH PEHLE JAISA COLOR -->
+<!-- Categories Bar - "📊 All Tools" button HATA DIYA (double nahi rahega) -->
 <div class="categories-bar">
     <div class="categories-container">
+        <!-- SIRF CATEGORIES YAHA HONGE, "All Tools" BUTTON NAHI HAI -->
         <div class="category-wrapper">
             <button class="cat-btn active" data-category="seo">🔍 SEO Tools</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="seo">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_seo"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="seo" title="View SEO Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="pdf">📄 PDF Tools</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="pdf">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_pdf"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="pdf" title="View PDF Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="image">🖼️ Image Tools</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="image">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_image"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="image" title="View Image Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="finance">💰 Finance</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="finance">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_finance"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="finance" title="View Finance Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="fun">🎲 Fun Tools</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="fun">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_fun"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="fun" title="View Fun Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="animals">🐾 Animals</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="animals">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_animals"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="animals" title="View Animal Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="health">🏃‍♂️ Health</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="health">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_health"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="health" title="View Health Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="text">📝 Text Tools</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="text">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_text"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="text" title="View Text Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="color">🎨 Color Tools</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="color">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_color"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="color" title="View Color Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="developer">🔐 Developer</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="developer">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_developer"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="developer" title="View Developer Tools">▶</button>
         </div>
         <div class="category-wrapper">
             <button class="cat-btn" data-category="popular">📊 Popular</button>
-            <div class="inline-dropdown">
-                <button class="cat-dropdown-btn" data-category="popular">▶</button>
-                <div class="inline-dropdown-menu" id="inlineMenu_popular"><div class="inline-dropdown-content"></div></div>
-            </div>
+            <button class="cat-dropdown-btn" data-category="popular" title="View Popular Tools">▶</button>
         </div>
     </div>
 </div>
 
-<!-- Info Message -->
+<!-- Floating Dropdown Panel (shows tools when ▶ clicked) -->
+<div id="floatingDropdown" class="floating-dropdown">
+    <div class="floating-dropdown-header">
+        <span id="dropdownTitle">Tools</span>
+        <button class="close-dropdown">&times;</button>
+    </div>
+    <div class="floating-dropdown-content" id="floatingDropdownContent">
+        <!-- Tools will be loaded here -->
+    </div>
+</div>
+
+<!-- Website Under Improvement Notice -->
 <div style="background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-radius: 12px; margin: 15px auto; max-width: 1300px; padding: 14px 20px; text-align: center; border-left: 4px solid #d97706;">
     <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
         <span style="background: #d97706; color: white; width: 32px; height: 32px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-size: 16px;">⚡</span>
@@ -776,6 +142,7 @@ body {
     </div>
 </div>
 
+<!-- Stats Section -->
 <div class="stats-section">
     <div class="stats-container">
         <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Free Tools</div></div>
@@ -785,15 +152,18 @@ body {
     </div>
 </div>
 
+<!-- Header -->
 <header class="header">
     <h1>100+ Free Online Tools</h1>
     <p>Fast, Accurate & 100% Free Tools For Everyday Use</p>
 </header>
 
+<!-- Main Container -->
 <main class="container" id="toolsContainer">
     <div class="loader">Loading tools...</div>
 </main>
 
+<!-- Features Section -->
 <section class="features-section">
     <h2>✨ Why Choose Our Free Tools?</h2>
     <div class="features-grid">
@@ -804,6 +174,7 @@ body {
     </div>
 </section>
 
+<!-- Testimonial Section -->
 <section class="testimonial-section">
     <h2>❤️ What Users Say</h2>
     <div class="testimonial-grid">
@@ -813,6 +184,7 @@ body {
     </div>
 </section>
 
+<!-- Footer -->
 <footer class="footer">
     <div class="footer-container">
         <div class="footer-col"><h3>✨ Free Online Tools</h3><p>Your one-stop destination for free, fast, and accurate online tools. Trusted by 50,000+ users worldwide.</p></div>
@@ -822,148 +194,7 @@ body {
     <div class="footer-bottom"><p>© 2025 Free Online Tools. All rights reserved. | Made with ❤️ for the global community</p></div>
 </footer>
 
-<script>
-// Tools Database
-const toolsDatabase = {
-    seo: { name: "🔍 SEO Tools", tools: ["Keyword Density Checker", "Meta Tags Generator", "Meta Tag Analyzer", "SEO Score Checker", "Backlink Checker", "Google Index Checker"] },
-    pdf: { name: "📄 PDF Tools", tools: ["PDF Merger", "PDF Splitter", "PDF to Image", "PDF to JPG", "PDF to PNG", "PDF to Word", "PDF to Excel", "PDF to Text", "PDF Rotator"] },
-    image: { name: "🖼️ Image Tools", tools: ["Image Color Extractor", "Image Converter", "Image Cropper", "Image Resizer", "Image to PDF", "Image Upscaler", "Image Compressor"] },
-    finance: { name: "💰 Financial Tools", tools: ["EMI Calculator", "Loan Calculator", "Zakat Calculator", "Currency Converter", "GST Calculator", "Profit & Loss Calculator", "Discount Calculator", "SIP Calculator"] },
-    fun: { name: "🎲 Fun Tools", tools: ["Spin The Wheel", "Yes/No Wheel", "Random Name Picker", "Random Number Generator", "Prize Wheel", "Task Spinner", "Random Color Picker", "Decision Roulette"] },
-    animals: { name: "🐾 Animal Pregnancy Tools", tools: ["Dog Pregnancy Calculator", "Cat Pregnancy Calculator", "Cow Pregnancy Calculator", "Rabbit Pregnancy Calculator", "Goat Pregnancy Calculator", "Horse Pregnancy Calculator", "Sheep Pregnancy Calculator", "Pig Pregnancy Calculator"] },
-    health: { name: "🏃‍♂️ Health Tools", tools: ["BMI Calculator", "BMR Calculator", "Calorie Calculator", "TDEE Calculator", "Water Intake Calculator", "Sleep Calculator"] },
-    text: { name: "📝 Text Tools", tools: ["Word Counter", "Line Counter", "Text Case Converter", "Password Generator", "Password Strength Checker", "Character Counter"] },
-    color: { name: "🎨 Color Tools", tools: ["Color Palette Generator", "Color Shades Generator", "Color Gradient Maker", "Color Contrast Checker", "Color Name Finder"] },
-    developer: { name: "🔐 Developer Tools", tools: ["MD5 Hash Generator", "SHA-256 Hash Generator", "SHA-1 Hash Generator", "Base64 Encoder/Decoder", "URL Encoder/Decoder", "HTML Encoder/Decoder", "QR Code Generator"] },
-    popular: { name: "📊 Popular Calculators", tools: ["Unit Converter", "Age Calculator", "Age Difference Calculator", "GPA/CGPA Calculator", "Date Calculator", "YouTube Thumbnail Downloader"] }
-};
-
-function getUrl(toolName) {
-    return toolName.toLowerCase().replace(/ /g, '-').replace(/[^\w\-]/g, '') + '.html';
-}
-
-function renderDashboard() {
-    const container = document.getElementById('toolsContainer');
-    if (!container) return;
-    let html = '';
-    for (const [key, category] of Object.entries(toolsDatabase)) {
-        html += `<div class="section" data-category="${key}"><h2>${category.name}</h2><div class="tools-grid">${category.tools.map(tool => `<div class="tool-card"><a href="${getUrl(tool)}">${tool}</a></div>`).join('')}</div></div>`;
-    }
-    container.innerHTML = html;
-}
-
-function buildTopDropdown() {
-    const menu = document.getElementById('allToolsMenu');
-    if (!menu) return;
-    let html = '';
-    for (const [key, category] of Object.entries(toolsDatabase)) {
-        html += `<div class="top-category" data-cat="${key}">${category.name} <span class="arrow">▶</span></div><div class="top-tools" id="topTools_${key}">${category.tools.map(tool => `<a href="${getUrl(tool)}">${tool}</a>`).join('')}</div>`;
-    }
-    menu.innerHTML = html;
-    
-    document.querySelectorAll('.top-category').forEach(cat => {
-        cat.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const catId = cat.getAttribute('data-cat');
-            const toolsDiv = document.getElementById(`topTools_${catId}`);
-            const isActive = cat.classList.contains('active');
-            
-            document.querySelectorAll('.top-category').forEach(c => {
-                if (c !== cat) c.classList.remove('active');
-            });
-            document.querySelectorAll('.top-tools').forEach(t => {
-                if (t !== toolsDiv) t.classList.remove('show');
-            });
-            
-            if (isActive) {
-                cat.classList.remove('active');
-                if (toolsDiv) toolsDiv.classList.remove('show');
-            } else {
-                cat.classList.add('active');
-                if (toolsDiv) toolsDiv.classList.add('show');
-            }
-        });
-    });
-}
-
-function buildInlineDropdowns() {
-    for (const [key] of Object.entries(toolsDatabase)) {
-        const menuDiv = document.getElementById(`inlineMenu_${key}`);
-        if (menuDiv) {
-            const contentDiv = menuDiv.querySelector('.inline-dropdown-content');
-            if (contentDiv) contentDiv.innerHTML = toolsDatabase[key].tools.map(tool => `<a href="${getUrl(tool)}">${tool}</a>`).join('');
-            const btn = document.querySelector(`.cat-dropdown-btn[data-category="${key}"]`);
-            if (btn) {
-                const menu = btn.closest('.inline-dropdown')?.querySelector('.inline-dropdown-menu');
-                btn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    document.querySelectorAll('.inline-dropdown-menu').forEach(m => {
-                        if (m !== menu) m.classList.remove('show');
-                    });
-                    if (menu) {
-                        if (menu.classList.contains('show')) {
-                            menu.classList.remove('show');
-                        } else {
-                            menu.classList.add('show');
-                        }
-                    }
-                });
-            }
-        }
-    }
-}
-
-function setupTopDropdown() {
-    const dropdown = document.getElementById('allToolsDropdown');
-    const btn = document.getElementById('allToolsBtn');
-    if (btn) {
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            dropdown.classList.toggle('open');
-        });
-    }
-    document.addEventListener('click', (e) => {
-        if (dropdown && !dropdown.contains(e.target)) {
-            dropdown.classList.remove('open');
-        }
-        if (!e.target.closest('.inline-dropdown')) {
-            document.querySelectorAll('.inline-dropdown-menu').forEach(menu => {
-                menu.classList.remove('show');
-            });
-        }
-    });
-}
-
-function setupCategoryButtons() {
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.addEventListener('click', function() {
-            const category = this.getAttribute('data-category');
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            document.querySelectorAll('.section').forEach(section => {
-                if (category === 'all') {
-                    section.style.display = 'block';
-                } else {
-                    section.style.display = section.getAttribute('data-category') === category ? 'block' : 'none';
-                }
-            });
-            document.querySelectorAll('.inline-dropdown-menu').forEach(menu => {
-                menu.classList.remove('show');
-            });
-        });
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    renderDashboard();
-    buildTopDropdown();
-    buildInlineDropdowns();
-    setupTopDropdown();
-    setupCategoryButtons();
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.3s';
-    setTimeout(() => { document.body.style.opacity = '1'; }, 50);
-});
-</script>
+<!-- JavaScript -->
+<script src="script.js"></script>
 </body>
 </html>
