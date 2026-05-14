@@ -2,18 +2,6 @@
    Free Online Tools - Main Stylesheet
    ======================================== */
 
-:root {
-    --primary: #1e40af;
-    --primary-dark: #0b2b5c;
-    --primary-light: #3b82f6;
-    --white: #ffffff;
-    --gray-bg: #f3f4f6;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-}
-
 * {
     margin: 0;
     padding: 0;
@@ -22,22 +10,18 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gray-bg);
+    background: #f3f4f6;
     color: #1f2937;
     line-height: 1.6;
-    min-height: 100vh;
 }
 
-/* ========================================
-   Navbar Styles
-   ======================================== */
+/* Navbar */
 .navbar {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #0b2b5c 0%, #1e40af 100%);
     padding: 15px 30px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-lg);
 }
 
 .nav-container {
@@ -51,14 +35,10 @@ body {
 }
 
 .logo a {
-    color: var(--white);
+    color: white;
     font-size: 1.6rem;
     font-weight: 800;
     text-decoration: none;
-    background: linear-gradient(135deg, #fff, #ffedb0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
 }
 
 .nav-links {
@@ -70,21 +50,19 @@ body {
 }
 
 .nav-links li a {
-    color: var(--white);
+    color: white;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.95rem;
     padding: 8px 0;
     transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
 }
 
 .nav-links li a:hover {
-    border-bottom-color: #ffd966;
-    color: #fff3bf;
+    border-bottom: 2px solid #ffd966;
 }
 
-/* Top Menu Dropdown - 📊 All Tools */
+/* Dropdown */
 .dropdown {
     position: relative;
 }
@@ -92,31 +70,22 @@ body {
 .dropbtn {
     background: none;
     border: none;
-    color: var(--white);
+    color: white;
     font-weight: 600;
     font-size: 0.95rem;
     cursor: pointer;
     padding: 8px 0;
     font-family: inherit;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    border-bottom: 2px solid transparent;
-}
-
-.dropbtn:hover {
-    border-bottom-color: #ffd966;
-    color: #fff3bf;
 }
 
 .dropdown-menu {
     position: absolute;
     top: 45px;
     left: 0;
-    background: var(--white);
+    background: white;
     min-width: 300px;
     border-radius: 16px;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
     z-index: 1002;
     display: none;
     max-height: 70vh;
@@ -126,39 +95,20 @@ body {
 
 .dropdown.open .dropdown-menu {
     display: block;
-    animation: fadeIn 0.2s ease;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Top Menu Dropdown Categories */
 .top-category {
     padding: 12px 20px;
     font-weight: 700;
-    color: var(--primary);
+    color: #1e40af;
     cursor: pointer;
     display: flex;
     justify-content: space-between;
-    align-items: center;
     border-bottom: 1px solid #e5e7eb;
-    transition: background 0.2s;
 }
 
 .top-category:hover {
     background: #f0f9ff;
-}
-
-.top-category .arrow {
-    transition: transform 0.2s;
-    font-size: 0.7rem;
-    color: var(--primary-light);
-}
-
-.top-category.active .arrow {
-    transform: rotate(90deg);
 }
 
 .top-tools {
@@ -166,43 +116,34 @@ body {
     background: #f8fafc;
     margin: 5px 10px;
     border-radius: 12px;
-    overflow: hidden;
 }
 
 .top-tools.show {
     display: block;
 }
 
-/* FIX: Tool ka naam black color mein dikhega */
 .top-tools a {
     display: block;
     padding: 10px 20px 10px 40px;
-    color: #1f2937 !important;
+    color: #1f2937;
     text-decoration: none;
     font-size: 0.85rem;
-    transition: all 0.2s;
-    background: #f8fafc;
 }
 
 .top-tools a:hover {
     background: #eef2ff;
-    color: var(--primary) !important;
-    padding-left: 50px;
+    color: #1e40af;
 }
 
-/* ========================================
-   Categories Bar - Inline Dropdown
-   ======================================== */
+/* Categories Bar */
 .categories-bar {
-    background: var(--white);
+    background: white;
     padding: 12px 20px;
     border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 72px;
     z-index: 999;
     overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: thin;
 }
 
 .categories-container {
@@ -222,12 +163,7 @@ body {
     background: #f0f2f5;
     border-radius: 40px;
     padding: 0 8px 0 0;
-    transition: all 0.2s;
     position: relative;
-}
-
-.category-wrapper:hover {
-    background: #e4e7eb;
 }
 
 .cat-btn {
@@ -238,23 +174,14 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
     color: #1f2937;
-    font-family: inherit;
-}
-
-.cat-btn:hover {
-    background: var(--primary-light);
-    color: var(--white);
 }
 
 .cat-btn.active {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+    color: white;
 }
 
-/* Inline Dropdown */
 .inline-dropdown {
     position: relative;
     display: inline-block;
@@ -267,24 +194,18 @@ body {
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 20px;
-    transition: all 0.2s;
-    color: var(--primary);
+    color: #1e40af;
     font-weight: bold;
-}
-
-.cat-dropdown-btn:hover {
-    background: var(--primary-light);
-    color: var(--white);
 }
 
 .inline-dropdown-menu {
     position: absolute;
     top: 45px;
     left: 0;
-    background: var(--white);
+    background: white;
     min-width: 260px;
     border-radius: 16px;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
     z-index: 1002;
     display: none;
     max-height: 400px;
@@ -294,49 +215,27 @@ body {
 
 .inline-dropdown-menu.show {
     display: block;
-    animation: fadeIn 0.2s ease;
 }
 
-/* FIX: Inline dropdown mein bhi tool ka naam black hoga */
 .inline-dropdown-content a {
     display: block;
     padding: 10px 20px;
-    color: #1f2937 !important;
+    color: #1f2937;
     text-decoration: none;
     font-size: 0.85rem;
-    transition: all 0.2s;
     border-bottom: 1px solid #f0f0f0;
-    background: var(--white);
 }
 
 .inline-dropdown-content a:hover {
     background: #eef2ff;
-    color: var(--primary) !important;
-    padding-left: 28px;
+    color: #1e40af;
 }
 
-/* Scrollbar */
-.inline-dropdown-menu::-webkit-scrollbar {
-    width: 6px;
-}
-
-.inline-dropdown-menu::-webkit-scrollbar-track {
-    background: #e2e8f0;
-    border-radius: 10px;
-}
-
-.inline-dropdown-menu::-webkit-scrollbar-thumb {
-    background: var(--primary-light);
-    border-radius: 10px;
-}
-
-/* ========================================
-   Stats & Header
-   ======================================== */
+/* Stats Section */
 .stats-section {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #0b2b5c 0%, #1e40af 100%);
     padding: 40px 20px;
-    color: var(--white);
+    color: white;
 }
 
 .stats-container {
@@ -351,7 +250,6 @@ body {
 .stat-number {
     font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 8px;
 }
 
 .stat-label {
@@ -359,9 +257,10 @@ body {
     opacity: 0.9;
 }
 
+/* Header */
 .header {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-    color: var(--white);
+    background: linear-gradient(135deg, #0b2b5c 0%, #1e40af 100%);
+    color: white;
     text-align: center;
     padding: 60px 20px;
 }
@@ -371,14 +270,7 @@ body {
     margin-bottom: 15px;
 }
 
-.header p {
-    font-size: 1.2rem;
-    opacity: 0.9;
-}
-
-/* ========================================
-   Main Container
-   ======================================== */
+/* Container */
 .container {
     max-width: 1400px;
     margin: 40px auto;
@@ -386,50 +278,28 @@ body {
 }
 
 .section {
-    background: var(--white);
+    background: white;
     border-radius: 24px;
     padding: 35px;
     margin-bottom: 35px;
-    box-shadow: var(--shadow-md);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.5s ease;
-}
-
-@keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .section h2 {
-    color: var(--primary);
+    color: #1e40af;
     font-size: 1.8rem;
+    text-align: center;
     margin-bottom: 25px;
-    position: relative;
-    display: inline-block;
-    padding-bottom: 10px;
-}
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
-    border-radius: 3px;
 }
 
 .tools-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 16px;
-    margin-top: 20px;
 }
 
 .tool-card {
-    background: linear-gradient(135deg, var(--primary-light) 0%, var(--primary) 100%);
+    background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%);
     border-radius: 16px;
     transition: all 0.3s ease;
 }
@@ -437,30 +307,26 @@ body {
 .tool-card a {
     display: block;
     padding: 16px 12px;
-    color: var(--white);
+    color: white;
     text-decoration: none;
     font-weight: 600;
-    font-size: 0.95rem;
     text-align: center;
     border-radius: 16px;
-    transition: all 0.3s ease;
 }
 
 .tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-lg);
 }
 
 .loader {
     text-align: center;
     padding: 50px;
-    font-size: 1.2rem;
-    color: var(--primary);
+    color: #1e40af;
 }
 
-/* Features & Testimonials */
+/* Features */
 .features-section, .testimonial-section {
-    background: var(--white);
+    background: white;
     border-radius: 24px;
     padding: 45px 35px;
     margin: 0 20px 35px 20px;
@@ -468,7 +334,7 @@ body {
 }
 
 .features-section h2, .testimonial-section h2 {
-    color: var(--primary);
+    color: #1e40af;
     font-size: 1.8rem;
     margin-bottom: 35px;
 }
@@ -483,12 +349,6 @@ body {
     padding: 25px;
     background: #f9fafb;
     border-radius: 16px;
-    transition: all 0.3s ease;
-}
-
-.feature-item:hover, .testimonial-item:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
 }
 
 .feature-icon {
@@ -518,7 +378,7 @@ body {
 }
 
 .footer-col h3, .footer-col h4 {
-    color: var(--white);
+    color: white;
     margin-bottom: 20px;
 }
 
@@ -528,12 +388,10 @@ body {
     text-decoration: none;
     padding: 6px 0;
     font-size: 0.9rem;
-    transition: all 0.3s ease;
 }
 
 .footer-col a:hover {
     color: #60a5fa;
-    transform: translateX(5px);
 }
 
 .footer-bottom {
@@ -545,45 +403,13 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .nav-container {
-        flex-direction: column;
-    }
-    .nav-links {
-        justify-content: center;
-        gap: 12px;
-    }
-    .categories-bar {
-        top: 110px;
-    }
-    .categories-container {
-        flex-wrap: nowrap;
-        justify-content: flex-start;
-    }
     .stats-container {
         grid-template-columns: repeat(2, 1fr);
-    }
-    .header h1 {
-        font-size: 1.8rem;
     }
     .tools-grid {
         grid-template-columns: 1fr;
     }
-}
-
-@media (max-width: 480px) {
-    .stats-container {
-        grid-template-columns: 1fr;
-    }
-    .cat-btn {
-        padding: 7px 12px;
-        font-size: 0.8rem;
-    }
-    .inline-dropdown-menu {
-        position: fixed;
-        top: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 320px;
+    .header h1 {
+        font-size: 1.8rem;
     }
 }
