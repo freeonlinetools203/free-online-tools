@@ -30,7 +30,7 @@ const toolsDatabase = {
         name: "💰 Financial Tools",
         tools: [
             "EMI Calculator", "Loan Calculator", "Zakat Calculator",
-            "Currency Converter", "GST Calculator", "Profit & Loss Calculator",
+            "Currency Converter", "GST Calculator", 
             "Discount Calculator", "SIP Calculator"
         ]
     },
