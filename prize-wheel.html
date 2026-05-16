@@ -750,53 +750,21 @@
 </head>
 <body>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>Top Menu Component</title>
+<!-- ========== SAFE TOP MENU (No Global CSS Conflicts) ========== -->
 <style>
-/* ========== TOP MENU STYLES ========== */
-:root {
-    --primary: #1e40af;
-    --primary-dark: #0b2b5c;
-    --primary-light: #3b82f6;
-    --secondary: #2563eb;
-    --text-dark: #1f2937;
-    --text-light: #6b7280;
-    --white: #ffffff;
-    --gray-bg: #f3f4f6;
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
+/* ---- TOP MENU ONLY - Ye sirf menu ko style karega, page ke baaki elements ko nahi chhedega ---- */
+.top-menu-wrapper {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gray-bg);
-    color: var(--text-dark);
-    line-height: 1.6;
 }
-
-/* Navbar */
-.navbar {
-    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+.top-menu-wrapper .navbar {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
     padding: 15px 30px;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
-
-.nav-container {
+.top-menu-wrapper .nav-container {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
@@ -805,182 +773,119 @@ body {
     flex-wrap: wrap;
     gap: 15px;
 }
-
-.logo a {
-    color: var(--white);
-    font-size: 1.6rem;
-    font-weight: 800;
+.top-menu-wrapper .logo a {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
     text-decoration: none;
-    background: linear-gradient(135deg, #fff, #ffedb0);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
 }
-
-.nav-links {
+.top-menu-wrapper .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
     list-style: none;
     align-items: center;
     flex-wrap: wrap;
+    margin: 0;
+    padding: 0;
 }
-
-.nav-links li a {
-    color: var(--white);
+.top-menu-wrapper .nav-links li a {
+    color: white;
     text-decoration: none;
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 500;
     padding: 8px 0;
-    transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
 }
-
-.nav-links li a:hover {
-    border-bottom-color: #ffd966;
-    color: #fff3bf;
+.top-menu-wrapper .nav-links li a:hover {
+    border-bottom: 2px solid white;
 }
-
-/* Dropdown for "All Tools" */
-.dropdown {
+.top-menu-wrapper .dropdown {
     position: relative;
+    display: inline-block;
 }
-
-.dropbtn {
+.top-menu-wrapper .dropbtn {
     background: none;
     border: none;
-    color: var(--white);
-    font-weight: 600;
-    font-size: 0.95rem;
+    color: white;
+    font-weight: 500;
     cursor: pointer;
     padding: 8px 0;
-    font-family: inherit;
+    font-size: 1rem;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    border-bottom: 2px solid transparent;
+    gap: 4px;
 }
-
-.dropbtn:hover {
-    border-bottom-color: #ffd966;
-    color: #fff3bf;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 45px;
-    left: 0;
-    background: var(--white);
-    min-width: 300px;
-    border-radius: 16px;
-    box-shadow: var(--shadow-xl);
-    z-index: 1002;
+.top-menu-wrapper .dropdown-content {
     display: none;
-    max-height: 70vh;
-    overflow-y: auto;
-    padding: 10px 0;
+    position: absolute;
+    background: white;
+    min-width: 280px;
+    border-radius: 12px;
+    top: 40px;
+    left: 0;
+    padding: 8px 0;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    z-index: 1001;
 }
-
-.dropdown.open .dropdown-menu {
+.top-menu-wrapper .dropdown.open .dropdown-content {
     display: block;
-    animation: fadeIn 0.2s ease;
 }
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.dropdown-category {
-    padding: 12px 20px;
+.top-menu-wrapper .dropdown-category {
+    padding: 12px 16px;
     font-weight: 700;
-    color: #1e3a8a !important;
-    cursor: pointer;
+    color: #1e3a8a;
+    border-bottom: 1px solid #e5e7eb;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #e5e7eb;
-    transition: background 0.2s;
+    cursor: pointer;
 }
-
-.dropdown-category:hover {
-    background: #f0f9ff;
-}
-
-.dropdown-category .arrow {
-    transition: transform 0.2s;
-    font-size: 0.7rem;
-    color: var(--primary-light);
-}
-
-.dropdown-category.active .arrow {
-    transform: rotate(90deg);
-}
-
-.dropdown-tools {
+.top-menu-wrapper .category-tools {
     display: none;
-    background: #f8fafc;
-    margin: 5px 10px;
-    border-radius: 12px;
+    background: #f9fafb;
+    border-radius: 8px;
+    margin: 4px 8px;
     overflow: hidden;
 }
-
-.dropdown-tools.show {
+.top-menu-wrapper .category-tools.show {
     display: block;
 }
-
-.dropdown-tools a {
+.top-menu-wrapper .category-tools a {
     color: #1f2937 !important;
-    display: block;
-    padding: 10px 20px 10px 40px;
+    padding: 10px 20px 10px 32px;
     text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.2s;
-    background: #f8fafc;
+    display: block;
+    font-size: 14px;
+    background: #f9fafb;
 }
-
-.dropdown-tools a:hover {
-    background: #eef2ff;
+.top-menu-wrapper .category-tools a:hover {
+    background: #e5e7eb;
     color: #2563eb !important;
-    padding-left: 50px;
 }
-
 /* Categories Bar */
-.categories-bar {
-    background: var(--white);
+.top-menu-wrapper .categories-bar {
+    background: white;
     padding: 12px 20px;
     border-bottom: 1px solid #e5e7eb;
     position: sticky;
     top: 72px;
     z-index: 999;
     overflow-x: auto;
-    scrollbar-width: thin;
 }
-
-.categories-container {
+.top-menu-wrapper .categories-container {
     max-width: 1400px;
     margin: 0 auto;
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
 }
-
-.category-wrapper {
+.top-menu-wrapper .category-wrapper {
     display: inline-flex;
     align-items: center;
     gap: 4px;
     background: #f0f2f5;
     border-radius: 40px;
     padding: 0 8px 0 0;
-    transition: all 0.2s;
 }
-
-.category-wrapper:hover {
-    background: #e4e7eb;
-}
-
-.cat-btn {
+.top-menu-wrapper .cat-btn {
     background: transparent;
     border: none;
     padding: 10px 16px;
@@ -988,125 +893,74 @@ body {
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--text-dark);
-    font-family: inherit;
+    color: #1f2937;
 }
-
-.cat-btn:hover {
-    background: var(--primary-light);
-    color: var(--white);
+.top-menu-wrapper .cat-btn:hover {
+    background: #2563eb;
+    color: white;
 }
-
-.cat-btn.active {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: var(--white);
-    box-shadow: var(--shadow-sm);
-}
-
-.cat-dropdown-btn {
+.top-menu-wrapper .cat-dropdown-btn {
     background: transparent;
     border: none;
     font-size: 0.7rem;
     cursor: pointer;
     padding: 4px 8px;
     border-radius: 20px;
-    transition: all 0.2s;
-    color: var(--primary);
+    color: #1e40af;
     font-weight: bold;
 }
-
-.cat-dropdown-btn:hover {
-    background: var(--primary-light);
-    color: var(--white);
-    transform: scale(1.1);
+.top-menu-wrapper .cat-dropdown-btn:hover {
+    background: #2563eb;
+    color: white;
 }
-
-/* Floating Dropdown (for category ▶ buttons) */
-.floating-dropdown {
+/* Floating Dropdown */
+.top-menu-wrapper .floating-dropdown {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 90%;
     max-width: 500px;
-    background: var(--white);
+    background: white;
     border-radius: 24px;
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.15);
     z-index: 2000;
     display: none;
-    animation: slideIn 0.25s ease;
-    overflow: hidden;
 }
-
-.floating-dropdown.show {
+.top-menu-wrapper .floating-dropdown.show {
     display: block;
 }
-
-@keyframes slideIn {
-    from { opacity: 0; transform: translate(-50%, -48%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
-
-.floating-dropdown-header {
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
-    color: var(--white);
+.top-menu-wrapper .floating-dropdown-header {
+    background: linear-gradient(135deg, #1e40af 0%, #2563eb 100%);
+    color: white;
     padding: 15px 20px;
     display: flex;
     justify-content: space-between;
-    align-items: center;
 }
-
-.floating-dropdown-header span {
-    font-weight: 700;
-    font-size: 1.1rem;
-}
-
-.close-dropdown {
-    background: rgba(255,255,255,0.2);
+.top-menu-wrapper .close-dropdown {
+    background: none;
     border: none;
-    color: var(--white);
+    color: white;
     font-size: 1.5rem;
     cursor: pointer;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
 }
-
-.close-dropdown:hover {
-    background: rgba(255,255,255,0.3);
-    transform: scale(1.05);
-}
-
-.floating-dropdown-content {
+.top-menu-wrapper .floating-dropdown-content {
     max-height: 60vh;
     overflow-y: auto;
     padding: 15px;
 }
-
-.floating-tool-item {
+.top-menu-wrapper .floating-tool-item {
     display: block;
     padding: 12px 15px;
-    color: var(--text-dark);
+    color: #1f2937;
     text-decoration: none;
     border-bottom: 1px solid #e5e7eb;
-    transition: all 0.2s;
-    border-radius: 10px;
-    margin: 4px 0;
 }
-
-.floating-tool-item:hover {
+.top-menu-wrapper .floating-tool-item:hover {
     background: #f0f9ff;
-    color: var(--primary);
-    transform: translateX(5px);
+    color: #2563eb;
 }
-
-/* Overlay */
-.dropdown-overlay {
+.top-menu-wrapper .dropdown-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -1116,26 +970,18 @@ body {
     z-index: 1999;
     display: none;
 }
-
-.dropdown-overlay.show {
+.top-menu-wrapper .dropdown-overlay.show {
     display: block;
 }
-
-/* Responsive */
 @media (max-width: 768px) {
-    .nav-container { flex-direction: column; }
-    .nav-links { justify-content: center; gap: 12px; }
-    .categories-bar { top: 110px; }
-    .categories-container { flex-wrap: nowrap; justify-content: flex-start; }
-}
-@media (max-width: 480px) {
-    .category-wrapper { padding: 0 4px 0 0; }
-    .cat-btn { padding: 7px 12px; font-size: 0.8rem; }
+    .top-menu-wrapper .nav-container { flex-direction: column; }
+    .top-menu-wrapper .categories-bar { top: 110px; }
+    .top-menu-wrapper .categories-container { flex-wrap: nowrap; justify-content: flex-start; }
 }
 </style>
-</head>
-<body>
-<!-- ========== TOP MENU MARKUP ========== -->
+
+<div class="top-menu-wrapper">
+<!-- Navbar -->
 <nav class="navbar">
     <div class="nav-container">
         <div class="logo">
@@ -1145,7 +991,7 @@ body {
             <li><a href="index.html">🏠 Home</a></li>
             <li class="dropdown" id="allToolsDropdown">
                 <button class="dropbtn" id="allToolsBtn">📊 All Tools ▼</button>
-                <div class="dropdown-menu" id="allToolsMenu"></div>
+                <div class="dropdown-content" id="allToolsMenu"></div>
             </li>
             <li><a href="about.html">ℹ️ About</a></li>
             <li><a href="contact.html">📧 Contact</a></li>
@@ -1156,9 +1002,10 @@ body {
     </div>
 </nav>
 
+<!-- Categories Bar (with ▶ dropdowns) -->
 <div class="categories-bar">
     <div class="categories-container">
-        <div class="category-wrapper"><button class="cat-btn active" data-category="seo">🔍 SEO Tools</button><button class="cat-dropdown-btn" data-category="seo">▶</button></div>
+        <div class="category-wrapper"><button class="cat-btn" data-category="seo">🔍 SEO Tools</button><button class="cat-dropdown-btn" data-category="seo">▶</button></div>
         <div class="category-wrapper"><button class="cat-btn" data-category="pdf">📄 PDF Tools</button><button class="cat-dropdown-btn" data-category="pdf">▶</button></div>
         <div class="category-wrapper"><button class="cat-btn" data-category="image">🖼️ Image Tools</button><button class="cat-dropdown-btn" data-category="image">▶</button></div>
         <div class="category-wrapper"><button class="cat-btn" data-category="finance">💰 Finance</button><button class="cat-dropdown-btn" data-category="finance">▶</button></div>
@@ -1172,6 +1019,7 @@ body {
     </div>
 </div>
 
+<!-- Floating Dropdown Panel -->
 <div id="floatingDropdown" class="floating-dropdown">
     <div class="floating-dropdown-header">
         <span id="dropdownTitle">Tools</span>
@@ -1179,9 +1027,10 @@ body {
     </div>
     <div class="floating-dropdown-content" id="floatingDropdownContent"></div>
 </div>
+</div>
 
 <script>
-// ========== TOOLS DATABASE ==========
+// Tools Database (same as before)
 const toolsDatabase = {
     seo: { name: "🔍 SEO Tools", tools: ["Keyword Density Checker", "Meta Tags Generator", "Meta Tag Analyzer", "SEO Score Checker", "Backlink Checker", "Google Index Checker"] },
     pdf: { name: "📄 PDF Tools", tools: ["PDF Merger", "PDF Splitter", "PDF to Image", "PDF to JPG", "PDF to PNG", "PDF to Word", "PDF to Excel", "PDF to Text", "PDF Rotator"] },
@@ -1193,32 +1042,30 @@ const toolsDatabase = {
     text: { name: "📝 Text Tools", tools: ["Word Counter", "Line Counter", "Text Case Converter", "Password Generator", "Password Strength Checker", "Character Counter"] },
     color: { name: "🎨 Color Tools", tools: ["Color Palette Generator", "Color Shades Generator", "Color Gradient Maker", "Color Contrast Checker", "Color Name Finder"] },
     developer: { name: "🔐 Developer Tools", tools: ["MD5 Hash Generator", "SHA-256 Hash Generator", "SHA-1 Hash Generator", "Base64 Encoder/Decoder", "URL Encoder/Decoder", "HTML Encoder/Decoder", "QR Code Generator"] },
-    popular: { name: "📊 Popular Calculators", tools: ["Unit Converter", "Age Calculator", "Age Difference Calculator", "GPA/CGPA Calculator", "Date Calculator", "YouTube Thumbnail Downloader"] }
+    popular: { name: "📊 Popular Calculators", tools: ["Unit Converter", "Age Calculator", "Age Difference Calculator", "GPA/CGPA Calculator", "Date Calculator", "YouTube Thumbnail Downloader", "Discount Calculator", "Profit & Loss Calculator", "GST Calculator", "Percentage Calculator", "SIP Calculator"] }
 };
 
 function getUrl(toolName) {
     return toolName.toLowerCase().replace(/ /g, '-').replace(/[^\w\-]/g, '') + '.html';
 }
 
-// Build "All Tools" dropdown with expandable categories
 function buildTopDropdown() {
     const menu = document.getElementById('allToolsMenu');
     if (!menu) return;
     let html = '';
     for (const [key, category] of Object.entries(toolsDatabase)) {
         html += `<div class="dropdown-category" data-cat="${key}">${category.name} <span class="arrow">▶</span></div>
-                 <div class="dropdown-tools" id="dropdownTools_${key}">${category.tools.map(tool => `<a href="${getUrl(tool)}">${tool}</a>`).join('')}</div>`;
+                 <div class="category-tools" id="dropdownTools_${key}">${category.tools.map(tool => `<a href="${getUrl(tool)}">${tool}</a>`).join('')}</div>`;
     }
     menu.innerHTML = html;
-    
-    document.querySelectorAll('.dropdown-category').forEach(cat => {
+    document.querySelectorAll('.top-menu-wrapper .dropdown-category').forEach(cat => {
         cat.addEventListener('click', (e) => {
             e.stopPropagation();
             const catId = cat.getAttribute('data-cat');
             const toolsDiv = document.getElementById(`dropdownTools_${catId}`);
             const isActive = cat.classList.contains('active');
-            document.querySelectorAll('.dropdown-category').forEach(c => c.classList.remove('active'));
-            document.querySelectorAll('.dropdown-tools').forEach(t => t.classList.remove('show'));
+            document.querySelectorAll('.top-menu-wrapper .dropdown-category').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.top-menu-wrapper .category-tools').forEach(t => t.classList.remove('show'));
             if (!isActive) {
                 cat.classList.add('active');
                 if (toolsDiv) toolsDiv.classList.add('show');
@@ -1227,32 +1074,23 @@ function buildTopDropdown() {
     });
 }
 
-// Setup categories bar: filter page content (safe if no .section exists) and floating dropdown
 function setupCategoryButtons() {
-    // Filter function (works only if .section elements exist on page, otherwise does nothing)
-    function filterDashboard(categoryId) {
-        const sections = document.querySelectorAll('.section');
-        if (sections.length === 0) return;
-        if (categoryId === 'all') {
-            sections.forEach(section => section.style.display = 'block');
-            return;
-        }
-        sections.forEach(section => {
-            section.style.display = section.getAttribute('data-category') === categoryId ? 'block' : 'none';
-        });
-    }
-    
-    document.querySelectorAll('.cat-btn').forEach(btn => {
+    document.querySelectorAll('.top-menu-wrapper .cat-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const category = this.getAttribute('data-category');
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.top-menu-wrapper .cat-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
-            filterDashboard(category);
+            // If you have .section elements on the page, they will be filtered; otherwise nothing breaks.
+            const sections = document.querySelectorAll('.section');
+            if (sections.length) {
+                sections.forEach(section => {
+                    section.style.display = section.getAttribute('data-category') === category ? 'block' : 'none';
+                });
+            }
             closeFloatingDropdown();
         });
     });
-    
-    document.querySelectorAll('.cat-dropdown-btn').forEach(icon => {
+    document.querySelectorAll('.top-menu-wrapper .cat-dropdown-btn').forEach(icon => {
         icon.addEventListener('click', function(e) {
             e.stopPropagation();
             const categoryId = this.getAttribute('data-category');
@@ -1260,9 +1098,8 @@ function setupCategoryButtons() {
             if (categoryData) {
                 const dropdown = document.getElementById('floatingDropdown');
                 const overlay = document.getElementById('dropdownOverlay') || createOverlay();
-                const titleSpan = document.getElementById('dropdownTitle');
+                document.getElementById('dropdownTitle').textContent = categoryData.name;
                 const contentDiv = document.getElementById('floatingDropdownContent');
-                titleSpan.textContent = categoryData.name;
                 contentDiv.innerHTML = categoryData.tools.map(tool => `<a href="${getUrl(tool)}" class="floating-tool-item">🔧 ${tool}</a>`).join('');
                 dropdown.classList.add('show');
                 overlay.classList.add('show');
@@ -1305,26 +1142,20 @@ function setupTopDropdown() {
         if (dropdown && !dropdown.contains(e.target)) {
             dropdown.classList.remove('open');
         }
-        if (!e.target.closest('.cat-dropdown-btn') && !e.target.closest('.floating-dropdown')) {
+        if (!e.target.closest('.top-menu-wrapper .cat-dropdown-btn') && !e.target.closest('.floating-dropdown')) {
             closeFloatingDropdown();
         }
     });
 }
 
-// Initialize everything when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     buildTopDropdown();
     setupTopDropdown();
     setupCategoryButtons();
-    
-    const closeBtn = document.querySelector('.close-dropdown');
-    if (closeBtn) closeBtn.addEventListener('click', closeFloatingDropdown);
-    
-    createOverlay(); // ensure overlay exists
+    document.querySelector('.close-dropdown')?.addEventListener('click', closeFloatingDropdown);
+    createOverlay();
 });
 </script>
-</body>
-</html>
     
 <div class="container">
     <div class="tool-card">
