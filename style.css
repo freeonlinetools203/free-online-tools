@@ -1,5 +1,5 @@
 /* =========================================================================
-   1. AAPKA ORIGINAL CODE (BILKUL UNTOUCHED - KOI LAYOUT KHARAB NAHI HOGA)
+   1. GLOBAL & BODY STYLES (Clean White Background System)
    ========================================================================= */
 * {
     margin: 0;
@@ -9,348 +9,19 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #ffffff; /* Baki saari website ka background white */
+    background: #ffffff; /* Baki saari website ka background pure white */
     min-height: 100vh;
 }
 
-/* Original Header styling from your image */
-.header {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
-    color: white;
-    text-align: center;
-    padding: 50px 20px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-.header h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 15px;
-    letter-spacing: -0.5px;
-}
-
-.header p {
-    font-size: 1.15rem;
-    opacity: 0.9;
-    font-weight: 500;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-/* Original Dashboard & Cards layout */
-.container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-.section {
-    background: white;
-    border-radius: 20px;
-    padding: 35px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(229, 231, 235, 0.5);
-}
-
-.section h2 {
-    color: #1e3a8a;
-    font-size: 1.75rem;
-    font-weight: 700;
-    margin-bottom: 25px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-.section h2::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: #2563eb;
-    border-radius: 2px;
-}
-
-.tools-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 20px;
-}
-
-/* ========== COLOUM BLUE & TEXT WHITE SYSTEM ========== */
-.tool-card {
-    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%) !important; /* Coloum background blue jaisa image me he */
-    border-radius: 15px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid rgba(30, 58, 138, 0.2);
-}
-
-.tool-card a {
-    display: block;
-    padding: 20px 15px;
-    text-decoration: none;
-    color: #ffffff !important; /* Text color pure white */
-    font-weight: 600;
-    font-size: 1rem;
-    text-align: center;
-    transition: opacity 0.2s;
-}
-
-.tool-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
-    opacity: 0.95;
-}
-
-/* Original Stats Section */
-.stats-section {
-    background: white;
-    padding: 40px 20px;
-    border-bottom: 1px solid #e5e7eb;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
-}
-
-.stats-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 30px;
-    text-align: center;
-}
-
-.stat-item {
-    padding: 10px;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: #1e3a8a;
-    margin-bottom: 5px;
-}
-
-.stat-label {
-    font-size: 0.95rem;
-    color: #4b5563;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-/* Original Features Section */
-.features-section {
-    background: white;
-    border-radius: 20px;
-    padding: 45px 35px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(229, 231, 235, 0.5);
-}
-
-.features-section h2 {
-    color: #1e3a8a;
-    text-align: center;
-    font-size: 1.75rem;
-    margin-bottom: 35px;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 25px;
-}
-
-.feature-item {
-    text-align: center;
-    padding: 25px 20px;
-    background: #f8fafc;
-    border-radius: 15px;
-    border: 1px solid #f1f5f9;
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
-}
-
-.feature-item h3 {
-    color: #1e3a8a;
-    font-size: 1.15rem;
-    margin-bottom: 10px;
-}
-
-.feature-item p {
-    color: #4b5563;
-    font-size: 0.95rem;
-}
-
-/* Original Testimonial Section */
-.testimonial-section {
-    background: white;
-    border-radius: 20px;
-    padding: 45px 35px;
-    margin-bottom: 40px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
-    border: 1px solid rgba(229, 231, 235, 0.5);
-}
-
-.testimonial-section h2 {
-    color: #1e3a8a;
-    text-align: center;
-    font-size: 1.75rem;
-    margin-bottom: 35px;
-}
-
-.testimonial-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 25px;
-}
-
-.testimonial-item {
-    background: #f8fafc;
-    padding: 30px 25px;
-    border-radius: 15px;
-    border: 1px solid #f1f5f9;
-    position: relative;
-}
-
-.testimonial-text {
-    font-style: italic;
-    color: #374151;
-    margin-bottom: 15px;
-    font-size: 1rem;
-}
-
-.testimonial-author {
-    color: #1e3a8a;
-    font-weight: 700;
-    font-size: 0.9rem;
-}
-
-.testimonial-rating {
-    color: #fbbf24;
-    margin-top: 5px;
-}
-
-/* Original Footer */
-.footer {
-    background: #111827;
-    color: #9ca3af;
-    padding: 60px 20px 30px 20px;
-    margin-top: 80px;
-}
-
-.footer-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 40px;
-}
-
-.footer-col h3 {
-    color: white;
-    font-size: 1.3rem;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 8px;
-}
-
-.footer-col h4 {
-    color: white;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 8px;
-}
-
-.footer-col h3::after, .footer-col h4::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 35px;
-    height: 3px;
-    background: #2563eb;
-    border-radius: 2px;
-}
-
-.footer-col p {
-    font-size: 0.95rem;
-    line-height: 1.7;
-}
-
-.footer-col a {
-    display: block;
-    color: #9ca3af;
-    text-decoration: none;
-    margin-bottom: 12px;
-    font-size: 0.95rem;
-    transition: color 0.2s;
-}
-
-.footer-col a:hover {
-    color: white;
-    padding-left: 5px;
-}
-
-.footer-bottom {
-    max-width: 1200px;
-    margin: 40px auto 0 auto;
-    padding-top: 25px;
-    border-top: 1px solid #1f2937;
-    text-align: center;
-    font-size: 0.9rem;
-}
-
-/* Loader and Info notice original */
-.loader {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #1e3a8a;
-    font-weight: 600;
-    padding: 50px 0;
-}
-
-.info-notice {
-    background: #fffbeb;
-    border: 1px solid #fef3c7;
-    border-left: 4px solid #d97706;
-    border-radius: 12px;
-    padding: 15px 20px;
-    max-width: 1200px;
-    margin: 30px auto -10px auto;
-}
-
-.notice-content {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.notice-icon {
-    font-size: 1.3rem;
-}
-
-.notice-text {
-    font-size: 0.95rem;
-    color: #92400e;
-}
-
-
 /* =========================================================================
-   2. ISOLATED NEW NAVBAR SYSTEM (Wahi Same Colors Jo Image Me Hain)
+   2. FIXED TOP MENU SYSTEM (Ab iske peeche sab kuch chup jayega)
    ========================================================================= */
 .navbar {
     background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
     padding: 15px 30px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 9999 !important; /* Yeh sabse upar rahegi, koi tool iske upar nahi aayega */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
@@ -391,7 +62,7 @@ body {
     padding: 8px 0;
 }
 
-/* Accordion Dropdown Inside Navbar */
+/* Navbar Categories Accordion Dropdown */
 .dropdown {
     position: relative;
 }
@@ -466,14 +137,14 @@ body {
     color: #2563eb !important;
 }
 
-/* New Categories Filter Bar (Sub-Header Navigation) */
+/* Categories Filter Sub-Bar (Sticky below navbar) */
 .categories-bar {
     background: white;
     padding: 12px 20px;
     border-bottom: 1px solid #e5e7eb;
     position: sticky;
-    top: 65px;
-    z-index: 999;
+    top: 61px; /* Navbar ke end par perfect chipak jayegi */
+    z-index: 9998 !important; /* Navbar se ek step peeche, par tools se upar */
     overflow-x: auto;
 }
 
@@ -518,7 +189,7 @@ body {
     padding: 5px;
 }
 
-/* Floating Window System for Mobile Filtering */
+/* Floating Overlay Window for Mobile Filtering */
 .floating-dropdown {
     position: fixed;
     top: 50%; left: 50%;
@@ -527,7 +198,7 @@ body {
     background: white;
     border-radius: 16px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    z-index: 2000;
+    z-index: 10000; /* overlay ke bhi upar */
     display: none;
 }
 
@@ -574,7 +245,7 @@ body {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
     background: rgba(0,0,0,0.4);
-    z-index: 1999;
+    z-index: 9999;
     display: none;
 }
 
@@ -582,9 +253,341 @@ body {
     display: block; 
 }
 
+/* =========================================================================
+   3. HERO HEADER & NOTICE STYLES
+   ========================================================================= */
+.header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    color: white;
+    text-align: center;
+    padding: 50px 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    letter-spacing: -0.5px;
+}
+
+.header p {
+    font-size: 1.15rem;
+    opacity: 0.9;
+    font-weight: 500;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.info-notice {
+    background: #fffbeb;
+    border: 1px solid #fef3c7;
+    border-left: 4px solid #d97706;
+    border-radius: 12px;
+    padding: 15px 20px;
+    max-width: 1200px;
+    margin: 30px auto -10px auto;
+}
+
+.notice-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.notice-icon {
+    font-size: 1.3rem;
+}
+
+.notice-text {
+    font-size: 0.95rem;
+    color: #92400e;
+}
 
 /* =========================================================================
-   3. RESPONSIVE MEDIA QUERIES (ORIGINAL RESPONSIVENESS PRESERVED)
+   4. DASHBOARD GRID & COLOUM BLUE SYSTEM (Aapki Image Wala Exact Look)
+   ========================================================================= */
+.container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.section {
+    background: white;
+    border-radius: 20px;
+    padding: 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.section h2 {
+    color: #1e3a8a;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: #2563eb;
+    border-radius: 2px;
+}
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+/* BLUE COLUMNS WITH WHITE TEXT */
+.tool-card {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%) !important; 
+    border-radius: 15px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid rgba(30, 58, 138, 0.2);
+}
+
+.tool-card a {
+    display: block;
+    padding: 20px 15px;
+    text-decoration: none;
+    color: #ffffff !important; /* Pure White Text */
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+    transition: opacity 0.2s;
+}
+
+.tool-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(30, 58, 138, 0.3);
+    opacity: 0.95;
+}
+
+.loader {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #1e3a8a;
+    font-weight: 600;
+    padding: 50px 0;
+}
+
+/* =========================================================================
+   5. EXTRA SECTIONS (Stats, Features, Testimonials)
+   ========================================================================= */
+.stats-section {
+    background: white;
+    padding: 40px 20px;
+    border-bottom: 1px solid #e5e7eb;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+}
+
+.stats-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 10px;
+}
+
+.stat-number {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin-bottom: 5px;
+}
+
+.stat-label {
+    font-size: 0.95rem;
+    color: #4b5563;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.features-section {
+    background: white;
+    border-radius: 20px;
+    padding: 45px 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.features-section h2 {
+    color: #1e3a8a;
+    text-align: center;
+    font-size: 1.75rem;
+    margin-bottom: 35px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.feature-item {
+    text-align: center;
+    padding: 25px 20px;
+    background: #f8fafc;
+    border-radius: 15px;
+    border: 1px solid #f1f5f9;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}
+
+.feature-item h3 {
+    color: #1e3a8a;
+    font-size: 1.15rem;
+    margin-bottom: 10px;
+}
+
+.feature-item p {
+    color: #4b5563;
+    font-size: 0.95rem;
+}
+
+.testimonial-section {
+    background: white;
+    border-radius: 20px;
+    padding: 45px 35px;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(229, 231, 235, 0.5);
+}
+
+.testimonial-section h2 {
+    color: #1e3a8a;
+    text-align: center;
+    font-size: 1.75rem;
+    margin-bottom: 35px;
+}
+
+.testimonial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.testimonial-item {
+    background: #f8fafc;
+    padding: 30px 25px;
+    border-radius: 15px;
+    border: 1px solid #f1f5f9;
+    position: relative;
+}
+
+.testimonial-text {
+    font-style: italic;
+    color: #374151;
+    margin-bottom: 15px;
+    font-size: 1rem;
+}
+
+.testimonial-author {
+    color: #1e3a8a;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.testimonial-rating {
+    color: #fbbf24;
+    margin-top: 5px;
+}
+
+/* =========================================================================
+   6. FOOTER STYLES
+   ========================================================================= */
+.footer {
+    background: #111827;
+    color: #9ca3af;
+    padding: 60px 20px 30px 20px;
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+}
+
+.footer-col h3 {
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-col h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 8px;
+}
+
+.footer-col h3::after, .footer-col h4::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 35px;
+    height: 3px;
+    background: #2563eb;
+    border-radius: 2px;
+}
+
+.footer-col p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+}
+
+.footer-col a {
+    display: block;
+    color: #9ca3af;
+    text-decoration: none;
+    margin-bottom: 12px;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+}
+
+.footer-col a:hover {
+    color: white;
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    max-width: 1200px;
+    margin: 40px auto 0 auto;
+    padding-top: 25px;
+    border-top: 1px solid #1f2937;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* =========================================================================
+   7. RESPONSIVE MEDIA QUERIES
    ========================================================================= */
 @media (max-width: 768px) {
     .stats-container {
@@ -641,7 +644,6 @@ body {
         margin: 0 8px;
     }
     
-    /* Navbar content centering on small screens */
     .dropdown-content {
         position: fixed;
         top: 60px;
