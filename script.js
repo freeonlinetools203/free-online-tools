@@ -1,21 +1,56 @@
 // =========================================================================
-// CENTRALIZED TOOLS DATABASE (Home page dashboard ke liye)
+// CENTRALIZED TOOLS DATABASE (Saare Missing Tools Full Database Ke Saath Wapas Included!)
 // =========================================================================
 const toolsDatabase = {
-    catSeo: { name: "🔍 SEO Tools", tools: ["Keyword Density Checker", "Meta Tags Generator", "Meta Tag Analyzer"] },
-    catHash: { name: "📱 Social Hashtag Tools", tools: ["Instagram Hashtag Generator", "LinkedIn Hashtag Generator", "Facebook Hashtag Generator"] },
-    catPreg: { name: "🐾 Animal Pregnancy", tools: ["Dog Pregnancy Calculator", "Cat Pregnancy Calculator", "Cow Pregnancy Calculator"] },
-    catPop: { name: "📊 Popular Calculators", tools: ["Unit Converter", "Age Calculator", "Age Difference Calculator", "Discount Calculator", "gpa-cgpa-calculator.html", "QR Code Generator", "YouTube Thumbnail Downloader", "Currency Converter"] },
-    catHealth: { name: "🏃‍♂️ Health & Fitness", tools: ["BMI Calculator", "BMR Calculator", "Calorie Calculator"] },
-    catFin: { name: "💰 Financial Tools", tools: ["EMI Calculator", "Loan Calculator", "Zakat Calculator"] },
-    catText: { name: "📝 Text Tools", tools: ["Word Counter", "Text Case Converter", "Password Generator", "Password Strength Checker"] },
-    catPdf: { name: "📄 PDF Tools", tools: ["PDF Merger", "PDF Splitter", "PDF to Image", "PDF to JPG", "PDF to PNG"] },
-    catImage: { name: "🖼️ Image Tools", tools: ["Image Color Extractor", "Image Converter", "Image Cropper", "Image Resizer"] }
+    catSeo: { 
+        name: "🔍 SEO Tools", 
+        tools: ["Keyword Density Checker", "Meta Tags Generator", "Meta Tag Analyzer"] 
+    },
+    catHash: { 
+        name: "📱 Social Tools", 
+        tools: ["Instagram Hashtag Generator", "LinkedIn Hashtag Generator", "Facebook Hashtag Generator", "Twitter Hashtag Generator", "TikTok Hashtag Generator"] 
+    },
+    catPreg: { 
+        name: "🐾 Animal Tools", 
+        tools: ["Goat Pregnancy Calculator", "Horse Pregnancy Calculator", "Sheep Pregnancy Calculator", "Pig Pregnancy Calculator", "Dog Pregnancy Calculator", "Cat Pregnancy Calculator", "Cow Pregnancy Calculator"] 
+    },
+    catPop: { 
+        name: "📊 Popular Tools", 
+        tools: ["Unit Converter", "Age Calculator", "Age Difference Calculator", "Discount Calculator", "gpa-cgpa-calculator.html", "QR Code Generator", "YouTube Thumbnail Downloader", "Currency Converter", "Percentage Calculator", "Scientific Calculator", "Simple Calculator"] 
+    },
+    catHealth: { 
+        name: "🏃‍♂️ Health Tools", 
+        tools: ["BMI Calculator", "BMR Calculator", "Calorie Calculator", "Body Fat Calculator", "Water Intake Calculator"] 
+    },
+    catFin: { 
+        name: "💰 Financial Tools", 
+        tools: ["EMI Calculator", "Loan Calculator", "Zakat Calculator", "Compound Interest Calculator", "Simple Interest Calculator", "GST Calculator"] 
+    },
+    catText: { 
+        name: "📝 Text Tools", 
+        tools: ["Word Counter", "Text Case Converter", "Password Generator", "Password Strength Checker", "Find and Replace Text", "Binary to Text Converter", "Text to Binary Converter"] 
+    },
+    catPdf: { 
+        name: "📄 PDF Tools", 
+        tools: ["PDF Merger", "PDF Splitter", "PDF to Image", "PDF to JPG", "PDF to PNG"] 
+    },
+    catImage: { 
+        name: "🖼️ Image Tools", 
+        tools: ["Image Color Extractor", "Image Converter", "Image Cropper", "Image Resizer", "JPG to PNG Converter", "PNG to JPG Converter", "WebP to JPG Converter"] 
+    },
+    catDev: {
+        name: "💻 Developer Tools",
+        tools: ["MD5 Hash Generator", "SHA-256 Hash Generator", "SHA-1 Hash Generator", "Base64 Encoder/Decoder", "URL Encoder/Decoder", "HTML Encoder/Decoder"]
+    },
+    catColor: {
+        name: "🎨 Color Tools",
+        tools: ["Color Palette Generator", "Color Shades Generator", "Color Gradient Maker", "Color Contrast Checker"]
+    }
 };
 
-// URL friendly string banane ke liye system
+// URL friendly HTML string banane ka system
 function getUrl(toolName) {
-    if (toolName.endsWith('.html')) return toolName; // agar pehle se .html hai
+    if (toolName.endsWith('.html')) return toolName; 
     return toolName.toLowerCase().trim()
         .replace(/ /g, '-')
         .replace(/[^\w\-]/g, '') + '.html';
@@ -48,7 +83,7 @@ function renderCategoriesBar() {
     const barContainer = document.getElementById('categoriesBarContainer');
     if (!barContainer) return;
 
-    let html = `<div class="category-wrapper"><button class="cat-btn active" data-category="all">🌐 All</button></div>`;
+    let html = `<div class="category-wrapper"><button class="cat-btn active" data-category="all">🌐 All Categories</button></div>`;
     
     for (const [key, category] of Object.entries(toolsDatabase)) {
         html += `
@@ -74,7 +109,7 @@ function filterDashboard(categoryId) {
 }
 
 // =========================================================================
-// NAVBAR & MOBILE FILTER WINDOW LOGIC (COMPLETE & FIXED)
+// NAVBAR & MOBILE FILTER WINDOW LOGIC
 // =========================================================================
 function setupNavbarLogic() {
     const dropdown = document.getElementById('toolsDropdown');
@@ -97,7 +132,6 @@ function setupNavbarLogic() {
                 if (toolsDiv) {
                     const isActive = this.classList.contains('active');
                     
-                    // Close all other subcategories
                     document.querySelectorAll('.dropdown-category').forEach(c => c.classList.remove('active'));
                     document.querySelectorAll('.category-tools').forEach(t => t.classList.remove('show'));
                     
@@ -120,20 +154,18 @@ function setupNavbarLogic() {
     });
 }
 
-// Category Buttons Logic (Main page filtering and floating windows)
+// Category Buttons Logic 
 function setupCategoryButtonsLogic() {
-    // Main filter buttons click
     document.querySelectorAll('.cat-btn').forEach(btn => {
         btn.addEventListener('click', function() {
             const category = this.getAttribute('data-category');
             document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
             this.classList.add('active');
             filterDashboard(category);
-            closeFloatingDropdown(); // close if window open
+            closeFloatingDropdown(); 
         });
     });
     
-    // Triangle "▶" buttons click (opens mobile floating window)
     document.querySelectorAll('.cat-dropdown-btn').forEach(icon => {
         icon.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -145,7 +177,6 @@ function setupCategoryButtonsLogic() {
         });
     });
 
-    // Handle close actions for the floating window
     handleFloatingDropdownActions();
 }
 
@@ -165,22 +196,18 @@ function openFloatingDropdown(categoryData) {
     }
 }
 
-// Handles closing when close button, overlay are clicked
 function handleFloatingDropdownActions() {
-    // 1. Close button "×" click (FIXED)
     const closeBtn = document.querySelector('.close-dropdown');
     if (closeBtn) {
         closeBtn.addEventListener('click', closeFloatingDropdown);
     }
 
-    // 2. Overlay click (also FIXED)
     const overlay = document.getElementById('dropdownOverlay');
     if (overlay) {
         overlay.addEventListener('click', closeFloatingDropdown);
     }
 }
 
-// Core function to close the floating Mobile/Triangle filter window
 function closeFloatingDropdown() {
     const dropdown = document.getElementById('floatingDropdown');
     const overlay = document.getElementById('dropdownOverlay');
@@ -188,7 +215,6 @@ function closeFloatingDropdown() {
     if (overlay) overlay.classList.remove('show');
 }
 
-// Creates the dark background overlay if it doesn't exist
 function createOverlay() {
     let overlay = document.getElementById('dropdownOverlay');
     if (!overlay) {
@@ -196,7 +222,6 @@ function createOverlay() {
         overlay.id = 'dropdownOverlay';
         overlay.className = 'dropdown-overlay';
         document.body.appendChild(overlay);
-        // Important: add click listener here too to be safe
         overlay.addEventListener('click', closeFloatingDropdown);
     }
     return overlay;
@@ -219,13 +244,12 @@ function populateFooter() {
 // PAGE ONLOAD TRIGGERS
 // =========================================================================
 document.addEventListener('DOMContentLoaded', () => {
-    // Initialize standard page components
     renderDashboard();
     renderCategoriesBar();
     populateFooter();
-    createOverlay(); // ensures overlay exists
+    createOverlay(); 
 
-    // FETCH AND LOAD NAVBAR.HTML (Centralized menu)
+    // FETCH AND LOAD NAVBAR.HTML
     fetch("navbar.html")
         .then(response => {
             if (!response.ok) throw new Error("Navbar network response was not ok");
@@ -235,7 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const placeholder = document.getElementById("navbar-placeholder");
             if (placeholder) {
                 placeholder.innerHTML = htmlContent;
-                setupNavbarLogic(); // Activate navbar buttons after loading html
+                setupNavbarLogic(); 
             }
         })
         .catch(err => console.error("Error loading navbar:", err));
