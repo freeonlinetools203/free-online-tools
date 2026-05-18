@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <style>
-/* ===== MEGA MENU STYLES ===== */
+/* ===== MEGA MENU STYLES - FULLY RESPONSIVE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .megamenu-container {
     width: 100%;
     background: linear-gradient(to right, #881e8a, #2563eb);
@@ -14,20 +22,21 @@
 .megamenu-wrapper {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-wrap: wrap;
+    min-height: 60px;
 }
 
 .megamenu-logo a {
     display: block;
     color: white;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     font-weight: bold;
     text-decoration: none;
-    padding: 15px 0;
+    padding: 12px 0;
 }
 
 .megamenu-logo a:hover {
@@ -44,39 +53,40 @@
 }
 
 .megamenu-nav > li {
-    position: relative;
+    position: static;
 }
 
 .megamenu-nav > li > a {
     display: block;
     color: white;
     text-decoration: none;
-    padding: 15px 18px;
-    font-size: 1rem;
+    padding: 12px 15px;
+    font-size: 0.95rem;
     font-weight: 500;
     transition: all 0.3s ease;
     border-radius: 8px;
+    white-space: nowrap;
 }
 
 .megamenu-nav > li > a:hover {
     background: rgba(255,255,255,0.15);
 }
 
-/* Dropdown Arrow */
 .has-dropdown > a::after {
     content: " ▼";
     font-size: 10px;
     margin-left: 5px;
 }
 
-/* Mega Menu Dropdown */
+/* Mega Menu - Full Width */
 .mega-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 850px;
+    right: 0;
+    width: 100%;
     background: white;
-    border-radius: 12px;
+    border-radius: 0 0 12px 12px;
     box-shadow: 0 20px 40px rgba(0,0,0,0.15);
     opacity: 0;
     visibility: hidden;
@@ -89,12 +99,17 @@
     visibility: visible;
 }
 
-/* Multi-Column Grid */
+/* Scrollable Grid Container */
+.dropdown-scroll {
+    max-height: 450px;
+    overflow-y: auto;
+    padding: 20px;
+}
+
 .dropdown-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     gap: 20px;
-    padding: 25px;
 }
 
 .dropdown-column h4 {
@@ -103,6 +118,25 @@
     margin-bottom: 10px;
     padding-bottom: 5px;
     border-bottom: 2px solid #2563eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.dropdown-column h4 .view-all {
+    font-size: 0.7rem;
+    background: #f0f0f0;
+    padding: 2px 8px;
+    border-radius: 15px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.dropdown-column h4 .view-all:hover {
+    background: #2563eb;
+    color: white;
 }
 
 .dropdown-column a {
@@ -112,11 +146,12 @@
     padding: 6px 0;
     font-size: 0.8rem;
     transition: all 0.2s;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .dropdown-column a:hover {
     color: #2563eb;
-    padding-left: 5px;
+    padding-left: 8px;
 }
 
 /* Search Box */
@@ -129,21 +164,16 @@
     padding: 8px 15px;
     border: none;
     border-radius: 25px;
-    width: 220px;
+    width: 200px;
     outline: none;
     font-size: 0.85rem;
 }
 
-.megamenu-search input::placeholder {
-    color: #999;
-}
-
-/* Search Results */
 .search-results {
     position: absolute;
     top: 100%;
     right: 20px;
-    width: 350px;
+    width: 300px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -168,11 +198,7 @@
     display: block;
 }
 
-.search-result-item a:hover {
-    color: #2563eb;
-}
-
-/* Mobile Toggle */
+/* Mobile Toggle Button */
 .mobile-toggle {
     display: none;
     background: none;
@@ -183,7 +209,7 @@
     padding: 10px;
 }
 
-/* Mobile Menu */
+/* Mobile Menu - FULL RESPONSIVE */
 .mobile-menu {
     display: none;
     background: white;
@@ -194,14 +220,16 @@
 }
 
 .mobile-menu.open {
-    max-height: 450px;
+    display: block;
+    max-height: 80vh;
     overflow-y: auto;
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 
 .mobile-nav {
     list-style: none;
     margin: 0;
-    padding: 15px;
+    padding: 0;
 }
 
 .mobile-nav > li {
@@ -210,10 +238,31 @@
 
 .mobile-nav > li > a {
     display: block;
-    padding: 12px;
+    padding: 14px 16px;
     color: #333;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1rem;
+}
+
+.mobile-nav > li > a:hover {
+    background: #f5f5f5;
+}
+
+.mobile-dropdown-toggle {
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.mobile-dropdown-toggle::after {
+    content: "▼";
+    font-size: 10px;
+    color: #888;
+}
+
+.mobile-dropdown-toggle.open::after {
+    content: "▲";
 }
 
 .mobile-dropdown-content {
@@ -227,21 +276,120 @@
 }
 
 .mobile-dropdown-content h4 {
-    padding: 8px 0 4px;
+    padding: 10px 0 5px 12px;
     color: #881e8a;
     font-size: 0.85rem;
+    font-weight: bold;
 }
 
 .mobile-dropdown-content a {
     display: block;
-    padding: 6px 12px;
+    padding: 8px 12px 8px 20px;
     color: #555;
     text-decoration: none;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-dropdown-content a:hover {
+    background: #f0f0f0;
+    color: #2563eb;
+}
+
+/* Mobile Search inside menu */
+.mobile-search {
+    padding: 12px;
+    background: #f5f5f5;
+    border-bottom: 1px solid #ddd;
+}
+
+.mobile-search input {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    outline: none;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    overflow-y: auto;
+}
+
+.modal-content {
+    background: white;
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    color: #888;
+}
+
+.modal-close:hover {
+    color: #881e8a;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-top: 30px;
+}
+
+.modal-category {
+    background: #f9f9f9;
+    padding: 12px;
+    border-radius: 10px;
+}
+
+.modal-category h3 {
+    color: #881e8a;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #2563eb;
+}
+
+.modal-category a {
+    display: block;
+    color: #555;
+    text-decoration: none;
+    padding: 5px 0;
     font-size: 0.8rem;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+@media (max-width: 1100px) {
+    .dropdown-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .dropdown-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
     .megamenu-nav {
         display: none;
     }
@@ -257,11 +405,41 @@
     .mega-dropdown {
         display: none;
     }
+    
+    .modal-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
-.highlight {
-    background: yellow;
-    font-weight: bold;
+@media (max-width: 480px) {
+    .megamenu-wrapper {
+        padding: 0 10px;
+    }
+    
+    .megamenu-logo a {
+        font-size: 1rem;
+    }
+    
+    .mobile-toggle {
+        font-size: 24px;
+    }
+    
+    .modal-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .modal-content {
+        margin: 20px;
+        padding: 15px;
+    }
+}
+
+/* Desktop hover remains, mobile uses click */
+@media (min-width: 769px) {
+    .megamenu-nav > li:hover .mega-dropdown {
+        opacity: 1;
+        visibility: visible;
+    }
 }
 </style>
 </head>
@@ -273,118 +451,90 @@
             <a href="index.html">✨ Free Online Tools</a>
         </div>
         
+        <!-- Desktop Navigation -->
         <ul class="megamenu-nav">
             <li><a href="index.html">🏠 Home</a></li>
             
-            <!-- All Categories Mega Menu -->
             <li class="has-dropdown">
-                <a href="#">🛠️ All Categories ▼</a>
+                <a href="#">🛠️ All Tools ▼</a>
                 <div class="mega-dropdown">
-                    <div class="dropdown-grid">
-                        <!-- Column 1 -->
-                        <div class="dropdown-column">
-                            <h4>🔍 SEO Tools</h4>
-                            <a href="keyword-density-checker.html">Keyword Density Checker</a>
-                            <a href="meta-tags-generator.html">Meta Tags Generator</a>
-                            <a href="meta-tag-analyzer.html">Meta Tag Analyzer</a>
+                    <div class="dropdown-scroll">
+                        <div class="dropdown-grid">
                             
-                            <h4>📱 Social Media Hashtag</h4>
-                            <a href="instagram-hashtag-generator.html">Instagram Hashtag Generator</a>
-                            <a href="linkedin-hashtag-generator.html">LinkedIn Hashtag Generator</a>
-                            <a href="facebook-hashtag-generator.html">Facebook Hashtag Generator</a>
-                            <a href="pinterest-hashtag-generator.html">Pinterest Hashtag Generator</a>
-                            <a href="ai-hashtag-generator.html">AI Hashtag Generator</a>
-                            <a href="seo-hashtags-generator.html">SEO Hashtags Generator</a>
-                        </div>
-                        
-                        <!-- Column 2 -->
-                        <div class="dropdown-column">
-                            <h4>🐾 Animal Pregnancy</h4>
-                            <a href="dog-pregnancy-calculator.html">Dog Pregnancy Calculator</a>
-                            <a href="cat-pregnancy-calculator.html">Cat Pregnancy Calculator</a>
-                            <a href="cow-pregnancy-calculator.html">Cow Pregnancy Calculator</a>
-                            <a href="rabbit-pregnancy-calculator.html">Rabbit Pregnancy Calculator</a>
-                            <a href="goat-pregnancy-calculator.html">Goat Pregnancy Calculator</a>
-                            <a href="horse-pregnancy-calculator.html">Horse Pregnancy Calculator</a>
-                            <a href="sheep-pregnancy-calculator.html">Sheep Pregnancy Calculator</a>
-                            <a href="pig-pregnancy-calculator.html">Pig Pregnancy Calculator</a>
+                            <div class="dropdown-column">
+                                <h4>🔍 SEO Tools <a href="#" class="view-all" data-category="seo">View All →</a></h4>
+                                <a href="keyword-density-checker.html">Keyword Density Checker</a>
+                                <a href="meta-tags-generator.html">Meta Tags Generator</a>
+                                <a href="meta-tag-analyzer.html">Meta Tag Analyzer</a>
+                                
+                                <h4>📱 Hashtag Tools <a href="#" class="view-all" data-category="hashtag">View All →</a></h4>
+                                <a href="instagram-hashtag-generator.html">Instagram Hashtag</a>
+                                <a href="linkedin-hashtag-generator.html">LinkedIn Hashtag</a>
+                                <a href="facebook-hashtag-generator.html">Facebook Hashtag</a>
+                                <a href="pinterest-hashtag-generator.html">Pinterest Hashtag</a>
+                                <a href="ai-hashtag-generator.html">AI Hashtag</a>
+                            </div>
                             
-                            <h4>🔐 Developer & Security</h4>
-                            <a href="md5-generator.html">MD5 Hash Generator</a>
-                            <a href="sha256-generator.html">SHA-256 Hash Generator</a>
-                            <a href="sha1-generator.html">SHA-1 Hash Generator</a>
-                            <a href="base64-encoder-decoder.html">Base64 Encoder/Decoder</a>
-                            <a href="url-encoder-decoder.html">URL Encoder/Decoder</a>
-                            <a href="html-encoder-decoder.html">HTML Encoder/Decoder</a>
-                        </div>
-                        
-                        <!-- Column 3 -->
-                        <div class="dropdown-column">
-                            <h4>🎨 Color Tools</h4>
-                            <a href="color-palette-generator.html">Color Palette Generator</a>
-                            <a href="color-shades-generator.html">Color Shades Generator</a>
-                            <a href="color-gradient-maker.html">Color Gradient Maker</a>
-                            <a href="color-contrast-checker.html">Color Contrast Checker</a>
-                            <a href="color-name-finder.html">Color Name Finder</a>
-                            <a href="random-color-picker.html">Random Color Picker</a>
+                            <div class="dropdown-column">
+                                <h4>🐾 Animal Pregnancy <a href="#" class="view-all" data-category="pregnancy">View All →</a></h4>
+                                <a href="dog-pregnancy-calculator.html">Dog Pregnancy</a>
+                                <a href="cat-pregnancy-calculator.html">Cat Pregnancy</a>
+                                <a href="cow-pregnancy-calculator.html">Cow Pregnancy</a>
+                                <a href="rabbit-pregnancy-calculator.html">Rabbit Pregnancy</a>
+                                <a href="goat-pregnancy-calculator.html">Goat Pregnancy</a>
+                                <a href="horse-pregnancy-calculator.html">Horse Pregnancy</a>
+                                <a href="sheep-pregnancy-calculator.html">Sheep Pregnancy</a>
+                                <a href="pig-pregnancy-calculator.html">Pig Pregnancy</a>
+                                
+                                <h4>🔐 Developer Tools <a href="#" class="view-all" data-category="developer">View All →</a></h4>
+                                <a href="md5-generator.html">MD5 Generator</a>
+                                <a href="sha256-generator.html">SHA-256</a>
+                                <a href="base64-encoder-decoder.html">Base64</a>
+                            </div>
                             
-                            <h4>📊 Popular Calculators</h4>
-                            <a href="unit-converter.html">Unit Converter</a>
-                            <a href="age-calculator.html">Age Calculator</a>
-                            <a href="age-difference-calculator.html">Age Difference Calculator</a>
-                            <a href="discount-calculator.html">Discount Calculator</a>
-                            <a href="profit-loss-calculator.html">Profit & Loss Calculator</a>
-                            <a href="gpa-calculator.html">GPA/CGPA Calculator</a>
-                        </div>
-                        
-                        <!-- Column 4 -->
-                        <div class="dropdown-column">
-                            <h4>📊 Popular Calculators (cont.)</h4>
-                            <a href="gst-calculator.html">GST Calculator</a>
-                            <a href="percentage-calculator.html">Percentage Calculator</a>
-                            <a href="date-calculator.html">Date Calculator</a>
-                            <a href="qr-code-generator.html">QR Code Generator</a>
-                            <a href="youtube-thumbnail-downloader.html">YouTube Thumbnail Downloader</a>
-                            <a href="currency-converter.html">Currency Converter</a>
+                            <div class="dropdown-column">
+                                <h4>🎨 Color Tools <a href="#" class="view-all" data-category="color">View All →</a></h4>
+                                <a href="color-palette-generator.html">Color Palette</a>
+                                <a href="color-shades-generator.html">Color Shades</a>
+                                <a href="color-gradient-maker.html">Gradient Maker</a>
+                                <a href="random-color-picker.html">Random Color</a>
+                                
+                                <h4>📊 Calculators <a href="#" class="view-all" data-category="calculator">View All →</a></h4>
+                                <a href="unit-converter.html">Unit Converter</a>
+                                <a href="age-calculator.html">Age Calculator</a>
+                                <a href="percentage-calculator.html">Percentage</a>
+                                <a href="gst-calculator.html">GST Calculator</a>
+                                <a href="discount-calculator.html">Discount</a>
+                            </div>
                             
-                            <h4>🏃‍♂️ Health & Fitness</h4>
-                            <a href="bmi-calculator.html">BMI Calculator</a>
-                            <a href="bmr-calculator.html">BMR Calculator</a>
-                            <a href="calorie-calculator.html">Calorie Calculator</a>
-                            <a href="tdee-calculator.html">TDEE Calculator</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Second Row Grid -->
-                    <div class="dropdown-grid" style="border-top: 1px solid #eee; padding-top: 15px;">
-                        <div class="dropdown-column">
-                            <h4>💰 Financial Tools</h4>
-                            <a href="emi-calculator.html">EMI Calculator</a>
-                            <a href="loan-calculator.html">Loan Calculator</a>
-                            <a href="zakat-calculator.html">Zakat Calculator</a>
-                        </div>
-                        <div class="dropdown-column">
-                            <h4>📝 Text & Writing</h4>
-                            <a href="word-counter.html">Word Counter</a>
-                            <a href="line-counter.html">Line Counter</a>
-                            <a href="text-case-converter.html">Text Case Converter</a>
-                            <a href="password-generator.html">Password Generator</a>
-                            <a href="password-checker.html">Password Strength Checker</a>
-                        </div>
-                        <div class="dropdown-column">
-                            <h4>📄 PDF Tools</h4>
-                            <a href="pdf-merger.html">PDF Merger</a>
-                            <a href="pdf-splitter.html">PDF Splitter</a>
-                            <a href="pdf-to-image.html">PDF to Image</a>
-                            <a href="pdf-to-word.html">PDF to Word</a>
-                            <a href="pdf-to-excel.html">PDF to Excel</a>
-                        </div>
-                        <div class="dropdown-column">
-                            <h4>🖼️ Image & Fun</h4>
-                            <a href="image-color-extractor.html">Image Color Extractor</a>
-                            <a href="image-converter.html">Image Converter</a>
-                            <a href="spin-the-wheel.html">Spin The Wheel</a>
-                            <a href="random-number-generator.html">Random Number Generator</a>
+                            <div class="dropdown-column">
+                                <h4>🏃‍♂️ Health & Fitness <a href="#" class="view-all" data-category="health">View All →</a></h4>
+                                <a href="bmi-calculator.html">BMI Calculator</a>
+                                <a href="bmr-calculator.html">BMR Calculator</a>
+                                <a href="calorie-calculator.html">Calorie</a>
+                                <a href="tdee-calculator.html">TDEE</a>
+                                
+                                <h4>💰 Finance <a href="#" class="view-all" data-category="finance">View All →</a></h4>
+                                <a href="emi-calculator.html">EMI Calculator</a>
+                                <a href="loan-calculator.html">Loan</a>
+                                <a href="zakat-calculator.html">Zakat</a>
+                            </div>
+                            
+                            <div class="dropdown-column">
+                                <h4>📝 Writing Tools <a href="#" class="view-all" data-category="writing">View All →</a></h4>
+                                <a href="word-counter.html">Word Counter</a>
+                                <a href="password-generator.html">Password</a>
+                                <a href="text-case-converter.html">Case Converter</a>
+                                
+                                <h4>📄 PDF Tools <a href="#" class="view-all" data-category="pdf">View All →</a></h4>
+                                <a href="pdf-merger.html">PDF Merger</a>
+                                <a href="pdf-splitter.html">PDF Splitter</a>
+                                <a href="pdf-to-image.html">PDF to Image</a>
+                                
+                                <h4>🎲 Fun Tools <a href="#" class="view-all" data-category="fun">View All →</a></h4>
+                                <a href="spin-the-wheel.html">Spin Wheel</a>
+                                <a href="random-number-generator.html">Random Number</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -392,171 +542,211 @@
             
             <li><a href="about.html">ℹ️ About</a></li>
             <li><a href="contact.html">📧 Contact</a></li>
-            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
         </ul>
         
+        <!-- Desktop Search -->
         <div class="megamenu-search">
             <input type="text" id="searchInput" placeholder="🔍 Search 500+ tools...">
         </div>
         
+        <!-- Mobile Toggle Button -->
         <button class="mobile-toggle" id="mobileToggle">☰</button>
     </div>
     
-    <!-- Search Results -->
+    <!-- Desktop Search Results -->
     <div id="searchResults" class="search-results"></div>
     
     <!-- Mobile Menu -->
     <div class="mobile-menu" id="mobileMenu">
+        <!-- Mobile Search -->
+        <div class="mobile-search">
+            <input type="text" id="mobileSearchInput" placeholder="🔍 Search tools...">
+            <div id="mobileSearchResults" style="background:white; border-radius:10px; margin-top:8px; max-height:200px; overflow-y:auto;"></div>
+        </div>
+        
         <ul class="mobile-nav">
             <li><a href="index.html">🏠 Home</a></li>
             <li>
-                <a href="#" class="mobile-dropdown-toggle">🛠️ All Categories ▼</a>
-                <div class="mobile-dropdown-content">
+                <a href="#" class="mobile-dropdown-toggle" id="mobileToolsToggle">🛠️ All Tools</a>
+                <div class="mobile-dropdown-content" id="mobileToolsContent">
                     <h4>🔍 SEO Tools</h4>
                     <a href="keyword-density-checker.html">Keyword Density Checker</a>
                     <a href="meta-tags-generator.html">Meta Tags Generator</a>
-                    <h4>📱 Social Media Hashtag</h4>
-                    <a href="instagram-hashtag-generator.html">Instagram Hashtag Generator</a>
-                    <a href="linkedin-hashtag-generator.html">LinkedIn Hashtag Generator</a>
+                    <a href="meta-tag-analyzer.html">Meta Tag Analyzer</a>
+                    
+                    <h4>📱 Hashtag Tools</h4>
+                    <a href="instagram-hashtag-generator.html">Instagram Hashtag</a>
+                    <a href="linkedin-hashtag-generator.html">LinkedIn Hashtag</a>
+                    <a href="facebook-hashtag-generator.html">Facebook Hashtag</a>
+                    <a href="pinterest-hashtag-generator.html">Pinterest Hashtag</a>
+                    
                     <h4>🐾 Animal Pregnancy</h4>
-                    <a href="dog-pregnancy-calculator.html">Dog Pregnancy Calculator</a>
-                    <a href="cat-pregnancy-calculator.html">Cat Pregnancy Calculator</a>
-                    <h4>📊 Popular Calculators</h4>
+                    <a href="dog-pregnancy-calculator.html">Dog Pregnancy</a>
+                    <a href="cat-pregnancy-calculator.html">Cat Pregnancy</a>
+                    <a href="cow-pregnancy-calculator.html">Cow Pregnancy</a>
+                    
+                    <h4>📊 Calculators</h4>
                     <a href="unit-converter.html">Unit Converter</a>
                     <a href="age-calculator.html">Age Calculator</a>
-                    <a href="percentage-calculator.html">Percentage Calculator</a>
+                    <a href="percentage-calculator.html">Percentage</a>
+                    <a href="bmi-calculator.html">BMI Calculator</a>
+                    
+                    <h4>📄 PDF Tools</h4>
+                    <a href="pdf-merger.html">PDF Merger</a>
+                    <a href="pdf-splitter.html">PDF Splitter</a>
+                    
+                    <a href="#" class="view-all-mobile" style="text-align:center; color:#2563eb; margin-top:10px;">📚 View All 500+ Tools →</a>
                 </div>
             </li>
             <li><a href="about.html">ℹ️ About</a></li>
             <li><a href="contact.html">📧 Contact</a></li>
-            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
         </ul>
     </div>
 </div>
 
+<!-- View All Modal -->
+<div id="viewAllModal" class="modal">
+    <div class="modal-content">
+        <span class="modal-close">&times;</span>
+        <h2 id="modalTitle">All Tools</h2>
+        <div id="modalContent" class="modal-grid"></div>
+    </div>
+</div>
+
 <script>
-// ===== SEARCH FUNCTIONALITY =====
-const searchInput = document.getElementById('searchInput');
-const searchResults = document.getElementById('searchResults');
+// Tools Database
+const toolsDatabase = {
+    seo: { name: "🔍 SEO Tools", tools: ["keyword-density-checker.html|Keyword Density Checker","meta-tags-generator.html|Meta Tags Generator","meta-tag-analyzer.html|Meta Tag Analyzer"] },
+    hashtag: { name: "📱 Hashtag Tools", tools: ["instagram-hashtag-generator.html|Instagram Hashtag Generator","linkedin-hashtag-generator.html|LinkedIn Hashtag Generator","facebook-hashtag-generator.html|Facebook Hashtag Generator","pinterest-hashtag-generator.html|Pinterest Hashtag Generator","ai-hashtag-generator.html|AI Hashtag Generator","seo-hashtags-generator.html|SEO Hashtags Generator"] },
+    pregnancy: { name: "🐾 Animal Pregnancy", tools: ["dog-pregnancy-calculator.html|Dog Pregnancy Calculator","cat-pregnancy-calculator.html|Cat Pregnancy Calculator","cow-pregnancy-calculator.html|Cow Pregnancy Calculator","rabbit-pregnancy-calculator.html|Rabbit Pregnancy Calculator","goat-pregnancy-calculator.html|Goat Pregnancy Calculator","horse-pregnancy-calculator.html|Horse Pregnancy Calculator","sheep-pregnancy-calculator.html|Sheep Pregnancy Calculator","pig-pregnancy-calculator.html|Pig Pregnancy Calculator"] },
+    developer: { name: "🔐 Developer Tools", tools: ["md5-generator.html|MD5 Hash Generator","sha256-generator.html|SHA-256 Hash Generator","sha1-generator.html|SHA-1 Hash Generator","base64-encoder-decoder.html|Base64 Encoder/Decoder","url-encoder-decoder.html|URL Encoder/Decoder","html-encoder-decoder.html|HTML Encoder/Decoder"] },
+    color: { name: "🎨 Color Tools", tools: ["color-palette-generator.html|Color Palette Generator","color-shades-generator.html|Color Shades Generator","color-gradient-maker.html|Color Gradient Maker","color-contrast-checker.html|Color Contrast Checker","color-name-finder.html|Color Name Finder","random-color-picker.html|Random Color Picker"] },
+    calculator: { name: "📊 Calculators", tools: ["unit-converter.html|Unit Converter","age-calculator.html|Age Calculator","age-difference-calculator.html|Age Difference Calculator","discount-calculator.html|Discount Calculator","profit-loss-calculator.html|Profit & Loss Calculator","gpa-calculator.html|GPA/CGPA Calculator","gst-calculator.html|GST Calculator","percentage-calculator.html|Percentage Calculator","date-calculator.html|Date Calculator","qr-code-generator.html|QR Code Generator","youtube-thumbnail-downloader.html|YouTube Thumbnail Downloader","currency-converter.html|Currency Converter"] },
+    health: { name: "🏃‍♂️ Health & Fitness", tools: ["bmi-calculator.html|BMI Calculator","bmr-calculator.html|BMR Calculator","calorie-calculator.html|Calorie Calculator","tdee-calculator.html|TDEE Calculator"] },
+    finance: { name: "💰 Financial Tools", tools: ["emi-calculator.html|EMI Calculator","loan-calculator.html|Loan Calculator","zakat-calculator.html|Zakat Calculator"] },
+    writing: { name: "📝 Text & Writing", tools: ["word-counter.html|Word Counter","line-counter.html|Line Counter","text-case-converter.html|Text Case Converter","password-generator.html|Password Generator","password-checker.html|Password Strength Checker"] },
+    pdf: { name: "📄 PDF Tools", tools: ["pdf-merger.html|PDF Merger","pdf-splitter.html|PDF Splitter","pdf-to-image.html|PDF to Image","pdf-to-word.html|PDF to Word","pdf-to-excel.html|PDF to Excel"] },
+    fun: { name: "🎲 Fun Tools", tools: ["spin-the-wheel.html|Spin The Wheel","random-color-picker.html|Random Color Picker","random-number-generator.html|Random Number Generator"] }
+};
 
-// All tools from your existing website
-const allTools = [
-    { name: "Keyword Density Checker", url: "keyword-density-checker.html", category: "SEO" },
-    { name: "Meta Tags Generator", url: "meta-tags-generator.html", category: "SEO" },
-    { name: "Meta Tag Analyzer", url: "meta-tag-analyzer.html", category: "SEO" },
-    { name: "Instagram Hashtag Generator", url: "instagram-hashtag-generator.html", category: "Hashtag" },
-    { name: "LinkedIn Hashtag Generator", url: "linkedin-hashtag-generator.html", category: "Hashtag" },
-    { name: "Facebook Hashtag Generator", url: "facebook-hashtag-generator.html", category: "Hashtag" },
-    { name: "Pinterest Hashtag Generator", url: "pinterest-hashtag-generator.html", category: "Hashtag" },
-    { name: "AI Hashtag Generator", url: "ai-hashtag-generator.html", category: "Hashtag" },
-    { name: "SEO Hashtags Generator", url: "seo-hashtags-generator.html", category: "Hashtag" },
-    { name: "Dog Pregnancy Calculator", url: "dog-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Cat Pregnancy Calculator", url: "cat-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Cow Pregnancy Calculator", url: "cow-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Rabbit Pregnancy Calculator", url: "rabbit-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Goat Pregnancy Calculator", url: "goat-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Horse Pregnancy Calculator", url: "horse-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Sheep Pregnancy Calculator", url: "sheep-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "Pig Pregnancy Calculator", url: "pig-pregnancy-calculator.html", category: "Pregnancy" },
-    { name: "MD5 Hash Generator", url: "md5-generator.html", category: "Developer" },
-    { name: "SHA-256 Hash Generator", url: "sha256-generator.html", category: "Developer" },
-    { name: "SHA-1 Hash Generator", url: "sha1-generator.html", category: "Developer" },
-    { name: "Base64 Encoder/Decoder", url: "base64-encoder-decoder.html", category: "Developer" },
-    { name: "URL Encoder/Decoder", url: "url-encoder-decoder.html", category: "Developer" },
-    { name: "HTML Encoder/Decoder", url: "html-encoder-decoder.html", category: "Developer" },
-    { name: "Color Palette Generator", url: "color-palette-generator.html", category: "Color" },
-    { name: "Color Shades Generator", url: "color-shades-generator.html", category: "Color" },
-    { name: "Color Gradient Maker", url: "color-gradient-maker.html", category: "Color" },
-    { name: "Color Contrast Checker", url: "color-contrast-checker.html", category: "Color" },
-    { name: "Color Name Finder", url: "color-name-finder.html", category: "Color" },
-    { name: "Random Color Picker", url: "random-color-picker.html", category: "Color" },
-    { name: "Unit Converter", url: "unit-converter.html", category: "Calculator" },
-    { name: "Age Calculator", url: "age-calculator.html", category: "Calculator" },
-    { name: "Age Difference Calculator", url: "age-difference-calculator.html", category: "Calculator" },
-    { name: "Discount Calculator", url: "discount-calculator.html", category: "Calculator" },
-    { name: "Profit & Loss Calculator", url: "profit-loss-calculator.html", category: "Calculator" },
-    { name: "GPA/CGPA Calculator", url: "gpa-calculator.html", category: "Calculator" },
-    { name: "GST Calculator", url: "gst-calculator.html", category: "Calculator" },
-    { name: "Percentage Calculator", url: "percentage-calculator.html", category: "Calculator" },
-    { name: "Date Calculator", url: "date-calculator.html", category: "Calculator" },
-    { name: "QR Code Generator", url: "qr-code-generator.html", category: "Calculator" },
-    { name: "YouTube Thumbnail Downloader", url: "youtube-thumbnail-downloader.html", category: "Calculator" },
-    { name: "Currency Converter", url: "currency-converter.html", category: "Calculator" },
-    { name: "BMI Calculator", url: "bmi-calculator.html", category: "Health" },
-    { name: "BMR Calculator", url: "bmr-calculator.html", category: "Health" },
-    { name: "Calorie Calculator", url: "calorie-calculator.html", category: "Health" },
-    { name: "TDEE Calculator", url: "tdee-calculator.html", category: "Health" },
-    { name: "EMI Calculator", url: "emi-calculator.html", category: "Finance" },
-    { name: "Loan Calculator", url: "loan-calculator.html", category: "Finance" },
-    { name: "Zakat Calculator", url: "zakat-calculator.html", category: "Finance" },
-    { name: "Word Counter", url: "word-counter.html", category: "Text" },
-    { name: "Line Counter", url: "line-counter.html", category: "Text" },
-    { name: "Text Case Converter", url: "text-case-converter.html", category: "Text" },
-    { name: "Password Generator", url: "password-generator.html", category: "Text" },
-    { name: "Password Strength Checker", url: "password-checker.html", category: "Text" },
-    { name: "PDF Merger", url: "pdf-merger.html", category: "PDF" },
-    { name: "PDF Splitter", url: "pdf-splitter.html", category: "PDF" },
-    { name: "PDF to Image", url: "pdf-to-image.html", category: "PDF" },
-    { name: "PDF to Word", url: "pdf-to-word.html", category: "PDF" },
-    { name: "PDF to Excel", url: "pdf-to-excel.html", category: "PDF" },
-    { name: "Image Color Extractor", url: "image-color-extractor.html", category: "Image" },
-    { name: "Image Converter", url: "image-converter.html", category: "Image" },
-    { name: "Spin The Wheel", url: "spin-the-wheel.html", category: "Fun" },
-    { name: "Random Number Generator", url: "random-number-generator.html", category: "Fun" }
-];
+// All tools for search
+const allTools = [];
+for (let cat in toolsDatabase) {
+    toolsDatabase[cat].tools.forEach(tool => {
+        let [url, name] = tool.split('|');
+        allTools.push({ name: name, url: url, category: toolsDatabase[cat].name });
+    });
+}
 
-searchInput.addEventListener('input', function() {
-    const query = this.value.toLowerCase().trim();
-    
-    if (query.length < 2) {
-        searchResults.classList.remove('active');
-        return;
-    }
-    
-    const matches = allTools.filter(tool => 
-        tool.name.toLowerCase().includes(query)
-    ).slice(0, 10); // Max 10 results
-    
-    if (matches.length > 0) {
-        searchResults.innerHTML = matches.map(tool => `
-            <div class="search-result-item">
-                <a href="${tool.url}">
-                    <strong>${tool.name}</strong><br>
-                    <small style="color:#888">${tool.category}</small>
-                </a>
-            </div>
-        `).join('');
-        searchResults.classList.add('active');
-    } else {
-        searchResults.innerHTML = '<div class="search-result-item">No tools found</div>';
-        searchResults.classList.add('active');
-    }
-});
+// Modal
+const modal = document.getElementById('viewAllModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalContent = document.getElementById('modalContent');
+const modalClose = document.querySelector('.modal-close');
 
-// Close search results on click outside
-document.addEventListener('click', function(e) {
-    if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-        searchResults.classList.remove('active');
-    }
-});
+function showCategoryTools(category) {
+    const catData = toolsDatabase[category];
+    if (!catData) return;
+    modalTitle.innerHTML = catData.name;
+    let toolsHtml = '<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px;">';
+    catData.tools.forEach(tool => {
+        let [url, name] = tool.split('|');
+        toolsHtml += `<a href="${url}" style="display:block; padding:8px; background:#f5f5f5; border-radius:8px; text-decoration:none; color:#333;">📌 ${name}</a>`;
+    });
+    toolsHtml += '</div>';
+    modalContent.innerHTML = toolsHtml;
+    modal.style.display = 'block';
+}
 
-// Mobile menu toggle
-const mobileToggle = document.getElementById('mobileToggle');
-const mobileMenu = document.getElementById('mobileMenu');
+modalClose.onclick = () => modal.style.display = 'none';
+window.onclick = (e) => { if (e.target == modal) modal.style.display = 'none'; };
 
-mobileToggle.addEventListener('click', function() {
-    mobileMenu.classList.toggle('open');
-});
-
-// Mobile dropdown toggles
-document.querySelectorAll('.mobile-dropdown-toggle').forEach(toggle => {
-    toggle.addEventListener('click', function(e) {
+// View All buttons
+document.querySelectorAll('.view-all').forEach(btn => {
+    btn.addEventListener('click', function(e) {
         e.preventDefault();
-        const content = this.nextElementSibling;
-        content.classList.toggle('open');
+        e.stopPropagation();
+        const category = this.getAttribute('data-category');
+        if (category) showCategoryTools(category);
+        else showAllTools();
     });
 });
-</script>
 
+// Desktop Search
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+if (searchInput) {
+    searchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        if (query.length < 2) { searchResults.classList.remove('active'); return; }
+        const matches = allTools.filter(tool => tool.name.toLowerCase().includes(query)).slice(0, 8);
+        if (matches.length > 0) {
+            searchResults.innerHTML = matches.map(tool => `<div class="search-result-item"><a href="${tool.url}"><strong>${tool.name}</strong><br><small>${tool.category}</small></a></div>`).join('');
+            searchResults.classList.add('active');
+        } else {
+            searchResults.innerHTML = '<div class="search-result-item">No tools found</div>';
+            searchResults.classList.add('active');
+        }
+    });
+    document.addEventListener('click', function(e) {
+        if (searchInput && searchResults && !searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            searchResults.classList.remove('active');
+        }
+    });
+}
+
+// Mobile Search
+const mobileSearchInput = document.getElementById('mobileSearchInput');
+const mobileSearchResults = document.getElementById('mobileSearchResults');
+if (mobileSearchInput) {
+    mobileSearchInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase().trim();
+        if (query.length < 2) { mobileSearchResults.innerHTML = ''; return; }
+        const matches = allTools.filter(tool => tool.name.toLowerCase().includes(query)).slice(0, 10);
+        if (matches.length > 0) {
+            mobileSearchResults.innerHTML = matches.map(tool => `<a href="${tool.url}" style="display:block; padding:8px 12px; border-bottom:1px solid #eee; text-decoration:none; color:#333;"><strong>${tool.name}</strong><br><small style="color:#888;">${tool.category}</small></a>`).join('');
+        } else {
+            mobileSearchResults.innerHTML = '<div style="padding:10px; color:#888;">No tools found</div>';
+        }
+    });
+}
+
+// Mobile Menu Toggle
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+if (mobileToggle && mobileMenu) {
+    mobileToggle.addEventListener('click', function() {
+        mobileMenu.classList.toggle('open');
+    });
+}
+
+// Mobile Dropdown Toggle
+const mobileToolsToggle = document.getElementById('mobileToolsToggle');
+const mobileToolsContent = document.getElementById('mobileToolsContent');
+if (mobileToolsToggle && mobileToolsContent) {
+    mobileToolsToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.classList.toggle('open');
+        mobileToolsContent.classList.toggle('open');
+    });
+}
+
+// View All Mobile
+document.querySelector('.view-all-mobile')?.addEventListener('click', function(e) {
+    e.preventDefault();
+    modalTitle.innerHTML = "📚 All Tools (500+)";
+    let toolsHtml = '';
+    for (let cat in toolsDatabase) {
+        toolsHtml += `<div class="modal-category"><h3>${toolsDatabase[cat].name}</h3>`;
+        toolsDatabase[cat].tools.forEach(tool => {
+            let [url, name] = tool.split('|');
+            toolsHtml += `<a href="${url}">${name}</a>`;
+        });
+        toolsHtml += `</div>`;
+    }
+    modalContent.innerHTML = toolsHtml;
+    modal.style.display = 'block';
+});
+</script>
 </body>
 </html>
