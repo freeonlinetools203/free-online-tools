@@ -154,12 +154,14 @@
     </style>
 </head>
 <body>
-<div id="megamenu-placeholder"></div>
+    
+<!-- ========== NAVBAR PLACEHOLDER ========== -->
+<div id="navbar-placeholder"></div>
 <script>
     fetch('navbar.html')
         .then(response => response.text())
         .then(data => {
-            document.getElementById('megamenu-placeholder').innerHTML = data;
+            document.getElementById('navbar-placeholder').innerHTML = data;
         });
 </script>
 
