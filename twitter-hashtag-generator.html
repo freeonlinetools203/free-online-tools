@@ -448,33 +448,15 @@
 </head>
 <body>
 
-<!-- ========== NAVBAR (EXACT SAME AS RANDOM NUMBER GENERATOR) ========== -->
-<nav class="navbar">
-    <div class="nav-container">
-        <div class="logo"><a href="index.html">✨ Free Online Tools</a></div>
-        <ul class="nav-links">
-            <li><a href="index.html">🏠 Home</a></li>
-            <li class="dropdown" id="toolsDropdown">
-                <button class="dropbtn" id="toolsBtn">🛠️ All Categories ▼</button>
-                <div class="dropdown-content" id="dropdownContent">
-                    <div class="dropdown-category" data-cat="cat1">📊 Popular Tools <span>▶</span></div>
-                    <div class="category-tools" id="cat1Tools">
-                        <a href="age-calculator.html">📅 Age Calculator</a>
-                        <a href="spin-the-wheel.html">🎡 Spin The Wheel</a>
-                        <a href="random-number-generator.html">🔢 Random Number Generator</a>
-                    </div>
-                    <div class="dropdown-category" data-cat="cat_social">📱 Social Media <span>▶</span></div>
-                    <div class="category-tools" id="cat_socialTools">
-                        <a href="tiktok-hashtag-generator.html">🎵 TikTok Hashtag Generator</a>
-                        <a href="x-twitter-hashtag-generator.html">🐦 X Hashtag Generator</a>
-                    </div>
-                </div>
-            </li>
-            <li><a href="about.html">ℹ️ About</a></li>
-            <li><a href="privacy-policy.html">🔒 Privacy</a></li>
-        </ul>
-    </div>
-</nav>
+ <!-- ========== NAVBAR PLACEHOLDER ========== -->
+<div id="navbar-placeholder"></div>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+        });
+</script>
 
 <div class="container">
     <!-- Main Tool Card -->
