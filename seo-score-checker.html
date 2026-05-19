@@ -186,6 +186,17 @@
   </style>
 </head>
 <body>
+
+  <!-- ========== NAVBAR PLACEHOLDER ========== -->
+<div id="navbar-placeholder"></div>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+        });
+</script>
+  
 <div class="particles" id="particles"></div>
 <div class="container">
   <!-- Header + Dark Mode -->
