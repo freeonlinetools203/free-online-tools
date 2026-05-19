@@ -232,6 +232,16 @@
 </head>
 <body>
 
+    <!-- ========== NAVBAR PLACEHOLDER ========== -->
+<div id="navbar-placeholder"></div>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+        });
+</script>
+
 <div class="calculator-card">
     <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
         <h1>📊 Pro P&L Calc</h1>
