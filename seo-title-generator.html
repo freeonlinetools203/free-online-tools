@@ -401,6 +401,16 @@
 </head>
 <body>
 <div class="star-bg" id="starsContainer"></div>
+    <!-- ========== NAVBAR PLACEHOLDER ========== -->
+<div id="navbar-placeholder"></div>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar-placeholder').innerHTML = data;
+        });
+</script>
+    
 <div class="container">
     <!-- header ad -->
     <div class="ad-placeholder">✨ Advertisement · 300x100 placeholder ✨<br>Your brand could be here</div>
