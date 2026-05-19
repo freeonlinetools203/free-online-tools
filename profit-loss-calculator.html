@@ -1,238 +1,390 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Pro Profit/Loss Calculator | Professional Tool</title>
-    <!-- Google Fonts & Simple CSS Reset -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>Profit/Loss Calculator | Pro P&L Tool | Business Calculator</title>
 
-        body {
-            min-height: 100vh;
-            background: linear-gradient(145deg, #e0eafc 0%, #cfdef3 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.5rem;
-        }
+<!-- SEO Meta Tags -->
+<meta name="description" content="Free professional Profit/Loss calculator for businesses, retailers, and individuals. Calculate profit margin, total cost, selling price, and P&L percentage instantly. 100% free, no registration.">
+<meta name="keywords" content="profit loss calculator, profit margin calculator, business calculator, P&L calculator, cost price selling price calculator, gross profit calculator">
+<meta name="author" content="Free Online Tools">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://freeonlinetools203.com/profit-loss-calculator.html">
 
-        /* Glassmorphism Card */
-        .calculator-card {
-            max-width: 620px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.92);
-            backdrop-filter: blur(12px);
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0,0,0,0.05);
-            padding: 2rem 1.8rem 2.2rem 1.8rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.5);
-        }
+<!-- Open Graph -->
+<meta property="og:title" content="Profit/Loss Calculator | Pro P&L Tool">
+<meta property="og:description" content="Calculate profit, loss, and margin instantly. Perfect for businesses and individuals.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://freeonlinetools203.com/profit-loss-calculator.html">
 
-        h1 {
-            font-size: 1.9rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #1E2A3E, #0F2027);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            letter-spacing: -0.3px;
-            display: inline-block;
-        }
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-EQ8DLY7HYN"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-EQ8DLY7HYN');
+</script>
 
-        .sub {
-            color: #2c3e66;
-            font-size: 0.9rem;
-            margin-top: 0.3rem;
-            font-weight: 500;
-            border-left: 3px solid #3b82f6;
-            padding-left: 0.7rem;
-            margin-bottom: 1.8rem;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        .input-group {
-            margin-bottom: 1.4rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f3f4f6;
+    min-height: 100vh;
+}
 
-        label {
-            font-weight: 600;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #1e293b;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+/* ========== MAIN CONTAINER ========== */
+.container {
+    max-width: 1200px;
+    margin: 40px auto 0;
+    padding: 0 20px;
+}
 
-        label i {
-            font-weight: 400;
-            font-size: 1rem;
-        }
+.wheel-card {
+    background: #ffffff;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    margin-bottom: 30px;
+}
 
-        input {
-            width: 100%;
-            padding: 0.9rem 1rem;
-            border: 1.5px solid #e2e8f0;
-            border-radius: 1.2rem;
-            font-size: 1rem;
-            font-weight: 500;
-            background: white;
-            transition: 0.2s;
-            outline: none;
-            color: #0f172a;
-        }
+.card-header {
+    background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%);
+    padding: 25px 30px;
+    text-align: center;
+}
 
-        input:focus {
-            border-color: #3b82f6;
-            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
-        }
+.card-header h1 {
+    color: white;
+    font-size: 26px;
+    margin-bottom: 8px;
+}
 
-        .input-row {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .input-row .input-group {
-            flex: 1;
-        }
+.card-header p {
+    color: rgba(255,255,255,0.9);
+    font-size: 15px;
+}
 
-        .advanced-toggle {
-            display: flex;
-            justify-content: flex-end;
-            margin: 0.5rem 0 0.8rem;
-        }
-        .toggle-btn {
-            background: #f1f5f9;
-            border: none;
-            padding: 0.4rem 1rem;
-            border-radius: 40px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            cursor: pointer;
-            color: #1e293b;
-            transition: 0.2s;
-        }
-        .toggle-btn.active {
-            background: #3b82f6;
-            color: white;
-            box-shadow: 0 2px 6px rgba(59,130,246,0.3);
-        }
+.card-content {
+    padding: 30px;
+}
 
-        .advanced-panel {
-            background: #f8fafc;
-            padding: 1rem;
-            border-radius: 1.2rem;
-            margin: 1rem 0;
-            display: none;
-            border: 1px solid #e2edff;
-        }
-        .advanced-panel.show {
-            display: block;
-        }
+/* Top Bar */
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: #f9fafb;
+    padding: 12px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
 
-        .result-area {
-            background: #0f172a;
-            border-radius: 1.5rem;
-            padding: 1.3rem 1.5rem;
-            margin: 1.5rem 0 1.2rem;
-            color: white;
-            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.1);
-        }
+.mode-category-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
 
-        .profit-loss-badge {
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-            word-break: break-word;
-        }
-        .detail-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 1rem;
-            gap: 0.8rem;
-            flex-wrap: wrap;
-        }
-        .stat-card {
-            background: rgba(255,255,255,0.1);
-            flex: 1;
-            border-radius: 1rem;
-            padding: 0.7rem;
-            text-align: center;
-        }
-        .stat-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            opacity: 0.7;
-        }
-        .stat-value {
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
+.mode-category-wrap label {
+    font-weight: 600;
+    color: #374151;
+    font-size: 14px;
+}
 
-        .btn-group {
-            display: flex;
-            gap: 1rem;
-            margin-top: 0.5rem;
-        }
-        button {
-            flex: 1;
-            padding: 0.85rem;
-            border: none;
-            border-radius: 1.8rem;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .btn-calc {
-            background: #3b82f6;
-            color: white;
-            box-shadow: 0 4px 8px rgba(59,130,246,0.3);
-        }
-        .btn-calc:hover {
-            background: #2563eb;
-            transform: scale(0.98);
-        }
-        .btn-reset {
-            background: #e2e8f0;
-            color: #1e293b;
-        }
-        .btn-reset:hover {
-            background: #cbd5e1;
-        }
+.dark-toggle {
+    background: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 8px 16px;
+    cursor: pointer;
+}
 
-        .error-msg {
-            color: #dc2626;
-            font-size: 0.75rem;
-            margin-top: 0.25rem;
-            font-weight: 500;
-        }
-        footer {
-            text-align: center;
-            font-size: 0.7rem;
-            margin-top: 1.5rem;
-            color: #475569;
-        }
-        @media (max-width: 500px) {
-            .calculator-card { padding: 1.5rem; }
-            .profit-loss-badge { font-size: 1.4rem; }
-        }
-    </style>
+/* Calculator Panel */
+.calculator-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.calculator-container {
+    flex: 2 1 500px;
+    background: #f9fafb;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.input-group {
+    margin-bottom: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input-group label {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1e293b;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.9rem 1rem;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 1.2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    background: white;
+    transition: 0.2s;
+    outline: none;
+    color: #0f172a;
+}
+
+.input-group input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
+}
+
+.input-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.input-row .input-group {
+    flex: 1;
+}
+
+/* Advanced Toggle */
+.advanced-toggle {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0.5rem 0 0.8rem;
+}
+.toggle-btn {
+    background: #f1f5f9;
+    border: none;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    color: #1e293b;
+    transition: 0.2s;
+}
+.toggle-btn.active {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 2px 6px rgba(59,130,246,0.3);
+}
+
+.advanced-panel {
+    background: #f8fafc;
+    padding: 1rem;
+    border-radius: 1.2rem;
+    margin: 1rem 0;
+    display: none;
+    border: 1px solid #e2edff;
+}
+.advanced-panel.show {
+    display: block;
+}
+
+/* Result Area */
+.result-area {
+    background: #0f172a;
+    border-radius: 1.5rem;
+    padding: 1.3rem 1.5rem;
+    margin: 1.5rem 0 1.2rem;
+    color: white;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.1), 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.profit-loss-badge {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    word-break: break-word;
+}
+
+.detail-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+.stat-card {
+    background: rgba(255,255,255,0.1);
+    flex: 1;
+    border-radius: 1rem;
+    padding: 0.7rem;
+    text-align: center;
+}
+.stat-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    opacity: 0.7;
+}
+.stat-value {
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+button {
+    flex: 1;
+    padding: 0.85rem;
+    border: none;
+    border-radius: 1.8rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.btn-calc {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 4px 8px rgba(59,130,246,0.3);
+}
+.btn-calc:hover {
+    background: #2563eb;
+    transform: scale(0.98);
+}
+.btn-reset {
+    background: #e2e8f0;
+    color: #1e293b;
+}
+.btn-reset:hover {
+    background: #cbd5e1;
+}
+
+/* Controls Card */
+.controls-card {
+    flex: 1 1 300px;
+    background: #f9fafb;
+    border-radius: 20px;
+    padding: 25px;
+}
+
+.controls-card h2 {
+    color: #1e3a8a;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.info-text {
+    color: #6b7280;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Category Footer */
+.category-footer {
+    max-width: 1200px;
+    margin: 40px auto 20px;
+    padding: 0 20px;
+}
+
+.home-link {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1e3a8a);
+    color: white;
+    text-decoration: none;
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.home-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.3);
+}
+
+/* Dark Mode */
+body.dark {
+    background: #111827;
+}
+
+body.dark .wheel-card,
+body.dark .top-bar,
+body.dark .calculator-container,
+body.dark .controls-card {
+    background: #1f2937;
+}
+
+body.dark .card-header {
+    background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+}
+
+body.dark .controls-card h2,
+body.dark .mode-category-wrap label,
+body.dark .input-group label {
+    color: #e5e7eb;
+}
+
+body.dark .input-group input {
+    background: #374151;
+    border-color: #4b5563;
+    color: white;
+}
+
+body.dark .toggle-btn {
+    background: #374151;
+    color: #e5e7eb;
+}
+
+body.dark .advanced-panel {
+    background: #374151;
+}
+
+body.dark .info-text {
+    color: #9ca3af;
+}
+
+/* Footer */
+.footer {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    color: #cbd5e1;
+    padding: 50px 20px 25px;
+    margin-top: 40px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+@media (max-width: 768px) {
+    .card-content { padding: 20px; }
+    .profit-loss-badge { font-size: 1.2rem; }
+}
+</style>
 </head>
 <body>
 
-    <!-- ========== NAVBAR PLACEHOLDER ========== -->
+<!-- ========== NAVBAR PLACEHOLDER ========== -->
 <div id="navbar-placeholder"></div>
 <script>
     fetch('navbar.html')
@@ -242,240 +394,325 @@
         });
 </script>
 
-<div class="calculator-card">
-    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
-        <h1>📊 Pro P&L Calc</h1>
-        <span style="font-size: 0.7rem; background: #eef2ff; padding: 0.2rem 0.6rem; border-radius: 30px;">⚡ Real-time</span>
-    </div>
-    <div class="sub">Cost Price · Selling Price · Quantity — Instant P&L & Percentage</div>
-
-    <!-- Main Inputs -->
-    <div class="input-row">
-        <div class="input-group">
-            <label>💰 Cost Price (per unit)</label>
-            <input type="number" id="costPrice" placeholder="e.g., 250" step="any" value="500">
+<div class="container">
+    <div class="wheel-card">
+        <div class="card-header">
+            <h1>📊 Profit/Loss Calculator</h1>
+            <p>Calculate profit, loss, margin, and total P&L instantly — Perfect for businesses & retailers</p>
         </div>
-        <div class="input-group">
-            <label>🏷️ Selling Price (per unit)</label>
-            <input type="number" id="sellingPrice" placeholder="e.g., 600" step="any" value="650">
+        
+        <div class="card-content">
+            <div class="top-bar">
+                <div class="mode-category-wrap">
+                    <label>📌 Business Profit Calculator</label>
+                </div>
+                <button class="dark-toggle" id="darkToggle">🌙 Dark/Light</button>
+            </div>
+            
+            <div class="calculator-panel">
+                <div class="calculator-container">
+                    <!-- Main Inputs -->
+                    <div class="input-row">
+                        <div class="input-group">
+                            <label>💰 Cost Price (per unit)</label>
+                            <input type="number" id="costPrice" placeholder="e.g., 250" step="any" value="500">
+                        </div>
+                        <div class="input-group">
+                            <label>🏷️ Selling Price (per unit)</label>
+                            <input type="number" id="sellingPrice" placeholder="e.g., 600" step="any" value="650">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>📦 Quantity (units)</label>
+                        <input type="number" id="quantity" placeholder="units sold" step="1" value="1">
+                    </div>
+
+                    <!-- Advanced mode toggle -->
+                    <div class="advanced-toggle">
+                        <button id="toggleAdvBtn" class="toggle-btn">⚙️ Target Profit Mode</button>
+                    </div>
+
+                    <!-- Advanced Panel -->
+                    <div id="advancedPanel" class="advanced-panel">
+                        <div class="input-group">
+                            <label>🎯 Desired Profit % (on total CP)</label>
+                            <input type="number" id="targetProfitPercent" placeholder="e.g., 25" step="any" value="20">
+                            <button id="calcRequiredSPBtn" style="margin-top: 10px; background:#334155; color:white; padding:0.6rem; border-radius:40px;">📌 Calculate Required SP per unit</button>
+                            <div id="requiredSPResult" style="margin-top: 10px; font-weight:600; background:#e6f0ff; padding:8px; border-radius:12px; text-align:center;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Result Dashboard -->
+                    <div class="result-area">
+                        <div id="pnlBadge" class="profit-loss-badge">—</div>
+                        <div class="detail-stats">
+                            <div class="stat-card"><div class="stat-label">Total CP</div><div class="stat-value" id="totalCPVal">₹0</div></div>
+                            <div class="stat-card"><div class="stat-label">Total SP</div><div class="stat-value" id="totalSPVal">₹0</div></div>
+                            <div class="stat-card"><div class="stat-label">P&L %</div><div class="stat-value" id="pnlPercent">0%</div></div>
+                        </div>
+                    </div>
+
+                    <div class="btn-group">
+                        <button id="calcBtn" class="btn-calc">🔍 Calculate Now</button>
+                        <button id="resetBtn" class="btn-reset">⟳ Reset Fields</button>
+                    </div>
+                </div>
+                
+                <div class="controls-card">
+                    <h2>📈 About This Tool</h2>
+                    <div class="info-text">
+                        <p style="margin-bottom: 10px;">✅ Calculate profit or loss instantly</p>
+                        <p style="margin-bottom: 10px;">✅ Get total cost, total selling price, and P&L percentage</p>
+                        <p style="margin-bottom: 10px;">✅ Target Profit Mode: Find required selling price for desired profit %</p>
+                        <p style="margin-bottom: 10px;">✅ Perfect for small businesses, retailers, and individuals</p>
+                        <p>✅ 100% free, no registration required</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-
-    <div class="input-group">
-        <label>📦 Quantity (units)</label>
-        <input type="number" id="quantity" placeholder="units sold" step="1" value="1">
-    </div>
-
-    <!-- Advanced mode toggle -->
-    <div class="advanced-toggle">
-        <button id="toggleAdvBtn" class="toggle-btn">⚙️ Target Profit Mode</button>
-    </div>
-
-    <!-- Advanced Panel: Required SP for X% profit -->
-    <div id="advancedPanel" class="advanced-panel">
-        <div class="input-group">
-            <label>🎯 Desired Profit % (on total CP)</label>
-            <input type="number" id="targetProfitPercent" placeholder="e.g., 25" step="any" value="20">
-            <button id="calcRequiredSPBtn" style="margin-top: 10px; background:#334155; color:white; padding:0.6rem;">📌 Calculate Required SP per unit</button>
-            <div id="requiredSPResult" style="margin-top: 10px; font-weight:600; background:#e6f0ff; padding:8px; border-radius:12px; text-align:center;"></div>
+    
+    <!-- Back to Home button -->
+    <div class="category-footer">
+        <div style="text-align: center; margin-bottom: 30px;">
+            <a href="index.html" class="home-link">🔘 Back to Home</a>
         </div>
     </div>
-
-    <!-- Result Dashboard -->
-    <div class="result-area">
-        <div id="pnlBadge" class="profit-loss-badge">—</div>
-        <div class="detail-stats">
-            <div class="stat-card"><div class="stat-label">Total CP</div><div class="stat-value" id="totalCPVal">₹0</div></div>
-            <div class="stat-card"><div class="stat-label">Total SP</div><div class="stat-value" id="totalSPVal">₹0</div></div>
-            <div class="stat-card"><div class="stat-label">P&L %</div><div class="stat-value" id="pnlPercent">0%</div></div>
-        </div>
-    </div>
-
-    <div class="btn-group">
-        <button id="calcBtn" class="btn-calc">🔍 Calculate Now</button>
-        <button id="resetBtn" class="btn-reset">⟳ Reset Fields</button>
-    </div>
-    <footer>✔️ Positive = Profit (Green) | Negative = Loss (Red) | Auto-calc supports decimals</footer>
 </div>
 
+<!-- ========== SEO ARTICLE ========== -->
+<div class="container" style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+    <div class="wheel-card" style="background: white; border-radius: 24px; padding: 40px;">
+        <h2 style="color: #1e3a8a; font-size: 28px; margin-bottom: 20px;">📊 What is Profit/Loss Calculator?</h2>
+        <p style="color: #374151; line-height: 1.8; margin-bottom: 20px;">A <strong>profit/loss calculator</strong> is an essential tool for businesses, retailers, and individuals to determine the financial outcome of a transaction. By entering the cost price, selling price, and quantity, you can instantly calculate whether you made a profit or incurred a loss.</p>
+        
+        <h2 style="color: #1e3a8a; font-size: 28px; margin: 30px 0 20px;">🎯 How to Use This Tool</h2>
+        <ul style="color: #374151; line-height: 1.8; margin-left: 25px;">
+            <li><strong>Step 1:</strong> Enter the Cost Price per unit</li>
+            <li><strong>Step 2:</strong> Enter the Selling Price per unit</li>
+            <li><strong>Step 3:</strong> Enter the Quantity of units sold</li>
+            <li><strong>Step 4:</strong> Click "Calculate Now" to see your results</li>
+            <li><strong>Step 5:</strong> Use Target Profit Mode to find required selling price for desired profit %</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 28px; margin: 30px 0 20px;">✅ Why Choose Our Profit/Loss Calculator?</h2>
+        <ul style="color: #374151; line-height: 1.8; margin-left: 25px;">
+            <li>✅ 100% Free – No hidden charges, no premium version</li>
+            <li>✅ Instant Results – Real-time calculation as you type</li>
+            <li>✅ Target Profit Mode – Find required selling price</li>
+            <li>✅ Mobile Friendly – Works on all devices</li>
+            <li>✅ Privacy Protected – No data stored on our servers</li>
+        </ul>
+        
+        <h2 style="color: #1e3a8a; font-size: 28px; margin: 30px 0 20px;">❓ Frequently Asked Questions</h2>
+        <div style="margin: 20px 0;">
+            <div style="background: #f9fafb; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                <h4 style="color: #2563eb; margin-bottom: 8px;">What is the formula for profit percentage?</h4>
+                <p style="color: #374151;">Profit % = (Profit / Cost Price) × 100</p>
+            </div>
+            <div style="background: #f9fafb; border-radius: 12px; padding: 15px; margin-bottom: 15px;">
+                <h4 style="color: #2563eb; margin-bottom: 8px;">What is the formula for loss percentage?</h4>
+                <p style="color: #374151;">Loss % = (Loss / Cost Price) × 100</p>
+            </div>
+            <div style="background: #f9fafb; border-radius: 12px; padding: 15px;">
+                <h4 style="color: #2563eb; margin-bottom: 8px;">Is this profit/loss calculator really free?</h4>
+                <p style="color: #374151;">Yes! This tool is completely free with no registration required. Use it unlimited times.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+    <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 35px;">
+        <div>
+            <h3 style="color: white; margin-bottom: 18px;">✨ Free Online Tools</h3>
+            <p style="font-size: 0.9rem; line-height: 1.6;">Your one-stop destination for free, fast, and accurate online calculators and utilities. Trusted by 50,000+ users worldwide.</p>
+        </div>
+        <div>
+            <h4 style="color: white; margin-bottom: 18px;">📄 Quick Links</h4>
+            <a href="index.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">🏠 Home</a>
+            <a href="about.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">ℹ️ About Us</a>
+            <a href="contact.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">📧 Contact Us</a>
+            <a href="privacy-policy.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">🔒 Privacy Policy</a>
+        </div>
+        <div>
+            <h4 style="color: white; margin-bottom: 18px;">⭐ Popular Tools</h4>
+            <a href="profit-loss-calculator.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">📊 Profit/Loss Calculator</a>
+            <a href="bmi-calculator.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">⚖️ BMI Calculator</a>
+            <a href="age-calculator.html" style="display: block; color: #94a3b8; text-decoration: none; padding: 5px 0;">📅 Age Calculator</a>
+        </div>
+    </div>
+    <div style="text-align: center; padding-top: 30px; margin-top: 35px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.85rem;">
+        <p>© 2026 <strong>Free Online Tools</strong>. All rights reserved. | Made with ❤️ for the global community</p>
+    </div>
+</footer>
+
 <script>
-    // DOM elements
-    const costInput = document.getElementById('costPrice');
-    const spInput = document.getElementById('sellingPrice');
-    const qtyInput = document.getElementById('quantity');
-    const totalCPspan = document.getElementById('totalCPVal');
-    const totalSPspan = document.getElementById('totalSPVal');
-    const pnlPercentSpan = document.getElementById('pnlPercent');
-    const pnlBadge = document.getElementById('pnlBadge');
-    const calcBtn = document.getElementById('calcBtn');
-    const resetBtn = document.getElementById('resetBtn');
-    const toggleAdvBtn = document.getElementById('toggleAdvBtn');
-    const advancedPanel = document.getElementById('advancedPanel');
-    const calcRequiredSPBtn = document.getElementById('calcRequiredSPBtn');
-    const requiredSPResult = document.getElementById('requiredSPResult');
-    const targetProfitInput = document.getElementById('targetProfitPercent');
+// DOM elements
+const costInput = document.getElementById('costPrice');
+const spInput = document.getElementById('sellingPrice');
+const qtyInput = document.getElementById('quantity');
+const totalCPspan = document.getElementById('totalCPVal');
+const totalSPspan = document.getElementById('totalSPVal');
+const pnlPercentSpan = document.getElementById('pnlPercent');
+const pnlBadge = document.getElementById('pnlBadge');
+const calcBtn = document.getElementById('calcBtn');
+const resetBtn = document.getElementById('resetBtn');
+const toggleAdvBtn = document.getElementById('toggleAdvBtn');
+const advancedPanel = document.getElementById('advancedPanel');
+const calcRequiredSPBtn = document.getElementById('calcRequiredSPBtn');
+const requiredSPResult = document.getElementById('requiredSPResult');
+const targetProfitInput = document.getElementById('targetProfitPercent');
+const darkToggle = document.getElementById('darkToggle');
 
-    let advancedModeActive = false;
+let advancedModeActive = false;
 
-    // Helper: format currency INR style
-    function formatMoney(value) {
-        return '₹' + value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+// Helper: format currency INR style
+function formatMoney(value) {
+    return '₹' + value.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+}
+
+// Core Calculation function
+function calculateProfitLoss() {
+    let cp = parseFloat(costInput.value);
+    let sp = parseFloat(spInput.value);
+    let qty = parseInt(qtyInput.value);
+
+    if (isNaN(cp) || isNaN(sp) || isNaN(qty) || qty <= 0) {
+        if(isNaN(qty) || qty <= 0) qty = 1;
+        if(isNaN(cp)) cp = 0;
+        if(isNaN(sp)) sp = 0;
+    }
+    if (cp < 0) cp = 0;
+    if (sp < 0) sp = 0;
+    if (qty < 1) qty = 1;
+
+    const totalCP = cp * qty;
+    const totalSP = sp * qty;
+    const pnlAmount = totalSP - totalCP;
+    let pnlPercent = 0;
+    if (totalCP !== 0) {
+        pnlPercent = (pnlAmount / totalCP) * 100;
+    } else {
+        pnlPercent = (pnlAmount === 0) ? 0 : (pnlAmount > 0 ? 100 : -100);
     }
 
-    // Core Calculation function
-    function calculateProfitLoss() {
-        // Get values with validation
-        let cp = parseFloat(costInput.value);
-        let sp = parseFloat(spInput.value);
-        let qty = parseInt(qtyInput.value);
+    totalCPspan.innerText = formatMoney(totalCP);
+    totalSPspan.innerText = formatMoney(totalSP);
+    pnlPercentSpan.innerText = pnlPercent.toFixed(2) + '%';
 
-        if (isNaN(cp) || isNaN(sp) || isNaN(qty) || qty <= 0) {
-            if(isNaN(qty) || qty <= 0) qty = 1;
-            if(isNaN(cp)) cp = 0;
-            if(isNaN(sp)) sp = 0;
-        }
-        if (cp < 0) cp = 0;
-        if (sp < 0) sp = 0;
-        if (qty < 1) qty = 1;
-
-        const totalCP = cp * qty;
-        const totalSP = sp * qty;
-        const pnlAmount = totalSP - totalCP;
-        let pnlPercent = 0;
-        if (totalCP !== 0) {
-            pnlPercent = (pnlAmount / totalCP) * 100;
-        } else {
-            pnlPercent = (pnlAmount === 0) ? 0 : (pnlAmount > 0 ? 100 : -100);
-        }
-
-        // Update stat cards
-        totalCPspan.innerText = formatMoney(totalCP);
-        totalSPspan.innerText = formatMoney(totalSP);
-        pnlPercentSpan.innerText = pnlPercent.toFixed(2) + '%';
-
-        // Update badge with color
-        let badgeText = '';
-        let badgeColor = 'white';
-        if (pnlAmount > 0) {
-            badgeText = `📈 PROFIT : +${formatMoney(pnlAmount)} (${pnlPercent.toFixed(2)}%)`;
-            badgeColor = '#4ade80';
-        } else if (pnlAmount < 0) {
-            badgeText = `📉 LOSS : ${formatMoney(pnlAmount)} (${pnlPercent.toFixed(2)}%)`;
-            badgeColor = '#f87171';
-        } else {
-            badgeText = `⚖️ NO PROFIT / NO LOSS (₹0)`;
-            badgeColor = '#94a3b8';
-        }
-        pnlBadge.innerText = badgeText;
-        pnlBadge.style.color = badgeColor;
+    let badgeText = '';
+    let badgeColor = 'white';
+    if (pnlAmount > 0) {
+        badgeText = `📈 PROFIT : +${formatMoney(pnlAmount)} (${pnlPercent.toFixed(2)}%)`;
+        badgeColor = '#4ade80';
+    } else if (pnlAmount < 0) {
+        badgeText = `📉 LOSS : ${formatMoney(pnlAmount)} (${pnlPercent.toFixed(2)}%)`;
+        badgeColor = '#f87171';
+    } else {
+        badgeText = `⚖️ NO PROFIT / NO LOSS (₹0)`;
+        badgeColor = '#94a3b8';
     }
+    pnlBadge.innerText = badgeText;
+    pnlBadge.style.color = badgeColor;
+}
 
-    // Reset all inputs to default clean state
-    function resetAll() {
-        costInput.value = '';
-        spInput.value = '';
-        qtyInput.value = '1';
-        targetProfitInput.value = '20';
-        requiredSPResult.innerHTML = '';
-        // after reset, show placeholder message
-        totalCPspan.innerText = '₹0';
-        totalSPspan.innerText = '₹0';
-        pnlPercentSpan.innerText = '0%';
-        pnlBadge.innerText = '✨ Enter values & click Calculate';
-        pnlBadge.style.color = '#cbd5e1';
-        // but also optionally set default demo? No, empty but better show neutral.
-        // For better UX:
-        if(costInput.value === '') costInput.value = '';
-        if(spInput.value === '') spInput.value = '';
+function resetAll() {
+    costInput.value = '';
+    spInput.value = '';
+    qtyInput.value = '1';
+    targetProfitInput.value = '20';
+    requiredSPResult.innerHTML = '';
+    totalCPspan.innerText = '₹0';
+    totalSPspan.innerText = '₹0';
+    pnlPercentSpan.innerText = '0%';
+    pnlBadge.innerText = '✨ Enter values & click Calculate';
+    pnlBadge.style.color = '#cbd5e1';
+}
+
+function computeRequiredSP() {
+    let cp = parseFloat(costInput.value);
+    let qty = parseInt(qtyInput.value);
+    let targetPercent = parseFloat(targetProfitInput.value);
+
+    if (isNaN(cp) || cp <= 0) {
+        requiredSPResult.innerHTML = '❌ Please enter valid Cost Price (>0) first.';
+        return;
     }
+    if (isNaN(qty) || qty <= 0) qty = 1;
+    if (isNaN(targetPercent)) targetPercent = 0;
 
-    // Required SP calculator (advanced)
-    function computeRequiredSP() {
-        let cp = parseFloat(costInput.value);
-        let qty = parseInt(qtyInput.value);
-        let targetPercent = parseFloat(targetProfitInput.value);
+    const totalCP = cp * qty;
+    const desiredProfitAmount = totalCP * (targetPercent / 100);
+    const requiredTotalSP = totalCP + desiredProfitAmount;
+    const requiredSPperUnit = requiredTotalSP / qty;
 
-        if (isNaN(cp) || cp <= 0) {
-            requiredSPResult.innerHTML = '❌ Please enter valid Cost Price (>0) first.';
-            return;
-        }
-        if (isNaN(qty) || qty <= 0) qty = 1;
-        if (isNaN(targetPercent)) targetPercent = 0;
+    requiredSPResult.innerHTML = `✅ To achieve ${targetPercent}% profit, Selling Price per unit should be: <strong style="font-size:1.2rem;">${formatMoney(requiredSPperUnit)}</strong><br> <span style="font-size:0.7rem;">(Total SP: ${formatMoney(requiredTotalSP)})</span>`;
+}
 
-        const totalCP = cp * qty;
-        const desiredProfitAmount = totalCP * (targetPercent / 100);
-        const requiredTotalSP = totalCP + desiredProfitAmount;
-        const requiredSPperUnit = requiredTotalSP / qty;
-
-        requiredSPResult.innerHTML = `✅ To achieve ${targetPercent}% profit, Selling Price per unit should be: <strong style="font-size:1.2rem;">${formatMoney(requiredSPperUnit)}</strong><br> <span style="font-size:0.7rem;">(Total SP: ${formatMoney(requiredTotalSP)})</span>`;
-    }
-
-    // Real-time & event binding
-    function autoCalcIfNeeded() {
-        // auto only if all primary fields have some truthy values
-        if(costInput.value !== '' && spInput.value !== '' && qtyInput.value !== '' && !isNaN(parseFloat(costInput.value)) && !isNaN(parseFloat(spInput.value))) {
-            calculateProfitLoss();
-        } else {
-            // show no error but neutral message
-            if(costInput.value === '' || spInput.value === '') {
-                totalCPspan.innerText = '₹0';
-                totalSPspan.innerText = '₹0';
-                pnlPercentSpan.innerText = '0%';
-                pnlBadge.innerText = '💡 Fill CP & SP to see results';
-                pnlBadge.style.color = '#a0aec0';
-            }
-        }
-    }
-
-    // Toggle advanced panel
-    toggleAdvBtn.addEventListener('click', () => {
-        advancedModeActive = !advancedModeActive;
-        if(advancedModeActive) {
-            advancedPanel.classList.add('show');
-            toggleAdvBtn.classList.add('active');
-            toggleAdvBtn.innerText = '🔽 Hide Target Mode';
-        } else {
-            advancedPanel.classList.remove('show');
-            toggleAdvBtn.classList.remove('active');
-            toggleAdvBtn.innerText = '⚙️ Target Profit Mode';
-        }
-    });
-
-    // Event listeners
-    calcBtn.addEventListener('click', () => {
-        // Force calculation with validation
-        if(costInput.value === '' || spInput.value === '' || qtyInput.value === '') {
-            alert('⚠️ Please fill Cost Price, Selling Price and Quantity.');
-            return;
-        }
+function autoCalcIfNeeded() {
+    if(costInput.value !== '' && spInput.value !== '' && qtyInput.value !== '' && !isNaN(parseFloat(costInput.value)) && !isNaN(parseFloat(spInput.value))) {
         calculateProfitLoss();
-    });
-
-    resetBtn.addEventListener('click', () => {
-        resetAll();
-        // optional reset in advanced panel
-        if(advancedPanel.classList.contains('show')) {
-            requiredSPResult.innerHTML = '';
+    } else {
+        if(costInput.value === '' || spInput.value === '') {
+            totalCPspan.innerText = '₹0';
+            totalSPspan.innerText = '₹0';
+            pnlPercentSpan.innerText = '0%';
+            pnlBadge.innerText = '💡 Fill CP & SP to see results';
+            pnlBadge.style.color = '#a0aec0';
         }
-    });
+    }
+}
 
-    calcRequiredSPBtn.addEventListener('click', computeRequiredSP);
+// Dark Mode Toggle
+darkToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+});
 
-    // Optional realtime when typing (smooth)
-    costInput.addEventListener('input', autoCalcIfNeeded);
-    spInput.addEventListener('input', autoCalcIfNeeded);
-    qtyInput.addEventListener('input', autoCalcIfNeeded);
-
-    // initial call to display demo (500,650,1) profit preview
-    window.addEventListener('load', () => {
-        // default demo values already in html: 500,650,1
-        calculateProfitLoss();
-        // set advanced panel hidden initially
+// Toggle advanced panel
+toggleAdvBtn.addEventListener('click', () => {
+    advancedModeActive = !advancedModeActive;
+    if(advancedModeActive) {
+        advancedPanel.classList.add('show');
+        toggleAdvBtn.classList.add('active');
+        toggleAdvBtn.innerText = '🔽 Hide Target Mode';
+    } else {
         advancedPanel.classList.remove('show');
-        advancedModeActive = false;
         toggleAdvBtn.classList.remove('active');
         toggleAdvBtn.innerText = '⚙️ Target Profit Mode';
-    });
+    }
+});
+
+// Event listeners
+calcBtn.addEventListener('click', () => {
+    if(costInput.value === '' || spInput.value === '' || qtyInput.value === '') {
+        alert('⚠️ Please fill Cost Price, Selling Price and Quantity.');
+        return;
+    }
+    calculateProfitLoss();
+});
+
+resetBtn.addEventListener('click', () => {
+    resetAll();
+    if(advancedPanel.classList.contains('show')) {
+        requiredSPResult.innerHTML = '';
+    }
+});
+
+calcRequiredSPBtn.addEventListener('click', computeRequiredSP);
+costInput.addEventListener('input', autoCalcIfNeeded);
+spInput.addEventListener('input', autoCalcIfNeeded);
+qtyInput.addEventListener('input', autoCalcIfNeeded);
+
+window.addEventListener('load', () => {
+    calculateProfitLoss();
+    advancedPanel.classList.remove('show');
+    advancedModeActive = false;
+    toggleAdvBtn.classList.remove('active');
+    toggleAdvBtn.innerText = '⚙️ Target Profit Mode';
+});
 </script>
 </body>
 </html>
